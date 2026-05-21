@@ -1,0 +1,5 @@
+SET
+ txtfornecedor | total_pago 
+---------------+------------
+(0 rows)
+

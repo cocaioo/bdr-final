@@ -1,0 +1,127 @@
+2026-05-21 10:44:03  INFO     ============================================================
+2026-05-21 10:44:03  INFO     ETL — Câmara dos Deputados (Grupo 4)
+2026-05-21 10:44:03  INFO     ============================================================
+2026-05-21 10:44:03  INFO     Schema: grupo4
+2026-05-21 10:44:03  INFO     Dados:  C:\Users\Caio\Desktop\BDR\tabelas
+2026-05-21 10:44:03  INFO     Limpos: C:\Users\Caio\Desktop\BDR\cleaned
+2026-05-21 10:44:03  INFO     Logs:   C:\Users\Caio\Desktop\BDR\logs
+2026-05-21 10:44:03  INFO     Tabelas: 11
+2026-05-21 10:44:03  INFO     
+2026-05-21 10:44:03  INFO     ✓ Conexão com PostgreSQL estabelecida
+2026-05-21 10:44:03  INFO     
+2026-05-21 10:44:03  INFO     Limpando tabelas...
+2026-05-21 10:44:03  INFO       TRUNCATE OK (14 tabelas)
+2026-05-21 10:44:03  INFO       FK constraints desabilitadas
+2026-05-21 10:44:03  INFO     
+2026-05-21 10:44:03  INFO     [1/11] deputados
+2026-05-21 10:44:03  INFO     ----------------------------------------
+2026-05-21 10:44:03  INFO       Lendo deputados.csv...
+2026-05-21 10:44:04  INFO       7,884 linhas lidas
+2026-05-21 10:44:04  INFO       7,884 linhas após limpeza
+2026-05-21 10:44:04  INFO       CSV limpo salvo: deputados.csv
+2026-05-21 10:44:04  INFO       ✓ 7,884 linhas carregadas no banco
+2026-05-21 10:44:04  INFO     
+2026-05-21 10:44:04  INFO     [2/11] proposicoes_2026
+2026-05-21 10:44:04  INFO     ----------------------------------------
+2026-05-21 10:44:04  INFO       Lendo proposicoes-2026.csv...
+2026-05-21 10:44:05  INFO       25,144 linhas lidas
+2026-05-21 10:44:05  INFO       25,144 linhas após limpeza
+2026-05-21 10:44:05  INFO       CSV limpo salvo: proposicoes_2026.csv
+2026-05-21 10:44:06  INFO       ✓ 25,144 linhas carregadas no banco
+2026-05-21 10:44:06  INFO     
+2026-05-21 10:44:06  INFO     [3/11] eventos_2026
+2026-05-21 10:44:06  INFO     ----------------------------------------
+2026-05-21 10:44:06  INFO       Lendo eventos-2026.csv...
+2026-05-21 10:44:06  INFO       900 linhas lidas
+2026-05-21 10:44:07  INFO       900 linhas após limpeza
+2026-05-21 10:44:07  INFO       CSV limpo salvo: eventos_2026.csv
+2026-05-21 10:44:08  INFO       ✓ 900 linhas carregadas no banco
+2026-05-21 10:44:08  INFO     
+2026-05-21 10:44:08  INFO     [4/11] votacoes_2026
+2026-05-21 10:44:08  INFO     ----------------------------------------
+2026-05-21 10:44:08  INFO       Lendo votacoes-2026.csv...
+2026-05-21 10:44:08  INFO       4,279 linhas lidas
+2026-05-21 10:44:09  INFO       4,279 linhas após limpeza
+2026-05-21 10:44:09  INFO       CSV limpo salvo: votacoes_2026.csv
+2026-05-21 10:44:09  INFO       ✓ 4,279 linhas carregadas no banco
+2026-05-21 10:44:09  INFO     
+2026-05-21 10:44:09  INFO     [5/11] gastos_2026
+2026-05-21 10:44:09  INFO     ----------------------------------------
+2026-05-21 10:44:09  INFO       Lendo Ano-2026.csv...
+2026-05-21 10:44:10  INFO       52,268 linhas lidas
+2026-05-21 10:44:11  INFO       294 linhas removidas (campos obrigatórios nulos)
+2026-05-21 10:44:11  INFO       51,974 linhas após limpeza
+2026-05-21 10:44:11  INFO       CSV limpo salvo: gastos_2026.csv
+2026-05-21 10:44:12  INFO       ✓ 51,974 linhas carregadas no banco
+2026-05-21 10:44:12  INFO     
+2026-05-21 10:44:12  INFO     [6/11] votacoesvotos_2026
+2026-05-21 10:44:12  INFO     ----------------------------------------
+2026-05-21 10:44:12  INFO       Lendo votacoesVotos-2026.csv...
+2026-05-21 10:44:12  INFO       35,064 linhas lidas
+2026-05-21 10:44:13  INFO       35,064 linhas após limpeza
+2026-05-21 10:44:13  INFO       CSV limpo salvo: votacoesvotos_2026.csv
+2026-05-21 10:44:13  INFO       ✓ 35,064 linhas carregadas no banco
+2026-05-21 10:44:13  INFO     
+2026-05-21 10:44:13  INFO     [7/11] votacoesorientacoes_2026
+2026-05-21 10:44:13  INFO     ----------------------------------------
+2026-05-21 10:44:13  INFO       Lendo votacoesOrientacoes-2026.csv...
+2026-05-21 10:44:13  INFO       1,183 linhas lidas
+2026-05-21 10:44:13  INFO       1,183 linhas após limpeza
+2026-05-21 10:44:13  INFO       CSV limpo salvo: votacoesorientacoes_2026.csv
+2026-05-21 10:44:13  INFO       ✓ 1,183 linhas carregadas no banco
+2026-05-21 10:44:13  INFO     
+2026-05-21 10:44:13  INFO     [8/11] votacoesobjetos_2026
+2026-05-21 10:44:13  INFO     ----------------------------------------
+2026-05-21 10:44:13  INFO       Lendo votacoesObjetos-2026.csv...
+2026-05-21 10:44:13  INFO       20,717 linhas lidas
+2026-05-21 10:44:13  INFO       20,717 linhas após limpeza
+2026-05-21 10:44:14  INFO       CSV limpo salvo: votacoesobjetos_2026.csv
+2026-05-21 10:44:14  INFO       ✓ 20,717 linhas carregadas no banco
+2026-05-21 10:44:14  INFO     
+2026-05-21 10:44:14  INFO     [9/11] votacoesproposicoes_2026
+2026-05-21 10:44:14  INFO     ----------------------------------------
+2026-05-21 10:44:14  INFO       Lendo votacoesObjetos-2026.csv...
+2026-05-21 10:44:14  INFO       20,717 linhas lidas
+2026-05-21 10:44:23  INFO       20,717 linhas após limpeza
+2026-05-21 10:44:23  INFO       CSV limpo salvo: votacoesproposicoes_2026.csv
+2026-05-21 10:44:23  INFO       ✓ 20,717 linhas carregadas no banco
+2026-05-21 10:44:23  INFO     
+2026-05-21 10:44:23  INFO     [10/11] proposicoestemas_2026
+2026-05-21 10:44:23  INFO     ----------------------------------------
+2026-05-21 10:44:23  INFO       Lendo proposicoesTemas-2026.csv...
+2026-05-21 10:44:23  INFO       12,276 linhas lidas
+2026-05-21 10:44:23  INFO       12,276 linhas após limpeza
+2026-05-21 10:44:23  INFO       CSV limpo salvo: proposicoestemas_2026.csv
+2026-05-21 10:44:24  INFO       ✓ 12,276 linhas carregadas no banco
+2026-05-21 10:44:24  INFO     
+2026-05-21 10:44:24  INFO     [11/11] proposicoesautores
+2026-05-21 10:44:24  INFO     ----------------------------------------
+2026-05-21 10:44:24  INFO       Lendo proposicoesAutores-2026.csv...
+2026-05-21 10:44:24  INFO       32,944 linhas lidas
+2026-05-21 10:44:24  INFO       32,944 linhas após limpeza
+2026-05-21 10:44:24  INFO       CSV limpo salvo: proposicoesautores.csv
+2026-05-21 10:44:25  INFO       ✓ 32,944 linhas carregadas no banco
+2026-05-21 10:44:25  INFO       Deputados ausentes inseridos a partir de gastos: 358
+2026-05-21 10:44:25  INFO       FK constraints reabilitadas
+2026-05-21 10:44:25  INFO     
+2026-05-21 10:44:25  INFO     ============================================================
+2026-05-21 10:44:25  INFO     RESUMO FINAL
+2026-05-21 10:44:25  INFO     ============================================================
+2026-05-21 10:44:25  INFO     
+2026-05-21 10:44:25  INFO       Tabela                              Status          Bruto      Limpo    Cargado    Tempo
+2026-05-21 10:44:25  INFO       ----------------------------------- ---------- ---------- ---------- ---------- --------
+2026-05-21 10:44:25  INFO       deputados                           ✓ ok            7,884      7,884      7,884     0.6s
+2026-05-21 10:44:25  INFO       proposicoes_2026                    ✓ ok           25,144     25,144     25,144     2.2s
+2026-05-21 10:44:25  INFO       eventos_2026                        ✓ ok              900        900        900     1.3s
+2026-05-21 10:44:25  INFO       votacoes_2026                       ✓ ok            4,279      4,279      4,279     2.0s
+2026-05-21 10:44:25  INFO       gastos_2026                         ✓ ok           52,268     51,974     51,974     2.6s
+2026-05-21 10:44:25  INFO       votacoesvotos_2026                  ✓ ok           35,064     35,064     35,064     0.9s
+2026-05-21 10:44:25  INFO       votacoesorientacoes_2026            ✓ ok            1,183      1,183      1,183     0.1s
+2026-05-21 10:44:25  INFO       votacoesobjetos_2026                ✓ ok           20,717     20,717     20,717     1.3s
+2026-05-21 10:44:25  INFO       votacoesproposicoes_2026            ✓ ok           20,717     20,717     20,717     8.9s
+2026-05-21 10:44:25  INFO       proposicoestemas_2026               ✓ ok           12,276     12,276     12,276     0.5s
+2026-05-21 10:44:25  INFO       proposicoesautores                  ✓ ok           32,944     32,944     32,944     1.0s
+2026-05-21 10:44:25  INFO     
+2026-05-21 10:44:25  INFO       Total: 11 ok, 0 skip, 0 erros
+2026-05-21 10:44:25  INFO       Tempo total: 21.3s
+2026-05-21 10:44:25  INFO     ============================================================

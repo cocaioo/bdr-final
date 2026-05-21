@@ -1,0 +1,5 @@
+SET
+ id_dep | nome | gasto_total 
+--------+------+-------------
+(0 rows)
+
