@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres-grupo4
+
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: dossie_grupo4
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      # Persistência dos dados
+      - postgres_data:/var/lib/postgresql/data
+
+      # Script SQL inicial
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
