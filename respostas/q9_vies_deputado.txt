@@ -1,0 +1,1760 @@
+ sigla_partido | ideologia 
+---------------+-----------
+ AVANTE        | centro
+ CIDADANIA     | centro
+ MDB           | centro
+ MISSAO        | centro
+ PODE          | centro
+ PRD           | centro
+ PSD           | centro
+ PSDB          | centro
+ SOLIDARIEDADE | centro
+ UNIAO         | centro
+ NOVO          | direita
+ PL            | direita
+ PP            | direita
+ REPUBLICANOS  | direita
+ PCDOB         | esquerda
+ PDT           | esquerda
+ PSB           | esquerda
+ PSOL          | esquerda
+ PT            | esquerda
+ PV            | esquerda
+ REDE          | esquerda
+(21 rows)
+
+ id_deputado |                nome                 | sigla_partido | ideologia 
+-------------+-------------------------------------+---------------+-----------
+      204515 | André Janones                       | AVANTE        | centro
+      210989 | Bruno Farias                        | AVANTE        | centro
+      220625 | Delegada Ione                       | AVANTE        | centro
+        3516 | Duarte Jr.                          | AVANTE        | centro
+        3814 | FLORIANO DE MORAES                  | AVANTE        | centro
+      198197 | Greyce Elias                        | AVANTE        | centro
+        2412 | Luis Tibé                           | AVANTE        | centro
+      160510 | Luis Tibé                           | AVANTE        | centro
+      220703 | Neto Carletto                       | AVANTE        | centro
+        3630 | Neto Carletto                       | AVANTE        | centro
+        3200 | Pastor Sargento Isidório            | AVANTE        | centro
+      204553 | Pastor Sargento Isidório            | AVANTE        | centro
+        3680 | PEDREIRA FRANCO                     | AVANTE        | centro
+      235712 | Vavá                                | AVANTE        | centro
+       91228 | Waldemar Oliveira                   | AVANTE        | centro
+      178972 | Alex Manente                        | CIDADANIA     | centro
+      220715 | Amom Mandel                         | CIDADANIA     | centro
+      220549 | Any Ortiz                           | CIDADANIA     | centro
+        1786 | Arnaldo Jardim                      | CIDADANIA     | centro
+      141391 | Arnaldo Jardim                      | CIDADANIA     | centro
+        3011 | JOÃO BOTELHO                        | CIDADANIA     | centro
+        3308 | Acácio Favacho                      | MDB           | centro
+      204379 | Acácio Favacho                      | MDB           | centro
+        3536 | Adail Filho                         | MDB           | centro
+      160559 | Alceu Moreira                       | MDB           | centro
+        3584 | Alexandre Guimarães                 | MDB           | centro
+      220542 | Alexandre Guimarães                 | MDB           | centro
+      220676 | Andreia Siqueira                    | MDB           | centro
+        3086 | ANTÔNIO BALBINO                     | MDB           | centro
+        3532 | Antônio Doido                       | MDB           | centro
+      220675 | Antônio Doido                       | MDB           | centro
+      178975 | Baleia Rossi                        | MDB           | centro
+        1804 | BARROS LINS                         | MDB           | centro
+      204361 | Carlos Chiodini                     | MDB           | centro
+        3331 | Carlos Chiodini                     | MDB           | centro
+      220699 | Castro Neto                         | MDB           | centro
+        3560 | Castro Neto                         | MDB           | centro
+        3008 | Célio Silveira                      | MDB           | centro
+      178876 | Célio Silveira                      | MDB           | centro
+      141408 | Cleber Verde                        | MDB           | centro
+        3704 | Cobalchini                          | MDB           | centro
+       98148 | Cobalchini                          | MDB           | centro
+      220652 | Delegado Palumbo                    | MDB           | centro
+      220674 | Dra. Alessandra Haber               | MDB           | centro
+        3381 | Dr. Zacharias Calil                 | MDB           | centro
+      220540 | Duda Ramos                          | MDB           | centro
+       74075 | Elcione Barbalho                    | MDB           | centro
+      198783 | Emanuel Pinheiro Neto               | MDB           | centro
+        1011 | ESCRAGNOLLE TAUNAY                  | MDB           | centro
+       74454 | Eunício Oliveira                    | MDB           | centro
+        1307 | Eunício Oliveira                    | MDB           | centro
+      220653 | Fábio Teruel                        | MDB           | centro
+        3612 | Fábio Teruel                        | MDB           | centro
+        3625 | FARIA NEVES SOBRINHO                | MDB           | centro
+        3021 | GILBERTO FREIRE                     | MDB           | centro
+      129618 | Gorete Pereira                      | MDB           | centro
+        3210 | Gutemberg Reis                      | MDB           | centro
+      204456 | Gutemberg Reis                      | MDB           | centro
+      220537 | Helena Lima                         | MDB           | centro
+      220672 | Henderson Pinto                     | MDB           | centro
+        3268 | Hercílio Coelho Diniz               | MDB           | centro
+      204539 | Hercílio Coelho Diniz               | MDB           | centro
+      178884 | Hildo Rocha                         | MDB           | centro
+      204436 | Isnaldo Bulhões Jr.                 | MDB           | centro
+        3371 | Isnaldo Bulhões Jr.                 | MDB           | centro
+      220670 | Iza Arruda                          | MDB           | centro
+        3615 | Iza Arruda                          | MDB           | centro
+        1077 | JOÃO BRÍGIDO                        | MDB           | centro
+        3790 | João Cury                           | MDB           | centro
+      230957 | João Cury                           | MDB           | centro
+       74079 | José Priante                        | MDB           | centro
+        2379 | JOSÉ TOLENTINO                      | MDB           | centro
+      204474 | Juarez Costa                        | MDB           | centro
+        3269 | Junior Lourenço                     | MDB           | centro
+      220677 | Keniston Braga                      | MDB           | centro
+        3600 | Keniston Braga                      | MDB           | centro
+        1329 | Luciano Bivar                       | MDB           | centro
+      178954 | Lucio Mosquini                      | MDB           | centro
+        3777 | Luiz Fernando Vampiro               | MDB           | centro
+      229432 | Luiz Fernando Vampiro               | MDB           | centro
+      179001 | Márcio Biolchi                      | MDB           | centro
+        3247 | Marcos Aurélio Sampaio              | MDB           | centro
+        2258 | NATALÍCIO CAMBOIM                   | MDB           | centro
+        2925 | Newton Cardoso Jr                   | MDB           | centro
+      178896 | Newton Cardoso Jr                   | MDB           | centro
+        3062 | NOBRE FILHO                         | MDB           | centro
+      204498 | Olival Marques                      | MDB           | centro
+      204441 | Otoni de Paula                      | MDB           | centro
+        3035 | OZÓRIO TUYUTY                       | MDB           | centro
+        3668 | PAULA GUIMARÃES                     | MDB           | centro
+      161440 | Pezenti                             | MDB           | centro
+        3646 | PRUDÊNCIO MILANEZ                   | MDB           | centro
+      220586 | Rafael Brito                        | MDB           | centro
+      220532 | Rafael Prudente                     | MDB           | centro
+        3710 | Rafael Prudente                     | MDB           | centro
+      153423 | Renilce Nicodemos                   | MDB           | centro
+      220694 | Ricardo Maia                        | MDB           | centro
+        3531 | Ricardo Maia                        | MDB           | centro
+        3674 | Saullo Vianna                       | MDB           | centro
+      220713 | Saullo Vianna                       | MDB           | centro
+      178933 | Sergio Souza                        | MDB           | centro
+      220651 | Simone Marquetto                    | MDB           | centro
+        1737 | TOLENTINO DE CARVALHO               | MDB           | centro
+        2229 | VÍTOR DO AMARAL                     | MDB           | centro
+        3640 | Yury do Paredão                     | MDB           | centro
+      220660 | Yury do Paredão                     | MDB           | centro
+        3354 | Kim Kataguiri                       | MISSAO        | centro
+      204536 | Kim Kataguiri                       | MISSAO        | centro
+        3794 | ALFREDO ELLIS                       | PODE          | centro
+        3654 | Antonio Carlos Rodrigues            | PODE          | centro
+      220635 | Bruno Ganem                         | PODE          | centro
+        3707 | Bruno Ganem                         | PODE          | centro
+        3227 | David Soares                        | PODE          | centro
+        3661 | Delegado Bruno Lima                 | PODE          | centro
+        3597 | Delegado Palumbo                    | PODE          | centro
+      220528 | Dr. Victor Linhalis                 | PODE          | centro
+        3648 | Duda Ramos                          | PODE          | centro
+        3740 | Enfermeira Ana Paula                | PODE          | centro
+      225730 | Enfermeira Ana Paula                | PODE          | centro
+      220681 | Fábio Macedo                        | PODE          | centro
+        3568 | Felipe Becari                       | PODE          | centro
+        3292 | Felipe Francischini                 | PODE          | centro
+        3527 | FIRMO BRAGA                         | PODE          | centro
+        3616 | Gilson Daniel                       | PODE          | centro
+      220529 | Gilson Daniel                       | PODE          | centro
+      204419 | Glaustin da Fokus                   | PODE          | centro
+        3238 | Glaustin da Fokus                   | PODE          | centro
+         824 | HORTA DE ARAÚJO                     | PODE          | centro
+        3675 | JOÃO LUÍS ALVES                     | PODE          | centro
+        3081 | JORGE JABOUR                        | PODE          | centro
+        3581 | LOBO JURUMENHA                      | PODE          | centro
+       73778 | Luiz Carlos Hauly                   | PODE          | centro
+        3593 | Marangoni                           | PODE          | centro
+        2335 | MOREIRA DA ROCHA                    | PODE          | centro
+        3388 | Nelson Barbudo                      | PODE          | centro
+      220622 | Nely Aquino                         | PODE          | centro
+        3519 | Nely Aquino                         | PODE          | centro
+        1652 | NOVAES MELLO                        | PODE          | centro
+        3319 | Olival Marques                      | PODE          | centro
+        2276 | PEREIRA BRAGA                       | PODE          | centro
+      233594 | Rafael Fera                         | PODE          | centro
+      204567 | Raimundo Costa                      | PODE          | centro
+      178989 | Renata Abreu                        | PODE          | centro
+        3784 | Ribamar Silva                       | PODE          | centro
+        3660 | Rodrigo Gambale                     | PODE          | centro
+      220641 | Rodrigo Gambale                     | PODE          | centro
+      160629 | Romero Rodrigues                    | PODE          | centro
+      160635 | Ruy Carneiro                        | PODE          | centro
+        3618 | Sargento Portugal                   | PODE          | centro
+      220618 | Sargento Portugal                   | PODE          | centro
+        3802 | Sergio Santos Rodrigues             | PODE          | centro
+       77003 | Sergio Santos Rodrigues             | PODE          | centro
+        3296 | Tiago Dimas                         | PODE          | centro
+      143084 | Tiago Dimas                         | PODE          | centro
+        3798 | DINO BUENO                          | PRD           | centro
+      204518 | Dr. Frederico                       | PRD           | centro
+      234388 | Fabiano Cazeca                      | PRD           | centro
+        3243 | Fernando Rodolfo                    | PRD           | centro
+      204494 | Fred Costa                          | PRD           | centro
+        3387 | Fred Costa                          | PRD           | centro
+        3284 | Marreca Filho                       | PRD           | centro
+      204566 | Marreca Filho                       | PRD           | centro
+      220630 | Pedro Aihara                        | PRD           | centro
+      235088 | Ribeiro Neto                        | PRD           | centro
+        2242 | AMÉRICO WERNECK                     | PSD           | centro
+        1150 | ANTERO CÍCERO                       | PSD           | centro
+      160553 | Antonio Brito                       | PSD           | centro
+       74090 | Átila Lins                          | PSD           | centro
+      220698 | Beto Preto                          | PSD           | centro
+        3550 | Beto Preto                          | PSD           | centro
+      143942 | Caio Vianna                         | PSD           | centro
+        3737 | CARLOS OTONI                        | PSD           | centro
+       74262 | Carlos Sampaio                      | PSD           | centro
+        1848 | CARVALHO MOURÃO                     | PSD           | centro
+        2424 | CASTELO BRANCO                      | PSD           | centro
+      204488 | Célio Studart                       | PSD           | centro
+        3274 | Célio Studart                       | PSD           | centro
+      204504 | Cezinha de Madureira                | PSD           | centro
+      205476 | Charles Fernandes                   | PSD           | centro
+        3262 | Charles Fernandes                   | PSD           | centro
+        2430 | COSTA RIBEIRO                       | PSD           | centro
+        3557 | COSTA RODRIGUES                     | PSD           | centro
+         583 | CRUZ MACHADO                        | PSD           | centro
+        3561 | Daniel Agrobom                      | PSD           | centro
+      160552 | Danrlei de Deus Hinterholz          | PSD           | centro
+      220561 | Delegada Katarina                   | PSD           | centro
+        3543 | Delegada Katarina                   | PSD           | centro
+        2289 | Diego Andrade                       | PSD           | centro
+      160588 | Diego Andrade                       | PSD           | centro
+      220691 | Diego Coronel                       | PSD           | centro
+        2329 | Domingos Neto                       | PSD           | centro
+      143632 | Domingos Neto                       | PSD           | centro
+        3591 | Dr. Daniel Soranz                   | PSD           | centro
+      220614 | Dr. Daniel Soranz                   | PSD           | centro
+        3542 | Dr. Ismael Alexandrino              | PSD           | centro
+      220570 | Dr. Ismael Alexandrino              | PSD           | centro
+        3315 | Emanuel Pinheiro Neto               | PSD           | centro
+        2954 | EURICO RIBEIRO                      | PSD           | centro
+        2820 | Fabio Reis                          | PSD           | centro
+      171623 | Fabio Reis                          | PSD           | centro
+        3577 | Fernanda Pessoa                     | PSD           | centro
+      220656 | Fernanda Pessoa                     | PSD           | centro
+       92699 | Fernando Monteiro                   | PSD           | centro
+        1118 | FREITAS                             | PSD           | centro
+        3645 | Gabriel Nunes                       | PSD           | centro
+      220708 | Gabriel Nunes                       | PSD           | centro
+        1651 | Giacobo                             | PSD           | centro
+       74270 | Gilberto Nascimento                 | PSD           | centro
+      141450 | Hugo Leal                           | PSD           | centro
+      204508 | Igor Timo                           | PSD           | centro
+       98615 | Ismael                              | PSD           | centro
+        3621 | JOÃO VIEIRA                         | PSD           | centro
+        3056 | JORGE AMADO                         | PSD           | centro
+      215043 | Josivaldo JP                        | PSD           | centro
+       74317 | Júlio Cesar                         | PSD           | centro
+      204497 | Júnior Ferrari                      | PSD           | centro
+        3329 | Júnior Ferrari                      | PSD           | centro
+       74856 | Laura Carneiro                      | PSD           | centro
+        3044 | Leandre                             | PSD           | centro
+      178832 | Leandre                             | PSD           | centro
+        1552 | LEÃO VELOSO                         | PSD           | centro
+        3325 | Lucas Redecker                      | PSD           | centro
+        3736 | Luciano Alves                       | PSD           | centro
+      138286 | Luciano Alves                       | PSD           | centro
+      220581 | Luciano Amaral                      | PSD           | centro
+      204410 | Luisa Canziani                      | PSD           | centro
+        3635 | LUÍS ADOLFO                         | PSD           | centro
+      141487 | Luiz Fernando Faria                 | PSD           | centro
+        3545 | Luiz Gastão                         | PSD           | centro
+      220658 | Luiz Gastão                         | PSD           | centro
+      162332 | Luiz Nishimori                      | PSD           | centro
+      204431 | Marcos Aurélio Sampaio              | PSD           | centro
+        1097 | MELO FRANCO                         | PSD           | centro
+        2395 | MENDONÇA MARTINS                    | PSD           | centro
+        3045 | Misael Varella                      | PSD           | centro
+      178895 | Misael Varella                      | PSD           | centro
+        2407 | OTACÍLIO DE CAMARÁ                  | PSD           | centro
+        3246 | Otoni de Paula                      | PSD           | centro
+        3595 | Paulo Alexandre Barbosa             | PSD           | centro
+        3090 | PAULO FLEURY                        | PSD           | centro
+      220685 | Paulo Litro                         | PSD           | centro
+        1347 | Paulo Magalhães                     | PSD           | centro
+       74574 | Paulo Magalhães                     | PSD           | centro
+      122158 | Pedro Paulo                         | PSD           | centro
+        2386 | Pedro Paulo                         | PSD           | centro
+         169 | PEREIRA DE BRITO                    | PSD           | centro
+        3426 | Raimundo Costa                      | PSD           | centro
+       74084 | Raimundo Santos                     | PSD           | centro
+      205865 | Reinhold Stephanes                  | PSD           | centro
+      225386 | Renan Ferreirinha                   | PSD           | centro
+        3738 | Renan Ferreirinha                   | PSD           | centro
+      175765 | Ribamar Silva                       | PSD           | centro
+        3691 | ROCHA LEAL                          | PSD           | centro
+      223128 | Rodrigo Estacho                     | PSD           | centro
+        3720 | Rodrigo Estacho                     | PSD           | centro
+      160621 | Sandro Alex                         | PSD           | centro
+        3748 | Saulo Pedroso                       | PSD           | centro
+      226837 | Saulo Pedroso                       | PSD           | centro
+       73808 | Sérgio Brito                        | PSD           | centro
+        3293 | Sidney Leite                        | PSD           | centro
+      204557 | Sidney Leite                        | PSD           | centro
+       92776 | Stefano Aguiar                      | PSD           | centro
+      160976 | Tiririca                            | PSD           | centro
+        3419 | Túlio Gadêlha                       | PSD           | centro
+        1703 | VIOTTI                              | PSD           | centro
+        2233 | VIRGÍNIO MARQUES                    | PSD           | centro
+      220536 | Zé Haroldo Cathedral                | PSD           | centro
+        3326 | Adolfo Viana                        | PSDB          | centro
+      204560 | Adolfo Viana                        | PSDB          | centro
+       74646 | Aécio Neves                         | PSDB          | centro
+        3709 | Antonio Andrade                     | PSDB          | centro
+      204358 | Beto Pereira                        | PSDB          | centro
+      220683 | Beto Richa                          | PSDB          | centro
+      141411 | Dagoberto Nogueira                  | PSDB          | centro
+      204409 | Daniel Trzeciak                     | PSDB          | centro
+        3328 | Daniel Trzeciak                     | PSDB          | centro
+        2911 | DINIZ JÚNIOR                        | PSDB          | centro
+         233 | FERREIRA DE MELO                    | PSDB          | centro
+        2264 | FRANCISCO DRUMOND                   | PSDB          | centro
+      178966 | Geovania de Sá                      | PSDB          | centro
+       74374 | Geraldo Resende                     | PSDB          | centro
+        3020 | GERCINO PONTES                      | PSDB          | centro
+        3580 | Jeferson Rodrigues                  | PSDB          | centro
+        3391 | Juninho do Pneu                     | PSDB          | centro
+      220566 | Lêda Borges                         | PSDB          | centro
+      204404 | Lucas Redecker                      | PSDB          | centro
+        3603 | Luciano Vieira                      | PSDB          | centro
+      220616 | Luciano Vieira                      | PSDB          | centro
+        3694 | LUÍS GUALBERTO                      | PSDB          | centro
+        3059 | MACIEL DE CASTRO                    | PSDB          | centro
+        3698 | Marcelo Queiroz                     | PSDB          | centro
+      160161 | Marcelo Queiroz                     | PSDB          | centro
+        3606 | Murillo Gouvea                      | PSDB          | centro
+      141516 | Paulo Abi-Ackel                     | PSDB          | centro
+        1904 | Paulo Abi-Ackel                     | PSDB          | centro
+      220650 | Paulo Alexandre Barbosa             | PSDB          | centro
+        3363 | Professor Alcides                   | PSDB          | centro
+        3714 | Ricardo Abrão                       | PSDB          | centro
+      178992 | Vitor Lippi                         | PSDB          | centro
+        2384 | Aureo Ribeiro                       | SOLIDARIEDADE | centro
+      160512 | Aureo Ribeiro                       | SOLIDARIEDADE | centro
+        3803 | CAJADO                              | SOLIDARIEDADE | centro
+        3711 | Eduardo Velloso                     | SOLIDARIEDADE | centro
+        3658 | Márcio Honaiser                     | SOLIDARIEDADE | centro
+      220668 | Maria Arraes                        | SOLIDARIEDADE | centro
+      141518 | Paulinho da Força                   | SOLIDARIEDADE | centro
+        3808 | Ribeiro Neto                        | SOLIDARIEDADE | centro
+        1903 | VICTORINO MONTEIRO                  | SOLIDARIEDADE | centro
+      160518 | Weliton Prado                       | SOLIDARIEDADE | centro
+      160632 | Zé Silva                            | SOLIDARIEDADE | centro
+        2373 | Alexandre Leite                     | UNIAO         | centro
+      160545 | Alexandre Leite                     | UNIAO         | centro
+      220576 | Alfredo Gaspar                      | UNIAO         | centro
+      204353 | Aline Gurgel                        | UNIAO         | centro
+        1071 | ALMEIDA COUTO                       | UNIAO         | centro
+        3023 | AREIA LEÃO                          | UNIAO         | centro
+        3043 | ARISTIDES LARGURA                   | UNIAO         | centro
+        2225 | Arthur Oliveira Maia                | UNIAO         | centro
+      160600 | Arthur Oliveira Maia                | UNIAO         | centro
+        3682 | BARROS FRANCO JUNIOR                | UNIAO         | centro
+        3352 | Benes Leocádio                      | UNIAO         | centro
+      109429 | Benes Leocádio                      | UNIAO         | centro
+        3683 | BERNARDES DE FARIA                  | UNIAO         | centro
+        3599 | BUENO DE PAIVA                      | UNIAO         | centro
+      213762 | Carla Dickson                       | UNIAO         | centro
+      178993 | Carlos Henrique Gaguim              | UNIAO         | centro
+      204496 | Celso Sabino                        | UNIAO         | centro
+      220594 | Coronel Assis                       | UNIAO         | centro
+      220590 | Coronel Ulysses                     | UNIAO         | centro
+        3662 | Coronel Ulysses                     | UNIAO         | centro
+      220608 | Cristiane Lopes                     | UNIAO         | centro
+      220692 | Dal Barreto                         | UNIAO         | centro
+       74467 | Damião Feliciano                    | UNIAO         | centro
+        1318 | Damião Feliciano                    | UNIAO         | centro
+      220603 | Dani Cunha                          | UNIAO         | centro
+      204459 | Daniela do Waguinho                 | UNIAO         | centro
+       62881 | Danilo Forte                        | UNIAO         | centro
+      204511 | David Soares                        | UNIAO         | centro
+      220659 | Dayany Bittencourt                  | UNIAO         | centro
+        3547 | Dayany Bittencourt                  | UNIAO         | centro
+        3564 | Defensor Stélio Dener               | UNIAO         | centro
+      204512 | Delegado Marcelo Freitas            | UNIAO         | centro
+        3289 | Delegado Marcelo Freitas            | UNIAO         | centro
+      220701 | Delegado Matheus Laiola             | UNIAO         | centro
+      227433 | Douglas Viegas                      | UNIAO         | centro
+        3756 | Douglas Viegas                      | UNIAO         | centro
+      220610 | Dr. Fernando Máximo                 | UNIAO         | centro
+      204412 | Dr. Zacharias Calil                 | UNIAO         | centro
+        3594 | EDUARDO SÓCRATES                    | UNIAO         | centro
+      220589 | Eduardo Velloso                     | UNIAO         | centro
+      178854 | Elmar Nascimento                    | UNIAO         | centro
+        3743 | ENÉAS MARTINS                       | UNIAO         | centro
+      178905 | Fabio Garcia                        | UNIAO         | centro
+        2961 | Fabio Garcia                        | UNIAO         | centro
+      204368 | Fabio Schiochet                     | UNIAO         | centro
+        3232 | Fabio Schiochet                     | UNIAO         | centro
+      220712 | Fausto Jr.                          | UNIAO         | centro
+        3515 | Fausto Jr.                          | UNIAO         | centro
+        2917 | Fausto Pinato                       | UNIAO         | centro
+      220646 | Felipe Becari                       | UNIAO         | centro
+      204398 | Felipe Francischini                 | UNIAO         | centro
+      141431 | Fernando Coelho Filho               | UNIAO         | centro
+        3666 | FRANCISCO BERNARDINO                | UNIAO         | centro
+        3724 | Gabriel Mota                        | UNIAO         | centro
+      220702 | Geraldo Mendes                      | UNIAO         | centro
+        1649 | Geraldo Resende                     | UNIAO         | centro
+      226179 | Gisela Simona                       | UNIAO         | centro
+        3585 | Henderson Pinto                     | UNIAO         | centro
+        3223 | Igor Timo                           | UNIAO         | centro
+        3628 | JOSÉ INACIO                         | UNIAO         | centro
+        3040 | JOSÉ LEOMIL                         | UNIAO         | centro
+      204391 | José Nelto                          | UNIAO         | centro
+        3214 | José Nelto                          | UNIAO         | centro
+       74554 | José Rocha                          | UNIAO         | centro
+        3475 | Josivaldo JP                        | UNIAO         | centro
+      204457 | Juninho do Pneu                     | UNIAO         | centro
+      178886 | Juscelino Filho                     | UNIAO         | centro
+       92102 | Leur Lomanto Júnior                 | UNIAO         | centro
+        3345 | Leur Lomanto Júnior                 | UNIAO         | centro
+       74478 | Luciano Bivar                       | UNIAO         | centro
+        3205 | Luisa Canziani                      | UNIAO         | centro
+      141485 | Luiz Carlos Busato                  | UNIAO         | centro
+        1879 | Luiz Fernando Faria                 | UNIAO         | centro
+         586 | LUIZ SOARES                         | UNIAO         | centro
+      220648 | Marangoni                           | UNIAO         | centro
+      178943 | Marcos Soares                       | UNIAO         | centro
+        3084 | Marx Beltrão                        | UNIAO         | centro
+      220609 | Maurício Carvalho                   | UNIAO         | centro
+        3224 | Mauro Benevides Filho               | UNIAO         | centro
+        3671 | Max Lemos                           | UNIAO         | centro
+      220591 | Meire Serafim                       | UNIAO         | centro
+       74428 | Mendonça Filho                      | UNIAO         | centro
+        3631 | Messias Donato                      | UNIAO         | centro
+        1793 | MORAIS BARROS                       | UNIAO         | centro
+      178997 | Moses Rodrigues                     | UNIAO         | centro
+        3041 | Moses Rodrigues                     | UNIAO         | centro
+      220617 | Murillo Gouvea                      | UNIAO         | centro
+      220706 | Padovani                            | UNIAO         | centro
+      180214 | Pastor Diniz                        | UNIAO         | centro
+        3548 | Pastor Diniz                        | UNIAO         | centro
+       74095 | Pauderney Avelino                   | UNIAO         | centro
+      178860 | Paulo Azi                           | UNIAO         | centro
+        2929 | Paulo Azi                           | UNIAO         | centro
+        3696 | Paulo Litro                         | UNIAO         | centro
+        3199 | Pedro Lucas Fernandes               | UNIAO         | centro
+      122974 | Pedro Lucas Fernandes               | UNIAO         | centro
+      220626 | Rafael Simoes                       | UNIAO         | centro
+        3556 | Rafael Simoes                       | UNIAO         | centro
+      221329 | Ricardo Abrão                       | UNIAO         | centro
+        1928 | Rodrigo de Castro                   | UNIAO         | centro
+      141531 | Rodrigo de Castro                   | UNIAO         | centro
+      165470 | Rodrigo Valadares                   | UNIAO         | centro
+        3688 | RODRIGUES SALDANHA                  | UNIAO         | centro
+      220644 | Rosangela Moro                      | UNIAO         | centro
+        3622 | Samuel Viana                        | UNIAO         | centro
+        3530 | Silvye Alves                        | UNIAO         | centro
+      220569 | Silvye Alves                        | UNIAO         | centro
+        3809 | Soldado Noelio                      | UNIAO         | centro
+      222565 | Soldado Noelio                      | UNIAO         | centro
+        3574 | Thiago Flores                       | UNIAO         | centro
+        1833 | THOMAZ DELFINO                      | UNIAO         | centro
+      220564 | Yandra Moura                        | UNIAO         | centro
+        3623 | Yandra Moura                        | UNIAO         | centro
+        2231 | Zé Silva                            | UNIAO         | centro
+      204528 | Adriana Ventura                     | NOVO          | direita
+        3195 | Adriana Ventura                     | NOVO          | direita
+      204365 | Gilson Marques                      | NOVO          | direita
+        3357 | Gilson Marques                      | NOVO          | direita
+      204455 | Luiz Lima                           | NOVO          | direita
+        3264 | Luiz Lima                           | NOVO          | direita
+        3299 | Marcel van Hattem                   | NOVO          | direita
+      156190 | Marcel van Hattem                   | NOVO          | direita
+        3572 | Ricardo Salles                      | NOVO          | direita
+      220633 | Ricardo Salles                      | NOVO          | direita
+        3650 | ADALBERTO FERRAZ                    | PL            | direita
+      221328 | Adilson Barroso                     | PL            | direita
+        3712 | Adilson Barroso                     | PL            | direita
+        1514 | AFRÍSIO VIEIRA LIMA                 | PL            | direita
+        1472 | Alberto Fraga                       | PL            | direita
+       73579 | Alberto Fraga                       | PL            | direita
+        3538 | Alfredo Gaspar                      | PL            | direita
+      178937 | Altineu Côrtes                      | PL            | direita
+        2437 | ÁLVARO BATISTA                      | PL            | direita
+      220657 | André Fernandes                     | PL            | direita
+        3525 | André Fernandes                     | PL            | direita
+        3368 | André Ferreira                      | PL            | direita
+      204423 | André Ferreira                      | PL            | direita
+      220638 | Antonio Carlos Rodrigues            | PL            | direita
+        2998 | ARGEMIRO FIALHO                     | PL            | direita
+        2972 | ARISTIDES MILTON                    | PL            | direita
+        2280 | ARTUR COLARES MOREIRA               | PL            | direita
+        3513 | AUGUSTO MONTEIRO                    | PL            | direita
+        2950 | AUSTRO DE OLIVEIRA                  | PL            | direita
+      204374 | Bia Kicis                           | PL            | direita
+        3402 | Bia Kicis                           | PL            | direita
+      204388 | Bibo Nunes                          | PL            | direita
+        3273 | Bibo Nunes                          | PL            | direita
+      220574 | Cabo Gilberto Silva                 | PL            | direita
+        3586 | Cabo Gilberto Silva                 | PL            | direita
+        1087 | CÂNDIDO DE OLIVEIRA                 | PL            | direita
+        3333 | Capitão Alberto Neto                | PL            | direita
+      204572 | Capitão Alberto Neto                | PL            | direita
+        3678 | Capitão Alden                       | PL            | direita
+      220690 | Capitão Alden                       | PL            | direita
+      178829 | Capitão Augusto                     | PL            | direita
+        3468 | Carla Dickson                       | PL            | direita
+        3320 | Carlos Jordy                        | PL            | direita
+      204460 | Carlos Jordy                        | PL            | direita
+        3241 | Caroline de Toni                    | PL            | direita
+      204369 | Caroline de Toni                    | PL            | direita
+        3283 | Cezinha de Madureira                | PL            | direita
+      204462 | Chris Tonietto                      | PL            | direita
+        3367 | Chris Tonietto                      | PL            | direita
+        2281 | COELHO NETO                         | PL            | direita
+        3544 | Coronel Assis                       | PL            | direita
+        3370 | Coronel Chrisóstomo                 | PL            | direita
+      204378 | Coronel Chrisóstomo                 | PL            | direita
+        3551 | Coronel Fernanda                    | PL            | direita
+      220595 | Coronel Fernanda                    | PL            | direita
+      220666 | Coronel Meira                       | PL            | direita
+        3665 | Coronel Meira                       | PL            | direita
+        3523 | Dani Cunha                          | PL            | direita
+      220571 | Daniel Agrobom                      | PL            | direita
+        3517 | Daniela Reinehr                     | PL            | direita
+      220557 | Daniela Reinehr                     | PL            | direita
+        3301 | Daniel Freitas                      | PL            | direita
+      204367 | Daniel Freitas                      | PL            | direita
+      220673 | Delegado Caveira                    | PL            | direita
+      178908 | Delegado Éder Mauro                 | PL            | direita
+      220654 | Delegado Paulo Bilynskyj            | PL            | direita
+        3520 | DERALDO DIAS                        | PL            | direita
+        3676 | Detinha                             | PL            | direita
+      220689 | Detinha                             | PL            | direita
+        2235 | Domingos Sávio                      | PL            | direita
+      160758 | Domingos Sávio                      | PL            | direita
+        3534 | Dr. Fernando Máximo                 | PL            | direita
+      227991 | Dr Flávio                           | PL            | direita
+        3765 | Dr Flávio                           | PL            | direita
+        3249 | Dr. Frederico                       | PL            | direita
+        3215 | Dr. Jaziel                          | PL            | direita
+      204481 | Dr. Jaziel                          | PL            | direita
+      204364 | Eli Borges                          | PL            | direita
+        3298 | Emidinho Madeira                    | PL            | direita
+      161550 | Emidinho Madeira                    | PL            | direita
+      160640 | Eros Biondini                       | PL            | direita
+      204427 | Fernando Rodolfo                    | PL            | direita
+      204411 | Filipe Barros                       | PL            | direita
+        3228 | Filipe Barros                       | PL            | direita
+      220545 | Filipe Martins                      | PL            | direita
+        3686 | Filipe Martins                      | PL            | direita
+        3818 | FRANCISCO ALENCASTRO                | PL            | direita
+        2388 | FRANCISCO ALVES                     | PL            | direita
+        1951 | FRANCISCO SÁ                        | PL            | direita
+        2973 | FRÓIS DA MOTA                       | PL            | direita
+      204473 | General Girão                       | PL            | direita
+        3327 | General Girão                       | PL            | direita
+      220611 | General Pazuello                    | PL            | direita
+        3605 | GERMANO HASSLOCHER                  | PL            | direita
+       74383 | Giacobo                             | PL            | direita
+      220526 | Gilvan da Federal                   | PL            | direita
+      160673 | Giovani Cherini                     | PL            | direita
+        2301 | GONÇALVES DE ALMEIDA                | PL            | direita
+        3414 | Greyce Elias                        | PL            | direita
+        3528 | Gustavo Gayer                       | PL            | direita
+      220568 | Gustavo Gayer                       | PL            | direita
+        2385 | GUSTAVO RICHARD                     | PL            | direita
+      204444 | Helio Lopes                         | PL            | direita
+        3344 | Helio Lopes                         | PL            | direita
+      220563 | Icaro de Valmir                     | PL            | direita
+        2482 | INGLÊS DE SOUSA                     | PL            | direita
+        3703 | Ismael                              | PL            | direita
+      225846 | Itamar Paim                         | PL            | direita
+       74273 | Jefferson Campos                    | PL            | direita
+        1669 | Jefferson Campos                    | PL            | direita
+      141458 | João Carlos Bacelar                 | PL            | direita
+        1856 | João Carlos Bacelar                 | PL            | direita
+        3620 | JOÃO DE SIQUEIRA                    | PL            | direita
+        3537 | JOÃO LOPES                          | PL            | direita
+      178910 | Joaquim Passarinho                  | PL            | direita
+        3629 | JOSÉ MARCELINO                      | PL            | direita
+      204472 | José Medeiros                       | PL            | direita
+        3411 | José Medeiros                       | PL            | direita
+        3689 | JOSÉ PEREGRINO                      | PL            | direita
+        3219 | Josimar Maranhãozinho               | PL            | direita
+      204563 | Josimar Maranhãozinho               | PL            | direita
+      220559 | Julia Zanatta                       | PL            | direita
+        3555 | JÚLIO LEITE                         | PL            | direita
+      204520 | Junio Amaral                        | PL            | direita
+        3399 | Junio Amaral                        | PL            | direita
+      204574 | Junior Lourenço                     | PL            | direita
+        3420 | Lafayette de Andrada                | PL            | direita
+        3005 | LERY SANTOS                         | PL            | direita
+       74585 | Lincoln Portela                     | PL            | direita
+        1355 | Lincoln Portela                     | PL            | direita
+        3065 | Lucio Mosquini                      | PL            | direita
+        2995 | LUÍS CLÁUDIO                        | PL            | direita
+      204485 | Luiz Carlos Motta                   | PL            | direita
+        3351 | Luiz Carlos Motta                   | PL            | direita
+        3220 | Luiz Philippe de Orleans e Bragança | PL            | direita
+      204526 | Luiz Philippe de Orleans e Bragança | PL            | direita
+      166402 | Magda Mofatto                       | PL            | direita
+      179000 | Marcelo Álvaro Antônio              | PL            | direita
+        2934 | Marcelo Álvaro Antônio              | PL            | direita
+      133810 | Marcelo Moraes                      | PL            | direita
+        3436 | Marcelo Moraes                      | PL            | direita
+      178983 | Marcio Alvino                       | PL            | direita
+      220547 | Marcos Pollon                       | PL            | direita
+        3539 | Marcos Pollon                       | PL            | direita
+        3641 | Mario Frias                         | PL            | direita
+      220655 | Mario Frias                         | PL            | direita
+        3061 | MARTINS FILHO                       | PL            | direita
+        3643 | Matheus Noronha                     | PL            | direita
+      220661 | Matheus Noronha                     | PL            | direita
+      220628 | Mauricio do Vôlei                   | PL            | direita
+        3566 | Mauricio do Vôlei                   | PL            | direita
+        3512 | Mauricio Marcon                     | PL            | direita
+      220550 | Mauricio Marcon                     | PL            | direita
+      178985 | Miguel Lombardi                     | PL            | direita
+      160561 | Missionário José Olimpio            | PL            | direita
+        3673 | NEIVA                               | PL            | direita
+      204449 | Nelson Barbudo                      | PL            | direita
+        3297 | Nicoletti                           | PL            | direita
+      204479 | Nicoletti                           | PL            | direita
+      209787 | Nikolas Ferreira                    | PL            | direita
+       73692 | Osmar Terra                         | PL            | direita
+      160642 | Pastor Eurico                       | PL            | direita
+      204570 | Pastor Gil                          | PL            | direita
+        3398 | Pastor Gil                          | PL            | direita
+      160558 | Paulo Freire Costa                  | PL            | direita
+      128760 | Paulo Marinho Jr                    | PL            | direita
+      160601 | Pr. Marco Feliciano                 | PL            | direita
+      204390 | Professor Alcides                   | PL            | direita
+        3438 | Reinhold Stephanes                  | PL            | direita
+        3346 | Ricardo Guidi                       | PL            | direita
+      204362 | Ricardo Guidi                       | PL            | direita
+      220693 | Roberta Roma                        | PL            | direita
+        3526 | Roberta Roma                        | PL            | direita
+      220613 | Roberto Monteiro Pai                | PL            | direita
+      220546 | Rodolfo Nogueira                    | PL            | direita
+        3789 | Rodrigo da Zaeli                    | PL            | direita
+      230767 | Rodrigo da Zaeli                    | PL            | direita
+        3281 | Rosana Valle                        | PL            | direita
+      204525 | Rosana Valle                        | PL            | direita
+        3529 | Rosangela Moro                      | PL            | direita
+      220620 | Rosângela Reis                      | PL            | direita
+        3582 | Rosângela Reis                      | PL            | direita
+        3418 | Sanderson                           | PL            | direita
+      204416 | Sanderson                           | PL            | direita
+      204387 | Sargento Fahur                      | PL            | direita
+        3211 | Sargento Fahur                      | PL            | direita
+      220621 | Sargento Gonçalves                  | PL            | direita
+        3750 | Silvio Antonio                      | PL            | direita
+      227310 | Silvio Antonio                      | PL            | direita
+        2922 | Soraya Santos                       | PL            | direita
+      178946 | Soraya Santos                       | PL            | direita
+      178947 | Sóstenes Cavalcante                 | PL            | direita
+        3681 | TOSTA                               | PL            | direita
+        3330 | Vermelho                            | PL            | direita
+        2248 | VIDAL RAMOS                         | PL            | direita
+      160591 | Vinicius Gurgel                     | PL            | direita
+       74043 | Wellington Roberto                  | PL            | direita
+        3565 | Zé Trovão                           | PL            | direita
+      220558 | Zé Trovão                           | PL            | direita
+        3279 | Zé Vitor                            | PL            | direita
+      204517 | Zé Vitor                            | PL            | direita
+        3669 | Zucco                               | PL            | direita
+      220552 | Zucco                               | PL            | direita
+      121948 | Adriano do Baldy                    | PP            | direita
+        3353 | Adriano do Baldy                    | PP            | direita
+        1758 | Afonso Hamm                         | PP            | direita
+      136811 | Afonso Hamm                         | PP            | direita
+        2979 | AGAPITO SÁTIRO                      | PP            | direita
+      160527 | Aguinaldo Ribeiro                   | PP            | direita
+        3216 | AJ Albuquerque                      | PP            | direita
+      204549 | AJ Albuquerque                      | PP            | direita
+      226708 | Allan Garcês                        | PP            | direita
+        3747 | Allan Garcês                        | PP            | direita
+      220707 | Amanda Gentil                       | PP            | direita
+        3270 | Amaro Neto                          | PP            | direita
+      107970 | Ana Paula Leão                      | PP            | direita
+      178831 | André Abdon                         | PP            | direita
+        3034 | André Abdon                         | PP            | direita
+      178882 | André Fufuca                        | PP            | direita
+         995 | ANTÔNIO PRADO                       | PP            | direita
+      160541 | Arthur Lira                         | PP            | direita
+        2377 | Arthur Lira                         | PP            | direita
+        3670 | Átila Lira                          | PP            | direita
+      123086 | Átila Lira                          | PP            | direita
+        1155 | AUGUSTO FLEURY                      | PP            | direita
+        1001 | BARÃO DE MACEIÓ                     | PP            | direita
+      220612 | Bebeto                              | PP            | direita
+        3553 | Bebeto                              | PP            | direita
+        2227 | CASTRO PINTO                        | PP            | direita
+        3524 | Clarissa Tércio                     | PP            | direita
+      220665 | Clarissa Tércio                     | PP            | direita
+       74537 | Claudio Cajado                      | PP            | direita
+      178963 | Covatti Filho                       | PP            | direita
+        1807 | Dagoberto Nogueira                  | PP            | direita
+      220582 | Daniel Barbosa                      | PP            | direita
+        3256 | Da Vitoria                          | PP            | direita
+      204355 | Da Vitoria                          | PP            | direita
+      220642 | Delegado Bruno Lima                 | PP            | direita
+      220649 | Delegado da Cunha                   | PP            | direita
+      220583 | Delegado Fabio Costa                | PP            | direita
+       73768 | Dilceu Sperafico                    | PP            | direita
+      160599 | Dimas Fabiano                       | PP            | direita
+        3254 | Doutor Luizinho                     | PP            | direita
+      204450 | Doutor Luizinho                     | PP            | direita
+        3393 | Dr. Luiz Ovando                     | PP            | direita
+      204351 | Dr. Luiz Ovando                     | PP            | direita
+      141421 | Eduardo da Fonte                    | PP            | direita
+      234406 | Elmano Férrer                       | PP            | direita
+        3598 | EUCLIDES BARROSO                    | PP            | direita
+      178871 | Evair Vieira de Melo                | PP            | direita
+        3664 | FAUSTO CARDOSO                      | PP            | direita
+       66828 | Fausto Pinato                       | PP            | direita
+        2356 | FELIZARDO LEITE                     | PP            | direita
+        3695 | FRÓES DA CRUZ                       | PP            | direita
+        1822 | GONÇALO DE LAGOS                    | PP            | direita
+        3390 | Guilherme Derrite                   | PP            | direita
+      204531 | Guilherme Derrite                   | PP            | direita
+        3317 | Gustinho Ribeiro                    | PP            | direita
+       74550 | João Leão                           | PP            | direita
+      141459 | João Maia                           | PP            | direita
+      235800 | Jorge Araújo                        | PP            | direita
+        3816 | Jorge Araújo                        | PP            | direita
+        3627 | JOSÉ MURTINHO                       | PP            | direita
+       66385 | Julio Arcoverde                     | PP            | direita
+        3692 | Julio Arcoverde                     | PP            | direita
+       74253 | Julio Lopes                         | PP            | direita
+        1576 | Julio Lopes                         | PP            | direita
+        3633 | LEOVIGILDO FILGUEIRAS               | PP            | direita
+      204448 | Luiz Antonio Corrêa                 | PP            | direita
+        3377 | Luiz Antonio Corrêa                 | PP            | direita
+        3613 | Lula da Fonte                       | PP            | direita
+      220669 | Lula da Fonte                       | PP            | direita
+      178858 | Mário Negromonte Jr.                | PP            | direita
+      178843 | Marx Beltrão                        | PP            | direita
+      220647 | Mauricio Neves                      | PP            | direita
+        3592 | Mauricio Neves                      | PP            | direita
+      220585 | Mersinho Lucena                     | PP            | direita
+        3800 | MONTEIRO DA SILVEIRA                | PP            | direita
+        1857 | MONTEIRO DE BARROS                  | PP            | direita
+        3702 | ODALBERTO PEREIRA                   | PP            | direita
+        3642 | Padovani                            | PP            | direita
+        3614 | Pedro Aihara                        | PP            | direita
+        2408 | PEDRO DOS REIS                      | PP            | direita
+        3644 | PEDRO VIANA                         | PP            | direita
+        3280 | Pedro Westphalen                    | PP            | direita
+      204406 | Pedro Westphalen                    | PP            | direita
+        3079 | PESSOA DE ARAÚJO                    | PP            | direita
+      204524 | Pinheirinho                         | PP            | direita
+        3260 | Pinheirinho                         | PP            | direita
+       73788 | Ricardo Barros                      | PP            | direita
+      220624 | Robinson Faria                      | PP            | direita
+        3653 | Robinson Faria                      | PP            | direita
+        3815 | Sérgio Turra                        | PP            | direita
+      235776 | Sérgio Turra                        | PP            | direita
+        1063 | SEVERINO RIBEIRO                    | PP            | direita
+        3278 | Silvia Cristina                     | PP            | direita
+      204360 | Silvia Cristina                     | PP            | direita
+        3596 | Simone Marquetto                    | PP            | direita
+      104552 | Socorro Neri                        | PP            | direita
+        3567 | Socorro Neri                        | PP            | direita
+      220560 | Thiago de Joaldo                    | PP            | direita
+      220684 | Tião Medeiros                       | PP            | direita
+      178934 | Toninho Wandscheer                  | PP            | direita
+        2940 | Toninho Wandscheer                  | PP            | direita
+      204396 | Vermelho                            | PP            | direita
+      137070 | Vicentinho Júnior                   | PP            | direita
+        3785 | Zé Adriano                          | PP            | direita
+      230768 | Zé Adriano                          | PP            | direita
+      220592 | Zezinho Barbary                     | PP            | direita
+      220714 | Adail Filho                         | REPUBLICANOS  | direita
+      220538 | Albuquerque                         | REPUBLICANOS  | direita
+        3558 | Albuquerque                         | REPUBLICANOS  | direita
+        3287 | Alex Santana                        | REPUBLICANOS  | direita
+      204571 | Alex Santana                        | REPUBLICANOS  | direita
+      178881 | Aluisio Mendes                      | REPUBLICANOS  | direita
+      204356 | Amaro Neto                          | REPUBLICANOS  | direita
+      123756 | Antônia Lúcia                       | REPUBLICANOS  | direita
+      220544 | Antonio Andrade                     | REPUBLICANOS  | direita
+        2987 | ANTÔNIO SILVA                       | REPUBLICANOS  | direita
+      160665 | Augusto Coutinho                    | REPUBLICANOS  | direita
+        2004 | AZEVEDO SODRÉ                       | REPUBLICANOS  | direita
+         565 | BAHIA                               | REPUBLICANOS  | direita
+         993 | BARÃO DA LAGUNA                     | REPUBLICANOS  | direita
+        2271 | BETHENCOURT DA SILVA FILHO          | REPUBLICANOS  | direita
+        3432 | Beto Pereira                        | REPUBLICANOS  | direita
+      178962 | Carlos Gomes                        | REPUBLICANOS  | direita
+        2900 | Carlos Gomes                        | REPUBLICANOS  | direita
+       73441 | Celso Russomanno                    | REPUBLICANOS  | direita
+        3337 | Daniela do Waguinho                 | REPUBLICANOS  | direita
+      220539 | Defensor Stélio Dener               | REPUBLICANOS  | direita
+        3679 | Diego Coronel                       | REPUBLICANOS  | direita
+      178929 | Diego Garcia                        | REPUBLICANOS  | direita
+        3435 | Eli Borges                          | REPUBLICANOS  | direita
+        3489 | Ely Santos                          | REPUBLICANOS  | direita
+      218086 | Ely Santos                          | REPUBLICANOS  | direita
+      204482 | Euclydes Pettersen                  | REPUBLICANOS  | direita
+        3369 | Euclydes Pettersen                  | REPUBLICANOS  | direita
+        2984 | Evair Vieira de Melo                | REPUBLICANOS  | direita
+       74065 | Fatima Pelaes                       | REPUBLICANOS  | direita
+        3514 | Franciane Bayer                     | REPUBLICANOS  | direita
+      220551 | Franciane Bayer                     | REPUBLICANOS  | direita
+      220534 | Fred Linhares                       | REPUBLICANOS  | direita
+        3541 | Fred Linhares                       | REPUBLICANOS  | direita
+      224117 | Gabriel Mota                        | REPUBLICANOS  | direita
+        3373 | Gilberto Abramo                     | REPUBLICANOS  | direita
+      204491 | Gilberto Abramo                     | REPUBLICANOS  | direita
+      204408 | Gustinho Ribeiro                    | REPUBLICANOS  | direita
+      160674 | Hugo Motta                          | REPUBLICANOS  | direita
+        3617 | Icaro de Valmir                     | REPUBLICANOS  | direita
+      235620 | Ilacir Bicalho                      | REPUBLICANOS  | direita
+        3813 | Ilacir Bicalho                      | REPUBLICANOS  | direita
+      220697 | Jadyel Alencar                      | REPUBLICANOS  | direita
+      220567 | Jeferson Rodrigues                  | REPUBLICANOS  | direita
+      235869 | João Carlos                         | REPUBLICANOS  | direita
+        2428 | JOÃO PERNETA                        | REPUBLICANOS  | direita
+      205550 | Jorge Braz                          | REPUBLICANOS  | direita
+        3423 | Jorge Braz                          | REPUBLICANOS  | direita
+      214694 | Jorge Goetten                       | REPUBLICANOS  | direita
+        3473 | Jorge Goetten                       | REPUBLICANOS  | direita
+        3549 | JOSÉ MARIANO                        | REPUBLICANOS  | direita
+        3237 | Juarez Costa                        | REPUBLICANOS  | direita
+        3236 | Julio Cesar Ribeiro                 | REPUBLICANOS  | direita
+      204372 | Julio Cesar Ribeiro                 | REPUBLICANOS  | direita
+       98057 | Lafayette de Andrada                | REPUBLICANOS  | direita
+        3579 | Lêda Borges                         | REPUBLICANOS  | direita
+        3624 | LEITE DE CASTRO                     | REPUBLICANOS  | direita
+        3685 | Leo Prates                          | REPUBLICANOS  | direita
+        2236 | LINDOLFO CÂMARA                     | REPUBLICANOS  | direita
+        3718 | Luis Carlos Gomes                   | REPUBLICANOS  | direita
+      222429 | Luis Carlos Gomes                   | REPUBLICANOS  | direita
+      220599 | Marcelo Crivella                    | REPUBLICANOS  | direita
+        3275 | Marcelo Nilo                        | REPUBLICANOS  | direita
+      204558 | Marcelo Nilo                        | REPUBLICANOS  | direita
+        1987 | Márcio Marinho                      | REPUBLICANOS  | direita
+      150418 | Márcio Marinho                      | REPUBLICANOS  | direita
+        3277 | Marcos Pereira                      | REPUBLICANOS  | direita
+      204506 | Marcos Pereira                      | REPUBLICANOS  | direita
+        3360 | Maria Rosas                         | REPUBLICANOS  | direita
+      204540 | Maria Rosas                         | REPUBLICANOS  | direita
+        2999 | MARTINIANO ARAUJO                   | REPUBLICANOS  | direita
+        3638 | Marussa Boldrin                     | REPUBLICANOS  | direita
+      220572 | Marussa Boldrin                     | REPUBLICANOS  | direita
+      220530 | Messias Donato                      | REPUBLICANOS  | direita
+      154178 | Milton Vieira                       | REPUBLICANOS  | direita
+      220584 | Murilo Galdino                      | REPUBLICANOS  | direita
+        3634 | Murilo Galdino                      | REPUBLICANOS  | direita
+        3407 | Ossesio Silva                       | REPUBLICANOS  | direita
+      204422 | Ossesio Silva                       | REPUBLICANOS  | direita
+        3316 | Pedro Lupion                        | REPUBLICANOS  | direita
+      204395 | Pedro Lupion                        | REPUBLICANOS  | direita
+        3708 | Ricardo Ayres                       | REPUBLICANOS  | direita
+      220543 | Ricardo Ayres                       | REPUBLICANOS  | direita
+      220588 | Roberto Duarte                      | REPUBLICANOS  | direita
+        3575 | Roberto Duarte                      | REPUBLICANOS  | direita
+        3699 | RODRIGUES PEIXOTO                   | REPUBLICANOS  | direita
+      220695 | Rogéria Santos                      | REPUBLICANOS  | direita
+        3533 | Rogéria Santos                      | REPUBLICANOS  | direita
+      163321 | Ronaldo Nogueira                    | REPUBLICANOS  | direita
+      178945 | Rosangela Gomes                     | REPUBLICANOS  | direita
+        3038 | Rosangela Gomes                     | REPUBLICANOS  | direita
+      220631 | Samuel Viana                        | REPUBLICANOS  | direita
+        1286 | Silas Câmara                        | REPUBLICANOS  | direita
+       74356 | Silas Câmara                        | REPUBLICANOS  | direita
+        3341 | Silvio Costa Filho                  | REPUBLICANOS  | direita
+      204425 | Silvio Costa Filho                  | REPUBLICANOS  | direita
+        3535 | Thiago de Joaldo                    | REPUBLICANOS  | direita
+      220597 | Thiago Flores                       | REPUBLICANOS  | direita
+      234673 | Vanderlan Alves                     | REPUBLICANOS  | direita
+      141555 | Vinicius Carvalho                   | REPUBLICANOS  | direita
+        1704 | Wilson Santiago                     | REPUBLICANOS  | direita
+       74044 | Wilson Santiago                     | REPUBLICANOS  | direita
+       74057 | Alice Portugal                      | PCDOB         | esquerda
+        1531 | ARTHUR DE LIMA CAVALCANTI           | PCDOB         | esquerda
+         652 | AZEREDO COUTINHO                    | PCDOB         | esquerda
+      220555 | Daiana Santos                       | PCDOB         | esquerda
+        3647 | Daiana Santos                       | PCDOB         | esquerda
+       74060 | Daniel Almeida                      | PCDOB         | esquerda
+        1562 | Daniel Almeida                      | PCDOB         | esquerda
+         733 | DIOGO VELHO                         | PCDOB         | esquerda
+      230765 | Enfermeira Rejane                   | PCDOB         | esquerda
+        3788 | Enfermeira Rejane                   | PCDOB         | esquerda
+        3401 | Gervásio Maia                       | PCDOB         | esquerda
+       74295 | Inácio Arruda                       | PCDOB         | esquerda
+       74848 | Jandira Feghali                     | PCDOB         | esquerda
+       81055 | Márcio Jerry                        | PCDOB         | esquerda
+        3313 | Márcio Jerry                        | PCDOB         | esquerda
+      178987 | Orlando Silva                       | PCDOB         | esquerda
+      160641 | Professora Marcivania               | PCDOB         | esquerda
+       73801 | Renildo Calheiros                   | PCDOB         | esquerda
+        2339 | RODRIGUES SALES FILHO               | PCDOB         | esquerda
+        2957 | SEBASTIÃO DOMINGUES                 | PCDOB         | esquerda
+      178835 | Afonso Motta                        | PDT           | esquerda
+      133439 | André Figueiredo                    | PDT           | esquerda
+        1748 | BORGES DE MEDEIROS                  | PDT           | esquerda
+        3306 | Celso Sabino                        | PDT           | esquerda
+        1083 | COUTO MAGALHÃES                     | PDT           | esquerda
+      220573 | Dorinaldo Malafaia                  | PDT           | esquerda
+        3576 | Dorinaldo Malafaia                  | PDT           | esquerda
+      220623 | Duda Salabert                       | PDT           | esquerda
+      160666 | Félix Mendonça Júnior               | PDT           | esquerda
+        2880 | FENELON PERDIGÃO                    | PDT           | esquerda
+      160598 | Flávia Morais                       | PDT           | esquerda
+        2307 | FRANCISCO PORTELA                   | PDT           | esquerda
+      220578 | Josenildo                           | PDT           | esquerda
+       74299 | Leônidas Cristino                   | PDT           | esquerda
+       80815 | Leo Prates                          | PDT           | esquerda
+      220687 | Márcio Honaiser                     | PDT           | esquerda
+      220604 | Marcos Tavares                      | PDT           | esquerda
+        1609 | Mário Heringer                      | PDT           | esquerda
+       74158 | Mário Heringer                      | PDT           | esquerda
+        3559 | MARTIM FRANCISCO                    | PDT           | esquerda
+      204486 | Mauro Benevides Filho               | PDT           | esquerda
+      220607 | Max Lemos                           | PDT           | esquerda
+        1458 | Pompeo de Mattos                    | PDT           | esquerda
+       73486 | Pompeo de Mattos                    | PDT           | esquerda
+      204489 | Robério Monteiro                    | PDT           | esquerda
+        3649 | WALDEMIRO MOREIRA                   | PDT           | esquerda
+        3587 | ARAUJO PINHEIRO                     | PSB           | esquerda
+      220605 | Bandeira de Mello                   | PSB           | esquerda
+        2317 | BATISTA ACCIOLY                     | PSB           | esquerda
+        3588 | DELFIM MOREIRA                      | PSB           | esquerda
+        2996 | DIÓGENES MAGALHÃES                  | PSB           | esquerda
+        3611 | Dr. Victor Linhalis                 | PSB           | esquerda
+      220686 | Duarte Jr.                          | PSB           | esquerda
+      220663 | Eriberto Medeiros                   | PSB           | esquerda
+       72442 | Felipe Carreras                     | PSB           | esquerda
+        2924 | Felipe Carreras                     | PSB           | esquerda
+      204394 | Gervásio Maia                       | PSB           | esquerda
+      220664 | Guilherme Uchoa                     | PSB           | esquerda
+      178964 | Heitor Schuch                       | PSB           | esquerda
+      204533 | Idilvan Alencar                     | PSB           | esquerda
+        3226 | Idilvan Alencar                     | PSB           | esquerda
+      160548 | Jonas Donizette                     | PSB           | esquerda
+        2251 | Jonas Donizette                     | PSB           | esquerda
+        3552 | JOSÉ BEZERRA                        | PSB           | esquerda
+      204550 | Júnior Mano                         | PSB           | esquerda
+        3198 | Júnior Mano                         | PSB           | esquerda
+      139285 | Lídice da Mata                      | PSB           | esquerda
+      220662 | Lucas Ramos                         | PSB           | esquerda
+      178931 | Luciano Ducci                       | PSB           | esquerda
+        2936 | Luciano Ducci                       | PSB           | esquerda
+         161 | MACIEL MONTEIRO                     | PSB           | esquerda
+        3610 | Maria Arraes                        | PSB           | esquerda
+      160517 | Paulo Folletto                      | PSB           | esquerda
+        3608 | Pedro Campos                        | PSB           | esquerda
+      220667 | Pedro Campos                        | PSB           | esquerda
+        3225 | Robério Monteiro                    | PSB           | esquerda
+        1929 | Rodrigo Rollemberg                  | PSB           | esquerda
+      141533 | Rodrigo Rollemberg                  | PSB           | esquerda
+      204534 | Tabata Amaral                       | PSB           | esquerda
+        3208 | Tabata Amaral                       | PSB           | esquerda
+        1557 | ACHILLES CRUZ                       | PSOL          | esquerda
+      206018 | Célia Xakriabá                      | PSOL          | esquerda
+        3609 | Célia Xakriabá                      | PSOL          | esquerda
+       74171 | Chico Alencar                       | PSOL          | esquerda
+        3522 | Duda Salabert                       | PSOL          | esquerda
+        3563 | Erika Hilton                        | PSOL          | esquerda
+      220645 | Erika Hilton                        | PSOL          | esquerda
+      204407 | Fernanda Melchionna                 | PSOL          | esquerda
+        3384 | Fernanda Melchionna                 | PSOL          | esquerda
+       73531 | Ivan Valente                        | PSOL          | esquerda
+       74784 | Luiza Erundina                      | PSOL          | esquerda
+        1402 | Luiza Erundina                      | PSOL          | esquerda
+      220615 | Pastor Henrique Vieira              | PSOL          | esquerda
+        3602 | Pastor Henrique Vieira              | PSOL          | esquerda
+      221338 | Professora Luciene Cavalcante       | PSOL          | esquerda
+        3715 | Professora Luciene Cavalcante       | PSOL          | esquerda
+        1049 | ROCHA                               | PSOL          | esquerda
+        3382 | Sâmia Bomfim                        | PSOL          | esquerda
+      204535 | Sâmia Bomfim                        | PSOL          | esquerda
+      220643 | Sônia Guajajara                     | PSOL          | esquerda
+      204464 | Talíria Petrone                     | PSOL          | esquerda
+        3385 | Talíria Petrone                     | PSOL          | esquerda
+        3697 | Tarcísio Motta                      | PSOL          | esquerda
+      220598 | Tarcísio Motta                      | PSOL          | esquerda
+      160508 | Afonso Florence                     | PT            | esquerda
+        3406 | Airton Faleiro                      | PT            | esquerda
+      204495 | Airton Faleiro                      | PT            | esquerda
+        2938 | ALBERTO ÁLVARES                     | PT            | esquerda
+        3431 | Alencar Santana                     | PT            | esquerda
+      204501 | Alencar Santana                     | PT            | esquerda
+      220554 | Alexandre Lindenmeyer               | PT            | esquerda
+        3505 | Alfredinho                          | PT            | esquerda
+      221148 | Alfredinho                          | PT            | esquerda
+        3795 | ALFREDO PINTO                       | PT            | esquerda
+      220556 | Ana Paula Lima                      | PT            | esquerda
+        3705 | Ana Paula Lima                      | PT            | esquerda
+        3626 | Ana Pimentel                        | PT            | esquerda
+      220632 | Ana Pimentel                        | PT            | esquerda
+       73433 | Arlindo Chinaglia                   | PT            | esquerda
+        3657 | ARLINDO NOGUEIRA                    | PT            | esquerda
+        2405 | AZURÉM FURTADO                      | PT            | esquerda
+        2243 | BALTAZAR BERNARDINO                 | PT            | esquerda
+       73701 | Benedita da Silva                   | PT            | esquerda
+         188 | Benedita da Silva                   | PT            | esquerda
+      160538 | Bohn Gass                           | PT            | esquerda
+      220548 | Camila Jara                         | PT            | esquerda
+        3637 | CAMPOS CARITIER                     | PT            | esquerda
+      204426 | Carlos Veras                        | PT            | esquerda
+        3234 | Carlos Veras                        | PT            | esquerda
+      141398 | Carlos Zarattini                    | PT            | esquerda
+        1963 | Carlos Zarattini                    | PT            | esquerda
+      220704 | Carol Dartora                       | PT            | esquerda
+        1677 | COSTA SENA                          | PT            | esquerda
+      220629 | Dandara                             | PT            | esquerda
+        3607 | Dandara                             | PT            | esquerda
+      220565 | Delegada Adriana Accorsi            | PT            | esquerda
+        3578 | Delegada Adriana Accorsi            | PT            | esquerda
+        3589 | DEMÓCRITO GRACINDO                  | PT            | esquerda
+      220553 | Denise Pessôa                       | PT            | esquerda
+        3583 | Dilvanda Faro                       | PT            | esquerda
+      220671 | Dilvanda Faro                       | PT            | esquerda
+        3521 | Dimas Gadelha                       | PT            | esquerda
+      220602 | Dimas Gadelha                       | PT            | esquerda
+      220688 | Dr. Francisco                       | PT            | esquerda
+      229585 | Elisangela Araujo                   | PT            | esquerda
+        3778 | Elisangela Araujo                   | PT            | esquerda
+      160575 | Erika Kokay                         | PT            | esquerda
+      204445 | Fernando Mineiro                    | PT            | esquerda
+        3700 | Fernando Mineiro                    | PT            | esquerda
+        1910 | FERREIRA DA LUZ                     | PT            | esquerda
+        2406 | FLÁVIO DA SILVEIRA                  | PT            | esquerda
+      191923 | Flávio Nogueira                     | PT            | esquerda
+      220700 | Florentino Neto                     | PT            | esquerda
+        3590 | Florentino Neto                     | PT            | esquerda
+        1638 | FURQUIM WERNECK                     | PT            | esquerda
+        2813 | GILBERT GABEIRA                     | PT            | esquerda
+      107283 | Gleisi Hoffmann                     | PT            | esquerda
+        3430 | Gleisi Hoffmann                     | PT            | esquerda
+        2894 | Helder Salomão                      | PT            | esquerda
+      178873 | Helder Salomão                      | PT            | esquerda
+        3073 | HILDEMAR MAIA                       | PT            | esquerda
+        1590 | IVETTE VARGAS                       | PT            | esquerda
+      220696 | Ivoneide Caetano                    | PT            | esquerda
+        3546 | Ivoneide Caetano                    | PT            | esquerda
+      220527 | Jack Rocha                          | PT            | esquerda
+        3651 | Jack Rocha                          | PT            | esquerda
+        3672 | JAMES DARCY                         | PT            | esquerda
+      141456 | Jilmar Tatto                        | PT            | esquerda
+      178970 | João Daniel                         | PT            | esquerda
+        3072 | JOAQUIM VIEGAS                      | PT            | esquerda
+      178857 | Jorge Solla                         | PT            | esquerda
+      141464 | José Airton Félix Cirilo            | PT            | esquerda
+      141470 | José Guimarães                      | PT            | esquerda
+      209189 | Joseildo Ramos                      | PT            | esquerda
+        3452 | Joseildo Ramos                      | PT            | esquerda
+        2265 | JOSÉ MARIA                          | PT            | esquerda
+        3693 | JOSINO DE MENEZES                   | PT            | esquerda
+        3554 | JOVINIANO DE CARVALHO               | PT            | esquerda
+      220640 | Juliana Cardoso                     | PT            | esquerda
+      162067 | Kiko Celeguim                       | PT            | esquerda
+      231911 | Lenir de Assis                      | PT            | esquerda
+       74156 | Leonardo Monteiro                   | PT            | esquerda
+        3632 | LEOPOLDO LINS                       | PT            | esquerda
+        1853 | LIMA DUARTE                         | PT            | esquerda
+       74858 | Lindbergh Farias                    | PT            | esquerda
+       74041 | Luiz Couto                          | PT            | esquerda
+      178866 | Luizianne Lins                      | PT            | esquerda
+        1107 | MANUEL PEDRO                        | PT            | esquerda
+      160535 | Marcon                              | PT            | esquerda
+       74398 | Maria do Rosário                    | PT            | esquerda
+        1642 | MAYRINK                             | PT            | esquerda
+      188097 | Merlong Solano                      | PT            | esquerda
+      171786 | Miguel Ângelo                       | PT            | esquerda
+        3604 | Miguel Ângelo                       | PT            | esquerda
+         974 | MORAIS SILVA                        | PT            | esquerda
+        3230 | Natália Bonavides                   | PT            | esquerda
+      204453 | Natália Bonavides                   | PT            | esquerda
+      178986 | Nilto Tatto                         | PT            | esquerda
+        3677 | NOGUEIRA JAGUARIBE                  | PT            | esquerda
+       74159 | Odair Cunha                         | PT            | esquerda
+        1625 | Odair Cunha                         | PT            | esquerda
+        1502 | OSWALDO ALMEIDA                     | PT            | esquerda
+        1860 | OTONI                               | PT            | esquerda
+        2305 | Padre João                          | PT            | esquerda
+      160556 | Padre João                          | PT            | esquerda
+        1861 | PARAÍSO CAVALCANTI                  | PT            | esquerda
+       74160 | Patrus Ananias                      | PT            | esquerda
+      171617 | Paulão                              | PT            | esquerda
+        2288 | PAULINO DE SOUSA                    | PT            | esquerda
+        3121 | PAULO COUTO                         | PT            | esquerda
+      204492 | Paulo Guedes                        | PT            | esquerda
+        3204 | Paulo Guedes                        | PT            | esquerda
+      233592 | Paulo Lemos                         | PT            | esquerda
+       74400 | Paulo Pimenta                       | PT            | esquerda
+      141488 | Paulo Teixeira                      | PT            | esquerda
+      160604 | Pedro Uczai                         | PT            | esquerda
+        1605 | PONTES DE MIRANDA                   | PT            | esquerda
+        3134 | RAUL BARBOSA                        | PT            | esquerda
+       74161 | Reginaldo Lopes                     | PT            | esquerda
+      220606 | Reimont                             | PT            | esquerda
+        3663 | Reimont                             | PT            | esquerda
+      204480 | Rogério Correia                     | PT            | esquerda
+        3380 | Rogério Correia                     | PT            | esquerda
+       74371 | Rubens Otoni                        | PT            | esquerda
+        1686 | Rubens Otoni                        | PT            | esquerda
+        2902 | Rubens Pereira Júnior               | PT            | esquerda
+      178887 | Rubens Pereira Júnior               | PT            | esquerda
+       73604 | Rui Falcão                          | PT            | esquerda
+        1582 | SÁTIRO DIAS                         | PT            | esquerda
+      220682 | Tadeu Veneri                        | PT            | esquerda
+        2403 | TOMÁS RODRIGUES                     | PT            | esquerda
+        3792 | URBANO SANTOS                       | PT            | esquerda
+      160610 | Valmir Assunção                     | PT            | esquerda
+       74376 | Vander Loubet                       | PT            | esquerda
+        1697 | Vander Loubet                       | PT            | esquerda
+        1699 | Vicentinho                          | PT            | esquerda
+       74283 | Vicentinho                          | PT            | esquerda
+      160569 | Waldenor Pereira                    | PT            | esquerda
+      224333 | Welter                              | PT            | esquerda
+        3726 | Welter                              | PT            | esquerda
+        2241 | WENCESLAU ESCOBAR                   | PT            | esquerda
+      160592 | Zeca Dirceu                         | PT            | esquerda
+        2238 | Zeca Dirceu                         | PT            | esquerda
+      204559 | Zé Neto                             | PT            | esquerda
+        3261 | Zé Neto                             | PT            | esquerda
+      178927 | Aliel Machado                       | PV            | esquerda
+        2985 | Bacelar                             | PV            | esquerda
+       69871 | Bacelar                             | PV            | esquerda
+        3656 | Bandeira de Mello                   | PV            | esquerda
+       88256 | Clodoaldo Magalhães                 | PV            | esquerda
+        3690 | Clodoaldo Magalhães                 | PV            | esquerda
+        2915 | DAGOBERTO SALES                     | PV            | esquerda
+        3396 | Eduardo Bismarck                    | PV            | esquerda
+      204541 | Eduardo Bismarck                    | PV            | esquerda
+        3667 | Prof. Reginaldo Veras               | PV            | esquerda
+      220533 | Prof. Reginaldo Veras               | PV            | esquerda
+        3257 | André Janones                       | REDE          | esquerda
+        3652 | ÂNGELO NETO                         | REDE          | esquerda
+      234840 | Cristiano Furlan                    | REDE          | esquerda
+        3805 | Cristiano Furlan                    | REDE          | esquerda
+      234788 | Heloísa Helena                      | REDE          | esquerda
+        3801 | Lucas Abrahao                       | REDE          | esquerda
+      234253 | Lucas Abrahao                       | REDE          | esquerda
+      220637 | Marina Silva                        | REDE          | esquerda
+        3804 | MIRANDA AZEVEDO                     | REDE          | esquerda
+        2946 | MORAIS JUNIOR                       | REDE          | esquerda
+      234310 | Ricardo Galvão                      | REDE          | esquerda
+        3797 | Ricardo Galvão                      | REDE          | esquerda
+      157130 | Túlio Gadêlha                       | REDE          | esquerda
+(1104 rows)
+
+ sigla_partido | ideologia |                    tema                     | qtd_proposicoes 
+---------------+-----------+---------------------------------------------+-----------------
+ AVANTE        | centro    | Direitos Humanos e Minorias                 |              27
+ AVANTE        | centro    | Direito Penal e Processual Penal            |              10
+ AVANTE        | centro    | Saúde                                       |               8
+ AVANTE        | centro    | Viação, Transporte e Mobilidade             |               7
+ AVANTE        | centro    | Educação                                    |               7
+ AVANTE        | centro    | Administração Pública                       |               7
+ AVANTE        | centro    | Defesa e Segurança                          |               6
+ AVANTE        | centro    | Finanças Públicas e Orçamento               |               6
+ AVANTE        | centro    | Trabalho e Emprego                          |               5
+ AVANTE        | centro    | Indústria, Comércio e Serviços              |               3
+ AVANTE        | centro    | Arte, Cultura e Religião                    |               3
+ AVANTE        | centro    | Ciência, Tecnologia e Inovação              |               3
+ AVANTE        | centro    | Processo Legislativo e Atuação Parlamentar  |               3
+ AVANTE        | centro    | Comunicações                                |               2
+ AVANTE        | centro    | Meio Ambiente e Desenvolvimento Sustentável |               2
+ AVANTE        | centro    | Economia                                    |               2
+ AVANTE        | centro    | Direito Civil e Processual Civil            |               1
+ AVANTE        | centro    | Política, Partidos e Eleições               |               1
+ AVANTE        | centro    | Previdência e Assistência Social            |               1
+ AVANTE        | centro    | Cidades e Desenvolvimento Urbano            |               1
+ AVANTE        | centro    | Agricultura, Pecuária, Pesca e Extrativismo |               1
+ AVANTE        | centro    | Energia, Recursos Hídricos e Minerais       |               1
+ AVANTE        | centro    | Direito e Defesa do Consumidor              |               1
+ AVANTE        | centro    | Homenagens e Datas Comemorativas            |               1
+ CIDADANIA     | centro    | Direitos Humanos e Minorias                 |              30
+ CIDADANIA     | centro    | Administração Pública                       |              19
+ CIDADANIA     | centro    | Saúde                                       |              17
+ CIDADANIA     | centro    | Defesa e Segurança                          |              14
+ CIDADANIA     | centro    | Direito Penal e Processual Penal            |              12
+ CIDADANIA     | centro    | Meio Ambiente e Desenvolvimento Sustentável |              12
+ CIDADANIA     | centro    | Educação                                    |              12
+ CIDADANIA     | centro    | Direito e Justiça                           |               7
+ CIDADANIA     | centro    | Comunicações                                |               7
+ CIDADANIA     | centro    | Energia, Recursos Hídricos e Minerais       |               5
+ CIDADANIA     | centro    | Viação, Transporte e Mobilidade             |               5
+ CIDADANIA     | centro    | Finanças Públicas e Orçamento               |               5
+ CIDADANIA     | centro    | Economia                                    |               4
+ CIDADANIA     | centro    | Cidades e Desenvolvimento Urbano            |               4
+ CIDADANIA     | centro    | Indústria, Comércio e Serviços              |               3
+ CIDADANIA     | centro    | Ciência, Tecnologia e Inovação              |               3
+ CIDADANIA     | centro    | Agricultura, Pecuária, Pesca e Extrativismo |               2
+ CIDADANIA     | centro    | Arte, Cultura e Religião                    |               1
+ CIDADANIA     | centro    | Processo Legislativo e Atuação Parlamentar  |               1
+ MDB           | centro    | Direitos Humanos e Minorias                 |              62
+ MDB           | centro    | Administração Pública                       |              44
+ MDB           | centro    | Meio Ambiente e Desenvolvimento Sustentável |              37
+ MDB           | centro    | Finanças Públicas e Orçamento               |              34
+ MDB           | centro    | Economia                                    |              31
+ MDB           | centro    | Agricultura, Pecuária, Pesca e Extrativismo |              30
+ MDB           | centro    | Saúde                                       |              28
+ MDB           | centro    | Trabalho e Emprego                          |              27
+ MDB           | centro    | Indústria, Comércio e Serviços              |              25
+ MDB           | centro    | Defesa e Segurança                          |              23
+ MDB           | centro    | Direito Penal e Processual Penal            |              21
+ MDB           | centro    | Viação, Transporte e Mobilidade             |              18
+ MDB           | centro    | Homenagens e Datas Comemorativas            |              14
+ MDB           | centro    | Energia, Recursos Hídricos e Minerais       |              13
+ MDB           | centro    | Educação                                    |              13
+ MDB           | centro    | Ciência, Tecnologia e Inovação              |              13
+ MDB           | centro    | Cidades e Desenvolvimento Urbano            |              11
+ MDB           | centro    | Direito e Defesa do Consumidor              |              10
+ MDB           | centro    | Comunicações                                |               9
+ MDB           | centro    | Previdência e Assistência Social            |               8
+ MDB           | centro    | Estrutura Fundiária                         |               7
+ MDB           | centro    | Relações Internacionais e Comércio Exterior |               7
+ MDB           | centro    | Turismo                                     |               6
+ MDB           | centro    | Arte, Cultura e Religião                    |               5
+ MDB           | centro    | Processo Legislativo e Atuação Parlamentar  |               4
+ MDB           | centro    | Direito e Justiça                           |               4
+ MDB           | centro    | Direito Civil e Processual Civil            |               4
+ MDB           | centro    | Esporte e Lazer                             |               2
+ MDB           | centro    | Política, Partidos e Eleições               |               1
+ MISSAO        | centro    | Direito Penal e Processual Penal            |              14
+ MISSAO        | centro    | Defesa e Segurança                          |               8
+ MISSAO        | centro    | Direitos Humanos e Minorias                 |               7
+ MISSAO        | centro    | Finanças Públicas e Orçamento               |               5
+ MISSAO        | centro    | Trabalho e Emprego                          |               4
+ MISSAO        | centro    | Administração Pública                       |               3
+ MISSAO        | centro    | Economia                                    |               3
+ MISSAO        | centro    | Saúde                                       |               3
+ MISSAO        | centro    | Direito Civil e Processual Civil            |               2
+ MISSAO        | centro    | Meio Ambiente e Desenvolvimento Sustentável |               2
+ MISSAO        | centro    | Viação, Transporte e Mobilidade             |               2
+ MISSAO        | centro    | Direito e Justiça                           |               2
+ MISSAO        | centro    | Cidades e Desenvolvimento Urbano            |               1
+ NOVO          | direita   | Administração Pública                       |              72
+ NOVO          | direita   | Finanças Públicas e Orçamento               |              45
+ NOVO          | direita   | Economia                                    |              23
+ NOVO          | direita   | Viação, Transporte e Mobilidade             |              20
+ NOVO          | direita   | Defesa e Segurança                          |              20
+ NOVO          | direita   | Indústria, Comércio e Serviços              |              17
+ NOVO          | direita   | Energia, Recursos Hídricos e Minerais       |              13
+ NOVO          | direita   | Direitos Humanos e Minorias                 |              12
+ NOVO          | direita   | Trabalho e Emprego                          |              11
+ NOVO          | direita   | Previdência e Assistência Social            |              11
+ NOVO          | direita   | Meio Ambiente e Desenvolvimento Sustentável |               9
+ NOVO          | direita   | Comunicações                                |               8
+ NOVO          | direita   | Relações Internacionais e Comércio Exterior |               7
+ NOVO          | direita   | Saúde                                       |               7
+ NOVO          | direita   | Direito e Defesa do Consumidor              |               6
+ NOVO          | direita   | Direito Penal e Processual Penal            |               5
+ NOVO          | direita   | Educação                                    |               4
+ NOVO          | direita   | Turismo                                     |               3
+ NOVO          | direita   | Ciência, Tecnologia e Inovação              |               2
+ NOVO          | direita   | Direito Civil e Processual Civil            |               2
+ NOVO          | direita   | Processo Legislativo e Atuação Parlamentar  |               2
+ NOVO          | direita   | Direito Constitucional                      |               2
+ NOVO          | direita   | Arte, Cultura e Religião                    |               2
+ NOVO          | direita   | Direito e Justiça                           |               2
+ NOVO          | direita   | Agricultura, Pecuária, Pesca e Extrativismo |               2
+ NOVO          | direita   | Política, Partidos e Eleições               |               1
+ NOVO          | direita   | Esporte e Lazer                             |               1
+ NOVO          | direita   | Estrutura Fundiária                         |               1
+ PCDOB         | esquerda  | Direitos Humanos e Minorias                 |              27
+ PCDOB         | esquerda  | Trabalho e Emprego                          |              26
+ PCDOB         | esquerda  | Administração Pública                       |              21
+ PCDOB         | esquerda  | Defesa e Segurança                          |              14
+ PCDOB         | esquerda  | Direito Penal e Processual Penal            |              10
+ PCDOB         | esquerda  | Saúde                                       |               9
+ PCDOB         | esquerda  | Finanças Públicas e Orçamento               |               7
+ PCDOB         | esquerda  | Previdência e Assistência Social            |               6
+ PCDOB         | esquerda  | Indústria, Comércio e Serviços              |               5
+ PCDOB         | esquerda  | Viação, Transporte e Mobilidade             |               4
+ PCDOB         | esquerda  | Comunicações                                |               4
+ PCDOB         | esquerda  | Educação                                    |               4
+ PCDOB         | esquerda  | Esporte e Lazer                             |               4
+ PCDOB         | esquerda  | Energia, Recursos Hídricos e Minerais       |               3
+ PCDOB         | esquerda  | Política, Partidos e Eleições               |               3
+ PCDOB         | esquerda  | Processo Legislativo e Atuação Parlamentar  |               3
+ PCDOB         | esquerda  | Cidades e Desenvolvimento Urbano            |               3
+ PCDOB         | esquerda  | Agricultura, Pecuária, Pesca e Extrativismo |               2
+ PCDOB         | esquerda  | Ciência, Tecnologia e Inovação              |               2
+ PCDOB         | esquerda  | Direito e Defesa do Consumidor              |               1
+ PCDOB         | esquerda  | Meio Ambiente e Desenvolvimento Sustentável |               1
+ PCDOB         | esquerda  | Economia                                    |               1
+ PCDOB         | esquerda  | Homenagens e Datas Comemorativas            |               1
+ PCDOB         | esquerda  | Ciências Sociais e Humanas                  |               1
+ PDT           | esquerda  | Direitos Humanos e Minorias                 |              63
+ PDT           | esquerda  | Saúde                                       |              37
+ PDT           | esquerda  | Administração Pública                       |              33
+ PDT           | esquerda  | Finanças Públicas e Orçamento               |              32
+ PDT           | esquerda  | Viação, Transporte e Mobilidade             |              27
+ PDT           | esquerda  | Meio Ambiente e Desenvolvimento Sustentável |              26
+ PDT           | esquerda  | Direito Penal e Processual Penal            |              25
+ PDT           | esquerda  | Defesa e Segurança                          |              24
+ PDT           | esquerda  | Educação                                    |              22
+ PDT           | esquerda  | Indústria, Comércio e Serviços              |              21
+ PDT           | esquerda  | Cidades e Desenvolvimento Urbano            |              20
+ PDT           | esquerda  | Agricultura, Pecuária, Pesca e Extrativismo |              19
+ PDT           | esquerda  | Trabalho e Emprego                          |              19
+ PDT           | esquerda  | Economia                                    |              19
+ PDT           | esquerda  | Direito e Defesa do Consumidor              |              14
+ PDT           | esquerda  | Comunicações                                |              12
+ PDT           | esquerda  | Previdência e Assistência Social            |              11
+ PDT           | esquerda  | Ciência, Tecnologia e Inovação              |              10
+ PDT           | esquerda  | Relações Internacionais e Comércio Exterior |              10
+ PDT           | esquerda  | Homenagens e Datas Comemorativas            |               9
+ PDT           | esquerda  | Energia, Recursos Hídricos e Minerais       |               8
+ PDT           | esquerda  | Direito Civil e Processual Civil            |               8
+ PDT           | esquerda  | Arte, Cultura e Religião                    |               6
+ PDT           | esquerda  | Processo Legislativo e Atuação Parlamentar  |               5
+ PDT           | esquerda  | Política, Partidos e Eleições               |               4
+ PDT           | esquerda  | Direito e Justiça                           |               3
+ PDT           | esquerda  | Esporte e Lazer                             |               3
+ PDT           | esquerda  | Turismo                                     |               2
+ PL            | direita   | Administração Pública                       |             396
+ PL            | direita   | Finanças Públicas e Orçamento               |             288
+ PL            | direita   | Defesa e Segurança                          |             270
+ PL            | direita   | Direitos Humanos e Minorias                 |             261
+ PL            | direita   | Saúde                                       |             177
+ PL            | direita   | Economia                                    |             112
+ PL            | direita   | Educação                                    |             112
+ PL            | direita   | Trabalho e Emprego                          |             111
+ PL            | direita   | Viação, Transporte e Mobilidade             |             110
+ PL            | direita   | Indústria, Comércio e Serviços              |             105
+ PL            | direita   | Relações Internacionais e Comércio Exterior |             103
+ PL            | direita   | Direito Penal e Processual Penal            |             103
+ PL            | direita   | Agricultura, Pecuária, Pesca e Extrativismo |              96
+ PL            | direita   | Meio Ambiente e Desenvolvimento Sustentável |              89
+ PL            | direita   | Cidades e Desenvolvimento Urbano            |              66
+ PL            | direita   | Comunicações                                |              64
+ PL            | direita   | Previdência e Assistência Social            |              61
+ PL            | direita   | Arte, Cultura e Religião                    |              51
+ PL            | direita   | Energia, Recursos Hídricos e Minerais       |              46
+ PL            | direita   | Direito e Defesa do Consumidor              |              38
+ PL            | direita   | Ciência, Tecnologia e Inovação              |              35
+ PL            | direita   | Direito Civil e Processual Civil            |              27
+ PL            | direita   | Homenagens e Datas Comemorativas            |              26
+ PL            | direita   | Direito e Justiça                           |              26
+ PL            | direita   | Estrutura Fundiária                         |              24
+ PL            | direita   | Esporte e Lazer                             |              21
+ PL            | direita   | Turismo                                     |              20
+ PL            | direita   | Política, Partidos e Eleições               |              17
+ PL            | direita   | Processo Legislativo e Atuação Parlamentar  |               9
+ PL            | direita   | Direito Constitucional                      |               3
+ PL            | direita   | Ciências Exatas e da Terra                  |               1
+ PODE          | centro    | Direitos Humanos e Minorias                 |              61
+ PODE          | centro    | Saúde                                       |              40
+ PODE          | centro    | Administração Pública                       |              33
+ PODE          | centro    | Finanças Públicas e Orçamento               |              31
+ PODE          | centro    | Defesa e Segurança                          |              29
+ PODE          | centro    | Trabalho e Emprego                          |              22
+ PODE          | centro    | Direito Penal e Processual Penal            |              20
+ PODE          | centro    | Previdência e Assistência Social            |              18
+ PODE          | centro    | Meio Ambiente e Desenvolvimento Sustentável |              18
+ PODE          | centro    | Comunicações                                |              15
+ PODE          | centro    | Educação                                    |              14
+ PODE          | centro    | Indústria, Comércio e Serviços              |              14
+ PODE          | centro    | Direito e Defesa do Consumidor              |              13
+ PODE          | centro    | Ciência, Tecnologia e Inovação              |              12
+ PODE          | centro    | Viação, Transporte e Mobilidade             |              11
+ PODE          | centro    | Direito Civil e Processual Civil            |              10
+ PODE          | centro    | Homenagens e Datas Comemorativas            |              10
+ PODE          | centro    | Cidades e Desenvolvimento Urbano            |               7
+ PODE          | centro    | Economia                                    |               7
+ PODE          | centro    | Direito e Justiça                           |               6
+ PODE          | centro    | Energia, Recursos Hídricos e Minerais       |               4
+ PODE          | centro    | Arte, Cultura e Religião                    |               3
+ PODE          | centro    | Processo Legislativo e Atuação Parlamentar  |               3
+ PODE          | centro    | Relações Internacionais e Comércio Exterior |               3
+ PODE          | centro    | Agricultura, Pecuária, Pesca e Extrativismo |               2
+ PODE          | centro    | Esporte e Lazer                             |               1
+ PP            | direita   | Direitos Humanos e Minorias                 |              98
+ PP            | direita   | Administração Pública                       |              78
+ PP            | direita   | Finanças Públicas e Orçamento               |              64
+ PP            | direita   | Defesa e Segurança                          |              60
+ PP            | direita   | Saúde                                       |              55
+ PP            | direita   | Direito Penal e Processual Penal            |              43
+ PP            | direita   | Educação                                    |              39
+ PP            | direita   | Agricultura, Pecuária, Pesca e Extrativismo |              36
+ PP            | direita   | Economia                                    |              30
+ PP            | direita   | Meio Ambiente e Desenvolvimento Sustentável |              28
+ PP            | direita   | Trabalho e Emprego                          |              24
+ PP            | direita   | Viação, Transporte e Mobilidade             |              22
+ PP            | direita   | Indústria, Comércio e Serviços              |              22
+ PP            | direita   | Comunicações                                |              18
+ PP            | direita   | Previdência e Assistência Social            |              16
+ PP            | direita   | Direito e Defesa do Consumidor              |              14
+ PP            | direita   | Relações Internacionais e Comércio Exterior |              13
+ PP            | direita   | Estrutura Fundiária                         |              12
+ PP            | direita   | Arte, Cultura e Religião                    |              11
+ PP            | direita   | Cidades e Desenvolvimento Urbano            |              11
+ PP            | direita   | Energia, Recursos Hídricos e Minerais       |              10
+ PP            | direita   | Homenagens e Datas Comemorativas            |               8
+ PP            | direita   | Direito e Justiça                           |               8
+ PP            | direita   | Ciência, Tecnologia e Inovação              |               7
+ PP            | direita   | Esporte e Lazer                             |               5
+ PP            | direita   | Política, Partidos e Eleições               |               5
+ PP            | direita   | Turismo                                     |               5
+ PP            | direita   | Direito Civil e Processual Civil            |               5
+ PP            | direita   | Processo Legislativo e Atuação Parlamentar  |               4
+ PP            | direita   | Ciências Exatas e da Terra                  |               2
+ PRD           | centro    | Direitos Humanos e Minorias                 |              47
+ PRD           | centro    | Saúde                                       |              35
+ PRD           | centro    | Administração Pública                       |              33
+ PRD           | centro    | Defesa e Segurança                          |              23
+ PRD           | centro    | Finanças Públicas e Orçamento               |              20
+ PRD           | centro    | Meio Ambiente e Desenvolvimento Sustentável |              15
+ PRD           | centro    | Direito Penal e Processual Penal            |              13
+ PRD           | centro    | Educação                                    |              12
+ PRD           | centro    | Indústria, Comércio e Serviços              |              10
+ PRD           | centro    | Economia                                    |               8
+ PRD           | centro    | Previdência e Assistência Social            |               6
+ PRD           | centro    | Trabalho e Emprego                          |               6
+ PRD           | centro    | Viação, Transporte e Mobilidade             |               6
+ PRD           | centro    | Cidades e Desenvolvimento Urbano            |               6
+ PRD           | centro    | Esporte e Lazer                             |               6
+ PRD           | centro    | Direito e Defesa do Consumidor              |               5
+ PRD           | centro    | Energia, Recursos Hídricos e Minerais       |               4
+ PRD           | centro    | Ciência, Tecnologia e Inovação              |               4
+ PRD           | centro    | Comunicações                                |               4
+ PRD           | centro    | Direito Civil e Processual Civil            |               3
+ PRD           | centro    | Homenagens e Datas Comemorativas            |               3
+ PRD           | centro    | Relações Internacionais e Comércio Exterior |               1
+ PRD           | centro    | Agricultura, Pecuária, Pesca e Extrativismo |               1
+ PRD           | centro    | Direito e Justiça                           |               1
+ PRD           | centro    | Processo Legislativo e Atuação Parlamentar  |               1
+ PSB           | esquerda  | Saúde                                       |              52
+ PSB           | esquerda  | Direitos Humanos e Minorias                 |              44
+ PSB           | esquerda  | Indústria, Comércio e Serviços              |              31
+ PSB           | esquerda  | Finanças Públicas e Orçamento               |              30
+ PSB           | esquerda  | Direito e Defesa do Consumidor              |              27
+ PSB           | esquerda  | Direito Civil e Processual Civil            |              24
+ PSB           | esquerda  | Direito Penal e Processual Penal            |              23
+ PSB           | esquerda  | Administração Pública                       |              21
+ PSB           | esquerda  | Defesa e Segurança                          |              19
+ PSB           | esquerda  | Educação                                    |              16
+ PSB           | esquerda  | Trabalho e Emprego                          |              16
+ PSB           | esquerda  | Previdência e Assistência Social            |              12
+ PSB           | esquerda  | Viação, Transporte e Mobilidade             |              10
+ PSB           | esquerda  | Meio Ambiente e Desenvolvimento Sustentável |              10
+ PSB           | esquerda  | Economia                                    |               9
+ PSB           | esquerda  | Direito e Justiça                           |               8
+ PSB           | esquerda  | Comunicações                                |               8
+ PSB           | esquerda  | Cidades e Desenvolvimento Urbano            |               5
+ PSB           | esquerda  | Energia, Recursos Hídricos e Minerais       |               4
+ PSB           | esquerda  | Homenagens e Datas Comemorativas            |               4
+ PSB           | esquerda  | Política, Partidos e Eleições               |               4
+ PSB           | esquerda  | Esporte e Lazer                             |               3
+ PSB           | esquerda  | Processo Legislativo e Atuação Parlamentar  |               3
+ PSB           | esquerda  | Arte, Cultura e Religião                    |               3
+ PSB           | esquerda  | Agricultura, Pecuária, Pesca e Extrativismo |               1
+ PSB           | esquerda  | Direito Constitucional                      |               1
+ PSB           | esquerda  | Turismo                                     |               1
+ PSB           | esquerda  | Relações Internacionais e Comércio Exterior |               1
+ PSD           | centro    | Esporte e Lazer                             |             280
+ PSD           | centro    | Direitos Humanos e Minorias                 |             197
+ PSD           | centro    | Meio Ambiente e Desenvolvimento Sustentável |             161
+ PSD           | centro    | Trabalho e Emprego                          |             152
+ PSD           | centro    | Turismo                                     |             147
+ PSD           | centro    | Economia                                    |             145
+ PSD           | centro    | Finanças Públicas e Orçamento               |             143
+ PSD           | centro    | Educação                                    |             133
+ PSD           | centro    | Administração Pública                       |             132
+ PSD           | centro    | Indústria, Comércio e Serviços              |             112
+ PSD           | centro    | Previdência e Assistência Social            |              89
+ PSD           | centro    | Arte, Cultura e Religião                    |              39
+ PSD           | centro    | Saúde                                       |              36
+ PSD           | centro    | Direito Penal e Processual Penal            |              31
+ PSD           | centro    | Cidades e Desenvolvimento Urbano            |              25
+ PSD           | centro    | Defesa e Segurança                          |              22
+ PSD           | centro    | Viação, Transporte e Mobilidade             |              17
+ PSD           | centro    | Direito Civil e Processual Civil            |              16
+ PSD           | centro    | Direito e Defesa do Consumidor              |              12
+ PSD           | centro    | Comunicações                                |              11
+ PSD           | centro    | Ciência, Tecnologia e Inovação              |              11
+ PSD           | centro    | Homenagens e Datas Comemorativas            |               9
+ PSD           | centro    | Energia, Recursos Hídricos e Minerais       |               9
+ PSD           | centro    | Direito e Justiça                           |               5
+ PSD           | centro    | Agricultura, Pecuária, Pesca e Extrativismo |               4
+ PSD           | centro    | Processo Legislativo e Atuação Parlamentar  |               3
+ PSD           | centro    | Política, Partidos e Eleições               |               2
+ PSD           | centro    | Relações Internacionais e Comércio Exterior |               1
+ PSDB          | centro    | Direito e Defesa do Consumidor              |              49
+ PSDB          | centro    | Energia, Recursos Hídricos e Minerais       |              45
+ PSDB          | centro    | Administração Pública                       |              23
+ PSDB          | centro    | Comunicações                                |              21
+ PSDB          | centro    | Direitos Humanos e Minorias                 |              20
+ PSDB          | centro    | Cidades e Desenvolvimento Urbano            |              19
+ PSDB          | centro    | Saúde                                       |              18
+ PSDB          | centro    | Meio Ambiente e Desenvolvimento Sustentável |              17
+ PSDB          | centro    | Homenagens e Datas Comemorativas            |              15
+ PSDB          | centro    | Direito Penal e Processual Penal            |              12
+ PSDB          | centro    | Finanças Públicas e Orçamento               |              12
+ PSDB          | centro    | Arte, Cultura e Religião                    |              12
+ PSDB          | centro    | Indústria, Comércio e Serviços              |              11
+ PSDB          | centro    | Viação, Transporte e Mobilidade             |              10
+ PSDB          | centro    | Educação                                    |               6
+ PSDB          | centro    | Economia                                    |               5
+ PSDB          | centro    | Trabalho e Emprego                          |               5
+ PSDB          | centro    | Defesa e Segurança                          |               5
+ PSDB          | centro    | Turismo                                     |               3
+ PSDB          | centro    | Agricultura, Pecuária, Pesca e Extrativismo |               3
+ PSDB          | centro    | Esporte e Lazer                             |               2
+ PSDB          | centro    | Previdência e Assistência Social            |               2
+ PSDB          | centro    | Direito Civil e Processual Civil            |               2
+ PSDB          | centro    | Relações Internacionais e Comércio Exterior |               1
+ PSDB          | centro    | Processo Legislativo e Atuação Parlamentar  |               1
+ PSOL          | esquerda  | Direitos Humanos e Minorias                 |              59
+ PSOL          | esquerda  | Administração Pública                       |              39
+ PSOL          | esquerda  | Trabalho e Emprego                          |              26
+ PSOL          | esquerda  | Defesa e Segurança                          |              24
+ PSOL          | esquerda  | Saúde                                       |              19
+ PSOL          | esquerda  | Finanças Públicas e Orçamento               |              14
+ PSOL          | esquerda  | Direito Penal e Processual Penal            |              13
+ PSOL          | esquerda  | Educação                                    |              13
+ PSOL          | esquerda  | Previdência e Assistência Social            |              12
+ PSOL          | esquerda  | Comunicações                                |               8
+ PSOL          | esquerda  | Energia, Recursos Hídricos e Minerais       |               8
+ PSOL          | esquerda  | Ciência, Tecnologia e Inovação              |               8
+ PSOL          | esquerda  | Viação, Transporte e Mobilidade             |               7
+ PSOL          | esquerda  | Economia                                    |               7
+ PSOL          | esquerda  | Indústria, Comércio e Serviços              |               6
+ PSOL          | esquerda  | Homenagens e Datas Comemorativas            |               6
+ PSOL          | esquerda  | Direito Civil e Processual Civil            |               6
+ PSOL          | esquerda  | Meio Ambiente e Desenvolvimento Sustentável |               4
+ PSOL          | esquerda  | Processo Legislativo e Atuação Parlamentar  |               4
+ PSOL          | esquerda  | Arte, Cultura e Religião                    |               4
+ PSOL          | esquerda  | Cidades e Desenvolvimento Urbano            |               4
+ PSOL          | esquerda  | Política, Partidos e Eleições               |               4
+ PSOL          | esquerda  | Direito e Justiça                           |               3
+ PSOL          | esquerda  | Agricultura, Pecuária, Pesca e Extrativismo |               3
+ PSOL          | esquerda  | Direito e Defesa do Consumidor              |               3
+ PSOL          | esquerda  | Esporte e Lazer                             |               3
+ PSOL          | esquerda  | Estrutura Fundiária                         |               2
+ PSOL          | esquerda  | Ciências Sociais e Humanas                  |               1
+ PSOL          | esquerda  | Relações Internacionais e Comércio Exterior |               1
+ PT            | esquerda  | Direitos Humanos e Minorias                 |             155
+ PT            | esquerda  | Administração Pública                       |             109
+ PT            | esquerda  | Finanças Públicas e Orçamento               |              74
+ PT            | esquerda  | Trabalho e Emprego                          |              64
+ PT            | esquerda  | Comunicações                                |              56
+ PT            | esquerda  | Defesa e Segurança                          |              49
+ PT            | esquerda  | Saúde                                       |              47
+ PT            | esquerda  | Economia                                    |              46
+ PT            | esquerda  | Direito Penal e Processual Penal            |              46
+ PT            | esquerda  | Ciência, Tecnologia e Inovação              |              44
+ PT            | esquerda  | Direito e Defesa do Consumidor              |              39
+ PT            | esquerda  | Indústria, Comércio e Serviços              |              39
+ PT            | esquerda  | Meio Ambiente e Desenvolvimento Sustentável |              37
+ PT            | esquerda  | Educação                                    |              37
+ PT            | esquerda  | Previdência e Assistência Social            |              29
+ PT            | esquerda  | Agricultura, Pecuária, Pesca e Extrativismo |              27
+ PT            | esquerda  | Direito Civil e Processual Civil            |              25
+ PT            | esquerda  | Viação, Transporte e Mobilidade             |              23
+ PT            | esquerda  | Homenagens e Datas Comemorativas            |              22
+ PT            | esquerda  | Energia, Recursos Hídricos e Minerais       |              20
+ PT            | esquerda  | Cidades e Desenvolvimento Urbano            |              20
+ PT            | esquerda  | Política, Partidos e Eleições               |              17
+ PT            | esquerda  | Direito e Justiça                           |              16
+ PT            | esquerda  | Arte, Cultura e Religião                    |              15
+ PT            | esquerda  | Relações Internacionais e Comércio Exterior |              12
+ PT            | esquerda  | Esporte e Lazer                             |               8
+ PT            | esquerda  | Processo Legislativo e Atuação Parlamentar  |               7
+ PT            | esquerda  | Estrutura Fundiária                         |               5
+ PT            | esquerda  | Turismo                                     |               2
+ PT            | esquerda  | Direito Constitucional                      |               1
+ PT            | esquerda  | Ciências Sociais e Humanas                  |               1
+ PV            | esquerda  | Direitos Humanos e Minorias                 |              10
+ PV            | esquerda  | Trabalho e Emprego                          |               6
+ PV            | esquerda  | Defesa e Segurança                          |               6
+ PV            | esquerda  | Direito Penal e Processual Penal            |               5
+ PV            | esquerda  | Viação, Transporte e Mobilidade             |               5
+ PV            | esquerda  | Meio Ambiente e Desenvolvimento Sustentável |               5
+ PV            | esquerda  | Administração Pública                       |               4
+ PV            | esquerda  | Cidades e Desenvolvimento Urbano            |               4
+ PV            | esquerda  | Finanças Públicas e Orçamento               |               3
+ PV            | esquerda  | Indústria, Comércio e Serviços              |               3
+ PV            | esquerda  | Ciência, Tecnologia e Inovação              |               3
+ PV            | esquerda  | Energia, Recursos Hídricos e Minerais       |               3
+ PV            | esquerda  | Política, Partidos e Eleições               |               2
+ PV            | esquerda  | Saúde                                       |               2
+ PV            | esquerda  | Direito e Defesa do Consumidor              |               2
+ PV            | esquerda  | Educação                                    |               2
+ PV            | esquerda  | Agricultura, Pecuária, Pesca e Extrativismo |               1
+ PV            | esquerda  | Direito Civil e Processual Civil            |               1
+ PV            | esquerda  | Relações Internacionais e Comércio Exterior |               1
+ PV            | esquerda  | Direito e Justiça                           |               1
+ REDE          | esquerda  | Direitos Humanos e Minorias                 |              45
+ REDE          | esquerda  | Administração Pública                       |              26
+ REDE          | esquerda  | Saúde                                       |              20
+ REDE          | esquerda  | Finanças Públicas e Orçamento               |              18
+ REDE          | esquerda  | Previdência e Assistência Social            |              15
+ REDE          | esquerda  | Educação                                    |              13
+ REDE          | esquerda  | Trabalho e Emprego                          |              12
+ REDE          | esquerda  | Direito e Defesa do Consumidor              |              11
+ REDE          | esquerda  | Arte, Cultura e Religião                    |              11
+ REDE          | esquerda  | Indústria, Comércio e Serviços              |              10
+ REDE          | esquerda  | Meio Ambiente e Desenvolvimento Sustentável |              10
+ REDE          | esquerda  | Ciência, Tecnologia e Inovação              |               9
+ REDE          | esquerda  | Economia                                    |               9
+ REDE          | esquerda  | Homenagens e Datas Comemorativas            |               8
+ REDE          | esquerda  | Direito Penal e Processual Penal            |               8
+ REDE          | esquerda  | Defesa e Segurança                          |               7
+ REDE          | esquerda  | Comunicações                                |               6
+ REDE          | esquerda  | Viação, Transporte e Mobilidade             |               5
+ REDE          | esquerda  | Energia, Recursos Hídricos e Minerais       |               4
+ REDE          | esquerda  | Cidades e Desenvolvimento Urbano            |               3
+ REDE          | esquerda  | Direito e Justiça                           |               3
+ REDE          | esquerda  | Direito Civil e Processual Civil            |               2
+ REDE          | esquerda  | Agricultura, Pecuária, Pesca e Extrativismo |               2
+ REDE          | esquerda  | Relações Internacionais e Comércio Exterior |               1
+ REDE          | esquerda  | Esporte e Lazer                             |               1
+ REDE          | esquerda  | Política, Partidos e Eleições               |               1
+ REDE          | esquerda  | Turismo                                     |               1
+ REDE          | esquerda  | Processo Legislativo e Atuação Parlamentar  |               1
+ REPUBLICANOS  | direita   | Direitos Humanos e Minorias                 |              98
+ REPUBLICANOS  | direita   | Finanças Públicas e Orçamento               |              85
+ REPUBLICANOS  | direita   | Administração Pública                       |              79
+ REPUBLICANOS  | direita   | Saúde                                       |              76
+ REPUBLICANOS  | direita   | Defesa e Segurança                          |              53
+ REPUBLICANOS  | direita   | Meio Ambiente e Desenvolvimento Sustentável |              45
+ REPUBLICANOS  | direita   | Direito Penal e Processual Penal            |              40
+ REPUBLICANOS  | direita   | Indústria, Comércio e Serviços              |              38
+ REPUBLICANOS  | direita   | Agricultura, Pecuária, Pesca e Extrativismo |              37
+ REPUBLICANOS  | direita   | Economia                                    |              37
+ REPUBLICANOS  | direita   | Viação, Transporte e Mobilidade             |              37
+ REPUBLICANOS  | direita   | Trabalho e Emprego                          |              36
+ REPUBLICANOS  | direita   | Educação                                    |              35
+ REPUBLICANOS  | direita   | Cidades e Desenvolvimento Urbano            |              35
+ REPUBLICANOS  | direita   | Arte, Cultura e Religião                    |              27
+ REPUBLICANOS  | direita   | Direito e Defesa do Consumidor              |              26
+ REPUBLICANOS  | direita   | Energia, Recursos Hídricos e Minerais       |              22
+ REPUBLICANOS  | direita   | Previdência e Assistência Social            |              19
+ REPUBLICANOS  | direita   | Comunicações                                |              16
+ REPUBLICANOS  | direita   | Relações Internacionais e Comércio Exterior |              15
+ REPUBLICANOS  | direita   | Direito Civil e Processual Civil            |              13
+ REPUBLICANOS  | direita   | Homenagens e Datas Comemorativas            |              12
+ REPUBLICANOS  | direita   | Ciência, Tecnologia e Inovação              |               6
+ REPUBLICANOS  | direita   | Esporte e Lazer                             |               6
+ REPUBLICANOS  | direita   | Direito e Justiça                           |               5
+ REPUBLICANOS  | direita   | Processo Legislativo e Atuação Parlamentar  |               4
+ REPUBLICANOS  | direita   | Estrutura Fundiária                         |               4
+ REPUBLICANOS  | direita   | Política, Partidos e Eleições               |               3
+ REPUBLICANOS  | direita   | Turismo                                     |               1
+ REPUBLICANOS  | direita   | Direito Constitucional                      |               1
+ SOLIDARIEDADE | centro    | Direitos Humanos e Minorias                 |              25
+ SOLIDARIEDADE | centro    | Administração Pública                       |              17
+ SOLIDARIEDADE | centro    | Saúde                                       |              15
+ SOLIDARIEDADE | centro    | Meio Ambiente e Desenvolvimento Sustentável |              11
+ SOLIDARIEDADE | centro    | Trabalho e Emprego                          |              10
+ SOLIDARIEDADE | centro    | Finanças Públicas e Orçamento               |              10
+ SOLIDARIEDADE | centro    | Direito Penal e Processual Penal            |              10
+ SOLIDARIEDADE | centro    | Economia                                    |               9
+ SOLIDARIEDADE | centro    | Viação, Transporte e Mobilidade             |               8
+ SOLIDARIEDADE | centro    | Defesa e Segurança                          |               8
+ SOLIDARIEDADE | centro    | Educação                                    |               8
+ SOLIDARIEDADE | centro    | Indústria, Comércio e Serviços              |               7
+ SOLIDARIEDADE | centro    | Cidades e Desenvolvimento Urbano            |               5
+ SOLIDARIEDADE | centro    | Homenagens e Datas Comemorativas            |               5
+ SOLIDARIEDADE | centro    | Direito e Defesa do Consumidor              |               5
+ SOLIDARIEDADE | centro    | Ciência, Tecnologia e Inovação              |               4
+ SOLIDARIEDADE | centro    | Direito Civil e Processual Civil            |               4
+ SOLIDARIEDADE | centro    | Comunicações                                |               4
+ SOLIDARIEDADE | centro    | Previdência e Assistência Social            |               3
+ SOLIDARIEDADE | centro    | Esporte e Lazer                             |               3
+ SOLIDARIEDADE | centro    | Agricultura, Pecuária, Pesca e Extrativismo |               2
+ SOLIDARIEDADE | centro    | Arte, Cultura e Religião                    |               2
+ SOLIDARIEDADE | centro    | Direito e Justiça                           |               2
+ SOLIDARIEDADE | centro    | Política, Partidos e Eleições               |               2
+ SOLIDARIEDADE | centro    | Turismo                                     |               1
+ SOLIDARIEDADE | centro    | Processo Legislativo e Atuação Parlamentar  |               1
+ UNIAO         | centro    | Direitos Humanos e Minorias                 |             106
+ UNIAO         | centro    | Direito Penal e Processual Penal            |              69
+ UNIAO         | centro    | Administração Pública                       |              66
+ UNIAO         | centro    | Defesa e Segurança                          |              55
+ UNIAO         | centro    | Meio Ambiente e Desenvolvimento Sustentável |              53
+ UNIAO         | centro    | Finanças Públicas e Orçamento               |              48
+ UNIAO         | centro    | Saúde                                       |              41
+ UNIAO         | centro    | Trabalho e Emprego                          |              31
+ UNIAO         | centro    | Viação, Transporte e Mobilidade             |              28
+ UNIAO         | centro    | Economia                                    |              27
+ UNIAO         | centro    | Indústria, Comércio e Serviços              |              27
+ UNIAO         | centro    | Direito e Defesa do Consumidor              |              23
+ UNIAO         | centro    | Educação                                    |              23
+ UNIAO         | centro    | Agricultura, Pecuária, Pesca e Extrativismo |              20
+ UNIAO         | centro    | Ciência, Tecnologia e Inovação              |              18
+ UNIAO         | centro    | Previdência e Assistência Social            |              18
+ UNIAO         | centro    | Cidades e Desenvolvimento Urbano            |              17
+ UNIAO         | centro    | Comunicações                                |              17
+ UNIAO         | centro    | Direito Civil e Processual Civil            |              16
+ UNIAO         | centro    | Homenagens e Datas Comemorativas            |              13
+ UNIAO         | centro    | Energia, Recursos Hídricos e Minerais       |              12
+ UNIAO         | centro    | Direito e Justiça                           |              11
+ UNIAO         | centro    | Arte, Cultura e Religião                    |              11
+ UNIAO         | centro    | Esporte e Lazer                             |               8
+ UNIAO         | centro    | Processo Legislativo e Atuação Parlamentar  |               6
+ UNIAO         | centro    | Relações Internacionais e Comércio Exterior |               5
+ UNIAO         | centro    | Turismo                                     |               5
+ UNIAO         | centro    | Estrutura Fundiária                         |               4
+ UNIAO         | centro    | Política, Partidos e Eleições               |               3
+ UNIAO         | centro    | Direito Constitucional                      |               2
+(552 rows)
+
+ sigla_partido | ideologia |   voto    | qtd_votos 
+---------------+-----------+-----------+-----------
+ AVANTE        | centro    | Sim       |       354
+ AVANTE        | centro    | Nao       |       188
+ AVANTE        | centro    | Abstencao |         3
+ CIDADANIA     | centro    | Sim       |       130
+ CIDADANIA     | centro    | Nao       |        80
+ MDB           | centro    | Sim       |      1594
+ MDB           | centro    | Nao       |       783
+ MDB           | centro    | Abstencao |        10
+ MDB           | centro    | Artigo 17 |         1
+ MISSAO        | centro    | Nao       |        29
+ MISSAO        | centro    | Sim       |        20
+ MISSAO        | centro    | Obstrucao |         1
+ NOVO          | direita   | Nao       |       201
+ NOVO          | direita   | Sim       |       177
+ NOVO          | direita   | Obstrucao |        10
+ PCDOB         | esquerda  | Sim       |       475
+ PCDOB         | esquerda  | Nao       |       272
+ PDT           | esquerda  | Sim       |       716
+ PDT           | esquerda  | Nao       |       358
+ PDT           | esquerda  | Abstencao |         7
+ PL            | direita   | Sim       |      3725
+ PL            | direita   | Nao       |      2589
+ PL            | direita   | Obstrucao |        15
+ PL            | direita   | Abstencao |         9
+ PL            | direita   | Artigo 17 |         8
+ PODE          | centro    | Sim       |       814
+ PODE          | centro    | Nao       |       404
+ PODE          | centro    | Abstencao |         5
+ PP            | direita   | Sim       |      1931
+ PP            | direita   | Nao       |      1163
+ PP            | direita   | Abstencao |         2
+ PP            | direita   | Artigo 17 |         2
+ PRD           | centro    | Sim       |       173
+ PRD           | centro    | Nao       |       110
+ PRD           | centro    | Abstencao |         6
+ PSB           | esquerda  | Sim       |       777
+ PSB           | esquerda  | Nao       |       384
+ PSB           | esquerda  | Artigo 17 |         2
+ PSD           | centro    | Sim       |      1933
+ PSD           | centro    | Nao       |      1105
+ PSD           | centro    | Abstencao |         7
+ PSD           | centro    | Artigo 17 |         6
+ PSDB          | centro    | Sim       |       696
+ PSDB          | centro    | Nao       |       378
+ PSDB          | centro    | Abstencao |         5
+ PSDB          | centro    | Obstrucao |         1
+ PSOL          | esquerda  | Sim       |       493
+ PSOL          | esquerda  | Nao       |       343
+ PSOL          | esquerda  | Abstencao |         2
+ PT            | esquerda  | Sim       |      3229
+ PT            | esquerda  | Nao       |      1717
+ PT            | esquerda  | Abstencao |         3
+ PV            | esquerda  | Sim       |       218
+ PV            | esquerda  | Nao       |       108
+ REDE          | esquerda  | Sim       |       180
+ REDE          | esquerda  | Nao       |       123
+ REDE          | esquerda  | Abstencao |         3
+ REPUBLICANOS  | direita   | Sim       |      1963
+ REPUBLICANOS  | direita   | Nao       |      1082
+ REPUBLICANOS  | direita   | Artigo 17 |        38
+ SOLIDARIEDADE | centro    | Sim       |       237
+ SOLIDARIEDADE | centro    | Nao       |       113
+ SOLIDARIEDADE | centro    | Abstencao |         3
+ UNIAO         | centro    | Sim       |      2257
+ UNIAO         | centro    | Nao       |      1285
+ UNIAO         | centro    | Abstencao |         5
+ UNIAO         | centro    | Artigo 17 |         3
+(67 rows)
+

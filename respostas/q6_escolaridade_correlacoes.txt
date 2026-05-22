@@ -1,0 +1,17 @@
+      escolaridade       | qtd_deputados | media_gasto | media_fidelidade | media_proposicoes | media_presenca_eventos | media_presenca_plenario 
+-------------------------+---------------+-------------+------------------+-------------------+------------------------+-------------------------
+ Doutorado               |            15 |        0.00 |            77.35 |             77.07 |                  80.27 |                   70.73
+ Doutorado Incompleto    |             6 |        0.00 |            90.72 |             50.83 |                  72.00 |                   60.00
+ Ensino Fundamental      |            10 |        0.00 |            91.99 |             17.50 |                  56.50 |                   66.70
+ Ensino Médio            |            24 |        0.00 |            82.60 |             30.38 |                  58.42 |                   62.54
+ Ensino Médio Incompleto |             2 |        0.00 |           100.00 |             13.00 |                  53.00 |                   70.50
+ Mestrado                |            39 |        0.00 |            93.18 |             53.97 |                  62.97 |                   61.13
+ Mestrado Incompleto     |             6 |        0.00 |            80.00 |             84.00 |                  69.50 |                   60.67
+ Nao informado           |           477 |   123512.03 |            95.90 |              0.68 |                   1.65 |                    1.76
+ Pós-Graduação           |            78 |        0.00 |            89.18 |             71.64 |                  70.37 |                   65.86
+ Primário Incompleto     |             1 |        0.00 |                  |             31.00 |                  53.00 |                   72.00
+ Secundário              |             1 |        0.00 |                  |              1.00 |                  33.00 |                   56.00
+ Superior                |           417 |    26603.13 |            93.61 |             40.06 |                  50.28 |                   47.87
+ Superior Incompleto     |            41 |        0.00 |            96.98 |             35.71 |                  60.00 |                   61.46
+(13 rows)
+

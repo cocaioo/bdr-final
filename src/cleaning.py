@@ -8,6 +8,7 @@ Todas as funções:
 """
 
 import re
+import unicodedata
 from decimal import Decimal, InvalidOperation
 
 import pandas as pd
@@ -17,7 +18,6 @@ import pandas as pd
 # ============================================================
 
 _NULL_VALUES = {"", "null", "none", "nan", "nat", "n/a", "na"}
-
 
 # ============================================================
 # Limpeza base
@@ -49,6 +49,49 @@ def clean_upper(val):
     if text is None:
         return None
     return text.upper()
+
+
+def remove_accents(val):
+    """Remove acentos preservando o restante do texto."""
+    text = clean_text(val)
+    if text is None:
+        return None
+    normalized = unicodedata.normalize("NFKD", text)
+    return "".join(ch for ch in normalized if not unicodedata.combining(ch))
+
+
+def clean_party(val):
+    """Padroniza siglas de partidos e bancadas."""
+    text = remove_accents(val)
+    if text is None:
+        return None
+    text = re.sub(r"\s+", "", text.upper())
+    aliases = {
+        "PCDOB.": "PCDOB",
+        "REPUBLIC": "REPUBLICANOS",
+        "REPUBLICANO": "REPUBLICANOS",
+        "SOLIDARI": "SOLIDARIEDADE",
+        "MISSAO": "MISSAO",
+        "UNIAO": "UNIAO",
+    }
+    return aliases.get(text, text)
+
+
+def clean_vote(val):
+    """Padroniza votos e orientacoes para comparacoes simples."""
+    text = remove_accents(val)
+    if text is None:
+        return None
+    normalized = " ".join(text.split()).title()
+    aliases = {
+        "Nao": "Nao",
+        "Sim": "Sim",
+        "Abstencao": "Abstencao",
+        "Obstrucao": "Obstrucao",
+        "Artigo 17": "Artigo 17",
+        "Liberado": "Liberado",
+    }
+    return aliases.get(normalized, normalized)
 
 
 def clip_text(val, max_len):

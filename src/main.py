@@ -29,7 +29,7 @@ def main():
     # ---- Configurações ----
     schema = os.getenv("DB_SCHEMA", "grupo4")
     data_dir = Path(os.getenv("RAW_DATA_DIR", "./tabelas"))
-    clean_dir = Path(os.getenv("CLEAN_DATA_DIR", "./cleaned"))
+    clean_dir = Path(os.getenv("CLEAN_DATA_DIR", "./dados_padronizados"))
     log_dir = Path(os.getenv("LOG_DIR", "./logs"))
 
     clean_dir.mkdir(parents=True, exist_ok=True)
@@ -43,7 +43,7 @@ def main():
     logger.info("=" * 60)
     logger.info(f"Schema: {schema}")
     logger.info(f"Dados:  {data_dir.resolve()}")
-    logger.info(f"Limpos: {clean_dir.resolve()}")
+    logger.info(f"Padronizados: {clean_dir.resolve()}")
     logger.info(f"Logs:   {log_dir.resolve()}")
     logger.info(f"Tabelas: {len(LOAD_ORDER)}")
     logger.info("")
@@ -66,9 +66,6 @@ def main():
     except Exception as e:
         logger.warning(f"  Aviso ao truncar: {e}")
         conn.rollback()
-
-    # ---- Desabilitar FK para carga bulk ----
-    db.disable_fk(conn)
 
     # ---- Processar tabelas ----
     results = []
@@ -98,16 +95,6 @@ def main():
                 "duration": f"{time.time() - start:.1f}s",
             })
             # Continua para a próxima tabela
-
-    # ---- Reconciliar deputados ausentes vindos de gastos ----
-    try:
-        db.backfill_missing_deputados_from_gastos(conn, schema)
-    except Exception as e:
-        logger.warning(f"  Aviso ao reconciliar deputados ausentes: {e}")
-        conn.rollback()
-
-    # ---- Reabilitar FK ----
-    db.enable_fk(conn)
 
     # ---- Fechar conexão ----
     conn.close()

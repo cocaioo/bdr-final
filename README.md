@@ -1,150 +1,120 @@
-# ETL — Câmara dos Deputados (Grupo 4)
+# BDR - Camara dos Deputados
 
-Pipeline ETL para dados abertos da Câmara dos Deputados do Brasil.  
-Projeto acadêmico — Banco de Dados Relacional.
+Projeto local para padronizar CSVs da Camara dos Deputados, carregar os dados em
+PostgreSQL via Docker e exportar respostas em `.txt`.
 
-## Pré-requisitos
+## Diagnostico da refatoracao
+
+O projeto anterior carregava parte dos dados, mas nao atendia totalmente aos
+requisitos: gravava em `cleaned/`, mantinha chaves com nomes diferentes para a
+mesma informacao (`id_dep`, `nudeputadoid`, `deputado_id`, `iddeputado`), nao
+carregava `eventosPresencaDeputados-2026.csv`, nao preenchia escolaridade pela
+API oficial e tinha respostas antigas geradas sobre um schema inconsistente.
+
+Esta versao usa um unico padrao em `snake_case`, com chaves como
+`id_deputado`, `id_votacao`, `id_evento`, `id_proposicao`, `uri_deputado`,
+`uri_proposicao`, `sigla_partido` e `sigla_uf`.
+
+## Requisitos
 
 - Python 3.11+
-- Docker Desktop (para PostgreSQL 16)
-- CSVs baixados da API da Câmara
+- Docker Desktop
+- CSVs brutos em `tabelas/`
 
-## Setup
-
-### 1. Subir o banco de dados
+## Execucao
 
 ```bash
-docker-compose up -d
+python -m pip install -r requirements.txt
+make db-reset
+make etl
+make validate
+make export-respostas
 ```
 
-O container PostgreSQL será criado com:
-- Porta: `5433`
+Atalhos:
+
+- `make up`: sobe o PostgreSQL.
+- `make down`: para o container.
+- `make db-reset`: recria o volume do banco e reaplica `init.sql`.
+- `make etl`: padroniza os CSVs e carrega o banco.
+- `make validate`: executa validacoes basicas.
+- `make export-respostas`: gera arquivos em `respostas/`.
+
+## Banco local
+
+O `docker-compose.yml` sobe PostgreSQL 16 com:
+
+- Porta local: `5433` por padrao (`DB_PORT` no `.env`, ajustavel se a porta estiver ocupada)
 - Banco: `dossie_grupo4`
 - Schema: `grupo4`
-- Usuário/Senha: `admin/admin`
+- Usuario/senha: `admin/admin`
 
-O schema é criado automaticamente via `init.sql`.
+O schema e criado por `init.sql`.
 
-### 2. Configurar o ambiente
+## Dados padronizados
 
-```bash
-# Copiar template de configuração
-copy .env.example .env
+O ETL le os CSVs de `tabelas/`, padroniza os nomes e salva tudo em
+`dados_padronizados/`. Essa pasta substitui a antiga `cleaned/`.
 
-# Criar e ativar virtualenv
-python -m venv venv
-venv\Scripts\activate
+Tabelas geradas:
 
-# Instalar dependências
-pip install -r requirements.txt
+- `deputados.csv`
+- `partidos_ideologia.csv`
+- `proposicoes_2026.csv`
+- `eventos_2026.csv`
+- `votacoes_2026.csv`
+- `gastos_2026.csv`
+- `votacoes_votos_2026.csv`
+- `votacoes_orientacoes_2026.csv`
+- `votacoes_objetos_2026.csv`
+- `proposicoes_temas_2026.csv`
+- `eventos_presenca_deputados_2026.csv`
+- `proposicoes_autores.csv`
+
+## Enriquecimento via API
+
+A tabela `deputados` e complementada com a API oficial da Camara:
+
+`GET https://dadosabertos.camara.leg.br/api/v2/deputados/{id}`
+
+Campos integrados:
+
+- `cpf`
+- `nome_civil`
+- `escolaridade`
+
+O cache fica em `logs/deputados_api_cache.json`. Para desabilitar chamadas de
+API em uma execucao, ajuste `.env`:
+
+```env
+ENRICH_DEPUTADOS_API=false
 ```
 
-### 3. Colocar os CSVs
+## Respostas
 
-Os CSVs devem estar na pasta `tabelas/` (configurável no `.env`).
+As respostas sao exportadas por `sql/export_respostas.sql` para `respostas/`.
+O arquivo cobre as perguntas Q1 a Q13 do PDF:
 
-Arquivos esperados:
+- gastos por deputado
+- eixo/tema e nuvem de palavras
+- voto de deputado por tema
+- escolaridade
+- fornecedores
+- correlacoes por escolaridade
+- custo-beneficio
+- influencia legislativa
+- vies ideologico
+- alinhamento interno de partidos
+- rankings partidarios
+- deputado x fornecedor
+- categorias de gasto por deputado
 
-| CSV | Tabela |
-|-----|--------|
-| `deputados.csv` | deputados |
-| `proposicoes-2026.csv` | proposicoes_2026 |
-| `eventos-2026.csv` | eventos_2026 |
-| `votacoes-2026.csv` | votacoes_2026 |
-| `Ano-2026.csv` | Gastos_2026 |
-| `votacoesVotos-2026.csv` | votacoesVotos_2026 |
-| `votacoesOrientacoes-2026.csv` | votacoesOrientacoes_2026 |
-| `votacoesObjetos-2026.csv` | votacoesObjetos_2026 + votacoesProposicoes_2026 |
-| `proposicoesTemas-2026.csv` | proposicoesTemas_2026 |
-| `proposicoesAutores-2026.csv` | proposicoesAutores |
+## Arquivos principais
 
-## Executar o ETL
-
-```bash
-python -m src.main
-```
-
-O pipeline:
-1. Lê cada CSV
-2. Limpa e normaliza os dados
-3. Remove duplicatas
-4. Exporta CSVs limpos em `cleaned/`
-5. Carrega no PostgreSQL via `COPY`
-6. Mostra resumo final no terminal
-
-### Saída esperada
-
-```
-============================================================
-ETL — Câmara dos Deputados (Grupo 4)
-============================================================
-Schema: grupo4
-Tabelas: 11
-
-[1/11] deputados
-  Lendo deputados.csv...
-  39.124 linhas lidas
-  ✓ 513 linhas carregadas no banco
-
-...
-
-RESUMO FINAL
-  Tabela                              Status     Bruto      Limpo    Cargado    Tempo
-  deputados                           ✓ ok          39.124        513        513     1.2s
-  ...
-============================================================
-```
-
-## Estrutura do Projeto
-
-```
-BDR/
-├── tabelas/              ← CSVs brutos da API
-├── cleaned/              ← CSVs limpos (gerados pelo ETL)
-├── logs/                 ← Logs de execução
-│
-├── sql/
-│   ├── index_suggestions.sql
-│   ├── views_analiticas.sql
-│   └── validation_queries.sql
-│
-├── src/
-│   ├── __init__.py
-│   ├── main.py           ← Pipeline principal
-│   ├── db.py             ← Conexão PostgreSQL + COPY
-│   ├── cleaning.py       ← Funções de limpeza
-│   ├── loaders.py        ← Loader genérico
-│   ├── mappings.py       ← Configuração de tabelas
-│   └── utils.py          ← Logging + helpers
-│
-├── init.sql              ← Schema SQL (usado pelo Docker)
-├── docker-compose.yml
-├── requirements.txt
-├── .env
-└── README.md
-```
-
-## Queries de Validação
-
-Após o ETL, execute as queries em `sql/validation_queries.sql` para verificar:
-- Contagem de linhas por tabela
-- Integridade referencial (FKs)
-- Duplicatas
-
-## Views Analíticas
-
-As views em `sql/views_analiticas.sql` incluem:
-- Gastos por deputado
-- Gastos por partido e UF
-- Resumo de votações
-- Proposições por tema
-- Presença em eventos
-
-## Tecnologias
-
-- Python 3.11+
-- pandas
-- psycopg2
-- python-dotenv
-- PostgreSQL 16
-- Docker
+- `src/main.py`: pipeline principal
+- `src/mappings.py`: padrao de nomes e mapeamento CSV -> banco
+- `src/loaders.py`: padronizacao e carga
+- `src/enrichment.py`: integracao com API oficial
+- `init.sql`: schema PostgreSQL
+- `sql/validation_queries.sql`: validacoes
+- `sql/export_respostas.sql`: exportacao das respostas

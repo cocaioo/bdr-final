@@ -1,325 +1,237 @@
-"""
-Mapeamento de tabelas para o ETL da Câmara dos Deputados.
-
-Cada entrada em TABLES define:
-  - file: nome do CSV fonte na pasta de dados
-  - table: nome da tabela no PostgreSQL
-  - pk: colunas da PK (para deduplicação). [] = sem dedup (IDENTITY)
-  - required: colunas obrigatórias (linhas com NULL nessas colunas são removidas)
-  - columns: dict de {coluna_csv: (coluna_db, funcao_limpeza)}
-  - skip_identity: colunas IDENTITY que NÃO devem ser incluídas no COPY
-"""
+"""Table mapping for the local ETL."""
 
 from . import cleaning as C
 
-# ============================================================
-# Ordem de carga (respeita dependências de FK)
-# ============================================================
+
+PARTIDOS_IDEOLOGIA = [
+    {"sigla_partido": "AVANTE", "ideologia": "centro"},
+    {"sigla_partido": "CIDADANIA", "ideologia": "centro"},
+    {"sigla_partido": "MDB", "ideologia": "centro"},
+    {"sigla_partido": "MISSAO", "ideologia": "centro"},
+    {"sigla_partido": "NOVO", "ideologia": "direita"},
+    {"sigla_partido": "PCDOB", "ideologia": "esquerda"},
+    {"sigla_partido": "PDT", "ideologia": "esquerda"},
+    {"sigla_partido": "PL", "ideologia": "direita"},
+    {"sigla_partido": "PODE", "ideologia": "centro"},
+    {"sigla_partido": "PP", "ideologia": "direita"},
+    {"sigla_partido": "PRD", "ideologia": "centro"},
+    {"sigla_partido": "PSB", "ideologia": "esquerda"},
+    {"sigla_partido": "PSD", "ideologia": "centro"},
+    {"sigla_partido": "PSDB", "ideologia": "centro"},
+    {"sigla_partido": "PSOL", "ideologia": "esquerda"},
+    {"sigla_partido": "PT", "ideologia": "esquerda"},
+    {"sigla_partido": "PV", "ideologia": "esquerda"},
+    {"sigla_partido": "REDE", "ideologia": "esquerda"},
+    {"sigla_partido": "REPUBLICANOS", "ideologia": "direita"},
+    {"sigla_partido": "SOLIDARIEDADE", "ideologia": "centro"},
+    {"sigla_partido": "UNIAO", "ideologia": "centro"},
+]
+
 
 LOAD_ORDER = [
     "deputados",
+    "partidos_ideologia",
     "proposicoes_2026",
     "eventos_2026",
     "votacoes_2026",
     "gastos_2026",
-    "votacoesvotos_2026",
-    "votacoesorientacoes_2026",
-    "votacoesobjetos_2026",
-    "votacoesproposicoes_2026",
-    "proposicoestemas_2026",
-    # Tabelas sem CSV disponível (descomente quando tiver o CSV):
-    # "eventospresencadeputados_2026",
-    # "deputado_escolaridade",
-    "proposicoesautores",
+    "votacoes_votos_2026",
+    "votacoes_orientacoes_2026",
+    "votacoes_objetos_2026",
+    "proposicoes_temas_2026",
+    "eventos_presenca_deputados_2026",
+    "proposicoes_autores",
 ]
 
-# ============================================================
-# Ordem completa para TRUNCATE (dependentes primeiro)
-# Inclui TODAS as tabelas, mesmo as sem CSV
-# ============================================================
+ALL_TABLES_ORDERED = LOAD_ORDER[:]
 
-ALL_TABLES_ORDERED = [
-    "deputados",
-    "proposicoes_2026",
-    "eventos_2026",
-    "votacoes_2026",
-    "gastos_2026",
-    "votacoesvotos_2026",
-    "votacoesorientacoes_2026",
-    "votacoesobjetos_2026",
-    "votacoesproposicoes_2026",
-    "proposicoestemas_2026",
-    "eventospresencadeputados_2026",
-    "deputado_escolaridade",
-    "proposicoesautores",
-    "indicadores_deputado_2026",
-]
-
-TRUNCATE_ORDER = list(reversed(ALL_TABLES_ORDERED))
-
-# ============================================================
-# Definição de tabelas
-# ============================================================
 
 TABLES = {
-
-    # ----------------------------------------------------------
-    # 1. Deputados
-    # ----------------------------------------------------------
     "deputados": {
         "file": "deputados.csv",
         "table": "deputados",
-        "pk": ["id_dep"],
-        "required": ["id_dep", "uri_dep", "nome"],
+        "pk": ["id_deputado"],
+        "required": ["id_deputado", "uri_deputado", "nome"],
         "skip_identity": [],
+        "transform": "deputados",
         "columns": {
-            "uri":       ("uri_dep",   C.clean_text),
-            "_id_dep":   ("id_dep",    None),  # extraído da URI, tratado no transform
-            "nome":      ("nome",      C.clean_text),
-            "nomeCivil": ("nomecivil", C.clean_text),
-            "cpf":       ("cpf",       C.clean_cpf),
+            "uri": ("uri_deputado", C.clean_text),
+            "nome": ("nome", C.clean_text),
+            "nomeCivil": ("nome_civil", C.clean_text),
+            "cpf": ("cpf", C.clean_cpf),
         },
-        # Transform especial: id_dep é extraído da URI
-        "transform": "_deputados",
     },
-
-    # ----------------------------------------------------------
-    # 2. Proposições 2026
-    # ----------------------------------------------------------
+    "partidos_ideologia": {
+        "file": None,
+        "table": "partidos_ideologia",
+        "pk": ["sigla_partido"],
+        "required": ["sigla_partido", "ideologia"],
+        "skip_identity": [],
+        "generated_rows": PARTIDOS_IDEOLOGIA,
+        "columns": {
+            "sigla_partido": ("sigla_partido", C.clean_party),
+            "ideologia": ("ideologia", C.clean_text),
+        },
+    },
     "proposicoes_2026": {
         "file": "proposicoes-2026.csv",
         "table": "proposicoes_2026",
-        "pk": ["id"],
-        "required": ["id", "uri"],
+        "pk": ["id_proposicao"],
+        "required": ["id_proposicao", "uri_proposicao"],
         "skip_identity": [],
         "columns": {
-            "id":                              ("id",                C.clean_int),
-            "uri":                             ("uri",               C.clean_text),
-            "siglaTipo":                       ("siglatipo",         C.clean_upper),
-            "numero":                          ("numero",            C.clean_int),
-            "ano":                             ("ano",               C.clean_int),
-            "ementa":                          ("ementa",            C.clean_text),
-            "ementaDetalhada":                 ("ementadetalhada",   C.clean_text),
-            "keywords":                        ("keywords",          C.clean_text),
-            "ultimoStatus_descricaoSituacao":   ("descricaosituacao", C.clean_text),
+            "id": ("id_proposicao", C.clean_int),
+            "uri": ("uri_proposicao", C.clean_text),
+            "siglaTipo": ("sigla_tipo", C.clean_upper),
+            "numero": ("numero", C.clean_int),
+            "ano": ("ano", C.clean_int),
+            "ementa": ("ementa", C.clean_text),
+            "ementaDetalhada": ("ementa_detalhada", C.clean_text),
+            "keywords": ("keywords", C.clean_text),
+            "ultimoStatus_descricaoSituacao": ("descricao_situacao", C.clean_text),
         },
     },
-
-    # ----------------------------------------------------------
-    # 3. Eventos 2026
-    # ----------------------------------------------------------
     "eventos_2026": {
         "file": "eventos-2026.csv",
         "table": "eventos_2026",
-        "pk": ["idevento"],
-        "required": ["idevento"],
+        "pk": ["id_evento"],
+        "required": ["id_evento"],
         "skip_identity": [],
         "columns": {
-            "id":               ("idevento",       C.clean_int),
-            "uri":              ("uri",             C.clean_text),
-            "dataHoraInicio":   ("datahorainicio",  C.clean_timestamp),
-            "dataHoraFim":      ("datahorafim",     C.clean_timestamp),
-            "descricaoTipo":    ("descricaotipo",   C.clean_text),
-            "descricao":        ("descricao",       C.clean_text),
-            "localCamara.nome": ("localcamara",     C.clean_text),
+            "id": ("id_evento", C.clean_int),
+            "uri": ("uri_evento", C.clean_text),
+            "dataHoraInicio": ("data_hora_inicio", C.clean_timestamp),
+            "dataHoraFim": ("data_hora_fim", C.clean_timestamp),
+            "descricaoTipo": ("descricao_tipo", C.clean_text),
+            "descricao": ("descricao", C.clean_text),
+            "localCamara.nome": ("local_camara", C.clean_text),
         },
     },
-
-    # ----------------------------------------------------------
-    # 4. Votações 2026
-    # ----------------------------------------------------------
     "votacoes_2026": {
         "file": "votacoes-2026.csv",
         "table": "votacoes_2026",
-        "pk": ["id"],
-        "required": ["id"],
+        "pk": ["id_votacao"],
+        "required": ["id_votacao"],
         "skip_identity": [],
+        "transform": "votacoes",
         "columns": {
-            "id":         ("id",         C.clean_text),
-            "data":       ("data",       C.clean_date),
-            "siglaOrgao": ("siglaorgao", C.clean_upper),
-            "idEvento":   ("idevento",   C.clean_int),
-            "aprovacao":  ("aprovacao",  C.clean_boolean),
-            "descricao":  ("descricao",  C.clean_text),
+            "id": ("id_votacao", C.clean_text),
+            "data": ("data_votacao", C.clean_date),
+            "siglaOrgao": ("sigla_orgao", C.clean_upper),
+            "idEvento": ("id_evento", C.clean_int),
+            "aprovacao": ("aprovacao", C.clean_boolean),
+            "descricao": ("descricao", C.clean_text),
         },
-        # Transform especial: idEvento=0 vira NULL
-        "transform": "_votacoes",
     },
-
-    # ----------------------------------------------------------
-    # 5. Gastos 2026
-    # ----------------------------------------------------------
     "gastos_2026": {
         "file": "Ano-2026.csv",
         "table": "gastos_2026",
-        "pk": [],  # IDENTITY, sem dedup
-        "required": ["nudeputadoid", "txnomeparlamentar", "sguf", "sgpartido", "vlrliquido"],
-        "skip_identity": ["idgasto"],
+        "pk": [],
+        "required": ["id_deputado", "nome_parlamentar", "sigla_uf", "sigla_partido", "valor_liquido"],
+        "skip_identity": ["id_gasto"],
         "columns": {
-            "cpf":               ("cpf",               C.clean_cpf),
-            "nuDeputadoId":      ("nudeputadoid",      C.clean_int),
-            "txNomeParlamentar": ("txnomeparlamentar",  C.clean_text),
-            "sgUF":              ("sguf",               C.clean_upper),
-            "sgPartido":         ("sgpartido",          C.clean_upper),
-            "vlrDocumento":      ("vlrdocumento",       C.clean_money),
-            "vlrGlosa":          ("vlrglosa",           C.clean_money),
-            "vlrLiquido":        ("vlrliquido",         C.clean_money),
-            "txtDescricao":      ("txtdescricao",       C.clean_text),
-            "txtFornecedor":     ("txtfornecedor",      C.clean_text),
+            "cpf": ("cpf", C.clean_cpf),
+            "nuDeputadoId": ("id_deputado", C.clean_int),
+            "txNomeParlamentar": ("nome_parlamentar", C.clean_text),
+            "sgUF": ("sigla_uf", C.clean_upper),
+            "sgPartido": ("sigla_partido", C.clean_party),
+            "vlrDocumento": ("valor_documento", C.clean_money),
+            "vlrGlosa": ("valor_glosa", C.clean_money),
+            "vlrLiquido": ("valor_liquido", C.clean_money),
+            "txtDescricao": ("descricao_despesa", C.clean_text),
+            "txtFornecedor": ("fornecedor", C.clean_text),
         },
+        "drop_if": "lideranca",
     },
-
-    # ----------------------------------------------------------
-    # 6. Votações Votos 2026
-    # ----------------------------------------------------------
-    "votacoesvotos_2026": {
+    "votacoes_votos_2026": {
         "file": "votacoesVotos-2026.csv",
-        "table": "votacoesvotos_2026",
-        "pk": ["idvotacao", "deputado_id"],
-        "required": ["idvotacao", "deputado_id", "voto", "deputado_nome"],
+        "table": "votacoes_votos_2026",
+        "pk": ["id_votacao", "id_deputado"],
+        "required": ["id_votacao", "id_deputado", "voto", "nome_deputado"],
         "skip_identity": [],
         "columns": {
-            "idVotacao":              ("idvotacao",              C.clean_text),
-            "deputado_id":            ("deputado_id",            C.clean_int),
-            "voto":                   ("voto",                   C.clean_text),
-            "deputado_nome":          ("deputado_nome",          C.clean_text),
-            "deputado_siglaPartido":  ("deputado_siglapartido",  C.clean_upper),
-            "deputado_siglaUf":       ("deputado_siglauf",       C.clean_upper),
+            "idVotacao": ("id_votacao", C.clean_text),
+            "deputado_id": ("id_deputado", C.clean_int),
+            "voto": ("voto", C.clean_vote),
+            "deputado_nome": ("nome_deputado", C.clean_text),
+            "deputado_siglaPartido": ("sigla_partido", C.clean_party),
+            "deputado_siglaUf": ("sigla_uf", C.clean_upper),
         },
     },
-
-    # ----------------------------------------------------------
-    # 7. Votações Orientações 2026
-    # ----------------------------------------------------------
-    "votacoesorientacoes_2026": {
+    "votacoes_orientacoes_2026": {
         "file": "votacoesOrientacoes-2026.csv",
-        "table": "votacoesorientacoes_2026",
-        "pk": ["idvotacao", "siglabancada"],
-        "required": ["idvotacao", "siglabancada"],
+        "table": "votacoes_orientacoes_2026",
+        "pk": ["id_votacao", "sigla_bancada"],
+        "required": ["id_votacao", "sigla_bancada"],
         "skip_identity": [],
         "columns": {
-            "idVotacao":    ("idvotacao",    C.clean_text),
-            "siglaBancada": ("siglabancada", C.clean_text),
-            "orientacao":   ("orientacao",   C.clean_text),
-            "siglaOrgao":   ("siglaorgao",   C.clean_upper),
-            "descricao":    ("descricao",    C.clean_text),
+            "idVotacao": ("id_votacao", C.clean_text),
+            "siglaBancada": ("sigla_bancada", C.clean_party),
+            "orientacao": ("orientacao", C.clean_vote),
+            "siglaOrgao": ("sigla_orgao", C.clean_upper),
+            "descricao": ("descricao", C.clean_text),
         },
     },
-
-    # ----------------------------------------------------------
-    # 8. Votações Objetos 2026
-    # ----------------------------------------------------------
-    "votacoesobjetos_2026": {
+    "votacoes_objetos_2026": {
         "file": "votacoesObjetos-2026.csv",
-        "table": "votacoesobjetos_2026",
-        "pk": [],  # IDENTITY, sem dedup
-        "required": ["idvotacao"],
-        "skip_identity": ["idvotacaoobjeto"],
+        "table": "votacoes_objetos_2026",
+        "pk": [],
+        "required": ["id_votacao"],
+        "skip_identity": ["id_votacao_objeto"],
         "columns": {
-            "idVotacao":            ("idvotacao",            C.clean_text),
-            "proposicao_id":        ("proposicao_id",        C.clean_int),
-            "proposicao_uri":       ("proposicao_uri",       C.clean_text),
-            "proposicao_titulo":    ("proposicao_titulo",    C.clean_text),
-            "proposicao_ementa":    ("proposicao_ementa",    C.clean_text),
-            "proposicao_siglaTipo": ("proposicao_siglatipo", C.clean_upper),
-            "proposicao_numero":    ("proposicao_numero",    C.clean_int),
-            "proposicao_ano":       ("proposicao_ano",       C.clean_int),
+            "idVotacao": ("id_votacao", C.clean_text),
+            "proposicao_id": ("id_proposicao", C.clean_int),
+            "proposicao_uri": ("uri_proposicao", C.clean_text),
+            "proposicao_titulo": ("titulo_proposicao", C.clean_text),
+            "proposicao_ementa": ("ementa_proposicao", C.clean_text),
+            "proposicao_siglaTipo": ("sigla_tipo_proposicao", C.clean_upper),
+            "proposicao_numero": ("numero_proposicao", C.clean_int),
+            "proposicao_ano": ("ano_proposicao", C.clean_int),
         },
     },
-
-    # ----------------------------------------------------------
-    # 9. Votações Proposições 2026 (mesmo CSV que Objetos)
-    # ----------------------------------------------------------
-    "votacoesproposicoes_2026": {
-        "file": "votacoesObjetos-2026.csv",
-        "table": "votacoesproposicoes_2026",
-        "pk": ["idvotacao", "proposicao_id"],
-        "required": ["idvotacao", "proposicao_id"],
-        "skip_identity": [],
-        "columns": {
-            "idVotacao":         ("idvotacao",         C.clean_text),
-            "proposicao_id":     ("proposicao_id",     C.clean_int),
-            "proposicao_uri":    ("proposicao_uri",    C.clean_text),
-            "proposicao_titulo": ("proposicao_titulo", C.clean_text),
-            "proposicao_ementa": ("proposicao_ementa", C.clean_text),
-            "data":              ("data",              C.clean_date),
-        },
-    },
-
-    # ----------------------------------------------------------
-    # 10. Proposições Temas 2026
-    # ----------------------------------------------------------
-    "proposicoestemas_2026": {
+    "proposicoes_temas_2026": {
         "file": "proposicoesTemas-2026.csv",
-        "table": "proposicoestemas_2026",
-        "pk": ["uriproposicao", "codtema"],
-        "required": ["uriproposicao", "codtema", "tema"],
+        "table": "proposicoes_temas_2026",
+        "pk": ["uri_proposicao", "cod_tema"],
+        "required": ["uri_proposicao", "cod_tema", "tema"],
         "skip_identity": [],
         "columns": {
-            "uriProposicao": ("uriproposicao", C.clean_text),
-            "codTema":       ("codtema",       C.clean_int),
-            "tema":          ("tema",          C.clean_text),
-            "relevancia":    ("relevancia",    C.clean_decimal),
+            "uriProposicao": ("uri_proposicao", C.clean_text),
+            "codTema": ("cod_tema", C.clean_int),
+            "tema": ("tema", C.clean_text),
+            "relevancia": ("relevancia", C.clean_decimal),
         },
     },
-
-    # ----------------------------------------------------------
-    # 11. Eventos Presença Deputados 2026 (SEM CSV)
-    # ----------------------------------------------------------
-    "eventospresencadeputados_2026": {
-        "file": None,  # CSV não disponível
-        "table": "eventospresencadeputados_2026",
-        "pk": ["idevento", "iddeputado"],
-        "required": ["idevento", "iddeputado"],
+    "eventos_presenca_deputados_2026": {
+        "file": "eventosPresencaDeputados-2026.csv",
+        "table": "eventos_presenca_deputados_2026",
+        "pk": ["id_evento", "id_deputado"],
+        "required": ["id_evento", "id_deputado"],
         "skip_identity": [],
         "columns": {
-            "idEvento":     ("idevento",     C.clean_int),
-            "idDeputado":   ("iddeputado",   C.clean_int),
-            "nomeDeputado": ("nomedeputado", C.clean_text),
-            "siglaPartido": ("siglapartido", C.clean_upper),
-            "siglaUf":      ("siglauf",      C.clean_upper),
+            "idEvento": ("id_evento", C.clean_int),
+            "idDeputado": ("id_deputado", C.clean_int),
+            "nomeDeputado": ("nome_deputado", C.clean_text),
+            "siglaPartido": ("sigla_partido", C.clean_party),
+            "siglaUf": ("sigla_uf", C.clean_upper),
         },
     },
-
-    # ----------------------------------------------------------
-    # 12. Deputado Escolaridade (SEM CSV)
-    # ----------------------------------------------------------
-    "deputado_escolaridade": {
-        "file": None,  # CSV não disponível
-        "table": "deputado_escolaridade",
-        "pk": ["cpf"],
-        "required": ["cpf", "nome_candidato", "cargo", "grau_instrucao"],
-        "skip_identity": [],
-        "columns": {
-            "cpf":            ("cpf",            C.clean_cpf),
-            "idDeputado":     ("iddeputado",     C.clean_int),
-            "nome_candidato": ("nome_candidato", C.clean_text),
-            "nome_urna":      ("nome_urna",      C.clean_text),
-            "uf":             ("uf",             C.clean_upper),
-            "cargo":          ("cargo",          C.clean_text),
-            "partido":        ("partido",        C.clean_text),
-            "grau_instrucao": ("grau_instrucao", C.clean_text),
-            "situacao_turno": ("situacao_turno", C.clean_text),
-        },
-    },
-
-    # ----------------------------------------------------------
-    # 13. Proposições Autores
-    # ----------------------------------------------------------
-    "proposicoesautores": {
+    "proposicoes_autores": {
         "file": "proposicoesAutores-2026.csv",
-        "table": "proposicoesautores",
-        "pk": [],  # IDENTITY, sem dedup
-        "required": ["idproposicao", "nomeautor", "tipoautor"],
-        "skip_identity": ["idautoria"],
+        "table": "proposicoes_autores",
+        "pk": [],
+        "required": ["id_proposicao", "nome_autor", "tipo_autor"],
+        "skip_identity": ["id_autoria"],
         "columns": {
-            "idProposicao":    ("idproposicao",    C.clean_int),
-            "uriProposicao":   ("uriproposicao",   C.clean_text),
-            "idDeputadoAutor": ("idautor",         C.clean_int),
-            "nomeAutor":       ("nomeautor",       lambda v: C.clip_text(v, 200)),
-            "tipoAutor":       ("tipoautor",       C.clean_text),
-            "ordemAssinatura": ("ordemassinatura",  C.clean_int),
-            "proponente":      ("pesoautoria",     C.clean_decimal),
+            "idProposicao": ("id_proposicao", C.clean_int),
+            "uriProposicao": ("uri_proposicao", C.clean_text),
+            "idDeputadoAutor": ("id_deputado", C.clean_int),
+            "nomeAutor": ("nome_autor", lambda v: C.clip_text(v, 200)),
+            "tipoAutor": ("tipo_autor", C.clean_text),
+            "siglaPartidoAutor": ("sigla_partido", C.clean_party),
+            "siglaUFAutor": ("sigla_uf", C.clean_upper),
+            "ordemAssinatura": ("ordem_assinatura", C.clean_int),
+            "proponente": ("peso_autoria", C.clean_decimal),
         },
     },
 }
