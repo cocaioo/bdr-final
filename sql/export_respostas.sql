@@ -197,13 +197,86 @@ WITH gastos AS (
     FROM gastos_2026
     GROUP BY id_deputado
 ),
+situacoes AS (
+    SELECT
+        p.id_proposicao,
+        CASE
+            WHEN p.descricao_situacao IS NULL OR btrim(p.descricao_situacao) = '' THEN 'desconhecida'
+            WHEN p.norm IN (
+                'apresentada',
+                'aguardando despacho',
+                'aguardando parecer',
+                'aguardando votacao',
+                'aguardando votação',
+                'pronta para pauta',
+                'em tramitacao',
+                'em tramitação',
+                'tramitando em conjunto',
+                'aguardando designacao de relator',
+                'aguardando designação de relator',
+                'recebendo emendas',
+                'pronta para deliberacao',
+                'pronta para deliberação'
+            ) THEN 'ativa'
+            WHEN p.norm IN (
+                'aprovada',
+                'aprovada em plenario',
+                'aprovada em plenário',
+                'aprovada conclusivamente',
+                'aprovada com substitutivo',
+                'aprovada parcialmente',
+                'remetida ao senado',
+                'enviada a sancao',
+                'enviada à sanção',
+                'transformada em norma juridica',
+                'transformada em norma jurídica',
+                'transformado em norma juridica',
+                'transformado em norma jurídica',
+                'transformada em lei',
+                'promulgada'
+            ) THEN 'aprovada'
+            WHEN p.norm LIKE 'retirad% autor%' THEN 'rejeitada'
+            WHEN p.norm IN (
+                'rejeitada',
+                'prejudicada',
+                'declarada prejudicada',
+                'vetada',
+                'vetada parcialmente'
+            ) THEN 'rejeitada'
+            WHEN p.norm IN (
+                'arquivada',
+                'arquivada nos termos do art. 105',
+                'arquivada ao final da legislatura',
+                'arquivamento automatico',
+                'arquivamento automático',
+                'desarquivada'
+            ) THEN 'arquivada'
+            WHEN p.norm IN (
+                'apensada',
+                'desapensada',
+                'devolvida ao autor',
+                'suspensa',
+                'sobrestada',
+                'encerrada',
+                'perda de objeto'
+            ) THEN 'especial'
+            ELSE 'desconhecida'
+        END AS categoria_situacao
+    FROM (
+        SELECT
+            id_proposicao,
+            descricao_situacao,
+            lower(regexp_replace(descricao_situacao, '[[:space:]]+', ' ', 'g')) AS norm
+        FROM proposicoes_2026
+    ) p
+),
 proposicoes AS (
     SELECT
         a.id_deputado,
         COUNT(DISTINCT a.id_proposicao) AS qtd_proposicoes,
-        COUNT(DISTINCT a.id_proposicao) FILTER (WHERE p.descricao_situacao ILIKE '%Aprov%') AS proposicoes_aprovadas
+        COUNT(DISTINCT a.id_proposicao) FILTER (WHERE s.categoria_situacao = 'aprovada') AS proposicoes_aprovadas
     FROM proposicoes_autores a
-    LEFT JOIN proposicoes_2026 p ON p.id_proposicao = a.id_proposicao
+    LEFT JOIN situacoes s ON s.id_proposicao = a.id_proposicao
     WHERE a.id_deputado IS NOT NULL
     GROUP BY a.id_deputado
 ),
@@ -248,13 +321,86 @@ WHERE gasto_total > 0
 ORDER BY custo_beneficio DESC NULLS LAST;
 
 \o /respostas/q8_influencia.txt
-WITH autoria AS (
+WITH situacoes AS (
+    SELECT
+        p.id_proposicao,
+        CASE
+            WHEN p.descricao_situacao IS NULL OR btrim(p.descricao_situacao) = '' THEN 'desconhecida'
+            WHEN p.norm IN (
+                'apresentada',
+                'aguardando despacho',
+                'aguardando parecer',
+                'aguardando votacao',
+                'aguardando votação',
+                'pronta para pauta',
+                'em tramitacao',
+                'em tramitação',
+                'tramitando em conjunto',
+                'aguardando designacao de relator',
+                'aguardando designação de relator',
+                'recebendo emendas',
+                'pronta para deliberacao',
+                'pronta para deliberação'
+            ) THEN 'ativa'
+            WHEN p.norm IN (
+                'aprovada',
+                'aprovada em plenario',
+                'aprovada em plenário',
+                'aprovada conclusivamente',
+                'aprovada com substitutivo',
+                'aprovada parcialmente',
+                'remetida ao senado',
+                'enviada a sancao',
+                'enviada à sanção',
+                'transformada em norma juridica',
+                'transformada em norma jurídica',
+                'transformado em norma juridica',
+                'transformado em norma jurídica',
+                'transformada em lei',
+                'promulgada'
+            ) THEN 'aprovada'
+            WHEN p.norm LIKE 'retirad% autor%' THEN 'rejeitada'
+            WHEN p.norm IN (
+                'rejeitada',
+                'prejudicada',
+                'declarada prejudicada',
+                'vetada',
+                'vetada parcialmente'
+            ) THEN 'rejeitada'
+            WHEN p.norm IN (
+                'arquivada',
+                'arquivada nos termos do art. 105',
+                'arquivada ao final da legislatura',
+                'arquivamento automatico',
+                'arquivamento automático',
+                'desarquivada'
+            ) THEN 'arquivada'
+            WHEN p.norm IN (
+                'apensada',
+                'desapensada',
+                'devolvida ao autor',
+                'suspensa',
+                'sobrestada',
+                'encerrada',
+                'perda de objeto'
+            ) THEN 'especial'
+            ELSE 'desconhecida'
+        END AS categoria_situacao
+    FROM (
+        SELECT
+            id_proposicao,
+            descricao_situacao,
+            lower(regexp_replace(descricao_situacao, '[[:space:]]+', ' ', 'g')) AS norm
+        FROM proposicoes_2026
+    ) p
+),
+autoria AS (
     SELECT
         a.id_deputado,
         COUNT(DISTINCT a.id_proposicao) AS proposicoes_autoria,
-        COUNT(DISTINCT a.id_proposicao) FILTER (WHERE p.descricao_situacao ILIKE '%Aprov%') AS proposicoes_aprovadas
+        COUNT(DISTINCT a.id_proposicao) FILTER (WHERE s.categoria_situacao = 'aprovada') AS proposicoes_aprovadas
     FROM proposicoes_autores a
-    LEFT JOIN proposicoes_2026 p ON p.id_proposicao = a.id_proposicao
+    LEFT JOIN situacoes s ON s.id_proposicao = a.id_proposicao
     WHERE a.id_deputado IS NOT NULL
     GROUP BY a.id_deputado
 )

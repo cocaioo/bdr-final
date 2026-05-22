@@ -1,6 +1,6 @@
  id_deputado |                nome                 | proposicoes_autoria | proposicoes_aprovadas | pct_aprovadas 
 -------------+-------------------------------------+---------------------+-----------------------+---------------
-        4931 | IZALCI LUCAS                        |                   9 |                     0 |          0.00
+      141398 | Carlos Zarattini                    |                  22 |                     1 |          4.55
        62881 | Danilo Forte                        |                  24 |                     0 |          0.00
        66385 | Julio Arcoverde                     |                  18 |                     0 |          0.00
        66828 | Fausto Pinato                       |                  69 |                     0 |          0.00
@@ -98,7 +98,6 @@
       139285 | Lídice da Mata                      |                 113 |                     0 |          0.00
       141387 | ANTÔNIO ANDRADE                     |                   2 |                     0 |          0.00
       141391 | Arnaldo Jardim                      |                  32 |                     0 |          0.00
-      141398 | Carlos Zarattini                    |                  22 |                     0 |          0.00
       141408 | Cleber Verde                        |                  53 |                     0 |          0.00
       141411 | Dagoberto Nogueira                  |                  28 |                     0 |          0.00
       141421 | Eduardo da Fonte                    |                  55 |                     0 |          0.00
@@ -548,6 +547,7 @@
       234673 | Vanderlan Alves                     |                  36 |                     0 |          0.00
       234788 | Heloísa Helena                      |                  82 |                     0 |          0.00
       235088 | Ribeiro Neto                        |                  69 |                     0 |          0.00
+        4931 | IZALCI LUCAS                        |                   9 |                     0 |          0.00
       235776 | Sérgio Turra                        |                   6 |                     0 |          0.00
 (549 rows)
 
