@@ -1,8 +1,31 @@
-# Documentacao das respostas
+# Documentacao do projeto e das respostas
 
-Este arquivo explica o que cada resposta em `respostas/` mede, quais tabelas alimentam cada saida e quais cuidados sao importantes para interpretar os resultados.
+Este arquivo documenta como o projeto foi organizado, por que os dados foram padronizados e como as respostas em `respostas/` sao produzidas. A ideia e deixar rastreavel tanto a engenharia do dado quanto a leitura analitica final.
 
-## Visao geral
+## Objetivo do projeto
+
+O projeto parte dos CSVs brutos da Camara, trata inconsistencias de nomes e chaves, carrega o resultado em PostgreSQL e exporta respostas reproduziveis em SQL.
+
+## Estrutura das pastas
+
+- `tabelas/`: CSVs brutos de origem, sem padronizacao.
+- `dados_padronizados/`: arquivos gerados pelo ETL com nomes e campos uniformizados.
+- `src/`: codigo Python de limpeza, mapeamento, carga e enriquecimento.
+- `sql/`: queries de validacao e exportacao das respostas.
+- `respostas/`: saida final em `.txt` para cada questao.
+- `logs/`: caches e registros auxiliares, como o cache da API de deputados.
+- `data/`: area auxiliar para insumos ou intermediarios, quando necessario.
+
+## Decisoes de padronizacao
+
+- Usamos `snake_case` em todo o schema para evitar nomes diferentes para a mesma informacao.
+- Centralizamos identificadores como `id_deputado`, `id_votacao`, `id_evento` e `id_proposicao` para facilitar joins e validacoes.
+- Mantemos os CSVs originais em `tabelas/` e gravamos o resultado limpo em `dados_padronizados/` para preservar a rastreabilidade.
+- Complementamos `deputados` pela API oficial apenas para campos ausentes ou inconsistentes, como `cpf`, `nome_civil` e `escolaridade`.
+- Mantemos a geracao das respostas em SQL para que cada resultado seja reproduzivel e auditavel diretamente no banco.
+- Quando o dado oficial usa varias descricoes para a mesma situacao, normalizamos a leitura na query em vez de depender de um unico termo literal.
+
+## Geracao das respostas
 
 As respostas sao geradas por `sql/export_respostas.sql` a partir do schema `grupo4` no PostgreSQL. O processo consulta as tabelas padronizadas e grava os arquivos `.txt` em `respostas/`.
 

@@ -109,7 +109,7 @@ O arquivo cobre as perguntas Q1 a Q13 do PDF:
 - deputado x fornecedor
 - categorias de gasto por deputado
 
-Documentacao detalhada das respostas: [DOCUMENTACAO_RESPOSTAS.md](DOCUMENTACAO_RESPOSTAS.md)
+Documentacao detalhada do projeto e das respostas: [DOCUMENTACAO_RESPOSTAS.md](DOCUMENTACAO_RESPOSTAS.md)
 
 ## Arquivos principais
 
