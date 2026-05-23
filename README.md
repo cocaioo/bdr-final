@@ -120,3 +120,28 @@ Documentacao detalhada do projeto e das respostas: [DOCUMENTACAO_RESPOSTAS.md](D
 - `init.sql`: schema PostgreSQL
 - `sql/validation_queries.sql`: validacoes
 - `sql/export_respostas.sql`: exportacao das respostas
+
+
+## Questao 1 
+1. Deputados Ordenados por gasto - A Scopo :: N, P, E
+Filtro de A a Z
+Ideia de Resolução 
+ Ela resolve a Q1 somando valor_liquido da tabela gastos_2026, a
+ associando cada gasto ao deputado correspondente pela tabela deputados. O resultado é agrupado
+por deputado, UF e partido, e ordenado do maior gasto total para o menor.
+
+- valor_liquido: valor efetivo após descontar a glosa.
+
+## Questao 2
+2. Agrupar deputados por eixo de atuação (Nuvem de Palavras) - Ex: Eixo social, econômico, tributário, segurança, saúde, etc. nuvem de palavras 
+
+Solução 
+ 1. Agrupa deputados por tema oficial de atuação
+ 2. Gera uma frequência de palavras das proposições, que serve como base para nuvem de palavras:
+ 3. Agrupar em categorias nesse caso, Viação, Transporte e Mobilidade  seria uma subcategoria de uma categoria maior que ela mais se encaixa, 
+ Nesse caso, Viacao , transporte e mobilidade seria SOCIAL ou poderia ser ECONOMICO 
+
+## QUESTAO 3
+
+Como um deputado votou em um temaleixo
+específico

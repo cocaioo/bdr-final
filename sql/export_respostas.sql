@@ -16,21 +16,42 @@ GROUP BY d.id_deputado, d.nome, g.sigla_uf, g.sigla_partido
 ORDER BY gasto_total DESC;
 
 \o /respostas/q2_eixos_nuvem_palavras.txt
-\echo Q2 - deputados por eixo/tema oficial
-SELECT
-    d.id_deputado,
-    d.nome,
-    t.tema AS eixo_ou_tema,
-    COUNT(DISTINCT a.id_proposicao) AS qtd_proposicoes
-FROM proposicoes_autores a
-JOIN deputados d ON d.id_deputado = a.id_deputado
-JOIN proposicoes_2026 p ON p.id_proposicao = a.id_proposicao
-JOIN proposicoes_temas_2026 t ON t.uri_proposicao = p.uri_proposicao
-GROUP BY d.id_deputado, d.nome, t.tema
-ORDER BY d.nome, qtd_proposicoes DESC;
+\echo Q2.1 - deputados por eixo maior de atuacao
+WITH temas_eixos AS (
+    SELECT
+        t.uri_proposicao,
+        t.tema,
+        CASE
+            WHEN t.cod_tema IN (44, 46, 52, 56, 58, 86) THEN 'Social'
+            WHEN t.cod_tema IN (40, 64, 66, 70) THEN 'Economico'
+            WHEN t.cod_tema IN (43, 57) THEN 'Seguranca'
+            WHEN t.cod_tema IN (34, 42, 53, 67, 68, 74, 76) THEN 'Institucional e juridico'
+            WHEN t.cod_tema IN (48, 51, 54) THEN 'Ambiental e energetico'
+            WHEN t.cod_tema IN (37, 41, 61, 62, 85) THEN 'Infraestrutura e tecnologia'
+            WHEN t.cod_tema IN (35, 39, 60, 72) THEN 'Cultura e sociedade'
+            WHEN t.cod_tema IN (55) THEN 'Internacional'
+            ELSE 'Outros'
+        END AS eixo_maior
+    FROM proposicoes_temas_2026 t
+),
+q2_1 AS (
+    SELECT
+        d.id_deputado,
+        d.nome,
+        te.eixo_maior,
+        COUNT(DISTINCT a.id_proposicao) AS qtd_proposicoes
+    FROM proposicoes_autores a
+    JOIN deputados d ON d.id_deputado = a.id_deputado
+    JOIN proposicoes_2026 p ON p.id_proposicao = a.id_proposicao
+    JOIN temas_eixos te ON te.uri_proposicao = p.uri_proposicao
+    GROUP BY d.id_deputado, d.nome, te.eixo_maior
+)
+SELECT *
+FROM q2_1
+ORDER BY nome, qtd_proposicoes DESC;
 
 \echo
-\echo Q2 - nuvem de palavras das proposicoes
+\echo Q2.2 - nuvem de palavras das proposicoes
 WITH stopwords(word) AS (
     VALUES
         ('de'),('da'),('do'),('das'),('dos'),('e'),('a'),('o'),('as'),('os'),
@@ -56,45 +77,134 @@ GROUP BY token
 ORDER BY frequencia DESC
 LIMIT 200;
 
+\o /respostas/q2_eixo_nuvens_complemento.txt
+\echo Q2 complemento - eixo mais atuante por deputado
+WITH temas_eixos AS (
+    SELECT
+        t.uri_proposicao,
+        CASE
+            WHEN t.cod_tema IN (44, 46, 52, 56, 58, 86) THEN 'Social'
+            WHEN t.cod_tema IN (40, 64, 66, 70) THEN 'Economico'
+            WHEN t.cod_tema IN (43, 57) THEN 'Seguranca'
+            WHEN t.cod_tema IN (34, 42, 53, 67, 68, 74, 76) THEN 'Institucional e juridico'
+            WHEN t.cod_tema IN (48, 51, 54) THEN 'Ambiental e energetico'
+            WHEN t.cod_tema IN (37, 41, 61, 62, 85) THEN 'Infraestrutura e tecnologia'
+            WHEN t.cod_tema IN (35, 39, 60, 72) THEN 'Cultura e sociedade'
+            WHEN t.cod_tema IN (55) THEN 'Internacional'
+            ELSE 'Outros'
+        END AS eixo_maior
+    FROM proposicoes_temas_2026 t
+),
+eixos_deputado AS (
+    SELECT
+        d.id_deputado,
+        d.nome,
+        te.eixo_maior,
+        COUNT(DISTINCT a.id_proposicao) AS qtd_proposicoes
+    FROM proposicoes_autores a
+    JOIN deputados d ON d.id_deputado = a.id_deputado
+    JOIN proposicoes_2026 p ON p.id_proposicao = a.id_proposicao
+    JOIN temas_eixos te ON te.uri_proposicao = p.uri_proposicao
+    GROUP BY d.id_deputado, d.nome, te.eixo_maior
+),
+ranked AS (
+    SELECT
+        *,
+        RANK() OVER (
+            PARTITION BY id_deputado
+            ORDER BY qtd_proposicoes DESC
+        ) AS posicao
+    FROM eixos_deputado
+)
+SELECT
+    id_deputado,
+    nome,
+    eixo_maior AS eixo_mais_atuante,
+    qtd_proposicoes
+FROM ranked
+WHERE posicao = 1
+ORDER BY nome, eixo_mais_atuante;
+
 \o /respostas/q3_voto_deputado_tema.txt
-WITH deputado_alvo AS (
-    SELECT vv.id_deputado
+\echo Q3 - votos por deputado e eixo de atuacao
+WITH temas_eixos AS (
+    SELECT
+        t.uri_proposicao,
+        CASE
+            WHEN t.cod_tema IN (44, 46, 52, 56, 58, 86) THEN 'Social'
+            WHEN t.cod_tema IN (40, 64, 66, 70) THEN 'Economico'
+            WHEN t.cod_tema IN (43, 57) THEN 'Seguranca'
+            WHEN t.cod_tema IN (34, 42, 53, 67, 68, 74, 76) THEN 'Institucional e juridico'
+            WHEN t.cod_tema IN (48, 51, 54) THEN 'Ambiental e energetico'
+            WHEN t.cod_tema IN (37, 41, 61, 62, 85) THEN 'Infraestrutura e tecnologia'
+            WHEN t.cod_tema IN (35, 39, 60, 72) THEN 'Cultura e sociedade'
+            WHEN t.cod_tema IN (55) THEN 'Internacional'
+            ELSE 'Outros'
+        END AS eixo_maior
+    FROM proposicoes_temas_2026 t
+),
+votos_eixos AS (
+    SELECT DISTINCT
+        vv.id_deputado,
+        vv.id_votacao,
+        vv.voto,
+        COALESCE(
+            te.eixo_maior,
+            CASE
+                WHEN lower(COALESCE(vo.titulo_proposicao, '') || ' ' || COALESCE(vo.ementa_proposicao, '')) LIKE ANY (ARRAY[
+                    '%saude%', '%saúde%', '%educacao%', '%educação%', '%previdencia%', '%previdência%',
+                    '%assistencia%', '%assistência%', '%direitos humanos%', '%trabalho%', '%emprego%',
+                    '%mulher%', '%crianca%', '%criança%', '%deficiencia%', '%deficiência%', '%indigena%', '%indígena%'
+                ]) THEN 'Social'
+                WHEN lower(COALESCE(vo.titulo_proposicao, '') || ' ' || COALESCE(vo.ementa_proposicao, '')) LIKE ANY (ARRAY[
+                    '%economia%', '%tribut%', '%imposto%', '%orcamento%', '%orçamento%', '%financas%', '%finanças%',
+                    '%fiscal%', '%credito%', '%crédito%', '%comercio%', '%comércio%', '%industria%', '%indústria%',
+                    '%agricultura%', '%agropecu%', '%pecuaria%', '%pecuária%'
+                ]) THEN 'Economico'
+                WHEN lower(COALESCE(vo.titulo_proposicao, '') || ' ' || COALESCE(vo.ementa_proposicao, '')) LIKE ANY (ARRAY[
+                    '%seguranca%', '%segurança%', '%penal%', '%criminal%', '%policia%', '%polícia%',
+                    '%maioridade penal%', '%arma%', '%violencia%', '%violência%'
+                ]) THEN 'Seguranca'
+                WHEN lower(COALESCE(vo.titulo_proposicao, '') || ' ' || COALESCE(vo.ementa_proposicao, '')) LIKE ANY (ARRAY[
+                    '%constituicao%', '%constituição%', '%justica%', '%justiça%', '%cidadania%',
+                    '%processo legislativo%', '%eleicao%', '%eleição%', '%partido%', '%administracao publica%', '%administração pública%'
+                ]) THEN 'Institucional e juridico'
+                WHEN lower(COALESCE(vo.titulo_proposicao, '') || ' ' || COALESCE(vo.ementa_proposicao, '')) LIKE ANY (ARRAY[
+                    '%meio ambiente%', '%ambiental%', '%sustentavel%', '%sustentável%', '%energia%',
+                    '%mineracao%', '%mineração%', '%hidrico%', '%hídrico%', '%fundiaria%', '%fundiária%'
+                ]) THEN 'Ambiental e energetico'
+                WHEN lower(COALESCE(vo.titulo_proposicao, '') || ' ' || COALESCE(vo.ementa_proposicao, '')) LIKE ANY (ARRAY[
+                    '%transporte%', '%mobilidade%', '%comunicacao%', '%comunicação%', '%tecnologia%',
+                    '%inovacao%', '%inovação%', '%cidade%', '%urbano%', '%infraestrutura%'
+                ]) THEN 'Infraestrutura e tecnologia'
+                WHEN lower(COALESCE(vo.titulo_proposicao, '') || ' ' || COALESCE(vo.ementa_proposicao, '')) LIKE ANY (ARRAY[
+                    '%cultura%', '%religiao%', '%religião%', '%esporte%', '%lazer%', '%turismo%', '%homenagem%'
+                ]) THEN 'Cultura e sociedade'
+                WHEN lower(COALESCE(vo.titulo_proposicao, '') || ' ' || COALESCE(vo.ementa_proposicao, '')) LIKE ANY (ARRAY[
+                    '%internacional%', '%comercio exterior%', '%comércio exterior%', '%relacoes exteriores%', '%relações exteriores%'
+                ]) THEN 'Internacional'
+                ELSE 'Outros'
+            END
+        ) AS eixo_maior
     FROM votacoes_votos_2026 vv
     JOIN votacoes_objetos_2026 vo ON vo.id_votacao = vv.id_votacao
-    GROUP BY vv.id_deputado
-    ORDER BY COUNT(*) DESC, vv.id_deputado
-    LIMIT 1
-),
-tema_alvo AS (
-    SELECT COALESCE(t.tema, vo.sigla_tipo_proposicao, 'Sem tema oficial') AS tema_ou_tipo
-    FROM deputado_alvo da
-    JOIN votacoes_votos_2026 vv ON vv.id_deputado = da.id_deputado
-    JOIN votacoes_objetos_2026 vo ON vo.id_votacao = vv.id_votacao
     LEFT JOIN proposicoes_2026 p ON p.id_proposicao = vo.id_proposicao
-    LEFT JOIN proposicoes_temas_2026 t ON t.uri_proposicao = COALESCE(p.uri_proposicao, vo.uri_proposicao)
-    GROUP BY COALESCE(t.tema, vo.sigla_tipo_proposicao, 'Sem tema oficial')
-    ORDER BY COUNT(*) DESC, COALESCE(t.tema, vo.sigla_tipo_proposicao, 'Sem tema oficial')
-    LIMIT 1
+    LEFT JOIN temas_eixos te ON te.uri_proposicao = COALESCE(p.uri_proposicao, vo.uri_proposicao)
 )
+
+
 SELECT
     d.id_deputado,
     d.nome,
-    ta.tema_ou_tipo,
-    vv.id_votacao,
-    vv.voto,
-    COALESCE(p.sigla_tipo, vo.sigla_tipo_proposicao) AS sigla_tipo,
-    COALESCE(p.numero, vo.numero_proposicao) AS numero,
-    COALESCE(p.ano, vo.ano_proposicao) AS ano,
-    COALESCE(p.ementa, vo.ementa_proposicao) AS ementa
-FROM deputado_alvo da
-CROSS JOIN tema_alvo ta
-JOIN deputados d ON d.id_deputado = da.id_deputado
-JOIN votacoes_votos_2026 vv ON vv.id_deputado = da.id_deputado
-JOIN votacoes_objetos_2026 vo ON vo.id_votacao = vv.id_votacao
-LEFT JOIN proposicoes_2026 p ON p.id_proposicao = vo.id_proposicao
-LEFT JOIN proposicoes_temas_2026 t ON t.uri_proposicao = COALESCE(p.uri_proposicao, vo.uri_proposicao)
-WHERE COALESCE(t.tema, vo.sigla_tipo_proposicao, 'Sem tema oficial') = ta.tema_ou_tipo
-ORDER BY vv.id_votacao;
+    ve.eixo_maior,
+    COUNT(*) FILTER (WHERE ve.voto = 'Sim') AS votos_sim,
+    COUNT(*) FILTER (WHERE ve.voto = 'Nao') AS votos_nao,
+    COUNT(*) FILTER (WHERE ve.voto = 'Abstencao') AS abstencoes,
+    COUNT(*) AS votos_total
+FROM votos_eixos ve
+JOIN deputados d ON d.id_deputado = ve.id_deputado
+GROUP BY d.id_deputado, d.nome, ve.eixo_maior
+ORDER BY d.nome, votos_total DESC, ve.eixo_maior;
 
 \o /respostas/q4_escolaridade.txt
 WITH ativos AS (
@@ -110,6 +220,22 @@ FROM ativos a
 JOIN deputados d ON d.id_deputado = a.id_deputado
 GROUP BY COALESCE(d.escolaridade, 'Nao informado')
 ORDER BY qtd_deputados DESC;
+
+\o /respostas/q4_escolaridade_complementar.txt
+WITH ativos AS (
+    SELECT id_deputado FROM gastos_2026
+    UNION SELECT id_deputado FROM votacoes_votos_2026
+    UNION SELECT id_deputado FROM eventos_presenca_deputados_2026
+    UNION SELECT id_deputado FROM proposicoes_autores WHERE id_deputado IS NOT NULL
+)
+SELECT
+    COALESCE(d.escolaridade, 'Nao informado') AS escolaridade,
+    d.id_deputado,
+    d.nome
+FROM ativos a
+JOIN deputados d ON d.id_deputado = a.id_deputado
+ORDER BY COALESCE(d.escolaridade, 'Nao informado'), d.nome;
+
 
 \o /respostas/q5_fornecedores.txt
 SELECT
