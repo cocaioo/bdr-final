@@ -1,3 +1,11 @@
+Q10 - alinhamento interno dos partidos
+Resumo executivo
+ partidos | media_alinhamento | menor_alinhamento | maior_alinhamento 
+----------+-------------------+-------------------+-------------------
+       21 |            0.9124 |            0.7667 |            1.0000
+
+
+Tabela principal - partidos por alinhamento interno
  sigla_partido | votos_alinhados | votos_total | alinhamento_interno 
 ---------------+-----------------+-------------+---------------------
  MISSAO        |              49 |          49 |              1.0000
@@ -21,5 +29,4 @@
  PRD           |             231 |         283 |              0.8163
  UNIAO         |            2792 |        3542 |              0.7883
  CIDADANIA     |             161 |         210 |              0.7667
-(21 rows)
 

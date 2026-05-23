@@ -1,3 +1,4 @@
+Q3 - votos por deputado e eixo de atuacao
  id_deputado |                nome                 |         eixo_maior          | votos_sim | votos_nao | abstencoes | votos_total 
 -------------+-------------------------------------+-----------------------------+-----------+-----------+------------+-------------
       204379 | Acácio Favacho                      | Outros                      |        37 |        17 |          0 |          54
@@ -4746,5 +4747,4 @@
       220552 | Zucco                               | Internacional               |         2 |         2 |          0 |           4
       220552 | Zucco                               | Cultura e sociedade         |         2 |         1 |          0 |           3
       220552 | Zucco                               | Ambiental e energetico      |         0 |         2 |          0 |           2
-(4746 rows)
 

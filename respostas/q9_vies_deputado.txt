@@ -1,28 +1,13 @@
- sigla_partido | ideologia 
----------------+-----------
- AVANTE        | centro
- CIDADANIA     | centro
- MDB           | centro
- MISSAO        | centro
- PODE          | centro
- PRD           | centro
- PSD           | centro
- PSDB          | centro
- SOLIDARIEDADE | centro
- UNIAO         | centro
- NOVO          | direita
- PL            | direita
- PP            | direita
- REPUBLICANOS  | direita
- PCDOB         | esquerda
- PDT           | esquerda
- PSB           | esquerda
- PSOL          | esquerda
- PT            | esquerda
- PV            | esquerda
- REDE          | esquerda
-(21 rows)
+Q9 - vies ideologico e comportamento partidario
+Resumo executivo - deputados por ideologia predominante
+ ideologia | qtd_deputados 
+-----------+---------------
+ centro    |           424
+ direita   |           411
+ esquerda  |           269
 
+
+Tabela principal - partido predominante de cada deputado
  id_deputado |                nome                 | sigla_partido | ideologia 
 -------------+-------------------------------------+---------------+-----------
       204515 | André Janones                       | AVANTE        | centro
@@ -1129,8 +1114,35 @@
       234310 | Ricardo Galvão                      | REDE          | esquerda
         3797 | Ricardo Galvão                      | REDE          | esquerda
       157130 | Túlio Gadêlha                       | REDE          | esquerda
-(1104 rows)
 
+
+Complemento 1 - classificacao manual dos partidos
+ sigla_partido | ideologia 
+---------------+-----------
+ AVANTE        | centro
+ CIDADANIA     | centro
+ MDB           | centro
+ MISSAO        | centro
+ PODE          | centro
+ PRD           | centro
+ PSD           | centro
+ PSDB          | centro
+ SOLIDARIEDADE | centro
+ UNIAO         | centro
+ NOVO          | direita
+ PL            | direita
+ PP            | direita
+ REPUBLICANOS  | direita
+ PCDOB         | esquerda
+ PDT           | esquerda
+ PSB           | esquerda
+ PSOL          | esquerda
+ PT            | esquerda
+ PV            | esquerda
+ REDE          | esquerda
+
+
+Complemento 2 - partido x tema de proposicao
  sigla_partido | ideologia |                    tema                     | qtd_proposicoes 
 ---------------+-----------+---------------------------------------------+-----------------
  AVANTE        | centro    | Direitos Humanos e Minorias                 |              27
@@ -1685,8 +1697,9 @@
  UNIAO         | centro    | Estrutura Fundiária                         |               4
  UNIAO         | centro    | Política, Partidos e Eleições               |               3
  UNIAO         | centro    | Direito Constitucional                      |               2
-(552 rows)
 
+
+Complemento 3 - votos por ideologia partidaria
  sigla_partido | ideologia |   voto    | qtd_votos 
 ---------------+-----------+-----------+-----------
  AVANTE        | centro    | Sim       |       354
@@ -1756,5 +1769,4 @@
  UNIAO         | centro    | Nao       |      1285
  UNIAO         | centro    | Abstencao |         5
  UNIAO         | centro    | Artigo 17 |         3
-(67 rows)
 

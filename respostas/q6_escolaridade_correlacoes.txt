@@ -1,3 +1,11 @@
+Q6 - escolaridade e indicadores medios
+Resumo executivo
+ deputados_ativos | grupos_escolaridade | media_geral_gasto | media_geral_fidelidade | media_geral_proposicoes | media_geral_presenca_eventos | media_geral_presenca_plenario 
+------------------+---------------------+-------------------+------------------------+-------------------------+------------------------------+-------------------------------
+             1117 |                  13 |          62675.69 |                  92.32 |                   26.06 |                        32.56 |                         31.39
+
+
+Tabela principal - medias por escolaridade
       escolaridade       | qtd_deputados | media_gasto | media_fidelidade | media_proposicoes | media_presenca_eventos | media_presenca_plenario 
 -------------------------+---------------+-------------+------------------+-------------------+------------------------+-------------------------
  Doutorado               |            15 |        0.00 |            77.35 |             77.07 |                  80.27 |                   70.73
@@ -13,5 +21,4 @@
  Secundário              |             1 |        0.00 |                  |              1.00 |                  33.00 |                   56.00
  Superior                |           417 |    26603.13 |            93.61 |             40.06 |                  50.28 |                   47.87
  Superior Incompleto     |            41 |        0.00 |            96.98 |             35.71 |                  60.00 |                   61.46
-(13 rows)
 
