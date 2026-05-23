@@ -1117,5 +1117,4 @@
  Superior Incompleto     |      143084 | Tiago Dimas
  Superior Incompleto     |      137070 | Vicentinho Júnior
  Superior Incompleto     |       74043 | Wellington Roberto
-(1117 rows)
 

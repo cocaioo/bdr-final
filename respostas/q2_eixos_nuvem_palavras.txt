@@ -1,3 +1,4 @@
+Q2.1 - deputados por eixo maior de atuacao
  id_deputado |                nome                 |         eixo_maior          | qtd_proposicoes 
 -------------+-------------------------------------+-----------------------------+-----------------
       204379 | Acácio Favacho                      | Infraestrutura e tecnologia |               2
@@ -2867,8 +2868,9 @@
       220552 | Zucco                               | Institucional e juridico    |               2
       220552 | Zucco                               | Ambiental e energetico      |               2
       220552 | Zucco                               | Infraestrutura e tecnologia |               1
-(2867 rows)
 
+
+Q2.2 - nuvem de palavras das proposicoes
         token        | frequencia 
 ---------------------+------------
  lei                 |       5899
@@ -3071,5 +3073,4 @@
  controle            |        326
  rádio               |        323
  santos              |        322
-(200 rows)
 

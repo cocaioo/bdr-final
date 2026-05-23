@@ -549,5 +549,4 @@
         3818 | FRANCISCO ALENCASTRO                | PR       | PL            |      746.14
         3640 | Yury do Paredão                     | CE       | MDB           |      448.53
         3079 | PESSOA DE ARAÚJO                    | MA       | PP            |      281.87
-(549 rows)
 

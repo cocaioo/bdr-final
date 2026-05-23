@@ -1,3 +1,4 @@
+Q2 complemento - eixo mais atuante por deputado
  id_deputado |                nome                 |      eixo_mais_atuante      | qtd_proposicoes 
 -------------+-------------------------------------+-----------------------------+-----------------
       204379 | Acácio Favacho                      | Infraestrutura e tecnologia |               2
@@ -770,5 +771,4 @@
       220558 | Zé Trovão                           | Social                      |              14
       204517 | Zé Vitor                            | Economico                   |               9
       220552 | Zucco                               | Seguranca                   |               4
-(770 rows)
 

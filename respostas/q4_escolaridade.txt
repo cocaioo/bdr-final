@@ -13,5 +13,4 @@
  Ensino Médio Incompleto |             2
  Secundário              |             1
  Primário Incompleto     |             1
-(13 rows)
 
