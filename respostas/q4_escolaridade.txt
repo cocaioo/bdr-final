@@ -1,16 +1,20 @@
-      escolaridade       | qtd_deputados 
+      escolaridade       | qtd_deputados
 -------------------------+---------------
- Nao informado           |           477
- Superior                |           417
- Pós-Graduação           |            78
- Superior Incompleto     |            41
- Mestrado                |            39
- Ensino Médio            |            24
- Doutorado               |            15
- Ensino Fundamental      |            10
- Mestrado Incompleto     |             6
- Doutorado Incompleto    |             6
- Ensino Médio Incompleto |             2
- Secundário              |             1
+ Superior                |           714
+ Pós-Graduação           |           131
+ Superior Incompleto     |            70
+ Mestrado                |            65
+ Ensino Médio            |            45
+ Nao informado           |            42
+ Doutorado               |            31
+ Secundário              |            23
+ Ensino Fundamental      |            16
+ Doutorado Incompleto    |             8
+ Mestrado Incompleto     |             7
+ Ensino Técnico          |             4
+ Ensino Médio Incompleto |             3
+ Primário                |             2
  Primário Incompleto     |             1
+ Secundário Incompleto   |             1
+ Ginasial                |             1
 

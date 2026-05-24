@@ -1,255 +1,531 @@
 Q11 - rankings partidarios
 Resumo executivo
- partidos | votos_registrados | proposicoes | gasto_total 
-----------+-------------------+-------------+-------------
-       21 |             35064 |       24138 | 70008746.67
+ partidos | votos_registrados | proposicoes | gasto_total
+----------+-------------------+-------------+--------------
+       49 |            199031 |      159455 | 814641556.15
 
 
 Tabela principal - painel compacto por partido
- sigla_partido | ideologia | votos_registrados | deputados_votantes | votacoes | qtd_proposicoes | gasto_total | pos_votos | pos_proposicoes | pos_gastos 
----------------+-----------+-------------------+--------------------+----------+-----------------+-------------+-----------+-----------------+------------
- PL            | direita   |              6346 |                111 |      100 |            6469 | 12659054.05 |         1 |               1 |          1
- PT            | esquerda  |              4949 |                 71 |      100 |            3056 |  9624015.22 |         2 |               2 |          2
- UNIAO         | centro    |              3550 |                 84 |      100 |            1409 |  7416424.41 |         3 |               6 |          3
- PP            | direita   |              3098 |                 62 |       99 |            1292 |  6679734.11 |         4 |               7 |          4
- REPUBLICANOS  | direita   |              3083 |                 68 |      100 |            1982 |  6014140.10 |         5 |               5 |          6
- PSD           | centro    |              3051 |                 65 |       98 |            2114 |  6360643.92 |         6 |               3 |          5
- MDB           | centro    |              2388 |                 53 |       97 |             774 |  4866793.43 |         7 |               8 |          7
- PODE          | centro    |              1223 |                 32 |       94 |            2097 |  4226933.28 |         8 |               4 |          8
- PSB           | esquerda  |              1163 |                 22 |      100 |             615 |  2226076.81 |         9 |              12 |          9
- PDT           | esquerda  |              1081 |                 19 |       91 |             663 |  1537516.30 |        10 |              11 |         11
- PSDB          | centro    |              1080 |                 25 |       91 |             609 |  2070063.27 |        11 |              13 |         10
- PSOL          | esquerda  |               838 |                 14 |       96 |             749 |  1436847.31 |        12 |               9 |         12
- PCDOB         | esquerda  |               747 |                 11 |       98 |             314 |  1313315.48 |        13 |              14 |         13
- AVANTE        | centro    |               545 |                 10 |       95 |             199 |   462504.25 |        14 |              18 |         17
- NOVO          | direita   |               388 |                  5 |       86 |             723 |   449730.43 |        15 |              10 |         18
- SOLIDARIEDADE | centro    |               353 |                  9 |       93 |             230 |   685154.03 |        16 |              15 |         15
- PV            | esquerda  |               326 |                  6 |       94 |             128 |   855673.45 |        17 |              20 |         14
- REDE          | esquerda  |               306 |                  8 |       93 |             185 |   622298.78 |        18 |              19 |         16
- PRD           | centro    |               289 |                  8 |       90 |             229 |   319177.61 |        19 |              16 |         19
- CIDADANIA     | centro    |               210 |                  4 |       81 |             203 |   169470.51 |        20 |              17 |         20
- MISSAO        | centro    |                50 |                  1 |       50 |              98 |    13179.92 |        21 |              21 |         21
+ sigla_partido | ideologia | votos_registrados | deputados_votantes | votacoes | qtd_proposicoes | gasto_total  | pos_votos | pos_proposicoes | pos_gastos
+---------------+-----------+-------------------+--------------------+----------+-----------------+--------------+-----------+-----------------+------------
+ PL            | direita   |             37554 |                140 |      690 |           32545 | 151764129.95 |         1 |               1 |          1
+ PT            | esquerda  |             27972 |                 76 |      681 |           17548 | 109394103.82 |         2 |               3 |          2
+ UNIAO         | centro    |             22014 |                 95 |      690 |           13575 |  90384517.70 |         3 |               4 |          3
+ PP            | direita   |             18488 |                 77 |      675 |            8696 |  77308059.42 |         4 |               7 |          5
+ REPUBLICANOS  | direita   |             16918 |                 80 |      690 |           18819 |  68463562.85 |         5 |               2 |          6
+ PSD           | centro    |             16005 |                 77 |      653 |           10662 |  77374795.59 |         6 |               5 |          4
+ MDB           | centro    |             15046 |                 63 |      665 |            5889 |  60054045.22 |         7 |              11 |          7
+ PDT           | esquerda  |              6963 |                 23 |      620 |            6539 |  17362792.77 |         8 |               9 |         12
+ PSB           | esquerda  |              6161 |                 23 |      647 |            4653 |  26173868.02 |         9 |              12 |          9
+ PODE          | centro    |              5986 |                 40 |      626 |            9220 |  38872958.55 |        10 |               6 |          8
+ PSDB          | centro    |              5293 |                 26 |      567 |            2687 |  24088589.52 |        11 |              14 |         10
+ PSOL          | esquerda  |              5226 |                 16 |      658 |            6488 |  19740816.05 |        12 |              10 |         11
+ PCDOB         | esquerda  |              3189 |                 11 |      552 |            1941 |  13822925.65 |        13 |              16 |         13
+ AVANTE        | centro    |              2726 |                 10 |      578 |            1327 |   6868244.73 |        14 |              19 |         15
+ PV            | esquerda  |              2109 |                  8 |      564 |            1472 |   8760946.89 |        15 |              17 |         14
+ SOLIDARIEDADE | centro    |              1783 |                 11 |      571 |            2120 |   6268045.53 |        16 |              15 |         16
+ NOVO          | direita   |              1703 |                  5 |      573 |            6923 |   4997533.43 |        17 |               8 |         17
+ CIDADANIA     | centro    |              1294 |                  5 |      461 |            4290 |   2787050.69 |        18 |              13 |         20
+ PATRIOTA      |           |               992 |                  7 |      300 |             906 |    157218.86 |        19 |              20 |         24
+ REDE          | esquerda  |               631 |                  8 |      404 |            1362 |   3735183.24 |        20 |              18 |         19
+ PRD           | centro    |               593 |                  9 |      194 |             731 |   4820165.80 |        21 |              21 |         18
+ PSC           |           |               249 |                  4 |      100 |             365 |    265985.66 |        22 |              22 |         23
+ S.PART.       |           |                77 |                  3 |       77 |              81 |    399039.18 |        23 |              26 |         22
+ MISSAO        | centro    |                50 |                  1 |       50 |              98 |    546688.43 |        24 |              24 |         21
+ PROS          |           |                 9 |                  2 |        5 |             194 |     98252.17 |        25 |              23 |         26
+ PSDC          |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
+ PMDB          |           |                 0 |                  0 |        0 |              90 |            0 |        26 |              25 |         27
+ PFL           |           |                 0 |                  0 |        0 |              62 |            0 |        26 |              27 |         27
+ PTB           |           |                 0 |                  0 |        0 |              51 |    132036.43 |        26 |              28 |         25
+ DEM           |           |                 0 |                  0 |        0 |              25 |            0 |        26 |              29 |         27
+ PPB           |           |                 0 |                  0 |        0 |              23 |            0 |        26 |              30 |         27
+ PPS           |           |                 0 |                  0 |        0 |              19 |            0 |        26 |              31 |         27
+ PODEMOS       |           |                 0 |                  0 |        0 |              15 |            0 |        26 |              32 |         27
+ PR            |           |                 0 |                  0 |        0 |              11 |            0 |        26 |              33 |         27
+ PP**          |           |                 0 |                  0 |        0 |               4 |            0 |        26 |              34 |         27
+ PSL           |           |                 0 |                  0 |        0 |               4 |            0 |        26 |              34 |         27
+ PMN           |           |                 0 |                  0 |        0 |               4 |            0 |        26 |              34 |         27
+ PL*           |           |                 0 |                  0 |        0 |               2 |            0 |        26 |              37 |         27
+ ARENA         |           |                 0 |                  0 |        0 |               2 |            0 |        26 |              37 |         27
+ SD            |           |                 0 |                  0 |        0 |               2 |            0 |        26 |              37 |         27
+ REPUBLICA     |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
+ PDS           |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
+ REPUB         |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
+ REP           |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
+ PP***         |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
+ PTN           |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
+ PPR           |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
+ PTDOB         |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
+ PST           |           |                 0 |                  0 |        0 |               1 |            0 |        26 |              40 |         27
 
 
 Complemento enxuto - top palavras por partido
- sigla_partido | posicao |    token     | frequencia 
----------------+---------+--------------+------------
- AVANTE        |       1 | pela         |         85
- AVANTE        |       2 | lei          |         83
- AVANTE        |       3 | requer       |         69
- AVANTE        |       4 | comissão     |         62
- AVANTE        |       5 | aprovação    |         39
- AVANTE        |       6 | altera       |         36
- AVANTE        |       7 | parecer      |         35
- AVANTE        |       8 | constituição |         33
- AVANTE        |       8 | dep          |         33
- AVANTE        |      10 | federal      |         31
- AVANTE        |      10 | penal        |         31
- AVANTE        |      10 | projeto      |         31
- CIDADANIA     |       1 | lei          |        107
- CIDADANIA     |       2 | emp          |         87
- CIDADANIA     |       3 | requer       |         72
- CIDADANIA     |       4 | nacional     |         57
- CIDADANIA     |       5 | pela         |         52
- CIDADANIA     |       6 | altera       |         46
- CIDADANIA     |       7 | ministério   |         41
- CIDADANIA     |       8 | dep          |         34
- CIDADANIA     |       8 | parecer      |         34
- CIDADANIA     |      10 | criação      |         33
- CIDADANIA     |      10 | realização   |         33
- MDB           |       1 | lei          |        412
- MDB           |       2 | requer       |        320
- MDB           |       3 | nacional     |        245
- MDB           |       4 | federal      |        239
- MDB           |       5 | altera       |        221
- MDB           |       6 | pela         |        173
- MDB           |       7 | dia          |        167
- MDB           |       8 | plp          |        159
- MDB           |       9 | comissão     |        152
- MDB           |      10 | realização   |        148
- MISSAO        |       1 | pauta        |         68
- MISSAO        |       2 | retirada     |         66
- MISSAO        |       3 | requerimento |         49
- MISSAO        |       4 | matéria      |         44
- MISSAO        |       5 | lei          |         33
- MISSAO        |       6 | penal        |         30
- MISSAO        |       7 | código       |         25
- MISSAO        |       8 | nominal      |         23
- MISSAO        |       8 | votação      |         23
- MISSAO        |      10 | altera       |         20
- NOVO          |       1 | pauta        |        416
- NOVO          |       2 | retirada     |        407
- NOVO          |       3 | requerimento |        394
- NOVO          |       4 | votação      |        346
- NOVO          |       5 | lei          |        318
- NOVO          |       6 | matéria      |        279
- NOVO          |       7 | requer       |        247
- NOVO          |       8 | nominal      |        221
- NOVO          |       9 | informações  |        185
- NOVO          |      10 | federal      |        170
- PCDOB         |       1 | lei          |        153
- PCDOB         |       2 | requer       |        125
- PCDOB         |       3 | pela         |        116
- PCDOB         |       4 | violência    |        102
- PCDOB         |       5 | nacional     |        100
- PCDOB         |       6 | dep          |         86
- PCDOB         |       6 | parecer      |         86
- PCDOB         |       8 | pública      |         78
- PCDOB         |       9 | aprovação    |         71
- PCDOB         |      10 | comissão     |         66
- PDT           |       1 | lei          |        366
- PDT           |       2 | requer       |        260
- PDT           |       3 | nacional     |        215
- PDT           |       4 | altera       |        178
- PDT           |       5 | providências |        135
- PDT           |       6 | outras       |        126
- PDT           |       7 | realização   |        124
- PDT           |       8 | institui     |        106
- PDT           |       9 | diretrizes   |        105
- PDT           |      10 | política     |        103
- PL            |       1 | requerimento |       2320
- PL            |       2 | pauta        |       1833
- PL            |       3 | retirada     |       1670
- PL            |       4 | parecer      |       1652
- PL            |       5 | matéria      |       1621
- PL            |       6 | votação      |       1532
- PL            |       7 | requer       |       1467
- PL            |       8 | lei          |       1382
- PL            |       9 | federal      |       1306
- PL            |      10 | ric          |       1209
- PODE          |       1 | requer       |       1699
- PODE          |       2 | serviços     |       1465
- PODE          |       3 | louvor       |       1448
- PODE          |       3 | moção        |       1448
- PODE          |       5 | pelos        |       1436
- PODE          |       6 | prestados    |       1431
- PODE          |       6 | regozijo     |       1431
- PODE          |       8 | excelentes   |       1334
- PODE          |       9 | estado       |       1069
- PODE          |      10 | janeiro      |       1051
- PP            |       1 | requer       |        568
- PP            |       2 | lei          |        565
- PP            |       3 | federal      |        439
- PP            |       4 | altera       |        368
- PP            |       5 | pela         |        306
- PP            |       6 | constituição |        263
- PP            |       7 | art          |        262
- PP            |       8 | pública      |        261
- PP            |       9 | nacional     |        248
- PP            |      10 | comissão     |        246
- PRD           |       1 | requer       |        103
- PRD           |       2 | lei          |         88
- PRD           |       3 | saúde        |         80
- PRD           |       4 | nacional     |         71
- PRD           |       5 | diretrizes   |         55
- PRD           |       6 | criação      |         44
- PRD           |       6 | pública      |         44
- PRD           |       8 | dia          |         39
- PRD           |       9 | altera       |         38
- PRD           |      10 | federal      |         37
- PSB           |       1 | lei          |        355
- PSB           |       2 | requer       |        218
- PSB           |       3 | pela         |        163
- PSB           |       4 | nacional     |        157
- PSB           |       5 | saúde        |        142
- PSB           |       6 | altera       |        137
- PSB           |       7 | art          |        119
- PSB           |       8 | alteração    |        110
- PSB           |       9 | parecer      |        103
- PSB           |      10 | dep          |        101
- PSD           |       1 | estado       |        676
- PSD           |       2 | lei          |        640
- PSD           |       3 | pará         |        634
- PSD           |       4 | requer       |        632
- PSD           |       5 | município    |        625
- PSD           |       6 | realização   |        460
- PSD           |       7 | providências |        403
- PSD           |       8 | programa     |        400
- PSD           |       9 | pela         |        375
- PSD           |      10 | ministério   |        359
- PSDB          |       1 | lei          |        272
- PSDB          |       2 | requer       |        245
- PSDB          |       3 | altera       |        119
- PSDB          |       4 | município    |        105
- PSDB          |       5 | projeto      |        102
- PSDB          |       6 | nacional     |        100
- PSDB          |       7 | realização   |         96
- PSDB          |       7 | sugere       |         96
- PSDB          |       9 | dia          |         94
- PSDB          |       9 | energia      |         94
- PSOL          |       1 | lei          |        387
- PSOL          |       2 | requer       |        285
- PSOL          |       3 | nacional     |        284
- PSOL          |       4 | pela         |        189
- PSOL          |       5 | violência    |        181
- PSOL          |       6 | requerimento |        154
- PSOL          |       7 | pauta        |        141
- PSOL          |       8 | política     |        139
- PSOL          |       9 | aprovação    |        133
- PSOL          |      10 | altera       |        131
- PT            |       1 | lei          |       2248
- PT            |       2 | nacional     |       1356
- PT            |       3 | requer       |        997
- PT            |       4 | violência    |        973
- PT            |       5 | federal      |        904
- PT            |       6 | diretrizes   |        886
- PT            |       7 | requerimento |        880
- PT            |       8 | pública      |        816
- PT            |       9 | altera       |        724
- PT            |       9 | pela         |        724
- PV            |       1 | lei          |         80
- PV            |       2 | nacional     |         34
- PV            |       3 | altera       |         28
- PV            |       4 | pela         |         25
- PV            |       4 | requer       |         25
- PV            |       6 | pública      |         23
- PV            |       7 | dezembro     |         22
- PV            |       8 | diretrizes   |         20
- PV            |       9 | dep          |         18
- PV            |       9 | parecer      |         18
- PV            |       9 | relator      |         18
- REDE          |       1 | lei          |        100
- REDE          |       2 | nacional     |         98
- REDE          |       3 | requer       |         63
- REDE          |       4 | providências |         55
- REDE          |       5 | outras       |         54
- REDE          |       6 | diretrizes   |         53
- REDE          |       7 | política     |         46
- REDE          |       8 | criação      |         42
- REDE          |       8 | institui     |         42
- REDE          |      10 | saúde        |         38
- REDE          |      10 | social       |         38
- REPUBLICANOS  |       1 | lei          |        788
- REPUBLICANOS  |       2 | pela         |        644
- REPUBLICANOS  |       3 | requer       |        643
- REPUBLICANOS  |       4 | parecer      |        518
- REPUBLICANOS  |       5 | dep          |        511
- REPUBLICANOS  |       6 | aprovação    |        488
- REPUBLICANOS  |       7 | altera       |        395
- REPUBLICANOS  |       8 | nacional     |        368
- REPUBLICANOS  |       9 | federal      |        312
- REPUBLICANOS  |      10 | relator      |        287
- SOLIDARIEDADE |       1 | nacional     |         69
- SOLIDARIEDADE |       2 | lei          |         67
- SOLIDARIEDADE |       3 | saúde        |         58
- SOLIDARIEDADE |       4 | requer       |         49
- SOLIDARIEDADE |       5 | pública      |         40
- SOLIDARIEDADE |       6 | altera       |         39
- SOLIDARIEDADE |       7 | pela         |         38
- SOLIDARIEDADE |       8 | parecer      |         36
- SOLIDARIEDADE |       9 | diretrizes   |         33
- SOLIDARIEDADE |      10 | dep          |         32
- SOLIDARIEDADE |      10 | federal      |         32
- UNIAO         |       1 | lei          |        612
- UNIAO         |       2 | requer       |        566
- UNIAO         |       3 | federal      |        417
- UNIAO         |       4 | altera       |        387
- UNIAO         |       5 | nacional     |        346
- UNIAO         |       6 | pela         |        342
- UNIAO         |       7 | constituição |        285
- UNIAO         |       8 | art          |        264
- UNIAO         |       9 | comissão     |        251
- UNIAO         |      10 | dia          |        227
+ sigla_partido | posicao |        token        | frequencia
+---------------+---------+---------------------+------------
+ ARENA         |       1 | aprovação           |          1
+ ARENA         |       1 | braga               |          1
+ ARENA         |       1 | dep                 |          1
+ ARENA         |       1 | deste               |          1
+ ARENA         |       1 | luiz                |          1
+ ARENA         |       1 | parecer             |          1
+ ARENA         |       1 | pela                |          1
+ ARENA         |       1 | relator             |          1
+ AVANTE        |       1 | requer              |        918
+ AVANTE        |       2 | parlamentar         |        812
+ AVANTE        |       3 | frente              |        765
+ AVANTE        |       4 | registro            |        477
+ AVANTE        |       5 | mista               |        375
+ AVANTE        |       6 | defesa              |        319
+ AVANTE        |       7 | lei                 |        226
+ AVANTE        |       8 | criação             |        223
+ AVANTE        |       9 | câmara              |        204
+ AVANTE        |      10 | deputados           |        200
+ CIDADANIA     |       1 | requer              |       1182
+ CIDADANIA     |       2 | lei                 |        513
+ CIDADANIA     |       3 | informações         |        501
+ CIDADANIA     |       4 | parlamentar         |        490
+ CIDADANIA     |       5 | frente              |        455
+ CIDADANIA     |       6 | acerca              |        418
+ CIDADANIA     |       7 | ministério          |        379
+ CIDADANIA     |       8 | estado              |        373
+ CIDADANIA     |       9 | educação            |        339
+ CIDADANIA     |      10 | município           |        322
+ DEM           |       1 | segurança           |          4
+ DEM           |       2 | fundo               |          3
+ DEM           |       2 | nacional            |          3
+ DEM           |       2 | pública             |          3
+ DEM           |       2 | redação             |          3
+ DEM           |       6 | lei                 |          2
+ DEM           |       6 | mpv                 |          2
+ DEM           |       6 | nova                |          2
+ DEM           |       9 | 10201               |          1
+ DEM           |       9 | 11542023            |          1
+ DEM           |       9 | 11702023            |          1
+ DEM           |       9 | 2001                |          1
+ DEM           |       9 | agente              |          1
+ DEM           |       9 | altera              |          1
+ DEM           |       9 | alteração           |          1
+ DEM           |       9 | artigo              |          1
+ DEM           |       9 | dispositivos        |          1
+ DEM           |       9 | fevereiro           |          1
+ DEM           |       9 | fnsp                |          1
+ DEM           |       9 | instituiu           |          1
+ DEM           |       9 | possibilita         |          1
+ DEM           |       9 | prol                |          1
+ DEM           |       9 | qualificação        |          1
+ DEM           |       9 | recursos            |          1
+ DEM           |       9 | trânsito            |          1
+ DEM           |       9 | treinamento         |          1
+ DEM           |       9 | uso                 |          1
+ DEM           |       9 | viária              |          1
+ MDB           |       1 | requer              |       5195
+ MDB           |       2 | parlamentar         |       4585
+ MDB           |       3 | frente              |       4361
+ MDB           |       4 | registro            |       2921
+ MDB           |       5 | mista               |       2053
+ MDB           |       6 | defesa              |       1758
+ MDB           |       7 | lei                 |       1636
+ MDB           |       8 | criação             |       1222
+ MDB           |       9 | federal             |       1154
+ MDB           |      10 | câmara              |       1147
+ MISSAO        |       1 | pauta               |         68
+ MISSAO        |       2 | retirada            |         66
+ MISSAO        |       3 | requerimento        |         49
+ MISSAO        |       4 | matéria             |         44
+ MISSAO        |       5 | lei                 |         33
+ MISSAO        |       6 | penal               |         30
+ MISSAO        |       7 | código              |         25
+ MISSAO        |       8 | nominal             |         23
+ MISSAO        |       8 | votação             |         23
+ MISSAO        |      10 | altera              |         20
+ NOVO          |       1 | requerimento        |       3568
+ NOVO          |       2 | pauta               |       2804
+ NOVO          |       3 | retirada            |       2780
+ NOVO          |       4 | matéria             |       2673
+ NOVO          |       5 | votação             |       2009
+ NOVO          |       6 | requer              |       1327
+ NOVO          |       7 | nominalrequerimento |       1281
+ NOVO          |       8 | lei                 |        828
+ NOVO          |       9 | adiamento           |        698
+ NOVO          |      10 | informações         |        682
+ PATRIOTA      |       1 | requer              |        912
+ PATRIOTA      |       2 | parlamentar         |        761
+ PATRIOTA      |       3 | frente              |        726
+ PATRIOTA      |       4 | registro            |        444
+ PATRIOTA      |       5 | mista               |        328
+ PATRIOTA      |       6 | defesa              |        299
+ PATRIOTA      |       7 | deputados           |        260
+ PATRIOTA      |       8 | câmara              |        236
+ PATRIOTA      |       9 | lei                 |        234
+ PATRIOTA      |      10 | criação             |        212
+ PCDOB         |       1 | requer              |       1061
+ PCDOB         |       2 | parlamentar         |        847
+ PCDOB         |       3 | frente              |        762
+ PCDOB         |       4 | registro            |        520
+ PCDOB         |       5 | pela                |        477
+ PCDOB         |       6 | mista               |        402
+ PCDOB         |       7 | defesa              |        394
+ PCDOB         |       8 | lei                 |        384
+ PCDOB         |       9 | comissão            |        302
+ PCDOB         |      10 | criação             |        273
+ PDT           |       1 | requer              |       4114
+ PDT           |       2 | parlamentar         |       3134
+ PDT           |       3 | frente              |       2989
+ PDT           |       4 | registro            |       1972
+ PDT           |       5 | lei                 |       1606
+ PDT           |       6 | mista               |       1443
+ PDT           |       7 | defesa              |       1394
+ PDT           |       8 | criação             |        984
+ PDT           |       9 | nacional            |        931
+ PDT           |      10 | pela                |        876
+ PFL           |       1 | parecer             |         11
+ PFL           |       2 | dep                 |          7
+ PFL           |       3 | relator             |          6
+ PFL           |       4 | 105                 |          5
+ PFL           |       4 | art                 |          5
+ PFL           |       4 | considerado         |          5
+ PFL           |       4 | dado                |          5
+ PFL           |       4 | pela                |          5
+ PFL           |       4 | ricd                |          5
+ PFL           |       4 | termos              |          5
+ PFL           |       4 | válido              |          5
+ PL            |       1 | requer              |      18163
+ PL            |       2 | parlamentar         |      13191
+ PL            |       3 | frente              |      11790
+ PL            |       4 | requerimento        |       8364
+ PL            |       5 | registro            |       7821
+ PL            |       6 | lei                 |       6244
+ PL            |       7 | mista               |       5514
+ PL            |       8 | matéria             |       5411
+ PL            |       9 | defesa              |       4883
+ PL            |      10 | federal             |       4796
+ PMDB          |       1 | parecer             |          6
+ PMDB          |       2 | dep                 |          4
+ PMDB          |       3 | consignado          |          3
+ PMDB          |       3 | relator             |          3
+ PMDB          |       5 | 105                 |          2
+ PMDB          |       5 | 2003                |          2
+ PMDB          |       5 | aposentado          |          2
+ PMDB          |       5 | art                 |          2
+ PMDB          |       5 | cartório            |          2
+ PMDB          |       5 | considerado         |          2
+ PMDB          |       5 | crédito             |          2
+ PMDB          |       5 | dado                |          2
+ PMDB          |       5 | deste               |          2
+ PMDB          |       5 | dezembro            |          2
+ PMDB          |       5 | homologação         |          2
+ PMDB          |       5 | inss                |          2
+ PMDB          |       5 | pela                |          2
+ PMDB          |       5 | pensionista         |          2
+ PMDB          |       5 | plp                 |          2
+ PMDB          |       5 | ricd                |          2
+ PMDB          |       5 | termos              |          2
+ PMDB          |       5 | válido              |          2
+ PODE          |       1 | requer              |       4401
+ PODE          |       2 | serviços            |       2462
+ PODE          |       3 | moção               |       2340
+ PODE          |       4 | louvor              |       2329
+ PODE          |       5 | regozijo            |       2311
+ PODE          |       6 | prestados           |       2310
+ PODE          |       7 | excelentes          |       2209
+ PODE          |       8 | pelos               |       2126
+ PODE          |       9 | parlamentar         |       1484
+ PODE          |      10 | estado              |       1398
+ PODEMOS       |       1 | nacional            |         11
+ PODEMOS       |       2 | capital             |          9
+ PODEMOS       |       2 | título              |          9
+ PODEMOS       |       4 | gerais              |          6
+ PODEMOS       |       4 | minas               |          6
+ PODEMOS       |       6 | lei                 |          5
+ PODEMOS       |       7 | educação            |          4
+ PODEMOS       |       8 | concede             |          3
+ PODEMOS       |       8 | diretrizes          |          3
+ PODEMOS       |       8 | estado              |          3
+ PODEMOS       |       8 | inclusão            |          3
+ PODEMOS       |       8 | município           |          3
+ PODEMOS       |       8 | saúde               |          3
+ PODEMOS       |       8 | topônimo            |          3
+ PODEMOS       |       8 | trabalho            |          3
+ PP            |       1 | requer              |       7574
+ PP            |       2 | parlamentar         |       6296
+ PP            |       3 | frente              |       5828
+ PP            |       4 | registro            |       3817
+ PP            |       5 | mista               |       2788
+ PP            |       6 | defesa              |       2375
+ PP            |       7 | lei                 |       2188
+ PP            |       8 | criação             |       1814
+ PP            |       9 | federal             |       1708
+ PP            |      10 | câmara              |       1687
+ PP**          |       1 | parecer             |          2
+ PP**          |       2 | 10291991            |          1
+ PP**          |       2 | 105                 |          1
+ PP**          |       2 | 22301991            |          1
+ PP**          |       2 | 23911996            |          1
+ PP**          |       2 | 25781996            |          1
+ PP**          |       2 | 33821997            |          1
+ PP**          |       2 | 3602003             |          1
+ PP**          |       2 | 40251993            |          1
+ PP**          |       2 | 9921995             |          1
+ PP**          |       2 | anghinetti          |          1
+ PP**          |       2 | apensados           |          1
+ PP**          |       2 | art                 |          1
+ PP**          |       2 | considerado         |          1
+ PP**          |       2 | dado                |          1
+ PP**          |       2 | dep                 |          1
+ PP**          |       2 | deste               |          1
+ PP**          |       2 | herculano           |          1
+ PP**          |       2 | pela                |          1
+ PP**          |       2 | ppmg                |          1
+ PP**          |       2 | reformulado         |          1
+ PP**          |       2 | rejeição            |          1
+ PP**          |       2 | ricd                |          1
+ PP**          |       2 | termos              |          1
+ PP**          |       2 | válido              |          1
+ PPB           |       1 | anghinetti          |          1
+ PPB           |       1 | dep                 |          1
+ PPB           |       1 | deste               |          1
+ PPB           |       1 | herculano           |          1
+ PPB           |       1 | parecer             |          1
+ PPB           |       1 | pela                |          1
+ PPB           |       1 | rejeição            |          1
+ PPB           |       1 | relator             |          1
+ PRD           |       1 | requer              |        107
+ PRD           |       2 | lei                 |         99
+ PRD           |       3 | saúde               |         80
+ PRD           |       4 | nacional            |         76
+ PRD           |       5 | diretrizes          |         55
+ PRD           |       6 | federal             |         47
+ PRD           |       6 | pela                |         47
+ PRD           |       8 | altera              |         46
+ PRD           |       9 | criação             |         45
+ PRD           |      10 | pública             |         44
+ PROS          |       1 | requer              |        165
+ PROS          |       2 | parlamentar         |        134
+ PROS          |       3 | frente              |        126
+ PROS          |       4 | dia                 |         75
+ PROS          |       4 | sessão              |         75
+ PROS          |       4 | solene              |         75
+ PROS          |       7 | câmara              |         74
+ PROS          |       7 | registro            |         74
+ PROS          |       9 | deputados           |         71
+ PROS          |      10 | realização          |         60
+ PSB           |       1 | requer              |       3014
+ PSB           |       2 | parlamentar         |       2287
+ PSB           |       3 | frente              |       2168
+ PSB           |       4 | registro            |       1417
+ PSB           |       5 | lei                 |       1355
+ PSB           |       6 | mista               |       1065
+ PSB           |       7 | defesa              |       1021
+ PSB           |       8 | nacional            |        768
+ PSB           |       9 | criação             |        755
+ PSB           |      10 | pela                |        639
+ PSC           |       1 | requer              |        455
+ PSC           |       2 | frente              |        433
+ PSC           |       3 | parlamentar         |        427
+ PSC           |       4 | registro            |        289
+ PSC           |       5 | mista               |        197
+ PSC           |       6 | defesa              |        171
+ PSC           |       7 | criação             |         96
+ PSC           |       8 | câmara              |         89
+ PSC           |       9 | deputados           |         88
+ PSC           |      10 | mesa                |         81
+ PSD           |       1 | requer              |       6002
+ PSD           |       2 | parlamentar         |       4833
+ PSD           |       3 | frente              |       4575
+ PSD           |       4 | registro            |       3021
+ PSD           |       5 | mista               |       2258
+ PSD           |       6 | lei                 |       2231
+ PSD           |       7 | defesa              |       1915
+ PSD           |       8 | estado              |       1714
+ PSD           |       9 | pela                |       1492
+ PSD           |      10 | município           |       1451
+ PSDB          |       1 | requer              |       2089
+ PSDB          |       2 | parlamentar         |       1724
+ PSDB          |       3 | frente              |       1656
+ PSDB          |       4 | registro            |       1080
+ PSDB          |       5 | mista               |        823
+ PSDB          |       6 | defesa              |        687
+ PSDB          |       7 | lei                 |        579
+ PSDB          |       8 | criação             |        439
+ PSDB          |       9 | câmara              |        424
+ PSDB          |      10 | deputados           |        423
+ PSL           |       1 | 11472022            |          1
+ PSL           |       1 | mpv                 |          1
+ PSL           |       1 | nova                |          1
+ PSL           |       1 | redação             |          1
+ PSOL          |       1 | requerimento        |       2776
+ PSOL          |       2 | requer              |       2704
+ PSOL          |       3 | pauta               |       2052
+ PSOL          |       4 | matéria             |       2042
+ PSOL          |       5 | retirada            |       1905
+ PSOL          |       6 | parlamentar         |       1519
+ PSOL          |       7 | frente              |       1380
+ PSOL          |       8 | lei                 |       1269
+ PSOL          |       9 | votação             |       1082
+ PSOL          |      10 | nacional            |       1014
+ PT            |       1 | requer              |      12490
+ PT            |       2 | parlamentar         |       8774
+ PT            |       3 | frente              |       8156
+ PT            |       4 | requerimento        |       5976
+ PT            |       5 | registro            |       5690
+ PT            |       6 | lei                 |       4771
+ PT            |       7 | defesa              |       4288
+ PT            |       8 | mista               |       4262
+ PT            |       9 | pauta               |       3819
+ PT            |      10 | matéria             |       3798
+ PTB           |       1 | banheiro            |          2
+ PTB           |       1 | edifício            |          2
+ PTB           |       1 | familiar            |          2
+ PTB           |       1 | fraldário           |          2
+ PTB           |       1 | obrigatoriedade     |          2
+ PTB           |       1 | pessoa              |          2
+ PTB           |       7 | acessibilidade      |          1
+ PTB           |       7 | acessíveis          |          1
+ PTB           |       7 | coletivo            |          1
+ PTB           |       7 | deficiência         |          1
+ PTB           |       7 | destinados          |          1
+ PTB           |       7 | diretrizes          |          1
+ PTB           |       7 | edifícios           |          1
+ PTB           |       7 | estabelece          |          1
+ PTB           |       7 | instalação          |          1
+ PTB           |       7 | mobilidade          |          1
+ PTB           |       7 | privado             |          1
+ PTB           |       7 | privados            |          1
+ PTB           |       7 | público             |          1
+ PTB           |       7 | públicos            |          1
+ PTB           |       7 | reduzida            |          1
+ PTB           |       7 | uso                 |          1
+ PV            |       1 | requer              |        933
+ PV            |       2 | parlamentar         |        804
+ PV            |       3 | frente              |        780
+ PV            |       4 | registro            |        532
+ PV            |       5 | mista               |        382
+ PV            |       6 | defesa              |        341
+ PV            |       7 | lei                 |        260
+ PV            |       8 | pela                |        233
+ PV            |       9 | câmara              |        212
+ PV            |      10 | nacional            |        207
+ REDE          |       1 | requer              |        236
+ REDE          |       2 | parlamentar         |        171
+ REDE          |       3 | lei                 |        163
+ REDE          |       4 | frente              |        160
+ REDE          |       5 | nacional            |        140
+ REDE          |       6 | registro            |        108
+ REDE          |       7 | criação             |         96
+ REDE          |       8 | mista               |         85
+ REDE          |       9 | defesa              |         80
+ REDE          |      10 | diretrizes          |         71
+ REP           |       1 | falta               |          4
+ REP           |       2 | trabalho            |          3
+ REP           |       3 | 1943                |          2
+ REP           |       3 | clt                 |          2
+ REP           |       3 | consolidação        |          2
+ REP           |       3 | doação              |          2
+ REP           |       3 | leis                |          2
+ REP           |       3 | sangue              |          2
+ REP           |       9 | 5452                |          1
+ REP           |       9 | abono               |          1
+ REP           |       9 | altera              |          1
+ REP           |       9 | alteração           |          1
+ REP           |       9 | aprovada            |          1
+ REP           |       9 | ausência            |          1
+ REP           |       9 | comparecimento      |          1
+ REP           |       9 | comprovação         |          1
+ REP           |       9 | decretolei          |          1
+ REP           |       9 | dia                 |          1
+ REP           |       9 | dispor              |          1
+ REP           |       9 | fins                |          1
+ REP           |       9 | justificada         |          1
+ REP           |       9 | maio                |          1
+ REP           |       9 | não                 |          1
+ REP           |       9 | pelo                |          1
+ REP           |       9 | semestral           |          1
+ REP           |       9 | serviço             |          1
+ REP           |       9 | trabalhador         |          1
+ REP           |       9 | voluntária          |          1
+ REP           |       9 | voluntário          |          1
+ REPUB         |       1 | veículos            |          3
+ REPUB         |       2 | automotores         |          2
+ REPUB         |       2 | constituição        |          2
+ REPUB         |       2 | federal             |          2
+ REPUB         |       2 | imposto             |          2
+ REPUB         |       2 | imunidade           |          2
+ REPUB         |       2 | ipva                |          2
+ REPUB         |       2 | propriedade         |          2
+ REPUB         |       2 | veículo             |          2
+ REPUB         |      10 | 155                 |          1
+ REPUB         |      10 | 1988                |          1
+ REPUB         |      10 | altera              |          1
+ REPUB         |      10 | ano                 |          1
+ REPUB         |      10 | art                 |          1
+ REPUB         |      10 | automóvel           |          1
+ REPUB         |      10 | benefício           |          1
+ REPUB         |      10 | caminhonete         |          1
+ REPUB         |      10 | conceder            |          1
+ REPUB         |      10 | critério            |          1
+ REPUB         |      10 | especifica          |          1
+ REPUB         |      10 | fabricação          |          1
+ REPUB         |      10 | fiscal              |          1
+ REPUB         |      10 | misto               |          1
+ REPUB         |      10 | passageiro          |          1
+ REPUB         |      10 | tributação          |          1
+ REPUB         |      10 | tributária          |          1
+ REPUBLICA     |       1 | 2013                |          2
+ REPUBLICA     |       1 | estatuto            |          2
+ REPUBLICA     |       1 | jovem               |          2
+ REPUBLICA     |       1 | juventude           |          2
+ REPUBLICA     |       5 | 12852               |          1
+ REPUBLICA     |       5 | agosto              |          1
+ REPUBLICA     |       5 | altera              |          1
+ REPUBLICA     |       5 | alteração           |          1
+ REPUBLICA     |       5 | direito             |          1
+ REPUBLICA     |       5 | direitos            |          1
+ REPUBLICA     |       5 | dispor              |          1
+ REPUBLICA     |       5 | garantia            |          1
+ REPUBLICA     |       5 | lei                 |          1
+ REPUBLICA     |       5 | serviço             |          1
+ REPUBLICA     |       5 | voluntariado        |          1
+ REPUBLICA     |       5 | voluntário          |          1
+ REPUBLICANOS  |       1 | requer              |       9185
+ REPUBLICANOS  |       2 | parlamentar         |       7378
+ REPUBLICANOS  |       3 | frente              |       6589
+ REPUBLICANOS  |       4 | pela                |       4931
+ REPUBLICANOS  |       5 | registro            |       4254
+ REPUBLICANOS  |       6 | parecer             |       4223
+ REPUBLICANOS  |       7 | dep                 |       4180
+ REPUBLICANOS  |       8 | aprovação           |       4095
+ REPUBLICANOS  |       9 | relator             |       3867
+ REPUBLICANOS  |      10 | republicsp          |       3137
+ SOLIDARIEDADE |       1 | requer              |        916
+ SOLIDARIEDADE |       2 | parlamentar         |        664
+ SOLIDARIEDADE |       3 | frente              |        637
+ SOLIDARIEDADE |       4 | registro            |        406
+ SOLIDARIEDADE |       5 | lei                 |        333
+ SOLIDARIEDADE |       6 | defesa              |        306
+ SOLIDARIEDADE |       7 | mista               |        299
+ SOLIDARIEDADE |       8 | nacional            |        229
+ SOLIDARIEDADE |       9 | realização          |        226
+ SOLIDARIEDADE |      10 | criação             |        221
+ S.PART.       |       1 | requer              |         52
+ S.PART.       |       2 | parlamentar         |         48
+ S.PART.       |       3 | frente              |         44
+ S.PART.       |       4 | registro            |         21
+ S.PART.       |       5 | mista               |         20
+ S.PART.       |       6 | defesa              |         16
+ S.PART.       |       7 | criação             |         15
+ S.PART.       |       7 | realização          |         15
+ S.PART.       |       7 | sessão              |         15
+ S.PART.       |       7 | solene              |         15
+ UNIAO         |       1 | requer              |      11431
+ UNIAO         |       2 | parlamentar         |       9211
+ UNIAO         |       3 | frente              |       8496
+ UNIAO         |       4 | registro            |       5619
+ UNIAO         |       5 | mista               |       4016
+ UNIAO         |       6 | defesa              |       3562
+ UNIAO         |       7 | lei                 |       3281
+ UNIAO         |       8 | federal             |       2997
+ UNIAO         |       9 | câmara              |       2751
+ UNIAO         |      10 | deputados           |       2726
 
 
 Complemento detalhado: q11_nuvem_palavras_partidos_complemento.txt contem a nuvem completa.

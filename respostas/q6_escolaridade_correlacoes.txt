@@ -1,24 +1,28 @@
 Q6 - escolaridade e indicadores medios
 Resumo executivo
- deputados_ativos | grupos_escolaridade | media_geral_gasto | media_geral_fidelidade | media_geral_proposicoes | media_geral_presenca_eventos | media_geral_presenca_plenario 
+ deputados_ativos | grupos_escolaridade | media_geral_gasto | media_geral_fidelidade | media_geral_proposicoes | media_geral_presenca_eventos | media_geral_presenca_plenario
 ------------------+---------------------+-------------------+------------------------+-------------------------+------------------------------+-------------------------------
-             1117 |                  13 |          62675.69 |                  92.32 |                   26.06 |                        32.56 |                         31.39
+             1164 |                  17 |         699863.88 |                  91.85 |                  231.32 |                       285.07 |                        170.99
 
 
 Tabela principal - medias por escolaridade
-      escolaridade       | qtd_deputados | media_gasto | media_fidelidade | media_proposicoes | media_presenca_eventos | media_presenca_plenario 
+      escolaridade       | qtd_deputados | media_gasto | media_fidelidade | media_proposicoes | media_presenca_eventos | media_presenca_plenario
 -------------------------+---------------+-------------+------------------+-------------------+------------------------+-------------------------
- Doutorado               |            15 |        0.00 |            77.35 |             77.07 |                  80.27 |                   70.73
- Doutorado Incompleto    |             6 |        0.00 |            90.72 |             50.83 |                  72.00 |                   60.00
- Ensino Fundamental      |            10 |        0.00 |            91.99 |             17.50 |                  56.50 |                   66.70
- Ensino Médio            |            24 |        0.00 |            82.60 |             30.38 |                  58.42 |                   62.54
- Ensino Médio Incompleto |             2 |        0.00 |           100.00 |             13.00 |                  53.00 |                   70.50
- Mestrado                |            39 |        0.00 |            93.18 |             53.97 |                  62.97 |                   61.13
- Mestrado Incompleto     |             6 |        0.00 |            80.00 |             84.00 |                  69.50 |                   60.67
- Nao informado           |           477 |   123512.03 |            95.90 |              0.68 |                   1.65 |                    1.76
- Pós-Graduação           |            78 |        0.00 |            89.18 |             71.64 |                  70.37 |                   65.86
- Primário Incompleto     |             1 |        0.00 |                  |             31.00 |                  53.00 |                   72.00
- Secundário              |             1 |        0.00 |                  |              1.00 |                  33.00 |                   56.00
- Superior                |           417 |    26603.13 |            93.61 |             40.06 |                  50.28 |                   47.87
- Superior Incompleto     |            41 |        0.00 |            96.98 |             35.71 |                  60.00 |                   61.46
+ Doutorado               |            31 |   653316.76 |            97.02 |            350.77 |                 314.71 |                  174.81
+ Doutorado Incompleto    |             8 |  1191800.36 |            97.24 |            420.25 |                 528.25 |                  280.00
+ Ensino Fundamental      |            16 |   993209.28 |            88.46 |            228.06 |                 322.13 |                  238.31
+ Ensino Médio            |            45 |   815056.00 |            92.67 |            183.64 |                 310.53 |                  196.98
+ Ensino Médio Incompleto |             3 |   933637.97 |            89.21 |            143.33 |                 295.67 |                  221.67
+ Ensino Técnico          |             4 |    15390.74 |                  |              0.75 |                   0.50 |                    0.00
+ Ginasial                |             1 |        0.00 |                  |              0.00 |                   1.00 |                    0.00
+ Mestrado                |            65 |   883140.23 |            91.30 |            347.25 |                 354.78 |                  222.75
+ Mestrado Incompleto     |             7 |   920120.38 |            97.50 |            936.43 |                 584.71 |                  297.57
+ Nao informado           |            42 |   373379.01 |            95.73 |             81.45 |                 156.93 |                   90.19
+ Pós-Graduação           |           131 |   896467.18 |            89.93 |            396.89 |                 397.10 |                  226.33
+ Primário                |             2 |        0.00 |                  |              1.50 |                   0.00 |                    0.00
+ Primário Incompleto     |             1 |  1550474.51 |                  |            914.00 |                 510.00 |                  383.00
+ Secundário              |            23 |   134471.78 |            92.17 |             12.04 |                  38.57 |                   31.61
+ Secundário Incompleto   |             1 |   511089.19 |                  |              3.00 |                  99.00 |                   27.00
+ Superior                |           714 |   658339.16 |            92.16 |            199.33 |                 262.34 |                  158.02
+ Superior Incompleto     |            70 |   817861.94 |            89.38 |            208.77 |                 332.09 |                  200.93
 

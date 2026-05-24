@@ -1,32 +1,36 @@
 Q10 - alinhamento interno dos partidos
 Resumo executivo
- partidos | media_alinhamento | menor_alinhamento | maior_alinhamento 
+ partidos | media_alinhamento | menor_alinhamento | maior_alinhamento
 ----------+-------------------+-------------------+-------------------
-       21 |            0.9124 |            0.7667 |            1.0000
+       25 |            0.9207 |            0.7911 |            1.0000
 
 
 Tabela principal - partidos por alinhamento interno
- sigla_partido | votos_alinhados | votos_total | alinhamento_interno 
+ sigla_partido | votos_alinhados | votos_total | alinhamento_interno
 ---------------+-----------------+-------------+---------------------
+ S.PART.       |              75 |          75 |              1.0000
  MISSAO        |              49 |          49 |              1.0000
- NOVO          |             376 |         378 |              0.9947
- PSOL          |             831 |         836 |              0.9940
- PT            |            4916 |        4946 |              0.9939
- PV            |             324 |         326 |              0.9939
- PCDOB         |             738 |         747 |              0.9880
- PDT           |            1056 |        1074 |              0.9832
- REDE          |             294 |         303 |              0.9703
- PSB           |            1102 |        1161 |              0.9492
- SOLIDARIEDADE |             328 |         350 |              0.9371
- REPUBLICANOS  |            2750 |        3045 |              0.9031
- PODE          |            1090 |        1218 |              0.8949
- PL            |            5639 |        6314 |              0.8931
- PSDB          |             945 |        1074 |              0.8799
- PSD           |            2651 |        3038 |              0.8726
- AVANTE        |             470 |         542 |              0.8672
- MDB           |            2006 |        2377 |              0.8439
- PP            |            2571 |        3094 |              0.8310
- PRD           |             231 |         283 |              0.8163
- UNIAO         |            2792 |        3542 |              0.7883
- CIDADANIA     |             161 |         210 |              0.7667
+ PROS          |               9 |           9 |              1.0000
+ NOVO          |            1502 |        1511 |              0.9940
+ PSOL          |            5096 |        5151 |              0.9893
+ PCDOB         |            3149 |        3188 |              0.9878
+ PT            |           27516 |       27917 |              0.9856
+ REDE          |             617 |         627 |              0.9841
+ PV            |            2054 |        2108 |              0.9744
+ PDT           |            6664 |        6943 |              0.9598
+ PSB           |            5804 |        6153 |              0.9433
+ PSC           |             229 |         249 |              0.9197
+ SOLIDARIEDADE |            1614 |        1763 |              0.9155
+ REPUBLICANOS  |           15370 |       16797 |              0.9150
+ PSD           |           14388 |       15951 |              0.9020
+ AVANTE        |            2441 |        2719 |              0.8978
+ PODE          |            5299 |        5970 |              0.8876
+ PL            |           30163 |       34051 |              0.8858
+ PP            |           15982 |       18273 |              0.8746
+ MDB           |           13067 |       14961 |              0.8734
+ PSDB          |            4549 |        5276 |              0.8622
+ CIDADANIA     |            1077 |        1293 |              0.8329
+ UNIAO         |           18120 |       21939 |              0.8259
+ PRD           |             478 |         586 |              0.8157
+ PATRIOTA      |             784 |         991 |              0.7911
 

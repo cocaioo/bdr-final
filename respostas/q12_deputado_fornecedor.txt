@@ -1,43 +1,43 @@
 Q12 - deputado x fornecedor
 Resumo executivo
- pares_deputado_fornecedor | deputados | fornecedores | lancamentos | total_pago  
----------------------------+-----------+--------------+-------------+-------------
-                     22153 |       549 |        12813 |       51974 | 70008746.67
+ pares_deputado_fornecedor | deputados | fornecedores | lancamentos |  total_pago
+---------------------------+-----------+--------------+-------------+--------------
+                    115096 |       851 |        45748 |      726645 | 814641556.15
 
 
 Tabela principal - top 30 pares por total pago
- id_deputado |        nome        |                           fornecedor                            | qtd_lancamentos | total_pago | pct_total 
--------------+--------------------+-----------------------------------------------------------------+-----------------+------------+-----------
-        3319 | Olival Marques     | AMAZON STUDIO E PRODUÇOES LTDA                                  |               8 |  179000.00 |      0.26
-         583 | CRUZ MACHADO       | CTA - CLEITON TAXI AEREO LTDA                                   |               8 |  172900.00 |      0.25
-        1307 | Eunício Oliveira   | CARNAUBA ASSESSORIA DE COM E PIBLICIDADE                        |               4 |  172000.00 |      0.25
-        3724 | Gabriel Mota       | CK INFO DESIGN E MIDIA SOCIAIS                                  |               8 |  163000.00 |      0.23
-        3293 | Sidney Leite       | TAXI AEREO VALE DO MADEIRA                                      |               3 |  160000.00 |      0.23
-        3581 | LOBO JURUMENHA     | IMS SERVIÇOS EIRELI                                             |               3 |  159000.00 |      0.23
-        3699 | RODRIGUES PEIXOTO  | S7 Ltda                                                         |               5 |  149000.00 |      0.21
-        3238 | Glaustin da Fokus  | COMUNIK COMUNICAÇÃO E SERVIÇOS                                  |               4 |  138280.00 |      0.20
-        3668 | PAULA GUIMARÃES    | HEISS TAXI AEREO LTDA - EPP                                     |               5 |  136000.00 |      0.19
-        3576 | Dorinaldo Malafaia | ORBE PRODUTORA & SERVIÇOS LTDA                                  |               4 |  135000.00 |      0.19
-        1286 | Silas Câmara       | AMAZONAVES TAXI AEREO LTDA                                      |               2 |  133258.00 |      0.19
-        3678 | Capitão Alden      | Bipe Publicidade LTDA                                           |               4 |  130000.00 |      0.19
-        2403 | TOMÁS RODRIGUES    | ATLANTICA ESTRATÉGIA E COMUNICAÇÃO LTDA                         |               4 |  126230.00 |      0.18
-        3552 | JOSÉ BEZERRA       | WEVERSON SARMENTO DA PAIXÃO                                     |               5 |  121489.10 |      0.17
-        3566 | Mauricio do Vôlei  | JH FILMES E MIDIA DIGITAL LTDA                                  |               4 |  120000.00 |      0.17
-         824 | HORTA DE ARAÚJO    | SVS COMUNICAÇÃO E MAARKETING DIGITAL LTDA                       |               4 |  118996.00 |      0.17
-        2264 | FRANCISCO DRUMOND  | L.G BEZERRA CAVALCANTI                                          |               2 |  116100.00 |      0.17
-        2329 | Domingos Neto      | FRAME COMUNICACAO DIGITAL LTDA                                  |               6 |  112731.63 |      0.16
-        3559 | MARTIM FRANCISCO   | CMBC PUBLICIDADE E COMUNICAÇÃO LTDA                             |               4 |  112000.00 |      0.16
-        1651 | Giacobo            | CALGAN EDITORA GRAFICA LTDA                                     |               3 |  111111.10 |      0.16
-        1703 | VIOTTI             | ELDORADO COMUNICACAO E JORNALISMO LTDA                          |               4 |  110000.00 |      0.16
-        3297 | Nicoletti          | GSE Marketing e Tecnologia Digital                              |               4 |  110000.00 |      0.16
-        2946 | MORAIS JUNIOR      | A DE LIMA CARDOSO                                               |               7 |  108613.80 |      0.16
-        3671 | Max Lemos          | J D L SEM CORTES LTDA                                           |               4 |  108600.00 |      0.16
-        3623 | Yandra Moura       | TRIPE COMUNICAÇÃO E SERVIÇOS DE CONSULTORIA EM PUBLICIDADE LTDA |               4 |  108000.00 |      0.15
-        3246 | Otoni de Paula     | N N Y MARKETING DIRETO E SOLUÇÕES INTELIGENTES LTDA             |               4 |  108000.00 |      0.15
-        3059 | MACIEL DE CASTRO   | CRISTIANO MACHADO SANTOS                                        |               4 |  106000.00 |      0.15
-        3532 | Antônio Doido      | CAMPUS COMUNICAÇÃO E MARKETING LTDA                             |               3 |  106000.00 |      0.15
-        2335 | MOREIRA DA ROCHA   | MAIS PROPAGANDA LTDA.                                           |               4 |  105800.00 |      0.15
-        3580 | Jeferson Rodrigues | Conex Midia Comunicação Eireli                                  |               4 |  105000.00 |      0.15
+ id_deputado |         nome          |                           fornecedor                            | qtd_lancamentos | total_pago | pct_total
+-------------+-----------------------+-----------------------------------------------------------------+-----------------+------------+-----------
+       74454 | Eunício Oliveira      | CARNAUBA ASSESSORIA DE COM E PIBLICIDADE                        |              34 | 1405685.29 |      0.17
+      220573 | Dorinaldo Malafaia    | ORBE PRODUTORA & SERVIÇOS LTDA                                  |              35 | 1273500.00 |      0.16
+      224117 | Gabriel Mota          | CK INFO DESIGN E MIDIA SOCIAIS                                  |              75 | 1260166.67 |      0.15
+       74383 | Giacobo               | GALZON EDITORA GRAFICA LTDA                                     |              23 |  880970.00 |      0.11
+      204517 | Zé Vitor              | Cidade Positiva Assessoria Publicitaria LTDA                    |              36 |  845393.70 |      0.10
+      220607 | Max Lemos             | J D L SEM CORTES LTDA                                           |              35 |  828204.94 |      0.10
+      143632 | Domingos Neto         | FRAME COMUNICACAO DIGITAL LTDA                                  |              44 |  820981.63 |      0.10
+      160575 | Erika Kokay           | WORKING ASSOCIAÇÃO DE INTEGRAÇÃO PROFISSIONAL                   |              24 |  806772.00 |      0.10
+       74467 | Damião Feliciano      | MAIS PROPAGANDA LTDA.                                           |              39 |  801065.60 |      0.10
+       74090 | Átila Lins            | CTA - CLEITON TAXI AEREO LTDA                                   |              39 |  799350.00 |      0.10
+      220658 | Luiz Gastão           | A DE LIMA CARDOSO                                               |              41 |  773730.37 |      0.09
+      204506 | Marcos Pereira        | MIND COMUNICACAO LTDA                                           |              40 |  759000.00 |      0.09
+       74043 | Wellington Roberto    | ELDORADO COMUNICACAO E JORNALISMO LTDA                          |              35 |  758000.00 |      0.09
+      204539 | Hercílio Coelho Diniz | FRAMIN AGENCIA DECOMUNICAÇÃO LTDA                               |              21 |  752158.90 |      0.09
+      160629 | Romero Rodrigues      | MAIS PROPAGANDA LTDA.                                           |              32 |  736300.00 |      0.09
+      178887 | Rubens Pereira Júnior | STEVAM GREGORY ROCHA POLLON                                     |              29 |  736275.00 |      0.09
+      153423 | Renilce Nicodemos     | HEISS TAXI AEREO LTDA - EPP                                     |              33 |  718082.71 |      0.09
+       74057 | Alice Portugal        | ON - Z IMPRESSAO, DIVULGACAO & MARKETING DIGITAL LTDA           |              24 |  711338.00 |      0.09
+      220582 | Daniel Barbosa        | FEAT WORK LTDA                                                  |              21 |  704394.30 |      0.09
+      220578 | Josenildo             | CMBC PUBLICIDADE E COMUNICAÇÃO LTDA                             |              37 |  692290.00 |      0.08
+      220564 | Yandra Moura          | TRIPE COMUNICAÇÃO E SERVIÇOS DE CONSULTORIA EM PUBLICIDADE LTDA |              25 |  675000.00 |      0.08
+      178997 | Moses Rodrigues       | Francisco C. T. Araújo - ME                                     |              37 |  674000.00 |      0.08
+       73701 | Benedita da Silva     | AGENDA EM FOCO                                                  |              37 |  672000.00 |      0.08
+      204396 | Vermelho              | 3FRONT COMUNICACAO LTDA                                         |              40 |  665000.00 |      0.08
+      220561 | Delegada Katarina     | CONCEITO COMUNICAÇÃO INTEGRADA LTDA                             |              34 |  661259.50 |      0.08
+      178843 | Marx Beltrão          | FRAME COMUNICACAO DIGITAL LTDA                                  |              35 |  650400.00 |      0.08
+      220681 | Fábio Macedo          | IMS SERVIÇOS EIRELI                                             |              21 |  639897.90 |      0.08
+      166402 | Magda Mofatto         | Adm. Assis                                                      |              35 |  634413.58 |      0.08
+      220576 | Alfredo Gaspar        | GMB DE CASTRO REIS - ME                                         |              36 |  630427.00 |      0.08
+      191923 | Flávio Nogueira       | BLITZ PRODUÇOES DE EVENTOS LTDA                                 |              38 |  629246.80 |      0.08
 
 
 Complemento detalhado: q12_deputado_fornecedor_complemento.txt contem o ranking completo.

@@ -1,552 +1,938 @@
- id_deputado |                nome                 | sigla_uf | sigla_partido | gasto_total 
+ id_deputado |                nome                 | sigla_uf | sigla_partido | gasto_total
 -------------+-------------------------------------+----------+---------------+-------------
-        3552 | JOSÉ BEZERRA                        | PA       | PSB           |   258738.45
-        1307 | Eunício Oliveira                    | CE       | MDB           |   258542.56
-        3514 | Franciane Bayer                     | RS       | REPUBLICANOS  |   245184.56
-        3234 | Carlos Veras                        | PE       | PT            |   243559.74
-        3532 | Antônio Doido                       | PA       | MDB           |   232897.19
-        2280 | ARTUR COLARES MOREIRA               | AP       | PL            |   231661.43
-        3785 | Zé Adriano                          | AC       | PP            |   231625.30
-        3526 | Roberta Roma                        | BA       | PL            |   231159.45
-         583 | CRUZ MACHADO                        | AM       | PSD           |   229614.66
-        3653 | Robinson Faria                      | RN       | PP            |   228753.48
-        1458 | Pompeo de Mattos                    | RS       | PDT           |   226673.57
-        3724 | Gabriel Mota                        | RR       | UNIAO         |   219000.00
-        3699 | RODRIGUES PEIXOTO                   | RJ       | REPUBLICANOS  |   216830.48
-        1649 | Geraldo Resende                     | MS       | UNIAO         |   215981.19
-        3134 | RAUL BARBOSA                        | PI       | PT            |   214595.01
-        2276 | PEREIRA BRAGA                       | PB       | PODE          |   214065.70
-        3043 | ARISTIDES LARGURA                   | PR       | UNIAO         |   214046.82
-        1704 | Wilson Santiago                     | PB       | REPUBLICANOS  |   209424.55
-        3121 | PAULO COUTO                         | PI       | PT            |   208962.68
-        3634 | Murilo Galdino                      | PB       | REPUBLICANOS  |   208749.86
-        3558 | Albuquerque                         | RR       | REPUBLICANOS  |   208724.65
-        3273 | Bibo Nunes                          | RS       | PL            |   208349.15
-        3293 | Sidney Leite                        | AM       | PSD           |   206400.14
-        3278 | Silvia Cristina                     | RO       | PP            |   205828.50
-        3435 | Eli Borges                          | TO       | REPUBLICANOS  |   204451.61
-        1857 | MONTEIRO DE BARROS                  | RN       | PP            |   203944.32
-        3280 | Pedro Westphalen                    | RS       | PP            |   201791.19
-        3517 | Daniela Reinehr                     | SC       | PL            |   201047.25
-        1625 | Odair Cunha                         | MG       | PT            |   200982.43
-        3661 | Delegado Bruno Lima                 | SP       | PODE          |   200546.12
-        3613 | Lula da Fonte                       | PE       | PP            |   199812.39
-        3709 | Antonio Andrade                     | TO       | PSDB          |   199275.58
-        3645 | Gabriel Nunes                       | BA       | PSD           |   199081.08
-        2305 | Padre João                          | MG       | PT            |   198755.65
-        2335 | MOREIRA DA ROCHA                    | PB       | PODE          |   198640.13
-        3566 | Mauricio do Vôlei                   | MG       | PL            |   198278.71
-        3673 | NEIVA                               | MS       | PL            |   198008.76
-        3034 | André Abdon                         | AP       | PP            |   197487.29
-        3638 | Marussa Boldrin                     | GO       | REPUBLICANOS  |   197330.53
-        3672 | JAMES DARCY                         | PI       | PT            |   197125.19
-        2248 | VIDAL RAMOS                         | SP       | PL            |   196158.56
-        3567 | Socorro Neri                        | AC       | PP            |   194818.77
-        3632 | LEOPOLDO LINS                       | PR       | PT            |   193432.92
-        3289 | Delegado Marcelo Freitas            | MG       | UNIAO         |   192981.22
-        3662 | Coronel Ulysses                     | AC       | UNIAO         |   192896.57
-        3790 | João Cury                           | SP       | MDB           |   191194.41
-        1807 | Dagoberto Nogueira                  | MS       | PP            |   190879.40
-        3238 | Glaustin da Fokus                   | GO       | PODE          |   189285.30
-        2987 | ANTÔNIO SILVA                       | SC       | REPUBLICANOS  |   189142.02
-        3391 | Juninho do Pneu                     | RJ       | PSDB          |   189010.45
-        2940 | Toninho Wandscheer                  | PR       | PP            |   188849.24
-        1651 | Giacobo                             | PR       | PSD           |   188727.58
-         824 | HORTA DE ARAÚJO                     | PR       | PODE          |   188087.64
-        2985 | Bacelar                             | BA       | PV            |   186953.72
-        3726 | Welter                              | PR       | PT            |   186581.45
-        3297 | Nicoletti                           | RR       | PL            |   186522.16
-        3637 | CAMPOS CARITIER                     | MS       | PT            |   186021.00
-        3543 | Delegada Katarina                   | SE       | PSD           |   185244.67
-        1286 | Silas Câmara                        | AM       | REPUBLICANOS  |   185019.55
-        3220 | Luiz Philippe de Orleans e Bragança | SP       | PL            |   184362.48
-        3572 | Ricardo Salles                      | SP       | NOVO          |   183892.51
-        3794 | ALFREDO ELLIS                       | RO       | PODE          |   183835.41
-        2880 | FENELON PERDIGÃO                    | RS       | PDT           |   182728.95
-        3690 | Clodoaldo Magalhães                 | PE       | PV            |   182320.69
-        1609 | Mário Heringer                      | MG       | PDT           |   181897.23
-        3559 | MARTIM FRANCISCO                    | AP       | PDT           |   181895.68
-        3688 | RODRIGUES SALDANHA                  | RR       | UNIAO         |   181753.48
-        3468 | Carla Dickson                       | RN       | PL            |   181514.65
-        3575 | Roberto Duarte                      | AC       | REPUBLICANOS  |   181214.44
-        3452 | Joseildo Ramos                      | BA       | PT            |   181016.09
-        3524 | Clarissa Tércio                     | PE       | PP            |   180199.78
-        3683 | BERNARDES DE FARIA                  | RO       | UNIAO         |   179197.50
-        3319 | Olival Marques                      | PA       | PODE          |   179000.00
-        3313 | Márcio Jerry                        | MA       | PCDOB         |   178808.79
-        3584 | Alexandre Guimarães                 | TO       | MDB           |   178445.58
-        2379 | JOSÉ TOLENTINO                      | RS       | MDB           |   178196.64
-        2972 | ARISTIDES MILTON                    | PA       | PL            |   178112.00
-        3580 | Jeferson Rodrigues                  | GO       | PSDB          |   177881.77
-        3598 | EUCLIDES BARROSO                    | AC       | PP            |   177486.34
-        3534 | Dr. Fernando Máximo                 | RO       | PL            |   177346.59
-        2231 | Zé Silva                            | MG       | UNIAO         |   176825.62
-        3765 | Dr Flávio                           | RJ       | PL            |   176638.58
-        3556 | Rafael Simoes                       | MG       | UNIAO         |   176624.08
-        3695 | FRÓES DA CRUZ                       | PR       | PP            |   176017.44
-        2288 | PAULINO DE SOUSA                    | BA       | PT            |   175614.42
-        1118 | FREITAS                             | RJ       | PSD           |   175502.68
-        2405 | AZURÉM FURTADO                      | RS       | PT            |   175116.45
-        3600 | Keniston Braga                      | PA       | MDB           |   174885.54
-        3041 | Moses Rodrigues                     | CE       | UNIAO         |   174838.62
-        1001 | BARÃO DE MACEIÓ                     | PR       | PP            |   174635.15
-        2271 | BETHENCOURT DA SILVA FILHO          | PB       | REPUBLICANOS  |   174346.76
-        3578 | Delegada Adriana Accorsi            | GO       | PT            |   173974.64
-        3624 | LEITE DE CASTRO                     | MG       | REPUBLICANOS  |   173497.56
-        2813 | GILBERT GABEIRA                     | AL       | PT            |   173233.59
-        3677 | NOGUEIRA JAGUARIBE                  | RS       | PT            |   172988.62
-        3667 | Prof. Reginaldo Veras               | DF       | PV            |   172750.01
-        2227 | CASTRO PINTO                        | CE       | PP            |   172271.79
-        3630 | Neto Carletto                       | BA       | AVANTE        |   172052.63
-        3330 | Vermelho                            | PR       | PL            |   171800.63
-        3328 | Daniel Trzeciak                     | RS       | PSDB          |   171779.39
-        3635 | LUÍS ADOLFO                         | PB       | PSD           |   171413.19
-        3426 | Raimundo Costa                      | BA       | PSD           |   171128.95
-        1590 | IVETTE VARGAS                       | PB       | PT            |   170289.48
-        2924 | Felipe Carreras                     | PE       | PSB           |   170281.98
-        2984 | Evair Vieira de Melo                | ES       | REPUBLICANOS  |   170076.95
-        3205 | Luisa Canziani                      | PR       | UNIAO         |   170075.17
-        3700 | Fernando Mineiro                    | RN       | PT            |   170014.22
-        2946 | MORAIS JUNIOR                       | CE       | REDE          |   169781.66
-        3582 | Rosângela Reis                      | MG       | PL            |   169735.10
-        3589 | DEMÓCRITO GRACINDO                  | SP       | PT            |   169003.03
-        1793 | MORAIS BARROS                       | RS       | UNIAO         |   168563.00
-        3208 | Tabata Amaral                       | SP       | PSB           |   168328.63
-        2917 | Fausto Pinato                       | SP       | UNIAO         |   168291.86
-        3657 | ARLINDO NOGUEIRA                    | SP       | PT            |   168199.94
-        3320 | Carlos Jordy                        | RJ       | PL            |   168173.92
-        3283 | Cezinha de Madureira                | SP       | PL            |   167823.93
-        1638 | FURQUIM WERNECK                     | MG       | PT            |   167644.14
-        2950 | AUSTRO DE OLIVEIRA                  | SP       | PL            |   166798.49
-        1562 | Daniel Almeida                      | BA       | PCDOB         |   166139.66
-        3696 | Paulo Litro                         | PR       | UNIAO         |   166095.80
-        3327 | General Girão                       | RN       | PL            |   165943.60
-        3705 | Ana Paula Lima                      | SC       | PT            |   165937.02
-        3542 | Dr. Ismael Alexandrino              | GO       | PSD           |   165926.61
-        3045 | Misael Varella                      | MG       | PSD           |   165795.37
-        2236 | LINDOLFO CÂMARA                     | PE       | REPUBLICANOS  |   165579.78
-        3623 | Yandra Moura                        | SE       | UNIAO         |   165489.13
-        3789 | Rodrigo da Zaeli                    | MT       | PL            |   165471.80
-        2386 | Pedro Paulo                         | RJ       | PSD           |   164757.63
-        3602 | Pastor Henrique Vieira              | RJ       | PSOL          |   164750.74
-        2329 | Domingos Neto                       | CE       | PSD           |   164638.99
-        3620 | JOÃO DE SIQUEIRA                    | SP       | PL            |   164178.09
-        3712 | Adilson Barroso                     | SP       | PL            |   164006.21
-        1686 | Rubens Otoni                        | GO       | PT            |   163895.55
-        1605 | PONTES DE MIRANDA                   | RS       | PT            |   163494.16
-        2258 | NATALÍCIO CAMBOIM                   | AC       | MDB           |   163110.24
-        3680 | PEDREIRA FRANCO                     | PE       | AVANTE        |   162754.27
-        3352 | Benes Leocádio                      | RN       | UNIAO         |   162574.49
-        3505 | Alfredinho                          | SP       | PT            |   162460.82
-        3675 | JOÃO LUÍS ALVES                     | RO       | PODE          |   162320.45
-        3308 | Acácio Favacho                      | AP       | MDB           |   162310.00
-        3678 | Capitão Alden                       | BA       | PL            |   161713.30
-        3711 | Eduardo Velloso                     | AC       | SOLIDARIEDADE |   161414.21
-        1758 | Afonso Hamm                         | RS       | PP            |   161382.83
-        1987 | Márcio Marinho                      | BA       | REPUBLICANOS  |   161362.08
-        3535 | Thiago de Joaldo                    | SE       | REPUBLICANOS  |   160534.85
-        1737 | TOLENTINO DE CARVALHO               | CE       | MDB           |   160407.34
-        2925 | Newton Cardoso Jr                   | MG       | MDB           |   160135.76
-        3084 | Marx Beltrão                        | AL       | UNIAO         |   159922.69
-        3611 | Dr. Victor Linhalis                 | ES       | PSB           |   159763.84
-        3554 | JOVINIANO DE CARVALHO               | RS       | PT            |   159728.88
-        3574 | Thiago Flores                       | RO       | UNIAO         |   159053.65
-        3581 | LOBO JURUMENHA                      | MA       | PODE          |   159000.00
-        3274 | Célio Studart                       | CE       | PSD           |   158148.70
-        3585 | Henderson Pinto                     | PA       | UNIAO         |   157987.45
-        3073 | HILDEMAR MAIA                       | SE       | PT            |   157929.48
-        1697 | Vander Loubet                       | MS       | PT            |   157878.07
-        3411 | José Medeiros                       | MT       | PL            |   157847.22
-        3553 | Bebeto                              | RJ       | PP            |   157305.52
-        2954 | EURICO RIBEIRO                      | SP       | PSD           |   156971.63
-        3621 | JOÃO VIEIRA                         | AL       | PSD           |   156946.35
-        3353 | Adriano do Baldy                    | GO       | PP            |   156477.63
-        1402 | Luiza Erundina                      | SP       | PSOL          |   156477.00
-        3671 | Max Lemos                           | RJ       | UNIAO         |   156415.61
-        3596 | Simone Marquetto                    | SP       | PP            |   156173.59
-        3689 | JOSÉ PEREGRINO                      | MG       | PL            |   156160.12
-        2307 | FRANCISCO PORTELA                   | BA       | PDT           |   155913.31
-        3247 | Marcos Aurélio Sampaio              | PI       | MDB           |   155700.00
-        3237 | Juarez Costa                        | MT       | REPUBLICANOS  |   155630.69
-        3586 | Cabo Gilberto Silva                 | PB       | PL            |   155589.42
-         161 | MACIEL MONTEIRO                     | BA       | PSB           |   155457.35
-        1514 | AFRÍSIO VIEIRA LIMA                 | RS       | PL            |   155178.01
-        3565 | Zé Trovão                           | SC       | PL            |   155176.30
-        3546 | Ivoneide Caetano                    | BA       | PT            |   155112.39
-        2264 | FRANCISCO DRUMOND                   | PE       | PSDB          |   155053.73
-        3545 | Luiz Gastão                         | CE       | PSD           |   154986.40
-        3072 | JOAQUIM VIEGAS                      | SP       | PT            |   154976.64
-        3587 | ARAUJO PINHEIRO                     | PE       | PSB           |   154627.33
-        3090 | PAULO FLEURY                        | PE       | PSD           |   154527.42
-        3599 | BUENO DE PAIVA                      | PR       | UNIAO         |   154341.48
-        3804 | MIRANDA AZEVEDO                     | RJ       | REDE          |   154294.27
-        3628 | JOSÉ INACIO                         | PR       | UNIAO         |   153900.59
-        3568 | Felipe Becari                       | SP       | PODE          |   153845.56
-        3370 | Coronel Chrisóstomo                 | RO       | PL            |   153775.82
-        3249 | Dr. Frederico                       | MG       | PL            |   153539.17
-        3557 | COSTA RODRIGUES                     | RR       | PSD           |   153495.24
-        1557 | ACHILLES CRUZ                       | RJ       | PSOL          |   153271.89
-        3398 | Pastor Gil                          | MA       | PL            |   152952.06
-        3315 | Emanuel Pinheiro Neto               | MT       | PSD           |   152878.83
-        2894 | Helder Salomão                      | ES       | PT            |   152814.78
-        3704 | Cobalchini                          | SC       | MDB           |   152245.39
-        3685 | Leo Prates                          | BA       | REPUBLICANOS  |   152140.12
-        3548 | Pastor Diniz                        | RR       | UNIAO         |   151783.38
-        3631 | Messias Donato                      | ES       | UNIAO         |   151781.07
-        1822 | GONÇALO DE LAGOS                    | PE       | PP            |   151743.76
-        3743 | ENÉAS MARTINS                       | MT       | UNIAO         |   151502.11
-        3420 | Lafayette de Andrada                | MG       | PL            |   151482.61
-        1669 | Jefferson Campos                    | SP       | PL            |   151123.43
-        3626 | Ana Pimentel                        | MG       | PT            |   151068.43
-        1582 | SÁTIRO DIAS                         | MG       | PT            |   150386.62
-        3281 | Rosana Valle                        | SP       | PL            |   150022.29
-        3345 | Leur Lomanto Júnior                 | BA       | UNIAO         |   149843.60
-        2388 | FRANCISCO ALVES                     | SP       | PL            |   149792.48
-        3023 | AREIA LEÃO                          | TO       | UNIAO         |   149231.98
-        3588 | DELFIM MOREIRA                      | PE       | PSB           |   149147.46
-        2437 | ÁLVARO BATISTA                      | GO       | PL            |   148874.85
-        3664 | FAUSTO CARDOSO                      | MG       | PP            |   148777.45
-        3594 | EDUARDO SÓCRATES                    | SP       | UNIAO         |   148728.48
-        3432 | Beto Pereira                        | MS       | REPUBLICANOS  |   148314.86
-        3081 | JORGE JABOUR                        | SP       | PODE          |   148266.59
-        3748 | Saulo Pedroso                       | SP       | PSD           |   148217.99
-        3618 | Sargento Portugal                   | RJ       | PODE          |   148063.55
-        2915 | DAGOBERTO SALES                     | PR       | PV            |   147798.77
-        3523 | Dani Cunha                          | RJ       | PL            |   147702.90
-        2403 | TOMÁS RODRIGUES                     | DF       | PT            |   147488.44
-        2281 | COELHO NETO                         | RS       | PL            |   147343.73
-        3663 | Reimont                             | RJ       | PT            |   147164.43
-        1642 | MAYRINK                             | RS       | PT            |   146908.34
-        3402 | Bia Kicis                           | DF       | PL            |   146708.29
-        3381 | Dr. Zacharias Calil                 | GO       | MDB           |   146035.17
-        3708 | Ricardo Ayres                       | TO       | REPUBLICANOS  |   145944.13
-        3363 | Professor Alcides                   | GO       | PSDB          |   145888.50
-        1652 | NOVAES MELLO                        | SP       | PODE          |   145827.43
-        1860 | OTONI                               | CE       | PT            |   145771.56
-        3579 | Lêda Borges                         | GO       | REPUBLICANOS  |   145714.99
-        2430 | COSTA RIBEIRO                       | MG       | PSD           |   145664.41
-        3224 | Mauro Benevides Filho               | CE       | UNIAO         |   144964.11
-        3056 | JORGE AMADO                         | RS       | PSD           |   144950.14
-        3576 | Dorinaldo Malafaia                  | AP       | PDT           |   144816.10
-        3539 | Marcos Pollon                       | MS       | PL            |   144461.05
-        1472 | Alberto Fraga                       | DF       | PL            |   144074.50
-        3388 | Nelson Barbudo                      | MT       | PODE          |   143364.01
-         995 | ANTÔNIO PRADO                       | BA       | PP            |   142895.70
-        3666 | FRANCISCO BERNARDINO                | AC       | UNIAO         |   142706.17
-        3646 | PRUDÊNCIO MILANEZ                   | AL       | MDB           |   142585.33
-        3622 | Samuel Viana                        | MG       | UNIAO         |   142569.89
-        3648 | Duda Ramos                          | RR       | PODE          |   142549.35
-        3256 | Da Vitoria                          | ES       | PP            |   142355.55
-        3633 | LEOVIGILDO FILGUEIRAS               | AL       | PP            |   142310.09
-        1748 | BORGES DE MEDEIROS                  | CE       | PDT           |   142117.42
-        1804 | BARROS LINS                         | MA       | MDB           |   141810.05
-        2265 | JOSÉ MARIA                          | BA       | PT            |   141664.32
-        2225 | Arthur Oliveira Maia                | BA       | UNIAO         |   141558.00
-        3062 | NOBRE FILHO                         | PR       | MDB           |   141466.27
-        2229 | VÍTOR DO AMARAL                     | GO       | MDB           |   141466.03
-        2317 | BATISTA ACCIOLY                     | ES       | PSB           |   141174.33
-        3555 | JÚLIO LEITE                         | RJ       | PL            |   141140.58
-        3629 | JOSÉ MARCELINO                      | SC       | PL            |   140774.05
-        3270 | Amaro Neto                          | ES       | PP            |   140710.30
-        3665 | Coronel Meira                       | PE       | PL            |   140302.84
-        3788 | Enfermeira Rejane                   | RJ       | PCDOB         |   139259.08
-        3261 | Zé Neto                             | BA       | PT            |   139042.90
-        3710 | Rafael Prudente                     | DF       | MDB           |   138962.15
-        3360 | Maria Rosas                         | SP       | REPUBLICANOS  |   138710.43
-        3564 | Defensor Stélio Dener               | RR       | UNIAO         |   138660.57
-        1703 | VIOTTI                              | PB       | PSD           |   138601.99
-        3803 | CAJADO                              | CE       | SOLIDARIEDADE |   138442.54
-        3649 | WALDEMIRO MOREIRA                   | RJ       | PDT           |   138430.78
-        3616 | Gilson Daniel                       | ES       | PODE          |   138117.85
-        3035 | OZÓRIO TUYUTY                       | MA       | MDB           |   137961.77
-        1087 | CÂNDIDO DE OLIVEIRA                 | PE       | PL            |   137767.87
-        3609 | Célia Xakriabá                      | MG       | PSOL          |   137738.25
-        3597 | Delegado Palumbo                    | SP       | PODE          |   137233.66
-        2241 | WENCESLAU ESCOBAR                   | RS       | PT            |   136254.45
-        3792 | URBANO SANTOS                       | PR       | PT            |   136137.61
-        3668 | PAULA GUIMARÃES                     | PA       | MDB           |   136000.00
-        3604 | Miguel Ângelo                       | MG       | PT            |   135955.27
-        3740 | Enfermeira Ana Paula                | CE       | PODE          |   135526.91
-        2979 | AGAPITO SÁTIRO                      | RS       | PP            |   135470.09
-        3199 | Pedro Lucas Fernandes               | MA       | UNIAO         |   135307.96
-        3438 | Reinhold Stephanes                  | PR       | PL            |   135278.54
-        3346 | Ricardo Guidi                       | SC       | PL            |   135258.11
-        3065 | Lucio Mosquini                      | RO       | PL            |   135214.01
-        2957 | SEBASTIÃO DOMINGUES                 | SP       | PCDOB         |   135182.73
-        3384 | Fernanda Melchionna                 | RS       | PSOL          |   134985.43
-        2995 | LUÍS CLÁUDIO                        | SP       | PL            |   134952.25
-        3808 | Ribeiro Neto                        | MA       | SOLIDARIEDADE |   134929.59
-        3326 | Adolfo Viana                        | BA       | PSDB          |   134800.32
-        1963 | Carlos Zarattini                    | SP       | PT            |   134758.18
-        3691 | ROCHA LEAL                          | PE       | PSD           |   134241.94
-        3679 | Diego Coronel                       | BA       | REPUBLICANOS  |   134226.66
-        3473 | Jorge Goetten                       | SC       | REPUBLICANOS  |   133389.04
-        2934 | Marcelo Álvaro Antônio              | MG       | PL            |   133109.37
-        3660 | Rodrigo Gambale                     | SP       | PODE          |   132972.74
-        2996 | DIÓGENES MAGALHÃES                  | BA       | PSB           |   132863.61
-        3583 | Dilvanda Faro                       | PA       | PT            |   132376.25
-        3530 | Silvye Alves                        | GO       | UNIAO         |   132249.49
-        3615 | Iza Arruda                          | PE       | MDB           |   132149.15
-        2408 | PEDRO DOS REIS                      | PB       | PP            |   132137.43
-        3296 | Tiago Dimas                         | TO       | PODE          |   131966.53
-        3223 | Igor Timo                           | MG       | UNIAO         |   131692.92
-        2902 | Rubens Pereira Júnior               | MA       | PT            |   131531.80
-        3387 | Fred Costa                          | MG       | PRD           |   131501.42
-        2242 | AMÉRICO WERNECK                     | RS       | PSD           |   131448.36
-        3277 | Marcos Pereira                      | SP       | REPUBLICANOS  |   130949.88
-        3262 | Charles Fernandes                   | BA       | PSD           |   130789.55
-         565 | BAHIA                               | AP       | REPUBLICANOS  |   130502.68
-        3625 | FARIA NEVES SOBRINHO                | SC       | MDB           |   130330.97
-        3641 | Mario Frias                         | SP       | PL            |   130197.37
-        3230 | Natália Bonavides                   | RN       | PT            |   130072.63
-        3264 | Luiz Lima                           | RJ       | NOVO          |   129576.46
-        3670 | Átila Lira                          | PI       | PP            |   129562.30
-        3697 | Tarcísio Motta                      | RJ       | PSOL          |   129441.78
-         733 | DIOGO VELHO                         | RJ       | PCDOB         |   129309.60
-        3232 | Fabio Schiochet                     | SC       | UNIAO         |   129059.29
-        1699 | Vicentinho                          | SP       | PT            |   128505.65
-        3228 | Filipe Barros                       | PR       | PL            |   128300.96
-        2356 | FELIZARDO LEITE                     | MG       | PP            |   128210.17
-        3008 | Célio Silveira                      | GO       | MDB           |   127348.83
-        3431 | Alencar Santana                     | SP       | PT            |   127163.26
-        1853 | LIMA DUARTE                         | SP       | PT            |   126999.69
-        3537 | JOÃO LOPES                          | RJ       | PL            |   126385.71
-        3707 | Bruno Ganem                         | SP       | PODE          |   126357.79
-        1531 | ARTHUR DE LIMA CAVALCANTI           | BA       | PCDOB         |   126081.53
-        2424 | CASTELO BRANCO                      | PR       | PSD           |   125981.37
-        3292 | Felipe Francischini                 | PR       | PODE          |   125896.89
-        3512 | Mauricio Marcon                     | RS       | PL            |   125546.32
-        1848 | CARVALHO MOURÃO                     | RJ       | PSD           |   125436.04
-        1861 | PARAÍSO CAVALCANTI                  | CE       | PT            |   125085.43
-        3610 | Maria Arraes                        | PE       | PSB           |   123540.74
-        3538 | Alfredo Gaspar                      | AL       | PL            |   123436.14
-        3593 | Marangoni                           | SP       | PODE          |   123350.82
-        1879 | Luiz Fernando Faria                 | MG       | UNIAO         |   122949.11
-        3703 | Ismael                              | SC       | PL            |   122879.13
-        3301 | Daniel Freitas                      | SC       | PL            |   122443.31
-        3380 | Rogério Correia                     | MG       | PT            |   122439.31
-        3414 | Greyce Elias                        | MG       | PL            |   122412.66
-        3513 | AUGUSTO MONTEIRO                    | RN       | PL            |   121834.38
-        3086 | ANTÔNIO BALBINO                     | RS       | MDB           |   121266.36
-        2289 | Diego Andrade                       | MG       | PSD           |   120986.38
-        3317 | Gustinho Ribeiro                    | SE       | PP            |   120600.00
-        3533 | Rogéria Santos                      | BA       | REPUBLICANOS  |   120584.70
-         188 | Benedita da Silva                   | RJ       | PT            |   120418.91
-        3693 | JOSINO DE MENEZES                   | PR       | PT            |   120389.06
-        1928 | Rodrigo de Castro                   | MG       | UNIAO         |   119946.77
-        3419 | Túlio Gadêlha                       | PE       | PSD           |   119876.76
-        3720 | Rodrigo Estacho                     | PR       | PSD           |   119827.95
-        3489 | Ely Santos                          | SP       | REPUBLICANOS  |   119143.40
-        2936 | Luciano Ducci                       | PR       | PSB           |   119129.93
-        2938 | ALBERTO ÁLVARES                     | BA       | PT            |   118778.31
-        3686 | Filipe Martins                      | TO       | PL            |   118174.12
-        3515 | Fausto Jr.                          | AM       | UNIAO         |   117765.42
-        3246 | Otoni de Paula                      | RJ       | PSD           |   117567.58
-        3656 | Bandeira de Mello                   | RJ       | PV            |   117524.43
-        2235 | Domingos Sávio                      | MG       | PL            |   117411.74
-        3325 | Lucas Redecker                      | RS       | PSD           |   117369.82
-        3021 | GILBERTO FREIRE                     | SP       | MDB           |   117181.32
-        1904 | Paulo Abi-Ackel                     | MG       | PSDB          |   116778.62
-        3401 | Gervásio Maia                       | PB       | PCDOB         |   116702.74
-        3692 | Julio Arcoverde                     | PI       | PP            |   116413.80
-        3227 | David Soares                        | SP       | PODE          |   116204.69
-        3694 | LUÍS GUALBERTO                      | PR       | PSDB          |   116033.43
-        3269 | Junior Lourenço                     | MA       | MDB           |   115776.31
-        3351 | Luiz Carlos Motta                   | SP       | PL            |   115475.35
-        3605 | GERMANO HASSLOCHER                  | MG       | PL            |   115090.21
-        3059 | MACIEL DE CASTRO                    | TO       | PSDB          |   114670.00
-        3650 | ADALBERTO FERRAZ                    | ES       | PL            |   114170.01
-        2929 | Paulo Azi                           | BA       | UNIAO         |   113996.19
-        1903 | VICTORINO MONTEIRO                  | SP       | SOLIDARIEDADE |   113927.88
-        3606 | Murillo Gouvea                      | RJ       | PSDB          |   113820.25
-        1502 | OSWALDO ALMEIDA                     | SP       | PT            |   113618.82
-        3382 | Sâmia Bomfim                        | SP       | PSOL          |   113350.13
-        3560 | Castro Neto                         | PI       | MDB           |   113125.10
-        3736 | Luciano Alves                       | PR       | PSD           |   113027.55
-        1833 | THOMAZ DELFINO                      | PE       | UNIAO         |   112509.54
-        1347 | Paulo Magalhães                     | BA       | PSD           |   112446.28
-        3423 | Jorge Braz                          | RJ       | REPUBLICANOS  |   112350.95
-        3608 | Pedro Campos                        | PE       | PSB           |   111914.90
-        3368 | André Ferreira                      | PE       | PL            |   111686.90
-        3784 | Ribamar Silva                       | SP       | PODE          |   111546.04
-        1063 | SEVERINO RIBEIRO                    | BA       | PP            |   111503.53
-         652 | AZEREDO COUTINHO                    | PE       | PCDOB         |   111313.16
-        3544 | Coronel Assis                       | MT       | PL            |   110515.99
-        1576 | Julio Lopes                         | RJ       | PP            |   109631.28
-        1318 | Damião Feliciano                    | PB       | UNIAO         |   109343.27
-        3522 | Duda Salabert                       | MG       | PSOL          |   109034.61
-        2385 | GUSTAVO RICHARD                     | MG       | PL            |   109018.32
-        1097 | MELO FRANCO                         | PI       | PSD           |   108764.35
-        3210 | Gutemberg Reis                      | RJ       | MDB           |   108643.66
-        3198 | Júnior Mano                         | CE       | PSB           |   108639.78
-        1049 | ROCHA                               | SP       | PSOL          |   108114.22
-         974 | MORAIS SILVA                        | SP       | PT            |   108033.96
-        2998 | ARGEMIRO FIALHO                     | RJ       | PL            |   108007.71
-        3747 | Allan Garcês                        | MA       | PP            |   107947.08
-        3418 | Sanderson                           | RS       | PL            |   107755.11
-        3407 | Ossesio Silva                       | PE       | REPUBLICANOS  |   107468.48
-        3797 | Ricardo Galvão                      | SP       | REDE          |   107011.84
-        1155 | AUGUSTO FLEURY                      | PR       | PP            |   106992.70
-        3536 | Adail Filho                         | AM       | MDB           |   106922.51
-        3260 | Pinheirinho                         | MG       | PP            |   106637.15
-        3475 | Josivaldo JP                        | MA       | UNIAO         |   106400.80
-        3617 | Icaro de Valmir                     | SE       | REPUBLICANOS  |   106332.81
-        1150 | ANTERO CÍCERO                       | PA       | PSD           |   105747.87
-        1552 | LEÃO VELOSO                         | SP       | PSD           |   105356.60
-        3531 | Ricardo Maia                        | BA       | MDB           |   105326.86
-        3647 | Daiana Santos                       | RS       | PCDOB         |   105271.28
-        2339 | RODRIGUES SALES FILHO               | AP       | PCDOB         |   105246.91
-        3527 | FIRMO BRAGA                         | PA       | PODE          |   104954.27
-        3802 | Sergio Santos Rodrigues             | MG       | PODE          |   104843.96
-        3642 | Padovani                            | PR       | PP            |   104290.08
-        2407 | OTACÍLIO DE CAMARÁ                  | BA       | PSD           |   104166.54
-        3236 | Julio Cesar Ribeiro                 | DF       | REPUBLICANOS  |   104059.60
-        1083 | COUTO MAGALHÃES                     | CE       | PDT           |   103272.56
-        1071 | ALMEIDA COUTO                       | BA       | UNIAO         |   102629.67
-        3607 | Dandara                             | MG       | PT            |   102577.03
-        3718 | Luis Carlos Gomes                   | RJ       | REPUBLICANOS  |   102295.58
-        3216 | AJ Albuquerque                      | CE       | PP            |   102054.75
-        3654 | Antonio Carlos Rodrigues            | SP       | PODE          |   102047.44
-         169 | PEREIRA DE BRITO                    | BA       | PSD           |   101740.15
-        3298 | Emidinho Madeira                    | MG       | PL            |   101666.98
-        3592 | Mauricio Neves                      | SP       | PP            |   101297.52
-        3393 | Dr. Luiz Ovando                     | MS       | PP            |   101136.64
-        1786 | Arnaldo Jardim                      | SP       | CIDADANIA     |   100153.01
-        1856 | João Carlos Bacelar                 | BA       | PL            |    99571.46
-        3750 | Silvio Antonio                      | MA       | PL            |    99410.21
-        3385 | Talíria Petrone                     | RJ       | PSOL          |    99269.75
-        3225 | Robério Monteiro                    | CE       | PSB           |    99093.68
-        3778 | Elisangela Araujo                   | BA       | PT            |    98536.12
-        3436 | Marcelo Moraes                      | RS       | PL            |    97100.05
-        3243 | Fernando Rodolfo                    | PE       | PRD           |    96936.48
-        3279 | Zé Vitor                            | MG       | PL            |    96336.68
-        2251 | Jonas Donizette                     | SP       | PSB           |    94876.31
-        3682 | BARROS FRANCO JUNIOR                | BA       | UNIAO         |    94799.04
-        2233 | VIRGÍNIO MARQUES                    | MG       | PSD           |    94691.83
-        3204 | Paulo Guedes                        | MG       | PT            |    93869.30
-        3520 | DERALDO DIAS                        | SE       | PL            |    92276.42
-        1355 | Lincoln Portela                     | MG       | PL            |    91728.76
-        3521 | Dimas Gadelha                       | RJ       | PT            |    90844.25
-        2999 | MARTINIANO ARAUJO                   | MA       | REPUBLICANOS  |    90021.33
-        3005 | LERY SANTOS                         | RJ       | PL            |    88700.00
-        3549 | JOSÉ MARIANO                        | PI       | REPUBLICANOS  |    88692.24
-        3287 | Alex Santana                        | BA       | REPUBLICANOS  |    87855.91
-        2243 | BALTAZAR BERNARDINO                 | SC       | PT            |    86991.03
-        3627 | JOSÉ MURTINHO                       | AL       | PP            |    86833.21
-        3525 | André Fernandes                     | CE       | PL            |    86601.35
-        3658 | Márcio Honaiser                     | MA       | SOLIDARIEDADE |    86417.01
-        3367 | Chris Tonietto                      | RJ       | PL            |    86094.05
-        3714 | Ricardo Abrão                       | RJ       | PSDB          |    84778.70
-        3215 | Dr. Jaziel                          | CE       | PL            |    84739.00
-        3612 | Fábio Teruel                        | SP       | MDB           |    84324.00
-        3681 | TOSTA                               | PA       | PL            |    83798.92
-        1951 | FRANCISCO SÁ                        | SP       | PL            |    82860.98
-        3651 | Jack Rocha                          | ES       | PT            |    82500.98
-        3643 | Matheus Noronha                     | CE       | PL            |    82479.17
-        3406 | Airton Faleiro                      | PA       | PT            |    82390.43
-        3644 | PEDRO VIANA                         | MA       | PP            |    81381.09
-        3214 | José Nelto                          | GO       | UNIAO         |    81291.00
-        2820 | Fabio Reis                          | SE       | PSD           |    80540.57
-        3805 | Cristiano Furlan                    | AP       | REDE          |    80000.00
-        3590 | Florentino Neto                     | PI       | PT            |    79942.56
-        3306 | Celso Sabino                        | PA       | PDT           |    79770.70
-        3373 | Gilberto Abramo                     | MG       | REPUBLICANOS  |    79728.88
-        3040 | JOSÉ LEOMIL                         | BA       | UNIAO         |    79440.09
-        3519 | Nely Aquino                         | MG       | PODE          |    79216.45
-        2911 | DINIZ JÚNIOR                        | RJ       | PSDB          |    79138.57
-        3551 | Coronel Fernanda                    | MT       | PL            |    78959.97
-        3020 | GERCINO PONTES                      | MA       | PSDB          |    77890.18
-        3702 | ODALBERTO PEREIRA                   | RS       | PP            |    77620.93
-         233 | FERREIRA DE MELO                    | MG       | PSDB          |    77522.98
-        3529 | Rosangela Moro                      | SP       | PL            |    77145.81
-        2301 | GONÇALVES DE ALMEIDA                | SP       | PL            |    76672.27
-        1929 | Rodrigo Rollemberg                  | DF       | PSB           |    76660.29
-        1329 | Luciano Bivar                       | PE       | MDB           |    75623.03
-         586 | LUIZ SOARES                         | AM       | UNIAO         |    75552.49
-        2482 | INGLÊS DE SOUSA                     | MA       | PL            |    75202.13
-        3257 | André Janones                       | MG       | REDE          |    74562.80
-        3669 | Zucco                               | RS       | PL            |    73467.77
-        3528 | Gustavo Gayer                       | GO       | PL            |    72668.35
-        2973 | FRÓIS DA MOTA                       | PA       | PL            |    72064.10
-        3809 | Soldado Noelio                      | CE       | UNIAO         |    71971.34
-        2238 | Zeca Dirceu                         | PR       | PT            |    71471.80
-        3299 | Marcel van Hattem                   | RS       | NOVO          |    71111.00
-        3333 | Capitão Alberto Neto                | AM       | PL            |    70581.36
-        3011 | JOÃO BOTELHO                        | SP       | CIDADANIA     |    69317.50
-        3344 | Helio Lopes                         | RJ       | PL            |    69116.01
-        3715 | Professora Luciene Cavalcante       | SP       | PSOL          |    68783.48
-        2395 | MENDONÇA MARTINS                    | SP       | PSD           |    67774.39
-        1677 | COSTA SENA                          | MG       | PT            |    66470.63
-        3541 | Fred Linhares                       | DF       | REPUBLICANOS  |    66416.09
-        2900 | Carlos Gomes                        | RS       | REPUBLICANOS  |    63272.01
-        3563 | Erika Hilton                        | SP       | PSOL          |    61630.03
-        3698 | Marcelo Queiroz                     | RJ       | PSDB          |    61120.67
-        2412 | Luis Tibé                           | MG       | AVANTE        |    60821.61
-        3254 | Doutor Luizinho                     | RJ       | PP            |    60620.91
-        2922 | Soraya Santos                       | RJ       | PL            |    59480.00
-        3795 | ALFREDO PINTO                       | AP       | PT            |    56975.52
-        3516 | Duarte Jr.                          | MA       | AVANTE        |    55724.20
-        3561 | Daniel Agrobom                      | GO       | PSD           |    55153.24
-        3603 | Luciano Vieira                      | RJ       | PSDB          |    54620.13
-        3798 | DINO BUENO                          | MG       | PRD           |    53104.09
-        3756 | Douglas Viegas                      | SP       | UNIAO         |    52928.50
-        3316 | Pedro Lupion                        | PR       | REPUBLICANOS  |    52814.61
-        2428 | JOÃO PERNETA                        | RS       | REPUBLICANOS  |    51413.84
-        3674 | Saullo Vianna                       | AM       | MDB           |    50755.91
-        3331 | Carlos Chiodini                     | SC       | MDB           |    50312.79
-        2384 | Aureo Ribeiro                       | RJ       | SOLIDARIEDADE |    50022.80
-        3241 | Caroline de Toni                    | SC       | PL            |    49832.95
-        3357 | Gilson Marques                      | SC       | NOVO          |    49824.84
-        3211 | Sargento Fahur                      | PR       | PL            |    49484.21
-        3396 | Eduardo Bismarck                    | CE       | PV            |    48325.83
-        3219 | Josimar Maranhãozinho               | MA       | PL            |    46896.97
-        3390 | Guilherme Derrite                   | SP       | PP            |    46642.13
-        3676 | Detinha                             | MA       | PL            |    46500.00
-        3329 | Júnior Ferrari                      | PA       | PSD           |    45262.54
-        3377 | Luiz Antonio Corrêa                 | RJ       | PP            |    42494.67
-        3737 | CARLOS OTONI                        | RJ       | PSD           |    41730.68
-         993 | BARÃO DA LAGUNA                     | SP       | REPUBLICANOS  |    41229.13
-        3369 | Euclydes Pettersen                  | MG       | REPUBLICANOS  |    40661.10
-        3399 | Junio Amaral                        | MG       | PL            |    38376.48
-        3800 | MONTEIRO DA SILVEIRA                | PI       | PP            |    37958.43
-        3371 | Isnaldo Bulhões Jr.                 | AL       | MDB           |    37855.71
-        3284 | Marreca Filho                       | MA       | PRD           |    37635.62
-        3337 | Daniela do Waguinho                 | RJ       | REPUBLICANOS  |    36175.98
-        3577 | Fernanda Pessoa                     | CE       | PSD           |    36044.24
-        3815 | Sérgio Turra                        | RS       | PP            |    34261.24
-        3801 | Lucas Abrahao                       | AP       | REDE          |    31000.00
-        3595 | Paulo Alexandre Barbosa             | SP       | PSD           |    30431.08
-        3614 | Pedro Aihara                        | MG       | PP            |    29514.85
-        1107 | MANUEL PEDRO                        | RJ       | PT            |    29250.48
-        3777 | Luiz Fernando Vampiro               | SC       | MDB           |    28771.40
-        3547 | Dayany Bittencourt                  | CE       | UNIAO         |    28583.02
-        3275 | Marcelo Nilo                        | BA       | REPUBLICANOS  |    27309.17
-        2377 | Arthur Lira                         | AL       | PP            |    26785.98
-        3268 | Hercílio Coelho Diniz               | MG       | MDB           |    26609.04
-        3044 | Leandre                             | PR       | PSD           |    25744.25
-        2004 | AZEVEDO SODRÉ                       | SP       | REPUBLICANOS  |    23496.67
-        1077 | JOÃO BRÍGIDO                        | PA       | MDB           |    22528.95
-        3430 | Gleisi Hoffmann                     | PR       | PT            |    20094.63
-        3591 | Dr. Daniel Soranz                   | RJ       | PSD           |    19415.14
-        2406 | FLÁVIO DA SILVEIRA                  | BA       | PT            |    17627.05
-        1011 | ESCRAGNOLLE TAUNAY                  | PA       | MDB           |    17135.58
-        3816 | Jorge Araújo                        | BA       | PP            |    16921.48
-        3195 | Adriana Ventura                     | SP       | NOVO          |    15325.62
-        3038 | Rosangela Gomes                     | RJ       | REPUBLICANOS  |    14189.31
-        3354 | Kim Kataguiri                       | SP       | MISSAO        |    13179.92
-        3550 | Beto Preto                          | PR       | PSD           |    12022.45
-        2373 | Alexandre Leite                     | SP       | UNIAO         |    11040.98
-        3061 | MARTINS FILHO                       | SP       | PL            |     7347.35
-        3813 | Ilacir Bicalho                      | MG       | REPUBLICANOS  |     7120.00
-        2961 | Fabio Garcia                        | MT       | UNIAO         |     6782.14
-        3814 | FLORIANO DE MORAES                  | MG       | AVANTE        |     5822.61
-        3652 | ÂNGELO NETO                         | SP       | REDE          |     5648.21
-        3200 | Pastor Sargento Isidório            | BA       | AVANTE        |     5328.93
-        1910 | FERREIRA DA LUZ                     | SP       | PT            |     5121.30
-        3341 | Silvio Costa Filho                  | PE       | REPUBLICANOS  |     4514.60
-        3738 | Renan Ferreirinha                   | RJ       | PSD           |     3437.77
-        3226 | Idilvan Alencar                     | CE       | PSB           |     1838.20
-        3818 | FRANCISCO ALENCASTRO                | PR       | PL            |      746.14
-        3640 | Yury do Paredão                     | CE       | MDB           |      448.53
-        3079 | PESSOA DE ARAÚJO                    | MA       | PP            |      281.87
+       73486 | Pompeo de Mattos                    | RS       | PDT           |  2151269.58
+      220538 | Albuquerque                         | RR       | REPUBLICANOS  |  2005136.28
+      160591 | Vinicius Gurgel                     | AP       | PL            |  2002973.04
+      224117 | Gabriel Mota                        | RR       | UNIAO         |  1991150.28
+      220590 | Coronel Ulysses                     | AC       | UNIAO         |  1984600.81
+      204473 | General Girão                       | RN       | PL            |  1982581.09
+      204426 | Carlos Veras                        | PE       | PT            |  1974100.25
+      220536 | Zé Haroldo Cathedral                | RR       | UNIAO         |  1959268.02
+      141459 | João Maia                           | RN       | PP            |  1958221.79
+      204360 | Silvia Cristina                     | RO       | PP            |  1953608.83
+      220537 | Helena Lima                         | RR       | PSD           |  1947635.51
+      191923 | Flávio Nogueira                     | PI       | PT            |  1938355.70
+       74090 | Átila Lins                          | AM       | PSD           |  1937947.57
+      204406 | Pedro Westphalen                    | RS       | PP            |  1925457.52
+      204388 | Bibo Nunes                          | RS       | PL            |  1922741.66
+      204423 | André Ferreira                      | PE       | PL            |  1911453.23
+      220539 | Defensor Stélio Dener               | RR       | UNIAO         |  1910414.03
+      220608 | Cristiane Lopes                     | RO       | PODE          |  1909531.25
+      220591 | Meire Serafim                       | AC       | UNIAO         |  1904160.60
+      204479 | Nicoletti                           | RR       | PL            |  1898259.50
+      178908 | Delegado Éder Mauro                 | PA       | PL            |  1898018.87
+      141408 | Cleber Verde                        | MA       | MDB           |  1889282.55
+      220551 | Franciane Bayer                     | RS       | REPUBLICANOS  |  1884207.45
+      220610 | Dr. Fernando Máximo                 | RO       | PL            |  1884112.44
+      188097 | Merlong Solano                      | PI       | PT            |  1880281.29
+       74374 | Geraldo Resende                     | MS       | UNIAO         |  1874824.04
+      204453 | Natália Bonavides                   | RN       | PT            |  1870545.17
+      178997 | Moses Rodrigues                     | CE       | UNIAO         |  1865084.27
+      204557 | Sidney Leite                        | AM       | PSD           |  1861396.48
+       74060 | Daniel Almeida                      | BA       | PCDOB         |  1860644.73
+      178835 | Afonso Motta                        | RS       | PDT           |  1857252.84
+      220574 | Cabo Gilberto Silva                 | PB       | PL            |  1855761.30
+       91228 | Waldemar Oliveira                   | PE       | AVANTE        |  1848401.62
+      220578 | Josenildo                           | AP       | PDT           |  1846435.37
+      220546 | Rodolfo Nogueira                    | MS       | PL            |  1844297.51
+      204378 | Coronel Chrisóstomo                 | RO       | PL            |  1843928.72
+      123756 | Antônia Lúcia                       | AC       | MDB           |  1841879.18
+      160538 | Bohn Gass                           | RS       | PT            |  1840713.08
+      220662 | Lucas Ramos                         | PE       | PSB           |  1838833.79
+      220688 | Dr. Francisco                       | PI       | PT            |  1837699.47
+      160674 | Hugo Motta                          | PB       | REPUBLICANOS  |  1837133.58
+      220714 | Adail Filho                         | AM       | MDB           |  1831560.49
+      178954 | Lucio Mosquini                      | RO       | PL            |  1829515.44
+       81055 | Márcio Jerry                        | MA       | PCDOB         |  1827178.32
+      220592 | Zezinho Barbary                     | AC       | PP            |  1826847.67
+      143632 | Domingos Neto                       | CE       | PSD           |  1826115.97
+      220708 | Gabriel Nunes                       | BA       | PSD           |  1822887.81
+      204379 | Acácio Favacho                      | AP       | MDB           |  1819277.41
+      141421 | Eduardo da Fonte                    | PE       | PP            |  1818830.93
+      220581 | Luciano Amaral                      | AL       | PSD           |  1818086.39
+      220677 | Keniston Braga                      | PA       | MDB           |  1817944.25
+      204358 | Beto Pereira                        | MS       | REPUBLICANOS  |  1817658.75
+      136811 | Afonso Hamm                         | RS       | PP            |  1817549.80
+      160665 | Augusto Coutinho                    | PE       | REPUBLICANOS  |  1815813.94
+      209189 | Joseildo Ramos                      | BA       | PT            |  1815445.21
+      220584 | Murilo Galdino                      | PB       | REPUBLICANOS  |  1814413.50
+      204431 | Marcos Aurélio Sampaio              | PI       | MDB           |  1809949.00
+      178964 | Heitor Schuch                       | RS       | PSD           |  1808886.07
+      204396 | Vermelho                            | PR       | PL            |  1808678.40
+      160673 | Giovani Cherini                     | RS       | PL            |  1808623.55
+      204498 | Olival Marques                      | PA       | PODE          |  1807990.66
+      160559 | Alceu Moreira                       | RS       | MDB           |  1807965.46
+       74398 | Maria do Rosário                    | RS       | PT            |  1805914.98
+       74041 | Luiz Couto                          | PB       | PT            |  1802835.34
+      180214 | Pastor Diniz                        | RR       | UNIAO         |  1799152.89
+      178829 | Capitão Augusto                     | SP       | PL            |  1798957.81
+      220558 | Zé Trovão                           | SC       | PL            |  1798222.59
+      220553 | Denise Pessôa                       | RS       | PT            |  1795805.71
+      220544 | Antonio Andrade                     | TO       | PSDB          |  1795762.96
+      220672 | Henderson Pinto                     | PA       | UNIAO         |  1795351.88
+      141411 | Dagoberto Nogueira                  | MS       | PP            |  1793289.59
+      220589 | Eduardo Velloso                     | AC       | SOLIDARIEDADE |  1793265.52
+      178866 | Luizianne Lins                      | CE       | REDE          |  1791170.67
+      220561 | Delegada Katarina                   | SE       | PSD           |  1788423.75
+      220658 | Luiz Gastão                         | CE       | PSD           |  1786557.96
+      178963 | Covatti Filho                       | RS       | PP            |  1785390.29
+      220685 | Paulo Litro                         | PR       | UNIAO         |  1783533.25
+      220666 | Coronel Meira                       | PE       | PL            |  1783065.29
+      178887 | Rubens Pereira Júnior               | MA       | PT            |  1777447.49
+      220540 | Duda Ramos                          | RR       | PODE          |  1776660.43
+      122974 | Pedro Lucas Fernandes               | MA       | UNIAO         |  1776190.77
+      141470 | José Guimarães                      | CE       | PT            |  1775715.39
+      104552 | Socorro Neri                        | AC       | PP            |  1773995.96
+       74044 | Wilson Santiago                     | PB       | REPUBLICANOS  |  1772865.04
+       74454 | Eunício Oliveira                    | CE       | MDB           |  1768508.46
+      220542 | Alexandre Guimarães                 | TO       | MDB           |  1766907.67
+      109429 | Benes Leocádio                      | RN       | UNIAO         |  1765589.22
+      178934 | Toninho Wandscheer                  | PR       | PP            |  1763551.58
+      141485 | Luiz Carlos Busato                  | RS       | UNIAO         |  1763164.22
+       62881 | Danilo Forte                        | CE       | PP            |  1761454.36
+      220671 | Dilvanda Faro                       | PA       | PT            |  1760834.02
+       73692 | Osmar Terra                         | RS       | PL            |  1760582.72
+      178929 | Diego Garcia                        | PR       | UNIAO         |  1760360.05
+       74043 | Wellington Roberto                  | PB       | PSD           |  1759866.05
+      220588 | Roberto Duarte                      | AC       | REPUBLICANOS  |  1758491.65
+      220548 | Camila Jara                         | MS       | PT            |  1756301.69
+      220597 | Thiago Flores                       | RO       | UNIAO         |  1753601.32
+      220555 | Daiana Santos                       | RS       | PCDOB         |  1752991.12
+      220573 | Dorinaldo Malafaia                  | AP       | PDT           |  1751777.53
+      220675 | Antônio Doido                       | PA       | MDB           |  1750315.54
+       74356 | Silas Câmara                        | AM       | REPUBLICANOS  |  1749035.27
+       69871 | Bacelar                             | BA       | PV            |  1748417.92
+      204416 | Sanderson                           | RS       | PL            |  1747915.40
+      204409 | Daniel Trzeciak                     | RS       | PSDB          |  1745127.96
+       74376 | Vander Loubet                       | MS       | PT            |  1744508.62
+      204534 | Tabata Amaral                       | SP       | PSB           |  1741552.28
+      178927 | Aliel Machado                       | PR       | PV            |  1740064.45
+      220669 | Lula da Fonte                       | PE       | PP            |  1737328.53
+      160553 | Antonio Brito                       | BA       | PSD           |  1736643.16
+      153423 | Renilce Nicodemos                   | PA       | MDB           |  1733789.66
+      220697 | Jadyel Alencar                      | PI       | REPUBLICANOS  |  1732479.55
+      160635 | Ruy Carneiro                        | PB       | PODE          |  1732121.96
+      204481 | Dr. Jaziel                          | CE       | PL            |  1730755.23
+      220703 | Neto Carletto                       | BA       | AVANTE        |  1729854.10
+      220663 | Eriberto Medeiros                   | PE       | PSB           |  1729585.87
+      204472 | José Medeiros                       | MT       | PL            |  1729217.52
+      220633 | Ricardo Salles                      | SP       | NOVO          |  1728099.35
+      160600 | Arthur Oliveira Maia                | BA       | UNIAO         |  1727029.38
+      220557 | Daniela Reinehr                     | SC       | PL            |  1726966.61
+      139285 | Lídice da Mata                      | BA       | PSB           |  1726830.22
+      160517 | Paulo Folletto                      | ES       | PSB           |  1724254.17
+       88256 | Clodoaldo Magalhães                 | PE       | PV            |  1724153.60
+      220609 | Maurício Carvalho                   | RO       | UNIAO         |  1723657.71
+       74159 | Odair Cunha                         | MG       | PT            |  1718905.72
+       73768 | Dilceu Sperafico                    | PR       | PP            |  1718424.29
+      178993 | Carlos Henrique Gaguim              | TO       | UNIAO         |  1717531.73
+      162067 | Kiko Celeguim                       | SP       | PT            |  1716291.24
+      204495 | Airton Faleiro                      | PA       | PT            |  1716152.50
+      160569 | Waldenor Pereira                    | BA       | PT            |  1713365.87
+      204367 | Daniel Freitas                      | SC       | PL            |  1713332.77
+      220684 | Tião Medeiros                       | PR       | PP            |  1709086.42
+      220640 | Juliana Cardoso                     | SP       | PT            |  1708388.39
+      133439 | André Figueiredo                    | CE       | PDT           |  1708322.86
+      220664 | Guilherme Uchoa                     | PE       | PSD           |  1708034.17
+      178860 | Paulo Azi                           | BA       | UNIAO         |  1707887.84
+      220556 | Ana Paula Lima                      | SC       | PT            |  1707297.71
+       74317 | Júlio Cesar                         | PI       | PSD           |  1704451.05
+      204567 | Raimundo Costa                      | BA       | PSD           |  1700253.26
+       74383 | Giacobo                             | PR       | PSD           |  1699879.60
+      220693 | Roberta Roma                        | BA       | PL            |  1698544.27
+      123086 | Átila Lira                          | PI       | PP            |  1697412.97
+      141398 | Carlos Zarattini                    | SP       | PT            |  1697258.12
+      204504 | Cezinha de Madureira                | SP       | PL            |  1696266.77
+      220583 | Delegado Fabio Costa                | AL       | PP            |  1695731.70
+      178933 | Sergio Souza                        | PR       | MDB           |  1694991.18
+       74467 | Damião Feliciano                    | PB       | UNIAO         |  1694163.07
+      204488 | Célio Studart                       | CE       | PSD           |  1690997.58
+      160548 | Jonas Donizette                     | SP       | PSB           |  1690945.45
+      220695 | Rogéria Santos                      | BA       | REPUBLICANOS  |  1690550.65
+      141464 | José Airton Félix Cirilo            | CE       | PT            |  1689965.57
+      178843 | Marx Beltrão                        | AL       | UNIAO         |  1688680.07
+      162332 | Luiz Nishimori                      | PR       | PSD           |  1687977.24
+      220701 | Delegado Matheus Laiola             | PR       | UNIAO         |  1687736.43
+       92699 | Fernando Monteiro                   | PE       | PSD           |  1685954.54
+       74428 | Mendonça Filho                      | PE       | PL            |  1685375.55
+      160610 | Valmir Assunção                     | BA       | PT            |  1683874.27
+       74057 | Alice Portugal                      | BA       | PCDOB         |  1683812.61
+       92102 | Leur Lomanto Júnior                 | BA       | UNIAO         |  1683399.75
+      150418 | Márcio Marinho                      | BA       | REPUBLICANOS  |  1682177.46
+      204351 | Dr. Luiz Ovando                     | MS       | PP            |  1681488.20
+       92776 | Stefano Aguiar                      | MG       | PSD           |  1679211.24
+      178857 | Jorge Solla                         | BA       | PT            |  1678554.21
+      210989 | Bruno Farias                        | MG       | REPUBLICANOS  |  1677126.84
+      220690 | Capitão Alden                       | BA       | PL            |  1677123.11
+      204486 | Mauro Benevides Filho               | CE       | UNIAO         |  1676588.03
+      220668 | Maria Arraes                        | PE       | PSB           |  1674304.78
+      220543 | Ricardo Ayres                       | TO       | REPUBLICANOS  |  1674085.34
+      220656 | Fernanda Pessoa                     | CE       | PSD           |  1673982.65
+      220699 | Castro Neto                         | PI       | MDB           |  1672868.64
+      220559 | Julia Zanatta                       | SC       | PL            |  1672712.77
+      160758 | Domingos Sávio                      | MG       | PL            |  1672217.54
+      160642 | Pastor Eurico                       | PE       | PSDB          |  1669252.29
+      220624 | Robinson Faria                      | RN       | PP            |  1667734.70
+      220612 | Bebeto                              | RJ       | PP            |  1667609.95
+      204427 | Fernando Rodolfo                    | PE       | PRD           |  1666091.38
+      178871 | Evair Vieira de Melo                | ES       | REPUBLICANOS  |  1662974.25
+      220696 | Ivoneide Caetano                    | BA       | PT            |  1662697.00
+      220586 | Rafael Brito                        | AL       | MDB           |  1662620.94
+      220545 | Filipe Martins                      | TO       | PL            |  1662165.78
+      160601 | Pr. Marco Feliciano                 | SP       | PL            |  1662162.53
+      220599 | Marcelo Crivella                    | RJ       | REPUBLICANOS  |  1657671.33
+      204512 | Delegado Marcelo Freitas            | MG       | UNIAO         |  1655748.25
+      220547 | Marcos Pollon                       | MS       | PL            |  1655003.30
+      204408 | Gustinho Ribeiro                    | SE       | PP            |  1654030.20
+       74156 | Leonardo Monteiro                   | MG       | PT            |  1653850.78
+       80815 | Leo Prates                          | BA       | REPUBLICANOS  |  1649588.15
+      220529 | Gilson Daniel                       | ES       | PODE          |  1649272.16
+      204518 | Dr. Frederico                       | MG       | PL            |  1649199.60
+       66385 | Julio Arcoverde                     | PI       | PP            |  1648449.55
+      204445 | Fernando Mineiro                    | RN       | PT            |  1647722.94
+      204457 | Juninho do Pneu                     | RJ       | PSDB          |  1646783.90
+      220607 | Max Lemos                           | RJ       | UNIAO         |  1646068.16
+       74371 | Rubens Otoni                        | GO       | PT            |  1644633.10
+      160527 | Aguinaldo Ribeiro                   | PB       | PP            |  1644480.08
+      220626 | Rafael Simoes                       | MG       | UNIAO         |  1644233.85
+      220628 | Mauricio do Vôlei                   | MG       | PL            |  1643694.18
+      220692 | Dal Barreto                         | BA       | UNIAO         |  1642095.54
+      178992 | Vitor Lippi                         | SP       | PSD           |  1641385.86
+      220530 | Messias Donato                      | ES       | UNIAO         |  1641249.32
+      204368 | Fabio Schiochet                     | SC       | UNIAO         |  1639458.66
+      178895 | Misael Varella                      | MG       | PSD           |  1639444.41
+      220582 | Daniel Barbosa                      | AL       | PP            |  1639066.07
+      178986 | Nilto Tatto                         | SP       | PT            |  1638966.48
+      204501 | Alencar Santana                     | SP       | PT            |  1637489.88
+      220603 | Dani Cunha                          | RJ       | PL            |  1637057.33
+      204480 | Rogério Correia                     | MG       | PT            |  1635115.66
+      221328 | Adilson Barroso                     | SP       | PL            |  1632988.41
+      160556 | Padre João                          | MG       | PT            |  1632054.12
+      204355 | Da Vitoria                          | ES       | PP            |  1629568.63
+      220620 | Rosângela Reis                      | MG       | PL            |  1628916.17
+      220648 | Marangoni                           | SP       | PODE          |  1628182.48
+      220651 | Simone Marquetto                    | SP       | PP            |  1627969.56
+      220631 | Samuel Viana                        | MG       | UNIAO         |  1627474.09
+      215043 | Josivaldo JP                        | MA       | UNIAO         |  1627047.86
+      178970 | João Daniel                         | SE       | PT            |  1626918.98
+      204356 | Amaro Neto                          | ES       | PP            |  1624761.11
+      220594 | Coronel Assis                       | MT       | PL            |  1624487.76
+       74550 | João Leão                           | BA       | PP            |  1623888.06
+      204398 | Felipe Francischini                 | PR       | PODE          |  1622388.00
+      204410 | Luisa Canziani                      | PR       | UNIAO         |  1621643.61
+      220667 | Pedro Campos                        | PE       | PSB           |  1621479.34
+      220670 | Iza Arruda                          | PE       | MDB           |  1620891.01
+      121948 | Adriano do Baldy                    | GO       | PP            |  1618308.93
+      220528 | Dr. Victor Linhalis                 | ES       | PSB           |  1617640.65
+      220615 | Pastor Henrique Vieira              | RJ       | PSOL          |  1616410.54
+      205476 | Charles Fernandes                   | BA       | PSD           |  1611112.97
+      141456 | Jilmar Tatto                        | SP       | PT            |  1610509.66
+      178858 | Mário Negromonte Jr.                | BA       | PSB           |  1609664.44
+       74270 | Gilberto Nascimento                 | SP       | PODE          |  1607847.89
+       66828 | Fausto Pinato                       | SP       | UNIAO         |  1607752.69
+      220606 | Reimont                             | RJ       | PT            |  1606652.87
+      220554 | Alexandre Lindenmeyer               | RS       | PT            |  1606529.87
+      179000 | Marcelo Álvaro Antônio              | MG       | PL            |  1605173.89
+      220704 | Carol Dartora                       | PR       | PT            |  1604385.83
+      160666 | Félix Mendonça Júnior               | BA       | PDT           |  1602231.94
+      204492 | Paulo Guedes                        | MG       | PT            |  1601841.93
+       74084 | Raimundo Santos                     | PA       | PSD           |  1601638.99
+      220572 | Marussa Boldrin                     | GO       | REPUBLICANOS  |  1599869.58
+      179001 | Márcio Biolchi                      | RS       | MDB           |  1598615.19
+       74273 | Jefferson Campos                    | SP       | PL            |  1598311.45
+       74171 | Chico Alencar                       | RJ       | PSOL          |  1597770.78
+      204517 | Zé Vitor                            | MG       | PL            |  1595566.09
+      204411 | Filipe Barros                       | PR       | PL            |  1595211.24
+      160632 | Zé Silva                            | MG       | UNIAO         |  1594926.83
+      178931 | Luciano Ducci                       | PR       | PSB           |  1593985.33
+      204506 | Marcos Pereira                      | SP       | REPUBLICANOS  |  1593389.86
+      220632 | Ana Pimentel                        | MG       | PT            |  1592799.36
+      178987 | Orlando Silva                       | SP       | PCDOB         |  1592645.19
+      220694 | Ricardo Maia                        | BA       | MDB           |  1592612.80
+      220595 | Coronel Fernanda                    | MT       | PL            |  1587916.48
+      204540 | Maria Rosas                         | SP       | REPUBLICANOS  |  1586044.28
+      220560 | Thiago de Joaldo                    | SE       | REPUBLICANOS  |  1585276.13
+      220682 | Tadeu Veneri                        | PR       | PT            |  1582650.02
+      204508 | Igor Timo                           | MG       | UNIAO         |  1582540.79
+      220625 | Delegada Ione                       | MG       | PL            |  1582507.55
+      220550 | Mauricio Marcon                     | RS       | PL            |  1580945.65
+      107970 | Ana Paula Leão                      | MG       | PP            |  1579335.04
+       74585 | Lincoln Portela                     | MG       | PL            |  1575519.29
+      204455 | Luiz Lima                           | RJ       | NOVO          |  1575272.65
+      220617 | Murillo Gouvea                      | RJ       | PSDB          |  1575014.98
+      160629 | Romero Rodrigues                    | PB       | PODE          |  1574255.56
+      220649 | Delegado da Cunha                   | SP       | UNIAO         |  1572744.59
+      160592 | Zeca Dirceu                         | PR       | PT            |  1572231.68
+       74537 | Claudio Cajado                      | BA       | PP            |  1570599.81
+      221148 | Alfredinho                          | SP       | PT            |  1570484.98
+       74253 | Julio Lopes                         | RJ       | PP            |  1570084.59
+      206018 | Célia Xakriabá                      | MG       | PSOL          |  1568308.02
+      160588 | Diego Andrade                       | MG       | PSD           |  1562881.33
+      220652 | Delegado Palumbo                    | SP       | PODE          |  1562360.84
+      220659 | Dayany Bittencourt                  | CE       | UNIAO         |  1562341.51
+      204390 | Professor Alcides                   | GO       | PSDB          |  1561745.45
+       74160 | Patrus Ananias                      | MG       | PT            |  1560951.29
+       74262 | Carlos Sampaio                      | SP       | PSD           |  1554536.83
+      166402 | Magda Mofatto                       | GO       | PL            |  1553896.66
+      220647 | Mauricio Neves                      | SP       | PP            |  1553625.51
+      204511 | David Soares                        | SP       | PODE          |  1553557.77
+      220700 | Florentino Neto                     | PI       | PT            |  1553369.87
+       74856 | Laura Carneiro                      | RJ       | PSD           |  1552993.91
+      160535 | Marcon                              | RS       | PT            |  1550474.51
+      205865 | Reinhold Stephanes                  | PR       | PL            |  1549519.85
+      224333 | Welter                              | PR       | PT            |  1548672.97
+      178947 | Sóstenes Cavalcante                 | RJ       | PL            |  1547144.24
+      204395 | Pedro Lupion                        | PR       | REPUBLICANOS  |  1543305.43
+      204550 | Júnior Mano                         | CE       | PSB           |  1542822.70
+      178989 | Renata Abreu                        | SP       | PODE          |  1540563.43
+      141531 | Rodrigo de Castro                   | MG       | UNIAO         |  1538951.00
+      178910 | Joaquim Passarinho                  | PA       | PL            |  1537105.11
+      198783 | Emanuel Pinheiro Neto               | MT       | PSD           |  1534985.58
+      204574 | Junior Lourenço                     | MA       | MDB           |  1534627.78
+      220570 | Dr. Ismael Alexandrino              | GO       | PSD           |  1533459.02
+      204491 | Gilberto Abramo                     | MG       | REPUBLICANOS  |  1532741.80
+      204566 | Marreca Filho                       | MA       | PRD           |  1532300.24
+      205550 | Jorge Braz                          | RJ       | REPUBLICANOS  |  1531288.55
+      222429 | Luis Carlos Gomes                   | RJ       | REPUBLICANOS  |  1527930.69
+      204407 | Fernanda Melchionna                 | RS       | PSOL          |  1527743.91
+      160518 | Weliton Prado                       | MG       | PSD           |  1525737.05
+      178881 | Aluisio Mendes                      | MA       | REPUBLICANOS  |  1525394.82
+       74574 | Paulo Magalhães                     | BA       | PSD           |  1523466.04
+      204391 | José Nelto                          | GO       | UNIAO         |  1521555.09
+       74141 | Josias Gomes                        | BA       | PT            |  1520997.78
+      220683 | Beto Richa                          | PR       | PSDB          |  1517785.57
+      171617 | Paulão                              | AL       | PT            |  1514243.77
+      160604 | Pedro Uczai                         | SC       | PT            |  1513755.04
+       98057 | Lafayette de Andrada                | MG       | PL            |  1513563.38
+      220674 | Dra. Alessandra Haber               | PA       | PODE          |  1512152.50
+      220527 | Jack Rocha                          | ES       | PT            |  1512112.54
+      204364 | Eli Borges                          | TO       | REPUBLICANOS  |  1509800.08
+      204525 | Rosana Valle                        | SP       | PL            |  1508849.55
+      141391 | Arnaldo Jardim                      | SP       | CIDADANIA     |  1505997.54
+      220655 | Mario Frias                         | SP       | PL            |  1504903.82
+      220611 | General Pazuello                    | RJ       | PL            |  1504520.44
+      161550 | Emidinho Madeira                    | MG       | PL            |  1504261.22
+      204563 | Josimar Maranhãozinho               | MA       | PL            |  1503115.53
+       73433 | Arlindo Chinaglia                   | SP       | PT            |  1502173.57
+      204560 | Adolfo Viana                        | BA       | PSDB          |  1501887.64
+      160599 | Dimas Fabiano                       | MG       | PP            |  1497430.77
+      220622 | Nely Aquino                         | MG       | PODE          |  1494211.04
+      220641 | Rodrigo Gambale                     | SP       | PODE          |  1492076.67
+      220654 | Delegado Paulo Bilynskyj            | SP       | PL            |  1490770.50
+      220706 | Padovani                            | PR       | PP            |  1489246.38
+      220702 | Geraldo Mendes                      | PR       | UNIAO         |  1488201.25
+      220580 | Professora Goreth                   | AP       | PDT           |  1486660.32
+      165470 | Rodrigo Valadares                   | SE       | PL            |  1485962.83
+      220635 | Bruno Ganem                         | SP       | PODE          |  1485863.77
+      122158 | Pedro Paulo                         | RJ       | PSD           |  1485305.22
+      220600 | Lebrão                              | RO       | UNIAO         |  1484839.30
+      204412 | Dr. Zacharias Calil                 | GO       | MDB           |  1484023.74
+      204570 | Pastor Gil                          | MA       | PL            |  1482042.89
+      204441 | Otoni de Paula                      | RJ       | PSD           |  1481785.29
+      204559 | Zé Neto                             | BA       | PT            |  1481715.37
+       98148 | Cobalchini                          | SC       | MDB           |  1478692.14
+      220707 | Amanda Gentil                       | MA       | PP            |  1478520.97
+      220564 | Yandra Moura                        | SE       | UNIAO         |  1477953.17
+      220691 | Diego Coronel                       | BA       | REPUBLICANOS  |  1476720.91
+      160558 | Paulo Freire Costa                  | SP       | PL            |  1476586.03
+      220575 | Sonize Barbosa                      | AP       | PL            |  1476152.56
+      141487 | Luiz Fernando Faria                 | MG       | UNIAO         |  1473569.37
+      220579 | Silvia Waiãpi                       | AP       | PL            |  1472791.83
+      157130 | Túlio Gadêlha                       | PE       | PSD           |  1472126.83
+      220618 | Sargento Portugal                   | RJ       | PODE          |  1471127.74
+       74646 | Aécio Neves                         | MG       | PSDB          |  1468588.17
+      171786 | Miguel Ângelo                       | MG       | PT            |  1465285.95
+      204460 | Carlos Jordy                        | RJ       | PL            |  1464169.54
+      178854 | Elmar Nascimento                    | BA       | UNIAO         |  1463289.14
+       98615 | Ismael                              | SC       | PL            |  1462449.97
+      141431 | Fernando Coelho Filho               | PE       | UNIAO         |  1458132.71
+      220566 | Lêda Borges                         | GO       | REPUBLICANOS  |  1457900.10
+      220689 | Detinha                             | MA       | PL            |  1456289.93
+       72442 | Felipe Carreras                     | PE       | PSB           |  1455863.95
+      220613 | Roberto Monteiro Pai                | RJ       | PL            |  1455090.92
+       74554 | José Rocha                          | BA       | UNIAO         |  1452190.29
+       73579 | Alberto Fraga                       | DF       | PL            |  1450680.07
+      141516 | Paulo Abi-Ackel                     | MG       | PSDB          |  1443985.60
+      220687 | Márcio Honaiser                     | MA       | SOLIDARIEDADE |  1443124.31
+      220567 | Jeferson Rodrigues                  | GO       | PSDB          |  1441683.09
+       74158 | Mário Heringer                      | MG       | PDT           |  1441306.68
+      223128 | Rodrigo Estacho                     | PR       | PSD           |  1439474.62
+      204535 | Sâmia Bomfim                        | SP       | PSOL          |  1437230.61
+      160575 | Erika Kokay                         | DF       | PT            |  1435168.77
+      220598 | Tarcísio Motta                      | RJ       | PSOL          |  1434528.67
+      178876 | Célio Silveira                      | GO       | MDB           |  1433869.10
+      204394 | Gervásio Maia                       | PB       | PCDOB         |  1433556.40
+      141555 | Vinicius Carvalho                   | SP       | PL            |  1433379.46
+      220563 | Icaro de Valmir                     | SE       | REPUBLICANOS  |  1430554.86
+       73701 | Benedita da Silva                   | RJ       | PT            |  1428329.71
+      220585 | Mersinho Lucena                     | PB       | PSD           |  1421168.75
+      220577 | Augusto Puppio                      | AP       | MDB           |  1419682.95
+      204456 | Gutemberg Reis                      | RJ       | MDB           |  1419366.90
+       74283 | Vicentinho                          | SP       | PT            |  1417420.09
+      204526 | Luiz Philippe de Orleans e Bragança | SP       | PL            |  1414726.47
+      220576 | Alfredo Gaspar                      | AL       | PL            |  1414686.44
+       74161 | Reginaldo Lopes                     | MG       | PT            |  1414523.39
+      220629 | Dandara                             | MG       | PT            |  1412281.42
+      178943 | Marcos Soares                       | RJ       | PSDB          |  1411698.46
+      160598 | Flávia Morais                       | GO       | MDB           |  1410337.05
+      160512 | Aureo Ribeiro                       | RJ       | SOLIDARIEDADE |  1406587.64
+      220602 | Dimas Gadelha                       | RJ       | PT            |  1406557.26
+      141458 | João Carlos Bacelar                 | BA       | PL            |  1406370.20
+      220621 | Sargento Gonçalves                  | RN       | PL            |  1404926.88
+      204464 | Talíria Petrone                     | RJ       | PSOL          |  1404165.06
+      204524 | Pinheirinho                         | MG       | PP            |  1398799.84
+      220661 | Matheus Noronha                     | CE       | PL            |  1397822.17
+      220676 | Andreia Siqueira                    | PA       | PSB           |  1397106.11
+      160640 | Eros Biondini                       | MG       | PL            |  1393216.48
+      220623 | Duda Salabert                       | MG       | PSOL          |  1391715.16
+      220605 | Bandeira de Mello                   | RJ       | PV            |  1391216.15
+       74784 | Luiza Erundina                      | SP       | PSOL          |  1390630.25
+      204572 | Capitão Alberto Neto                | AM       | PL            |  1388824.69
+      214694 | Jorge Goetten                       | SC       | REPUBLICANOS  |  1387233.08
+      204573 | Otto Alencar Filho                  | BA       | PSD           |  1386581.98
+       74848 | Jandira Feghali                     | RJ       | PCDOB         |  1385360.81
+       73604 | Rui Falcão                          | SP       | PT            |  1385044.02
+      220565 | Delegada Adriana Accorsi            | GO       | PT            |  1380520.15
+      204515 | André Janones                       | MG       | REDE          |  1378289.51
+       73801 | Renildo Calheiros                   | PE       | PCDOB         |  1376153.20
+      204404 | Lucas Redecker                      | RS       | PSD           |  1375114.98
+       73531 | Ivan Valente                        | SP       | PSOL          |  1369659.12
+      141480 | Lázaro Botelho                      | TO       | PP            |  1369042.18
+      220681 | Fábio Macedo                        | MA       | PODE          |  1364053.73
+      204419 | Glaustin da Fokus                   | GO       | PODE          |  1363006.48
+      204494 | Fred Costa                          | MG       | PRD           |  1361910.44
+      220534 | Fred Linhares                       | DF       | REPUBLICANOS  |  1360905.37
+      220604 | Marcos Tavares                      | RJ       | PDT           |  1358060.86
+      218086 | Ely Santos                          | SP       | REPUBLICANOS  |  1357640.81
+      204571 | Alex Santana                        | BA       | REPUBLICANOS  |  1353670.21
+      220532 | Rafael Prudente                     | DF       | MDB           |  1352339.59
+      160161 | Marcelo Queiroz                     | RJ       | PSDB          |  1351962.16
+      220616 | Luciano Vieira                      | RJ       | PSDB          |  1349393.14
+      220630 | Pedro Aihara                        | MG       | PP            |  1347926.90
+      178896 | Newton Cardoso Jr                   | MG       | MDB           |  1345245.68
+      204374 | Bia Kicis                           | DF       | PL            |  1338789.67
+      160976 | Tiririca                            | SP       | PSD           |  1334793.79
+      220660 | Yury do Paredão                     | CE       | MDB           |  1327954.02
+      220665 | Clarissa Tércio                     | PE       | PP            |  1325091.58
+      220686 | Duarte Jr.                          | MA       | AVANTE        |  1324370.05
+      220645 | Erika Hilton                        | SP       | PSOL          |  1317969.42
+      178966 | Geovania de Sá                      | SC       | REPUBLICANOS  |  1315794.37
+      220526 | Gilvan da Federal                   | ES       | PL            |  1310535.46
+      198197 | Greyce Elias                        | MG       | PL            |  1309472.94
+       73778 | Luiz Carlos Hauly                   | PR       | PODE          |  1304919.10
+      226708 | Allan Garcês                        | MA       | PP            |  1302604.62
+      178937 | Altineu Côrtes                      | RJ       | PL            |  1301839.06
+      204422 | Ossesio Silva                       | PE       | REPUBLICANOS  |  1298114.06
+      220638 | Antonio Carlos Rodrigues            | SP       | PODE          |  1280454.39
+      204539 | Hercílio Coelho Diniz               | MG       | MDB           |  1266443.36
+      178873 | Helder Salomão                      | ES       | PT            |  1263851.90
+      204474 | Juarez Costa                        | MT       | REPUBLICANOS  |  1263533.62
+      220569 | Silvye Alves                        | GO       | UNIAO         |  1262240.56
+      220712 | Fausto Jr.                          | AM       | UNIAO         |  1253927.59
+      226837 | Saulo Pedroso                       | SP       | PSD           |  1244120.66
+      204507 | Carla Zambelli                      | SP       | PL            |  1228875.16
+      152605 | Glauber Braga                       | RJ       | PSOL          |  1222151.78
+      204462 | Chris Tonietto                      | RJ       | PL            |  1221668.17
+       74478 | Luciano Bivar                       | PE       | MDB           |  1220019.59
+      220644 | Rosangela Moro                      | SP       | PL            |  1219492.40
+      220639 | Guilherme Boulos                    | SP       | PSOL          |  1211737.28
+      220713 | Saullo Vianna                       | AM       | MDB           |  1210242.73
+      161440 | Pezenti                             | SC       | MDB           |  1205051.46
+      204485 | Luiz Carlos Motta                   | SP       | PL            |  1184973.85
+      220533 | Prof. Reginaldo Veras               | DF       | PV            |  1183768.42
+      160510 | Luis Tibé                           | MG       | AVANTE        |  1183329.15
+      220552 | Zucco                               | RS       | PL            |  1176965.01
+      221338 | Professora Luciene Cavalcante       | SP       | PSOL          |  1174159.14
+      138286 | Luciano Alves                       | PR       | PSD           |  1172127.70
+       74858 | Lindbergh Farias                    | RJ       | PT            |  1167353.45
+      209787 | Nikolas Ferreira                    | MG       | PL            |  1156082.31
+      178975 | Baleia Rossi                        | SP       | MDB           |  1144655.65
+      178972 | Alex Manente                        | SP       | CIDADANIA     |  1142105.54
+      226179 | Gisela Simona                       | MT       | UNIAO         |  1130117.75
+      178985 | Miguel Lombardi                     | SP       | PL            |  1122085.57
+      107283 | Gleisi Hoffmann                     | PR       | PT            |  1121657.85
+      220646 | Felipe Becari                       | SP       | PODE          |  1120482.59
+      163321 | Ronaldo Nogueira                    | RS       | REPUBLICANOS  |  1119752.52
+      221378 | Reginete Bispo                      | RS       | PT            |  1115453.49
+      204444 | Helio Lopes                         | RJ       | PL            |  1113160.50
+       74299 | Leônidas Cristino                   | CE       | PDT           |  1111907.57
+      204436 | Isnaldo Bulhões Jr.                 | AL       | MDB           |  1111495.62
+      220587 | Gerlen Diniz                        | AC       | PP            |  1107082.05
+      204549 | AJ Albuquerque                      | CE       | PP            |  1106638.63
+      204497 | Júnior Ferrari                      | PA       | PSD           |  1106604.75
+      220619 | Delegado Ramagem                    | RJ       | PL            |  1101562.70
+      220568 | Gustavo Gayer                       | GO       | PL            |  1099690.92
+      220531 | Gilvan Maximo                       | DF       | REPUBLICANOS  |  1083952.43
+      219585 | Marco Brasil                        | PR       | PP            |  1057690.06
+      221339 | Dr. Benjamim                        | MA       | UNIAO         |  1057264.32
+      204482 | Euclydes Pettersen                  | MG       | REPUBLICANOS  |  1056043.26
+      204372 | Julio Cesar Ribeiro                 | DF       | REPUBLICANOS  |  1055125.76
+      137070 | Vicentinho Júnior                   | TO       | PSDB          |  1026486.00
+       74079 | José Priante                        | PA       | MDB           |  1021783.34
+      204520 | Junio Amaral                        | MG       | PL            |  1014714.63
+      220627 | Paulinho Freire                     | RN       | UNIAO         |  1001582.51
+      204533 | Idilvan Alencar                     | CE       | PSB           |   999084.48
+      204449 | Nelson Barbudo                      | MT       | PODE          |   993612.89
+      178946 | Soraya Santos                       | RJ       | PL            |   992605.89
+      220653 | Fábio Teruel                        | SP       | MDB           |   990623.41
+       74095 | Pauderney Avelino                   | AM       | UNIAO         |   987902.04
+       74075 | Elcione Barbalho                    | PA       | MDB           |   978654.77
+      220657 | André Fernandes                     | CE       | PL            |   974701.20
+      141450 | Hugo Leal                           | RJ       | PSD           |   961849.40
+      220549 | Any Ortiz                           | RS       | PP            |   960805.90
+      204450 | Doutor Luizinho                     | RJ       | PP            |   945309.47
+      220601 | Washington Quaquá                   | RJ       | PT            |   937018.98
+      133810 | Marcelo Moraes                      | RS       | PL            |   935387.79
+      204541 | Eduardo Bismarck                    | CE       | PV            |   919252.96
+      204362 | Ricardo Guidi                       | SC       | PL            |   919198.21
+      204489 | Robério Monteiro                    | CE       | PSB           |   896319.71
+      220650 | Paulo Alexandre Barbosa             | SP       | PSD           |   882331.44
+      220593 | Abilio Brunini                      | MT       | PL            |   871819.53
+      156190 | Marcel van Hattem                   | RS       | NOVO          |   863613.15
+      204459 | Daniela do Waguinho                 | RJ       | REPUBLICANOS  |   853316.15
+       92346 | Eduardo Bolsonaro                   | SP       | PL            |   839606.64
+      171623 | Fabio Reis                          | SE       | PSD           |   838501.79
+      220642 | Delegado Bruno Lima                 | SP       | PODE          |   835847.42
+       73806 | Roseana Sarney                      | MA       | MDB           |   833031.00
+      213274 | Ricardo Silva                       | SP       | PSD           |   819263.29
+      204361 | Carlos Chiodini                     | SC       | MDB           |   816675.03
+      230768 | Zé Adriano                          | AC       | PP            |   816441.28
+       73441 | Celso Russomanno                    | SP       | REPUBLICANOS  |   814541.30
+      225730 | Enfermeira Ana Paula                | CE       | PODE          |   811752.19
+      178909 | Hélio Leite                         | PA       | UNIAO         |   806307.68
+      141518 | Paulinho da Força                   | SP       | SOLIDARIEDADE |   802883.51
+      227433 | Douglas Viegas                      | SP       | UNIAO         |   801898.27
+      222142 | Coronel Telhada                     | SP       | PP            |   765528.23
+      220673 | Delegado Caveira                    | PA       | PL            |   758835.90
+      204387 | Sargento Fahur                      | PR       | PL            |   750713.72
+       74696 | Alberto Mourão                      | SP       | MDB           |   737490.97
+      178884 | Hildo Rocha                         | MA       | MDB           |   733544.33
+      213762 | Carla Dickson                       | RN       | PL            |   730384.14
+      103758 | Luciano Azevedo                     | RS       | PSD           |   722353.16
+      230767 | Rodrigo da Zaeli                    | MT       | PL            |   713324.08
+      204369 | Caroline de Toni                    | SC       | PL            |   692945.33
+      220596 | Amália Barros                       | MT       | PL            |   689194.99
+      227660 | Nitinho                             | SE       | PSD           |   685527.08
+      230957 | João Cury                           | SP       | MDB           |   679957.55
+      160552 | Danrlei de Deus Hinterholz          | RS       | PSD           |   679022.71
+       74400 | Paulo Pimenta                       | RS       | PT            |   661798.94
+      160545 | Alexandre Leite                     | SP       | UNIAO         |   656235.25
+      221329 | Ricardo Abrão                       | RJ       | PSDB          |   653627.78
+      116379 | Darci de Matos                      | SC       | PSD           |   651328.84
+      204553 | Pastor Sargento Isidório            | BA       | AVANTE        |   631332.79
+      175765 | Ribamar Silva                       | SP       | PODE          |   609754.94
+      220571 | Daniel Agrobom                      | GO       | PSD           |   569399.56
+      229432 | Luiz Fernando Vampiro               | SC       | MDB           |   564787.21
+      204536 | Kim Kataguiri                       | SP       | MISSAO        |   546688.43
+      143942 | Caio Vianna                         | RJ       | PSD           |   544139.93
+      160541 | Arthur Lira                         | AL       | PP            |   540227.34
+      204448 | Luiz Antonio Corrêa                 | RJ       | PP            |   532010.74
+      230762 | Pastor Claudio Mariano              | PA       | UNIAO         |   511089.19
+      204365 | Gilson Marques                      | SC       | NOVO          |   509782.96
+      231911 | Lenir de Assis                      | PR       | PT            |   484733.80
+       73788 | Ricardo Barros                      | PR       | PP            |   476764.36
+      230765 | Enfermeira Rejane                   | RJ       | PCDOB         |   463541.04
+      220634 | Marcelo Lima                        | SP       | PSB           |   452932.25
+      178831 | André Abdon                         | AP       | PP            |   440225.49
+      204476 | Chiquinho Brazão                    | RJ       | S.PART.       |   399039.18
+      233594 | Rafael Fera                         | RO       | PODE          |   389248.21
+      160561 | Missionário José Olimpio            | SP       | PL            |   383394.36
+      220614 | Dr. Daniel Soranz                   | RJ       | PSD           |   378584.59
+      143084 | Tiago Dimas                         | TO       | PODE          |   374825.83
+      160641 | Professora Marcivania               | AP       | PCDOB         |   373351.06
+      178886 | Juscelino Filho                     | MA       | PSDB          |   373349.83
+      204425 | Silvio Costa Filho                  | PE       | REPUBLICANOS  |   371048.07
+      220698 | Beto Preto                          | PR       | PSD           |   335271.38
+      178962 | Carlos Gomes                        | RS       | REPUBLICANOS  |   328788.85
+      227991 | Dr Flávio                           | RJ       | PL            |   326638.25
+      204496 | Celso Sabino                        | PA       | PDT           |   319219.31
+      217480 | Jones Moura                         | RJ       | PSD           |   308231.92
+      154178 | Milton Vieira                       | SP       | REPUBLICANOS  |   304815.32
+      227310 | Silvio Antonio                      | MA       | PL            |   274573.45
+      229585 | Elisangela Araujo                   | BA       | PT            |   270131.28
+      141533 | Rodrigo Rollemberg                  | DF       | PSB           |   258032.98
+      128760 | Paulo Marinho Jr                    | MA       | PL            |   248194.33
+      204528 | Adriana Ventura                     | SP       | NOVO          |   247921.24
+       89536 | Prof. Paulo Fernando                | DF       | REPUBLICANOS  |   246997.40
+       74065 | Fatima Pelaes                       | AP       | REPUBLICANOS  |   240537.04
+       73808 | Sérgio Brito                        | BA       | PSD           |   210889.32
+      204522 | Marco Bertaiolli                    | SP       | PSD           |   204077.68
+      182146 | Wolmer Araújo                       | MA       | SOLIDARIEDADE |   198602.50
+      115200 | Raniery Paulino                     | PB       | REPUBLICANOS  |   198107.21
+      227401 | Dr Fabio Rueda                      | AC       | UNIAO         |   196344.58
+      178882 | André Fufuca                        | MA       | PP            |   190099.03
+      227275 | Mariana Carvalho                    | MA       | REPUBLICANOS  |   188355.18
+      229082 | Lucyana Genésio                     | MA       | PDT           |   188221.02
+      228616 | Dr. Remy Soares                     | MA       | PP            |   187671.30
+       68720 | Fábio Henrique                      | SE       | UNIAO         |   186377.80
+      227323 | Luciano Galego                      | MA       | PL            |   185617.55
+      227324 | Henrique Júnior                     | MA       | PL            |   184239.21
+      204376 | Coronel Armando                     | SC       | PP            |   181874.33
+       74052 | Bosco Costa                         | SE       | PL            |   181044.60
+      229225 | Missionária Michele Collins         | PE       | PP            |   180903.67
+      220008 | Eliza Virgínia                      | PB       | PP            |   179732.24
+      122195 | Leonardo Gadelha                    | PB       | PODE          |   177945.54
+      234673 | Vanderlan Alves                     | CE       | SOLIDARIEDADE |   177447.74
+      229112 | Pedro Jr                            | TO       | PL            |   175492.24
+      229069 | Capitão Samuel                      | SE       | PP            |   174706.21
+      233218 | Nelinho Freitas                     | CE       | MDB           |   173089.99
+      229939 | Newton Bonin                        | PR       | UNIAO         |   172069.17
+      226075 | Priscila Costa                      | CE       | PL            |   170230.05
+      230177 | Tadeu Oliveira                      | CE       | PL            |   169926.25
+      234788 | Heloísa Helena                      | RJ       | REDE          |   169488.67
+      229333 | Gláucia Santiago                    | MG       | PL            |   166310.14
+      225727 | Flavinha                            | MT       | MDB           |   161654.52
+      129618 | Gorete Pereira                      | CE       | MDB           |   160407.34
+      223398 | Ulisses Guimarães                   | MG       | MDB           |   158398.59
+      234310 | Ricardo Galvão                      | SP       | REDE          |   156472.52
+      220705 | Deltan Dallagnol                    | PR       | PODE          |   156371.72
+      208297 | Katia Dias                          | MG       | REPUBLICANOS  |   152277.87
+      100689 | Hildo do Candango                   | GO       | REPUBLICANOS  |   149927.90
+      227370 | Felipe Saliba                       | MG       | PRD           |   146797.99
+      160621 | Sandro Alex                         | PR       | PSD           |   146753.46
+      228941 | Daniel José                         | SP       | PODE          |   144400.00
+      233598 | Samuel Santos                       | GO       | PODE          |   137787.62
+      228797 | Júlio Oliveira                      | TO       | PP            |   136758.01
+      178983 | Marcio Alvino                       | SP       | PL            |   135912.56
+      235088 | Ribeiro Neto                        | MA       | SOLIDARIEDADE |   134929.59
+      178905 | Fabio Garcia                        | MT       | UNIAO         |   133242.06
+      228837 | Juliana Kolankiewicz                | MT       | MDB           |   131844.31
+      229106 | Carla Ayres                         | SC       | PT            |   129327.56
+      226410 | Márcio Correa                       | GO       | MDB           |   128836.37
+      230764 | Ivan Junior                         | MA       | UNIAO         |   126968.00
+       77003 | Sergio Santos Rodrigues             | MG       | PODE          |   120320.49
+      164360 | Carmen Zanotto                      | SC       | CIDADANIA     |   119532.90
+      226553 | Eliane Braz                         | CE       | PSD           |   114344.94
+      234406 | Elmano Férrer                       | PI       | PP            |   114099.77
+      234388 | Fabiano Cazeca                      | MG       | PRD           |   113065.75
+      160531 | Jhonatan de Jesus                   | RR       | REPUBLICANOS  |   109259.91
+      230088 | Dra. Mayra Pinheiro                 | CE       | PL            |   105982.73
+      132504 | Enio Verri                          | PR       | PT            |   102517.91
+      228272 | Délio Pinheiro                      | MG       | PDT           |    97742.25
+      220715 | Amom Mandel                         | AM       | REPUBLICANOS  |    89463.44
+      234253 | Lucas Abrahao                       | AP       | REDE          |    84345.50
+      204514 | Coronel Tadeu                       | SP       | PL            |    82948.16
+      233592 | Paulo Lemos                         | AP       | PT            |    81986.16
+      227800 | Duarte Gonçalves Jr                 | MG       | REPUBLICANOS  |    81944.51
+      234840 | Cristiano Furlan                    | AP       | REDE          |    80000.00
+      229259 | Pedro Tourinho                      | SP       | PT            |    78180.83
+      137070 | Vicentinho Júnior                   | TO       | PP            |    74053.16
+      222565 | Soldado Noelio                      | CE       | UNIAO         |    71971.34
+      178832 | Leandre                             | PR       | PSD           |    68944.36
+      204558 | Marcelo Nilo                        | BA       | REPUBLICANOS  |    66414.61
+      204356 | Amaro Neto                          | ES       | REPUBLICANOS  |    65654.81
+      171139 | Loreny                              | SP       | SOLIDARIEDADE |    64801.73
+      197438 | Tito                                | BA       | AVANTE        |    62682.18
+      160508 | Afonso Florence                     | BA       | PT            |    62539.05
+      204419 | Glaustin da Fokus                   | GO       | PSC           |    61203.85
+      178945 | Rosangela Gomes                     | RJ       | REPUBLICANOS  |    57252.47
+      178866 | Luizianne Lins                      | CE       | PT            |    54325.77
+      204531 | Guilherme Derrite                   | SP       | PP            |    53962.88
+      204433 | Marcelo Calero                      | RJ       | PSD           |    53956.33
+      204390 | Professor Alcides                   | GO       | PL            |    51456.61
+      225386 | Renan Ferreirinha                   | RJ       | PSD           |    51059.62
+      204475 | Ottaci Nascimento                   | RR       | SOLIDARIEDADE |    46184.63
+       98057 | Lafayette de Andrada                | MG       | REPUBLICANOS  |    45812.16
+      178843 | Marx Beltrão                        | AL       | PP            |    45489.67
+      204471 | Mara Rocha                          | AC       | MDB           |    45098.15
+      204352 | Camilo Capiberibe                   | AP       | PSB           |    44866.19
+      204434 | Dra. Vanda Milani                   | AC       | PROS          |    44524.22
+      178959 | Hiran Gonçalves                     | RR       | PP            |    44502.71
+      204533 | Idilvan Alencar                     | CE       | PDT           |    44286.68
+      204555 | José Ricardo                        | AM       | PT            |    44286.36
+      108338 | Jaqueline Cassol                    | RO       | PP            |    44174.76
+      204489 | Robério Monteiro                    | CE       | PDT           |    44076.36
+      204504 | Cezinha de Madureira                | SP       | PSD           |    44055.14
+       73943 | Perpétua Almeida                    | AC       | PCDOB         |    43775.78
+      178836 | Alan Rick                           | AC       | UNIAO         |    43728.12
+      204548 | Heitor Freire                       | CE       | UNIAO         |    43676.50
+      204353 | Aline Gurgel                        | AP       | REPUBLICANOS  |    43468.44
+      178920 | Ricardo Teobaldo                    | PE       | PODE          |    43367.43
+      204465 | Haroldo Cathedral                   | RR       | PSD           |    43341.15
+      178839 | Jéssica Sales                       | AC       | MDB           |    43104.91
+      204551 | Bosco Saraiva                       | AM       | SOLIDARIEDADE |    42916.08
+      204561 | Bira do Pindaré                     | MA       | PSB           |    42785.18
+      204364 | Eli Borges                          | TO       | PL            |    42655.56
+      204431 | Marcos Aurélio Sampaio              | PI       | PSD           |    42556.72
+      141335 | Beto Faro                           | PA       | PT            |    42540.52
+      204562 | Edilázio Júnior                     | MA       | PSD           |    42480.49
+      204499 | Cássio Andrade                      | PA       | PSB           |    42440.50
+       74419 | Gonzaga Patriota                    | PE       | PSB           |    42303.95
+      204541 | Eduardo Bismarck                    | CE       | PDT           |    41985.38
+      204505 | Vavá Martins                        | PA       | REPUBLICANOS  |    41895.49
+      204500 | Eduardo Costa                       | PA       | PSD           |    41582.03
+      180018 | Thiago Cartaxo                      | RN       | PODE          |    41573.97
+      204421 | Edna Henrique                       | PB       | REPUBLICANOS  |    41512.60
+      204566 | Marreca Filho                       | MA       | PATRIOTA      |    41472.92
+      204375 | Leda Sadala                         | AP       | PP            |    41374.29
+      204466 | Tereza Nelma                        | AL       | PSD           |    41354.31
+      160645 | Luiz Carlos                         | AP       | PSDB          |    41214.69
+       92699 | Fernando Monteiro                   | PE       | PP            |    41202.42
+      160598 | Flávia Morais                       | GO       | PDT           |    41143.06
+      204408 | Gustinho Ribeiro                    | SE       | REPUBLICANOS  |    40961.52
+      204538 | Paulo Bengtson                      | PA       | PTB           |    40916.37
+      215044 | Vivi Reis                           | PA       | PSOL          |    40875.84
+      204435 | Jesus Sérgio                        | AC       | PDT           |    40803.92
+      178844 | Pedro Vilela                        | AL       | PSDB          |    40790.46
+      204363 | Osires Damaso                       | TO       | PSC           |    40661.32
+      141422 | Efraim Filho                        | PB       | UNIAO         |    40574.88
+      204357 | Rose Modesto                        | MS       | UNIAO         |    40543.52
+      204391 | José Nelto                          | GO       | PP            |    40475.71
+      204382 | Loester Trutis                      | MS       | PL            |    40435.39
+      178956 | Mariana Carvalho                    | RO       | REPUBLICANOS  |    40396.06
+      219920 | Fabio Barros                        | PE       | PSB           |    40332.39
+      204468 | Joenia Wapichana                    | RR       | REDE          |    40007.55
+      178889 | Zé Carlos                           | MA       | PT            |    39783.76
+      195866 | Vaidon Oliveira                     | CE       | UNIAO         |    39629.73
+      204405 | Liziane Bayer                       | RS       | REPUBLICANOS  |    39613.28
+      141434 | Flaviano Melo                       | AC       | MDB           |    39584.26
+      194260 | Nivaldo Albuquerque                 | AL       | REPUBLICANOS  |    39529.49
+      178948 | Beto Rosado                         | RN       | PP            |    39437.90
+      204437 | Severino Pessoa                     | AL       | MDB           |    39372.80
+      204370 | Célio Moura                         | TO       | PT            |    39282.47
+      204432 | Marina Santos                       | PI       | REPUBLICANOS  |    39142.62
+      112437 | João Marcelo Souza                  | MA       | MDB           |    39136.36
+      178921 | Sebastião Oliveira                  | PE       | AVANTE        |    39122.25
+      178924 | Capitão Fábio Abreu                 | PI       | PSD           |    38996.09
+       62881 | Danilo Forte                        | CE       | UNIAO         |    38798.21
+      204554 | Abílio Santana                      | BA       | PSC           |    38569.44
+      204415 | Nereu Crispim                       | RS       | PSD           |    38477.51
+      204498 | Olival Marques                      | PA       | MDB           |    38398.00
+      204544 | Alexandre Frota                     | SP       | PROS          |    38364.06
+      178943 | Marcos Soares                       | RJ       | UNIAO         |    38245.89
+      204420 | Julian Lemos                        | PB       | UNIAO         |    38151.95
+      141427 | Fábio Ramalho                       | MG       | MDB           |    38062.66
+       73772 | Hermes Parcianello                  | PR       | MDB           |    38054.64
+      141411 | Dagoberto Nogueira                  | MS       | PSDB          |    37981.29
+      204449 | Nelson Barbudo                      | MT       | PL            |    37903.36
+      178966 | Geovania de Sá                      | SC       | PSDB          |    37472.61
+      204467 | Professora Rosa Neide               | MT       | PT            |    37388.01
+      178863 | Uldurico Junior                     | BA       | MDB           |    37357.89
+       75431 | Maurício Dziedricki                 | RS       | PODE          |    37250.28
+      204418 | Luizão Goulart                      | PR       | SOLIDARIEDADE |    37240.59
+      204575 | Gil Cutrim                          | MA       | REPUBLICANOS  |    37236.44
+      204486 | Mauro Benevides Filho               | CE       | PDT           |    37132.24
+      204477 | Felício Laterça                     | RJ       | PP            |    37116.43
+      204567 | Raimundo Costa                      | BA       | PODE          |    37055.03
+      204446 | Professor Joziel                    | RJ       | PATRIOTA      |    37043.38
+      204451 | Delegado Antônio Furtado            | RJ       | UNIAO         |    37009.82
+      178951 | Rafael Motta                        | RN       | PSB           |    36940.94
+      160511 | Alessandro Molon                    | RJ       | PSB           |    36692.57
+       90201 | Pedro Augusto Bezerra               | CE       | PDT           |    36640.69
+      178954 | Lucio Mosquini                      | RO       | MDB           |    36620.04
+      141555 | Vinicius Carvalho                   | SP       | REPUBLICANOS  |    36491.80
+       92172 | Milton Coelho                       | PE       | PSB           |    36488.12
+       74165 | Neucimar Fraga                      | ES       | PP            |    36372.35
+      204547 | Léo Motta                           | MG       | REPUBLICANOS  |    36230.12
+       74749 | Mauro Lopes                         | MG       | PP            |    36205.78
+      204542 | Denis Bezerra                       | CE       | PSB           |    36165.77
+      160635 | Ruy Carneiro                        | PB       | PSC           |    36044.21
+      141372 | Aelton Freitas                      | MG       | PP            |    36020.28
+      204474 | Juarez Costa                        | MT       | MDB           |    35939.57
+      204452 | Márcio Labre                        | RJ       | PL            |    35936.29
+      204509 | Áurea Carolina                      | MG       | PSOL          |    35760.47
+      204427 | Fernando Rodolfo                    | PE       | PL            |    35645.38
+      204384 | Ney Leprevost                       | PR       | UNIAO         |    35615.78
+      204440 | Christino Aureo                     | RJ       | PP            |    35532.88
+       74319 | Paes Landim                         | PI       | UNIAO         |    35484.01
+      215045 | Pedro Augusto Palareti              | RJ       | PP            |    35472.00
+      178825 | Leo de Brito                        | AC       | PT            |    35358.13
+      160619 | José Nunes                          | BA       | PSD           |    35298.07
+      141439 | Chico D'Angelo                      | RJ       | PDT           |    35209.67
+      177282 | Subtenente Gonzaga                  | MG       | PSD           |    35186.70
+       74693 | Rodrigo Maia                        | RJ       | PSDB          |    35172.42
+      204545 | Alê Silva                           | MG       | REPUBLICANOS  |    35123.97
+      204404 | Lucas Redecker                      | RS       | PSDB          |    34741.85
+      178928 | Christiane de Souza Yared           | PR       | PP            |    34735.04
+      141553 | Vanderlei Macris                    | SP       | PSDB          |    34686.33
+      178923 | Zeca Cavalcanti                     | PE       | PTB           |    34641.54
+      204510 | Franco Cartafina                    | MG       | PP            |    34570.70
+      235776 | Sérgio Turra                        | RS       | PP            |    34261.24
+      204564 | Igor Kannário                       | BA       | UNIAO         |    34123.53
+      178981 | Herculano Passos                    | SP       | REPUBLICANOS  |    34055.07
+      146307 | Neri Geller                         | MT       | PP            |    33815.54
+      152610 | Roberto Alves                       | SP       | REPUBLICANOS  |    33714.01
+       74262 | Carlos Sampaio                      | SP       | PSDB          |    33637.21
+       81297 | Dra. Soraya Manato                  | ES       | PTB           |    33455.53
+      215042 | Ricardo da Karol                    | RJ       | PDT           |    33408.64
+      204479 | Nicoletti                           | RR       | UNIAO         |    33330.28
+      178879 | Lucas Vergilio                      | GO       | SOLIDARIEDADE |    32856.49
+      160639 | Professora Dorinha Seabra Rezende   | TO       | UNIAO         |    32687.92
+      178830 | Dr. Sinval Malheiros                | SP       | PODE          |    32344.74
+      204392 | Francisco Jr.                       | GO       | PSD           |    32064.95
+      204483 | Vilson da Fetaemg                   | MG       | PSB           |    32051.50
+      204439 | Dr. Leonardo                        | MT       | REPUBLICANOS  |    31984.20
+      204508 | Igor Timo                           | MG       | PODE          |    31819.92
+      178871 | Evair Vieira de Melo                | ES       | PP            |    31802.84
+      141405 | Celso Maldaner                      | SC       | MDB           |    31786.18
+      141401 | Carlos Bezerra                      | MT       | MDB           |    31779.80
+      204515 | André Janones                       | MG       | AVANTE        |    31752.08
+      204441 | Otoni de Paula                      | RJ       | MDB           |    31471.27
+      204487 | Capitão Wagner                      | CE       | UNIAO         |    31463.68
+      204442 | Gurgel                              | RJ       | PL            |    31291.74
+      204496 | Celso Sabino                        | PA       | UNIAO         |    31153.95
+      160570 | Jerônimo Goergen                    | RS       | PP            |    31059.64
+      204457 | Juninho do Pneu                     | RJ       | UNIAO         |    31023.17
+      204428 | Marília Arraes                      | PE       | SOLIDARIEDADE |    31014.75
+      204389 | Elias Vaz                           | GO       | PSB           |    30940.03
+      204576 | João Roma                           | BA       | PL            |    30724.62
+       73692 | Osmar Terra                         | RS       | MDB           |    30654.76
+      198783 | Emanuel Pinheiro Neto               | MT       | MDB           |    30340.84
+      204383 | Professor Israel Batista            | DF       | PSB           |    30312.11
+      164359 | Delegado Waldir                     | GO       | UNIAO         |    30307.40
+      204556 | Marcelo Ramos                       | AM       | PSD           |    30242.57
+      146788 | Marcelo Aro                         | MG       | PP            |    30199.89
+      204358 | Beto Pereira                        | MS       | PSDB          |    30177.13
+      178992 | Vitor Lippi                         | SP       | PSDB          |    30161.64
+      204394 | Gervásio Maia                       | PB       | PSB           |    30110.38
+      160528 | Danilo Cabral                       | PE       | PSB           |    30030.96
+      141513 | Bilac Pinto                         | MG       | UNIAO         |    30001.70
+      204482 | Euclydes Pettersen                  | MG       | PSC           |    29933.98
+      221183 | Márcio Dória                        | SE       | PCDOB         |    29915.39
+       74439 | Wolney Queiroz                      | PE       | PDT           |    29906.42
+       74270 | Gilberto Nascimento                 | SP       | PSC           |    29886.76
+      157130 | Túlio Gadêlha                       | PE       | REDE          |    29759.48
+      204413 | Alcides Rodrigues                   | GO       | PATRIOTA      |    29700.28
+      178901 | Tereza Cristina                     | MS       | PP            |    29496.96
+      160632 | Zé Silva                            | MG       | SOLIDARIEDADE |    29365.08
+      141417 | Edio Lopes                          | RR       | PL            |    29325.69
+      221157 | Rui Godinho                         | SC       | UNIAO         |    29282.24
+      204011 | Marcos Pacco                        | DF       | PODE          |    29148.15
+      204490 | Charlles Evangelista                | MG       | PP            |    28934.14
+      196358 | Lourival Gomes                      | RJ       | PP            |    28605.36
+      204502 | Bozzella                            | SP       | UNIAO         |    28461.26
+      178990 | Samuel Moreira                      | SP       | PSDB          |    28421.77
+      204478 | Vinicius Farah                      | RJ       | UNIAO         |    28002.04
+      204412 | Dr. Zacharias Calil                 | GO       | UNIAO         |    27911.23
+       74655 | Eduardo Barbosa                     | MG       | PSDB          |    27852.88
+       93083 | Cacá Leão                           | BA       | PP            |    27816.79
+       74478 | Luciano Bivar                       | PE       | UNIAO         |    27653.49
+      204371 | Felipe Rigoni                       | ES       | UNIAO         |    27547.78
+      204438 | Sergio Toledo                       | AL       | PV            |    27542.37
+       74459 | Átila Lira                          | PI       | PP            |    27418.39
+       66828 | Fausto Pinato                       | SP       | PP            |    27017.55
+       73460 | Gustavo Fruet                       | PR       | PDT           |    26948.33
+      168175 | Simplício Araújo                    | MA       | SOLIDARIEDADE |    26825.37
+      221149 | Elói Pietá                          | SP       | PT            |    26277.37
+      178994 | Dulce Miranda                       | TO       | MDB           |    26134.99
+      178858 | Mário Negromonte Jr.                | BA       | PP            |    25783.36
+      133968 | Paulo Ramos                         | RJ       | PDT           |    25649.41
+      204386 | Jose Mario Schreiner                | GO       | MDB           |    25626.65
+      204518 | Dr. Frederico                       | MG       | PATRIOTA      |    25365.36
+       74366 | João Campos                         | GO       | REPUBLICANOS  |    25270.42
+      205535 | Patricia Ferraz                     | AP       | PL            |    25186.27
+       74806 | Tadeu Filippelli                    | DF       | MDB           |    25000.85
+       74383 | Giacobo                             | PR       | PL            |    24942.16
+       73463 | Osmar Serraglio                     | PR       | PP            |    24842.04
+      178861 | Ronaldo Carletto                    | BA       | PP            |    24468.40
+      204574 | Junior Lourenço                     | MA       | PL            |    24146.39
+      204546 | Joice Hasselmann                    | SP       | PSDB          |    23974.81
+      167614 | Severino Ninho                      | PE       | PSB           |    23834.49
+      204494 | Fred Costa                          | MG       | PATRIOTA      |    23636.92
+      135054 | Cristiano Vale                      | PA       | PP            |    23564.65
+      178977 | Eduardo Cury                        | SP       | PSDB          |    23423.69
+      141459 | João Maia                           | RN       | PL            |    23420.69
+      204455 | Luiz Lima                           | RJ       | PL            |    23416.34
+      160976 | Tiririca                            | SP       | PL            |    23157.90
+      204454 | Daniel Silveira                     | RJ       | PTB           |    23022.99
+      204529 | Policial Katia Sastre               | SP       | PL            |    22865.58
+      204410 | Luisa Canziani                      | PR       | PSD           |    22659.74
+      204537 | Enrico Misasi                       | SP       | MDB           |    22458.45
+      178964 | Heitor Schuch                       | RS       | PSB           |    22104.47
+      221147 | Marcia Scherer                      | RS       | MDB           |    21956.14
+      178929 | Diego Garcia                        | PR       | REPUBLICANOS  |    21872.22
+      228042 | Naumi Amorim                        | CE       | PSD           |    21742.69
+      178953 | Expedito Netto                      | RO       | PSD           |    21513.26
+       76874 | Marcelo Freixo                      | RJ       | PSB           |    21456.78
+      204536 | Kim Kataguiri                       | SP       | UNIAO         |    20970.46
+      204360 | Silvia Cristina                     | RO       | PL            |    20692.94
+       73482 | Henrique Fontana                    | RS       | PT            |    20523.03
+      204398 | Felipe Francischini                 | PR       | UNIAO         |    20369.58
+      204527 | Geninho Zuliani                     | SP       | UNIAO         |    20350.74
+      160642 | Pastor Eurico                       | PE       | PL            |    20160.04
+      133373 | Marco Maia                          | RS       | PT            |    20030.26
+       67138 | Iracema Portella                    | PI       | PP            |    19812.91
+       73586 | Júlio Delgado                       | MG       | PV            |    19723.49
+      204362 | Ricardo Guidi                       | SC       | PSD           |    19510.17
+      160667 | Guilherme Mussi                     | SP       | PP            |    19424.31
+       73466 | Rubens Bueno                        | PR       | CIDADANIA     |    19414.71
+      178984 | Miguel Haddad                       | SP       | PSDB          |    18956.20
+      204516 | Alexis Fonteyne                     | SP       | NOVO          |    18772.47
+      204373 | Hélio Costa                         | SC       | PSD           |    18497.62
+      204532 | Vinicius Poit                       | SP       | NOVO          |    18473.66
+      160651 | Rogério Peninha Mendonça            | SC       | MDB           |    17791.53
+      215043 | Josivaldo JP                        | MA       | PSD           |    17429.13
+      151208 | Laercio Oliveira                    | SE       | PP            |    17378.12
+      193726 | Paulo Eduardo Martins               | PR       | PL            |    17125.02
+      235800 | Jorge Araújo                        | BA       | PP            |    16921.48
+      204565 | Professora Dayane Pimentel          | BA       | UNIAO         |    16703.55
+      216198 | Norma Pereira                       | SC       | PSDB          |    16310.91
+      204403 | Marlon Santos                       | RS       | PL            |    16260.00
+      204395 | Pedro Lupion                        | PR       | PP            |    15753.98
+      204523 | Lucas Gonzalez                      | MG       | NOVO          |    15594.58
+      204530 | Rodrigo Agostinho                   | SP       | PSB           |    15100.61
+      160589 | Bruna Furlan                        | SP       | PSDB          |    15047.98
+      204513 | Guiga Peixoto                       | SP       | PSC           |    14916.00
+      160534 | Lauriete                            | ES       | PSC           |    14770.10
+      204484 | General Peternelli                  | SP       | UNIAO         |    14587.53
+      204359 | Léo Moraes                          | RO       | PODE          |    14314.03
+      204550 | Júnior Mano                         | CE       | PL            |    14173.47
+      204381 | Luis Miranda                        | DF       | REPUBLICANOS  |    13965.63
+      178961 | Shéridan                            | RR       | PSDB          |    13925.53
+      204414 | Aroldo Martins                      | PR       | REPUBLICANOS  |    13841.83
+      204569 | Delegado Pablo                      | AM       | UNIAO         |    13651.59
+      160518 | Weliton Prado                       | MG       | PROS          |    13636.58
+      151965 | Maia Filho                          | PI       | PP            |    13618.34
+      141523 | Raul Henry                          | PE       | MDB           |    13508.96
+      204387 | Sargento Fahur                      | PR       | PSD           |    13507.25
+      115746 | Gelson Azevedo                      | RJ       | PL            |    13239.48
+      204511 | David Soares                        | SP       | UNIAO         |    13001.27
+      178912 | Pedro Cunha Lima                    | PB       | PSDB          |    12914.39
+      204354 | Flávia Arruda                       | DF       | PL            |    12902.81
+       66179 | Norma Ayub                          | ES       | PP            |    12890.30
+      105534 | Alexandre Figueiredo                | SE       | PSD           |    12479.93
+      204458 | Major Fabiana                       | RJ       | PL            |    12431.20
+      178939 | Clarissa Garotinho                  | RJ       | UNIAO         |    12175.50
+      198197 | Greyce Elias                        | MG       | AVANTE        |    11577.90
+      204521 | Abou Anni                           | SP       | UNIAO         |    11420.90
+      204393 | Frei Anastacio Ribeiro              | PB       | PT            |    10921.80
+       74352 | Nilson Pinto                        | PA       | PSDB          |    10870.87
+       74043 | Wellington Roberto                  | PB       | PL            |    10591.60
+      204461 | Paulo Ganime                        | RJ       | NOVO          |    10459.03
+       73696 | Angela Amin                         | SC       | PP            |    10296.25
+      204476 | Chiquinho Brazão                    | RJ       | UNIAO         |    10285.34
+      204519 | Tiago Mitraud                       | MG       | NOVO          |     9544.34
+      160669 | Genecias Noronha                    | CE       | PL            |     8882.05
+      141408 | Cleber Verde                        | MA       | REPUBLICANOS  |     8691.64
+      160532 | Eli Corrêa Filho                    | SP       | UNIAO         |     7973.10
+      178925 | Rejane Dias                         | PI       | PT            |     7127.28
+      235620 | Ilacir Bicalho                      | MG       | REPUBLICANOS  |     7120.00
+      182146 | Wolmer Araújo                       | MA       | PV            |     6807.53
+      141508 | Mauro Nazif                         | RO       | PSB           |     6611.48
+      235712 | Vavá                                | MG       | AVANTE        |     5822.61
+      220637 | Marina Silva                        | SP       | REDE          |     5649.34
+      160587 | Fábio Trad                          | MS       | PSD           |     5277.97
+      205548 | David Miranda                       | RJ       | PDT           |     5193.84
+      178935 | Rossoni                             | PR       | PSDB          |     5003.42
+      141379 | Andreia Zito                        | RJ       | PSD           |     4553.84
+      160655 | Ricardo Izar                        | SP       | REPUBLICANOS  |     3540.19
+      141488 | Paulo Teixeira                      | SP       | PT            |     2017.85
+      141428 | Fábio Faria                         | RN       | PP            |     1764.31
+      204400 | Aline Sleutjes                      | PR       | PROS          |     1727.31
+       74374 | Geraldo Resende                     | MS       | PSDB          |     1716.46
+      179587 | Major Vitor Hugo                    | GO       | PL            |     1684.39
+      212625 | Dr. Gonçalo                         | MA       | PODE          |     1137.69
+      178922 | Tadeu Alencar                       | PE       | PSB           |     1061.10
+      225846 | Itamar Paim                         | PR       | PL            |      746.14
+       74399 | Onyx Lorenzoni                      | RS       | PL            |      636.07
+       74471 | André de Paula                      | PE       | PSD           |      122.55
+      204531 | Guilherme Derrite                   | SP       | PL            |      117.90
+      211498 | Renato Santana                      | DF       | PSD           |        0.30
+      204503 | Alexandre Padilha                   | SP       | PT            |        0.21
+      220636 | Luiz Marinho                        | SP       | PT            |        0.18
+      204376 | Coronel Armando                     | SC       | PL            |        0.16
+      204430 | Margarete Coelho                    | PI       | PP            |        0.10
+      204366 | Rodrigo Coelho                      | SC       | PODE          |        0.02
+      204459 | Daniela do Waguinho                 | RJ       | UNIAO         |        0.02
+      204353 | Aline Gurgel                        | AP       | UNIAO         |    -4044.80
 

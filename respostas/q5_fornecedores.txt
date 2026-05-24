@@ -1,43 +1,43 @@
 Q5 - fornecedores com maior total pago
 Resumo executivo
- fornecedores | lancamentos | total_pago  | pct_top_10 
---------------+-------------+-------------+------------
-        12813 |       51974 | 70008746.67 |       6.25
+ fornecedores | lancamentos |  total_pago  | pct_top_10
+--------------+-------------+--------------+------------
+        45748 |      726645 | 814641556.15 |      18.20
 
 
 Tabela principal - top 30 fornecedores por total pago
- posicao |                         fornecedor                         | qtd_lancamentos | total_pago | pct_total 
----------+------------------------------------------------------------+-----------------+------------+-----------
-       1 | Facebook Serviços Online do Brasil Ltda.                   |             234 | 1033866.09 |      1.48
-       2 | PANTANAL VEÍCULOS LTDA                                     |             172 |  844571.57 |      1.21
-       3 | NOVACAR LOCADORA DE VEICULOS LTDA                          |              81 |  512399.80 |      0.73
-       4 | HPE AUTOMOTORES DO BRASIL LTDA                             |              40 |  423477.00 |      0.60
-       5 | SUPREMA MOBILIDADE LTDA                                    |              59 |  361460.00 |      0.52
-       6 | ELDORADO COMUNICACAO E JORNALISMO LTDA                     |              46 |  301800.00 |      0.43
-       7 | CTA - CLEITON TAXI AEREO LTDA                              |               9 |  240650.00 |      0.34
-       8 | PONTA LOCAÇÃO DE VEÍCULOS LTDA                             |              28 |  237450.00 |      0.34
-       9 | DALETH VEICULOS LTDA EPP                                   |              40 |  214750.00 |      0.31
-      10 | Nacional Rent a Car Locação de Veiculos LTDA               |              24 |  205500.00 |      0.29
-      11 | VIA LOCADORA DE AUTOMOVEIS LTDA                            |              36 |  203451.26 |      0.29
-      12 | SERV RIO TERCEIRIZAÇÃO E SERVIÇOS                          |              25 |  202000.00 |      0.29
-      13 | TAXI AEREO VALE DO MADEIRA                                 |               5 |  200000.00 |      0.29
-      14 | A DE LIMA CARDOSO                                          |              13 |  195786.80 |      0.28
-      15 | Pontual Loc Car ltda                                       |              35 |  195582.00 |      0.28
-      16 | AUTO LESTE LTDA                                            |              16 |  195000.00 |      0.28
-      17 | NOVITTA RENT A CAR TRANSPORTE LTDA ME                      |              28 |  189500.00 |      0.27
-      18 | AMAZON STUDIO E PRODUÇOES LTDA                             |               8 |  179000.00 |      0.26
-      19 | MULTIPLICAR E SERVIÇOS LTDA EPP                            |              11 |  178250.00 |      0.25
-      20 | EVAG COMUNICAÇÃO E TECNOLOGIA LTDA                         |              22 |  172146.40 |      0.25
-      21 | CARNAUBA ASSESSORIA DE COM E PIBLICIDADE                   |               4 |  172000.00 |      0.25
-      22 | FRAME COMUNICACAO DIGITAL LTDA                             |               9 |  168531.63 |      0.24
-      23 | CK INFO DESIGN E MIDIA SOCIAIS                             |               8 |  163000.00 |      0.23
-      24 | MAXIMA IMPRESSAO RAPIDO, MARKETING DIGITAL & DIVULGACAO LT |               5 |  160128.00 |      0.23
-      25 | N N Y MARKETING DIRETO E SOLUÇÕES INTELIGENTES LTDA        |               7 |  160000.00 |      0.23
-      26 | IMS SERVIÇOS EIRELI                                        |               3 |  159000.00 |      0.23
-      27 | FLEX MARKETING DIRETO LTDA                                 |              24 |  150600.00 |      0.22
-      28 | S7 Ltda                                                    |               5 |  149000.00 |      0.21
-      29 | JH FILMES E MIDIA DIGITAL LTDA                             |               7 |  146000.00 |      0.21
-      30 | AMAZONAVES TAXI AEREO LTDA                                 |               3 |  143758.00 |      0.21
+ posicao |                  fornecedor                   | qtd_lancamentos | total_pago  | pct_total
+---------+-----------------------------------------------+-----------------+-------------+-----------
+       1 | TAM                                           |           99057 | 70041027.87 |      8.60
+       2 | GOL                                           |           29931 | 25975919.02 |      3.19
+       3 | AZUL                                          |           26556 | 21031775.64 |      2.58
+       4 | PANTANAL VEÍCULOS LTDA                        |            2440 | 10435247.42 |      1.28
+       5 | SUPREMA MOBILIDADE LTDA                       |             940 |  5097394.69 |      0.63
+       6 | HPE AUTOMOTORES DO BRASIL LTDA                |             451 |  3933145.77 |      0.48
+       7 | Facebook Serviços Online do Brasil Ltda.      |             792 |  3220589.15 |      0.40
+       8 | VIA LOCADORA DE AUTOMOVEIS LTDA               |             548 |  2942000.56 |      0.36
+       9 | ELDORADO COMUNICACAO E JORNALISMO LTDA        |             480 |  2921584.64 |      0.36
+      10 | DALETH VEICULOS LTDA EPP                      |             602 |  2633267.10 |      0.32
+      11 | CELULAR FUNCIONAL                             |           11167 |  2540999.32 |      0.31
+      12 | NOVACAR LOCADORA DE VEICULOS LTDA             |             467 |  2537023.13 |      0.31
+      13 | Novacar Locadora de Veículos Ltda             |             413 |  2171916.38 |      0.27
+      14 | SERV RIO TERCEIRIZAÇÃO E SERVIÇOS             |             339 |  2100689.57 |      0.26
+      15 | Cia Aérea - TAM                               |            1346 |  2079940.36 |      0.26
+      16 | FACEBOOK SERVIÇOS ONLINE DO BRASIL LTDA       |             599 |  1878425.06 |      0.23
+      17 | WORKING ASSOCIAÇÃO DE INTEGRAÇÃO PROFISSIONAL |             163 |  1855092.34 |      0.23
+      18 | PONTA LOCAÇÃO DE VEÍCULOS LTDA                |             305 |  1841607.65 |      0.23
+      19 | Pontual Loc Car ltda                          |             381 |  1822763.82 |      0.22
+      20 | LOCALIZA RENT A CAR SA                        |             689 |  1670622.08 |      0.21
+      21 | Facebook Serviços Online do Brasil            |             554 |  1643154.17 |      0.20
+      22 | CTA - CLEITON TAXI AEREO LTDA                 |              62 |  1564370.00 |      0.19
+      23 | CARNAUBA ASSESSORIA DE COM E PIBLICIDADE      |              39 |  1558685.29 |      0.19
+      24 | MAIS PROPAGANDA LTDA.                         |              71 |  1537365.60 |      0.19
+      25 | FRAME COMUNICACAO DIGITAL LTDA                |              81 |  1473636.63 |      0.18
+      26 | HORIZONTE 16 LOCADORA DE VEÍCULOS LTDA        |             157 |  1465943.60 |      0.18
+      27 | NOVITTA RENT A CAR TRANSPORTE LTDA ME         |             223 |  1424380.23 |      0.17
+      28 | FLEX MARKETING DIRETO LTDA                    |             203 |  1391500.40 |      0.17
+      29 | ELF Locadora de Veículos Ltda                 |             265 |  1386150.51 |      0.17
+      30 | LIBRE COMUNICAÇÃO E MARKETING EIRELI          |             172 |  1359816.40 |      0.17
 
 
 Complemento detalhado: q5_fornecedores_complemento.txt contem o ranking completo.
