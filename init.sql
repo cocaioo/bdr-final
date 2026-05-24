@@ -16,44 +16,48 @@ CREATE TABLE partidos_ideologia (
     ideologia        VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE proposicoes_2026 (
-    id_proposicao       INTEGER PRIMARY KEY,
-    uri_proposicao      VARCHAR(255) NOT NULL UNIQUE,
+CREATE TABLE proposicoes (
+    ano_dados           INTEGER NOT NULL,
+    id_proposicao       INTEGER NOT NULL,
+    uri_proposicao      VARCHAR(255) NOT NULL,
     sigla_tipo          VARCHAR(20),
     numero              INTEGER,
     ano                 INTEGER,
     ementa              TEXT,
     ementa_detalhada    TEXT,
     keywords            TEXT,
-    descricao_situacao  VARCHAR(255)
+    descricao_situacao  VARCHAR(255),
+    PRIMARY KEY (ano_dados, id_proposicao),
+    UNIQUE (ano_dados, uri_proposicao)
 );
 
-CREATE TABLE eventos_2026 (
-    id_evento           INTEGER PRIMARY KEY,
-    uri_evento          VARCHAR(255) UNIQUE,
+CREATE TABLE eventos (
+    ano_dados           INTEGER NOT NULL,
+    id_evento           INTEGER NOT NULL,
+    uri_evento          VARCHAR(255),
     data_hora_inicio    TIMESTAMP,
     data_hora_fim       TIMESTAMP,
     descricao_tipo      VARCHAR(150),
     descricao           TEXT,
-    local_camara        VARCHAR(150)
+    local_camara        VARCHAR(150),
+    PRIMARY KEY (ano_dados, id_evento),
+    UNIQUE (ano_dados, uri_evento)
 );
 
-CREATE TABLE votacoes_2026 (
-    id_votacao     VARCHAR(80) PRIMARY KEY,
+CREATE TABLE votacoes (
+    ano_dados      INTEGER NOT NULL,
+    id_votacao     VARCHAR(80) NOT NULL,
     data_votacao   DATE,
     sigla_orgao    VARCHAR(30),
     id_evento      INTEGER,
     aprovacao      BOOLEAN,
     descricao      TEXT,
-    CONSTRAINT fk_votacoes_evento
-        FOREIGN KEY (id_evento)
-        REFERENCES eventos_2026(id_evento)
-        ON UPDATE CASCADE
-        ON DELETE SET NULL
+    PRIMARY KEY (ano_dados, id_votacao)
 );
 
-CREATE TABLE gastos_2026 (
+CREATE TABLE gastos (
     id_gasto           BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    ano_dados          INTEGER NOT NULL,
     cpf                CHAR(11),
     id_deputado        INTEGER NOT NULL,
     nome_parlamentar   VARCHAR(150) NOT NULL,
@@ -71,19 +75,15 @@ CREATE TABLE gastos_2026 (
         ON DELETE RESTRICT
 );
 
-CREATE TABLE votacoes_votos_2026 (
+CREATE TABLE votacoes_votos (
+    ano_dados      INTEGER NOT NULL,
     id_votacao     VARCHAR(80) NOT NULL,
     id_deputado    INTEGER NOT NULL,
     voto           VARCHAR(30) NOT NULL,
     nome_deputado  VARCHAR(150) NOT NULL,
     sigla_partido  VARCHAR(20),
     sigla_uf       CHAR(2),
-    PRIMARY KEY (id_votacao, id_deputado),
-    CONSTRAINT fk_votos_votacao
-        FOREIGN KEY (id_votacao)
-        REFERENCES votacoes_2026(id_votacao)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
+    PRIMARY KEY (ano_dados, id_votacao, id_deputado),
     CONSTRAINT fk_votos_deputado
         FOREIGN KEY (id_deputado)
         REFERENCES deputados(id_deputado)
@@ -91,22 +91,19 @@ CREATE TABLE votacoes_votos_2026 (
         ON DELETE RESTRICT
 );
 
-CREATE TABLE votacoes_orientacoes_2026 (
+CREATE TABLE votacoes_orientacoes (
+    ano_dados      INTEGER NOT NULL,
     id_votacao     VARCHAR(80) NOT NULL,
     sigla_bancada  VARCHAR(30) NOT NULL,
     orientacao     VARCHAR(30),
     sigla_orgao    VARCHAR(30),
     descricao      TEXT,
-    PRIMARY KEY (id_votacao, sigla_bancada),
-    CONSTRAINT fk_orientacoes_votacao
-        FOREIGN KEY (id_votacao)
-        REFERENCES votacoes_2026(id_votacao)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
+    PRIMARY KEY (ano_dados, id_votacao, sigla_bancada)
 );
 
-CREATE TABLE votacoes_objetos_2026 (
+CREATE TABLE votacoes_objetos (
     id_votacao_objeto       BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    ano_dados               INTEGER NOT NULL,
     id_votacao              VARCHAR(80) NOT NULL,
     id_proposicao           INTEGER,
     uri_proposicao          VARCHAR(255),
@@ -114,34 +111,26 @@ CREATE TABLE votacoes_objetos_2026 (
     ementa_proposicao       TEXT,
     sigla_tipo_proposicao   VARCHAR(20),
     numero_proposicao       INTEGER,
-    ano_proposicao          INTEGER,
-    CONSTRAINT fk_objetos_votacao
-        FOREIGN KEY (id_votacao)
-        REFERENCES votacoes_2026(id_votacao)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
+    ano_proposicao          INTEGER
 );
 
-CREATE TABLE proposicoes_temas_2026 (
+CREATE TABLE proposicoes_temas (
+    ano_dados       INTEGER NOT NULL,
     uri_proposicao  VARCHAR(255) NOT NULL,
     cod_tema        INTEGER NOT NULL,
     tema            VARCHAR(150) NOT NULL,
     relevancia      NUMERIC(5,2),
-    PRIMARY KEY (uri_proposicao, cod_tema),
-    CONSTRAINT fk_temas_proposicao
-        FOREIGN KEY (uri_proposicao)
-        REFERENCES proposicoes_2026(uri_proposicao)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
+    PRIMARY KEY (ano_dados, uri_proposicao, cod_tema)
 );
 
-CREATE TABLE eventos_presenca_deputados_2026 (
+CREATE TABLE eventos_presenca_deputados (
+    ano_dados       INTEGER NOT NULL,
     id_evento       INTEGER NOT NULL,
     id_deputado     INTEGER NOT NULL,
     nome_deputado   VARCHAR(150),
     sigla_partido   VARCHAR(20),
     sigla_uf        CHAR(2),
-    PRIMARY KEY (id_evento, id_deputado),
+    PRIMARY KEY (ano_dados, id_evento, id_deputado),
     CONSTRAINT fk_presenca_deputado
         FOREIGN KEY (id_deputado)
         REFERENCES deputados(id_deputado)
@@ -151,6 +140,7 @@ CREATE TABLE eventos_presenca_deputados_2026 (
 
 CREATE TABLE proposicoes_autores (
     id_autoria        BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    ano_dados         INTEGER NOT NULL,
     id_proposicao     INTEGER NOT NULL,
     uri_proposicao    VARCHAR(255),
     id_deputado       INTEGER,
@@ -162,14 +152,42 @@ CREATE TABLE proposicoes_autores (
     peso_autoria      NUMERIC(4,2)
 );
 
-CREATE INDEX idx_gastos_deputado ON gastos_2026(id_deputado);
-CREATE INDEX idx_gastos_partido ON gastos_2026(sigla_partido);
-CREATE INDEX idx_gastos_uf ON gastos_2026(sigla_uf);
-CREATE INDEX idx_votos_deputado ON votacoes_votos_2026(id_deputado);
-CREATE INDEX idx_votos_partido ON votacoes_votos_2026(sigla_partido);
-CREATE INDEX idx_objetos_votacao ON votacoes_objetos_2026(id_votacao);
-CREATE INDEX idx_objetos_proposicao ON votacoes_objetos_2026(id_proposicao);
-CREATE INDEX idx_temas_uri ON proposicoes_temas_2026(uri_proposicao);
-CREATE INDEX idx_presenca_deputado ON eventos_presenca_deputados_2026(id_deputado);
+CREATE INDEX idx_gastos_ano ON gastos(ano_dados);
+CREATE INDEX idx_gastos_deputado ON gastos(id_deputado);
+CREATE INDEX idx_gastos_partido ON gastos(sigla_partido);
+CREATE INDEX idx_gastos_uf ON gastos(sigla_uf);
+CREATE INDEX idx_votos_deputado ON votacoes_votos(id_deputado);
+CREATE INDEX idx_votos_partido ON votacoes_votos(sigla_partido);
+CREATE INDEX idx_objetos_votacao ON votacoes_objetos(ano_dados, id_votacao);
+CREATE INDEX idx_objetos_proposicao ON votacoes_objetos(ano_dados, id_proposicao);
+CREATE INDEX idx_temas_uri ON proposicoes_temas(ano_dados, uri_proposicao);
+CREATE INDEX idx_presenca_deputado ON eventos_presenca_deputados(id_deputado);
 CREATE INDEX idx_autores_deputado ON proposicoes_autores(id_deputado);
-CREATE INDEX idx_autores_proposicao ON proposicoes_autores(id_proposicao);
+CREATE INDEX idx_autores_proposicao ON proposicoes_autores(ano_dados, id_proposicao);
+
+CREATE OR REPLACE VIEW proposicoes_2026 AS
+SELECT * FROM proposicoes WHERE ano_dados = 2026;
+
+CREATE OR REPLACE VIEW eventos_2026 AS
+SELECT * FROM eventos WHERE ano_dados = 2026;
+
+CREATE OR REPLACE VIEW votacoes_2026 AS
+SELECT * FROM votacoes WHERE ano_dados = 2026;
+
+CREATE OR REPLACE VIEW gastos_2026 AS
+SELECT * FROM gastos WHERE ano_dados = 2026;
+
+CREATE OR REPLACE VIEW votacoes_votos_2026 AS
+SELECT * FROM votacoes_votos WHERE ano_dados = 2026;
+
+CREATE OR REPLACE VIEW votacoes_orientacoes_2026 AS
+SELECT * FROM votacoes_orientacoes WHERE ano_dados = 2026;
+
+CREATE OR REPLACE VIEW votacoes_objetos_2026 AS
+SELECT * FROM votacoes_objetos WHERE ano_dados = 2026;
+
+CREATE OR REPLACE VIEW proposicoes_temas_2026 AS
+SELECT * FROM proposicoes_temas WHERE ano_dados = 2026;
+
+CREATE OR REPLACE VIEW eventos_presenca_deputados_2026 AS
+SELECT * FROM eventos_presenca_deputados WHERE ano_dados = 2026;

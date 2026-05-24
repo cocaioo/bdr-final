@@ -6,7 +6,7 @@ SELECT
     g.fornecedor,
     COUNT(*) AS qtd_lancamentos,
     SUM(g.valor_liquido) AS total_pago
-FROM gastos_2026 g
+FROM gastos g
 JOIN deputados d ON d.id_deputado = g.id_deputado
 WHERE g.fornecedor IS NOT NULL
 GROUP BY d.id_deputado, d.nome, g.fornecedor;

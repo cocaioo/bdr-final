@@ -5,11 +5,15 @@ WITH q2_1 AS (
         d.id_deputado,
         d.nome,
         te.eixo_maior,
-        COUNT(DISTINCT a.id_proposicao) AS qtd_proposicoes
+        COUNT(DISTINCT (a.ano_dados, a.id_proposicao)) AS qtd_proposicoes
     FROM proposicoes_autores a
     JOIN deputados d ON d.id_deputado = a.id_deputado
-    JOIN proposicoes_2026 p ON p.id_proposicao = a.id_proposicao
-    JOIN resposta_temas_eixos te ON te.uri_proposicao = p.uri_proposicao
+    JOIN proposicoes p
+      ON p.ano_dados = a.ano_dados
+     AND p.id_proposicao = a.id_proposicao
+    JOIN resposta_temas_eixos te
+      ON te.ano_dados = p.ano_dados
+     AND te.uri_proposicao = p.uri_proposicao
     GROUP BY d.id_deputado, d.nome, te.eixo_maior
 )
 SELECT *
@@ -31,11 +35,15 @@ WITH eixos_deputado AS (
         d.id_deputado,
         d.nome,
         te.eixo_maior,
-        COUNT(DISTINCT a.id_proposicao) AS qtd_proposicoes
+        COUNT(DISTINCT (a.ano_dados, a.id_proposicao)) AS qtd_proposicoes
     FROM proposicoes_autores a
     JOIN deputados d ON d.id_deputado = a.id_deputado
-    JOIN proposicoes_2026 p ON p.id_proposicao = a.id_proposicao
-    JOIN resposta_temas_eixos te ON te.uri_proposicao = p.uri_proposicao
+    JOIN proposicoes p
+      ON p.ano_dados = a.ano_dados
+     AND p.id_proposicao = a.id_proposicao
+    JOIN resposta_temas_eixos te
+      ON te.ano_dados = p.ano_dados
+     AND te.uri_proposicao = p.uri_proposicao
     GROUP BY d.id_deputado, d.nome, te.eixo_maior
 ),
 ranked AS (

@@ -1,6 +1,8 @@
 """Generic CSV standardization and PostgreSQL loading."""
 
 import logging
+import os
+import re
 from pathlib import Path
 
 import pandas as pd
@@ -8,17 +10,29 @@ import pandas as pd
 from . import cleaning as C
 from . import db
 from . import enrichment
-from .utils import read_csv, write_clean_csv
+from .utils import (
+    extract_year,
+    find_data_file,
+    find_data_files,
+    read_csv,
+    write_clean_csv,
+)
 
 logger = logging.getLogger(__name__)
 
 
-def load_table(config, conn, schema, data_dir, clean_dir):
+def load_table(config, conn, schema, data_dir, clean_dir, log_dir=None):
     table_name = config["table"]
     csv_file = config.get("file")
+    csv_pattern = config.get("file_pattern")
+    data_dir = Path(data_dir)
+    log_dir = Path(log_dir or os.getenv("LOG_DIR", "./logs"))
     stats = {
         "table": table_name,
+        "source_files": "",
+        "years": "",
         "rows_raw": 0,
+        "rows_bad": 0,
         "rows_clean": 0,
         "rows_loaded": 0,
         "status": "ok",
@@ -27,30 +41,57 @@ def load_table(config, conn, schema, data_dir, clean_dir):
 
     if "generated_rows" in config:
         df = pd.DataFrame(config["generated_rows"])
+        stats["source_files"] = "generated"
         stats["rows_raw"] = len(df)
         logger.info(f"  Gerando {table_name}.csv...")
     else:
-        if csv_file is None:
+        csv_paths = _resolve_csv_paths(data_dir, csv_file, csv_pattern)
+        if not csv_paths:
             stats["status"] = "skip"
-            stats["error"] = "sem CSV disponivel"
+            expected = csv_pattern or csv_file or "sem CSV configurado"
+            stats["error"] = f"arquivo nao encontrado: {expected} em {data_dir.resolve()}"
+            logger.warning(f"  Skip: {stats['error']}")
             return stats
 
-        csv_path = Path(data_dir) / csv_file
-        if not csv_path.exists():
-            stats["status"] = "skip"
-            stats["error"] = f"arquivo nao encontrado: {csv_file}"
-            return stats
+        frames = []
+        source_files = []
+        years = []
+        for csv_path in csv_paths:
+            year = extract_year(csv_path)
+            raw_label = str(csv_path)
+            if csv_path.parent.resolve() != data_dir.resolve():
+                logger.info(f"  Arquivo encontrado em subpasta: {raw_label}")
+            logger.info(f"  Lendo {raw_label}...")
 
-        logger.info(f"  Lendo {csv_file}...")
-        df = read_csv(csv_path)
-        stats["rows_raw"] = len(df)
-        logger.info(f"  {len(df):,} linhas lidas")
+            bad_lines = []
+            frame = read_csv(csv_path, bad_lines=bad_lines)
+            skipped_rows = len(bad_lines)
+            if skipped_rows:
+                logger.warning(f"  {skipped_rows:,} linhas possivelmente puladas em {csv_path.name}")
+
+            if config.get("year_from_file"):
+                frame["__ano_dados"] = str(year) if year is not None else None
+
+            frames.append(frame)
+            source_files.append(str(csv_path))
+            if year is not None:
+                years.append(str(year))
+            stats["rows_raw"] += len(frame)
+            stats["rows_bad"] += skipped_rows
+
+        df = pd.concat(frames, ignore_index=True) if len(frames) > 1 else frames[0]
+        stats["source_files"] = "|".join(source_files)
+        stats["years"] = "|".join(sorted(set(years)))
+        logger.info(f"  {stats['rows_raw']:,} linhas lidas em {len(csv_paths)} arquivo(s)")
 
     transform_type = config.get("transform")
     if transform_type == "deputados":
         out = _transform_deputados(df, data_dir)
     else:
         out = _standardize_columns(df, config)
+
+    if config.get("year_from_file"):
+        out.insert(0, "ano_dados", df["__ano_dados"].apply(C.clean_int))
 
     if transform_type == "votacoes" and "id_evento" in out.columns:
         out["id_evento"] = out["id_evento"].replace({"0": None})
@@ -75,14 +116,18 @@ def load_table(config, conn, schema, data_dir, clean_dir):
         present_required = [c for c in required if c in out.columns]
         before = len(out)
         mask = out[present_required].isna() | (out[present_required] == "")
+        bad_required = out[mask.any(axis=1)].head(100)
+        if not bad_required.empty:
+            _write_bad_rows(bad_required, log_dir, table_name, "required")
         out = out[~mask.any(axis=1)]
         removed = before - len(out)
         if removed:
-            logger.info(f"  {removed:,} linhas removidas por campos obrigatorios nulos")
+            logger.warning(f"  {removed:,} linhas removidas por campos obrigatorios nulos")
 
     skip = config.get("skip_identity", [])
     copy_columns = [c for c in out.columns if c not in skip]
     out_copy = out[copy_columns]
+    _validate_numeric_columns(out_copy, config, log_dir, table_name)
 
     stats["rows_clean"] = len(out_copy)
     logger.info(f"  {len(out_copy):,} linhas padronizadas")
@@ -102,6 +147,15 @@ def load_table(config, conn, schema, data_dir, clean_dir):
         logger.error(f"  Erro no COPY: {exc}")
 
     return stats
+
+
+def _resolve_csv_paths(data_dir, csv_file, csv_pattern):
+    if csv_pattern:
+        return find_data_files(data_dir, csv_pattern)
+    if csv_file:
+        found = find_data_file(data_dir, csv_file)
+        return [found] if found else []
+    return []
 
 
 def _standardize_columns(df, config):
@@ -160,23 +214,21 @@ def _collect_relevant_deputados(data_dir):
     data_dir = Path(data_dir)
     deputies = {}
 
-    gastos = data_dir / "Ano-2026.csv"
-    if gastos.exists():
+    for gastos in find_data_files(data_dir, "Ano-*.csv"):
         df = read_csv(gastos)
         for _, row in df.iterrows():
             if _is_lideranca(row.get("txNomeParlamentar")):
                 continue
             _add_deputado(
                 deputies,
-                row.get("nuDeputadoId"),
+                row.get("ideCadastro"),
                 nome=row.get("txNomeParlamentar"),
                 cpf=row.get("cpf"),
                 sigla_partido=row.get("sgPartido"),
                 sigla_uf=row.get("sgUF"),
             )
 
-    votos = data_dir / "votacoesVotos-2026.csv"
-    if votos.exists():
+    for votos in find_data_files(data_dir, "votacoesVotos-*.csv"):
         df = read_csv(votos)
         for _, row in df.iterrows():
             _add_deputado(
@@ -187,14 +239,12 @@ def _collect_relevant_deputados(data_dir):
                 sigla_uf=row.get("deputado_siglaUf"),
             )
 
-    presencas = data_dir / "eventosPresencaDeputados-2026.csv"
-    if presencas.exists():
+    for presencas in find_data_files(data_dir, "eventosPresencaDeputados-*.csv"):
         df = read_csv(presencas)
         for _, row in df.iterrows():
             _add_deputado(deputies, row.get("idDeputado"))
 
-    autores = data_dir / "proposicoesAutores-2026.csv"
-    if autores.exists():
+    for autores in find_data_files(data_dir, "proposicoesAutores-*.csv"):
         df = read_csv(autores)
         for _, row in df.iterrows():
             _add_deputado(
@@ -206,6 +256,58 @@ def _collect_relevant_deputados(data_dir):
             )
 
     return deputies
+
+
+def _validate_numeric_columns(df, config, log_dir, table_name):
+    rules = _numeric_rules(config)
+    if "ano_dados" in df.columns:
+        rules["ano_dados"] = "int"
+
+    bad_parts = []
+    for column, rule in rules.items():
+        if column not in df.columns:
+            continue
+        values = df[column].dropna().astype(str)
+        values = values[values != ""]
+        if rule == "int":
+            invalid = ~values.str.match(r"^-?\d+$")
+        elif rule == "decimal":
+            invalid = ~values.str.match(r"^-?\d+(\.\d+)?$")
+        elif rule == "bool":
+            invalid = ~values.str.lower().isin({"true", "false"})
+        else:
+            continue
+        if invalid.any():
+            bad_parts.append(df.loc[values[invalid].index].head(100))
+            logger.warning(
+                "  Coluna %s tem %s valores fora do formato esperado",
+                column,
+                int(invalid.sum()),
+            )
+
+    if bad_parts:
+        _write_bad_rows(pd.concat(bad_parts).drop_duplicates().head(100), log_dir, table_name, "numeric")
+
+
+def _numeric_rules(config):
+    rules = {}
+    for _, (db_col, clean_fn) in config.get("columns", {}).items():
+        if clean_fn == C.clean_int:
+            rules[db_col] = "int"
+        elif clean_fn in {C.clean_decimal, C.clean_money}:
+            rules[db_col] = "decimal"
+        elif clean_fn == C.clean_boolean:
+            rules[db_col] = "bool"
+    return rules
+
+
+def _write_bad_rows(df, log_dir, table_name, reason):
+    log_dir = Path(log_dir)
+    log_dir.mkdir(parents=True, exist_ok=True)
+    safe_reason = re.sub(r"[^a-z0-9_]+", "_", reason.lower())
+    path = log_dir / f"bad_rows_{table_name}_{safe_reason}.csv"
+    write_clean_csv(df, path)
+    logger.warning(f"  Amostra de linhas problematicas salva: {path}")
 
 
 def _add_deputado(deputies, raw_id, nome=None, cpf=None, sigla_partido=None, sigla_uf=None):

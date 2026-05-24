@@ -6,7 +6,7 @@ SELECT
     g.descricao_despesa,
     COUNT(*) AS qtd_lancamentos,
     SUM(g.valor_liquido) AS gasto_total
-FROM gastos_2026 g
+FROM gastos g
 JOIN deputados d ON d.id_deputado = g.id_deputado
 WHERE g.descricao_despesa IS NOT NULL
 GROUP BY d.id_deputado, d.nome, g.descricao_despesa;

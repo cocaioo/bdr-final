@@ -2,17 +2,21 @@
 \qecho Q3 - votos por deputado e eixo de atuacao
 WITH objetos AS (
     SELECT
+        vo.ano_dados,
         vo.id_votacao,
         COALESCE(p.uri_proposicao, vo.uri_proposicao) AS uri_proposicao,
         lower(
             COALESCE(vo.titulo_proposicao, '') || ' ' ||
             COALESCE(vo.ementa_proposicao, '')
         ) AS texto_busca
-    FROM votacoes_objetos_2026 vo
-    LEFT JOIN proposicoes_2026 p ON p.id_proposicao = vo.id_proposicao
+    FROM votacoes_objetos vo
+    LEFT JOIN proposicoes p
+      ON p.ano_dados = vo.ano_dados
+     AND p.id_proposicao = vo.id_proposicao
 ),
 objetos_eixos AS (
     SELECT
+        o.ano_dados,
         o.id_votacao,
         COALESCE(
             te.eixo_maior,
@@ -53,16 +57,21 @@ objetos_eixos AS (
             END
         ) AS eixo_maior
     FROM objetos o
-    LEFT JOIN resposta_temas_eixos te ON te.uri_proposicao = o.uri_proposicao
+    LEFT JOIN resposta_temas_eixos te
+      ON te.ano_dados = o.ano_dados
+     AND te.uri_proposicao = o.uri_proposicao
 ),
 votos_eixos AS (
     SELECT DISTINCT
+        vv.ano_dados,
         vv.id_deputado,
         vv.id_votacao,
         vv.voto,
         oe.eixo_maior
-    FROM votacoes_votos_2026 vv
-    JOIN objetos_eixos oe ON oe.id_votacao = vv.id_votacao
+    FROM votacoes_votos vv
+    JOIN objetos_eixos oe
+      ON oe.ano_dados = vv.ano_dados
+     AND oe.id_votacao = vv.id_votacao
 )
 SELECT
     d.id_deputado,

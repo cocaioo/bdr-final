@@ -5,7 +5,7 @@ SELECT
     g.sigla_uf,
     g.sigla_partido,
     SUM(g.valor_liquido) AS gasto_total
-FROM gastos_2026 g
+FROM gastos g
 JOIN deputados d ON d.id_deputado = g.id_deputado
 GROUP BY d.id_deputado, d.nome, g.sigla_uf, g.sigla_partido
 ORDER BY gasto_total DESC;

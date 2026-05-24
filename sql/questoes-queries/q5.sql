@@ -4,7 +4,7 @@ SELECT
     fornecedor,
     COUNT(*) AS qtd_lancamentos,
     SUM(valor_liquido) AS total_pago
-FROM gastos_2026
+FROM gastos
 WHERE fornecedor IS NOT NULL
 GROUP BY fornecedor;
 

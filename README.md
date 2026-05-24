@@ -53,23 +53,36 @@ O schema e criado por `init.sql`.
 
 ## Dados padronizados
 
-O ETL le os CSVs de `tabelas/`, padroniza os nomes e salva tudo em
-`dados_padronizados/`. Essa pasta substitui a antiga `cleaned/`.
+O ETL le os CSVs de `tabelas/` de forma recursiva, padroniza os nomes e salva
+tudo em `dados_padronizados/`. Essa pasta substitui a antiga `cleaned/`.
+
+Arquivos anuais como `tabelas/2026/Ano-2026.csv` sao encontrados
+automaticamente por padroes como `Ano-*.csv`. Com `RAW_DATA_DIR=./tabelas`, a
+carga agrega todos os anos disponiveis. Com `RAW_DATA_DIR=./tabelas/2026`, a
+carga fica restrita aos CSVs anuais daquela pasta; `deputados.csv` pode ser
+lido do diretorio pai quando existir.
+
+As tabelas anuais agora sao bases multi-ano com a coluna `ano_dados`. O schema
+mantem views como `gastos_2026` e `votacoes_votos_2026` apenas para
+compatibilidade com consultas antigas.
 
 Tabelas geradas:
 
 - `deputados.csv`
 - `partidos_ideologia.csv`
-- `proposicoes_2026.csv`
-- `eventos_2026.csv`
-- `votacoes_2026.csv`
-- `gastos_2026.csv`
-- `votacoes_votos_2026.csv`
-- `votacoes_orientacoes_2026.csv`
-- `votacoes_objetos_2026.csv`
-- `proposicoes_temas_2026.csv`
-- `eventos_presenca_deputados_2026.csv`
+- `proposicoes.csv`
+- `eventos.csv`
+- `votacoes.csv`
+- `gastos.csv`
+- `votacoes_votos.csv`
+- `votacoes_orientacoes.csv`
+- `votacoes_objetos.csv`
+- `proposicoes_temas.csv`
+- `eventos_presenca_deputados.csv`
 - `proposicoes_autores.csv`
+
+Ao fim da carga, `logs/etl_load_manifest.csv` registra tabela, arquivos fonte,
+anos carregados, linhas lidas, linhas padronizadas, linhas carregadas e status.
 
 ## Enriquecimento via API
 
@@ -126,7 +139,7 @@ Documentacao detalhada do projeto e das respostas: [DOCUMENTACAO_RESPOSTAS.md](D
 1. Deputados Ordenados por gasto - A Scopo :: N, P, E
 Filtro de A a Z
 Ideia de Resolução 
- Ela resolve a Q1 somando valor_liquido da tabela gastos_2026, a
+ Ela resolve a Q1 somando valor_liquido da tabela gastos, a
  associando cada gasto ao deputado correspondente pela tabela deputados. O resultado é agrupado
 por deputado, UF e partido, e ordenado do maior gasto total para o menor.
 

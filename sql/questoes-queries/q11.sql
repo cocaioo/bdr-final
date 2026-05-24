@@ -3,26 +3,26 @@ CREATE OR REPLACE TEMP VIEW resposta_partido_metricas AS
 WITH partidos AS (
     SELECT sigla_partido FROM partidos_ideologia
     UNION
-    SELECT sigla_partido FROM votacoes_votos_2026 WHERE sigla_partido IS NOT NULL
+    SELECT sigla_partido FROM votacoes_votos WHERE sigla_partido IS NOT NULL
     UNION
     SELECT sigla_partido FROM proposicoes_autores WHERE sigla_partido IS NOT NULL
     UNION
-    SELECT sigla_partido FROM gastos_2026 WHERE sigla_partido IS NOT NULL
+    SELECT sigla_partido FROM gastos WHERE sigla_partido IS NOT NULL
 ),
 votacoes AS (
     SELECT
         sigla_partido,
         COUNT(*) AS votos_registrados,
         COUNT(DISTINCT id_deputado) AS deputados_votantes,
-        COUNT(DISTINCT id_votacao) AS votacoes
-    FROM votacoes_votos_2026
+        COUNT(DISTINCT (ano_dados, id_votacao)) AS votacoes
+    FROM votacoes_votos
     WHERE sigla_partido IS NOT NULL
     GROUP BY sigla_partido
 ),
 proposicoes AS (
     SELECT
         sigla_partido,
-        COUNT(DISTINCT id_proposicao) AS qtd_proposicoes
+        COUNT(DISTINCT (ano_dados, id_proposicao)) AS qtd_proposicoes
     FROM proposicoes_autores
     WHERE sigla_partido IS NOT NULL
     GROUP BY sigla_partido
@@ -31,7 +31,7 @@ gastos AS (
     SELECT
         sigla_partido,
         SUM(valor_liquido) AS gasto_total
-    FROM gastos_2026
+    FROM gastos
     GROUP BY sigla_partido
 )
 SELECT
@@ -54,7 +54,9 @@ SELECT
     t.token,
     COUNT(*) AS frequencia
 FROM proposicoes_autores a
-JOIN resposta_tokens_validos_proposicoes t ON t.id_proposicao = a.id_proposicao
+JOIN resposta_tokens_validos_proposicoes t
+  ON t.ano_dados = a.ano_dados
+ AND t.id_proposicao = a.id_proposicao
 WHERE a.sigla_partido IS NOT NULL
 GROUP BY a.sigla_partido, t.token;
 

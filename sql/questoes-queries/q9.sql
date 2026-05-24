@@ -1,9 +1,9 @@
 \o
 CREATE OR REPLACE TEMP VIEW resposta_partido_predominante_deputado AS
 WITH fontes AS (
-    SELECT id_deputado, sigla_partido FROM votacoes_votos_2026 WHERE sigla_partido IS NOT NULL
+    SELECT id_deputado, sigla_partido FROM votacoes_votos WHERE sigla_partido IS NOT NULL
     UNION ALL
-    SELECT id_deputado, sigla_partido FROM gastos_2026 WHERE sigla_partido IS NOT NULL
+    SELECT id_deputado, sigla_partido FROM gastos WHERE sigla_partido IS NOT NULL
     UNION ALL
     SELECT id_deputado, sigla_partido FROM proposicoes_autores WHERE sigla_partido IS NOT NULL
 ),
@@ -35,10 +35,14 @@ SELECT
     a.sigla_partido,
     pi.ideologia,
     t.tema,
-    COUNT(DISTINCT a.id_proposicao) AS qtd_proposicoes
+    COUNT(DISTINCT (a.ano_dados, a.id_proposicao)) AS qtd_proposicoes
 FROM proposicoes_autores a
-JOIN proposicoes_2026 p ON p.id_proposicao = a.id_proposicao
-JOIN proposicoes_temas_2026 t ON t.uri_proposicao = p.uri_proposicao
+JOIN proposicoes p
+  ON p.ano_dados = a.ano_dados
+ AND p.id_proposicao = a.id_proposicao
+JOIN proposicoes_temas t
+  ON t.ano_dados = p.ano_dados
+ AND t.uri_proposicao = p.uri_proposicao
 LEFT JOIN partidos_ideologia pi ON pi.sigla_partido = a.sigla_partido
 WHERE a.sigla_partido IS NOT NULL
 GROUP BY a.sigla_partido, pi.ideologia, t.tema;
@@ -49,7 +53,7 @@ SELECT
     pi.ideologia,
     vv.voto,
     COUNT(*) AS qtd_votos
-FROM votacoes_votos_2026 vv
+FROM votacoes_votos vv
 LEFT JOIN partidos_ideologia pi ON pi.sigla_partido = vv.sigla_partido
 GROUP BY vv.sigla_partido, pi.ideologia, vv.voto;
 
