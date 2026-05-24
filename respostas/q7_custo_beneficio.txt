@@ -1,4 +1,4 @@
-Q7 - custo-beneficio por deputado
+- custo-beneficio por deputado
 Resumo executivo
  deputados_com_gasto | media_beneficio | media_custo_beneficio | maior_custo_beneficio 
 ---------------------+-----------------+-----------------------+-----------------------
