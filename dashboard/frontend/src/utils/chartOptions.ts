@@ -130,6 +130,10 @@ export function buildChartOption(spec: ChartSpec): EChartsOption {
   if (spec.type === 'heatmap_wordcloud') {
     const heatmapSeries = series.find((entry) => entry.name === 'heatmap')
     const wordSeries = series.find((entry) => entry.name === 'wordcloud')
+    const heatmapData = (heatmapSeries?.data as Array<[number, number, number]>) ?? []
+    const heatmapValues = heatmapData.map((item) => toNumber(item[2]))
+    const heatmapMin = heatmapValues.length ? Math.min(...heatmapValues) : 0
+    const heatmapMax = heatmapValues.length ? Math.max(...heatmapValues) : 0
     const words = ((wordSeries?.data as unknown[]) ?? [])
       .map((item) => item as { name: string; value: number })
       .sort((a, b) => toNumber(b.value) - toNumber(a.value))
@@ -137,6 +141,14 @@ export function buildChartOption(spec: ChartSpec): EChartsOption {
 
     return {
       tooltip: { position: 'top' },
+      visualMap: {
+        min: heatmapMin,
+        max: heatmapMax,
+        calculable: true,
+        orient: 'vertical',
+        right: 20,
+        top: 'middle',
+      },
       grid: [
         { left: 60, right: '55%', bottom: 50, top: 50 },
         { left: '55%', right: 20, bottom: 50, top: 50 },
@@ -169,7 +181,7 @@ export function buildChartOption(spec: ChartSpec): EChartsOption {
         {
           name: 'Atuacao',
           type: 'heatmap',
-          data: (heatmapSeries?.data as unknown[]) ?? [],
+          data: heatmapData,
           emphasis: { itemStyle: { shadowBlur: 8, shadowColor: 'rgba(0,0,0,0.35)' } },
         },
         {
