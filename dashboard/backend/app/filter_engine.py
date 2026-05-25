@@ -1,0 +1,137 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Any
+
+
+@dataclass(slots=True)
+class FilterState:
+    anos: list[str]
+    partidos: list[str]
+    ufs: list[str]
+    deputados: list[str]
+    search: str | None
+    sort_by: str | None
+    sort_dir: str
+    page: int
+    page_size: int
+
+
+class FilterEngine:
+    COLUMN_MAP = {
+        "anos": ["ano_dados", "ano"],
+        "partidos": ["sigla_partido"],
+        "ufs": ["sigla_uf"],
+        "deputados": ["id_deputado", "nome"],
+    }
+
+    @classmethod
+    def apply_filters(
+        cls,
+        rows: list[dict[str, Any]],
+        state: FilterState,
+        supported_filters: list[str],
+    ) -> list[dict[str, Any]]:
+        filtered = rows
+        if "anos" in supported_filters and state.anos:
+            filtered = cls._filter_by_columns(filtered, cls.COLUMN_MAP["anos"], state.anos)
+        if "partidos" in supported_filters and state.partidos:
+            filtered = cls._filter_by_columns(
+                filtered, cls.COLUMN_MAP["partidos"], state.partidos
+            )
+        if "ufs" in supported_filters and state.ufs:
+            filtered = cls._filter_by_columns(filtered, cls.COLUMN_MAP["ufs"], state.ufs)
+        if "deputados" in supported_filters and state.deputados:
+            filtered = cls._filter_deputados(filtered, state.deputados)
+        if state.search:
+            filtered = cls._search(filtered, state.search)
+        return filtered
+
+    @staticmethod
+    def apply_sort(
+        rows: list[dict[str, Any]],
+        sort_by: str | None,
+        sort_dir: str,
+    ) -> list[dict[str, Any]]:
+        if not rows:
+            return rows
+        key = sort_by if sort_by in rows[0] else None
+        if not key:
+            return rows
+        reverse = sort_dir.lower() != "asc"
+        return sorted(rows, key=lambda row: _sortable_value(row.get(key)), reverse=reverse)
+
+    @staticmethod
+    def apply_pagination(
+        rows: list[dict[str, Any]], page: int, page_size: int
+    ) -> list[dict[str, Any]]:
+        start = max(page - 1, 0) * page_size
+        end = start + page_size
+        return rows[start:end]
+
+    @classmethod
+    def _filter_by_columns(
+        cls,
+        rows: list[dict[str, Any]],
+        columns: list[str],
+        allowed_values: list[str],
+    ) -> list[dict[str, Any]]:
+        normalized = {value.strip().lower() for value in allowed_values if value.strip()}
+        if not normalized:
+            return rows
+        output: list[dict[str, Any]] = []
+        for row in rows:
+            for column in columns:
+                if column not in row:
+                    continue
+                raw = row.get(column)
+                if raw is None:
+                    continue
+                if str(raw).strip().lower() in normalized:
+                    output.append(row)
+                    break
+        return output
+
+    @classmethod
+    def _filter_deputados(
+        cls, rows: list[dict[str, Any]], allowed_values: list[str]
+    ) -> list[dict[str, Any]]:
+        normalized = {value.strip().lower() for value in allowed_values if value.strip()}
+        if not normalized:
+            return rows
+        output: list[dict[str, Any]] = []
+        for row in rows:
+            dep_id = row.get("id_deputado")
+            name = row.get("nome")
+            candidates = {
+                str(dep_id).strip().lower() if dep_id is not None else "",
+                str(name).strip().lower() if name is not None else "",
+            }
+            if candidates & normalized:
+                output.append(row)
+        return output
+
+    @staticmethod
+    def _search(rows: list[dict[str, Any]], search: str) -> list[dict[str, Any]]:
+        query = search.strip().lower()
+        if not query:
+            return rows
+        output: list[dict[str, Any]] = []
+        for row in rows:
+            haystack = " ".join(
+                str(value).lower()
+                for value in row.values()
+                if value is not None and not isinstance(value, (dict, list))
+            )
+            if query in haystack:
+                output.append(row)
+        return output
+
+
+def _sortable_value(value: Any) -> Any:
+    if value is None:
+        return (1, "")
+    if isinstance(value, (int, float)):
+        return (0, value)
+    return (0, str(value).lower())
+
