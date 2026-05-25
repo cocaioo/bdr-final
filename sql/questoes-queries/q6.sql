@@ -54,3 +54,69 @@ SELECT
 FROM resposta_escolaridade_indicadores
 GROUP BY ano_dados, escolaridade
 ORDER BY ano_dados, escolaridade;
+
+\o /respostas/q6a_escolaridade_gastos.txt
+\qecho Q6A - escolaridade x gastos
+\qecho Tabela principal - media geral de gastos por escolaridade
+SELECT
+    escolaridade,
+    COUNT(*) AS qtd_registros_deputado_ano,
+    COUNT(DISTINCT id_deputado) AS qtd_deputados,
+    ROUND(AVG(gasto_total), 2) AS media_gasto
+FROM resposta_escolaridade_indicadores
+GROUP BY escolaridade
+HAVING AVG(gasto_total) > 0
+ORDER BY media_gasto DESC NULLS LAST, escolaridade;
+
+\o /respostas/q6b_escolaridade_fidelidade.txt
+\qecho Q6B - escolaridade x fidelidade partidaria
+\qecho Tabela principal - media geral de fidelidade partidaria por escolaridade
+SELECT
+    escolaridade,
+    COUNT(*) AS qtd_registros_deputado_ano,
+    COUNT(fidelidade_partidaria) AS qtd_registros_com_fidelidade,
+    COUNT(DISTINCT id_deputado) AS qtd_deputados,
+    ROUND(AVG(fidelidade_partidaria), 2) AS media_fidelidade
+FROM resposta_escolaridade_indicadores
+GROUP BY escolaridade
+HAVING AVG(fidelidade_partidaria) > 0
+ORDER BY media_fidelidade DESC NULLS LAST, escolaridade;
+
+\o /respostas/q6c_escolaridade_proposicoes.txt
+\qecho Q6C - escolaridade x numero de proposicoes
+\qecho Tabela principal - media geral de proposicoes por escolaridade
+SELECT
+    escolaridade,
+    COUNT(*) AS qtd_registros_deputado_ano,
+    COUNT(DISTINCT id_deputado) AS qtd_deputados,
+    ROUND(AVG(qtd_proposicoes), 2) AS media_proposicoes
+FROM resposta_escolaridade_indicadores
+GROUP BY escolaridade
+HAVING AVG(qtd_proposicoes) > 0
+ORDER BY media_proposicoes DESC NULLS LAST, escolaridade;
+
+\o /respostas/q6d_escolaridade_presenca_eventos.txt
+\qecho Q6D - escolaridade x presenca em eventos
+\qecho Tabela principal - media geral de presenca em eventos por escolaridade
+SELECT
+    escolaridade,
+    COUNT(*) AS qtd_registros_deputado_ano,
+    COUNT(DISTINCT id_deputado) AS qtd_deputados,
+    ROUND(AVG(presenca_eventos), 2) AS media_presenca_eventos
+FROM resposta_escolaridade_indicadores
+GROUP BY escolaridade
+HAVING AVG(presenca_eventos) > 0
+ORDER BY media_presenca_eventos DESC NULLS LAST, escolaridade;
+
+\o /respostas/q6e_escolaridade_presenca_plenario.txt
+\qecho Q6E - escolaridade x presenca no plenario
+\qecho Tabela principal - media geral de presenca no plenario por escolaridade
+SELECT
+    escolaridade,
+    COUNT(*) AS qtd_registros_deputado_ano,
+    COUNT(DISTINCT id_deputado) AS qtd_deputados,
+    ROUND(AVG(presenca_plenario), 2) AS media_presenca_plenario
+FROM resposta_escolaridade_indicadores
+GROUP BY escolaridade
+HAVING AVG(presenca_plenario) > 0
+ORDER BY media_presenca_plenario DESC NULLS LAST, escolaridade;

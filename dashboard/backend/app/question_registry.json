@@ -92,7 +92,14 @@
       "id": "q6",
       "title": "Correlacoes por escolaridade",
       "description": "Compara medias de gasto, fidelidade, proposicoes e presenca por escolaridade.",
-      "response_files": ["q6_escolaridade_correlacoes.txt"],
+      "response_files": [
+        "q6_escolaridade_correlacoes.txt",
+        "q6a_escolaridade_gastos.txt",
+        "q6b_escolaridade_fidelidade.txt",
+        "q6c_escolaridade_proposicoes.txt",
+        "q6d_escolaridade_presenca_eventos.txt",
+        "q6e_escolaridade_presenca_plenario.txt"
+      ],
       "sql_file": "q6.sql",
       "chart_type": "radar",
       "supported_filters": ["anos"],

@@ -1,0 +1,21 @@
+Q6C - escolaridade x numero de proposicoes
+Tabela principal - media geral de proposicoes por escolaridade
+      escolaridade       | qtd_registros_deputado_ano | qtd_deputados | media_proposicoes 
+-------------------------+----------------------------+---------------+-------------------
+ Mestrado Incompleto     |                         23 |             7 |            285.00
+ Primário Incompleto     |                          4 |             1 |            228.50
+ Doutorado               |                         75 |            31 |            144.99
+ Pós-Graduação           |                        370 |           131 |            140.52
+ Doutorado Incompleto    |                         27 |             8 |            124.52
+ Mestrado                |                        187 |            65 |            120.70
+ Superior                |                       1652 |           714 |             86.15
+ Ensino Fundamental      |                         48 |            16 |             76.02
+ Superior Incompleto     |                        193 |            70 |             75.72
+ Ensino Médio            |                        122 |            45 |             67.74
+ Ensino Médio Incompleto |                          9 |             3 |             47.78
+ Nao informado           |                         76 |            42 |             45.01
+ Secundário              |                         28 |            23 |              9.89
+ Secundário Incompleto   |                          1 |             1 |              3.00
+ Primário                |                          2 |             2 |              1.50
+ Ensino Técnico          |                          4 |             4 |              0.75
+
