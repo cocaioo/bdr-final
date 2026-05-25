@@ -74,6 +74,7 @@ votos_eixos AS (
      AND oe.id_votacao = vv.id_votacao
 )
 SELECT
+    ve.ano_dados,
     d.id_deputado,
     d.nome,
     ve.eixo_maior,
@@ -83,5 +84,5 @@ SELECT
     COUNT(*) AS votos_total
 FROM votos_eixos ve
 JOIN deputados d ON d.id_deputado = ve.id_deputado
-GROUP BY d.id_deputado, d.nome, ve.eixo_maior
-ORDER BY d.nome, votos_total DESC, ve.eixo_maior;
+GROUP BY ve.ano_dados, d.id_deputado, d.nome, ve.eixo_maior
+ORDER BY ve.ano_dados, d.nome, votos_total DESC, ve.eixo_maior;

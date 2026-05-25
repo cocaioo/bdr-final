@@ -1,17 +1,19 @@
 \o
 CREATE OR REPLACE TEMP VIEW resposta_fornecedores AS
 SELECT
+    ano_dados,
     fornecedor,
     COUNT(*) AS qtd_lancamentos,
     SUM(valor_liquido) AS total_pago
 FROM gastos
 WHERE fornecedor IS NOT NULL
-GROUP BY fornecedor;
+GROUP BY ano_dados, fornecedor;
 
 \o /respostas/q5_fornecedores.txt
 \qecho Q5 - fornecedores com maior total pago
 \qecho Resumo executivo
 SELECT
+    ano_dados,
     COUNT(*) AS fornecedores,
     SUM(qtd_lancamentos) AS lancamentos,
     SUM(total_pago) AS total_pago,
@@ -20,21 +22,30 @@ SELECT
     ) / NULLIF(SUM(total_pago), 0), 2) AS pct_top_10
 FROM (
     SELECT
-        *,
-        RANK() OVER (ORDER BY total_pago DESC) AS posicao
+        ano_dados,
+        fornecedor,
+        qtd_lancamentos,
+        total_pago,
+        RANK() OVER (PARTITION BY ano_dados ORDER BY total_pago DESC) AS posicao
     FROM resposta_fornecedores
-) r;
+) r
+GROUP BY ano_dados
+ORDER BY ano_dados;
 
 \qecho
 \qecho Tabela principal - top 30 fornecedores por total pago
 WITH ranked AS (
     SELECT
-        *,
-        RANK() OVER (ORDER BY total_pago DESC) AS posicao,
-        SUM(total_pago) OVER () AS total_geral
+        ano_dados,
+        fornecedor,
+        qtd_lancamentos,
+        total_pago,
+        RANK() OVER (PARTITION BY ano_dados ORDER BY total_pago DESC) AS posicao,
+        SUM(total_pago) OVER (PARTITION BY ano_dados) AS total_geral
     FROM resposta_fornecedores
 )
 SELECT
+    ano_dados,
     posicao,
     fornecedor,
     qtd_lancamentos,
@@ -42,7 +53,7 @@ SELECT
     ROUND(100.0 * total_pago / NULLIF(total_geral, 0), 2) AS pct_total
 FROM ranked
 WHERE posicao <= 30
-ORDER BY total_pago DESC, fornecedor;
+ORDER BY ano_dados, total_pago DESC, fornecedor;
 
 \qecho
 \qecho Complemento detalhado: q5_fornecedores_complemento.txt contem o ranking completo.
@@ -50,8 +61,9 @@ ORDER BY total_pago DESC, fornecedor;
 \o /respostas/q5_fornecedores_complemento.txt
 \qecho Q5 complemento - ranking completo de fornecedores
 SELECT
+    ano_dados,
     fornecedor,
     qtd_lancamentos,
     total_pago
 FROM resposta_fornecedores
-ORDER BY total_pago DESC;
+ORDER BY ano_dados, total_pago DESC;

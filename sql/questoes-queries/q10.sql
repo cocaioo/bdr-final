@@ -22,6 +22,7 @@ maioria AS (
 ),
 alinhados AS (
     SELECT
+        vv.ano_dados,
         vv.sigla_partido,
         COUNT(*) FILTER (WHERE vv.voto = m.voto_majoritario) AS votos_alinhados,
         COUNT(*) AS votos_total
@@ -31,9 +32,10 @@ alinhados AS (
      AND m.id_votacao = vv.id_votacao
      AND m.sigla_partido = vv.sigla_partido
     WHERE vv.voto IN ('Sim', 'Nao')
-    GROUP BY vv.sigla_partido
+    GROUP BY vv.ano_dados, vv.sigla_partido
 )
 SELECT
+    ano_dados,
     sigla_partido,
     votos_alinhados,
     votos_total,
@@ -44,18 +46,22 @@ FROM alinhados;
 \qecho Q10 - alinhamento interno dos partidos
 \qecho Resumo executivo
 SELECT
+    ano_dados,
     COUNT(*) AS partidos,
     ROUND(AVG(alinhamento_interno), 4) AS media_alinhamento,
     ROUND(MIN(alinhamento_interno), 4) AS menor_alinhamento,
     ROUND(MAX(alinhamento_interno), 4) AS maior_alinhamento
-FROM resposta_alinhamento_partidos;
+FROM resposta_alinhamento_partidos
+GROUP BY ano_dados
+ORDER BY ano_dados;
 
 \qecho
 \qecho Tabela principal - partidos por alinhamento interno
 SELECT
+    ano_dados,
     sigla_partido,
     votos_alinhados,
     votos_total,
     alinhamento_interno
 FROM resposta_alinhamento_partidos
-ORDER BY alinhamento_interno DESC, votos_total DESC;
+ORDER BY ano_dados, alinhamento_interno DESC, votos_total DESC;

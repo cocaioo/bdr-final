@@ -1,40 +1,49 @@
 \o
 CREATE OR REPLACE TEMP VIEW resposta_partido_metricas AS
 WITH partidos AS (
-    SELECT sigla_partido FROM partidos_ideologia
+    SELECT DISTINCT ano_dados, sigla_partido
+    FROM votacoes_votos
+    WHERE sigla_partido IS NOT NULL
     UNION
-    SELECT sigla_partido FROM votacoes_votos WHERE sigla_partido IS NOT NULL
+    SELECT DISTINCT ano_dados, sigla_partido
+    FROM proposicoes_autores
+    WHERE sigla_partido IS NOT NULL
     UNION
-    SELECT sigla_partido FROM proposicoes_autores WHERE sigla_partido IS NOT NULL
-    UNION
-    SELECT sigla_partido FROM gastos WHERE sigla_partido IS NOT NULL
+    SELECT DISTINCT ano_dados, sigla_partido
+    FROM gastos
+    WHERE sigla_partido IS NOT NULL
 ),
 votacoes AS (
     SELECT
+        ano_dados,
         sigla_partido,
         COUNT(*) AS votos_registrados,
         COUNT(DISTINCT id_deputado) AS deputados_votantes,
         COUNT(DISTINCT (ano_dados, id_votacao)) AS votacoes
     FROM votacoes_votos
     WHERE sigla_partido IS NOT NULL
-    GROUP BY sigla_partido
+    GROUP BY ano_dados, sigla_partido
 ),
 proposicoes AS (
     SELECT
+        ano_dados,
         sigla_partido,
         COUNT(DISTINCT (ano_dados, id_proposicao)) AS qtd_proposicoes
     FROM proposicoes_autores
     WHERE sigla_partido IS NOT NULL
-    GROUP BY sigla_partido
+    GROUP BY ano_dados, sigla_partido
 ),
 gastos AS (
     SELECT
+        ano_dados,
         sigla_partido,
         SUM(valor_liquido) AS gasto_total
     FROM gastos
-    GROUP BY sigla_partido
+    WHERE sigla_partido IS NOT NULL
+    GROUP BY ano_dados, sigla_partido
 )
 SELECT
+    p.ano_dados,
     p.sigla_partido,
     pi.ideologia,
     COALESCE(v.votos_registrados, 0) AS votos_registrados,
@@ -44,12 +53,19 @@ SELECT
     COALESCE(g.gasto_total, 0) AS gasto_total
 FROM partidos p
 LEFT JOIN partidos_ideologia pi ON pi.sigla_partido = p.sigla_partido
-LEFT JOIN votacoes v ON v.sigla_partido = p.sigla_partido
-LEFT JOIN proposicoes pr ON pr.sigla_partido = p.sigla_partido
-LEFT JOIN gastos g ON g.sigla_partido = p.sigla_partido;
+LEFT JOIN votacoes v
+  ON v.ano_dados = p.ano_dados
+ AND v.sigla_partido = p.sigla_partido
+LEFT JOIN proposicoes pr
+  ON pr.ano_dados = p.ano_dados
+ AND pr.sigla_partido = p.sigla_partido
+LEFT JOIN gastos g
+  ON g.ano_dados = p.ano_dados
+ AND g.sigla_partido = p.sigla_partido;
 
 CREATE OR REPLACE TEMP VIEW resposta_tokens_partido AS
 SELECT
+    a.ano_dados,
     a.sigla_partido,
     t.token,
     COUNT(*) AS frequencia
@@ -58,21 +74,25 @@ JOIN resposta_tokens_validos_proposicoes t
   ON t.ano_dados = a.ano_dados
  AND t.id_proposicao = a.id_proposicao
 WHERE a.sigla_partido IS NOT NULL
-GROUP BY a.sigla_partido, t.token;
+GROUP BY a.ano_dados, a.sigla_partido, t.token;
 
 \o /respostas/q11_rankings_partidos.txt
 \qecho Q11 - rankings partidarios
 \qecho Resumo executivo
 SELECT
+    ano_dados,
     COUNT(*) AS partidos,
     SUM(votos_registrados) AS votos_registrados,
     SUM(qtd_proposicoes) AS proposicoes,
     SUM(gasto_total) AS gasto_total
-FROM resposta_partido_metricas;
+FROM resposta_partido_metricas
+GROUP BY ano_dados
+ORDER BY ano_dados;
 
 \qecho
 \qecho Tabela principal - painel compacto por partido
 SELECT
+    ano_dados,
     sigla_partido,
     ideologia,
     votos_registrados,
@@ -80,33 +100,35 @@ SELECT
     votacoes,
     qtd_proposicoes,
     gasto_total,
-    RANK() OVER (ORDER BY votos_registrados DESC) AS pos_votos,
-    RANK() OVER (ORDER BY qtd_proposicoes DESC) AS pos_proposicoes,
-    RANK() OVER (ORDER BY gasto_total DESC) AS pos_gastos
+    RANK() OVER (PARTITION BY ano_dados ORDER BY votos_registrados DESC) AS pos_votos,
+    RANK() OVER (PARTITION BY ano_dados ORDER BY qtd_proposicoes DESC) AS pos_proposicoes,
+    RANK() OVER (PARTITION BY ano_dados ORDER BY gasto_total DESC) AS pos_gastos
 FROM resposta_partido_metricas
-ORDER BY votos_registrados DESC;
+ORDER BY ano_dados, votos_registrados DESC;
 
 \qecho
 \qecho Complemento enxuto - top palavras por partido
 WITH ranked AS (
     SELECT
+        ano_dados,
         sigla_partido,
         token,
         frequencia,
         RANK() OVER (
-            PARTITION BY sigla_partido
+            PARTITION BY ano_dados, sigla_partido
             ORDER BY frequencia DESC
         ) AS posicao
     FROM resposta_tokens_partido
 )
 SELECT
+    ano_dados,
     sigla_partido,
     posicao,
     token,
     frequencia
 FROM ranked
 WHERE posicao <= 10
-ORDER BY sigla_partido, posicao, token;
+ORDER BY ano_dados, sigla_partido, posicao, token;
 
 \qecho
 \qecho Complemento detalhado: q11_nuvem_palavras_partidos_complemento.txt contem a nuvem completa.
@@ -114,8 +136,9 @@ ORDER BY sigla_partido, posicao, token;
 \o /respostas/q11_nuvem_palavras_partidos_complemento.txt
 \qecho Q11 complemento - nuvem de palavras completa por partido
 SELECT
+    ano_dados,
     sigla_partido,
     token,
     frequencia
 FROM resposta_tokens_partido
-ORDER BY sigla_partido, frequencia DESC;
+ORDER BY ano_dados, sigla_partido, frequencia DESC;
