@@ -1,43 +1,136 @@
 Q13 - categorias de gasto por deputado
 Resumo executivo
- pares_deputado_categoria | deputados | categorias | lancamentos | gasto_total
---------------------------+-----------+------------+-------------+--------------
-                     7218 |       851 |         20 |      726645 | 814641556.15
+ ano_dados | pares_deputado_categoria | deputados | categorias | lancamentos | gasto_total  
+-----------+--------------------------+-----------+------------+-------------+--------------
+      2023 |                     6104 |       788 |         20 |      235917 | 252001267.45
+      2024 |                     4603 |       582 |         18 |      231356 | 251412826.30
+      2025 |                     4389 |       562 |         19 |      207398 | 241218715.73
+      2026 |                     3172 |       549 |         18 |       51974 |  70008746.67
 
 
 Tabela principal - top 30 deputado x categoria por gasto
- id_deputado |         nome          |          descricao_despesa           | qtd_lancamentos | gasto_total | pct_total
--------------+-----------------------+--------------------------------------+-----------------+-------------+-----------
-      178997 | Moses Rodrigues       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             159 |  1554500.00 |      0.19
-       74454 | Eunício Oliveira      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              37 |  1519173.49 |      0.19
-      220538 | Albuquerque           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             157 |  1481205.88 |      0.18
-      178887 | Rubens Pereira Júnior | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             131 |  1462994.42 |      0.18
-      204360 | Silvia Cristina       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             640 |  1433666.72 |      0.18
-      204506 | Marcos Pereira        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              67 |  1399000.00 |      0.17
-      178843 | Marx Beltrão          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              78 |  1360730.00 |      0.17
-      204498 | Olival Marques        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              63 |  1358250.00 |      0.17
-       74383 | Giacobo               | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              38 |  1337704.50 |      0.16
-      141408 | Cleber Verde          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             100 |  1332000.00 |      0.16
-      220592 | Zezinho Barbary       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             246 |  1320152.00 |      0.16
-      141456 | Jilmar Tatto          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             201 |  1317260.63 |      0.16
-      220573 | Dorinaldo Malafaia    | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              49 |  1306659.31 |      0.16
-      204391 | José Nelto            | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             186 |  1289910.80 |      0.16
-      220599 | Marcelo Crivella      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              81 |  1281300.00 |      0.16
-      204517 | Zé Vitor              | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             145 |  1257218.70 |      0.15
-      220574 | Cabo Gilberto Silva   | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             141 |  1253800.00 |      0.15
-      160575 | Erika Kokay           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              48 |  1249646.10 |      0.15
-      204396 | Vermelho              | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             198 |  1220352.97 |      0.15
-      204570 | Pastor Gil            | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              64 |  1209330.00 |      0.15
-      204419 | Glaustin da Fokus     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              41 |  1209079.80 |      0.15
-      160591 | Vinicius Gurgel       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              69 |  1189500.00 |      0.15
-      220671 | Dilvanda Faro         | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             103 |  1189038.00 |      0.15
-      220542 | Alexandre Guimarães   | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             385 |  1186739.33 |      0.15
-      123756 | Antônia Lúcia         | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              84 |  1186730.32 |      0.15
-      178876 | Célio Silveira        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              44 |  1184200.00 |      0.15
-      220536 | Zé Haroldo Cathedral  | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             179 |  1182395.00 |      0.15
-       74044 | Wilson Santiago       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             318 |  1171440.00 |      0.14
-      220628 | Mauricio do Vôlei     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              60 |  1163552.08 |      0.14
-       74057 | Alice Portugal        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              62 |  1159291.50 |      0.14
+ ano_dados | id_deputado |         nome          |          descricao_despesa           | qtd_lancamentos | gasto_total | pct_total 
+-----------+-------------+-----------------------+--------------------------------------+-----------------+-------------+-----------
+      2023 |       74454 | Eunício Oliveira      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              12 |   494105.69 |      0.20
+      2023 |      220674 | Dra. Alessandra Haber | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              24 |   469783.64 |      0.19
+      2023 |      178887 | Rubens Pereira Júnior | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              35 |   469650.00 |      0.19
+      2023 |      220575 | Sonize Barbosa        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              20 |   442589.10 |      0.18
+      2023 |      204570 | Pastor Gil            | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              14 |   437980.00 |      0.17
+      2023 |      137070 | Vicentinho Júnior     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              83 |   436900.00 |      0.17
+      2023 |      204391 | José Nelto            | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              41 |   430100.00 |      0.17
+      2023 |      220714 | Adail Filho           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              23 |   421850.00 |      0.17
+      2023 |      220538 | Albuquerque           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              42 |   418655.88 |      0.17
+      2023 |       74044 | Wilson Santiago       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             110 |   413490.00 |      0.16
+      2023 |       74383 | Giacobo               | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              11 |   412636.70 |      0.16
+      2023 |      178997 | Moses Rodrigues       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              42 |   409500.00 |      0.16
+      2023 |      204506 | Marcos Pereira        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              20 |   405000.00 |      0.16
+      2023 |      204419 | Glaustin da Fokus     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              13 |   401558.80 |      0.16
+      2023 |      178843 | Marx Beltrão          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              23 |   394540.00 |      0.16
+      2023 |      220592 | Zezinho Barbary       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              69 |   391000.00 |      0.16
+      2023 |      220582 | Daniel Barbosa        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              16 |   387000.00 |      0.15
+      2023 |       74696 | Alberto Mourão        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              27 |   383111.71 |      0.15
+      2023 |       73806 | Roseana Sarney        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              40 |   378092.00 |      0.15
+      2023 |      141456 | Jilmar Tatto          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              50 |   378000.00 |      0.15
+      2023 |      141408 | Cleber Verde          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              18 |   377000.00 |      0.15
+      2023 |      220707 | Amanda Gentil         | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              18 |   373290.80 |      0.15
+      2023 |       73486 | Pompeo de Mattos      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              84 |   373069.43 |      0.15
+      2023 |      215043 | Josivaldo JP          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              19 |   367575.00 |      0.15
+      2023 |      204396 | Vermelho              | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              65 |   366600.00 |      0.15
+      2023 |      204517 | Zé Vitor              | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              25 |   364377.00 |      0.14
+      2023 |      220573 | Dorinaldo Malafaia    | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              17 |   362611.31 |      0.14
+      2023 |      160161 | Marcelo Queiroz       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              23 |   361803.10 |      0.14
+      2023 |      220671 | Dilvanda Faro         | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              25 |   361288.00 |      0.14
+      2023 |      160635 | Ruy Carneiro          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             193 |   358280.00 |      0.14
+      2024 |       74454 | Eunício Oliveira      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              12 |   505900.00 |      0.20
+      2024 |      220660 | Yury do Paredão       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              34 |   483000.00 |      0.19
+      2024 |      178887 | Rubens Pereira Júnior | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              35 |   460664.42 |      0.18
+      2024 |      178997 | Moses Rodrigues       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              46 |   456000.00 |      0.18
+      2024 |      204419 | Glaustin da Fokus     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              16 |   446131.00 |      0.18
+      2024 |      178843 | Marx Beltrão          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              25 |   444390.00 |      0.18
+      2024 |      204360 | Silvia Cristina       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             198 |   443946.78 |      0.18
+      2024 |      220538 | Albuquerque           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              36 |   438700.00 |      0.17
+      2024 |      141456 | Jilmar Tatto          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              69 |   437527.54 |      0.17
+      2024 |      204506 | Marcos Pereira        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              21 |   434000.00 |      0.17
+      2024 |      220573 | Dorinaldo Malafaia    | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              15 |   429580.00 |      0.17
+      2024 |      204498 | Olival Marques        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              18 |   425700.00 |      0.17
+      2024 |      178876 | Célio Silveira        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              15 |   421650.00 |      0.17
+      2024 |      220671 | Dilvanda Faro         | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              43 |   415750.00 |      0.17
+      2024 |      220591 | Meire Serafim         | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              26 |   415428.00 |      0.17
+      2024 |      220592 | Zezinho Barbary       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              81 |   410150.00 |      0.16
+      2024 |       74383 | Giacobo               | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              10 |   406930.00 |      0.16
+      2024 |      204517 | Zé Vitor              | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              44 |   400128.70 |      0.16
+      2024 |      160575 | Erika Kokay           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              14 |   400046.00 |      0.16
+      2024 |      141485 | Luiz Carlos Busato    | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              51 |   396334.09 |      0.16
+      2024 |      204391 | José Nelto            | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              72 |   393600.00 |      0.16
+      2024 |      141408 | Cleber Verde          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              25 |   389000.00 |      0.15
+      2024 |      220536 | Zé Haroldo Cathedral  | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              47 |   388715.00 |      0.15
+      2024 |      220580 | Professora Goreth     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              37 |   384400.00 |      0.15
+      2024 |      220599 | Marcelo Crivella      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              24 |   381120.00 |      0.15
+      2024 |      204534 | Tabata Amaral         | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              61 |   373017.82 |      0.15
+      2024 |      220664 | Guilherme Uchoa       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              30 |   370842.86 |      0.15
+      2024 |      178909 | Hélio Leite           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              38 |   370683.40 |      0.15
+      2024 |      220647 | Mauricio Neves        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              32 |   369994.95 |      0.15
+      2024 |      220714 | Adail Filho           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              23 |   369100.00 |      0.15
+      2025 |      178997 | Moses Rodrigues       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              54 |   515000.00 |      0.21
+      2025 |      220538 | Albuquerque           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              62 |   501500.00 |      0.21
+      2025 |      204360 | Silvia Cristina       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |             196 |   469975.70 |      0.19
+      2025 |      123756 | Antônia Lúcia         | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              19 |   463772.00 |      0.19
+      2025 |      141408 | Cleber Verde          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              41 |   451500.00 |      0.19
+      2025 |      220676 | Andreia Siqueira      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              25 |   442514.49 |      0.18
+      2025 |      204506 | Marcos Pereira        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              20 |   440000.00 |      0.18
+      2025 |      178887 | Rubens Pereira Júnior | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              50 |   439250.00 |      0.18
+      2025 |      220574 | Cabo Gilberto Silva   | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              47 |   437600.00 |      0.18
+      2025 |      220681 | Fábio Macedo          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              13 |   435000.00 |      0.18
+      2025 |      178876 | Célio Silveira        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              15 |   422500.00 |      0.18
+      2025 |      178843 | Marx Beltrão          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              24 |   417700.00 |      0.17
+      2025 |      204498 | Olival Marques        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              14 |   410500.00 |      0.17
+      2025 |      141456 | Jilmar Tatto          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              65 |   410167.09 |      0.17
+      2025 |      204517 | Zé Vitor              | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              63 |   409441.00 |      0.17
+      2025 |      220697 | Jadyel Alencar        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              80 |   404213.40 |      0.17
+      2025 |      204391 | José Nelto            | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              62 |   399110.80 |      0.17
+      2025 |      220592 | Zezinho Barbary       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              68 |   389802.00 |      0.16
+      2025 |      220628 | Mauricio do Vôlei     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              22 |   388890.00 |      0.16
+      2025 |      204491 | Gilberto Abramo       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              50 |   388316.29 |      0.16
+      2025 |       74043 | Wellington Roberto    | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              19 |   385000.00 |      0.16
+      2025 |      160575 | Erika Kokay           | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              12 |   384930.00 |      0.16
+      2025 |      220589 | Eduardo Velloso       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              87 |   384441.70 |      0.16
+      2025 |       74400 | Paulo Pimenta         | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              38 |   383600.00 |      0.16
+      2025 |      204396 | Vermelho              | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              67 |   380652.97 |      0.16
+      2025 |      220573 | Dorinaldo Malafaia    | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              13 |   379468.00 |      0.16
+      2025 |      204539 | Hercílio Coelho Diniz | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              24 |   378558.90 |      0.16
+      2025 |      220599 | Marcelo Crivella      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              25 |   375400.00 |      0.16
+      2025 |      220660 | Yury do Paredão       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              39 |   374106.66 |      0.16
+      2025 |       74383 | Giacobo               | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              13 |   372624.10 |      0.15
+      2026 |       74454 | Eunício Oliveira      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |               5 |   222000.00 |      0.32
+      2026 |      220676 | Andreia Siqueira      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              12 |   216489.10 |      0.31
+      2026 |      160591 | Vinicius Gurgel       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |               9 |   193000.00 |      0.28
+      2026 |       74090 | Átila Lins            | LOCAÇÃO OU FRETAMENTO DE AERONAVES   |               9 |   183400.00 |      0.26
+      2026 |      220599 | Marcelo Crivella      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              12 |   180500.00 |      0.26
+      2026 |      204498 | Olival Marques        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |               8 |   179000.00 |      0.26
+      2026 |      178997 | Moses Rodrigues       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              17 |   174000.00 |      0.25
+      2026 |      204360 | Silvia Cristina       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              72 |   172950.00 |      0.25
+      2026 |       74158 | Mário Heringer        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              15 |   172880.00 |      0.25
+      2026 |      220628 | Mauricio do Vôlei     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |               5 |   167500.00 |      0.24
+      2026 |      220693 | Roberta Roma          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              19 |   161510.00 |      0.23
+      2026 |      204557 | Sidney Leite          | LOCAÇÃO OU FRETAMENTO DE AERONAVES   |               3 |   160000.00 |      0.23
+      2026 |      220681 | Fábio Macedo          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |               3 |   159000.00 |      0.23
+      2026 |      220624 | Robinson Faria        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              13 |   154000.00 |      0.22
+      2026 |       73778 | Luiz Carlos Hauly     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              21 |   151796.00 |      0.22
+      2026 |      220574 | Cabo Gilberto Silva   | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              16 |   149200.00 |      0.21
+      2026 |      220610 | Dr. Fernando Máximo   | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              14 |   146460.88 |      0.21
+      2026 |       74383 | Giacobo               | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |               4 |   145513.70 |      0.21
+      2026 |       73486 | Pompeo de Mattos      | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              55 |   144732.00 |      0.21
+      2026 |      129618 | Gorete Pereira        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              10 |   143093.60 |      0.20
+      2026 |      160601 | Pr. Marco Feliciano   | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              11 |   142250.00 |      0.20
+      2026 |      220536 | Zé Haroldo Cathedral  | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              24 |   140320.00 |      0.20
+      2026 |      204419 | Glaustin da Fokus     | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |               4 |   138280.00 |      0.20
+      2026 |      204396 | Vermelho              | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              19 |   138000.00 |      0.20
+      2026 |      234788 | Heloísa Helena        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |               6 |   137446.40 |      0.20
+      2026 |       74044 | Wilson Santiago       | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              41 |   136700.00 |      0.20
+      2026 |      153423 | Renilce Nicodemos     | LOCAÇÃO OU FRETAMENTO DE AERONAVES   |               5 |   136000.00 |      0.19
+      2026 |      220584 | Murilo Galdino        | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              13 |   135300.00 |      0.19
+      2026 |      220573 | Dorinaldo Malafaia    | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |               4 |   135000.00 |      0.19
+      2026 |      160635 | Ruy Carneiro          | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR. |              78 |   134643.52 |      0.19
 
 
 Complemento detalhado: q13_categorias_gasto_deputado_complemento.txt contem o ranking completo.
