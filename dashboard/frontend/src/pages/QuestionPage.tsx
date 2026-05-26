@@ -9,7 +9,7 @@ import { NoDataState } from '../components/NoDataState'
 import { QueryDrawer } from '../components/QueryDrawer'
 import { WarningBanner } from '../components/WarningBanner'
 import type { FilterState, MetaResponse, QuestionPayload, TableState } from '../types'
-import { isQuestionEnabled } from '../utils/questionAvailability'
+import { isQuestionEnabled, isQuestionHidden } from '../utils/questionAvailability'
 import { formatCellValue } from '../utils/format'
 
 interface QuestionPageProps {
@@ -40,6 +40,7 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     () => meta.questions.find((question) => question.id === questionId),
     [meta.questions, questionId],
   )
+  const isHiddenQuestion = Boolean(questionMeta && isQuestionHidden(questionMeta.id))
   const isEnabledQuestion = isQuestionEnabled(questionMeta?.id)
   const isUnderDevelopment = Boolean(questionMeta && !isEnabledQuestion)
 
@@ -53,7 +54,7 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
   }, [questionId])
 
   useEffect(() => {
-    if (!questionMeta || isUnderDevelopment) {
+    if (!questionMeta || isHiddenQuestion || isUnderDevelopment) {
       setPayload(null)
       setLoading(false)
       setError(null)
@@ -78,7 +79,7 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     return () => {
       mounted = false
     }
-  }, [questionMeta, isUnderDevelopment, filters, tableState])
+  }, [questionMeta, isHiddenQuestion, isUnderDevelopment, filters, tableState])
 
   const yearLegend = useMemo(() => {
     if (!questionMeta || questionMeta.id.toLowerCase() !== 'q3') return []
@@ -94,6 +95,14 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
   }, [filters.anos, meta.available_filters.anos, payload, questionMeta])
 
   if (!questionMeta) {
+    return (
+      <main className="question-page">
+        <NoDataState message="Pergunta nao encontrada no registro." />
+      </main>
+    )
+  }
+
+  if (isHiddenQuestion) {
     return (
       <main className="question-page">
         <NoDataState message="Pergunta nao encontrada no registro." />
@@ -143,8 +152,8 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     )
   }
 
-  const isQ7 = questionMeta.id.toLowerCase() === 'q7'
   const isQ8 = questionMeta.id.toLowerCase() === 'q8'
+  const shouldShowChart = questionMeta.id.toLowerCase() !== 'q1'
   const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
   const mainTable = isQ8 ? { ...payload.table_spec, title: 'Tabela principal' } : payload.table_spec
   const complementTables = isQ8 ? [] : payload.complement_tables
@@ -155,22 +164,6 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     }
     setTableState(next)
   }
-  const q7FormulaCard = isQ7 ? (
-    <>
-      <h3>Formula do custo-beneficio</h3>
-      <div className="formula-layout" aria-label="Formula da metrica de custo-beneficio">
-        <p className="formula-heading">Beneficio =</p>
-        <p>(qtd_proposicoes * 2)</p>
-        <p>+</p>
-        <p>(proposicoes_aprovadas * 3)</p>
-        <p>+</p>
-        <p>(presenca_total * 0.1)</p>
-        <p className="formula-heading">Custo-beneficio =</p>
-        <p>beneficio / gasto_total</p>
-      </div>
-    </>
-  ) : null
-
   return (
     <main className="question-page">
       <section className="question-intro stagger-item">
@@ -181,13 +174,13 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
       </section>
 
       <WarningBanner warnings={payload.warnings} />
-      <ExecutiveCards cards={payload.summary_cards} extraCard={q7FormulaCard} />
+  <ExecutiveCards cards={payload.summary_cards} />
 
       {payload.empty_state.is_empty ? (
         <NoDataState message={payload.empty_state.message} />
       ) : (
         <>
-          <ChartPanel spec={payload.chart_spec} yearLabels={yearLegend} />
+          {shouldShowChart ? <ChartPanel spec={payload.chart_spec} yearLabels={yearLegend} /> : null}
           <DataTablePanel
             table={mainTable}
             state={tableStateView}

@@ -96,6 +96,14 @@ body {
   border-color: var(--primary);
 }
 
+.question-link-disabled {
+  color: var(--danger);
+  background: #fff8f3;
+  border-style: dashed;
+  border-color: rgba(192, 57, 43, 0.45);
+  cursor: not-allowed;
+}
+
 .filter-panel {
   background: var(--surface);
   border: 1px solid var(--border);

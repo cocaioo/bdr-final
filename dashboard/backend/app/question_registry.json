@@ -126,7 +126,7 @@
     {
       "id": "q8",
       "title": "Influencia legislativa",
-      "description": "Ranking por percentual de proposicoes aprovadas por deputado.",
+      "description": "Ranking pela participacao das proposicoes aprovadas de cada deputado no total global de proposicoes aprovadas.",
       "response_files": ["q8_influencia.txt", "q8_influencia_complemento.txt"],
       "sql_file": "q8.sql",
       "chart_type": "bar_horizontal",
@@ -134,7 +134,7 @@
       "expected_columns": ["id_deputado", "nome", "proposicoes_autoria", "proposicoes_aprovadas", "pct_aprovadas"],
       "main_table_contains": "Tabela principal",
       "summary_table_contains": "Resumo executivo",
-      "explanation": "Calcula percentual de aprovacao em proposicoes de autoria do deputado.",
+      "explanation": "Calcula a participacao das proposicoes aprovadas de autoria do deputado no total global de proposicoes aprovadas.",
       "chart": { "x_field": "nome", "y_fields": ["pct_aprovadas"] }
     },
     {
@@ -154,15 +154,15 @@
     {
       "id": "q10",
       "title": "Alinhamento interno dos partidos",
-      "description": "Mede quanto o voto individual acompanha a maioria interna do partido.",
+      "description": "Mede quanto o voto individual acompanha a maioria interna do partido, considerando todos os anos.",
       "response_files": ["q10_alinhamento_interno_partidos.txt"],
       "sql_file": "q10.sql",
       "chart_type": "bar_vertical",
-      "supported_filters": ["anos", "partidos"],
+      "supported_filters": ["partidos"],
       "expected_columns": ["sigla_partido", "votos_alinhados", "votos_total", "alinhamento_interno"],
       "main_table_contains": "Tabela principal",
       "summary_table_contains": "Resumo executivo",
-      "explanation": "Calcula votos alinhados sobre votos totais por partido.",
+      "explanation": "Calcula votos alinhados sobre votos totais por partido em base global, sem recorte por ano.",
       "chart": { "x_field": "sigla_partido", "y_fields": ["alinhamento_interno"] }
     },
     {

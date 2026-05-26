@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import type { MetaResponse } from '../types'
-import { isQuestionEnabled } from '../utils/questionAvailability'
+import { isQuestionEnabled, isQuestionHidden } from '../utils/questionAvailability'
 
 interface HomePageProps {
   meta: MetaResponse
@@ -19,7 +19,9 @@ export function HomePage({ meta }: HomePageProps) {
       </section>
 
       <section className="question-grid">
-        {meta.questions.map((question, index) => {
+        {meta.questions
+          .filter((question) => !isQuestionHidden(question.id))
+          .map((question, index) => {
           const isEnabled = isQuestionEnabled(question.id)
           return (
             <article
@@ -40,7 +42,7 @@ export function HomePage({ meta }: HomePageProps) {
               )}
             </article>
           )
-        })}
+          })}
       </section>
     </main>
   )

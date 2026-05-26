@@ -7,6 +7,7 @@ import { Header } from './components/Header'
 import { HomePage } from './pages/HomePage'
 import { QuestionPage } from './pages/QuestionPage'
 import type { FilterState, MetaResponse } from './types'
+import { isQuestionHidden } from './utils/questionAvailability'
 
 const EMPTY_FILTER_STATE: FilterState = {
   anos: [],
@@ -26,6 +27,7 @@ function App() {
     ? location.pathname.replace('/q/', '')
     : null
   const activeQuestion = meta?.questions.find((question) => question.id === activeQuestionId)
+  const hiddenQuestionRoute = Boolean(activeQuestionId && isQuestionHidden(activeQuestionId))
 
   useEffect(() => {
     fetchMeta()
@@ -56,12 +58,14 @@ function App() {
   return (
     <div className="app-shell">
       <Header questions={meta.questions} datasetVersion={meta.dataset_version} />
-      <GlobalFilters
-        catalog={meta.available_filters}
-        value={filters}
-        onChange={setFilters}
-        supportedFilters={activeQuestion?.supported_filters}
-      />
+      {!hiddenQuestionRoute ? (
+        <GlobalFilters
+          catalog={meta.available_filters}
+          value={filters}
+          onChange={setFilters}
+          supportedFilters={activeQuestion?.supported_filters}
+        />
+      ) : null}
       <Routes>
         <Route path="/" element={<HomePage meta={meta} />} />
         <Route path="/q/:questionId" element={<QuestionPage meta={meta} filters={filters} />} />

@@ -6,7 +6,7 @@ from app.main import app
 
 
 client = TestClient(app)
-GLOBAL_RANKING_QUESTIONS = ("q1", "q5", "q7", "q8", "q12", "q13")
+GLOBAL_RANKING_QUESTIONS = ("q5", "q7", "q12", "q13")
 
 
 def test_meta_endpoint_returns_questions() -> None:
@@ -30,6 +30,23 @@ def test_question_endpoint_returns_payload() -> None:
     assert "chart_spec" in payload
     assert "table_spec" in payload
     assert isinstance(payload["table_spec"]["rows"], list)
+
+
+def test_q8_payload_uses_global_approved_total() -> None:
+    response = client.get("/api/questions/q8?page=1&page_size=10")
+    assert response.status_code == 200
+    payload = response.json()
+
+    first_row = payload["table_spec"]["rows"][0]
+    assert first_row["nome"] == "Laura Carneiro"
+    assert first_row["proposicoes_aprovadas"] == 10
+    assert first_row["pct_aprovadas"] == 2.54
+    assert payload["query_panel"]["explanation"].endswith(
+        "no total global de proposicoes aprovadas."
+    )
+
+    summary_cards = {card["label"]: card["value"] for card in payload["summary_cards"]}
+    assert summary_cards["Proposicoes aprovadas global"] == "394"
 
 
 def test_question_not_found_returns_404() -> None:
