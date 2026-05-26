@@ -49240,7 +49240,7 @@ Q5 complemento - ranking completo de fornecedores
       2025 | FV COMUNICAÇÕES LTDA                                                                                                                           |               3 |     6000.00
       2025 | JORNAL NOTICIAS QUENTES DF E ENTORNO LTDA                                                                                                      |               2 |     6000.00
       2025 | KYBERLI SAMARA PEREIRA DE GOIS                                                                                                                 |               3 |     6000.00
-      2025 | SARAH UNIFORMES | PEREIRA &amp; LOPES LTDA                                                                                                     |               1 |     6000.00
+      2025 | SARAH UNIFORMES / PEREIRA &amp; LOPES LTDA                                                                                                     |               1 |     6000.00
       2025 | GERALDO DA SILVA PEREIRA                                                                                                                       |              12 |     6000.00
       2025 | PGCS TECNOLOGIA LTDA                                                                                                                           |               1 |     6000.00
       2025 | LUIZ HENRIQUE MENEZES - SARAN COMUNICAÇÃO E PUBLICIDADE                                                                                        |               2 |     6000.00
@@ -79252,7 +79252,7 @@ Q5 complemento - ranking completo de fornecedores
       2026 | LCM BAR COMERCIO DE ALIMENTOS E BEBIDAS LTDA                                                                                                   |               1 |       97.90
       2026 | VIA MAIS REDE DE POSTOS S.A. - F9                                                                                                              |               1 |       97.88
       2026 | POSTO SÃO DOM BOSCO LTDA                                                                                                                       |               1 |       97.61
-      2026 | REDE 7|7 FILIAL 03                                                                                                                             |               1 |       97.51
+      2026 | REDE 7/7 FILIAL 03                                                                                                                             |               1 |       97.51
       2026 | W L VISANI LTDA                                                                                                                                |               1 |       97.45
       2026 | AGUAS CUIABA S.A                                                                                                                               |               1 |       97.28
       2026 | PINGA FOGO PONTA NEG                                                                                                                           |               1 |       97.12

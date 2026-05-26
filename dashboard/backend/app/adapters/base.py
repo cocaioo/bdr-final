@@ -180,13 +180,17 @@ class QuestionAdapter:
     def _build_complements(self, state: FilterState) -> list[TableSpec]:
         specs: list[TableSpec] = []
         for table in self.complement_tables:
+            is_global_ranking = _is_global_ranking_table(table)
+            table_state = _without_year_filter(state) if is_global_ranking else state
+            page = table_state.page if is_global_ranking else 1
+            page_size = min(table_state.page_size, 200 if is_global_ranking else 100)
             filtered = FilterEngine.apply_filters(
                 table.rows,
-                state,
+                table_state,
                 self.context.question.supported_filters,
             )
-            sorted_rows = FilterEngine.apply_sort(filtered, state.sort_by, state.sort_dir)
-            paged = FilterEngine.apply_pagination(sorted_rows, 1, min(state.page_size, 100))
+            sorted_rows = FilterEngine.apply_sort(filtered, table_state.sort_by, table_state.sort_dir)
+            paged = FilterEngine.apply_pagination(sorted_rows, page, page_size)
             specs.append(
                 self._build_table_spec(
                     title=table.title,
@@ -194,15 +198,15 @@ class QuestionAdapter:
                     rows=paged,
                     total=len(sorted_rows),
                     state=FilterState(
-                        anos=state.anos,
-                        partidos=state.partidos,
-                        ufs=state.ufs,
-                        deputados=state.deputados,
-                        search=state.search,
-                        sort_by=state.sort_by,
-                        sort_dir=state.sort_dir,
-                        page=1,
-                        page_size=min(state.page_size, 100),
+                        anos=table_state.anos,
+                        partidos=table_state.partidos,
+                        ufs=table_state.ufs,
+                        deputados=table_state.deputados,
+                        search=table_state.search,
+                        sort_by=table_state.sort_by,
+                        sort_dir=table_state.sort_dir,
+                        page=page,
+                        page_size=page_size,
                     ),
                 )
             )
@@ -275,6 +279,8 @@ class QuestionAdapter:
         x_field: str | None,
         y_fields: list[str],
     ) -> ChartSpec:
+        if self.context.question.id == "q3":
+            return self._build_q3_chart(rows, chart_type, x_field, y_fields)
         if not rows or not x_field or not y_fields:
             return ChartSpec(
                 type=chart_type,
@@ -283,7 +289,22 @@ class QuestionAdapter:
             )
 
         top_rows = rows[:30]
-        categories = [str(row.get(x_field, "")) for row in top_rows]
+        year_values = {
+            str(row.get("ano_dados"))
+            for row in top_rows
+            if row.get("ano_dados") not in (None, "")
+        }
+        include_year = len(year_values) > 1
+
+        def _format_category(row: dict[str, Any]) -> str:
+            label = str(row.get(x_field, ""))
+            if include_year:
+                year = row.get("ano_dados")
+                if year not in (None, ""):
+                    return f"{year} - {label}"
+            return label
+
+        categories = [_format_category(row) for row in top_rows]
         series = []
         for y_field in y_fields:
             series.append(
@@ -302,6 +323,91 @@ class QuestionAdapter:
             categories=categories,
             series=series,
             options={"orientation": "horizontal" if chart_type == "bar_horizontal" else "vertical"},
+        )
+
+    def _build_q3_chart(
+        self,
+        rows: list[dict[str, Any]],
+        chart_type: str,
+        x_field: str | None,
+        y_fields: list[str],
+    ) -> ChartSpec:
+        if not rows or not x_field or not y_fields:
+            return ChartSpec(
+                type=chart_type,
+                title="Sem dados",
+                description="Nao ha dados suficientes para montar o grafico.",
+            )
+
+        def _to_number(value: Any) -> float:
+            if isinstance(value, (int, float)):
+                return float(value)
+            try:
+                return float(value)
+            except (TypeError, ValueError):
+                return 0.0
+
+        eixo_order: list[str] = []
+        year_order: list[str] = []
+        aggregated: dict[tuple[str, str], dict[str, float]] = {}
+
+        for row in rows:
+            eixo = str(row.get(x_field) or "Sem eixo").strip() or "Sem eixo"
+            raw_year = row.get("ano_dados")
+            year = str(raw_year).strip() if raw_year is not None else ""
+            if eixo not in eixo_order:
+                eixo_order.append(eixo)
+            if year and year not in year_order:
+                year_order.append(year)
+
+            key = (year, eixo)
+            if key not in aggregated:
+                aggregated[key] = {field: 0.0 for field in y_fields}
+            for y_field in y_fields:
+                aggregated[key][y_field] += _to_number(row.get(y_field, 0))
+
+        def _sort_years(values: list[str]) -> list[str]:
+            def _key(value: str) -> tuple[int, int | str]:
+                try:
+                    return (0, int(value))
+                except ValueError:
+                    return (1, value)
+
+            return sorted(values, key=_key)
+
+        years = _sort_years(year_order)
+        years_for_data = years if years else [""]
+
+        categories: list[str] = []
+        for _year in years_for_data:
+            categories.extend(eixo_order)
+
+        series: list[dict[str, Any]] = []
+        for y_field in y_fields:
+            data: list[float] = []
+            for year in years_for_data:
+                for eixo in eixo_order:
+                    data.append(aggregated.get((year, eixo), {}).get(y_field, 0.0))
+            series.append(
+                {
+                    "name": _humanize_label(y_field),
+                    "data": data,
+                    "stack": "total" if chart_type == "stacked_bar" else None,
+                }
+            )
+
+        return ChartSpec(
+            type=chart_type,
+            title=self.context.question.title,
+            description=self.context.question.description,
+            x_field=x_field,
+            y_fields=y_fields,
+            categories=categories,
+            series=series,
+            options={
+                "orientation": "horizontal" if chart_type == "bar_horizontal" else "vertical",
+                "year_order": years,
+            },
         )
 
     def _build_scatter_chart(
@@ -482,6 +588,24 @@ def _find_first_table(
         if matcher(table):
             return table
     return None
+
+
+def _is_global_ranking_table(table: ParsedTable) -> bool:
+    return "ranking global" in table.title.lower()
+
+
+def _without_year_filter(state: FilterState) -> FilterState:
+    return FilterState(
+        anos=[],
+        partidos=state.partidos,
+        ufs=state.ufs,
+        deputados=state.deputados,
+        search=state.search,
+        sort_by=state.sort_by,
+        sort_dir=state.sort_dir,
+        page=state.page,
+        page_size=state.page_size,
+    )
 
 
 def _humanize_label(key: str) -> str:

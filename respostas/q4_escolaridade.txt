@@ -1,59 +1,20 @@
- ano_dados |      escolaridade       | qtd_deputados 
------------+-------------------------+---------------
-      2023 | Superior                |           668
-      2023 | Pós-Graduação           |           129
-      2023 | Superior Incompleto     |            66
-      2023 | Mestrado                |            64
-      2023 | Ensino Médio            |            43
-      2023 | Doutorado               |            27
-      2023 | Secundário              |            23
-      2023 | Nao informado           |            16
-      2023 | Ensino Fundamental      |            15
-      2023 | Mestrado Incompleto     |             7
-      2023 | Doutorado Incompleto    |             7
-      2023 | Ensino Técnico          |             4
-      2023 | Ensino Médio Incompleto |             3
-      2023 | Primário                |             2
-      2023 | Primário Incompleto     |             1
-      2024 | Superior                |           321
-      2024 | Pós-Graduação           |            80
-      2024 | Superior Incompleto     |            43
-      2024 | Mestrado                |            43
-      2024 | Nao informado           |            28
-      2024 | Ensino Médio            |            28
-      2024 | Doutorado               |            15
-      2024 | Ensino Fundamental      |            12
-      2024 | Doutorado Incompleto    |             6
-      2024 | Mestrado Incompleto     |             5
-      2024 | Secundário              |             2
-      2024 | Ensino Médio Incompleto |             2
-      2024 | Primário Incompleto     |             1
-      2025 | Superior                |           335
-      2025 | Pós-Graduação           |            83
-      2025 | Superior Incompleto     |            43
-      2025 | Mestrado                |            41
-      2025 | Ensino Médio            |            27
-      2025 | Doutorado               |            18
-      2025 | Nao informado           |            15
-      2025 | Ensino Fundamental      |            11
-      2025 | Doutorado Incompleto    |             8
-      2025 | Mestrado Incompleto     |             5
-      2025 | Ensino Médio Incompleto |             2
-      2025 | Secundário              |             2
-      2025 | Primário Incompleto     |             1
-      2025 | Secundário Incompleto   |             1
-      2025 | Ginasial                |             1
-      2026 | Superior                |           328
-      2026 | Pós-Graduação           |            78
-      2026 | Superior Incompleto     |            41
-      2026 | Mestrado                |            39
-      2026 | Ensino Médio            |            24
-      2026 | Nao informado           |            17
-      2026 | Doutorado               |            15
-      2026 | Ensino Fundamental      |            10
-      2026 | Doutorado Incompleto    |             6
-      2026 | Mestrado Incompleto     |             6
-      2026 | Ensino Médio Incompleto |             2
-      2026 | Primário Incompleto     |             1
-      2026 | Secundário              |             1
+      escolaridade       | qtd_deputados 
+-------------------------+---------------
+ Superior                |           714
+ Pós-Graduação           |           131
+ Superior Incompleto     |            70
+ Mestrado                |            65
+ Ensino Médio            |            45
+ Nao informado           |            42
+ Doutorado               |            31
+ Secundário              |            23
+ Ensino Fundamental      |            16
+ Doutorado Incompleto    |             8
+ Mestrado Incompleto     |             7
+ Ensino Técnico          |             4
+ Ensino Médio Incompleto |             3
+ Primário                |             2
+ Ginasial                |             1
+ Primário Incompleto     |             1
+ Secundário Incompleto   |             1
 

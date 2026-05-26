@@ -137,8 +137,8 @@ class DashboardService:
             for doc in bundle.documents:
                 for table in doc.tables:
                     for row in table.rows:
-                        _maybe_add(anos, row.get("ano_dados"))
-                        _maybe_add(anos, row.get("ano"))
+                        _maybe_add(anos, row.get("ano_dados"), excluded={"GLOBAL"})
+                        _maybe_add(anos, row.get("ano"), excluded={"GLOBAL"})
                         _maybe_add(partidos, row.get("sigla_partido"))
                         _maybe_add(ufs, row.get("sigla_uf"))
                         _maybe_add(deputados, row.get("nome"))
@@ -186,10 +186,12 @@ def _update_hash_with_file(hash_builder: hashlib._Hash, path: Path) -> None:
             hash_builder.update(chunk)
 
 
-def _maybe_add(container: set[str], value: Any) -> None:
+def _maybe_add(container: set[str], value: Any, excluded: set[str] | None = None) -> None:
     if value is None:
         return
     text = str(value).strip()
+    if excluded and text.upper() in excluded:
+        return
     if text:
         container.add(text)
 

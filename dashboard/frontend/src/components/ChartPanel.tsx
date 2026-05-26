@@ -6,9 +6,10 @@ import { buildChartOption } from '../utils/chartOptions'
 
 interface ChartPanelProps {
   spec: ChartSpec
+  yearLabels?: string[]
 }
 
-export function ChartPanel({ spec }: ChartPanelProps) {
+export function ChartPanel({ spec, yearLabels }: ChartPanelProps) {
   const ref = useRef<HTMLDivElement | null>(null)
   const option = useMemo(() => buildChartOption(spec), [spec])
 
@@ -30,6 +31,16 @@ export function ChartPanel({ spec }: ChartPanelProps) {
         <h2>{spec.title}</h2>
         <p>{spec.description}</p>
       </header>
+      {yearLabels && yearLabels.length > 0 ? (
+        <div
+          className="chart-year-legend"
+          style={{ gridTemplateColumns: `repeat(${yearLabels.length}, minmax(0, 1fr))` }}
+        >
+          {yearLabels.map((year) => (
+            <span key={year}>{year}</span>
+          ))}
+        </div>
+      ) : null}
       <div ref={ref} className="chart-surface" role="img" aria-label={`Grafico ${spec.type}`} />
     </section>
   )

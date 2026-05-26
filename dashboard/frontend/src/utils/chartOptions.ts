@@ -14,6 +14,7 @@ export function buildChartOption(spec: ChartSpec): EChartsOption {
   if (spec.type === 'bar_horizontal') {
     return {
       tooltip: { trigger: 'axis' },
+      legend: {},
       grid: { left: 80, right: 20, top: 60, bottom: 40, containLabel: true },
       xAxis: { type: 'value' },
       yAxis: { type: 'category', data: spec.categories },
@@ -29,6 +30,7 @@ export function buildChartOption(spec: ChartSpec): EChartsOption {
   if (spec.type === 'bar_vertical' || spec.type === 'composite') {
     return {
       tooltip: { trigger: 'axis' },
+      legend: {},
       grid: { left: 45, right: 20, top: 60, bottom: 80, containLabel: true },
       xAxis: { type: 'category', data: spec.categories, axisLabel: { rotate: 25 } },
       yAxis: { type: 'value' },
@@ -197,6 +199,7 @@ export function buildChartOption(spec: ChartSpec): EChartsOption {
   }
 
   return {
+    legend: {},
     xAxis: { type: 'category', data: spec.categories },
     yAxis: { type: 'value' },
     series: series.map((entry) => ({

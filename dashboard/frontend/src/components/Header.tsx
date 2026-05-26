@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 
 import type { QuestionMeta } from '../types'
+import { isQuestionEnabled, isQuestionHidden } from '../utils/questionAvailability'
 
 interface HeaderProps {
   questions: QuestionMeta[]
@@ -20,15 +21,34 @@ export function Header({ questions, datasetVersion }: HeaderProps) {
         <NavLink to="/" end className={({ isActive }) => `question-link${isActive ? ' active' : ''}`}>
           Home
         </NavLink>
-        {questions.map((question) => (
-          <NavLink
-            key={question.id}
-            to={`/q/${question.id}`}
-            className={({ isActive }) => `question-link${isActive ? ' active' : ''}`}
-          >
-            {question.id.toUpperCase()}
-          </NavLink>
-        ))}
+        {questions
+          .filter((question) => !isQuestionHidden(question.id))
+          .map((question) => {
+          const isQuestionUnderDevelopment = !isQuestionEnabled(question.id)
+
+          if (isQuestionUnderDevelopment) {
+            return (
+              <span
+                key={question.id}
+                className="question-link question-link-disabled"
+                aria-disabled="true"
+                title="Em desenvolvimento"
+              >
+                {question.id.toUpperCase()}
+              </span>
+            )
+          }
+
+          return (
+            <NavLink
+              key={question.id}
+              to={`/q/${question.id}`}
+              className={({ isActive }) => `question-link${isActive ? ' active' : ''}`}
+            >
+              {question.id.toUpperCase()}
+            </NavLink>
+          )
+          })}
       </nav>
     </header>
   )

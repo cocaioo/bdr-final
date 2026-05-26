@@ -9,6 +9,7 @@ import { NoDataState } from '../components/NoDataState'
 import { QueryDrawer } from '../components/QueryDrawer'
 import { WarningBanner } from '../components/WarningBanner'
 import type { FilterState, MetaResponse, QuestionPayload, TableState } from '../types'
+import { isQuestionEnabled, isQuestionHidden } from '../utils/questionAvailability'
 import { formatCellValue } from '../utils/format'
 
 interface QuestionPageProps {
@@ -22,12 +23,26 @@ const DEFAULT_TABLE_STATE: TableState = {
   sortDir: 'desc',
 }
 
+function sortYears(values: string[]): string[] {
+  return [...values].sort((a, b) => {
+    const numA = Number(a)
+    const numB = Number(b)
+    if (!Number.isNaN(numA) && !Number.isNaN(numB)) {
+      return numA - numB
+    }
+    return a.localeCompare(b)
+  })
+}
+
 export function QuestionPage({ meta, filters }: QuestionPageProps) {
   const { questionId } = useParams()
   const questionMeta = useMemo(
     () => meta.questions.find((question) => question.id === questionId),
     [meta.questions, questionId],
   )
+  const isHiddenQuestion = Boolean(questionMeta && isQuestionHidden(questionMeta.id))
+  const isEnabledQuestion = isQuestionEnabled(questionMeta?.id)
+  const isUnderDevelopment = Boolean(questionMeta && !isEnabledQuestion)
 
   const [tableState, setTableState] = useState<TableState>(DEFAULT_TABLE_STATE)
   const [payload, setPayload] = useState<QuestionPayload | null>(null)
@@ -39,7 +54,12 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
   }, [questionId])
 
   useEffect(() => {
-    if (!questionMeta) return
+    if (!questionMeta || isHiddenQuestion || isUnderDevelopment) {
+      setPayload(null)
+      setLoading(false)
+      setError(null)
+      return
+    }
     let mounted = true
     setLoading(true)
     setError(null)
@@ -59,12 +79,51 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     return () => {
       mounted = false
     }
-  }, [questionMeta, filters, tableState])
+  }, [questionMeta, isHiddenQuestion, isUnderDevelopment, filters, tableState])
+
+  const yearLegend = useMemo(() => {
+    if (!questionMeta || questionMeta.id.toLowerCase() !== 'q3') return []
+    const fromSpec = payload?.chart_spec?.options?.year_order
+    if (Array.isArray(fromSpec) && fromSpec.length > 0) {
+      return fromSpec.map((value) => String(value))
+    }
+    const selectedYears = filters.anos.length
+      ? filters.anos
+      : meta.available_filters.anos.map((item) => item.value)
+    const normalized = selectedYears.map((value) => value.trim()).filter(Boolean)
+    return sortYears(normalized)
+  }, [filters.anos, meta.available_filters.anos, payload, questionMeta])
 
   if (!questionMeta) {
     return (
       <main className="question-page">
         <NoDataState message="Pergunta nao encontrada no registro." />
+      </main>
+    )
+  }
+
+  if (isHiddenQuestion) {
+    return (
+      <main className="question-page">
+        <NoDataState message="Pergunta nao encontrada no registro." />
+      </main>
+    )
+  }
+
+  if (isUnderDevelopment) {
+    return (
+      <main className="question-page">
+        <section className="question-intro stagger-item">
+          <h1>
+            {questionMeta.id.toUpperCase()} - {questionMeta.title}
+          </h1>
+          <p>{questionMeta.description}</p>
+        </section>
+
+        <section className="maintenance-state stagger-item" aria-live="polite">
+          <p className="maintenance-mark">X</p>
+          <p className="maintenance-text">Esta questao ainda esta em desenvolvimento.</p>
+        </section>
       </main>
     )
   }
@@ -93,23 +152,18 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     )
   }
 
-  const isQ7 = questionMeta.id.toLowerCase() === 'q7'
-  const q7FormulaCard = isQ7 ? (
-    <>
-      <h3>Formula do custo-beneficio</h3>
-      <div className="formula-layout" aria-label="Formula da metrica de custo-beneficio">
-        <p className="formula-heading">Beneficio =</p>
-        <p>(qtd_proposicoes * 2)</p>
-        <p>+</p>
-        <p>(proposicoes_aprovadas * 3)</p>
-        <p>+</p>
-        <p>(presenca_total * 0.1)</p>
-        <p className="formula-heading">Custo-beneficio =</p>
-        <p>beneficio / gasto_total</p>
-      </div>
-    </>
-  ) : null
-
+  const isQ8 = questionMeta.id.toLowerCase() === 'q8'
+  const shouldShowChart = questionMeta.id.toLowerCase() !== 'q1'
+  const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
+  const mainTable = isQ8 ? { ...payload.table_spec, title: 'Tabela principal' } : payload.table_spec
+  const complementTables = isQ8 ? [] : payload.complement_tables
+  const handleTableChange = (next: TableState) => {
+    if (isQ8) {
+      setTableState({ ...next, pageSize: 50 })
+      return
+    }
+    setTableState(next)
+  }
   return (
     <main className="question-page">
       <section className="question-intro stagger-item">
@@ -120,41 +174,55 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
       </section>
 
       <WarningBanner warnings={payload.warnings} />
-      <ExecutiveCards cards={payload.summary_cards} extraCard={q7FormulaCard} />
+  <ExecutiveCards cards={payload.summary_cards} />
 
       {payload.empty_state.is_empty ? (
         <NoDataState message={payload.empty_state.message} />
       ) : (
         <>
-          <ChartPanel spec={payload.chart_spec} />
-          <DataTablePanel table={payload.table_spec} state={tableState} onChange={setTableState} />
+          {shouldShowChart ? <ChartPanel spec={payload.chart_spec} yearLabels={yearLegend} /> : null}
+          <DataTablePanel
+            table={mainTable}
+            state={tableStateView}
+            onChange={handleTableChange}
+            lockPageSize={isQ8}
+          />
         </>
       )}
 
-      {payload.complement_tables.map((table) => (
-        <section key={table.title} className="complement-section stagger-item">
-          <h2>{table.title}</h2>
-          <div className="table-wrapper">
-            <table>
-              <thead>
-                <tr>
-                  {table.columns.map((column) => (
-                    <th key={column.key}>{column.label}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {table.rows.slice(0, 30).map((row, rowIndex) => (
-                  <tr key={`${table.title}-${rowIndex}`}>
+      {complementTables.map((table) => (
+        table.title.toLowerCase().includes('ranking global') ? (
+          <DataTablePanel
+            key={table.title}
+            table={table}
+            state={tableStateView}
+            onChange={handleTableChange}
+          />
+        ) : (
+          <section key={table.title} className="complement-section stagger-item">
+            <h2>{table.title}</h2>
+            <div className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
                     {table.columns.map((column) => (
-                      <td key={`${column.key}-${rowIndex}`}>{formatCellValue(row[column.key])}</td>
+                      <th key={column.key}>{column.label}</th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+                </thead>
+                <tbody>
+                  {table.rows.slice(0, 30).map((row, rowIndex) => (
+                    <tr key={`${table.title}-${rowIndex}`}>
+                      {table.columns.map((column) => (
+                        <td key={`${column.key}-${rowIndex}`}>{formatCellValue(row[column.key])}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )
       ))}
 
       <QueryDrawer panel={payload.query_panel} />
