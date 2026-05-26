@@ -299,6 +299,16 @@ p {
   margin-bottom: 10px;
 }
 
+.chart-year-legend {
+  display: grid;
+  gap: 12px;
+  margin: 4px 0 10px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
 .chart-surface {
   width: 100%;
   min-height: 420px;

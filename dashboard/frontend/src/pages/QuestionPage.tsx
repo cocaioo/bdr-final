@@ -22,6 +22,17 @@ const DEFAULT_TABLE_STATE: TableState = {
   sortDir: 'desc',
 }
 
+function sortYears(values: string[]): string[] {
+  return [...values].sort((a, b) => {
+    const numA = Number(a)
+    const numB = Number(b)
+    if (!Number.isNaN(numA) && !Number.isNaN(numB)) {
+      return numA - numB
+    }
+    return a.localeCompare(b)
+  })
+}
+
 export function QuestionPage({ meta, filters }: QuestionPageProps) {
   const { questionId } = useParams()
   const questionMeta = useMemo(
@@ -60,6 +71,19 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
       mounted = false
     }
   }, [questionMeta, filters, tableState])
+
+  const yearLegend = useMemo(() => {
+    if (!questionMeta || questionMeta.id.toLowerCase() !== 'q3') return []
+    const fromSpec = payload?.chart_spec?.options?.year_order
+    if (Array.isArray(fromSpec) && fromSpec.length > 0) {
+      return fromSpec.map((value) => String(value))
+    }
+    const selectedYears = filters.anos.length
+      ? filters.anos
+      : meta.available_filters.anos.map((item) => item.value)
+    const normalized = selectedYears.map((value) => value.trim()).filter(Boolean)
+    return sortYears(normalized)
+  }, [filters.anos, meta.available_filters.anos, payload, questionMeta])
 
   if (!questionMeta) {
     return (
@@ -126,7 +150,7 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
         <NoDataState message={payload.empty_state.message} />
       ) : (
         <>
-          <ChartPanel spec={payload.chart_spec} />
+          <ChartPanel spec={payload.chart_spec} yearLabels={yearLegend} />
           <DataTablePanel table={payload.table_spec} state={tableState} onChange={setTableState} />
         </>
       )}
