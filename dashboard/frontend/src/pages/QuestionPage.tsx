@@ -9,6 +9,7 @@ import { NoDataState } from '../components/NoDataState'
 import { QueryDrawer } from '../components/QueryDrawer'
 import { WarningBanner } from '../components/WarningBanner'
 import type { FilterState, MetaResponse, QuestionPayload, TableState } from '../types'
+import { isQuestionEnabled } from '../utils/questionAvailability'
 import { formatCellValue } from '../utils/format'
 
 interface QuestionPageProps {
@@ -39,6 +40,8 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     () => meta.questions.find((question) => question.id === questionId),
     [meta.questions, questionId],
   )
+  const isEnabledQuestion = isQuestionEnabled(questionMeta?.id)
+  const isUnderDevelopment = Boolean(questionMeta && !isEnabledQuestion)
 
   const [tableState, setTableState] = useState<TableState>(DEFAULT_TABLE_STATE)
   const [payload, setPayload] = useState<QuestionPayload | null>(null)
@@ -50,7 +53,12 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
   }, [questionId])
 
   useEffect(() => {
-    if (!questionMeta) return
+    if (!questionMeta || isUnderDevelopment) {
+      setPayload(null)
+      setLoading(false)
+      setError(null)
+      return
+    }
     let mounted = true
     setLoading(true)
     setError(null)
@@ -70,7 +78,7 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     return () => {
       mounted = false
     }
-  }, [questionMeta, filters, tableState])
+  }, [questionMeta, isUnderDevelopment, filters, tableState])
 
   const yearLegend = useMemo(() => {
     if (!questionMeta || questionMeta.id.toLowerCase() !== 'q3') return []
@@ -89,6 +97,24 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     return (
       <main className="question-page">
         <NoDataState message="Pergunta nao encontrada no registro." />
+      </main>
+    )
+  }
+
+  if (isUnderDevelopment) {
+    return (
+      <main className="question-page">
+        <section className="question-intro stagger-item">
+          <h1>
+            {questionMeta.id.toUpperCase()} - {questionMeta.title}
+          </h1>
+          <p>{questionMeta.description}</p>
+        </section>
+
+        <section className="maintenance-state stagger-item" aria-live="polite">
+          <p className="maintenance-mark">X</p>
+          <p className="maintenance-text">Esta questao ainda esta em desenvolvimento.</p>
+        </section>
       </main>
     )
   }
@@ -118,6 +144,17 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
   }
 
   const isQ7 = questionMeta.id.toLowerCase() === 'q7'
+  const isQ8 = questionMeta.id.toLowerCase() === 'q8'
+  const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
+  const mainTable = isQ8 ? { ...payload.table_spec, title: 'Tabela principal' } : payload.table_spec
+  const complementTables = isQ8 ? [] : payload.complement_tables
+  const handleTableChange = (next: TableState) => {
+    if (isQ8) {
+      setTableState({ ...next, pageSize: 50 })
+      return
+    }
+    setTableState(next)
+  }
   const q7FormulaCard = isQ7 ? (
     <>
       <h3>Formula do custo-beneficio</h3>
@@ -151,17 +188,22 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
       ) : (
         <>
           <ChartPanel spec={payload.chart_spec} yearLabels={yearLegend} />
-          <DataTablePanel table={payload.table_spec} state={tableState} onChange={setTableState} />
+          <DataTablePanel
+            table={mainTable}
+            state={tableStateView}
+            onChange={handleTableChange}
+            lockPageSize={isQ8}
+          />
         </>
       )}
 
-      {payload.complement_tables.map((table) => (
+      {complementTables.map((table) => (
         table.title.toLowerCase().includes('ranking global') ? (
           <DataTablePanel
             key={table.title}
             table={table}
-            state={tableState}
-            onChange={setTableState}
+            state={tableStateView}
+            onChange={handleTableChange}
           />
         ) : (
           <section key={table.title} className="complement-section stagger-item">

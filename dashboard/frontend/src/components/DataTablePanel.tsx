@@ -8,11 +8,12 @@ interface DataTablePanelProps {
   table: TableSpec
   state: TableState
   onChange: (next: TableState) => void
+  lockPageSize?: boolean
 }
 
 type DataRow = Record<string, unknown>
 
-export function DataTablePanel({ table, state, onChange }: DataTablePanelProps) {
+export function DataTablePanel({ table, state, onChange, lockPageSize = false }: DataTablePanelProps) {
   const columns = useMemo<ColumnDef<DataRow>[]>(
     () =>
       table.columns.map((column) => ({
@@ -93,21 +94,25 @@ export function DataTablePanel({ table, state, onChange }: DataTablePanelProps) 
         >
           Proxima pagina
         </button>
-        <label>
-          Linhas:
-          <select
-            value={state.pageSize}
-            onChange={(event) =>
-              onChange({ ...state, pageSize: Number(event.target.value), page: 1 })
-            }
-          >
-            {[25, 50, 100, 200].map((size) => (
-              <option key={size} value={size}>
-                {size}
-              </option>
-            ))}
-          </select>
-        </label>
+        {lockPageSize ? (
+          <span>Linhas: {state.pageSize}</span>
+        ) : (
+          <label>
+            Linhas:
+            <select
+              value={state.pageSize}
+              onChange={(event) =>
+                onChange({ ...state, pageSize: Number(event.target.value), page: 1 })
+              }
+            >
+              {[25, 50, 100, 200].map((size) => (
+                <option key={size} value={size}>
+                  {size}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
       </footer>
     </section>
   )
