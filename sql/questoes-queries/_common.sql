@@ -1,5 +1,6 @@
 CREATE OR REPLACE TEMP VIEW resposta_temas_eixos AS
 SELECT
+    t.ano_dados,
     t.uri_proposicao,
     t.tema,
     CASE
@@ -13,10 +14,11 @@ SELECT
         WHEN t.cod_tema IN (55) THEN 'Internacional'
         ELSE 'Outros'
     END AS eixo_maior
-FROM proposicoes_temas_2026 t;
+FROM proposicoes_temas t;
 
 CREATE OR REPLACE TEMP VIEW resposta_proposicoes_situacoes AS
 SELECT
+    p.ano_dados,
     p.id_proposicao,
     p.descricao_situacao,
     CASE
@@ -84,9 +86,10 @@ SELECT
 FROM (
     SELECT
         id_proposicao,
+        ano_dados,
         descricao_situacao,
         lower(regexp_replace(descricao_situacao, '[[:space:]]+', ' ', 'g')) AS norm
-    FROM proposicoes_2026
+    FROM proposicoes
 ) p;
 
 CREATE OR REPLACE TEMP VIEW resposta_stopwords AS
@@ -100,9 +103,10 @@ FROM (
 
 CREATE OR REPLACE TEMP VIEW resposta_tokens_proposicoes AS
 SELECT
+    p.ano_dados,
     p.id_proposicao,
     lower(regexp_replace(w, '[^[:alnum:]]+', '', 'g')) AS token
-FROM proposicoes_2026 p
+FROM proposicoes p
 CROSS JOIN LATERAL regexp_split_to_table(
     COALESCE(p.ementa, '') || ' ' ||
     COALESCE(p.ementa_detalhada, '') || ' ' ||
@@ -111,72 +115,83 @@ CROSS JOIN LATERAL regexp_split_to_table(
 ) AS w;
 
 CREATE OR REPLACE TEMP VIEW resposta_tokens_validos_proposicoes AS
-SELECT id_proposicao, token
+SELECT ano_dados, id_proposicao, token
 FROM resposta_tokens_proposicoes
 WHERE token <> ''
   AND length(token) >= 3
   AND token NOT IN (SELECT word FROM resposta_stopwords);
 
 CREATE OR REPLACE TEMP VIEW resposta_deputados_ativos AS
-SELECT id_deputado FROM gastos_2026
+SELECT DISTINCT ano_dados, id_deputado FROM gastos
 UNION
-SELECT id_deputado FROM votacoes_votos_2026
+SELECT DISTINCT ano_dados, id_deputado FROM votacoes_votos
 UNION
-SELECT id_deputado FROM eventos_presenca_deputados_2026
+SELECT DISTINCT ano_dados, id_deputado FROM eventos_presenca_deputados
 UNION
-SELECT id_deputado FROM proposicoes_autores WHERE id_deputado IS NOT NULL;
+SELECT DISTINCT ano_dados, id_deputado FROM proposicoes_autores WHERE id_deputado IS NOT NULL;
 
 CREATE OR REPLACE TEMP VIEW resposta_gastos_deputado AS
-SELECT id_deputado, SUM(valor_liquido) AS gasto_total
-FROM gastos_2026
-GROUP BY id_deputado;
+SELECT
+    ano_dados,
+    id_deputado,
+    SUM(valor_liquido) AS gasto_total
+FROM gastos
+GROUP BY ano_dados, id_deputado;
 
 CREATE OR REPLACE TEMP VIEW resposta_proposicoes_deputado AS
 SELECT
+    a.ano_dados,
     a.id_deputado,
-    COUNT(DISTINCT a.id_proposicao) AS qtd_proposicoes,
-    COUNT(DISTINCT a.id_proposicao) FILTER (
+    COUNT(DISTINCT (a.ano_dados, a.id_proposicao)) AS qtd_proposicoes,
+    COUNT(DISTINCT (a.ano_dados, a.id_proposicao)) FILTER (
         WHERE s.categoria_situacao = 'aprovada'
     ) AS proposicoes_aprovadas
 FROM proposicoes_autores a
-LEFT JOIN resposta_proposicoes_situacoes s ON s.id_proposicao = a.id_proposicao
+LEFT JOIN resposta_proposicoes_situacoes s
+  ON s.ano_dados = a.ano_dados
+ AND s.id_proposicao = a.id_proposicao
 WHERE a.id_deputado IS NOT NULL
-GROUP BY a.id_deputado;
+GROUP BY a.ano_dados, a.id_deputado;
 
 CREATE OR REPLACE TEMP VIEW resposta_presenca_deputado AS
 SELECT
+    ano_dados,
     id_deputado,
     SUM(presenca_eventos) AS presenca_eventos,
     SUM(presenca_plenario) AS presenca_plenario,
     SUM(presenca_eventos + presenca_plenario) AS presenca_total
 FROM (
     SELECT
+        ano_dados,
         id_deputado,
-        COUNT(DISTINCT id_evento) AS presenca_eventos,
+        COUNT(DISTINCT (ano_dados, id_evento)) AS presenca_eventos,
         0::bigint AS presenca_plenario
-    FROM eventos_presenca_deputados_2026
-    GROUP BY id_deputado
+    FROM eventos_presenca_deputados
+    GROUP BY ano_dados, id_deputado
     UNION ALL
     SELECT
+        ano_dados,
         id_deputado,
         0::bigint AS presenca_eventos,
-        COUNT(DISTINCT id_votacao) AS presenca_plenario
-    FROM votacoes_votos_2026
-    GROUP BY id_deputado
+        COUNT(DISTINCT (ano_dados, id_votacao)) AS presenca_plenario
+    FROM votacoes_votos
+    GROUP BY ano_dados, id_deputado
 ) s
-GROUP BY id_deputado;
+GROUP BY ano_dados, id_deputado;
 
 CREATE OR REPLACE TEMP VIEW resposta_fidelidade_deputado AS
 SELECT
-    vv.id_deputado,
-    ROUND(
-        100.0 * COUNT(*) FILTER (WHERE vv.voto = o.orientacao) / NULLIF(COUNT(*), 0),
-        2
-    ) AS fidelidade_partidaria
-FROM votacoes_votos_2026 vv
-JOIN votacoes_orientacoes_2026 o
-  ON o.id_votacao = vv.id_votacao
+        vv.ano_dados,
+        vv.id_deputado,
+        ROUND(
+                100.0 * COUNT(*) FILTER (WHERE vv.voto = o.orientacao) / NULLIF(COUNT(*), 0),
+                2
+        ) AS fidelidade_partidaria
+FROM votacoes_votos vv
+JOIN votacoes_orientacoes o
+    ON o.ano_dados = vv.ano_dados
+ AND o.id_votacao = vv.id_votacao
  AND o.sigla_bancada = vv.sigla_partido
 WHERE vv.voto IN ('Sim', 'Nao')
-  AND o.orientacao IN ('Sim', 'Nao')
-GROUP BY vv.id_deputado;
+    AND o.orientacao IN ('Sim', 'Nao')
+GROUP BY vv.ano_dados, vv.id_deputado;

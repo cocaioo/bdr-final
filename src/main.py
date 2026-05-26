@@ -10,6 +10,7 @@ Uso:
 import os
 import time
 import logging
+import csv
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -79,7 +80,7 @@ def main():
 
         start = time.time()
         try:
-            stats = load_table(config, conn, schema, data_dir, clean_dir)
+            stats = load_table(config, conn, schema, data_dir, clean_dir, log_dir)
             stats["duration"] = f"{time.time() - start:.1f}s"
             results.append(stats)
         except Exception as e:
@@ -98,6 +99,7 @@ def main():
 
     # ---- Fechar conexão ----
     conn.close()
+    _write_manifest(results, log_dir)
 
     # ---- Resumo final ----
     total_time = time.time() - total_start
@@ -134,6 +136,29 @@ def main():
     logger.info(f"  Total: {ok_count} ok, {skip_count} skip, {err_count} erros")
     logger.info(f"  Tempo total: {total_time:.1f}s")
     logger.info("=" * 60)
+
+
+def _write_manifest(results, log_dir):
+    log_dir = Path(log_dir)
+    log_dir.mkdir(parents=True, exist_ok=True)
+    path = log_dir / "etl_load_manifest.csv"
+    columns = [
+        "table",
+        "source_files",
+        "years",
+        "rows_raw",
+        "rows_bad",
+        "rows_clean",
+        "rows_loaded",
+        "status",
+        "error",
+        "duration",
+    ]
+    with path.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=columns, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(results)
+    logger.info(f"Manifest de carga salvo: {path.resolve()}")
 
 
 if __name__ == "__main__":

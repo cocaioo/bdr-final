@@ -31,15 +31,15 @@ PARTIDOS_IDEOLOGIA = [
 LOAD_ORDER = [
     "deputados",
     "partidos_ideologia",
-    "proposicoes_2026",
-    "eventos_2026",
-    "votacoes_2026",
-    "gastos_2026",
-    "votacoes_votos_2026",
-    "votacoes_orientacoes_2026",
-    "votacoes_objetos_2026",
-    "proposicoes_temas_2026",
-    "eventos_presenca_deputados_2026",
+    "proposicoes",
+    "eventos",
+    "votacoes",
+    "gastos",
+    "votacoes_votos",
+    "votacoes_orientacoes",
+    "votacoes_objetos",
+    "proposicoes_temas",
+    "eventos_presenca_deputados",
     "proposicoes_autores",
 ]
 
@@ -73,11 +73,12 @@ TABLES = {
             "ideologia": ("ideologia", C.clean_text),
         },
     },
-    "proposicoes_2026": {
-        "file": "proposicoes-2026.csv",
-        "table": "proposicoes_2026",
-        "pk": ["id_proposicao"],
-        "required": ["id_proposicao", "uri_proposicao"],
+    "proposicoes": {
+        "file_pattern": "proposicoes-*.csv",
+        "table": "proposicoes",
+        "year_from_file": True,
+        "pk": ["ano_dados", "id_proposicao"],
+        "required": ["ano_dados", "id_proposicao", "uri_proposicao"],
         "skip_identity": [],
         "columns": {
             "id": ("id_proposicao", C.clean_int),
@@ -91,11 +92,12 @@ TABLES = {
             "ultimoStatus_descricaoSituacao": ("descricao_situacao", C.clean_text),
         },
     },
-    "eventos_2026": {
-        "file": "eventos-2026.csv",
-        "table": "eventos_2026",
-        "pk": ["id_evento"],
-        "required": ["id_evento"],
+    "eventos": {
+        "file_pattern": "eventos-*.csv",
+        "table": "eventos",
+        "year_from_file": True,
+        "pk": ["ano_dados", "id_evento"],
+        "required": ["ano_dados", "id_evento"],
         "skip_identity": [],
         "columns": {
             "id": ("id_evento", C.clean_int),
@@ -107,11 +109,12 @@ TABLES = {
             "localCamara.nome": ("local_camara", C.clean_text),
         },
     },
-    "votacoes_2026": {
-        "file": "votacoes-2026.csv",
-        "table": "votacoes_2026",
-        "pk": ["id_votacao"],
-        "required": ["id_votacao"],
+    "votacoes": {
+        "file_pattern": "votacoes-*.csv",
+        "table": "votacoes",
+        "year_from_file": True,
+        "pk": ["ano_dados", "id_votacao"],
+        "required": ["ano_dados", "id_votacao"],
         "skip_identity": [],
         "transform": "votacoes",
         "columns": {
@@ -123,15 +126,16 @@ TABLES = {
             "descricao": ("descricao", C.clean_text),
         },
     },
-    "gastos_2026": {
-        "file": "Ano-2026.csv",
-        "table": "gastos_2026",
+    "gastos": {
+        "file_pattern": "Ano-*.csv",
+        "table": "gastos",
+        "year_from_file": True,
         "pk": [],
-        "required": ["id_deputado", "nome_parlamentar", "sigla_uf", "sigla_partido", "valor_liquido"],
+        "required": ["ano_dados", "id_deputado", "nome_parlamentar", "sigla_uf", "sigla_partido", "valor_liquido"],
         "skip_identity": ["id_gasto"],
         "columns": {
             "cpf": ("cpf", C.clean_cpf),
-            "nuDeputadoId": ("id_deputado", C.clean_int),
+            "ideCadastro": ("id_deputado", C.clean_int),
             "txNomeParlamentar": ("nome_parlamentar", C.clean_text),
             "sgUF": ("sigla_uf", C.clean_upper),
             "sgPartido": ("sigla_partido", C.clean_party),
@@ -143,11 +147,12 @@ TABLES = {
         },
         "drop_if": "lideranca",
     },
-    "votacoes_votos_2026": {
-        "file": "votacoesVotos-2026.csv",
-        "table": "votacoes_votos_2026",
-        "pk": ["id_votacao", "id_deputado"],
-        "required": ["id_votacao", "id_deputado", "voto", "nome_deputado"],
+    "votacoes_votos": {
+        "file_pattern": "votacoesVotos-*.csv",
+        "table": "votacoes_votos",
+        "year_from_file": True,
+        "pk": ["ano_dados", "id_votacao", "id_deputado"],
+        "required": ["ano_dados", "id_votacao", "id_deputado", "voto", "nome_deputado"],
         "skip_identity": [],
         "columns": {
             "idVotacao": ("id_votacao", C.clean_text),
@@ -158,11 +163,12 @@ TABLES = {
             "deputado_siglaUf": ("sigla_uf", C.clean_upper),
         },
     },
-    "votacoes_orientacoes_2026": {
-        "file": "votacoesOrientacoes-2026.csv",
-        "table": "votacoes_orientacoes_2026",
-        "pk": ["id_votacao", "sigla_bancada"],
-        "required": ["id_votacao", "sigla_bancada"],
+    "votacoes_orientacoes": {
+        "file_pattern": "votacoesOrientacoes-*.csv",
+        "table": "votacoes_orientacoes",
+        "year_from_file": True,
+        "pk": ["ano_dados", "id_votacao", "sigla_bancada"],
+        "required": ["ano_dados", "id_votacao", "sigla_bancada"],
         "skip_identity": [],
         "columns": {
             "idVotacao": ("id_votacao", C.clean_text),
@@ -172,11 +178,12 @@ TABLES = {
             "descricao": ("descricao", C.clean_text),
         },
     },
-    "votacoes_objetos_2026": {
-        "file": "votacoesObjetos-2026.csv",
-        "table": "votacoes_objetos_2026",
+    "votacoes_objetos": {
+        "file_pattern": "votacoesObjetos-*.csv",
+        "table": "votacoes_objetos",
+        "year_from_file": True,
         "pk": [],
-        "required": ["id_votacao"],
+        "required": ["ano_dados", "id_votacao"],
         "skip_identity": ["id_votacao_objeto"],
         "columns": {
             "idVotacao": ("id_votacao", C.clean_text),
@@ -189,11 +196,12 @@ TABLES = {
             "proposicao_ano": ("ano_proposicao", C.clean_int),
         },
     },
-    "proposicoes_temas_2026": {
-        "file": "proposicoesTemas-2026.csv",
-        "table": "proposicoes_temas_2026",
-        "pk": ["uri_proposicao", "cod_tema"],
-        "required": ["uri_proposicao", "cod_tema", "tema"],
+    "proposicoes_temas": {
+        "file_pattern": "proposicoesTemas-*.csv",
+        "table": "proposicoes_temas",
+        "year_from_file": True,
+        "pk": ["ano_dados", "uri_proposicao", "cod_tema"],
+        "required": ["ano_dados", "uri_proposicao", "cod_tema", "tema"],
         "skip_identity": [],
         "columns": {
             "uriProposicao": ("uri_proposicao", C.clean_text),
@@ -202,11 +210,12 @@ TABLES = {
             "relevancia": ("relevancia", C.clean_decimal),
         },
     },
-    "eventos_presenca_deputados_2026": {
-        "file": "eventosPresencaDeputados-2026.csv",
-        "table": "eventos_presenca_deputados_2026",
-        "pk": ["id_evento", "id_deputado"],
-        "required": ["id_evento", "id_deputado"],
+    "eventos_presenca_deputados": {
+        "file_pattern": "eventosPresencaDeputados-*.csv",
+        "table": "eventos_presenca_deputados",
+        "year_from_file": True,
+        "pk": ["ano_dados", "id_evento", "id_deputado"],
+        "required": ["ano_dados", "id_evento", "id_deputado"],
         "skip_identity": [],
         "columns": {
             "idEvento": ("id_evento", C.clean_int),
@@ -217,10 +226,11 @@ TABLES = {
         },
     },
     "proposicoes_autores": {
-        "file": "proposicoesAutores-2026.csv",
+        "file_pattern": "proposicoesAutores-*.csv",
         "table": "proposicoes_autores",
+        "year_from_file": True,
         "pk": [],
-        "required": ["id_proposicao", "nome_autor", "tipo_autor"],
+        "required": ["ano_dados", "id_proposicao", "nome_autor", "tipo_autor"],
         "skip_identity": ["id_autoria"],
         "columns": {
             "idProposicao": ("id_proposicao", C.clean_int),

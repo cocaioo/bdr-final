@@ -3,6 +3,29 @@
 Projeto local para padronizar CSVs da Camara dos Deputados, carregar os dados em
 PostgreSQL via Docker e exportar respostas em `.txt`.
 
+## Visao geral da aplicacao
+
+O projeto tem tres partes principais:
+
+1. **Banco PostgreSQL via Docker**
+   - Configurado em `docker-compose.yml`.
+   - Banco: `dossie_grupo4`.
+   - Usuario/senha: `admin/admin`.
+   - Porta local: `5433`.
+   - Schema criado por `init.sql`.
+
+2. **ETL em Python**
+   - Le os CSVs de `tabelas/`.
+   - Gera CSVs padronizados em `dados_padronizados/`.
+   - Carrega o PostgreSQL.
+   - Exporta respostas `.txt` para `respostas/`.
+
+3. **Interface**
+   - Backend: FastAPI em `dashboard/backend`, porta `8000`.
+   - Frontend: React/Vite em `dashboard/frontend`, porta `5173`.
+   - A interface le os arquivos de `respostas/*.txt` via API, nao consulta o
+     banco diretamente.
+
 ## Diagnostico da refatoracao
 
 O projeto anterior carregava parte dos dados, mas nao atendia totalmente aos
@@ -19,16 +42,72 @@ Esta versao usa um unico padrao em `snake_case`, com chaves como
 
 - Python 3.11+
 - Docker Desktop
+- Node.js 20+ e npm
+- Make no terminal usado pelo projeto
 - CSVs brutos em `tabelas/`
 
-## Execucao
+## Configuracao inicial
+
+No PowerShell, dentro da pasta do projeto:
+
+```powershell
+cd C:\Users\Vinicius\Desktop\bd_final\bdr-final
+```
+
+Se voce ja tiver o ambiente `.venv`, instale as dependencias Python nele:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r dashboard\backend\requirements.txt
+```
+
+Instale o frontend:
+
+```powershell
+cd dashboard\frontend
+npm install
+cd ..\..
+```
+
+Observacao: o `Makefile` espera, por padrao, um ambiente chamado `venv`. Se
+voce quiser usar todos os comandos `make` sem adaptar nada, crie o ambiente
+assim:
+
+```powershell
+python -m venv venv
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
+.\venv\Scripts\python.exe -m pip install -r dashboard\backend\requirements.txt
+```
+
+Se preferir manter `.venv`, execute os comandos Python manualmente ou informe a
+variavel `PYTHON` ao usar o `make`.
+
+## Banco e carga dos dados
+
+Abra o Docker Desktop primeiro. Depois rode:
+
+```powershell
+docker compose up -d
+```
+
+Para recriar o banco do zero, carregar os dados e gerar respostas:
 
 ```bash
-python -m pip install -r requirements.txt
 make db-reset
 make etl
 make validate
 make export-respostas
+```
+
+Esse fluxo recria o banco PostgreSQL, aplica `init.sql`, padroniza os CSVs de
+`tabelas/`, carrega os dados e gera os arquivos `.txt` em `respostas/`.
+
+Caso esteja usando `.venv`, rode o ETL manualmente assim:
+
+```powershell
+.\.venv\Scripts\python.exe -m src.main
+docker compose exec -T postgres psql -U admin -d dossie_grupo4 -f /sql/validation_queries.sql
+docker compose exec -T postgres psql -U admin -d dossie_grupo4 -f /sql/export_respostas.sql
 ```
 
 Atalhos:
@@ -39,6 +118,42 @@ Atalhos:
 - `make etl`: padroniza os CSVs e carrega o banco.
 - `make validate`: executa validacoes basicas.
 - `make export-respostas`: gera arquivos em `respostas/`.
+- `make dashboard-install`: instala dependencias Python do backend e npm do frontend.
+- `make dashboard-api`: inicia a API FastAPI em `http://localhost:8000`.
+- `make dashboard-web`: inicia o frontend Vite em `http://localhost:5173`.
+- `make dashboard-dev`: inicia API e frontend em segundo plano.
+
+## Como abrir a interface
+
+A interface precisa de dois processos rodando: backend e frontend. Deixe dois
+terminais abertos.
+
+Terminal 1, API:
+
+```powershell
+cd C:\Users\Vinicius\Desktop\bd_final\bdr-final
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
+```
+
+Terminal 2, frontend:
+
+```powershell
+cd C:\Users\Vinicius\Desktop\bd_final\bdr-final\dashboard\frontend
+npm run dev -- --host 0.0.0.0 --port 5173
+```
+
+Depois abra no navegador:
+
+```text
+http://localhost:5173
+```
+
+Endpoints uteis da API:
+
+```text
+http://localhost:8000/api/health
+http://localhost:8000/api/meta
+```
 
 ## Banco local
 
@@ -53,23 +168,36 @@ O schema e criado por `init.sql`.
 
 ## Dados padronizados
 
-O ETL le os CSVs de `tabelas/`, padroniza os nomes e salva tudo em
-`dados_padronizados/`. Essa pasta substitui a antiga `cleaned/`.
+O ETL le os CSVs de `tabelas/` de forma recursiva, padroniza os nomes e salva
+tudo em `dados_padronizados/`. Essa pasta substitui a antiga `cleaned/`.
+
+Arquivos anuais como `tabelas/2026/Ano-2026.csv` sao encontrados
+automaticamente por padroes como `Ano-*.csv`. Com `RAW_DATA_DIR=./tabelas`, a
+carga agrega todos os anos disponiveis. Com `RAW_DATA_DIR=./tabelas/2026`, a
+carga fica restrita aos CSVs anuais daquela pasta; `deputados.csv` pode ser
+lido do diretorio pai quando existir.
+
+As tabelas anuais agora sao bases multi-ano com a coluna `ano_dados`. O schema
+mantem views como `gastos_2026` e `votacoes_votos_2026` apenas para
+compatibilidade com consultas antigas.
 
 Tabelas geradas:
 
 - `deputados.csv`
 - `partidos_ideologia.csv`
-- `proposicoes_2026.csv`
-- `eventos_2026.csv`
-- `votacoes_2026.csv`
-- `gastos_2026.csv`
-- `votacoes_votos_2026.csv`
-- `votacoes_orientacoes_2026.csv`
-- `votacoes_objetos_2026.csv`
-- `proposicoes_temas_2026.csv`
-- `eventos_presenca_deputados_2026.csv`
+- `proposicoes.csv`
+- `eventos.csv`
+- `votacoes.csv`
+- `gastos.csv`
+- `votacoes_votos.csv`
+- `votacoes_orientacoes.csv`
+- `votacoes_objetos.csv`
+- `proposicoes_temas.csv`
+- `eventos_presenca_deputados.csv`
 - `proposicoes_autores.csv`
+
+Ao fim da carga, `logs/etl_load_manifest.csv` registra tabela, arquivos fonte,
+anos carregados, linhas lidas, linhas padronizadas, linhas carregadas e status.
 
 ## Enriquecimento via API
 
@@ -122,26 +250,3 @@ Documentacao detalhada do projeto e das respostas: [DOCUMENTACAO_RESPOSTAS.md](D
 - `sql/export_respostas.sql`: exportacao das respostas
 
 
-## Questao 1 
-1. Deputados Ordenados por gasto - A Scopo :: N, P, E
-Filtro de A a Z
-Ideia de Resolução 
- Ela resolve a Q1 somando valor_liquido da tabela gastos_2026, a
- associando cada gasto ao deputado correspondente pela tabela deputados. O resultado é agrupado
-por deputado, UF e partido, e ordenado do maior gasto total para o menor.
-
-- valor_liquido: valor efetivo após descontar a glosa.
-
-## Questao 2
-2. Agrupar deputados por eixo de atuação (Nuvem de Palavras) - Ex: Eixo social, econômico, tributário, segurança, saúde, etc. nuvem de palavras 
-
-Solução 
- 1. Agrupa deputados por tema oficial de atuação
- 2. Gera uma frequência de palavras das proposições, que serve como base para nuvem de palavras:
- 3. Agrupar em categorias nesse caso, Viação, Transporte e Mobilidade  seria uma subcategoria de uma categoria maior que ela mais se encaixa, 
- Nesse caso, Viacao , transporte e mobilidade seria SOCIAL ou poderia ser ECONOMICO 
-
-## QUESTAO 3
-
-Como um deputado votou em um temaleixo
-específico
