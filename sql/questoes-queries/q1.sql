@@ -1,12 +1,12 @@
 \o /respostas/q1_gastos_deputados.txt
+\qecho Ranking global - todos os anos
 SELECT
-    g.ano_dados,
     d.id_deputado,
-    d.nome,
-    g.sigla_uf,
-    g.sigla_partido,
+    MAX(d.nome) AS nome,
+    MAX(g.sigla_uf) AS sigla_uf,
+    MAX(g.sigla_partido) AS sigla_partido,
     SUM(g.valor_liquido) AS gasto_total
 FROM gastos g
 JOIN deputados d ON d.id_deputado = g.id_deputado
-GROUP BY g.ano_dados, d.id_deputado, d.nome, g.sigla_uf, g.sigla_partido
-ORDER BY g.ano_dados, gasto_total DESC;
+GROUP BY d.id_deputado
+ORDER BY gasto_total DESC;

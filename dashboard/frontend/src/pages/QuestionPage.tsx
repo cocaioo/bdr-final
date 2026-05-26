@@ -132,29 +132,38 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
       )}
 
       {payload.complement_tables.map((table) => (
-        <section key={table.title} className="complement-section stagger-item">
-          <h2>{table.title}</h2>
-          <div className="table-wrapper">
-            <table>
-              <thead>
-                <tr>
-                  {table.columns.map((column) => (
-                    <th key={column.key}>{column.label}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {table.rows.slice(0, 30).map((row, rowIndex) => (
-                  <tr key={`${table.title}-${rowIndex}`}>
+        table.title.toLowerCase().includes('ranking global') ? (
+          <DataTablePanel
+            key={table.title}
+            table={table}
+            state={tableState}
+            onChange={setTableState}
+          />
+        ) : (
+          <section key={table.title} className="complement-section stagger-item">
+            <h2>{table.title}</h2>
+            <div className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
                     {table.columns.map((column) => (
-                      <td key={`${column.key}-${rowIndex}`}>{formatCellValue(row[column.key])}</td>
+                      <th key={column.key}>{column.label}</th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+                </thead>
+                <tbody>
+                  {table.rows.slice(0, 30).map((row, rowIndex) => (
+                    <tr key={`${table.title}-${rowIndex}`}>
+                      {table.columns.map((column) => (
+                        <td key={`${column.key}-${rowIndex}`}>{formatCellValue(row[column.key])}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )
       ))}
 
       <QueryDrawer panel={payload.query_panel} />

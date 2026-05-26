@@ -4208,8 +4208,8 @@ Complemento 3 - votos por ideologia partidaria
       2023 | PSDB          | centro    | Sim       |      2051
       2023 | PSDB          | centro    | Nao       |      1301
       2023 | PSDB          | centro    | Abstencao |         9
-      2023 | PSDB          | centro    | Obstrucao |         1
       2023 | PSDB          | centro    | Artigo 17 |         1
+      2023 | PSDB          | centro    | Obstrucao |         1
       2023 | PSOL          | esquerda  | Sim       |      1712
       2023 | PSOL          | esquerda  | Nao       |      1611
       2023 | PSOL          | esquerda  | Abstencao |        42
@@ -4382,8 +4382,8 @@ Complemento 3 - votos por ideologia partidaria
       2026 | PODE          | centro    | Abstencao |         5
       2026 | PP            | direita   | Sim       |      1931
       2026 | PP            | direita   | Nao       |      1163
-      2026 | PP            | direita   | Abstencao |         2
       2026 | PP            | direita   | Artigo 17 |         2
+      2026 | PP            | direita   | Abstencao |         2
       2026 | PRD           | centro    | Sim       |       173
       2026 | PRD           | centro    | Nao       |       110
       2026 | PRD           | centro    | Abstencao |         6

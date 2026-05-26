@@ -180,13 +180,17 @@ class QuestionAdapter:
     def _build_complements(self, state: FilterState) -> list[TableSpec]:
         specs: list[TableSpec] = []
         for table in self.complement_tables:
+            is_global_ranking = _is_global_ranking_table(table)
+            table_state = _without_year_filter(state) if is_global_ranking else state
+            page = table_state.page if is_global_ranking else 1
+            page_size = min(table_state.page_size, 200 if is_global_ranking else 100)
             filtered = FilterEngine.apply_filters(
                 table.rows,
-                state,
+                table_state,
                 self.context.question.supported_filters,
             )
-            sorted_rows = FilterEngine.apply_sort(filtered, state.sort_by, state.sort_dir)
-            paged = FilterEngine.apply_pagination(sorted_rows, 1, min(state.page_size, 100))
+            sorted_rows = FilterEngine.apply_sort(filtered, table_state.sort_by, table_state.sort_dir)
+            paged = FilterEngine.apply_pagination(sorted_rows, page, page_size)
             specs.append(
                 self._build_table_spec(
                     title=table.title,
@@ -194,15 +198,15 @@ class QuestionAdapter:
                     rows=paged,
                     total=len(sorted_rows),
                     state=FilterState(
-                        anos=state.anos,
-                        partidos=state.partidos,
-                        ufs=state.ufs,
-                        deputados=state.deputados,
-                        search=state.search,
-                        sort_by=state.sort_by,
-                        sort_dir=state.sort_dir,
-                        page=1,
-                        page_size=min(state.page_size, 100),
+                        anos=table_state.anos,
+                        partidos=table_state.partidos,
+                        ufs=table_state.ufs,
+                        deputados=table_state.deputados,
+                        search=table_state.search,
+                        sort_by=table_state.sort_by,
+                        sort_dir=table_state.sort_dir,
+                        page=page,
+                        page_size=page_size,
                     ),
                 )
             )
@@ -482,6 +486,24 @@ def _find_first_table(
         if matcher(table):
             return table
     return None
+
+
+def _is_global_ranking_table(table: ParsedTable) -> bool:
+    return "ranking global" in table.title.lower()
+
+
+def _without_year_filter(state: FilterState) -> FilterState:
+    return FilterState(
+        anos=[],
+        partidos=state.partidos,
+        ufs=state.ufs,
+        deputados=state.deputados,
+        search=state.search,
+        sort_by=state.sort_by,
+        sort_dir=state.sort_dir,
+        page=state.page,
+        page_size=state.page_size,
+    )
 
 
 def _humanize_label(key: str) -> str:
