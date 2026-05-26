@@ -250,6 +250,48 @@ p {
   color: var(--muted);
 }
 
+.summary-card.formula-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: linear-gradient(165deg, #ffffff 0%, #eef5fb 100%);
+}
+
+.summary-card.formula-card h3 {
+  color: var(--primary);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.95rem;
+}
+
+.formula-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(11, 60, 93, 0.16);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.formula-layout p {
+  margin: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.formula-layout .formula-heading {
+  margin-top: 4px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.formula-layout .formula-heading:first-child {
+  margin-top: 0;
+}
+
 .chart-section header {
   display: flex;
   flex-direction: column;

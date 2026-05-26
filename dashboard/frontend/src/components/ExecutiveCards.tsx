@@ -1,10 +1,13 @@
+import type { ReactNode } from 'react'
+
 import type { SummaryCard } from '../types'
 
 interface ExecutiveCardsProps {
   cards: SummaryCard[]
+  extraCard?: ReactNode
 }
 
-export function ExecutiveCards({ cards }: ExecutiveCardsProps) {
+export function ExecutiveCards({ cards, extraCard }: ExecutiveCardsProps) {
   return (
     <section className="cards-section" aria-label="Resumo executivo">
       {cards.map((card, index) => (
@@ -20,6 +23,15 @@ export function ExecutiveCards({ cards }: ExecutiveCardsProps) {
           </p>
         </article>
       ))}
+
+      {extraCard ? (
+        <article
+          className="summary-card formula-card stagger-item"
+          style={{ animationDelay: `${cards.length * 60}ms` }}
+        >
+          {extraCard}
+        </article>
+      ) : null}
     </section>
   )
 }

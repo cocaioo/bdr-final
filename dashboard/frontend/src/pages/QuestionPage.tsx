@@ -93,6 +93,23 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
     )
   }
 
+  const isQ7 = questionMeta.id.toLowerCase() === 'q7'
+  const q7FormulaCard = isQ7 ? (
+    <>
+      <h3>Formula do custo-beneficio</h3>
+      <div className="formula-layout" aria-label="Formula da metrica de custo-beneficio">
+        <p className="formula-heading">Beneficio =</p>
+        <p>(qtd_proposicoes * 2)</p>
+        <p>+</p>
+        <p>(proposicoes_aprovadas * 3)</p>
+        <p>+</p>
+        <p>(presenca_total * 0.1)</p>
+        <p className="formula-heading">Custo-beneficio =</p>
+        <p>beneficio / gasto_total</p>
+      </div>
+    </>
+  ) : null
+
   return (
     <main className="question-page">
       <section className="question-intro stagger-item">
@@ -103,7 +120,7 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
       </section>
 
       <WarningBanner warnings={payload.warnings} />
-      <ExecutiveCards cards={payload.summary_cards} />
+      <ExecutiveCards cards={payload.summary_cards} extraCard={q7FormulaCard} />
 
       {payload.empty_state.is_empty ? (
         <NoDataState message={payload.empty_state.message} />
