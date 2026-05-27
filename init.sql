@@ -8,6 +8,8 @@ CREATE TABLE deputados (
     nome             VARCHAR(150) NOT NULL,
     nome_civil       VARCHAR(200),
     cpf              CHAR(11),
+    id_legislatura_inicial INTEGER,
+    id_legislatura_final   INTEGER,
     escolaridade     VARCHAR(100)
 );
 

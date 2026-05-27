@@ -1,25 +1,33 @@
 \o /respostas/q4_escolaridade.txt
-WITH deputados_ativos_global AS (
-    SELECT DISTINCT id_deputado
-    FROM resposta_deputados_ativos
+-- Universo da Q4: deputados unicos do cadastro oficial da 57a legislatura.
+-- Regra de escolaridade: usa o campo deputados.escolaridade; nulos/vazios viram 'Nao informado'.
+WITH deputados_legislatura_57 AS (
+    SELECT DISTINCT
+        d.id_deputado,
+        d.nome,
+        COALESCE(NULLIF(BTRIM(d.escolaridade), ''), 'Nao informado') AS escolaridade
+    FROM deputados d
+    WHERE d.id_legislatura_final = 57
 )
 SELECT
-    COALESCE(d.escolaridade, 'Nao informado') AS escolaridade,
+    escolaridade,
     COUNT(*) AS qtd_deputados
-FROM deputados_ativos_global a
-JOIN deputados d ON d.id_deputado = a.id_deputado
-GROUP BY COALESCE(d.escolaridade, 'Nao informado')
+FROM deputados_legislatura_57
+GROUP BY escolaridade
 ORDER BY qtd_deputados DESC, escolaridade;
 
 \o /respostas/q4_escolaridade_complementar.txt
-WITH deputados_ativos_global AS (
-    SELECT DISTINCT id_deputado
-    FROM resposta_deputados_ativos
+WITH deputados_legislatura_57 AS (
+    SELECT DISTINCT
+        d.id_deputado,
+        d.nome,
+        COALESCE(NULLIF(BTRIM(d.escolaridade), ''), 'Nao informado') AS escolaridade
+    FROM deputados d
+    WHERE d.id_legislatura_final = 57
 )
 SELECT
-    COALESCE(d.escolaridade, 'Nao informado') AS escolaridade,
-    d.id_deputado,
-    d.nome
-FROM deputados_ativos_global a
-JOIN deputados d ON d.id_deputado = a.id_deputado
-ORDER BY COALESCE(d.escolaridade, 'Nao informado'), d.nome;
+    escolaridade,
+    id_deputado,
+    nome
+FROM deputados_legislatura_57
+ORDER BY escolaridade, nome, id_deputado;

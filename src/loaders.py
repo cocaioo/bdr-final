@@ -177,11 +177,20 @@ def _transform_deputados(df, data_dir):
     out["nome"] = df["nome"].apply(C.clean_text)
     out["nome_civil"] = df["nomeCivil"].apply(C.clean_text) if "nomeCivil" in df else None
     out["cpf"] = df["cpf"].apply(C.clean_cpf) if "cpf" in df else None
+    out["id_legislatura_inicial"] = (
+        df["idLegislaturaInicial"].apply(C.clean_int)
+        if "idLegislaturaInicial" in df
+        else None
+    )
+    out["id_legislatura_final"] = (
+        df["idLegislaturaFinal"].apply(C.clean_int)
+        if "idLegislaturaFinal" in df
+        else None
+    )
     out["escolaridade"] = None
 
     if "idLegislaturaFinal" in df.columns:
-        legislatura_final = df["idLegislaturaFinal"].apply(C.clean_int)
-        is_current = legislatura_final == "57"
+        is_current = out["id_legislatura_final"] == "57"
     else:
         is_current = pd.Series(False, index=df.index)
 
@@ -200,6 +209,8 @@ def _transform_deputados(df, data_dir):
             "nome": info.get("nome") or f"Deputado {id_deputado}",
             "nome_civil": None,
             "cpf": info.get("cpf"),
+            "id_legislatura_inicial": None,
+            "id_legislatura_final": None,
             "escolaridade": None,
         })
 

@@ -59,6 +59,8 @@ TABLES = {
             "nome": ("nome", C.clean_text),
             "nomeCivil": ("nome_civil", C.clean_text),
             "cpf": ("cpf", C.clean_cpf),
+            "idLegislaturaInicial": ("id_legislatura_inicial", C.clean_int),
+            "idLegislaturaFinal": ("id_legislatura_final", C.clean_int),
         },
     },
     "partidos_ideologia": {
