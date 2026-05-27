@@ -49,6 +49,18 @@ def test_q8_payload_uses_global_approved_total() -> None:
     assert summary_cards["Proposicoes aprovadas global"] == "394"
 
 
+def test_q10_summary_cards_scale_alignment_percentages() -> None:
+    response = client.get("/api/questions/q10?page=1&page_size=10")
+    assert response.status_code == 200
+    payload = response.json()
+
+    summary_cards = {card["id"]: card for card in payload["summary_cards"]}
+    assert summary_cards["media_alinhamento"]["value"] == "92,07"
+    assert summary_cards["media_alinhamento"]["unit"] == "%"
+    assert summary_cards["menor_alinhamento"]["value"] == "79,11"
+    assert summary_cards["maior_alinhamento"]["value"] == "100"
+
+
 def test_question_not_found_returns_404() -> None:
     response = client.get("/api/questions/q99")
     assert response.status_code == 404

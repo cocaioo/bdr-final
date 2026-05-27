@@ -128,7 +128,7 @@ class QuestionAdapter:
                     SummaryCard(
                         id=key,
                         label=_humanize_label(key),
-                        value=_format_value(value),
+                        value=_format_summary_card_value(key, value),
                         unit=_infer_unit(key),
                     )
                 )
@@ -619,6 +619,27 @@ def _infer_unit(column_name: str) -> str | None:
     if "gasto" in name or "total_pago" in name or "valor" in name:
         return "R$"
     return "contagem"
+
+
+def _format_summary_card_value(column_name: str, value: Any) -> str:
+    if value is None:
+        return "-"
+    if _should_scale_percentage(column_name, value):
+        scaled_value = round(float(value) * 100, 2)
+        if scaled_value.is_integer():
+            return str(int(scaled_value))
+        return _format_value(scaled_value)
+    return _format_value(value)
+
+
+def _should_scale_percentage(column_name: str, value: Any) -> bool:
+    name = column_name.lower()
+    if "alinhamento" not in name:
+        return False
+    if not isinstance(value, (int, float)):
+        return False
+    numeric_value = float(value)
+    return 0 <= numeric_value <= 1
 
 
 def _format_value(value: Any) -> str:
