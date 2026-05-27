@@ -1,40 +1,26 @@
       escolaridade       | id_deputado |                nome                 
 -------------------------+-------------+-------------------------------------
  Doutorado               |      204528 | Adriana Ventura
- Doutorado               |      160511 | Alessandro Molon
  Doutorado               |      204503 | Alexandre Padilha
  Doutorado               |      220632 | Ana Pimentel
- Doutorado               |       73696 | Angela Amin
- Doutorado               |      204414 | Aroldo Martins
- Doutorado               |       74650 | BONIF√ÅCIO DE ANDRADA
  Doutorado               |      229106 | Carla Ayres
- Doutorado               |      206018 | C√©lia Xakriab√°
+ Doutorado               |      206018 | CÈlia Xakriab·
  Doutorado               |      204496 | Celso Sabino
  Doutorado               |      204512 | Delegado Marcelo Freitas
  Doutorado               |      220614 | Dr. Daniel Soranz
  Doutorado               |      132504 | Enio Verri
- Doutorado               |      160649 | ESPERIDI√ÉO AMIN
- Doutorado               |      204473 | General Gir√£o
- Doutorado               |      204484 | General Peternelli
- Doutorado               |       74419 | Gonzaga Patriota
+ Doutorado               |      204473 | General Gir„o
  Doutorado               |      178857 | Jorge Solla
  Doutorado               |      178866 | Luizianne Lins
  Doutorado               |      220648 | Marangoni
- Doutorado               |       74460 | MARCELO CASTRO
- Doutorado               |      133373 | Marco Maia
- Doutorado               |      204430 | Margarete Coelho
  Doutorado               |      204486 | Mauro Benevides Filho
  Doutorado               |      178997 | Moses Rodrigues
- Doutorado               |       74352 | Nilson Pinto
- Doutorado               |      234310 | Ricardo Galv√£o
- Doutorado               |      160568 | ROG√âRIO CARVALHO
- Doutorado               |      178930 | Roman
+ Doutorado               |      234310 | Ricardo Galv„o
  Doutorado               |      104552 | Socorro Neri
- Doutorado               |      220598 | Tarc√≠sio Motta
+ Doutorado               |      220598 | TarcÌsio Motta
  Doutorado Incompleto    |      220686 | Duarte Jr.
  Doutorado Incompleto    |       98057 | Lafayette de Andrada
- Doutorado Incompleto    |      167722 | MARCOS ROG√âRIO
- Doutorado Incompleto    |      220609 | Maur√≠cio Carvalho
+ Doutorado Incompleto    |      220609 | MaurÌcio Carvalho
  Doutorado Incompleto    |      220580 | Professora Goreth
  Doutorado Incompleto    |      220606 | Reimont
  Doutorado Incompleto    |       77003 | Sergio Santos Rodrigues
@@ -44,169 +30,119 @@
  Ensino Fundamental      |      229585 | Elisangela Araujo
  Ensino Fundamental      |      161550 | Emidinho Madeira
  Ensino Fundamental      |      220531 | Gilvan Maximo
- Ensino Fundamental      |      204564 | Igor Kann√°rio
- Ensino Fundamental      |      220600 | Lebr√£o
- Ensino Fundamental      |      196358 | Lourival Gomes
+ Ensino Fundamental      |      220600 | Lebr„o
  Ensino Fundamental      |      166402 | Magda Mofatto
- Ensino Fundamental      |       74114 | M√ÅRIO MARTINS
- Ensino Fundamental      |      204489 | Rob√©rio Monteiro
+ Ensino Fundamental      |      204489 | RobÈrio Monteiro
  Ensino Fundamental      |      204387 | Sargento Fahur
  Ensino Fundamental      |      160976 | Tiririca
- Ensino Fundamental      |      160610 | Valmir Assun√ß√£o
- Ensino Fundamental      |      152607 | Z√â VIEIRA
+ Ensino Fundamental      |      160610 | Valmir AssunÁ„o
  Ensino Fundamental      |      220592 | Zezinho Barbary
- Ensino M√©dio            |      121948 | Adriano do Baldy
- Ensino M√©dio            |      204544 | Alexandre Frota
- Ensino M√©dio            |      204571 | Alex Santana
- Ensino M√©dio            |      221148 | Alfredinho
- Ensino M√©dio            |      220612 | Bebeto
- Ensino M√©dio            |      204476 | Chiquinho Braz√£o
- Ensino M√©dio            |      178928 | Christiane de Souza Yared
- Ensino M√©dio            |      220665 | Clarissa T√©rcio
- Ensino M√©dio            |      220571 | Daniel Agrobom
- Ensino M√©dio            |      160552 | Danrlei de Deus Hinterholz
- Ensino M√©dio            |      220659 | Dayany Bittencourt
- Ensino M√©dio            |      220671 | Dilvanda Faro
- Ensino M√©dio            |      141421 | Eduardo da Fonte
- Ensino M√©dio            |      218086 | Ely Santos
- Ensino M√©dio            |      220681 | F√°bio Macedo
- Ensino M√©dio            |      160669 | Genecias Noronha
- Ensino M√©dio            |      204456 | Gutemberg Reis
- Ensino M√©dio            |      204373 | H√©lio Costa
- Ensino M√©dio            |      220563 | Icaro de Valmir
- Ensino M√©dio            |      220567 | Jeferson Rodrigues
- Ensino M√©dio            |      178970 | Jo√£o Daniel
- Ensino M√©dio            |      215043 | Josivaldo JP
- Ensino M√©dio            |      204457 | Juninho do Pneu
- Ensino M√©dio            |      160534 | Lauriete
- Ensino M√©dio            |      204381 | Luis Miranda
- Ensino M√©dio            |      219585 | Marco Brasil
- Ensino M√©dio            |      220655 | Mario Frias
- Ensino M√©dio            |      220585 | Mersinho Lucena
- Ensino M√©dio            |      228042 | Naumi Amorim
- Ensino M√©dio            |      204449 | Nelson Barbudo
- Ensino M√©dio            |      227660 | Nitinho
- Ensino M√©dio            |      204363 | Osires Damaso
- Ensino M√©dio            |      204475 | Ottaci Nascimento
- Ensino M√©dio            |      141518 | Paulinho da For√ßa
- Ensino M√©dio            |      215045 | Pedro Augusto Palareti
- Ensino M√©dio            |      211498 | Renato Santana
- Ensino M√©dio            |      215042 | Ricardo da Karol
- Ensino M√©dio            |      220694 | Ricardo Maia
- Ensino M√©dio            |      178920 | Ricardo Teobaldo
- Ensino M√©dio            |      141473 | ROBERTO SANTIAGO
- Ensino M√©dio            |      178861 | Ronaldo Carletto
- Ensino M√©dio            |      204437 | Severino Pessoa
- Ensino M√©dio            |      195866 | Vaidon Oliveira
- Ensino M√©dio            |      204483 | Vilson da Fetaemg
- Ensino M√©dio            |      220558 | Z√© Trov√£o
- Ensino M√©dio Incompleto |      115746 | Gelson Azevedo
- Ensino M√©dio Incompleto |      220702 | Geraldo Mendes
- Ensino M√©dio Incompleto |      204474 | Juarez Costa
- Ensino T√©cnico          |      160539 | ANTHONY GAROTINHO
- Ensino T√©cnico          |      204386 | Jose Mario Schreiner
- Ensino T√©cnico          |      204452 | M√°rcio Labre
- Ensino T√©cnico          |       73559 | SALVADOR ZIMBALDI
- Ginasial                |       73474 | LUCI CHOINACKI
+ Ensino MÈdio            |      121948 | Adriano do Baldy
+ Ensino MÈdio            |      204571 | Alex Santana
+ Ensino MÈdio            |      221148 | Alfredinho
+ Ensino MÈdio            |      220612 | Bebeto
+ Ensino MÈdio            |      204476 | Chiquinho Braz„o
+ Ensino MÈdio            |      220665 | Clarissa TÈrcio
+ Ensino MÈdio            |      220571 | Daniel Agrobom
+ Ensino MÈdio            |      160552 | Danrlei de Deus Hinterholz
+ Ensino MÈdio            |      220659 | Dayany Bittencourt
+ Ensino MÈdio            |      220671 | Dilvanda Faro
+ Ensino MÈdio            |      141421 | Eduardo da Fonte
+ Ensino MÈdio            |      218086 | Ely Santos
+ Ensino MÈdio            |      220681 | F·bio Macedo
+ Ensino MÈdio            |      204456 | Gutemberg Reis
+ Ensino MÈdio            |      220563 | Icaro de Valmir
+ Ensino MÈdio            |      220567 | Jeferson Rodrigues
+ Ensino MÈdio            |      178970 | Jo„o Daniel
+ Ensino MÈdio            |      215043 | Josivaldo JP
+ Ensino MÈdio            |      204457 | Juninho do Pneu
+ Ensino MÈdio            |      219585 | Marco Brasil
+ Ensino MÈdio            |      220655 | Mario Frias
+ Ensino MÈdio            |      220585 | Mersinho Lucena
+ Ensino MÈdio            |      228042 | Naumi Amorim
+ Ensino MÈdio            |      204449 | Nelson Barbudo
+ Ensino MÈdio            |      227660 | Nitinho
+ Ensino MÈdio            |      141518 | Paulinho da ForÁa
+ Ensino MÈdio            |      220694 | Ricardo Maia
+ Ensino MÈdio            |      220558 | ZÈ Trov„o
+ Ensino MÈdio Incompleto |      220702 | Geraldo Mendes
+ Ensino MÈdio Incompleto |      204474 | Juarez Costa
  Mestrado                |      160508 | Afonso Florence
  Mestrado                |      160600 | Arthur Oliveira Maia
- Mestrado                |      204509 | √Åurea Carolina
- Mestrado                |      204561 | Bira do Pindar√©
  Mestrado                |      210989 | Bruno Farias
- Mestrado                |      178829 | Capit√£o Augusto
+ Mestrado                |      178829 | Capit„o Augusto
  Mestrado                |      204369 | Caroline de Toni
  Mestrado                |       74171 | Chico Alencar
  Mestrado                |      204514 | Coronel Tadeu
- Mestrado                |       74467 | Dami√£o Feliciano
+ Mestrado                |       74467 | Dami„o Feliciano
  Mestrado                |      220629 | Dandara
  Mestrado                |      220625 | Delegada Ione
- Mestrado                |      204569 | Delegado Pablo
  Mestrado                |      220705 | Deltan Dallagnol
  Mestrado                |      143632 | Domingos Neto
- Mestrado                |      220610 | Dr. Fernando M√°ximo
- Mestrado                |      204537 | Enrico Misasi
- Mestrado                |      160587 | F√°bio Trad
- Mestrado                |      204371 | Felipe Rigoni
- Mestrado                |      204392 | Francisco Jr.
+ Mestrado                |      220610 | Dr. Fernando M·ximo
  Mestrado                |      220611 | General Pazuello
  Mestrado                |      220529 | Gilson Daniel
  Mestrado                |      220639 | Guilherme Boulos
- Mestrado                |      204548 | Heitor Freire
  Mestrado                |      204533 | Idilvan Alencar
- Mestrado                |      204468 | Joenia Wapichana
- Mestrado                |      141464 | Jos√© Airton F√©lix Cirilo
- Mestrado                |      178825 | Leo de Brito
+ Mestrado                |      141464 | JosÈ Airton FÈlix Cirilo
  Mestrado                |      122195 | Leonardo Gadelha
  Mestrado                |      204410 | Luisa Canziani
  Mestrado                |       74784 | Luiza Erundina
- Mestrado                |      204526 | Luiz Philippe de Orleans e Bragan√ßa
- Mestrado                |      179587 | Major Vitor Hugo
- Mestrado                |      146788 | Marcelo Aro
+ Mestrado                |      204526 | Luiz Philippe de Orleans e BraganÁa
  Mestrado                |      204433 | Marcelo Calero
  Mestrado                |      160161 | Marcelo Queiroz
  Mestrado                |      156190 | Marcel van Hattem
  Mestrado                |      204522 | Marco Bertaiolli
- Mestrado                |       74398 | Maria do Ros√°rio
- Mestrado                |       74056 | MENDON√áA PRADO
+ Mestrado                |       74398 | Maria do Ros·rio
  Mestrado                |      188097 | Merlong Solano
  Mestrado                |      220530 | Messias Donato
- Mestrado                |      171786 | Miguel √Çngelo
- Mestrado                |      204453 | Nat√°lia Bonavides
- Mestrado                |       73463 | Osmar Serraglio
+ Mestrado                |      171786 | Miguel ¬ngelo
+ Mestrado                |      204453 | Nat·lia Bonavides
  Mestrado                |       74160 | Patrus Ananias
  Mestrado                |      141516 | Paulo Abi-Ackel
  Mestrado                |      141488 | Paulo Teixeira
  Mestrado                |      220630 | Pedro Aihara
- Mestrado                |      178912 | Pedro Cunha Lima
  Mestrado                |      204395 | Pedro Lupion
  Mestrado                |      122158 | Pedro Paulo
  Mestrado                |      160604 | Pedro Uczai
- Mestrado                |      160639 | Professora Dorinha Seabra Rezende
  Mestrado                |      204390 | Professor Alcides
- Mestrado                |      204467 | Professora Rosa Neide
- Mestrado                |      141523 | Raul Henry
- Mestrado                |      204530 | Rodrigo Agostinho
  Mestrado                |      141531 | Rodrigo de Castro
  Mestrado                |      160629 | Romero Rodrigues
  Mestrado                |      178945 | Rosangela Gomes
- Mestrado                |      220579 | Silvia Wai√£pi
- Mestrado                |      197438 | Tito
+ Mestrado                |      220579 | Silvia Wai„pi
  Mestrado                |      141555 | Vinicius Carvalho
  Mestrado                |      220552 | Zucco
  Mestrado Incompleto     |      220715 | Amom Mandel
- Mestrado Incompleto     |      178953 | Expedito Netto
  Mestrado Incompleto     |      220670 | Iza Arruda
- Mestrado Incompleto     |      204359 | L√©o Moraes
  Mestrado Incompleto     |      220615 | Pastor Henrique Vieira
  Mestrado Incompleto     |      220543 | Ricardo Ayres
- Mestrado Incompleto     |      204464 | Tal√≠ria Petrone
+ Mestrado Incompleto     |      204464 | TalÌria Petrone
  Nao informado           |      220577 | Augusto Puppio
  Nao informado           |      220590 | Coronel Ulysses
  Nao informado           |      234840 | Cristiano Furlan
- Nao informado           |      220539 | Defensor St√©lio Dener
+ Nao informado           |      220539 | Defensor StÈlio Dener
  Nao informado           |      220619 | Delegado Ramagem
  Nao informado           |      227433 | Douglas Viegas
  Nao informado           |      227401 | Dr Fabio Rueda
- Nao informado           |      227991 | Dr Fl√°vio
+ Nao informado           |      227991 | Dr Fl·vio
  Nao informado           |      228616 | Dr. Remy Soares
- Nao informado           |      227800 | Duarte Gon√ßalves Jr
+ Nao informado           |      227800 | Duarte GonÁalves Jr
  Nao informado           |      234388 | Fabiano Cazeca
  Nao informado           |      227370 | Felipe Saliba
  Nao informado           |      220700 | Florentino Neto
- Nao informado           |       74480 | FRANCISCO APPIO
- Nao informado           |      229333 | Gl√°ucia Santiago
+ Nao informado           |      229333 | Gl·ucia Santiago
  Nao informado           |      100689 | Hildo do Candango
  Nao informado           |      225846 | Itamar Paim
- Nao informado           |      235869 | Jo√£o Carlos
- Nao informado           |      235800 | Jorge Ara√∫jo
+ Nao informado           |      235869 | Jo„o Carlos
+ Nao informado           |      235800 | Jorge Ara˙jo
  Nao informado           |      228837 | Juliana Kolankiewicz
- Nao informado           |      228797 | J√∫lio Oliveira
+ Nao informado           |      228797 | J˙lio Oliveira
  Nao informado           |      208297 | Katia Dias
  Nao informado           |      171139 | Loreny
  Nao informado           |      227323 | Luciano Galego
- Nao informado           |      229082 | Lucyana Gen√©sio
+ Nao informado           |      229082 | Lucyana GenÈsio
  Nao informado           |      227275 | Mariana Carvalho
- Nao informado           |      229225 | Mission√°ria Michele Collins
+ Nao informado           |      229225 | Mission·ria Michele Collins
  Nao informado           |      233218 | Nelinho Freitas
  Nao informado           |      229939 | Newton Bonin
  Nao informado           |      220667 | Pedro Campos
@@ -218,950 +154,490 @@
  Nao informado           |      227310 | Silvio Antonio
  Nao informado           |      222565 | Soldado Noelio
  Nao informado           |      230177 | Tadeu Oliveira
- Nao informado           |      223398 | Ulisses Guimar√£es
+ Nao informado           |      223398 | Ulisses Guimar„es
  Nao informado           |      234673 | Vanderlan Alves
- Nao informado           |      235712 | Vav√°
- Nao informado           |      163322 | VILALBA
- P√≥s-Gradua√ß√£o           |      160527 | Aguinaldo Ribeiro
- P√≥s-Gradua√ß√£o           |      178836 | Alan Rick
- P√≥s-Gradua√ß√£o           |      204545 | Al√™ Silva
- P√≥s-Gradua√ß√£o           |      204516 | Alexis Fonteyne
- P√≥s-Gradua√ß√£o           |      220576 | Alfredo Gaspar
- P√≥s-Gradua√ß√£o           |      204400 | Aline Sleutjes
- P√≥s-Gradua√ß√£o           |      204356 | Amaro Neto
- P√≥s-Gradua√ß√£o           |      220657 | Andr√© Fernandes
- P√≥s-Gradua√ß√£o           |      133439 | Andr√© Figueiredo
- P√≥s-Gradua√ß√£o           |      220638 | Antonio Carlos Rodrigues
- P√≥s-Gradua√ß√£o           |      220549 | Any Ortiz
- P√≥s-Gradua√ß√£o           |       73433 | Arlindo Chinaglia
- P√≥s-Gradua√ß√£o           |       74459 | √Åtila Lira
- P√≥s-Gradua√ß√£o           |       69871 | Bacelar
- P√≥s-Gradua√ß√£o           |      220698 | Beto Preto
- P√≥s-Gradua√ß√£o           |      178948 | Beto Rosado
- P√≥s-Gradua√ß√£o           |      160538 | Bohn Gass
- P√≥s-Gradua√ß√£o           |      160589 | Bruna Furlan
- P√≥s-Gradua√ß√£o           |       93083 | Cac√° Le√£o
- P√≥s-Gradua√ß√£o           |      204572 | Capit√£o Alberto Neto
- P√≥s-Gradua√ß√£o           |      178924 | Capit√£o F√°bio Abreu
- P√≥s-Gradua√ß√£o           |      204507 | Carla Zambelli
- P√≥s-Gradua√ß√£o           |      178993 | Carlos Henrique Gaguim
- P√≥s-Gradua√ß√£o           |       74163 | CARLOS MANATO
- P√≥s-Gradua√ß√£o           |      141405 | Celso Maldaner
- P√≥s-Gradua√ß√£o           |      141439 | Chico D'Angelo
- P√≥s-Gradua√ß√£o           |      141440 | CHICO LOPES
- P√≥s-Gradua√ß√£o           |      204440 | Christino Aureo
- P√≥s-Gradua√ß√£o           |      204376 | Coronel Armando
- P√≥s-Gradua√ß√£o           |      222142 | Coronel Telhada
- P√≥s-Gradua√ß√£o           |      220603 | Dani Cunha
- P√≥s-Gradua√ß√£o           |      204459 | Daniela do Waguinho
- P√≥s-Gradua√ß√£o           |      220582 | Daniel Barbosa
- P√≥s-Gradua√ß√£o           |      160528 | Danilo Cabral
- P√≥s-Gradua√ß√£o           |       73891 | Darc√≠sio Perondi
- P√≥s-Gradua√ß√£o           |      204511 | David Soares
- P√≥s-Gradua√ß√£o           |      220561 | Delegada Katarina
- P√≥s-Gradua√ß√£o           |      220642 | Delegado Bruno Lima
- P√≥s-Gradua√ß√£o           |      220649 | Delegado da Cunha
- P√≥s-Gradua√ß√£o           |      220583 | Delegado Fabio Costa
- P√≥s-Gradua√ß√£o           |      220701 | Delegado Matheus Laiola
- P√≥s-Gradua√ß√£o           |      220654 | Delegado Paulo Bilynskyj
- P√≥s-Gradua√ß√£o           |      160588 | Diego Andrade
- P√≥s-Gradua√ß√£o           |      220602 | Dimas Gadelha
- P√≥s-Gradua√ß√£o           |      160758 | Domingos S√°vio
- P√≥s-Gradua√ß√£o           |       81297 | Dra. Soraya Manato
- P√≥s-Gradua√ß√£o           |      220688 | Dr. Francisco
- P√≥s-Gradua√ß√£o           |      220570 | Dr. Ismael Alexandrino
- P√≥s-Gradua√ß√£o           |      204439 | Dr. Leonardo
- P√≥s-Gradua√ß√£o           |      220528 | Dr. Victor Linhalis
- P√≥s-Gradua√ß√£o           |      204562 | Edil√°zio J√∫nior
- P√≥s-Gradua√ß√£o           |       74655 | Eduardo Barbosa
- P√≥s-Gradua√ß√£o           |      141422 | Efraim Filho
- P√≥s-Gradua√ß√£o           |       74075 | Elcione Barbalho
- P√≥s-Gradua√ß√£o           |      178854 | Elmar Nascimento
- P√≥s-Gradua√ß√£o           |      160640 | Eros Biondini
- P√≥s-Gradua√ß√£o           |      178871 | Evair Vieira de Melo
- P√≥s-Gradua√ß√£o           |      178905 | Fabio Garcia
- P√≥s-Gradua√ß√£o           |      204510 | Franco Cartafina
- P√≥s-Gradua√ß√£o           |      220708 | Gabriel Nunes
- P√≥s-Gradua√ß√£o           |      178966 | Geovania de S√°
- P√≥s-Gradua√ß√£o           |      204491 | Gilberto Abramo
- P√≥s-Gradua√ß√£o           |      204365 | Gilson Marques
- P√≥s-Gradua√ß√£o           |      160673 | Giovani Cherini
- P√≥s-Gradua√ß√£o           |      107283 | Gleisi Hoffmann
- P√≥s-Gradua√ß√£o           |      129618 | Gorete Pereira
- P√≥s-Gradua√ß√£o           |      204513 | Guiga Peixoto
- P√≥s-Gradua√ß√£o           |      204531 | Guilherme Derrite
- P√≥s-Gradua√ß√£o           |      204442 | Gurgel
- P√≥s-Gradua√ß√£o           |      204465 | Haroldo Cathedral
- P√≥s-Gradua√ß√£o           |      178873 | Helder Salom√£o
- P√≥s-Gradua√ß√£o           |      220537 | Helena Lima
- P√≥s-Gradua√ß√£o           |      178884 | Hildo Rocha
- P√≥s-Gradua√ß√£o           |       74848 | Jandira Feghali
- P√≥s-Gradua√ß√£o           |      108338 | Jaqueline Cassol
- P√≥s-Gradua√ß√£o           |      204435 | Jesus S√©rgio
- P√≥s-Gradua√ß√£o           |       74366 | Jo√£o Campos
- P√≥s-Gradua√ß√£o           |      141458 | Jo√£o Carlos Bacelar
- P√≥s-Gradua√ß√£o           |      160572 | JORGE C√îRTE REAL
- P√≥s-Gradua√ß√£o           |       73535 | JORGE TADEU MUDALEN
- P√≥s-Gradua√ß√£o           |      204472 | Jos√© Medeiros
- P√≥s-Gradua√ß√£o           |      220578 | Josenildo
- P√≥s-Gradua√ß√£o           |      204555 | Jos√© Ricardo
- P√≥s-Gradua√ß√£o           |       74554 | Jos√© Rocha
- P√≥s-Gradua√ß√£o           |       74141 | Josias Gomes
- P√≥s-Gradua√ß√£o           |       73586 | J√∫lio Delgado
- P√≥s-Gradua√ß√£o           |      151208 | Laercio Oliveira
- P√≥s-Gradua√ß√£o           |       80815 | Leo Prates
- P√≥s-Gradua√ß√£o           |      204523 | Lucas Gonzalez
- P√≥s-Gradua√ß√£o           |      178954 | Lucio Mosquini
- P√≥s-Gradua√ß√£o           |      160645 | Luiz Carlos
- P√≥s-Gradua√ß√£o           |      220687 | M√°rcio Honaiser
- P√≥s-Gradua√ß√£o           |      204506 | Marcos Pereira
- P√≥s-Gradua√ß√£o           |      220604 | Marcos Tavares
- P√≥s-Gradua√ß√£o           |      220668 | Maria Arraes
- P√≥s-Gradua√ß√£o           |      204540 | Maria Rosas
- P√≥s-Gradua√ß√£o           |      204403 | Marlon Santos
- P√≥s-Gradua√ß√£o           |      141509 | MIGUEL CORR√äA
- P√≥s-Gradua√ß√£o           |      178895 | Misael Varella
- P√≥s-Gradua√ß√£o           |      178896 | Newton Cardoso Jr
- P√≥s-Gradua√ß√£o           |       73692 | Osmar Terra
- P√≥s-Gradua√ß√£o           |      204573 | Otto Alencar Filho
- P√≥s-Gradua√ß√£o           |       74319 | Paes Landim
- P√≥s-Gradua√ß√£o           |      171617 | Paul√£o
- P√≥s-Gradua√ß√£o           |      204461 | Paulo Ganime
- P√≥s-Gradua√ß√£o           |      220685 | Paulo Litro
- P√≥s-Gradua√ß√£o           |       90201 | Pedro Augusto Bezerra
- P√≥s-Gradua√ß√£o           |      204529 | Policial Katia Sastre
- P√≥s-Gradua√ß√£o           |      204565 | Professora Dayane Pimentel
- P√≥s-Gradua√ß√£o           |      204446 | Professor Joziel
- P√≥s-Gradua√ß√£o           |      220533 | Prof. Reginaldo Veras
- P√≥s-Gradua√ß√£o           |      220586 | Rafael Brito
- P√≥s-Gradua√ß√£o           |      204362 | Ricardo Guidi
- P√≥s-Gradua√ß√£o           |      220588 | Roberto Duarte
- P√≥s-Gradua√ß√£o           |      204366 | Rodrigo Coelho
- P√≥s-Gradua√ß√£o           |      178926 | RODRIGO MARTINS
- P√≥s-Gradua√ß√£o           |      220644 | Rosangela Moro
- P√≥s-Gradua√ß√£o           |      220631 | Samuel Viana
- P√≥s-Gradua√ß√£o           |      204416 | Sanderson
- P√≥s-Gradua√ß√£o           |      220618 | Sargento Portugal
- P√≥s-Gradua√ß√£o           |      178933 | Sergio Souza
- P√≥s-Gradua√ß√£o           |      204466 | Tereza Nelma
- P√≥s-Gradua√ß√£o           |      220560 | Thiago de Joaldo
- P√≥s-Gradua√ß√£o           |      220597 | Thiago Flores
- P√≥s-Gradua√ß√£o           |      204519 | Tiago Mitraud
- P√≥s-Gradua√ß√£o           |       74283 | Vicentinho
- P√≥s-Gradua√ß√£o           |      160518 | Weliton Prado
- P√≥s-Gradua√ß√£o           |      230768 | Z√© Adriano
- P√≥s-Gradua√ß√£o           |      178923 | Zeca Cavalcanti
- P√≥s-Gradua√ß√£o           |      204559 | Z√© Neto
- P√≥s-Gradua√ß√£o           |      160632 | Z√© Silva
- Prim√°rio                |       73886 | AD√ÉO PRETTO
- Prim√°rio                |       74558 | GIVALDO CARIMB√ÉO
- Prim√°rio Incompleto     |      160535 | Marcon
- Secund√°rio              |      141335 | Beto Faro
- Secund√°rio              |       74000 | CHICO DA PRINCESA
- Secund√°rio              |      135054 | Cristiano Vale
- Secund√°rio              |       73446 | DUILIO PISANESCHI
- Secund√°rio              |       73980 | ELTON ROHNELT
- Secund√°rio              |       74100 | EXPEDITO J√öNIOR
- Secund√°rio              |       73946 | HOMERO BARRETO
- Secund√°rio              |       74152 | ISAIAS SILVESTRE
- Secund√°rio              |       73532 | JAIR MENEGUELLI
- Secund√°rio              |       74548 | JAQUES WAGNER
- Secund√°rio              |       74550 | Jo√£o Le√£o
- Secund√°rio              |       73775 | JOS√â BORBA
- Secund√°rio              |       74351 | JOSU√â BENGTSON
- Secund√°rio              |      141480 | L√°zaro Botelho
- Secund√°rio              |      133937 | LUIZ GIR√ÉO
- Secund√°rio              |       74802 | MAGELA
- Secund√°rio              |        1500 | M√ÅRIO LIMA
- Secund√°rio              |      146307 | Neri Geller
- Secund√°rio              |       73910 | PAULO PAIM
- Secund√°rio              |       74082 | PAULO ROCHA
- Secund√°rio              |       74638 | PRISCO VIANA
- Secund√°rio              |       74136 | VALDECI OLIVEIRA
- Secund√°rio              |       73792 | WERNER WANDERER
- Secund√°rio Incompleto   |      230762 | Pastor Claudio Mariano
+ Nao informado           |      235712 | Vav·
+ PÛs-GraduaÁ„o           |      160527 | Aguinaldo Ribeiro
+ PÛs-GraduaÁ„o           |      220576 | Alfredo Gaspar
+ PÛs-GraduaÁ„o           |      204356 | Amaro Neto
+ PÛs-GraduaÁ„o           |      220657 | AndrÈ Fernandes
+ PÛs-GraduaÁ„o           |      133439 | AndrÈ Figueiredo
+ PÛs-GraduaÁ„o           |      220638 | Antonio Carlos Rodrigues
+ PÛs-GraduaÁ„o           |      220549 | Any Ortiz
+ PÛs-GraduaÁ„o           |       73433 | Arlindo Chinaglia
+ PÛs-GraduaÁ„o           |       69871 | Bacelar
+ PÛs-GraduaÁ„o           |      220698 | Beto Preto
+ PÛs-GraduaÁ„o           |      160538 | Bohn Gass
+ PÛs-GraduaÁ„o           |      204572 | Capit„o Alberto Neto
+ PÛs-GraduaÁ„o           |      204507 | Carla Zambelli
+ PÛs-GraduaÁ„o           |      178993 | Carlos Henrique Gaguim
+ PÛs-GraduaÁ„o           |      204376 | Coronel Armando
+ PÛs-GraduaÁ„o           |      222142 | Coronel Telhada
+ PÛs-GraduaÁ„o           |      220603 | Dani Cunha
+ PÛs-GraduaÁ„o           |      204459 | Daniela do Waguinho
+ PÛs-GraduaÁ„o           |      220582 | Daniel Barbosa
+ PÛs-GraduaÁ„o           |      204511 | David Soares
+ PÛs-GraduaÁ„o           |      220561 | Delegada Katarina
+ PÛs-GraduaÁ„o           |      220642 | Delegado Bruno Lima
+ PÛs-GraduaÁ„o           |      220649 | Delegado da Cunha
+ PÛs-GraduaÁ„o           |      220583 | Delegado Fabio Costa
+ PÛs-GraduaÁ„o           |      220701 | Delegado Matheus Laiola
+ PÛs-GraduaÁ„o           |      220654 | Delegado Paulo Bilynskyj
+ PÛs-GraduaÁ„o           |      160588 | Diego Andrade
+ PÛs-GraduaÁ„o           |      220602 | Dimas Gadelha
+ PÛs-GraduaÁ„o           |      160758 | Domingos S·vio
+ PÛs-GraduaÁ„o           |      220688 | Dr. Francisco
+ PÛs-GraduaÁ„o           |      220570 | Dr. Ismael Alexandrino
+ PÛs-GraduaÁ„o           |      220528 | Dr. Victor Linhalis
+ PÛs-GraduaÁ„o           |       74075 | Elcione Barbalho
+ PÛs-GraduaÁ„o           |      178854 | Elmar Nascimento
+ PÛs-GraduaÁ„o           |      160640 | Eros Biondini
+ PÛs-GraduaÁ„o           |      178871 | Evair Vieira de Melo
+ PÛs-GraduaÁ„o           |      178905 | Fabio Garcia
+ PÛs-GraduaÁ„o           |      220708 | Gabriel Nunes
+ PÛs-GraduaÁ„o           |      178966 | Geovania de S·
+ PÛs-GraduaÁ„o           |      204491 | Gilberto Abramo
+ PÛs-GraduaÁ„o           |      204365 | Gilson Marques
+ PÛs-GraduaÁ„o           |      160673 | Giovani Cherini
+ PÛs-GraduaÁ„o           |      107283 | Gleisi Hoffmann
+ PÛs-GraduaÁ„o           |      129618 | Gorete Pereira
+ PÛs-GraduaÁ„o           |      204531 | Guilherme Derrite
+ PÛs-GraduaÁ„o           |      178873 | Helder Salom„o
+ PÛs-GraduaÁ„o           |      220537 | Helena Lima
+ PÛs-GraduaÁ„o           |      178884 | Hildo Rocha
+ PÛs-GraduaÁ„o           |       74848 | Jandira Feghali
+ PÛs-GraduaÁ„o           |      141458 | Jo„o Carlos Bacelar
+ PÛs-GraduaÁ„o           |      204472 | JosÈ Medeiros
+ PÛs-GraduaÁ„o           |      220578 | Josenildo
+ PÛs-GraduaÁ„o           |       74554 | JosÈ Rocha
+ PÛs-GraduaÁ„o           |       74141 | Josias Gomes
+ PÛs-GraduaÁ„o           |       80815 | Leo Prates
+ PÛs-GraduaÁ„o           |      178954 | Lucio Mosquini
+ PÛs-GraduaÁ„o           |      220687 | M·rcio Honaiser
+ PÛs-GraduaÁ„o           |      204506 | Marcos Pereira
+ PÛs-GraduaÁ„o           |      220604 | Marcos Tavares
+ PÛs-GraduaÁ„o           |      220668 | Maria Arraes
+ PÛs-GraduaÁ„o           |      204540 | Maria Rosas
+ PÛs-GraduaÁ„o           |      178895 | Misael Varella
+ PÛs-GraduaÁ„o           |      178896 | Newton Cardoso Jr
+ PÛs-GraduaÁ„o           |       73692 | Osmar Terra
+ PÛs-GraduaÁ„o           |      204573 | Otto Alencar Filho
+ PÛs-GraduaÁ„o           |      171617 | Paul„o
+ PÛs-GraduaÁ„o           |      220685 | Paulo Litro
+ PÛs-GraduaÁ„o           |      220533 | Prof. Reginaldo Veras
+ PÛs-GraduaÁ„o           |      220586 | Rafael Brito
+ PÛs-GraduaÁ„o           |      204362 | Ricardo Guidi
+ PÛs-GraduaÁ„o           |      220588 | Roberto Duarte
+ PÛs-GraduaÁ„o           |      220644 | Rosangela Moro
+ PÛs-GraduaÁ„o           |      220631 | Samuel Viana
+ PÛs-GraduaÁ„o           |      204416 | Sanderson
+ PÛs-GraduaÁ„o           |      220618 | Sargento Portugal
+ PÛs-GraduaÁ„o           |      178933 | Sergio Souza
+ PÛs-GraduaÁ„o           |      220560 | Thiago de Joaldo
+ PÛs-GraduaÁ„o           |      220597 | Thiago Flores
+ PÛs-GraduaÁ„o           |       74283 | Vicentinho
+ PÛs-GraduaÁ„o           |      160518 | Weliton Prado
+ PÛs-GraduaÁ„o           |      230768 | ZÈ Adriano
+ PÛs-GraduaÁ„o           |      204559 | ZÈ Neto
+ PÛs-GraduaÁ„o           |      160632 | ZÈ Silva
+ Prim·rio Incompleto     |      160535 | Marcon
+ Secund·rio              |       74550 | Jo„o Le„o
+ Secund·rio              |      141480 | L·zaro Botelho
+ Secund·rio Incompleto   |      230762 | Pastor Claudio Mariano
  Superior                |      220593 | Abilio Brunini
- Superior                |      204521 | Abou Anni
- Superior                |      204379 | Ac√°cio Favacho
- Superior                |      178914 | ADALBERTO CAVALCANTI
+ Superior                |      204379 | Ac·cio Favacho
  Superior                |      221328 | Adilson Barroso
  Superior                |      204560 | Adolfo Viana
- Superior                |       73887 | ADYLSON MOTTA
- Superior                |       74646 | A√©cio Neves
- Superior                |      141372 | Aelton Freitas
+ Superior                |       74646 | AÈcio Neves
  Superior                |      136811 | Afonso Hamm
  Superior                |      178835 | Afonso Motta
- Superior                |       74358 | AGNALDO MUNIZ
- Superior                |       73654 | AGNELO QUEIROZ
  Superior                |      204549 | AJ Albuquerque
  Superior                |       73579 | Alberto Fraga
- Superior                |       74696 | Alberto Mour√£o
+ Superior                |       74696 | Alberto Mour„o
  Superior                |      220538 | Albuquerque
- Superior                |       73979 | ALCESTE ALMEIDA
- Superior                |       73477 | ALCEU COLLARES
- Superior                |      204413 | Alcides Rodrigues
- Superior                |       74828 | ALDIR CABRAL
- Superior                |       73662 | ALDO ARANTES
  Superior                |      204501 | Alencar Santana
- Superior                |       74829 | ALEXANDRE CARDOSO
- Superior                |      105534 | Alexandre Figueiredo
- Superior                |      220542 | Alexandre Guimar√£es
+ Superior                |      220542 | Alexandre Guimar„es
  Superior                |      160545 | Alexandre Leite
  Superior                |      220554 | Alexandre Lindenmeyer
- Superior                |      136226 | ALEXANDRE MAIA
- Superior                |      141374 | ALEXANDRE SILVEIRA
- Superior                |       73458 | ALEX CANZIANI
  Superior                |      178972 | Alex Manente
  Superior                |       74057 | Alice Portugal
  Superior                |      204353 | Aline Gurgel
- Superior                |      226708 | Allan Garc√™s
- Superior                |       73429 | ALMINO AFFONSO
- Superior                |      139136 | ALOYSIO CHAVES
- Superior                |      178937 | Altineu C√¥rtes
+ Superior                |      226708 | Allan GarcÍs
+ Superior                |      178937 | Altineu CÙrtes
  Superior                |      178881 | Aluisio Mendes
- Superior                |      220596 | Am√°lia Barros
+ Superior                |      220596 | Am·lia Barros
  Superior                |      220707 | Amanda Gentil
- Superior                |      133852 | AMAURY MULLER
- Superior                |      141377 | ANA ARRAES
- Superior                |      107970 | Ana Paula Le√£o
+ Superior                |      107970 | Ana Paula Le„o
  Superior                |      220556 | Ana Paula Lima
- Superior                |      178831 | Andr√© Abdon
- Superior                |       74698 | ANDR√â BENASSI
- Superior                |       74471 | Andr√© de Paula
- Superior                |      204423 | Andr√© Ferreira
- Superior                |      178882 | Andr√© Fufuca
+ Superior                |      178831 | AndrÈ Abdon
+ Superior                |      204423 | AndrÈ Ferreira
+ Superior                |      178882 | AndrÈ Fufuca
  Superior                |      220676 | Andreia Siqueira
- Superior                |      141379 | Andreia Zito
- Superior                |      204515 | Andr√© Janones
- Superior                |       74699 | ANGELA GUADAGNIN
- Superior                |      123756 | Ant√¥nia L√∫cia
+ Superior                |      204515 | AndrÈ Janones
+ Superior                |      123756 | AntÙnia L˙cia
  Superior                |      220544 | Antonio Andrade
- Superior                |      141387 | ANT√îNIO ANDRADE
  Superior                |      160553 | Antonio Brito
- Superior                |       74452 | ANTONIO CAMBRAIA
- Superior                |       73492 | ANTONIO CARLOS BISCAIA
- Superior                |       73431 | ANTONIO CARLOS PANNUNZIO
- Superior                |      220675 | Ant√¥nio Doido
- Superior                |       74648 | ARACELY DE PAULA
- Superior                |       74405 | ARMANDO AB√çLIO
- Superior                |       73434 | ARNALDO FARIA DE S√Å
+ Superior                |      220675 | AntÙnio Doido
  Superior                |      141391 | Arnaldo Jardim
- Superior                |       74534 | AROLDO CEDRAZ
- Superior                |        1531 | ARTHUR DE LIMA CAVALCANTI
  Superior                |      160541 | Arthur Lira
- Superior                |       73435 | ARY KARA
- Superior                |       74222 | ASDRUBAL BENTES
- Superior                |      159237 | Assis Carvalho
- Superior                |       74090 | √Åtila Lins
- Superior                |      123086 | √Åtila Lira
+ Superior                |       74090 | ¡tila Lins
+ Superior                |      123086 | ¡tila Lira
  Superior                |      160665 | Augusto Coutinho
- Superior                |       74320 | AUGUSTO VIVEIROS
- Superior                |       74349 | BAB√Å
  Superior                |      178975 | Baleia Rossi
  Superior                |      220605 | Bandeira de Mello
- Superior                |       73767 | BAS√çLIO VILLANI
- Superior                |      141376 | BEL MESQUITA
  Superior                |       73701 | Benedita da Silva
- Superior                |       74517 | BENEDITO DE LIRA
- Superior                |       73656 | BENEDITO DOMINGOS
- Superior                |      109429 | Benes Leoc√°dio
- Superior                |       74169 | BERNARDO ARISTON
- Superior                |       74321 | BETINHO ROSADO
+ Superior                |      109429 | Benes Leoc·dio
  Superior                |      204358 | Beto Pereira
  Superior                |      220683 | Beto Richa
  Superior                |      204374 | Bia Kicis
- Superior                |       74373 | BIFFI
- Superior                |      141513 | Bilac Pinto
- Superior                |       74525 | BOSCO FRAN√áA
- Superior                |      204551 | Bosco Saraiva
- Superior                |      204502 | Bozzella
- Superior                |      141394 | BRUNO ARA√öJO
  Superior                |      220635 | Bruno Ganem
  Superior                |      220574 | Cabo Gilberto Silva
- Superior                |      178853 | Caetano
  Superior                |      143942 | Caio Vianna
  Superior                |      220548 | Camila Jara
- Superior                |      204352 | Camilo Capiberibe
- Superior                |      220690 | Capit√£o Alden
- Superior                |      229069 | Capit√£o Samuel
- Superior                |      204487 | Capit√£o Wagner
+ Superior                |      220690 | Capit„o Alden
+ Superior                |      229069 | Capit„o Samuel
  Superior                |      213762 | Carla Dickson
- Superior                |       73469 | CARLITO MERSS
- Superior                |      141401 | Carlos Bezerra
  Superior                |      204361 | Carlos Chiodini
  Superior                |      204460 | Carlos Jordy
- Superior                |       74676 | CARLOS RODRIGUES
  Superior                |       74262 | Carlos Sampaio
  Superior                |      204426 | Carlos Veras
  Superior                |      141398 | Carlos Zarattini
  Superior                |      164360 | Carmen Zanotto
  Superior                |      220704 | Carol Dartora
- Superior                |      204499 | C√°ssio Andrade
  Superior                |      220699 | Castro Neto
- Superior                |       74518 | CECI CUNHA
- Superior                |       74799 | CELCITA PINHEIRO
- Superior                |      204370 | C√©lio Moura
- Superior                |      178876 | C√©lio Silveira
- Superior                |      204488 | C√©lio Studart
+ Superior                |      178876 | CÈlio Silveira
+ Superior                |      204488 | CÈlio Studart
  Superior                |       73441 | Celso Russomanno
- Superior                |       73480 | CEZAR SCHIRMER
- Superior                |       74379 | CEZAR SILVESTRI
  Superior                |      204504 | Cezinha de Madureira
  Superior                |      205476 | Charles Fernandes
- Superior                |      204490 | Charlles Evangelista
  Superior                |      204462 | Chris Tonietto
- Superior                |      178939 | Clarissa Garotinho
  Superior                |       74537 | Claudio Cajado
  Superior                |      141408 | Cleber Verde
- Superior                |       74475 | CLEMENTINO COELHO
- Superior                |       88256 | Clodoaldo Magalh√£es
+ Superior                |       88256 | Clodoaldo Magalh„es
  Superior                |       98148 | Cobalchini
- Superior                |       74230 | COLBERT MARTINS
- Superior                |       74538 | CORIOLANO SALES
  Superior                |      220594 | Coronel Assis
- Superior                |      204378 | Coronel Chris√≥stomo
+ Superior                |      204378 | Coronel ChrisÛstomo
  Superior                |      220595 | Coronel Fernanda
  Superior                |      220666 | Coronel Meira
- Superior                |       74016 | COSTA FERREIRA
  Superior                |      178963 | Covatti Filho
  Superior                |      220608 | Cristiane Lopes
- Superior                |       74579 | CUST√ìDIO MATTOS
  Superior                |      141411 | Dagoberto Nogueira
  Superior                |      220555 | Daiana Santos
  Superior                |       74060 | Daniel Almeida
  Superior                |      220557 | Daniela Reinehr
  Superior                |      204367 | Daniel Freitas
- Superior                |      228941 | Daniel Jos√©
- Superior                |      204454 | Daniel Silveira
+ Superior                |      228941 | Daniel JosÈ
  Superior                |      204409 | Daniel Trzeciak
  Superior                |       62881 | Danilo Forte
  Superior                |      116379 | Darci de Matos
- Superior                |      205548 | David Miranda
  Superior                |      204355 | Da Vitoria
- Superior                |      141413 | D√âCIO LIMA
  Superior                |      220565 | Delegada Adriana Accorsi
- Superior                |      204451 | Delegado Ant√¥nio Furtado
  Superior                |      220673 | Delegado Caveira
- Superior                |      178908 | Delegado √âder Mauro
+ Superior                |      178908 | Delegado …der Mauro
  Superior                |      220652 | Delegado Palumbo
- Superior                |      164359 | Delegado Waldir
- Superior                |      228272 | D√©lio Pinheiro
- Superior                |      204542 | Denis Bezerra
- Superior                |      220553 | Denise Pess√¥a
- Superior                |      236284 | Deputado 236284
+ Superior                |      228272 | DÈlio Pinheiro
+ Superior                |      220553 | Denise PessÙa
  Superior                |      220689 | Detinha
  Superior                |      220691 | Diego Coronel
  Superior                |      178929 | Diego Garcia
  Superior                |       73768 | Dilceu Sperafico
- Superior                |       73680 | DILSO SPERAFICO
  Superior                |      160599 | Dimas Fabiano
- Superior                |       73685 | DIVALDO SURUAGY
  Superior                |      220573 | Dorinaldo Malafaia
  Superior                |      204450 | Doutor Luizinho
  Superior                |      220674 | Dra. Alessandra Haber
- Superior                |       74381 | DRA. CLAIR
  Superior                |      230088 | Dra. Mayra Pinheiro
- Superior                |      204434 | Dra. Vanda Milani
- Superior                |       74343 | DR. BENEDITO DIAS
  Superior                |      221339 | Dr. Benjamim
- Superior                |       74150 | DR. FRANCISCO GON√áALVES
  Superior                |      204518 | Dr. Frederico
- Superior                |      212625 | Dr. Gon√ßalo
+ Superior                |      212625 | Dr. GonÁalo
  Superior                |      204481 | Dr. Jaziel
  Superior                |      204351 | Dr. Luiz Ovando
- Superior                |      141540 | DR. NECHAR
- Superior                |       73459 | DR. ROSINHA
- Superior                |      178830 | Dr. Sinval Malheiros
- Superior                |      141550 | DR. TALMIR
  Superior                |      204412 | Dr. Zacharias Calil
  Superior                |      220540 | Duda Ramos
  Superior                |      220623 | Duda Salabert
- Superior                |      178994 | Dulce Miranda
- Superior                |      141416 | EDGAR MOURY
- Superior                |       73793 | EDINHO BEZ
- Superior                |       73726 | EDISON FIDELIS
- Superior                |       74580 | EDMAR MOREIRA
- Superior                |      204421 | Edna Henrique
  Superior                |      204541 | Eduardo Bismarck
  Superior                |       92346 | Eduardo Bolsonaro
- Superior                |      133917 | EDUARDO BRAGA
- Superior                |      204500 | Eduardo Costa
- Superior                |       74173 | EDUARDO CUNHA
- Superior                |      178977 | Eduardo Cury
- Superior                |       73448 | EDUARDO JORGE
- Superior                |       74344 | EDUARDO SEABRA
  Superior                |      220589 | Eduardo Velloso
- Superior                |      154919 | Eleuses Paiva
  Superior                |      226553 | Eliane Braz
- Superior                |      204389 | Elias Vaz
  Superior                |      204364 | Eli Borges
- Superior                |      160532 | Eli Corr√™a Filho
- Superior                |      139190 | ELI√âZER MOREIRA
- Superior                |      220008 | Eliza Virg√≠nia
- Superior                |      178883 | ELIZIANE GAMA
- Superior                |      234406 | Elmano F√©rrer
- Superior                |      221149 | El√≥i Piet√°
+ Superior                |      220008 | Eliza VirgÌnia
+ Superior                |      234406 | Elmano FÈrrer
  Superior                |      198783 | Emanuel Pinheiro Neto
  Superior                |      225730 | Enfermeira Ana Paula
  Superior                |      230765 | Enfermeira Rejane
- Superior                |       73893 | ENIO BACCI
- Superior                |       74408 | ENIVALDO RIBEIRO
  Superior                |      220663 | Eriberto Medeiros
  Superior                |      220645 | Erika Hilton
  Superior                |      160575 | Erika Kokay
- Superior                |       73894 | ESTHER GROSSI
  Superior                |      204482 | Euclydes Pettersen
- Superior                |       74454 | Eun√≠cio Oliveira
- Superior                |      219920 | Fabio Barros
- Superior                |      141428 | F√°bio Faria
- Superior                |       68720 | F√°bio Henrique
- Superior                |      141427 | F√°bio Ramalho
+ Superior                |       74454 | EunÌcio Oliveira
+ Superior                |       68720 | F·bio Henrique
  Superior                |      204368 | Fabio Schiochet
- Superior                |      220653 | F√°bio Teruel
+ Superior                |      220653 | F·bio Teruel
  Superior                |       74065 | Fatima Pelaes
  Superior                |      220712 | Fausto Jr.
  Superior                |       66828 | Fausto Pinato
- Superior                |      204477 | Fel√≠cio Later√ßa
  Superior                |      220646 | Felipe Becari
  Superior                |      204398 | Felipe Francischini
- Superior                |       74542 | F√âLIX MENDON√áA
- Superior                |      160666 | F√©lix Mendon√ßa J√∫nior
+ Superior                |      160666 | FÈlix MendonÁa J˙nior
  Superior                |      204407 | Fernanda Melchionna
  Superior                |      220656 | Fernanda Pessoa
- Superior                |      141344 | FERNANDO CHUCRE
  Superior                |      141431 | Fernando Coelho Filho
- Superior                |       73471 | FERNANDO CORUJA
- Superior                |       74063 | FERNANDO DE FABINHO
- Superior                |       74417 | FERNANDO FERRO
- Superior                |       74842 | FERNANDO GON√áALVES
- Superior                |       73481 | FERNANDO MARRONI
  Superior                |      204445 | Fernando Mineiro
  Superior                |       92699 | Fernando Monteiro
  Superior                |      204427 | Fernando Rodolfo
- Superior                |       73451 | FERNANDO ZUPPO
- Superior                |       73896 | FETTER JUNIOR
- Superior                |       74771 | FEU ROSA
  Superior                |      204411 | Filipe Barros
  Superior                |      220545 | Filipe Martins
- Superior                |       73990 | FIORAVANTE
- Superior                |      204354 | Fl√°via Arruda
- Superior                |      160598 | Fl√°via Morais
- Superior                |      141434 | Flaviano Melo
+ Superior                |      160598 | Fl·via Morais
  Superior                |      225727 | Flavinha
- Superior                |      141436 | FL√ÅVIO DINO
- Superior                |      191923 | Fl√°vio Nogueira
- Superior                |       74700 | FLEURY
+ Superior                |      191923 | Fl·vio Nogueira
  Superior                |      220551 | Franciane Bayer
- Superior                |       74844 | FRANCISCO DORNELLES
- Superior                |      141467 | FRANCISCO TEN√ìRIO
  Superior                |      220534 | Fred Linhares
- Superior                |      204393 | Frei Anastacio Ribeiro
- Superior                |       74189 | FREIRE J√öNIOR
  Superior                |      224117 | Gabriel Mota
- Superior                |       74200 | Gast√£o Vieira
- Superior                |      204527 | Geninho Zuliani
- Superior                |      155920 | GERALDINHO
  Superior                |       74374 | Geraldo Resende
  Superior                |      220587 | Gerlen Diniz
- Superior                |       74567 | GERSON GABRIELLI
- Superior                |       74076 | GERSON PERES
- Superior                |      204394 | Gerv√°sio Maia
+ Superior                |      204394 | Gerv·sio Maia
  Superior                |       74383 | Giacobo
  Superior                |       74270 | Gilberto Nascimento
- Superior                |      204575 | Gil Cutrim
- Superior                |       74581 | GILMAR MACHADO
  Superior                |      220526 | Gilvan da Federal
- Superior                |       74077 | GIOVANNI QUEIROZ
  Superior                |      226179 | Gisela Simona
  Superior                |      152605 | Glauber Braga
  Superior                |      204419 | Glaustin da Fokus
  Superior                |      198197 | Greyce Elias
- Superior                |       74139 | GUILHERME MENEZES
- Superior                |      160667 | Guilherme Mussi
  Superior                |      220664 | Guilherme Uchoa
- Superior                |       73460 | Gustavo Fruet
  Superior                |      220568 | Gustavo Gayer
  Superior                |      204408 | Gustinho Ribeiro
- Superior                |       74489 | HAMILTON CASARA
- Superior                |      178909 | H√©lio Leite
+ Superior                |      178909 | HÈlio Leite
  Superior                |      204444 | Helio Lopes
- Superior                |      234788 | Helo√≠sa Helena
- Superior                |       73940 | HENRIQUE AFONSO
- Superior                |       73482 | Henrique Fontana
- Superior                |       74660 | HERCULANO ANGHINETTI
- Superior                |       73772 | Hermes Parcianello
- Superior                |      178959 | Hiran Gon√ßalves
- Superior                |      139236 | HOR√ÅCIO FERRAZ
+ Superior                |      234788 | HeloÌsa Helena
  Superior                |      141450 | Hugo Leal
  Superior                |      160674 | Hugo Motta
- Superior                |       74663 | IBRAHIM ABI-ACKEL
  Superior                |      235620 | Ilacir Bicalho
- Superior                |       74469 | INALDO LEIT√ÉO
- Superior                |       67138 | Iracema Portella
  Superior                |       98615 | Ismael
- Superior                |      204436 | Isnaldo Bulh√µes Jr.
+ Superior                |      204436 | Isnaldo Bulhıes Jr.
  Superior                |      230764 | Ivan Junior
- Superior                |       74387 | IVAN RANZOLIN
  Superior                |       73531 | Ivan Valente
  Superior                |      220696 | Ivoneide Caetano
- Superior                |        4931 | IZALCI LUCAS
- Superior                |       73742 | JABES RIBEIRO
- Superior                |       74847 | JAIR BOLSONARO
- Superior                |        1528 | JAYME CAMPOS
  Superior                |       74273 | Jefferson Campos
- Superior                |      160570 | Jer√¥nimo Goergen
- Superior                |      178839 | J√©ssica Sales
- Superior                |      160671 | JESUS RODRIGUES
  Superior                |      160531 | Jhonatan de Jesus
  Superior                |      141456 | Jilmar Tatto
- Superior                |       74549 | JO√ÉO ALMEIDA
- Superior                |       74261 | JO√ÉO BATISTA
- Superior                |       74131 | JO√ÉO CARLOS BACELAR
- Superior                |       73941 | JO√ÉO CORREIA
- Superior                |      230957 | Jo√£o Cury
- Superior                |       73682 | JO√ÉO DADO
- Superior                |       73454 | JO√ÉO GRAND√ÉO
- Superior                |      141459 | Jo√£o Maia
- Superior                |      112437 | Jo√£o Marcelo Souza
- Superior                |       73873 | JO√ÉO MATOS
- Superior                |       74170 | JO√ÉO MENDES DE JESUS
- Superior                |      204576 | Jo√£o Roma
+ Superior                |      230957 | Jo„o Cury
+ Superior                |      141459 | Jo„o Maia
  Superior                |      178910 | Joaquim Passarinho
- Superior                |      204546 | Joice Hasselmann
  Superior                |      217480 | Jones Moura
  Superior                |      205550 | Jorge Braz
- Superior                |       74350 | JORGE COSTA
  Superior                |      214694 | Jorge Goetten
- Superior                |      133854 | JORGE UEQUED
- Superior                |      160509 | JORGINHO MELLO
- Superior                |       74446 | JOS√â ANTONIO ALMEIDA
- Superior                |       74140 | JOS√â CARLOS ARA√öJO
- Superior                |       74671 | JOS√â CARLOS ELIAS
- Superior                |       74852 | JOS√â CARLOS LACERDA
- Superior                |       74274 | JOS√â EDUARDO CARDOZO
- Superior                |      141466 | JOS√â FERNANDO APARECIDO DE OLIVEIRA
- Superior                |      141470 | Jos√© Guimar√£es
+ Superior                |      141470 | JosÈ Guimar„es
  Superior                |      209189 | Joseildo Ramos
- Superior                |       74297 | JOS√â LINHARES
- Superior                |      133839 | JOS√â MARIA EYMAEL
- Superior                |       74425 | JOS√â MENDON√áA BEZERRA
- Superior                |       74426 | JOS√â M√öCIO MONTEIRO
- Superior                |      204391 | Jos√© Nelto
- Superior                |      160619 | Jos√© Nunes
- Superior                |       74298 | JOS√â PIMENTEL
- Superior                |       74079 | Jos√© Priante
- Superior                |       74287 | JOS√â ROBERTO ARRUDA
- Superior                |       74794 | JOS√â ROBERTO BATOCHIO
- Superior                |       74520 | JOS√â THOMAZ NON√î
- Superior                |      131578 | JOSIAS GOMES
- Superior                |      204563 | Josimar Maranh√£ozinho
- Superior                |       73666 | JOVAIR ARANTES
- Superior                |       74252 | JU√çZA DENISE FROSSARD
+ Superior                |      204391 | JosÈ Nelto
+ Superior                |       74079 | JosÈ Priante
+ Superior                |      204563 | Josimar Maranh„ozinho
  Superior                |      220640 | Juliana Cardoso
- Superior                |      204420 | Julian Lemos
  Superior                |      220559 | Julia Zanatta
  Superior                |       66385 | Julio Arcoverde
- Superior                |       74317 | J√∫lio Cesar
+ Superior                |       74317 | J˙lio Cesar
  Superior                |      204372 | Julio Cesar Ribeiro
  Superior                |       74253 | Julio Lopes
- Superior                |       74783 | JULIO SEMEGHINI
  Superior                |      204520 | Junio Amaral
- Superior                |      204497 | J√∫nior Ferrari
- Superior                |      204574 | Junior Louren√ßo
- Superior                |      204550 | J√∫nior Mano
- Superior                |       74346 | JURANDIL JUAREZ
- Superior                |      132146 | JURANDYR PAIX√ÉO
+ Superior                |      204497 | J˙nior Ferrari
+ Superior                |      204574 | Junior LourenÁo
+ Superior                |      204550 | J˙nior Mano
  Superior                |      178886 | Juscelino Filho
  Superior                |      162067 | Kiko Celeguim
- Superior                |       74326 | LA√çRE ROSADO
  Superior                |       74856 | Laura Carneiro
  Superior                |      178832 | Leandre
- Superior                |      220566 | L√™da Borges
- Superior                |      204375 | Leda Sadala
+ Superior                |      220566 | LÍda Borges
  Superior                |      231911 | Lenir de Assis
- Superior                |       74455 | LEO ALC√ÇNTARA
  Superior                |       74156 | Leonardo Monteiro
- Superior                |       74299 | Le√¥nidas Cristino
- Superior                |       92102 | Leur Lomanto J√∫nior
- Superior                |       73667 | L√çDIA QUINAN
- Superior                |      139285 | L√≠dice da Mata
+ Superior                |       74299 | LeÙnidas Cristino
+ Superior                |       92102 | Leur Lomanto J˙nior
+ Superior                |      139285 | LÌdice da Mata
  Superior                |       74585 | Lincoln Portela
- Superior                |       74277 | LOBBE NETO
- Superior                |      204382 | Loester Trutis
  Superior                |      234253 | Lucas Abrahao
  Superior                |      220662 | Lucas Ramos
  Superior                |      204404 | Lucas Redecker
- Superior                |      178879 | Lucas Vergilio
  Superior                |      138286 | Luciano Alves
  Superior                |      220581 | Luciano Amaral
  Superior                |      103758 | Luciano Azevedo
  Superior                |       74478 | Luciano Bivar
- Superior                |       73982 | LUCIANO CASTRO
  Superior                |      178931 | Luciano Ducci
- Superior                |       73777 | LUCIANO PIZZATTO
  Superior                |      220616 | Luciano Vieira
  Superior                |      222429 | Luis Carlos Gomes
- Superior                |       73483 | LUIS CARLOS HEINZE
- Superior                |      204448 | Luiz Antonio Corr√™a
- Superior                |      204418 | Luiz√£o Goulart
- Superior                |       74810 | LUIZ BITTENCOURT
- Superior                |      131453 | LUIZ BRAGA
+ Superior                |      204448 | Luiz Antonio CorrÍa
  Superior                |      141485 | Luiz Carlos Busato
  Superior                |       73778 | Luiz Carlos Hauly
  Superior                |      204485 | Luiz Carlos Motta
  Superior                |       74041 | Luiz Couto
- Superior                |       74137 | LUIZ EDUARDO GREENHALGH
  Superior                |      141487 | Luiz Fernando Faria
  Superior                |      229432 | Luiz Fernando Vampiro
- Superior                |      220658 | Luiz Gast√£o
+ Superior                |      220658 | Luiz Gast„o
  Superior                |      204455 | Luiz Lima
  Superior                |      220636 | Luiz Marinho
  Superior                |      162332 | Luiz Nishimori
- Superior                |       74681 | LUIZ RIBEIRO
- Superior                |       74672 | MAGNO MALTA
- Superior                |      151965 | Maia Filho
- Superior                |      204458 | Major Fabiana
- Superior                |       74633 | MANOEL CASTRO
- Superior                |      160565 | MARA GABRILLI
- Superior                |      204471 | Mara Rocha
  Superior                |      220599 | Marcelo Crivella
- Superior                |       76874 | Marcelo Freixo
- Superior                |       74143 | MARCELO GUIMAR√ÉES FILHO
  Superior                |      220634 | Marcelo Lima
  Superior                |      204558 | Marcelo Nilo
- Superior                |       74278 | MARCELO ORTIZ
- Superior                |      204556 | Marcelo Ramos
- Superior                |       74300 | MARCELO TEIXEIRA
- Superior                |      221147 | Marcia Scherer
  Superior                |      178983 | Marcio Alvino
- Superior                |      179001 | M√°rcio Biolchi
- Superior                |       74363 | MARCIO BITTAR
- Superior                |      226410 | M√°rcio Correa
- Superior                |      221183 | M√°rcio D√≥ria
- Superior                |       81055 | M√°rcio Jerry
- Superior                |      150418 | M√°rcio Marinho
- Superior                |       74470 | MARCONDES GADELHA
- Superior                |      178880 | MARCOS ABR√ÉO
- Superior                |      204431 | Marcos Aur√©lio Sampaio
- Superior                |       74785 | MARCOS CINTRA
- Superior                |      204011 | Marcos Pacco
+ Superior                |      179001 | M·rcio Biolchi
+ Superior                |      226410 | M·rcio Correa
+ Superior                |       81055 | M·rcio Jerry
+ Superior                |      150418 | M·rcio Marinho
+ Superior                |      204431 | Marcos AurÈlio Sampaio
  Superior                |      220547 | Marcos Pollon
- Superior                |       73484 | MARCOS ROLIM
  Superior                |      178943 | Marcos Soares
- Superior                |       64960 | MARIA HELENA
- Superior                |       73659 | MARIA LAURA
- Superior                |      178956 | Mariana Carvalho
- Superior                |      204428 | Mar√≠lia Arraes
- Superior                |      204432 | Marina Santos
  Superior                |      220637 | Marina Silva
- Superior                |       73879 | M√ÅRIO CAVALLAZZI
- Superior                |       74158 | M√°rio Heringer
- Superior                |       74635 | M√ÅRIO NEGROMONTE
- Superior                |      178858 | M√°rio Negromonte Jr.
+ Superior                |       74158 | M·rio Heringer
+ Superior                |      178858 | M·rio Negromonte Jr.
  Superior                |      220572 | Marussa Boldrin
- Superior                |      178843 | Marx Beltr√£o
- Superior                |       75431 | Maur√≠cio Dziedricki
+ Superior                |      178843 | Marx Beltr„o
  Superior                |      220550 | Mauricio Marcon
  Superior                |      220647 | Mauricio Neves
- Superior                |       74050 | MAUR√çCIO QUINTELLA LESSA
- Superior                |       73779 | MAURICIO REQUI√ÉO
- Superior                |       73588 | MAURO BENEVIDES
- Superior                |       74749 | Mauro Lopes
- Superior                |      141508 | Mauro Nazif
  Superior                |      220607 | Max Lemos
  Superior                |      220591 | Meire Serafim
- Superior                |       73904 | MENDES RIBEIRO FILHO
- Superior                |       74428 | Mendon√ßa Filho
- Superior                |      178984 | Miguel Haddad
+ Superior                |       74428 | MendonÁa Filho
  Superior                |      178985 | Miguel Lombardi
- Superior                |       92172 | Milton Coelho
- Superior                |       74787 | MILTON MONTI
- Superior                |      160561 | Mission√°rio Jos√© Olimpio
+ Superior                |      160561 | Mission·rio JosÈ Olimpio
  Superior                |      220617 | Murillo Gouvea
  Superior                |      220584 | Murilo Galdino
- Superior                |       74318 | MUSSA DEMES
- Superior                |       74108 | NARCIO RODRIGUES
- Superior                |      141510 | NEILTON MULIM
- Superior                |       73416 | NELSON BORNIER
- Superior                |       73553 | NELSON MARQUEZELLI
- Superior                |      204415 | Nereu Crispim
  Superior                |      220703 | Neto Carletto
- Superior                |       74790 | NEUTON LIMA
- Superior                |       74369 | NEYDE APARECIDA
- Superior                |      204384 | Ney Leprevost
- Superior                |       74327 | NEY LOPES
  Superior                |      204479 | Nicoletti
  Superior                |      209787 | Nikolas Ferreira
- Superior                |       74429 | NILSON GIBSON
  Superior                |      178986 | Nilto Tatto
- Superior                |       66179 | Norma Ayub
- Superior                |      216198 | Norma Pereira
- Superior                |       73908 | ODACIR KLEIN
  Superior                |       74159 | Odair Cunha
  Superior                |      204498 | Olival Marques
- Superior                |       74399 | Onyx Lorenzoni
  Superior                |      178987 | Orlando Silva
- Superior                |       73660 | OS√ìRIO ADRIANO
- Superior                |       73909 | OSVALDO BIOLCHI
- Superior                |       74430 | OSVALDO COELHO
- Superior                |      133955 | OSVALDO MELO
  Superior                |      220706 | Padovani
- Superior                |      160556 | Padre Jo√£o
+ Superior                |      160556 | Padre Jo„o
  Superior                |      180214 | Pastor Diniz
- Superior                |       73921 | PASTOR FRANKEMBERGEN
  Superior                |      204570 | Pastor Gil
- Superior                |      141491 | PASTOR MANOEL FERREIRA
- Superior                |      205535 | Patricia Ferraz
  Superior                |       74095 | Pauderney Avelino
  Superior                |      220650 | Paulo Alexandre Barbosa
  Superior                |      178860 | Paulo Azi
- Superior                |      204538 | Paulo Bengtson
- Superior                |      193726 | Paulo Eduardo Martins
  Superior                |      160517 | Paulo Folletto
  Superior                |      160558 | Paulo Freire Costa
- Superior                |       74791 | PAULO KOBAYASHI
  Superior                |      233592 | Paulo Lemos
- Superior                |       74574 | Paulo Magalh√£es
- Superior                |      132056 | PAULO MALUF
+ Superior                |       74574 | Paulo Magalh„es
  Superior                |      128760 | Paulo Marinho Jr
  Superior                |       74400 | Paulo Pimenta
- Superior                |      133968 | Paulo Ramos
- Superior                |       74111 | PEDRO HENRY
  Superior                |      122974 | Pedro Lucas Fernandes
- Superior                |       74207 | PEDRO NOVAIS
- Superior                |      178844 | Pedro Vilela
  Superior                |      204406 | Pedro Westphalen
- Superior                |       73943 | Perp√©tua Almeida
  Superior                |      161440 | Pezenti
  Superior                |      204524 | Pinheirinho
- Superior                |      172711 | PL√çNIO VAL√âRIO
  Superior                |       73486 | Pompeo de Mattos
  Superior                |      226075 | Priscila Costa
  Superior                |      160601 | Pr. Marco Feliciano
  Superior                |      221338 | Professora Luciene Cavalcante
  Superior                |      160641 | Professora Marcivania
- Superior                |      204383 | Professor Israel Batista
  Superior                |       89536 | Prof. Paulo Fernando
- Superior                |       74590 | RAFAEL GUERRA
- Superior                |      178951 | Rafael Motta
  Superior                |      220532 | Rafael Prudente
  Superior                |      220626 | Rafael Simoes
  Superior                |      204567 | Raimundo Costa
  Superior                |       74084 | Raimundo Santos
  Superior                |      115200 | Raniery Paulino
- Superior                |       74068 | RAQUEL CAPIBERIBE
- Superior                |       74757 | RAUL BEL√âM
  Superior                |       74161 | Reginaldo Lopes
  Superior                |      221378 | Reginete Bispo
- Superior                |       73556 | REGIS DE OLIVEIRA
  Superior                |      205865 | Reinhold Stephanes
- Superior                |       73786 | REINHOLD STEPHANES
- Superior                |      178925 | Rejane Dias
  Superior                |      225386 | Renan Ferreirinha
  Superior                |      178989 | Renata Abreu
- Superior                |      141528 | RENATO AMARY
- Superior                |       73475 | RENATO VIANNA
  Superior                |      153423 | Renilce Nicodemos
  Superior                |       73801 | Renildo Calheiros
- Superior                |       74353 | RENILDO LEAL
- Superior                |       74027 | RIBAMAR ALVES
  Superior                |      235088 | Ribeiro Neto
- Superior                |      221329 | Ricardo Abr√£o
+ Superior                |      221329 | Ricardo Abr„o
  Superior                |       73788 | Ricardo Barros
- Superior                |       73956 | RICARDO CORR√äA
- Superior                |       74557 | RICARDO FIUZA
- Superior                |      160655 | Ricardo Izar
  Superior                |      220633 | Ricardo Salles
  Superior                |      213274 | Ricardo Silva
- Superior                |      141472 | RICARDO TRIPOLI
- Superior                |       73490 | RICARTE DE FREITAS
- Superior                |       74777 | RITA CAMATA
  Superior                |      220693 | Roberta Roma
- Superior                |      152610 | Roberto Alves
- Superior                |       74433 | ROBERTO MAGALH√ÉES
- Superior                |       74209 | ROBERTO ROCHA
- Superior                |      133913 | ROBERTO TORRES
  Superior                |      220624 | Robinson Faria
- Superior                |       73558 | ROBSON TUMA
  Superior                |      220546 | Rodolfo Nogueira
  Superior                |      230767 | Rodrigo da Zaeli
  Superior                |      141533 | Rodrigo Rollemberg
  Superior                |      165470 | Rodrigo Valadares
- Superior                |      220695 | Rog√©ria Santos
- Superior                |      204480 | Rog√©rio Correia
- Superior                |      141535 | ROG√âRIO MARINHO
- Superior                |      160651 | Rog√©rio Peninha Mendon√ßa
- Superior                |       74591 | ROMEU QUEIROZ
+ Superior                |      220695 | RogÈria Santos
+ Superior                |      204480 | RogÈrio Correia
  Superior                |      163321 | Ronaldo Nogueira
  Superior                |      204525 | Rosana Valle
- Superior                |      220620 | Ros√¢ngela Reis
+ Superior                |      220620 | Ros‚ngela Reis
  Superior                |       73806 | Roseana Sarney
- Superior                |      204357 | Rose Modesto
- Superior                |      178935 | Rossoni
- Superior                |       73422 | RUBEM MEDINA
- Superior                |       73466 | Rubens Bueno
  Superior                |       74371 | Rubens Otoni
- Superior                |      178887 | Rubens Pereira J√∫nior
- Superior                |       74482 | RUBINELLI
- Superior                |       73604 | Rui Falc√£o
- Superior                |      221157 | Rui Godinho
+ Superior                |      178887 | Rubens Pereira J˙nior
+ Superior                |       73604 | Rui Falc„o
  Superior                |      160635 | Ruy Carneiro
- Superior                |       73986 | SALOM√ÉO CRUZ
- Superior                |      204535 | S√¢mia Bomfim
- Superior                |      178990 | Samuel Moreira
- Superior                |       74372 | SANDES J√öNIOR
- Superior                |       74039 | SANDRA ROSADO
+ Superior                |      204535 | S‚mia Bomfim
  Superior                |      160621 | Sandro Alex
- Superior                |       73676 | SANDRO MABEL
- Superior                |      220621 | Sargento Gon√ßalves
- Superior                |       74210 | SARNEY FILHO
+ Superior                |      220621 | Sargento GonÁalves
  Superior                |      220713 | Saullo Vianna
- Superior                |       73596 | SAULO COELHO
  Superior                |      226837 | Saulo Pedroso
- Superior                |      178921 | Sebasti√£o Oliveira
- Superior                |       73885 | SERAFIM VENZON
- Superior                |       74533 | S√âRGIO BARRADAS CARNEIRO
- Superior                |       73808 | S√©rgio Brito
- Superior                |       74458 | S√âRGIO NOVAIS
- Superior                |      204438 | Sergio Toledo
- Superior                |      235776 | S√©rgio Turra
- Superior                |      167614 | Severino Ninho
- Superior                |      178961 | Sh√©ridan
+ Superior                |       73808 | SÈrgio Brito
+ Superior                |      235776 | SÈrgio Turra
  Superior                |      204557 | Sidney Leite
- Superior                |       73718 | SIGMARINGA SEIXAS
- Superior                |       74356 | Silas C√¢mara
+ Superior                |       74356 | Silas C‚mara
  Superior                |      204360 | Silvia Cristina
- Superior                |      141545 | SILVINHO PECCIOLI
  Superior                |      204425 | Silvio Costa Filho
  Superior                |      220569 | Silvye Alves
- Superior                |       73424 | SIM√ÉO SESSIM
  Superior                |      220651 | Simone Marquetto
- Superior                |      141547 | SOLANGE ALMEIDA
- Superior                |      220643 | S√¥nia Guajajara
+ Superior                |      220643 | SÙnia Guajajara
  Superior                |      220575 | Sonize Barbosa
  Superior                |      178946 | Soraya Santos
- Superior                |      178947 | S√≥stenes Cavalcante
+ Superior                |      178947 | SÛstenes Cavalcante
  Superior                |       92776 | Stefano Aguiar
- Superior                |      177282 | Subtenente Gonzaga
  Superior                |      204534 | Tabata Amaral
- Superior                |      178922 | Tadeu Alencar
- Superior                |       74806 | Tadeu Filippelli
- Superior                |       73577 | TARC√çSIO ZIMMERMANN
- Superior                |      178901 | Tereza Cristina
- Superior                |       73652 | TET√â BEZERRA
- Superior                |      139370 | THEODORO MENDES
- Superior                |      180018 | Thiago Cartaxo
- Superior                |      220684 | Ti√£o Medeiros
+ Superior                |      220684 | Ti„o Medeiros
  Superior                |      178934 | Toninho Wandscheer
- Superior                |      131432 | TOURINHO DANTAS
- Superior                |       73562 | TUGA ANGERAMI
- Superior                |      157130 | T√∫lio Gad√™lha
- Superior                |      178863 | Uldurico Junior
- Superior                |       74010 | VALDIR COLATTO
- Superior                |      141553 | Vanderlei Macris
+ Superior                |      157130 | T˙lio GadÍlha
  Superior                |       74376 | Vander Loubet
- Superior                |      204505 | Vav√° Martins
- Superior                |      178913 | VENEZIANO VITAL DO R√äGO
  Superior                |      204396 | Vermelho
- Superior                |       74308 | VICENTE ARRUDA
- Superior                |       73476 | VICENTE CAROPRESO
- Superior                |       73566 | VICENTE CASCIONE
- Superior                |      141870 | VILSON COVATTI
- Superior                |      204478 | Vinicius Farah
  Superior                |      160591 | Vinicius Gurgel
- Superior                |      204532 | Vinicius Poit
- Superior                |      141556 | VITAL DO R√äGO FILHO
  Superior                |      178992 | Vitor Lippi
- Superior                |      215044 | Vivi Reis
  Superior                |       91228 | Waldemar Oliveira
- Superior                |       74668 | WALFRIDO MARES GUIA
- Superior                |       74218 | WALTER PINHEIRO
- Superior                |      220601 | Washington Quaqu√°
- Superior                |       73653 | WELLINGTON FAGUNDES
+ Superior                |      220601 | Washington Quaqu·
  Superior                |      224333 | Welter
- Superior                |      141563 | WILLIAM WOO
- Superior                |       74414 | WILSON BRAGA
  Superior                |       74044 | Wilson Santiago
- Superior                |      182146 | Wolmer Ara√∫jo
+ Superior                |      182146 | Wolmer Ara˙jo
  Superior                |      220564 | Yandra Moura
- Superior                |       73992 | YEDA CRUSIUS
- Superior                |      220660 | Yury do Pared√£o
+ Superior                |      220660 | Yury do Pared„o
  Superior                |      160592 | Zeca Dirceu
- Superior                |      178889 | Z√© Carlos
- Superior                |      220536 | Z√© Haroldo Cathedral
- Superior                |      178949 | ZENAIDE MAIA
- Superior                |       74354 | ZENALDO COUTINHO
- Superior                |       73933 | ZEQUINHA MARINHO
- Superior                |      204517 | Z√© Vitor
- Superior                |       73645 | ZULAI√ä COBRA
- Superior Incompleto     |      204554 | Ab√≠lio Santana
+ Superior                |      220536 | ZÈ Haroldo Cathedral
+ Superior                |      204517 | ZÈ Vitor
  Superior Incompleto     |      220714 | Adail Filho
  Superior Incompleto     |      160559 | Alceu Moreira
  Superior Incompleto     |      178927 | Aliel Machado
- Superior Incompleto     |      130398 | ANDR√â FERNANDES
  Superior Incompleto     |      160512 | Aureo Ribeiro
- Superior Incompleto     |      178834 | BEBETO
  Superior Incompleto     |      204388 | Bibo Nunes
  Superior Incompleto     |       74052 | Bosco Costa
- Superior Incompleto     |       74577 | CABO J√öLIO
  Superior Incompleto     |      178962 | Carlos Gomes
- Superior Incompleto     |       74835 | CARLOS SANTANA
- Superior Incompleto     |       73924 | DAVI ALCOLUMBRE
- Superior Incompleto     |      141417 | Edio Lopes
- Superior Incompleto     |       74267 | EDNA MACEDO
- Superior Incompleto     |       73945 | EDUARDO GOMES
- Superior Incompleto     |       99654 | ERIVELTON SANTANA
- Superior Incompleto     |      141386 | EUDES XAVIER
  Superior Incompleto     |      171623 | Fabio Reis
  Superior Incompleto     |       72442 | Felipe Carreras
  Superior Incompleto     |      204494 | Fred Costa
- Superior Incompleto     |      141442 | GERALDO PUDIM
  Superior Incompleto     |      178964 | Heitor Schuch
  Superior Incompleto     |      220672 | Henderson Pinto
- Superior Incompleto     |      227324 | Henrique J√∫nior
- Superior Incompleto     |      204539 | Herc√≠lio Coelho Diniz
- Superior Incompleto     |      178981 | Herculano Passos
+ Superior Incompleto     |      227324 | Henrique J˙nior
+ Superior Incompleto     |      204539 | HercÌlio Coelho Diniz
  Superior Incompleto     |      204508 | Igor Timo
- Superior Incompleto     |      141451 | ILDERLEI CORDEIRO
- Superior Incompleto     |       74295 | In√°cio Arruda
+ Superior Incompleto     |       74295 | In·cio Arruda
  Superior Incompleto     |      220527 | Jack Rocha
  Superior Incompleto     |      220697 | Jadyel Alencar
  Superior Incompleto     |      160548 | Jonas Donizette
  Superior Incompleto     |      220677 | Keniston Braga
  Superior Incompleto     |      204536 | Kim Kataguiri
- Superior Incompleto     |      204547 | L√©o Motta
  Superior Incompleto     |       74858 | Lindbergh Farias
- Superior Incompleto     |      204405 | Liziane Bayer
- Superior Incompleto     |       74397 | LUCIANA GENRO
- Superior Incompleto     |       73545 | LUCIANO ZICA
- Superior Incompleto     |      160510 | Luis Tib√©
+ Superior Incompleto     |      160510 | Luis TibÈ
  Superior Incompleto     |      220669 | Lula da Fonte
- Superior Incompleto     |      179000 | Marcelo √Ålvaro Ant√¥nio
+ Superior Incompleto     |      179000 | Marcelo ¡lvaro AntÙnio
  Superior Incompleto     |      133810 | Marcelo Moraes
  Superior Incompleto     |      204566 | Marreca Filho
  Superior Incompleto     |      220661 | Matheus Noronha
- Superior Incompleto     |      220628 | Mauricio do V√¥lei
+ Superior Incompleto     |      220628 | Mauricio do VÙlei
  Superior Incompleto     |      154178 | Milton Vieira
  Superior Incompleto     |      220622 | Nely Aquino
- Superior Incompleto     |       74165 | Neucimar Fraga
- Superior Incompleto     |      194260 | Nivaldo Albuquerque
  Superior Incompleto     |      204422 | Ossesio Silva
  Superior Incompleto     |      204441 | Otoni de Paula
  Superior Incompleto     |      160642 | Pastor Eurico
- Superior Incompleto     |      204553 | Pastor Sargento Isid√≥rio
+ Superior Incompleto     |      204553 | Pastor Sargento IsidÛrio
  Superior Incompleto     |      220627 | Paulinho Freire
  Superior Incompleto     |      204492 | Paulo Guedes
- Superior Incompleto     |       73574 | REGINALDO GERMANO
  Superior Incompleto     |      220613 | Roberto Monteiro Pai
  Superior Incompleto     |      223128 | Rodrigo Estacho
  Superior Incompleto     |      220641 | Rodrigo Gambale
- Superior Incompleto     |       74693 | Rodrigo Maia
- Superior Incompleto     |      160597 | ROM√ÅRIO
- Superior Incompleto     |       74763 | S√âRGIO MIRANDA
- Superior Incompleto     |      168175 | Simpl√≠cio Ara√∫jo
  Superior Incompleto     |      220682 | Tadeu Veneri
  Superior Incompleto     |      143084 | Tiago Dimas
- Superior Incompleto     |      137070 | Vicentinho J√∫nior
+ Superior Incompleto     |      137070 | Vicentinho J˙nior
  Superior Incompleto     |       74043 | Wellington Roberto
- Superior Incompleto     |       74439 | Wolney Queiroz
 

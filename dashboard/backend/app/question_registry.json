@@ -62,8 +62,8 @@
     },
     {
       "id": "q4",
-      "title": "Escolaridade dos deputados ativos",
-      "description": "Distribuicao da escolaridade considerando deputados ativos no periodo.",
+      "title": "Escolaridade da 57a legislatura",
+      "description": "Distribuicao da escolaridade dos deputados da 57a legislatura.",
       "response_files": ["q4_escolaridade.txt", "q4_escolaridade_complementar.txt"],
       "sql_file": "q4.sql",
       "chart_type": "bar_vertical",
@@ -71,7 +71,7 @@
       "expected_columns": ["escolaridade", "qtd_deputados"],
       "main_table_contains": "",
       "summary_table_contains": "",
-      "explanation": "Conta deputados ativos por escolaridade com complemento nominal.",
+      "explanation": "Conta deputados unicos da 57a legislatura por escolaridade com complemento nominal.",
       "chart": { "x_field": "escolaridade", "y_fields": ["qtd_deputados"] }
     },
     {
