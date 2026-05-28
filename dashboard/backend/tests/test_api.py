@@ -32,6 +32,24 @@ def test_question_endpoint_returns_payload() -> None:
     assert isinstance(payload["table_spec"]["rows"], list)
 
 
+def test_empty_state_considers_complement_tables_when_main_has_no_match() -> None:
+    response = client.get("/api/questions/q4?search=Nikolas&page=1&page_size=20")
+    assert response.status_code == 200
+    payload = response.json()
+
+    assert payload["table_spec"]["total"] == 0
+    assert any(table["total"] > 0 for table in payload["complement_tables"])
+    assert payload["empty_state"]["is_empty"] is False
+    assert payload["empty_state"]["message"] == ""
+
+    complement_rows = [
+        row
+        for table in payload["complement_tables"]
+        for row in table["rows"]
+    ]
+    assert any("Nikolas" in str(row.get("nome", "")) for row in complement_rows)
+
+
 def test_q8_payload_uses_global_approved_total() -> None:
     response = client.get("/api/questions/q8?page=1&page_size=10")
     assert response.status_code == 200

@@ -56,11 +56,10 @@ class QuestionAdapter:
         )
         complement_specs = self._build_complements(state)
 
+        has_data = table_spec.total > 0 or any(spec.total > 0 for spec in complement_specs)
         empty = EmptyState(
-            is_empty=len(filtered_rows) == 0,
-            message="Sem dados para os filtros selecionados."
-            if len(filtered_rows) == 0
-            else "",
+            is_empty=not has_data,
+            message="Sem dados para os filtros selecionados." if not has_data else "",
         )
         payload = QuestionPayload(
             question_id=self.context.question.id,
