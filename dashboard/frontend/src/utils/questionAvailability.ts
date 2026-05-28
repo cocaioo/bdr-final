@@ -6,5 +6,6 @@ export function isQuestionEnabled(questionId: string | null | undefined): boolea
 }
 
 export function isQuestionHidden(questionId: string | null | undefined): boolean {
+  void questionId
   return false
 }

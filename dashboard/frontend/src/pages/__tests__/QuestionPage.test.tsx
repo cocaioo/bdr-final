@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { vi } from 'vitest'
 
@@ -36,10 +36,15 @@ vi.mock('../../components/WarningBanner', () => ({
   WarningBanner: () => null,
 }))
 
+vi.mock('../../components/WordCloudGrid', () => ({
+  WordCloudGrid: () => <div data-testid="wordcloud-grid">Nuvens</div>,
+}))
+
 const fetchQuestionMock = vi.mocked(fetchQuestion)
 
 const filters: FilterState = {
   anos: [],
+  eixos: [],
   partidos: [],
   ufs: [],
   deputados: [],
@@ -53,6 +58,7 @@ function buildMeta(questionId: string, title: string): MetaResponse {
     legend: {},
     available_filters: {
       anos: [],
+      eixos: [],
       partidos: [],
       ufs: [],
       deputados: [],
@@ -134,23 +140,36 @@ describe('QuestionPage', () => {
     expect(screen.queryByTestId('chart-panel')).not.toBeInTheDocument()
   })
 
-  it('shows Q2 as under development and skips the API call', async () => {
+  it('renders Q2 word clouds and analytical table', async () => {
+    fetchQuestionMock.mockResolvedValue({
+      ...payload,
+      question_id: 'q2',
+      chart_spec: {
+        type: 'wordcloud_images',
+        title: 'Nuvens de palavras por ano',
+        description: 'Descricao do grafico',
+        categories: [],
+        series: [],
+        y_fields: [],
+        options: {
+          images: [{ year: 2023, src: '/wordclouds/q2_nuvem_palavras_2023.svg' }],
+        },
+      },
+    })
+
     renderQuestionPage(buildMeta('q2', 'Eixos e nuvem de palavras'), '/q/q2')
 
-    expect(await screen.findByText('Esta questao ainda esta em desenvolvimento.')).toBeInTheDocument()
-
-    await waitFor(() => {
-      expect(fetchQuestionMock).not.toHaveBeenCalled()
-    })
+    expect(await screen.findByTestId('wordcloud-grid')).toBeInTheDocument()
+    expect(screen.getByTestId('table-panel')).toHaveTextContent('Tabela principal')
+    expect(screen.queryByTestId('chart-panel')).not.toBeInTheDocument()
   })
 
-  it('hides Q7 entirely from the frontend', async () => {
+  it('loads Q7 like a regular enabled question', async () => {
+    fetchQuestionMock.mockResolvedValue({ ...payload, question_id: 'q7' })
+
     renderQuestionPage(buildMeta('q7', 'Indice de custo-beneficio'), '/q/q7')
 
-    expect(await screen.findByText('Pergunta nao encontrada no registro.')).toBeInTheDocument()
-
-    await waitFor(() => {
-      expect(fetchQuestionMock).not.toHaveBeenCalled()
-    })
+    expect(await screen.findByTestId('chart-panel')).toBeInTheDocument()
+    expect(screen.getByTestId('table-panel')).toHaveTextContent('Tabela principal')
   })
 })

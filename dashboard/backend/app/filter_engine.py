@@ -7,6 +7,7 @@ from typing import Any
 @dataclass(slots=True)
 class FilterState:
     anos: list[str]
+    eixos: list[str]
     partidos: list[str]
     ufs: list[str]
     deputados: list[str]
@@ -20,6 +21,7 @@ class FilterState:
 class FilterEngine:
     COLUMN_MAP = {
         "anos": ["ano_dados", "ano"],
+        "eixos": ["eixo_maior", "eixo_mais_atuante"],
         "partidos": ["sigla_partido"],
         "ufs": ["sigla_uf"],
         "deputados": ["id_deputado", "nome"],
@@ -35,6 +37,8 @@ class FilterEngine:
         filtered = rows
         if "anos" in supported_filters and state.anos:
             filtered = cls._filter_by_columns(filtered, cls.COLUMN_MAP["anos"], state.anos)
+        if "eixos" in supported_filters and state.eixos:
+            filtered = cls._filter_by_columns(filtered, cls.COLUMN_MAP["eixos"], state.eixos)
         if "partidos" in supported_filters and state.partidos:
             filtered = cls._filter_by_columns(
                 filtered, cls.COLUMN_MAP["partidos"], state.partidos

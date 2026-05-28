@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Nuvem de palavras por eixo tematico - 2025</title>
+  <desc id="desc">Termos mais frequentes em proposicoes com temas classificados por eixo no ano de 2025.</desc>
+  <style>
+    .bg { fill: #fffdf8; }
+    .title { font: 700 30px Sora, Arial, sans-serif; fill: #0b3c5d; }
+    .subtitle { font: 500 15px 'Source Sans 3', Arial, sans-serif; fill: #52606d; }
+    .word { font-family: Sora, 'Source Sans 3', Arial, sans-serif; font-weight: 700; }
+    .legend { font: 600 13px 'Source Sans 3', Arial, sans-serif; fill: #52606d; }
+  </style>
+  <rect class="bg" width="1280" height="720" rx="0"/>
+  <text x="54" y="48" class="title">Nuvem de palavras - 2025</text>
+  <text x="54" y="75" class="subtitle">Cor indica o eixo tematico dominante do termo no ano.</text>
+  <text x="649.6" y="380.5" text-anchor="middle" class="word" font-size="80" fill="#2A9D8F" transform="rotate(0 649.6 380.5)"><title>Social - 826 ocorrencias</title>saúde</text>
+<text x="604.9" y="306.3" text-anchor="middle" class="word" font-size="53" fill="#2A9D8F" transform="rotate(0 604.9 306.3)"><title>Social - 434 ocorrencias</title>programa</text>
+<text x="643.5" y="456.8" text-anchor="middle" class="word" font-size="48" fill="#2A9D8F" transform="rotate(0 643.5 456.8)"><title>Social - 376 ocorrencias</title>criação</text>
+<text x="669.3" y="243.3" text-anchor="middle" class="word" font-size="46" fill="#C0392B" transform="rotate(-12 669.3 243.3)"><title>Seguranca - 354 ocorrencias</title>segurança</text>
+<text x="441.9" y="390.9" text-anchor="middle" class="word" font-size="45" fill="#2A9D8F" transform="rotate(0 441.9 390.9)"><title>Social - 350 ocorrencias</title>pessoa</text>
+<text x="830.1" y="368.9" text-anchor="middle" class="word" font-size="45" fill="#C0392B" transform="rotate(0 830.1 368.9)"><title>Seguranca - 350 ocorrencias</title>penal</text>
+<text x="789.5" y="303.1" text-anchor="middle" class="word" font-size="45" fill="#2A9D8F" transform="rotate(0 789.5 303.1)"><title>Social - 346 ocorrencias</title>por</text>
+<text x="641.4" y="514.1" text-anchor="middle" class="word" font-size="45" fill="#E07A5F" transform="rotate(0 641.4 514.1)"><title>Economico - 344 ocorrencias</title>município</text>
+<text x="843.5" y="436.0" text-anchor="middle" class="word" font-size="44" fill="#2A9D8F" transform="rotate(0 843.5 436.0)"><title>Social - 340 ocorrencias</title>sugere</text>
+<text x="450.7" y="452.0" text-anchor="middle" class="word" font-size="43" fill="#2A9D8F" transform="rotate(-12 450.7 452.0)"><title>Social - 321 ocorrencias</title>social</text>
+<text x="422.8" y="328.1" text-anchor="middle" class="word" font-size="41" fill="#C0392B" transform="rotate(0 422.8 328.1)"><title>Seguranca - 309 ocorrencias</title>crime</text>
+<text x="441.5" y="248.8" text-anchor="middle" class="word" font-size="41" fill="#C0392B" transform="rotate(0 441.5 248.8)"><title>Seguranca - 307 ocorrencias</title>dezembro</text>
+<text x="933.2" y="306.2" text-anchor="middle" class="word" font-size="40" fill="#2A9D8F" transform="rotate(0 933.2 306.2)"><title>Social - 296 ocorrencias</title>educação</text>
+<text x="614.9" y="564.1" text-anchor="middle" class="word" font-size="38" fill="#E07A5F" transform="rotate(0 614.9 564.1)"><title>Economico - 271 ocorrencias</title>desenvolvimento</text>
+<text x="632.8" y="185.7" text-anchor="middle" class="word" font-size="38" fill="#2A9D8F" transform="rotate(0 632.8 185.7)"><title>Social - 270 ocorrencias</title>obrigatoriedade</text>
+<text x="849.1" y="487.4" text-anchor="middle" class="word" font-size="37" fill="#2A9D8F" transform="rotate(0 849.1 487.4)"><title>Social - 265 ocorrencias</title>como</text>
+<text x="440.7" y="506.2" text-anchor="middle" class="word" font-size="36" fill="#0B3C5D" transform="rotate(0 440.7 506.2)"><title>Institucional e juridico - 252 ocorrencias</title>serviços</text>
+<text x="910.4" y="252.6" text-anchor="middle" class="word" font-size="36" fill="#4F7CAC" transform="rotate(0 910.4 252.6)"><title>Ambiental e energetico - 251 ocorrencias</title>amazonas</text>
+<text x="985.8" y="366.9" text-anchor="middle" class="word" font-size="35" fill="#2A9D8F" transform="rotate(0 985.8 366.9)"><title>Social - 248 ocorrencias</title>acesso</text>
+<text x="863.0" y="529.6" text-anchor="middle" class="word" font-size="35" fill="#2A9D8F" transform="rotate(0 863.0 529.6)"><title>Social - 244 ocorrencias</title>sistema</text>
+<text x="296.2" y="370.3" text-anchor="middle" class="word" font-size="34" fill="#2A9D8F" transform="rotate(0 296.2 370.3)"><title>Social - 241 ocorrencias</title>brasil</text>
+<text x="273.4" y="419.9" text-anchor="middle" class="word" font-size="34" fill="#2A9D8F" transform="rotate(0 273.4 419.9)"><title>Social - 239 ocorrencias</title>trabalho</text>
+<text x="1011.1" y="430.8" text-anchor="middle" class="word" font-size="34" fill="#E07A5F" transform="rotate(0 1011.1 430.8)"><title>Economico - 234 ocorrencias</title>recursos</text>
+<text x="643.7" y="610.8" text-anchor="middle" class="word" font-size="33" fill="#2A9D8F" transform="rotate(-12 643.7 610.8)"><title>Social - 229 ocorrencias</title>violência</text>
+<text x="879.5" y="205.9" text-anchor="middle" class="word" font-size="32" fill="#2A9D8F" transform="rotate(-12 879.5 205.9)"><title>Social - 219 ocorrencias</title>combate</text>
+<text x="280.8" y="470.2" text-anchor="middle" class="word" font-size="30" fill="#2A9D8F" transform="rotate(-12 280.8 470.2)"><title>Social - 198 ocorrencias</title>critério</text>
+<text x="304.4" y="302.8" text-anchor="middle" class="word" font-size="29" fill="#2A9D8F" transform="rotate(0 304.4 302.8)"><title>Social - 191 ocorrencias</title>medidas</text>
+<text x="1003.0" y="473.2" text-anchor="middle" class="word" font-size="29" fill="#B7791F" transform="rotate(-12 1003.0 473.2)"><title>Cultura e sociedade - 190 ocorrencias</title>incentivo</text>
+<text x="421.0" y="206.9" text-anchor="middle" class="word" font-size="28" fill="#0B3C5D" transform="rotate(0 421.0 206.9)"><title>Institucional e juridico - 186 ocorrencias</title>civil</text>
+<text x="851.2" y="568.2" text-anchor="middle" class="word" font-size="28" fill="#E07A5F" transform="rotate(0 851.2 568.2)"><title>Economico - 184 ocorrencias</title>imposto</text>
+<text x="283.2" y="264.4" text-anchor="middle" class="word" font-size="27" fill="#2A9D8F" transform="rotate(0 283.2 264.4)"><title>Social - 181 ocorrencias</title>pessoas</text>
+<text x="417.8" y="569.8" text-anchor="middle" class="word" font-size="27" fill="#2A9D8F" transform="rotate(-12 417.8 569.8)"><title>Social - 178 ocorrencias</title>nas</text>
+<text x="674.9" y="142.7" text-anchor="middle" class="word" font-size="27" fill="#2A9D8F" transform="rotate(-12 674.9 142.7)"><title>Social - 177 ocorrencias</title>direitos</text>
+<text x="479.4" y="136.5" text-anchor="middle" class="word" font-size="26" fill="#0B3C5D" transform="rotate(-12 479.4 136.5)"><title>Institucional e juridico - 173 ocorrencias</title>proibição</text>
+<text x="815.5" y="602.7" text-anchor="middle" class="word" font-size="26" fill="#2A9D8F" transform="rotate(0 815.5 602.7)"><title>Social - 169 ocorrencias</title>proteção</text>
+<text x="1077.9" y="329.1" text-anchor="middle" class="word" font-size="26" fill="#B7791F" transform="rotate(0 1077.9 329.1)"><title>Cultura e sociedade - 169 ocorrencias</title>esporte</text>
+<text x="890.7" y="161.5" text-anchor="middle" class="word" font-size="26" fill="#2A9D8F" transform="rotate(0 890.7 161.5)"><title>Social - 167 ocorrencias</title>deficiência</text>
+<text x="287.0" y="544.3" text-anchor="middle" class="word" font-size="26" fill="#E07A5F" transform="rotate(0 287.0 544.3)"><title>Economico - 167 ocorrencias</title>agricultura</text>
+<text x="1074.6" y="375.4" text-anchor="middle" class="word" font-size="25" fill="#C0392B" transform="rotate(-12 1074.6 375.4)"><title>Seguranca - 164 ocorrencias</title>uso</text>
+<text x="269.6" y="226.4" text-anchor="middle" class="word" font-size="25" fill="#2A9D8F" transform="rotate(0 269.6 226.4)"><title>Social - 164 ocorrencias</title>prevenção</text>
+<text x="1027.9" y="510.8" text-anchor="middle" class="word" font-size="25" fill="#2A9D8F" transform="rotate(0 1027.9 510.8)"><title>Social - 163 ocorrencias</title>políticas</text>
+<text x="508.2" y="607.9" text-anchor="middle" class="word" font-size="25" fill="#2A9D8F" transform="rotate(0 508.2 607.9)"><title>Social - 160 ocorrencias</title>único</text>
+<text x="193.0" y="306.2" text-anchor="middle" class="word" font-size="25" fill="#2A9D8F" transform="rotate(0 193.0 306.2)"><title>Social - 159 ocorrencias</title>criança</text>
+<text x="1070.4" y="263.3" text-anchor="middle" class="word" font-size="24" fill="#6A7FDB" transform="rotate(0 1070.4 263.3)"><title>Infraestrutura e tecnologia - 156 ocorrencias</title>brasileiro</text>
+<text x="306.1" y="508.3" text-anchor="middle" class="word" font-size="24" fill="#C0392B" transform="rotate(0 306.1 508.3)"><title>Seguranca - 155 ocorrencias</title>aumento</text>
+<text x="171.8" y="365.1" text-anchor="middle" class="word" font-size="24" fill="#2A9D8F" transform="rotate(0 171.8 365.1)"><title>Social - 153 ocorrencias</title>política</text>
+<text x="312.0" y="185.7" text-anchor="middle" class="word" font-size="24" fill="#E07A5F" transform="rotate(0 312.0 185.7)"><title>Economico - 152 ocorrencias</title>empresa</text>
+<text x="314.1" y="336.0" text-anchor="middle" class="word" font-size="22" fill="#C0392B" transform="rotate(0 314.1 336.0)"><title>Seguranca - 144 ocorrencias</title>pena</text>
+<text x="628.9" y="106.0" text-anchor="middle" class="word" font-size="22" fill="#0B3C5D" transform="rotate(0 628.9 106.0)"><title>Institucional e juridico - 144 ocorrencias</title>informação</text>
+<text x="355.9" y="578.4" text-anchor="middle" class="word" font-size="22" fill="#E07A5F" transform="rotate(0 355.9 578.4)"><title>Economico - 144 ocorrencias</title>fundo</text>
+<text x="808.2" y="126.5" text-anchor="middle" class="word" font-size="22" fill="#2A9D8F" transform="rotate(0 808.2 126.5)"><title>Social - 143 ocorrencias</title>especial</text>
+<text x="989.1" y="546.5" text-anchor="middle" class="word" font-size="22" fill="#0B3C5D" transform="rotate(0 989.1 546.5)"><title>Institucional e juridico - 143 ocorrencias</title>processo</text>
+<text x="1017.2" y="214.9" text-anchor="middle" class="word" font-size="22" fill="#0B3C5D" transform="rotate(0 1017.2 214.9)"><title>Institucional e juridico - 142 ocorrencias</title>respeito</text>
+<text x="435.9" y="604.6" text-anchor="middle" class="word" font-size="22" fill="#2A9D8F" transform="rotate(0 435.9 604.6)"><title>Social - 139 ocorrencias</title>julho</text>
+<text x="450.7" y="169.6" text-anchor="middle" class="word" font-size="21" fill="#2A9D8F" transform="rotate(0 450.7 169.6)"><title>Social - 137 ocorrencias</title>aos</text>
+<text x="458.4" y="287.2" text-anchor="middle" class="word" font-size="21" fill="#4F7CAC" transform="rotate(0 458.4 287.2)"><title>Ambiental e energetico - 135 ocorrencias</title>meio</text>
+<text x="782.7" y="496.5" text-anchor="middle" class="word" font-size="20" fill="#2A9D8F" transform="rotate(0 782.7 496.5)"><title>Social - 130 ocorrencias</title>sus</text>
+<text x="253.0" y="337.7" text-anchor="middle" class="word" font-size="20" fill="#2A9D8F" transform="rotate(0 253.0 337.7)"><title>Social - 129 ocorrencias</title>não</text>
+<text x="787.2" y="631.1" text-anchor="middle" class="word" font-size="20" fill="#0B3C5D" transform="rotate(0 787.2 631.1)"><title>Institucional e juridico - 129 ocorrencias</title>defesa</text>
+<text x="186.0" y="266.5" text-anchor="middle" class="word" font-size="20" fill="#4F7CAC" transform="rotate(0 186.0 266.5)"><title>Ambiental e energetico - 127 ocorrencias</title>energia</text>
+<text x="950.3" y="585.8" text-anchor="middle" class="word" font-size="20" fill="#2A9D8F" transform="rotate(0 950.3 585.8)"><title>Social - 126 ocorrencias</title>mulher</text>
+<text x="164.1" y="420.7" text-anchor="middle" class="word" font-size="19" fill="#E07A5F" transform="rotate(0 164.1 420.7)"><title>Economico - 120 ocorrencias</title>renda</text>
+  <g transform="translate(54,656)"><rect width="14" height="14" rx="3" fill="#2A9D8F"/><text x="20" y="12" class="legend">Social</text></g><g transform="translate(202,656)"><rect width="14" height="14" rx="3" fill="#E07A5F"/><text x="20" y="12" class="legend">Economico</text></g><g transform="translate(350,656)"><rect width="14" height="14" rx="3" fill="#C0392B"/><text x="20" y="12" class="legend">Seguranca</text></g><g transform="translate(498,656)"><rect width="14" height="14" rx="3" fill="#0B3C5D"/><text x="20" y="12" class="legend">Institucional</text></g><g transform="translate(646,656)"><rect width="14" height="14" rx="3" fill="#4F7CAC"/><text x="20" y="12" class="legend">Ambiental</text></g><g transform="translate(794,656)"><rect width="14" height="14" rx="3" fill="#6A7FDB"/><text x="20" y="12" class="legend">Infraestrutura</text></g><g transform="translate(942,656)"><rect width="14" height="14" rx="3" fill="#B7791F"/><text x="20" y="12" class="legend">Cultura</text></g><g transform="translate(1090,656)"><rect width="14" height="14" rx="3" fill="#5A6772"/><text x="20" y="12" class="legend">Internacional</text></g>
+</svg>

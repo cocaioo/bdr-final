@@ -35,16 +35,16 @@
     {
       "id": "q2",
       "title": "Eixos e nuvem de palavras",
-      "description": "Relaciona deputados com eixo maior de atuacao e frequencia de tokens em proposicoes.",
+      "description": "Nuvens de palavras por ano e tabela consolidada de deputados por eixo tematico no periodo 2023-2026.",
       "response_files": ["q2_eixos_nuvem_palavras.txt", "q2_eixo_nuvens_complemento.txt"],
       "sql_file": "q2.sql",
-      "chart_type": "heatmap_wordcloud",
-      "supported_filters": ["anos", "deputados"],
-      "expected_columns": ["id_deputado", "nome", "eixo_maior", "qtd_proposicoes"],
-      "main_table_contains": "Q2.1",
+      "chart_type": "wordcloud_images",
+      "supported_filters": ["eixos", "deputados"],
+      "expected_columns": ["id_deputado", "nome", "eixo_maior", "qtd_proposicoes", "proposicoes_aprovadas"],
+      "main_table_contains": "Tabela analitica",
       "summary_table_contains": "",
-      "explanation": "Agrupa autoria de proposicoes por eixo maior e gera frequencia de tokens para nuvem.",
-      "chart": { "x_field": "nome", "y_fields": ["qtd_proposicoes"], "group_field": "eixo_maior" }
+      "explanation": "Consolida autoria de proposicoes por deputado e eixo tematico em 2023-2026, contabilizando tambem proposicoes aprovadas e termos usados nas nuvens anuais.",
+      "chart": { "x_field": "nome", "y_fields": ["qtd_proposicoes", "proposicoes_aprovadas"], "group_field": "eixo_maior" }
     },
     {
       "id": "q3",

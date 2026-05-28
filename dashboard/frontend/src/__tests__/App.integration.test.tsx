@@ -10,6 +10,7 @@ const metaMock = {
   legend: {},
   available_filters: {
     anos: [],
+    eixos: [],
     partidos: [],
     ufs: [],
     deputados: [],

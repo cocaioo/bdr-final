@@ -1,0 +1,34 @@
+[
+  {
+    "eixo": "Social",
+    "count": 11346
+  },
+  {
+    "eixo": "Institucional e juridico",
+    "count": 7124
+  },
+  {
+    "eixo": "Economico",
+    "count": 6381
+  },
+  {
+    "eixo": "Seguranca",
+    "count": 4493
+  },
+  {
+    "eixo": "Infraestrutura e tecnologia",
+    "count": 4453
+  },
+  {
+    "eixo": "Ambiental e energetico",
+    "count": 3114
+  },
+  {
+    "eixo": "Cultura e sociedade",
+    "count": 2555
+  },
+  {
+    "eixo": "Internacional",
+    "count": 788
+  }
+]

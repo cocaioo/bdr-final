@@ -9,6 +9,10 @@ test('critical question routes are reachable', async ({ page }) => {
   await page.goto('/q/q1')
   await expect(page.getByText('Q1 -')).toBeVisible()
 
+  await page.goto('/q/q2')
+  await expect(page.getByRole('heading', { name: 'Nuvens de palavras por ano' })).toBeVisible()
+  await expect(page.getByRole('img', { name: /2023/ })).toBeVisible()
+
   await page.goto('/q/q7')
   await expect(page.getByText('Q7 -')).toBeVisible()
 

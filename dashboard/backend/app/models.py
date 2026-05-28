@@ -12,6 +12,7 @@ class FilterChoice(BaseModel):
 
 class FilterCatalog(BaseModel):
     anos: list[FilterChoice] = Field(default_factory=list)
+    eixos: list[FilterChoice] = Field(default_factory=list)
     partidos: list[FilterChoice] = Field(default_factory=list)
     ufs: list[FilterChoice] = Field(default_factory=list)
     deputados: list[FilterChoice] = Field(default_factory=list)

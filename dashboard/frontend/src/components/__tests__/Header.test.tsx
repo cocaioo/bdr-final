@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { Header } from '../Header'
 
 describe('Header', () => {
-  it('renders Q2 as disabled navigation when it is under development', () => {
+  it('renders Q2 as an enabled navigation link', () => {
     render(
       <MemoryRouter>
         <Header
@@ -23,7 +23,7 @@ describe('Header', () => {
               title: 'Eixos e nuvem de palavras',
               route: '/q/q2',
               description: 'Descricao',
-              chart_type: 'heatmap_wordcloud',
+              chart_type: 'wordcloud_images',
               supported_filters: [],
             },
           ]}
@@ -32,11 +32,10 @@ describe('Header', () => {
     )
 
     expect(screen.getByRole('link', { name: 'Q1' })).toBeInTheDocument()
-    expect(screen.queryByRole('link', { name: 'Q2' })).not.toBeInTheDocument()
-    expect(screen.getByText('Q2')).toHaveAttribute('aria-disabled', 'true')
+    expect(screen.getByRole('link', { name: 'Q2' })).toHaveAttribute('href', '/q/q2')
   })
 
-  it('hides Q7 and re-enables Q10 in the navigation', () => {
+  it('renders Q7 and Q10 as enabled navigation links', () => {
     render(
       <MemoryRouter>
         <Header
@@ -63,7 +62,7 @@ describe('Header', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.queryByText('Q7')).not.toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Q7' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Q10' })).toBeInTheDocument()
   })
 })

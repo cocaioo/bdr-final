@@ -36,6 +36,7 @@ export function fetchQuestion(
 ): Promise<QuestionPayload> {
   const query = buildQuery({
     anos: filters.anos,
+    eixos: filters.eixos,
     partidos: filters.partidos,
     ufs: filters.ufs,
     deputados: filters.deputados,

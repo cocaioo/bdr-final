@@ -5,6 +5,7 @@ export interface FilterChoice {
 
 export interface FilterCatalog {
   anos: FilterChoice[]
+  eixos: FilterChoice[]
   partidos: FilterChoice[]
   ufs: FilterChoice[]
   deputados: FilterChoice[]
@@ -97,6 +98,7 @@ export interface QuestionPayload {
 
 export interface FilterState {
   anos: string[]
+  eixos: string[]
   partidos: string[]
   ufs: string[]
   deputados: string[]

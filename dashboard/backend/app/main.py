@@ -39,6 +39,7 @@ def get_meta() -> MetaResponse:
 def get_question(
     question_id: str,
     anos: list[str] | None = Query(default=None),
+    eixos: list[str] | None = Query(default=None),
     partidos: list[str] | None = Query(default=None),
     ufs: list[str] | None = Query(default=None),
     deputados: list[str] | None = Query(default=None),
@@ -54,6 +55,7 @@ def get_question(
 
     state = FilterState(
         anos=anos or [],
+        eixos=eixos or [],
         partidos=partidos or [],
         ufs=ufs or [],
         deputados=deputados or [],

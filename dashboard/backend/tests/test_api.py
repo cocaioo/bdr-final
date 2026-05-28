@@ -19,6 +19,10 @@ def test_meta_endpoint_returns_questions() -> None:
     assert "GLOBAL" not in {
         item["value"] for item in payload["available_filters"]["anos"]
     }
+    assert any(
+        item["value"] == "Social"
+        for item in payload["available_filters"]["eixos"]
+    )
 
 
 def test_question_endpoint_returns_payload() -> None:
@@ -65,6 +69,36 @@ def test_q8_payload_uses_global_approved_total() -> None:
 
     summary_cards = {card["label"]: card["value"] for card in payload["summary_cards"]}
     assert summary_cards["Proposicoes aprovadas global"] == "394"
+
+
+def test_q2_payload_returns_wordcloud_images_and_consolidated_table() -> None:
+    response = client.get("/api/questions/q2?page=1&page_size=10")
+    assert response.status_code == 200
+    payload = response.json()
+
+    assert payload["chart_spec"]["type"] == "wordcloud_images"
+    images = payload["chart_spec"]["options"]["images"]
+    assert [item["year"] for item in images] == [2023, 2024, 2025, 2026]
+    assert all(str(item["src"]).endswith(".png") for item in images)
+    assert payload["table_spec"]["title"].startswith("Tabela analitica")
+    first_row = payload["table_spec"]["rows"][0]
+    assert {
+        "nome",
+        "eixo_maior",
+        "qtd_proposicoes",
+        "proposicoes_aprovadas",
+    }.issubset(first_row)
+    assert payload["complement_tables"] == []
+
+
+def test_q2_filters_by_eixo_and_deputy_search() -> None:
+    response = client.get("/api/questions/q2?eixos=Social&search=Amom&page_size=20")
+    assert response.status_code == 200
+    table = response.json()["table_spec"]
+
+    assert table["total"] > 0
+    assert all(row["eixo_maior"] == "Social" for row in table["rows"])
+    assert all("Amom" in row["nome"] for row in table["rows"])
 
 
 def test_q10_summary_cards_scale_alignment_percentages() -> None:
