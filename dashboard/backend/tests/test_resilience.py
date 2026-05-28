@@ -46,6 +46,7 @@ def test_missing_expected_columns_emits_warning() -> None:
     payload = adapter.build_payload(
         FilterState(
             anos=[],
+            eixos=[],
             partidos=[],
             ufs=[],
             deputados=[],

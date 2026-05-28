@@ -8,6 +8,7 @@ import { ExecutiveCards } from '../components/ExecutiveCards'
 import { NoDataState } from '../components/NoDataState'
 import { QueryDrawer } from '../components/QueryDrawer'
 import { WarningBanner } from '../components/WarningBanner'
+import { WordCloudGrid } from '../components/WordCloudGrid'
 import type { FilterState, MetaResponse, QuestionPayload, TableState } from '../types'
 import { isQuestionEnabled, isQuestionHidden } from '../utils/questionAvailability'
 import { formatCellValue } from '../utils/format'
@@ -153,7 +154,8 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
   }
 
   const isQ8 = questionMeta.id.toLowerCase() === 'q8'
-  const shouldShowChart = questionMeta.id.toLowerCase() !== 'q1'
+  const isQ2 = questionMeta.id.toLowerCase() === 'q2'
+  const shouldShowChart = questionMeta.id.toLowerCase() !== 'q1' && !isQ2
   const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
   const mainTable = isQ8 ? { ...payload.table_spec, title: 'Tabela principal' } : payload.table_spec
   const complementTables = isQ8 ? [] : payload.complement_tables
@@ -180,6 +182,7 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
         <NoDataState message={payload.empty_state.message} />
       ) : (
         <>
+          {isQ2 ? <WordCloudGrid spec={payload.chart_spec} /> : null}
           {shouldShowChart ? <ChartPanel spec={payload.chart_spec} yearLabels={yearLegend} /> : null}
           <DataTablePanel
             table={mainTable}

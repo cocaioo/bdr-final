@@ -129,6 +129,7 @@ class DashboardService:
 
         anos: set[str] = set()
         partidos: set[str] = set()
+        eixos: set[str] = set()
         ufs: set[str] = set()
         deputados: set[str] = set()
 
@@ -139,6 +140,8 @@ class DashboardService:
                     for row in table.rows:
                         _maybe_add(anos, row.get("ano_dados"), excluded={"GLOBAL"})
                         _maybe_add(anos, row.get("ano"), excluded={"GLOBAL"})
+                        _maybe_add(eixos, row.get("eixo_maior"))
+                        _maybe_add(eixos, row.get("eixo_mais_atuante"))
                         _maybe_add(partidos, row.get("sigla_partido"))
                         _maybe_add(ufs, row.get("sigla_uf"))
                         _maybe_add(deputados, row.get("nome"))
@@ -146,6 +149,7 @@ class DashboardService:
 
         catalog = FilterCatalog(
             anos=[FilterChoice(value=item, label=item) for item in sorted(anos)],
+            eixos=[FilterChoice(value=item, label=item) for item in sorted(eixos)],
             partidos=[FilterChoice(value=item, label=item) for item in sorted(partidos)],
             ufs=[FilterChoice(value=item, label=item) for item in sorted(ufs)],
             deputados=[FilterChoice(value=item, label=item) for item in sorted(deputados)],
@@ -157,6 +161,7 @@ class DashboardService:
     def _state_cache_key(state: FilterState) -> str:
         serializable = {
             "anos": sorted(state.anos),
+            "eixos": sorted(state.eixos),
             "partidos": sorted(state.partidos),
             "ufs": sorted(state.ufs),
             "deputados": sorted(state.deputados),

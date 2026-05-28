@@ -114,7 +114,7 @@ body {
 
 .filter-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
   gap: 12px;
 }
 
@@ -380,6 +380,47 @@ p {
   min-height: 420px;
 }
 
+.wordcloud-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.wordcloud-section header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.wordcloud-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.wordcloud-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fffdf8;
+  overflow: hidden;
+}
+
+.wordcloud-card h3 {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--primary);
+}
+
+.wordcloud-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
 .table-header {
   display: flex;
   justify-content: space-between;
@@ -535,7 +576,8 @@ td {
 
   .question-grid,
   .cards-section,
-  .filter-grid {
+  .filter-grid,
+  .wordcloud-grid {
     grid-template-columns: 1fr;
   }
 

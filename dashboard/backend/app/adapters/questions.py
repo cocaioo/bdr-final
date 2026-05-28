@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+from typing import Any
+
 from .base import QuestionAdapter
+from ..filter_engine import FilterState
+from ..models import ChartSpec, TableSpec
 
 
 class Q1Adapter(QuestionAdapter):
@@ -9,6 +13,29 @@ class Q1Adapter(QuestionAdapter):
 
 class Q2Adapter(QuestionAdapter):
     """Eixos e nuvem de palavras."""
+
+    def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
+        images = [
+            {
+                "year": year,
+                "src": f"/wordclouds/q2_nuvem_palavras_{year}.svg",
+                "alt": f"Nuvem de palavras dos eixos tematicos em {year}",
+            }
+            for year in (2023, 2024, 2025, 2026)
+        ]
+        return ChartSpec(
+            type="wordcloud_images",
+            title="Nuvens de palavras por ano",
+            description=(
+                "Imagens SVG geradas a partir dos termos mais frequentes das proposicoes "
+                "classificadas por eixo tematico."
+            ),
+            series=[],
+            options={"images": images},
+        )
+
+    def _build_complements(self, state: FilterState) -> list[TableSpec]:
+        return []
 
 
 class Q3Adapter(QuestionAdapter):

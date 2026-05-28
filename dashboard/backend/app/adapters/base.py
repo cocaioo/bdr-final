@@ -68,6 +68,7 @@ class QuestionAdapter:
             filters_supported=self.context.question.supported_filters,
             filters_applied={
                 "anos": state.anos,
+                "eixos": state.eixos,
                 "partidos": state.partidos,
                 "ufs": state.ufs,
                 "deputados": state.deputados,
@@ -198,6 +199,7 @@ class QuestionAdapter:
                     total=len(sorted_rows),
                     state=FilterState(
                         anos=table_state.anos,
+                        eixos=table_state.eixos,
                         partidos=table_state.partidos,
                         ufs=table_state.ufs,
                         deputados=table_state.deputados,
@@ -596,6 +598,7 @@ def _is_global_ranking_table(table: ParsedTable) -> bool:
 def _without_year_filter(state: FilterState) -> FilterState:
     return FilterState(
         anos=[],
+        eixos=state.eixos,
         partidos=state.partidos,
         ufs=state.ufs,
         deputados=state.deputados,

@@ -11,6 +11,7 @@ import { isQuestionHidden } from './utils/questionAvailability'
 
 const EMPTY_FILTER_STATE: FilterState = {
   anos: [],
+  eixos: [],
   partidos: [],
   ufs: [],
   deputados: [],

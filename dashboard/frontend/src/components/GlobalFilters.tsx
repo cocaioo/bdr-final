@@ -22,7 +22,10 @@ export function GlobalFilters({
   onChange,
   supportedFilters,
 }: GlobalFiltersProps) {
-  const setList = (key: keyof Pick<FilterState, 'anos' | 'partidos' | 'ufs' | 'deputados'>, values: string[]) => {
+  const setList = (
+    key: keyof Pick<FilterState, 'anos' | 'eixos' | 'partidos' | 'ufs' | 'deputados'>,
+    values: string[],
+  ) => {
     onChange({ ...value, [key]: values })
   }
 
@@ -38,6 +41,22 @@ export function GlobalFilters({
             disabled={!isEnabled(supportedFilters, 'anos')}
           >
             {catalog.anos.map((choice) => (
+              <option key={choice.value} value={choice.value}>
+                {choice.label}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="filter-item">
+          <span>Eixo</span>
+          <select
+            multiple
+            value={value.eixos}
+            onChange={(event) => setList('eixos', readSelectedValues(event.target))}
+            disabled={!isEnabled(supportedFilters, 'eixos')}
+          >
+            {catalog.eixos.map((choice) => (
               <option key={choice.value} value={choice.value}>
                 {choice.label}
               </option>
