@@ -1,12 +1,48 @@
 \o /respostas/q1_gastos_deputados.txt
 \qecho Ranking global - todos os anos
+-- Regra de partido/UF no ranking global:
+-- usa o perfil dominante nas despesas do deputado (maior ocorrencia de registros),
+-- com desempate por maior gasto no partido e, por fim, ordem alfabetica.
+WITH gastos_totais AS (
+    SELECT
+        id_deputado,
+        SUM(valor_liquido) AS gasto_total
+    FROM gastos
+    GROUP BY id_deputado
+),
+perfil_por_partido AS (
+    SELECT
+        id_deputado,
+        sigla_uf,
+        sigla_partido,
+        COUNT(*) AS ocorrencias,
+        SUM(valor_liquido) AS gasto_no_partido
+    FROM gastos
+    GROUP BY id_deputado, sigla_uf, sigla_partido
+),
+perfil_dominante AS (
+    SELECT
+        id_deputado,
+        sigla_uf,
+        sigla_partido
+    FROM (
+        SELECT
+            *,
+            ROW_NUMBER() OVER (
+                PARTITION BY id_deputado
+                ORDER BY ocorrencias DESC, gasto_no_partido DESC, sigla_uf, sigla_partido
+            ) AS posicao
+        FROM perfil_por_partido
+    ) ranked
+    WHERE posicao = 1
+)
 SELECT
     d.id_deputado,
-    MAX(d.nome) AS nome,
-    MAX(g.sigla_uf) AS sigla_uf,
-    MAX(g.sigla_partido) AS sigla_partido,
-    SUM(g.valor_liquido) AS gasto_total
-FROM gastos g
+    d.nome AS nome,
+    p.sigla_uf,
+    p.sigla_partido,
+    g.gasto_total
+FROM gastos_totais g
 JOIN deputados d ON d.id_deputado = g.id_deputado
-GROUP BY d.id_deputado
-ORDER BY gasto_total DESC;
+LEFT JOIN perfil_dominante p ON p.id_deputado = g.id_deputado
+ORDER BY g.gasto_total DESC;

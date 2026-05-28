@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table'
 
 import type { TableSpec, TableState } from '../types'
@@ -32,6 +32,12 @@ export function DataTablePanel({ table, state, onChange, lockPageSize = false }:
   })
 
   const pageCount = Math.max(1, Math.ceil(table.total / state.pageSize))
+  const clampedPage = Math.min(Math.max(state.page, 1), pageCount)
+
+  useEffect(() => {
+    if (state.page === clampedPage) return
+    onChange({ ...state, page: clampedPage })
+  }, [clampedPage, onChange, state])
 
   const toggleSort = (columnKey: string) => {
     if (state.sortBy === columnKey) {
@@ -46,7 +52,7 @@ export function DataTablePanel({ table, state, onChange, lockPageSize = false }:
       <header className="table-header">
         <h2>{table.title}</h2>
         <p>
-          {table.total.toLocaleString('pt-BR')} registros | pagina {state.page} de {pageCount}
+          {table.total.toLocaleString('pt-BR')} registros | pagina {clampedPage} de {pageCount}
         </p>
       </header>
       <div className="table-wrapper">
@@ -82,15 +88,15 @@ export function DataTablePanel({ table, state, onChange, lockPageSize = false }:
       <footer className="table-footer">
         <button
           type="button"
-          onClick={() => onChange({ ...state, page: Math.max(1, state.page - 1) })}
-          disabled={state.page <= 1}
+          onClick={() => onChange({ ...state, page: Math.max(1, clampedPage - 1) })}
+          disabled={clampedPage <= 1}
         >
           Pagina anterior
         </button>
         <button
           type="button"
-          onClick={() => onChange({ ...state, page: Math.min(pageCount, state.page + 1) })}
-          disabled={state.page >= pageCount}
+          onClick={() => onChange({ ...state, page: Math.min(pageCount, clampedPage + 1) })}
+          disabled={clampedPage >= pageCount}
         >
           Proxima pagina
         </button>

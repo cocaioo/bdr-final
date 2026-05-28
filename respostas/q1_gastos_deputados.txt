@@ -852,4 +852,4 @@ Ranking global - todos os anos
       220636 | Luiz Marinho                        | SP       | PT            |        0.18
       204430 | Margarete Coelho                    | PI       | PP            |        0.10
       204366 | Rodrigo Coelho                      | SC       | PODE          |        0.02
-
+ 
