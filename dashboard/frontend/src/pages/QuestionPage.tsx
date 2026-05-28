@@ -176,7 +176,7 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
       </section>
 
       <WarningBanner warnings={payload.warnings} />
-  <ExecutiveCards cards={payload.summary_cards} />
+      {!isQ2 ? <ExecutiveCards cards={payload.summary_cards} /> : null}
 
       {payload.empty_state.is_empty ? (
         <NoDataState message={payload.empty_state.message} />
