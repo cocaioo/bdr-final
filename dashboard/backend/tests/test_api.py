@@ -79,7 +79,7 @@ def test_q2_payload_returns_wordcloud_images_and_consolidated_table() -> None:
     assert payload["chart_spec"]["type"] == "wordcloud_images"
     images = payload["chart_spec"]["options"]["images"]
     assert [item["year"] for item in images] == [2023, 2024, 2025, 2026]
-    assert all(str(item["src"]).endswith(".svg") for item in images)
+    assert all(str(item["src"]).endswith(".png") for item in images)
     assert payload["table_spec"]["title"].startswith("Tabela analitica")
     first_row = payload["table_spec"]["rows"][0]
     assert {

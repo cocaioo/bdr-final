@@ -18,17 +18,17 @@ class Q2Adapter(QuestionAdapter):
         images = [
             {
                 "year": year,
-                "src": f"/wordclouds/q2_nuvem_palavras_{year}.svg",
+                "src": f"/wordclouds/q2_nuvem_palavras_{year}.png",
                 "alt": f"Nuvem de palavras dos eixos tematicos em {year}",
             }
             for year in (2023, 2024, 2025, 2026)
         ]
         return ChartSpec(
             type="wordcloud_images",
-            title="Nuvens de palavras por ano",
+            title="Nuvens de eixos por ano",
             description=(
-                "Imagens SVG geradas a partir dos termos mais frequentes das proposicoes "
-                "classificadas por eixo tematico."
+                "Imagens PNG geradas com os eixos tematicos como termos e peso proporcional "
+                "a quantidade de proposicoes."
             ),
             series=[],
             options={"images": images},

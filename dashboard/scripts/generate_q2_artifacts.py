@@ -1,27 +1,31 @@
 from __future__ import annotations
 
-from collections import Counter, defaultdict
-from dataclasses import dataclass
-from html import escape
+import argparse
 import json
-from math import cos, sin, sqrt
 from pathlib import Path
-import random
 import re
 import unicodedata
 
 import pandas as pd
 
+try:
+    from wordcloud import WordCloud
+except ImportError as exc:  # pragma: no cover - exercised only without optional deps
+    WordCloud = None
+    WORDCLOUD_IMPORT_ERROR = exc
+else:
+    WORDCLOUD_IMPORT_ERROR = None
+
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = REPO_ROOT / "dados_padronizados"
 RESPONSES_DIR = REPO_ROOT / "respostas"
+ARTIFACTS_DIR = REPO_ROOT / "artifacts" / "q2"
 WORDCLOUD_DIR = REPO_ROOT / "dashboard" / "frontend" / "public" / "wordclouds"
 
 YEARS = (2023, 2024, 2025, 2026)
 WIDTH = 1280
 HEIGHT = 720
-MAX_WORDS = 86
 
 EIXO_BY_COD_TEMA = {
     44: "Social",
@@ -67,135 +71,56 @@ EIXO_COLORS = {
     "Infraestrutura e tecnologia": "#6A7FDB",
     "Cultura e sociedade": "#B7791F",
     "Internacional": "#5A6772",
-    "Outros": "#8D99AE",
 }
-
-STOPWORDS = {
-    "a",
-    "acerca",
-    "adiamento",
-    "altera",
-    "alteracao",
-    "alteraçao",
-    "ano",
-    "anos",
-    "apreciacao",
-    "aprova",
-    "aprovacao",
-    "art",
-    "autoriza",
-    "autorizacao",
-    "camara",
-    "codigo",
-    "com",
-    "comissao",
-    "congresso",
-    "constante",
-    "contra",
-    "da",
-    "das",
-    "de",
-    "dep",
-    "deputados",
-    "decreto",
-    "decretolei",
-    "dez",
-    "dia",
-    "diario",
-    "diretrizes",
-    "discussao",
-    "dispoe",
-    "dispor",
-    "do",
-    "dos",
-    "em",
-    "emenda",
-    "entre",
-    "estado",
-    "excelentissimo",
-    "exarado",
-    "federal",
-    "inclusao",
-    "informa",
-    "informacoes",
-    "institui",
-    "inversao",
-    "janeiro",
-    "lei",
-    "ltda",
-    "materia",
-    "medida",
-    "ministra",
-    "ministerio",
-    "ministro",
-    "mocao",
-    "nacional",
-    "nominal",
-    "nos",
-    "oficial",
-    "outorga",
-    "outras",
-    "para",
-    "parecer",
-    "pauta",
-    "pdl",
-    "pela",
-    "pelo",
-    "pelos",
-    "plenaria",
-    "plenario",
-    "portaria",
-    "presidente",
-    "prestados",
-    "projeto",
-    "promulgacao",
-    "providencias",
-    "publica",
-    "publicada",
-    "publicas",
-    "publico",
-    "publicos",
-    "que",
-    "radio",
-    "radiodifusao",
-    "realizacao",
-    "redacao",
-    "regime",
-    "regozijo",
-    "relator",
-    "relatora",
-    "renova",
-    "requer",
-    "requerimento",
-    "retirada",
-    "senado",
-    "senhor",
-    "sessao",
-    "solicita",
-    "sobre",
-    "submete",
-    "substitutivo",
-    "termos",
-    "uniao",
-    "votacao",
-}
-
-
-@dataclass(frozen=True)
-class PlacedWord:
-    token: str
-    frequencia: int
-    eixo: str
-    x: float
-    y: float
-    size: int
-    rotate: int
 
 
 def main() -> None:
+    args = parse_args()
+    selected_years = parse_selected_years(args)
+
+    ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
     WORDCLOUD_DIR.mkdir(parents=True, exist_ok=True)
     RESPONSES_DIR.mkdir(parents=True, exist_ok=True)
 
+    proposicoes, autores, deputados, temas = load_dataframes()
+    counts = build_eixo_counts(proposicoes, temas, selected_years)
+    consolidated = build_consolidated_counts(counts)
+
+    write_count_artifacts(counts, consolidated)
+    write_wordcloud_pngs(counts, consolidated, selected_years)
+
+    analytic_rows = build_analytic_rows(proposicoes, autores, deputados, temas, selected_years)
+    write_q2_response_files(analytic_rows, counts, consolidated, selected_years)
+    print_validation_summary(counts, consolidated, proposicoes, selected_years)
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Gera artefatos da Q2 usando os eixos tematicos como termos da nuvem."
+    )
+    parser.add_argument(
+        "--years",
+        help="Anos separados por virgula. Ex.: --years 2023,2024",
+    )
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Gera os artefatos para todos os anos suportados (2023-2026).",
+    )
+    return parser.parse_args()
+
+
+def parse_selected_years(args: argparse.Namespace) -> tuple[int, ...]:
+    if args.years:
+        years = tuple(int(year.strip()) for year in args.years.split(",") if year.strip())
+        invalid = sorted(set(years) - set(YEARS))
+        if invalid:
+            raise SystemExit(f"Anos invalidos para Q2: {', '.join(map(str, invalid))}")
+        return years
+    return YEARS
+
+
+def load_dataframes() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     proposicoes = pd.read_csv(
         DATA_DIR / "proposicoes.csv",
         sep=";",
@@ -205,9 +130,6 @@ def main() -> None:
             "ano_dados",
             "id_proposicao",
             "uri_proposicao",
-            "ementa",
-            "ementa_detalhada",
-            "keywords",
             "descricao_situacao",
         ],
     )
@@ -225,74 +147,155 @@ def main() -> None:
         encoding="utf-8",
         usecols=["id_deputado", "nome"],
     )
-    temas = pd.read_csv(
-        DATA_DIR / "proposicoes_temas.csv",
-        sep=";",
-        dtype=str,
-        encoding="utf-8",
-        usecols=["ano_dados", "uri_proposicao", "cod_tema"],
-    )
+    temas = pd.read_csv(DATA_DIR / "proposicoes_temas.csv", sep=";", dtype=str, encoding="utf-8")
 
     proposicoes["ano_dados"] = proposicoes["ano_dados"].astype(int)
     autores["ano_dados"] = autores["ano_dados"].astype(int)
     temas["ano_dados"] = temas["ano_dados"].astype(int)
-    temas["cod_tema_num"] = pd.to_numeric(temas["cod_tema"], errors="coerce").astype("Int64")
-    temas["eixo_maior"] = temas["cod_tema_num"].map(EIXO_BY_COD_TEMA).fillna("Outros")
-    temas = temas[temas["ano_dados"].isin(YEARS) & (temas["eixo_maior"] != "Outros")]
-
-    token_rows = build_word_counts(proposicoes, temas)
-    write_wordcloud_svgs(token_rows)
-
-    analytic_rows = build_analytic_rows(proposicoes, autores, deputados, temas)
-    write_q2_response_files(analytic_rows, token_rows)
+    temas["eixo_maior"] = map_eixos(temas)
+    temas = temas[temas["eixo_maior"].notna()].copy()
+    return proposicoes, autores, deputados, temas
 
 
-def build_word_counts(proposicoes: pd.DataFrame, temas: pd.DataFrame) -> list[dict[str, object]]:
-    eixo_lookup: dict[tuple[int, str], set[str]] = defaultdict(set)
-    for row in temas.itertuples(index=False):
-        eixo_lookup[(int(row.ano_dados), str(row.uri_proposicao))].add(str(row.eixo_maior))
+def map_eixos(temas: pd.DataFrame) -> pd.Series:
+    if "eixo" in temas.columns:
+        eixo = temas["eixo"].astype(str).str.strip()
+        return eixo.where(eixo.ne("") & eixo.ne("nan"))
 
-    totals: dict[int, Counter[str]] = {year: Counter() for year in YEARS}
-    by_eixo: dict[int, dict[str, Counter[str]]] = {
-        year: defaultdict(Counter) for year in YEARS
-    }
+    cod_tema = pd.to_numeric(temas["cod_tema"], errors="coerce").astype("Int64")
+    return cod_tema.map(EIXO_BY_COD_TEMA)
 
-    for row in proposicoes[proposicoes["ano_dados"].isin(YEARS)].itertuples(index=False):
-        year = int(row.ano_dados)
-        eixos = eixo_lookup.get((year, str(row.uri_proposicao)), set())
-        if not eixos:
-            continue
 
-        text = " ".join(
-            str(value)
-            for value in (row.ementa, row.ementa_detalhada, row.keywords)
-            if isinstance(value, str) and value != "nan"
+def build_eixo_counts(
+    proposicoes: pd.DataFrame, temas: pd.DataFrame, selected_years: tuple[int, ...]
+) -> pd.DataFrame:
+    scoped_props = proposicoes[
+        proposicoes["ano_dados"].isin(selected_years)
+    ][["ano_dados", "uri_proposicao"]].drop_duplicates()
+    scoped_themes = temas[temas["ano_dados"].isin(selected_years)][
+        ["ano_dados", "uri_proposicao", "eixo_maior"]
+    ].drop_duplicates()
+
+    base = scoped_props.merge(scoped_themes, on=["ano_dados", "uri_proposicao"], how="inner")
+    counts = (
+        base.drop_duplicates(["ano_dados", "uri_proposicao", "eixo_maior"])
+        .groupby(["ano_dados", "eixo_maior"], as_index=False)
+        .agg(count=("uri_proposicao", "nunique"))
+        .rename(columns={"ano_dados": "year", "eixo_maior": "eixo"})
+        .sort_values(["year", "count", "eixo"], ascending=[True, False, True])
+    )
+    return counts
+
+
+def build_consolidated_counts(counts: pd.DataFrame) -> pd.DataFrame:
+    return (
+        counts.groupby("eixo", as_index=False)
+        .agg(count=("count", "sum"))
+        .sort_values(["count", "eixo"], ascending=[False, True])
+    )
+
+
+def write_count_artifacts(counts: pd.DataFrame, consolidated: pd.DataFrame) -> None:
+    counts.to_csv(ARTIFACTS_DIR / "eixos_counts_by_year.csv", index=False, encoding="utf-8")
+    consolidated.to_csv(ARTIFACTS_DIR / "eixos_consolidado.csv", index=False, encoding="utf-8")
+
+    (ARTIFACTS_DIR / "eixos_counts_by_year.json").write_text(
+        json.dumps(counts.to_dict(orient="records"), ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    (ARTIFACTS_DIR / "eixos_consolidado.json").write_text(
+        json.dumps(consolidated.to_dict(orient="records"), ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def write_wordcloud_pngs(
+    counts: pd.DataFrame, consolidated: pd.DataFrame, selected_years: tuple[int, ...]
+) -> None:
+    if WordCloud is None:
+        raise SystemExit(
+            "Dependencia ausente: instale 'wordcloud' para gerar as imagens PNG. "
+            f"Erro original: {WORDCLOUD_IMPORT_ERROR}"
         )
-        tokens = list(tokenize(text))
-        if not tokens:
+
+    manifest = []
+    for year in selected_years:
+        freqs = dict(
+            zip(
+                counts.loc[counts["year"].eq(year), "eixo"],
+                counts.loc[counts["year"].eq(year), "count"],
+            )
+        )
+        if not freqs:
             continue
 
-        totals[year].update(tokens)
-        unique_tokens = set(tokens)
-        for eixo in eixos:
-            by_eixo[year][eixo].update(unique_tokens)
+        artifact_path = ARTIFACTS_DIR / f"nuvem_{year}.png"
+        public_path = WORDCLOUD_DIR / f"q2_nuvem_palavras_{year}.png"
+        render_wordcloud(freqs, f"Nuvem de eixos tematicos - {year}", artifact_path, seed=year)
+        render_wordcloud(freqs, f"Nuvem de eixos tematicos - {year}", public_path, seed=year)
+        manifest.append({"year": year, "src": f"/wordclouds/{public_path.name}"})
 
-    rows: list[dict[str, object]] = []
-    for year in YEARS:
-        for token, frequencia in totals[year].most_common(200):
-            eixo_counter = Counter(
-                {eixo: counter[token] for eixo, counter in by_eixo[year].items()}
-            )
-            eixo_dominante = eixo_counter.most_common(1)[0][0] if eixo_counter else "Outros"
-            rows.append(
-                {
-                    "ano_dados": year,
-                    "token": token,
-                    "frequencia": frequencia,
-                    "eixo_dominante": eixo_dominante,
-                }
-            )
-    return rows
+    consolidated_freqs = dict(zip(consolidated["eixo"], consolidated["count"]))
+    render_wordcloud(
+        consolidated_freqs,
+        "Nuvem de eixos tematicos - consolidado 2023-2026",
+        ARTIFACTS_DIR / "nuvem_consolidado.png",
+        seed=20232026,
+    )
+    render_wordcloud(
+        consolidated_freqs,
+        "Nuvem de eixos tematicos - consolidado 2023-2026",
+        WORDCLOUD_DIR / "q2_nuvem_palavras_consolidado.png",
+        seed=20232026,
+    )
+
+    (WORDCLOUD_DIR / "q2_manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def render_wordcloud(freqs: dict[str, int], title: str, path: Path, seed: int) -> None:
+    wordcloud = WordCloud(
+        width=WIDTH,
+        height=HEIGHT,
+        background_color="white",
+        color_func=color_for_eixo,
+        prefer_horizontal=0.92,
+        relative_scaling=0.65,
+        random_state=seed,
+        collocations=False,
+        normalize_plurals=False,
+        min_font_size=18,
+        max_font_size=132,
+        margin=16,
+        font_path=find_font_path(),
+    ).generate_from_frequencies(freqs)
+
+    wordcloud.to_file(str(path))
+
+
+def color_for_eixo(
+    word: str,
+    font_size: int,
+    position: tuple[int, int],
+    orientation: int | None,
+    random_state: object | None = None,
+    **kwargs: object,
+) -> str:
+    return EIXO_COLORS.get(word, "#5A6772")
+
+
+def find_font_path() -> str | None:
+    candidates = [
+        Path("C:/Windows/Fonts/arial.ttf"),
+        Path("C:/Windows/Fonts/segoeui.ttf"),
+        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return str(candidate)
+    return None
 
 
 def build_analytic_rows(
@@ -300,14 +303,15 @@ def build_analytic_rows(
     autores: pd.DataFrame,
     deputados: pd.DataFrame,
     temas: pd.DataFrame,
+    selected_years: tuple[int, ...],
 ) -> list[dict[str, object]]:
     prop_status = proposicoes[
-        proposicoes["ano_dados"].isin(YEARS)
+        proposicoes["ano_dados"].isin(selected_years)
     ][["ano_dados", "id_proposicao", "uri_proposicao", "descricao_situacao"]].copy()
     prop_status["aprovada"] = prop_status["descricao_situacao"].map(is_approved)
 
     autoria = autores[
-        autores["ano_dados"].isin(YEARS)
+        autores["ano_dados"].isin(selected_years)
         & autores["id_deputado"].notna()
         & (autores["id_deputado"].str.strip() != "")
     ][["ano_dados", "id_proposicao", "uri_proposicao", "id_deputado", "nome_autor"]].copy()
@@ -375,135 +379,30 @@ def build_analytic_rows(
     return rows
 
 
-def write_wordcloud_svgs(token_rows: list[dict[str, object]]) -> None:
-    rows_by_year: dict[int, list[dict[str, object]]] = {year: [] for year in YEARS}
-    for row in token_rows:
-        rows_by_year[int(row["ano_dados"])].append(row)
-
-    manifest = []
-    for year in YEARS:
-        selected = rows_by_year[year][:MAX_WORDS]
-        placed = layout_words(selected, seed=year)
-        svg = render_svg(year, placed)
-        filename = f"q2_nuvem_palavras_{year}.svg"
-        (WORDCLOUD_DIR / filename).write_text(svg, encoding="utf-8")
-        manifest.append({"year": year, "src": f"/wordclouds/{filename}"})
-
-    manifest_text = json.dumps(manifest, ensure_ascii=False, indent=2)
-    (WORDCLOUD_DIR / "q2_manifest.json").write_text(manifest_text, encoding="utf-8")
-
-
-def layout_words(rows: list[dict[str, object]], seed: int) -> list[PlacedWord]:
-    rng = random.Random(seed)
-    frequencies = [int(row["frequencia"]) for row in rows]
-    min_freq = min(frequencies) if frequencies else 1
-    max_freq = max(frequencies) if frequencies else 1
-    boxes: list[tuple[float, float, float, float]] = []
-    placed: list[PlacedWord] = []
-
-    for row in rows:
-        token = str(row["token"])
-        freq = int(row["frequencia"])
-        if max_freq == min_freq:
-            size = 30
-        else:
-            scaled = (sqrt(freq) - sqrt(min_freq)) / max(sqrt(max_freq) - sqrt(min_freq), 0.001)
-            size = int(18 + scaled * 62)
-
-        rotate = 0 if rng.random() > 0.16 or size > 48 else -12
-        width = max(24, len(token) * size * (0.56 if rotate == 0 else 0.62))
-        height = size * (1.05 if rotate == 0 else 1.35)
-
-        x, y = find_position(width, height, boxes, rng)
-        if x is None or y is None:
-            continue
-
-        boxes.append((x - width / 2, y - height / 2, x + width / 2, y + height / 2))
-        placed.append(
-            PlacedWord(
-                token=token,
-                frequencia=freq,
-                eixo=str(row["eixo_dominante"]),
-                x=x,
-                y=y,
-                size=size,
-                rotate=rotate,
-            )
-        )
-    return placed
-
-
-def find_position(
-    width: float,
-    height: float,
-    boxes: list[tuple[float, float, float, float]],
-    rng: random.Random,
-) -> tuple[float | None, float | None]:
-    center_x = WIDTH / 2
-    center_y = HEIGHT / 2 + 16
-    max_radius = 475
-
-    for step in range(900):
-        angle = step * 0.38
-        radius = 6 + step * 0.58
-        x = center_x + radius * rng.choice((0.96, 1.0, 1.04)) * cos(angle)
-        y = center_y + radius * 0.58 * sin(angle)
-        x += rng.uniform(-5, 5)
-        y += rng.uniform(-5, 5)
-
-        box = (x - width / 2, y - height / 2, x + width / 2, y + height / 2)
-        if box[0] < 34 or box[1] < 92 or box[2] > WIDTH - 34 or box[3] > HEIGHT - 78:
-            if radius > max_radius:
-                break
-            continue
-        if any(overlaps(box, other) for other in boxes):
-            continue
-        return x, y
-    return None, None
-
-
-def render_svg(year: int, words: list[PlacedWord]) -> str:
-    legend_items = "".join(
-        f'<g transform="translate({54 + idx * 148},656)">'
-        f'<rect width="14" height="14" rx="3" fill="{color}"/>'
-        f'<text x="20" y="12" class="legend">{escape(short_label(eixo))}</text>'
-        f"</g>"
-        for idx, (eixo, color) in enumerate(EIXO_COLORS.items())
-        if eixo != "Outros"
-    )
-    word_items = "\n".join(
-        f'<text x="{word.x:.1f}" y="{word.y:.1f}" text-anchor="middle" '
-        f'class="word" font-size="{word.size}" fill="{EIXO_COLORS.get(word.eixo, EIXO_COLORS["Outros"])}" '
-        f'transform="rotate({word.rotate} {word.x:.1f} {word.y:.1f})">'
-        f"<title>{escape(word.eixo)} - {word.frequencia} ocorrencias</title>"
-        f"{escape(word.token)}</text>"
-        for word in words
-    )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">
-  <title id="title">Nuvem de palavras por eixo tematico - {year}</title>
-  <desc id="desc">Termos mais frequentes em proposicoes com temas classificados por eixo no ano de {year}.</desc>
-  <style>
-    .bg {{ fill: #fffdf8; }}
-    .title {{ font: 700 30px Sora, Arial, sans-serif; fill: #0b3c5d; }}
-    .subtitle {{ font: 500 15px 'Source Sans 3', Arial, sans-serif; fill: #52606d; }}
-    .word {{ font-family: Sora, 'Source Sans 3', Arial, sans-serif; font-weight: 700; }}
-    .legend {{ font: 600 13px 'Source Sans 3', Arial, sans-serif; fill: #52606d; }}
-  </style>
-  <rect class="bg" width="{WIDTH}" height="{HEIGHT}" rx="0"/>
-  <text x="54" y="48" class="title">Nuvem de palavras - {year}</text>
-  <text x="54" y="75" class="subtitle">Cor indica o eixo tematico dominante do termo no ano.</text>
-  {word_items}
-  {legend_items}
-</svg>
-"""
-
-
 def write_q2_response_files(
-    analytic_rows: list[dict[str, object]], token_rows: list[dict[str, object]]
+    analytic_rows: list[dict[str, object]],
+    counts: pd.DataFrame,
+    consolidated: pd.DataFrame,
+    selected_years: tuple[int, ...],
 ) -> None:
+    count_rows = [
+        {
+            "year": int(row.year),
+            "eixo": str(row.eixo),
+            "count": int(row.count),
+        }
+        for row in counts.itertuples(index=False)
+    ]
+    consolidated_rows = [
+        {
+            "eixo": str(row.eixo),
+            "count": int(row.count),
+        }
+        for row in consolidated.itertuples(index=False)
+    ]
     summary_rows = [
         {
-            "periodo": "2023-2026",
+            "periodo": format_period(selected_years),
             "deputados": len({row["id_deputado"] for row in analytic_rows}),
             "eixos": len({row["eixo_maior"] for row in analytic_rows}),
             "registros_deputado_eixo": len(analytic_rows),
@@ -520,23 +419,28 @@ def write_q2_response_files(
         "maior_atuacao_no_eixo",
         "eixo_mais_atuante_deputado",
     ]
-    token_columns = ["ano_dados", "token", "frequencia", "eixo_dominante"]
 
     main_text = "\n".join(
         [
-            "Q2 - eixos tematicos, nuvens de palavras e atuacao parlamentar",
+            "Q2 - eixos tematicos, nuvens de eixos e atuacao parlamentar",
             render_table("Resumo executivo - periodo consolidado", summary_rows, list(summary_rows[0].keys())),
             "",
             render_table(
-                "Tabela analitica - deputados por eixo tematico (2023-2026)",
+                f"Tabela analitica - deputados por eixo tematico ({format_period(selected_years)})",
                 analytic_rows,
                 main_columns,
             ),
             "",
             render_table(
-                "Q2.2 - termos para nuvens de palavras por ano",
-                token_rows,
-                token_columns,
+                "Q2.2 - contagem de proposicoes por eixo por ano",
+                count_rows,
+                ["year", "eixo", "count"],
+            ),
+            "",
+            render_table(
+                "Q2.3 - contagem consolidada de proposicoes por eixo",
+                consolidated_rows,
+                ["eixo", "count"],
             ),
             "",
         ]
@@ -554,26 +458,48 @@ def write_q2_response_files(
         for row in analytic_rows
         if row["maior_atuacao_no_eixo"] == "Sim"
     ]
-    top_columns = [
-        "id_deputado",
-        "nome",
-        "eixo_mais_atuante",
-        "qtd_proposicoes",
-        "proposicoes_aprovadas",
-    ]
     complement_text = "\n".join(
         [
-            "Q2 complemento - eixo mais atuante por deputado no periodo 2023-2026",
+            f"Q2 complemento - eixo mais atuante por deputado no periodo {format_period(selected_years)}",
             render_table(
                 "Eixo mais atuante por deputado - consolidado",
                 top_rows,
-                top_columns,
+                [
+                    "id_deputado",
+                    "nome",
+                    "eixo_mais_atuante",
+                    "qtd_proposicoes",
+                    "proposicoes_aprovadas",
+                ],
             ),
             "",
         ]
     )
     (RESPONSES_DIR / "q2_eixo_nuvens_complemento.txt").write_text(
         complement_text, encoding="utf-8"
+    )
+
+
+def print_validation_summary(
+    counts: pd.DataFrame,
+    consolidated: pd.DataFrame,
+    proposicoes: pd.DataFrame,
+    selected_years: tuple[int, ...],
+) -> None:
+    print("Q2 - artefatos gerados")
+    print(f"Anos: {', '.join(map(str, selected_years))}")
+    print(f"Proposicoes lidas no periodo: {count_loaded_propositions(proposicoes, selected_years)}")
+    print(f"Total ano/eixo contabilizado: {int(counts['count'].sum())}")
+    print("Top 10 eixos no consolidado:")
+    for row in consolidated.head(10).itertuples(index=False):
+        print(f"- {row.eixo}: {int(row.count)}")
+    print(f"Artefatos CSV/JSON/PNG: {ARTIFACTS_DIR}")
+    print(f"Imagens servidas pelo front-end: {WORDCLOUD_DIR}")
+
+
+def count_loaded_propositions(proposicoes: pd.DataFrame, selected_years: tuple[int, ...]) -> int:
+    return int(
+        proposicoes.loc[proposicoes["ano_dados"].isin(selected_years), "uri_proposicao"].nunique()
     )
 
 
@@ -598,15 +524,10 @@ def format_value(value: object) -> str:
     return str(value)
 
 
-def tokenize(text: str):
-    for raw in re.findall(r"[A-Za-zÀ-ÿ0-9]{3,}", text.lower()):
-        token = raw.strip("_")
-        normalized = normalize_token(token)
-        if len(normalized) < 3 or normalized in STOPWORDS:
-            continue
-        if normalized.isdigit():
-            continue
-        yield token
+def format_period(selected_years: tuple[int, ...]) -> str:
+    if len(selected_years) == 1:
+        return str(selected_years[0])
+    return f"{min(selected_years)}-{max(selected_years)}"
 
 
 def normalize_token(value: str) -> str:
@@ -632,28 +553,6 @@ def is_approved(value: object) -> bool:
         "promulgada",
     }
     return normalized in approved
-
-
-def overlaps(
-    first: tuple[float, float, float, float],
-    second: tuple[float, float, float, float],
-) -> bool:
-    padding = 4
-    return not (
-        first[2] + padding < second[0]
-        or first[0] - padding > second[2]
-        or first[3] + padding < second[1]
-        or first[1] - padding > second[3]
-    )
-
-
-def short_label(eixo: str) -> str:
-    return {
-        "Institucional e juridico": "Institucional",
-        "Ambiental e energetico": "Ambiental",
-        "Infraestrutura e tecnologia": "Infraestrutura",
-        "Cultura e sociedade": "Cultura",
-    }.get(eixo, eixo)
 
 
 if __name__ == "__main__":
