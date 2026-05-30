@@ -69,3 +69,5 @@ def get_question(
         return service.get_question_payload(question_id=question_id, state=state)
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc

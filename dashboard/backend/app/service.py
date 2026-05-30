@@ -10,7 +10,7 @@ from typing import Any
 from .adapters import build_adapter
 from .adapters.base import AdapterContext
 from .cache import MemoryCache
-from .config import REGISTRY_PATH, RESPONSES_DIR, SQL_DIR
+from .config import REPO_ROOT, REGISTRY_PATH, RESPONSES_DIR, SQL_DIR
 from .filter_engine import FilterState
 from .models import FilterCatalog, FilterChoice, MetaResponse, QuestionMeta, QuestionPayload
 from .parser import ParsedDocument, parse_psql_file, read_text_with_fallback
@@ -26,8 +26,18 @@ class DataBundle:
 
 
 class DashboardService:
-    def __init__(self) -> None:
-        self.registry: QuestionRegistry = load_registry(REGISTRY_PATH)
+    def __init__(
+        self,
+        registry_path: Path = REGISTRY_PATH,
+        responses_dir: Path = RESPONSES_DIR,
+        sql_dir: Path = SQL_DIR,
+        repo_root: Path = REPO_ROOT,
+    ) -> None:
+        self.registry_path = registry_path
+        self.responses_dir = responses_dir
+        self.sql_dir = sql_dir
+        self.repo_root = repo_root
+        self.registry: QuestionRegistry = load_registry(self.registry_path)
         self.cache = MemoryCache(ttl_seconds=300)
 
     def get_meta(self) -> MetaResponse:
@@ -90,9 +100,13 @@ class DashboardService:
         hash_builder = hashlib.sha256()
         for question in self.registry.questions:
             for response_name in question.response_files:
-                response_path = RESPONSES_DIR / response_name
-                _update_hash_with_file(hash_builder, response_path)
-            sql_path = SQL_DIR / question.sql_file
+                response_path = self._resolve_response_path(response_name, allow_missing=True)
+                if response_path is not None:
+                    _update_hash_with_file(hash_builder, response_path)
+                else:
+                    hash_builder.update(response_name.encode("utf-8"))
+                    hash_builder.update(b"missing")
+            sql_path = self.sql_dir / question.sql_file
             _update_hash_with_file(hash_builder, sql_path)
         digest = hash_builder.hexdigest()
         return digest[:16]
@@ -100,25 +114,17 @@ class DashboardService:
     def _load_question_bundle(self, question: QuestionDefinition) -> DataBundle:
         docs: list[ParsedDocument] = []
         for file_name in question.response_files:
-            file_path = RESPONSES_DIR / file_name
-            if not file_path.exists():
-                docs.append(
-                    ParsedDocument(
-                        title=f"Arquivo ausente: {file_name}",
-                        tables=[],
-                    )
-                )
-                continue
+            file_path = self._resolve_response_path(file_name)
             docs.append(parse_psql_file(file_path))
 
-        sql_path = SQL_DIR / question.sql_file
+        sql_path = self.sql_dir / question.sql_file
         sql_text = read_text_with_fallback(sql_path) if sql_path.exists() else "-- SQL nao encontrado"
 
         return DataBundle(
             question=question,
             documents=docs,
             sql_text=sql_text,
-            sql_path=str(sql_path.relative_to(SQL_DIR.parent.parent)),
+            sql_path=_relative_path(sql_path, self.repo_root),
         )
 
     def _collect_global_filters(self) -> FilterCatalog:
@@ -134,7 +140,10 @@ class DashboardService:
         deputados: set[str] = set()
 
         for question in self.registry.questions:
-            bundle = self._load_question_bundle(question)
+            try:
+                bundle = self._load_question_bundle(question)
+            except FileNotFoundError:
+                continue
             for doc in bundle.documents:
                 for table in doc.tables:
                     for row in table.rows:
@@ -144,8 +153,7 @@ class DashboardService:
                         _maybe_add(eixos, row.get("eixo_mais_atuante"))
                         _maybe_add(partidos, row.get("sigla_partido"))
                         _maybe_add(ufs, row.get("sigla_uf"))
-                        _maybe_add(deputados, row.get("nome"))
-                        _maybe_add(deputados, row.get("id_deputado"))
+                        _maybe_add(deputados, row.get("nome") or row.get("id_deputado"))
 
         catalog = FilterCatalog(
             anos=[FilterChoice(value=item, label=item) for item in sorted(anos)],
@@ -156,6 +164,61 @@ class DashboardService:
         )
         self.cache.set(cache_key, catalog)
         return catalog
+
+    def _resolve_response_path(
+        self,
+        response_ref: str,
+        allow_missing: bool = False,
+    ) -> Path | None:
+        requested = Path(response_ref)
+        candidates: list[Path] = []
+
+        if requested.is_absolute():
+            candidates.append(requested)
+        else:
+            candidates.append((self.repo_root / requested).resolve())
+            candidates.append((self.responses_dir / requested).resolve())
+            if requested.name != response_ref:
+                candidates.append((self.responses_dir / requested.name).resolve())
+                candidates.append((self.repo_root / requested.name).resolve())
+
+        if not requested.is_absolute() and requested.name:
+            for candidate in self._search_repo_for_filename(requested.name):
+                candidates.append(candidate)
+
+        unique_candidates: list[Path] = []
+        seen: set[str] = set()
+        for candidate in candidates:
+            candidate_key = str(candidate)
+            if candidate_key in seen:
+                continue
+            seen.add(candidate_key)
+            unique_candidates.append(candidate)
+
+        for candidate in unique_candidates:
+            if candidate.exists():
+                return candidate
+
+        if allow_missing:
+            return None
+
+        attempted = " | ".join(str(candidate) for candidate in unique_candidates)
+        raise FileNotFoundError(
+            f"Arquivo de resposta nao encontrado para '{response_ref}'. Caminhos tentados: {attempted}"
+        )
+
+    def _search_repo_for_filename(self, filename: str) -> list[Path]:
+        matches: list[Path] = []
+        for candidate in self.repo_root.rglob(filename):
+            if candidate.is_file():
+                matches.append(candidate.resolve())
+
+        def sort_key(path: Path) -> tuple[int, int, str]:
+            parts = path.parts
+            legacy_penalty = 1 if self.responses_dir.name in parts else 0
+            return (legacy_penalty, len(parts), str(path).lower())
+
+        return sorted(matches, key=sort_key)
 
     @staticmethod
     def _state_cache_key(state: FilterState) -> str:
@@ -199,4 +262,11 @@ def _maybe_add(container: set[str], value: Any, excluded: set[str] | None = None
         return
     if text:
         container.add(text)
+
+
+def _relative_path(path: Path, base_dir: Path) -> str:
+    try:
+        return str(path.relative_to(base_dir))
+    except ValueError:
+        return str(path)
 

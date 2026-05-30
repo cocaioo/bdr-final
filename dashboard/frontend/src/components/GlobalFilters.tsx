@@ -32,85 +32,73 @@ export function GlobalFilters({
   return (
     <section className="filter-panel">
       <div className="filter-grid">
-        <label className="filter-item">
-          <span>Ano</span>
-          <select
-            multiple
-            value={value.anos}
-            onChange={(event) => setList('anos', readSelectedValues(event.target))}
-            disabled={!isEnabled(supportedFilters, 'anos')}
-          >
-            {catalog.anos.map((choice) => (
-              <option key={choice.value} value={choice.value}>
-                {choice.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        {isEnabled(supportedFilters, 'anos') && (
+          <label className="filter-item">
+            <span>Ano</span>
+            <select
+              multiple
+              value={value.anos}
+              onChange={(event) => setList('anos', readSelectedValues(event.target))}
+            >
+              {catalog.anos.map((choice) => (
+                <option key={choice.value} value={choice.value}>
+                  {choice.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
 
-        <label className="filter-item">
-          <span>Eixo</span>
-          <select
-            multiple
-            value={value.eixos}
-            onChange={(event) => setList('eixos', readSelectedValues(event.target))}
-            disabled={!isEnabled(supportedFilters, 'eixos')}
-          >
-            {catalog.eixos.map((choice) => (
-              <option key={choice.value} value={choice.value}>
-                {choice.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        {isEnabled(supportedFilters, 'eixos') && (
+          <label className="filter-item">
+            <span>Eixo</span>
+            <select
+              multiple
+              value={value.eixos}
+              onChange={(event) => setList('eixos', readSelectedValues(event.target))}
+            >
+              {catalog.eixos.map((choice) => (
+                <option key={choice.value} value={choice.value}>
+                  {choice.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
 
-        <label className="filter-item">
-          <span>Partido</span>
-          <select
-            multiple
-            value={value.partidos}
-            onChange={(event) => setList('partidos', readSelectedValues(event.target))}
-            disabled={!isEnabled(supportedFilters, 'partidos')}
-          >
-            {catalog.partidos.map((choice) => (
-              <option key={choice.value} value={choice.value}>
-                {choice.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        {isEnabled(supportedFilters, 'partidos') && (
+          <label className="filter-item">
+            <span>Partido</span>
+            <select
+              multiple
+              value={value.partidos}
+              onChange={(event) => setList('partidos', readSelectedValues(event.target))}
+            >
+              {catalog.partidos.map((choice) => (
+                <option key={choice.value} value={choice.value}>
+                  {choice.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
 
-        <label className="filter-item">
-          <span>UF</span>
-          <select
-            multiple
-            value={value.ufs}
-            onChange={(event) => setList('ufs', readSelectedValues(event.target))}
-            disabled={!isEnabled(supportedFilters, 'ufs')}
-          >
-            {catalog.ufs.map((choice) => (
-              <option key={choice.value} value={choice.value}>
-                {choice.label}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label className="filter-item">
-          <span>Deputado</span>
-          <select
-            multiple
-            value={value.deputados}
-            onChange={(event) => setList('deputados', readSelectedValues(event.target))}
-            disabled={!isEnabled(supportedFilters, 'deputados')}
-          >
-            {catalog.deputados.slice(0, 1000).map((choice) => (
-              <option key={choice.value} value={choice.value}>
-                {choice.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        {isEnabled(supportedFilters, 'ufs') && (
+          <label className="filter-item">
+            <span>UF</span>
+            <select
+              multiple
+              value={value.ufs}
+              onChange={(event) => setList('ufs', readSelectedValues(event.target))}
+            >
+              {catalog.ufs.map((choice) => (
+                <option key={choice.value} value={choice.value}>
+                  {choice.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
       </div>
       <label className="filter-search">
         <span>Busca textual no ranking</span>
