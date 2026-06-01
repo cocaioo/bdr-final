@@ -1,8 +1,6 @@
 \o /respostas/q1_gastos_deputados.txt
 \qecho Ranking global - todos os anos
--- Regra de partido/UF no ranking global:
--- usa o perfil dominante nas despesas do deputado (maior ocorrencia de registros),
--- com desempate por maior gasto no partido e, por fim, ordem alfabetica.
+
 WITH gastos_totais AS (
     SELECT
         id_deputado,
