@@ -1,6 +1,6 @@
 import type { FilterState, MetaResponse, QuestionPayload, TableState } from './types'
 
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+const API_BASE = import.meta.env.VITE_API_URL ?? ''
 
 function buildQuery(params: Record<string, string | number | undefined | string[]>) {
   const query = new URLSearchParams()

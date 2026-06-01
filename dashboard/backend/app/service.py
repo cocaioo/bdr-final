@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+import time
 from typing import Any
 
 from .adapters import build_adapter
@@ -25,6 +26,12 @@ class DataBundle:
     sql_path: str
 
 
+_EXCLUDED_DIRS = frozenset({
+    "venv", ".venv", ".git", "node_modules", "__pycache__",
+    ".pytest_cache", "dist", ".tox", ".mypy_cache",
+})
+
+
 class DashboardService:
     def __init__(
         self,
@@ -39,6 +46,8 @@ class DashboardService:
         self.repo_root = repo_root
         self.registry: QuestionRegistry = load_registry(self.registry_path)
         self.cache = MemoryCache(ttl_seconds=300)
+        self._version_cache: tuple[float, str] | None = None
+        self._version_cache_ttl = 60.0
 
     def get_meta(self) -> MetaResponse:
         version = self.get_dataset_version()
@@ -97,6 +106,12 @@ class DashboardService:
         return payload
 
     def get_dataset_version(self) -> str:
+        now = time.monotonic()
+        if self._version_cache is not None:
+            cached_time, cached_version = self._version_cache
+            if now - cached_time < self._version_cache_ttl:
+                return cached_version
+
         hash_builder = hashlib.sha256()
         for question in self.registry.questions:
             for response_name in question.response_files:
@@ -108,8 +123,9 @@ class DashboardService:
                     hash_builder.update(b"missing")
             sql_path = self.sql_dir / question.sql_file
             _update_hash_with_file(hash_builder, sql_path)
-        digest = hash_builder.hexdigest()
-        return digest[:16]
+        digest = hash_builder.hexdigest()[:16]
+        self._version_cache = (now, digest)
+        return digest
 
     def _load_question_bundle(self, question: QuestionDefinition) -> DataBundle:
         docs: list[ParsedDocument] = []
@@ -182,27 +198,27 @@ class DashboardService:
                 candidates.append((self.responses_dir / requested.name).resolve())
                 candidates.append((self.repo_root / requested.name).resolve())
 
-        if not requested.is_absolute() and requested.name:
-            for candidate in self._search_repo_for_filename(requested.name):
-                candidates.append(candidate)
-
-        unique_candidates: list[Path] = []
+        # Try direct candidates first (fast — no directory traversal)
         seen: set[str] = set()
         for candidate in candidates:
-            candidate_key = str(candidate)
-            if candidate_key in seen:
+            key = str(candidate)
+            if key in seen:
                 continue
-            seen.add(candidate_key)
-            unique_candidates.append(candidate)
-
-        for candidate in unique_candidates:
+            seen.add(key)
             if candidate.exists():
                 return candidate
+
+        # Only fall back to rglob if no direct candidate was found
+        if not requested.is_absolute() and requested.name:
+            for candidate in self._search_repo_for_filename(requested.name):
+                if candidate.exists():
+                    return candidate
 
         if allow_missing:
             return None
 
-        attempted = " | ".join(str(candidate) for candidate in unique_candidates)
+        unique = [c for c in candidates if str(c) in seen]
+        attempted = " | ".join(str(c) for c in unique)
         raise FileNotFoundError(
             f"Arquivo de resposta nao encontrado para '{response_ref}'. Caminhos tentados: {attempted}"
         )
@@ -210,6 +226,8 @@ class DashboardService:
     def _search_repo_for_filename(self, filename: str) -> list[Path]:
         matches: list[Path] = []
         for candidate in self.repo_root.rglob(filename):
+            if any(part in _EXCLUDED_DIRS for part in candidate.parts):
+                continue
             if candidate.is_file():
                 matches.append(candidate.resolve())
 
@@ -245,13 +263,9 @@ def _update_hash_with_file(hash_builder: hashlib._Hash, path: Path) -> None:
     if not path.exists():
         hash_builder.update(b"missing")
         return
-    hash_builder.update(str(path.stat().st_mtime_ns).encode("utf-8"))
-    with path.open("rb") as file:
-        while True:
-            chunk = file.read(1024 * 64)
-            if not chunk:
-                break
-            hash_builder.update(chunk)
+    stat = path.stat()
+    hash_builder.update(str(stat.st_mtime_ns).encode("utf-8"))
+    hash_builder.update(str(stat.st_size).encode("utf-8"))
 
 
 def _maybe_add(container: set[str], value: Any, excluded: set[str] | None = None) -> None:
