@@ -83,6 +83,8 @@ class FilterEngine:
         normalized = {value.strip().lower() for value in allowed_values if value.strip()}
         if not normalized:
             return rows
+        if not any(any(column in row for column in columns) for row in rows):
+            return rows
         output: list[dict[str, Any]] = []
         for row in rows:
             for column in columns:
@@ -102,6 +104,8 @@ class FilterEngine:
     ) -> list[dict[str, Any]]:
         normalized = {value.strip().lower() for value in allowed_values if value.strip()}
         if not normalized:
+            return rows
+        if not any(("id_deputado" in row) or ("nome" in row) for row in rows):
             return rows
         output: list[dict[str, Any]] = []
         for row in rows:

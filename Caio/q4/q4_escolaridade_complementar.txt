@@ -1,0 +1,643 @@
+      escolaridade       | id_deputado |                nome                 
+-------------------------+-------------+-------------------------------------
+ Doutorado               |      204528 | Adriana Ventura
+ Doutorado               |      204503 | Alexandre Padilha
+ Doutorado               |      220632 | Ana Pimentel
+ Doutorado               |      229106 | Carla Ayres
+ Doutorado               |      206018 | Célia Xakriabá
+ Doutorado               |      204496 | Celso Sabino
+ Doutorado               |      204512 | Delegado Marcelo Freitas
+ Doutorado               |      220614 | Dr. Daniel Soranz
+ Doutorado               |      132504 | Enio Verri
+ Doutorado               |      204473 | General Girão
+ Doutorado               |      178857 | Jorge Solla
+ Doutorado               |      178866 | Luizianne Lins
+ Doutorado               |      220648 | Marangoni
+ Doutorado               |      204486 | Mauro Benevides Filho
+ Doutorado               |      178997 | Moses Rodrigues
+ Doutorado               |      234310 | Ricardo Galvão
+ Doutorado               |      104552 | Socorro Neri
+ Doutorado               |      220598 | Tarcísio Motta
+ Doutorado Incompleto    |      220686 | Duarte Jr.
+ Doutorado Incompleto    |       98057 | Lafayette de Andrada
+ Doutorado Incompleto    |      220609 | Maurício Carvalho
+ Doutorado Incompleto    |      220580 | Professora Goreth
+ Doutorado Incompleto    |      220606 | Reimont
+ Doutorado Incompleto    |       77003 | Sergio Santos Rodrigues
+ Doutorado Incompleto    |      160569 | Waldenor Pereira
+ Ensino Fundamental      |      204495 | Airton Faleiro
+ Ensino Fundamental      |      220692 | Dal Barreto
+ Ensino Fundamental      |      229585 | Elisangela Araujo
+ Ensino Fundamental      |      161550 | Emidinho Madeira
+ Ensino Fundamental      |      220531 | Gilvan Maximo
+ Ensino Fundamental      |      220600 | Lebrão
+ Ensino Fundamental      |      166402 | Magda Mofatto
+ Ensino Fundamental      |      204489 | Robério Monteiro
+ Ensino Fundamental      |      204387 | Sargento Fahur
+ Ensino Fundamental      |      160976 | Tiririca
+ Ensino Fundamental      |      160610 | Valmir Assunção
+ Ensino Fundamental      |      220592 | Zezinho Barbary
+ Ensino Médio            |      121948 | Adriano do Baldy
+ Ensino Médio            |      204571 | Alex Santana
+ Ensino Médio            |      221148 | Alfredinho
+ Ensino Médio            |      220612 | Bebeto
+ Ensino Médio            |      204476 | Chiquinho Brazão
+ Ensino Médio            |      220665 | Clarissa Tércio
+ Ensino Médio            |      220571 | Daniel Agrobom
+ Ensino Médio            |      160552 | Danrlei de Deus Hinterholz
+ Ensino Médio            |      220659 | Dayany Bittencourt
+ Ensino Médio            |      220671 | Dilvanda Faro
+ Ensino Médio            |      141421 | Eduardo da Fonte
+ Ensino Médio            |      218086 | Ely Santos
+ Ensino Médio            |      220681 | Fábio Macedo
+ Ensino Médio            |      204456 | Gutemberg Reis
+ Ensino Médio            |      220563 | Icaro de Valmir
+ Ensino Médio            |      220567 | Jeferson Rodrigues
+ Ensino Médio            |      178970 | João Daniel
+ Ensino Médio            |      215043 | Josivaldo JP
+ Ensino Médio            |      204457 | Juninho do Pneu
+ Ensino Médio            |      219585 | Marco Brasil
+ Ensino Médio            |      220655 | Mario Frias
+ Ensino Médio            |      220585 | Mersinho Lucena
+ Ensino Médio            |      228042 | Naumi Amorim
+ Ensino Médio            |      204449 | Nelson Barbudo
+ Ensino Médio            |      227660 | Nitinho
+ Ensino Médio            |      141518 | Paulinho da Força
+ Ensino Médio            |      220694 | Ricardo Maia
+ Ensino Médio            |      220558 | Zé Trovão
+ Ensino Médio Incompleto |      220702 | Geraldo Mendes
+ Ensino Médio Incompleto |      204474 | Juarez Costa
+ Mestrado                |      160508 | Afonso Florence
+ Mestrado                |      160600 | Arthur Oliveira Maia
+ Mestrado                |      210989 | Bruno Farias
+ Mestrado                |      178829 | Capitão Augusto
+ Mestrado                |      204369 | Caroline de Toni
+ Mestrado                |       74171 | Chico Alencar
+ Mestrado                |      204514 | Coronel Tadeu
+ Mestrado                |       74467 | Damião Feliciano
+ Mestrado                |      220629 | Dandara
+ Mestrado                |      220625 | Delegada Ione
+ Mestrado                |      220705 | Deltan Dallagnol
+ Mestrado                |      143632 | Domingos Neto
+ Mestrado                |      220610 | Dr. Fernando Máximo
+ Mestrado                |      220611 | General Pazuello
+ Mestrado                |      220529 | Gilson Daniel
+ Mestrado                |      220639 | Guilherme Boulos
+ Mestrado                |      204533 | Idilvan Alencar
+ Mestrado                |      141464 | José Airton Félix Cirilo
+ Mestrado                |      122195 | Leonardo Gadelha
+ Mestrado                |      204410 | Luisa Canziani
+ Mestrado                |       74784 | Luiza Erundina
+ Mestrado                |      204526 | Luiz Philippe de Orleans e Bragança
+ Mestrado                |      204433 | Marcelo Calero
+ Mestrado                |      160161 | Marcelo Queiroz
+ Mestrado                |      156190 | Marcel van Hattem
+ Mestrado                |      204522 | Marco Bertaiolli
+ Mestrado                |       74398 | Maria do Rosário
+ Mestrado                |      188097 | Merlong Solano
+ Mestrado                |      220530 | Messias Donato
+ Mestrado                |      171786 | Miguel Ângelo
+ Mestrado                |      204453 | Natália Bonavides
+ Mestrado                |       74160 | Patrus Ananias
+ Mestrado                |      141516 | Paulo Abi-Ackel
+ Mestrado                |      141488 | Paulo Teixeira
+ Mestrado                |      220630 | Pedro Aihara
+ Mestrado                |      204395 | Pedro Lupion
+ Mestrado                |      122158 | Pedro Paulo
+ Mestrado                |      160604 | Pedro Uczai
+ Mestrado                |      204390 | Professor Alcides
+ Mestrado                |      141531 | Rodrigo de Castro
+ Mestrado                |      160629 | Romero Rodrigues
+ Mestrado                |      178945 | Rosangela Gomes
+ Mestrado                |      220579 | Silvia Waiãpi
+ Mestrado                |      141555 | Vinicius Carvalho
+ Mestrado                |      220552 | Zucco
+ Mestrado Incompleto     |      220715 | Amom Mandel
+ Mestrado Incompleto     |      220670 | Iza Arruda
+ Mestrado Incompleto     |      220615 | Pastor Henrique Vieira
+ Mestrado Incompleto     |      220543 | Ricardo Ayres
+ Mestrado Incompleto     |      204464 | Talíria Petrone
+ Nao informado           |      220577 | Augusto Puppio
+ Nao informado           |      220590 | Coronel Ulysses
+ Nao informado           |      234840 | Cristiano Furlan
+ Nao informado           |      220539 | Defensor Stélio Dener
+ Nao informado           |      220619 | Delegado Ramagem
+ Nao informado           |      227433 | Douglas Viegas
+ Nao informado           |      227401 | Dr Fabio Rueda
+ Nao informado           |      227991 | Dr Flávio
+ Nao informado           |      228616 | Dr. Remy Soares
+ Nao informado           |      227800 | Duarte Gonçalves Jr
+ Nao informado           |      234388 | Fabiano Cazeca
+ Nao informado           |      227370 | Felipe Saliba
+ Nao informado           |      220700 | Florentino Neto
+ Nao informado           |      229333 | Gláucia Santiago
+ Nao informado           |      100689 | Hildo do Candango
+ Nao informado           |      225846 | Itamar Paim
+ Nao informado           |      235869 | João Carlos
+ Nao informado           |      235800 | Jorge Araújo
+ Nao informado           |      228837 | Juliana Kolankiewicz
+ Nao informado           |      228797 | Júlio Oliveira
+ Nao informado           |      208297 | Katia Dias
+ Nao informado           |      171139 | Loreny
+ Nao informado           |      227323 | Luciano Galego
+ Nao informado           |      229082 | Lucyana Genésio
+ Nao informado           |      227275 | Mariana Carvalho
+ Nao informado           |      229225 | Missionária Michele Collins
+ Nao informado           |      233218 | Nelinho Freitas
+ Nao informado           |      229939 | Newton Bonin
+ Nao informado           |      220667 | Pedro Campos
+ Nao informado           |      229112 | Pedro Jr
+ Nao informado           |      229259 | Pedro Tourinho
+ Nao informado           |      233594 | Rafael Fera
+ Nao informado           |      175765 | Ribamar Silva
+ Nao informado           |      233598 | Samuel Santos
+ Nao informado           |      227310 | Silvio Antonio
+ Nao informado           |      222565 | Soldado Noelio
+ Nao informado           |      230177 | Tadeu Oliveira
+ Nao informado           |      223398 | Ulisses Guimarães
+ Nao informado           |      234673 | Vanderlan Alves
+ Nao informado           |      235712 | Vavá
+ Pós-Graduação           |      160527 | Aguinaldo Ribeiro
+ Pós-Graduação           |      220576 | Alfredo Gaspar
+ Pós-Graduação           |      204356 | Amaro Neto
+ Pós-Graduação           |      220657 | André Fernandes
+ Pós-Graduação           |      133439 | André Figueiredo
+ Pós-Graduação           |      220638 | Antonio Carlos Rodrigues
+ Pós-Graduação           |      220549 | Any Ortiz
+ Pós-Graduação           |       73433 | Arlindo Chinaglia
+ Pós-Graduação           |       69871 | Bacelar
+ Pós-Graduação           |      220698 | Beto Preto
+ Pós-Graduação           |      160538 | Bohn Gass
+ Pós-Graduação           |      204572 | Capitão Alberto Neto
+ Pós-Graduação           |      204507 | Carla Zambelli
+ Pós-Graduação           |      178993 | Carlos Henrique Gaguim
+ Pós-Graduação           |      204376 | Coronel Armando
+ Pós-Graduação           |      222142 | Coronel Telhada
+ Pós-Graduação           |      220603 | Dani Cunha
+ Pós-Graduação           |      204459 | Daniela do Waguinho
+ Pós-Graduação           |      220582 | Daniel Barbosa
+ Pós-Graduação           |      204511 | David Soares
+ Pós-Graduação           |      220561 | Delegada Katarina
+ Pós-Graduação           |      220642 | Delegado Bruno Lima
+ Pós-Graduação           |      220649 | Delegado da Cunha
+ Pós-Graduação           |      220583 | Delegado Fabio Costa
+ Pós-Graduação           |      220701 | Delegado Matheus Laiola
+ Pós-Graduação           |      220654 | Delegado Paulo Bilynskyj
+ Pós-Graduação           |      160588 | Diego Andrade
+ Pós-Graduação           |      220602 | Dimas Gadelha
+ Pós-Graduação           |      160758 | Domingos Sávio
+ Pós-Graduação           |      220688 | Dr. Francisco
+ Pós-Graduação           |      220570 | Dr. Ismael Alexandrino
+ Pós-Graduação           |      220528 | Dr. Victor Linhalis
+ Pós-Graduação           |       74075 | Elcione Barbalho
+ Pós-Graduação           |      178854 | Elmar Nascimento
+ Pós-Graduação           |      160640 | Eros Biondini
+ Pós-Graduação           |      178871 | Evair Vieira de Melo
+ Pós-Graduação           |      178905 | Fabio Garcia
+ Pós-Graduação           |      220708 | Gabriel Nunes
+ Pós-Graduação           |      178966 | Geovania de Sá
+ Pós-Graduação           |      204491 | Gilberto Abramo
+ Pós-Graduação           |      204365 | Gilson Marques
+ Pós-Graduação           |      160673 | Giovani Cherini
+ Pós-Graduação           |      107283 | Gleisi Hoffmann
+ Pós-Graduação           |      129618 | Gorete Pereira
+ Pós-Graduação           |      204531 | Guilherme Derrite
+ Pós-Graduação           |      178873 | Helder Salomão
+ Pós-Graduação           |      220537 | Helena Lima
+ Pós-Graduação           |      178884 | Hildo Rocha
+ Pós-Graduação           |       74848 | Jandira Feghali
+ Pós-Graduação           |      141458 | João Carlos Bacelar
+ Pós-Graduação           |      204472 | José Medeiros
+ Pós-Graduação           |      220578 | Josenildo
+ Pós-Graduação           |       74554 | José Rocha
+ Pós-Graduação           |       74141 | Josias Gomes
+ Pós-Graduação           |       80815 | Leo Prates
+ Pós-Graduação           |      178954 | Lucio Mosquini
+ Pós-Graduação           |      220687 | Márcio Honaiser
+ Pós-Graduação           |      204506 | Marcos Pereira
+ Pós-Graduação           |      220604 | Marcos Tavares
+ Pós-Graduação           |      220668 | Maria Arraes
+ Pós-Graduação           |      204540 | Maria Rosas
+ Pós-Graduação           |      178895 | Misael Varella
+ Pós-Graduação           |      178896 | Newton Cardoso Jr
+ Pós-Graduação           |       73692 | Osmar Terra
+ Pós-Graduação           |      204573 | Otto Alencar Filho
+ Pós-Graduação           |      171617 | Paulão
+ Pós-Graduação           |      220685 | Paulo Litro
+ Pós-Graduação           |      220533 | Prof. Reginaldo Veras
+ Pós-Graduação           |      220586 | Rafael Brito
+ Pós-Graduação           |      204362 | Ricardo Guidi
+ Pós-Graduação           |      220588 | Roberto Duarte
+ Pós-Graduação           |      220644 | Rosangela Moro
+ Pós-Graduação           |      220631 | Samuel Viana
+ Pós-Graduação           |      204416 | Sanderson
+ Pós-Graduação           |      220618 | Sargento Portugal
+ Pós-Graduação           |      178933 | Sergio Souza
+ Pós-Graduação           |      220560 | Thiago de Joaldo
+ Pós-Graduação           |      220597 | Thiago Flores
+ Pós-Graduação           |       74283 | Vicentinho
+ Pós-Graduação           |      160518 | Weliton Prado
+ Pós-Graduação           |      230768 | Zé Adriano
+ Pós-Graduação           |      204559 | Zé Neto
+ Pós-Graduação           |      160632 | Zé Silva
+ Primário Incompleto     |      160535 | Marcon
+ Secundário              |       74550 | João Leão
+ Secundário              |      141480 | Lázaro Botelho
+ Secundário Incompleto   |      230762 | Pastor Claudio Mariano
+ Superior                |      220593 | Abilio Brunini
+ Superior                |      204379 | Acácio Favacho
+ Superior                |      221328 | Adilson Barroso
+ Superior                |      204560 | Adolfo Viana
+ Superior                |       74646 | Aécio Neves
+ Superior                |      136811 | Afonso Hamm
+ Superior                |      178835 | Afonso Motta
+ Superior                |      204549 | AJ Albuquerque
+ Superior                |       73579 | Alberto Fraga
+ Superior                |       74696 | Alberto Mourão
+ Superior                |      220538 | Albuquerque
+ Superior                |      204501 | Alencar Santana
+ Superior                |      220542 | Alexandre Guimarães
+ Superior                |      160545 | Alexandre Leite
+ Superior                |      220554 | Alexandre Lindenmeyer
+ Superior                |      178972 | Alex Manente
+ Superior                |       74057 | Alice Portugal
+ Superior                |      204353 | Aline Gurgel
+ Superior                |      226708 | Allan Garcês
+ Superior                |      178937 | Altineu Côrtes
+ Superior                |      178881 | Aluisio Mendes
+ Superior                |      220596 | Amália Barros
+ Superior                |      220707 | Amanda Gentil
+ Superior                |      107970 | Ana Paula Leão
+ Superior                |      220556 | Ana Paula Lima
+ Superior                |      178831 | André Abdon
+ Superior                |      204423 | André Ferreira
+ Superior                |      178882 | André Fufuca
+ Superior                |      220676 | Andreia Siqueira
+ Superior                |      204515 | André Janones
+ Superior                |      123756 | Antônia Lúcia
+ Superior                |      220544 | Antonio Andrade
+ Superior                |      160553 | Antonio Brito
+ Superior                |      220675 | Antônio Doido
+ Superior                |      141391 | Arnaldo Jardim
+ Superior                |      160541 | Arthur Lira
+ Superior                |       74090 | Átila Lins
+ Superior                |      123086 | Átila Lira
+ Superior                |      160665 | Augusto Coutinho
+ Superior                |      178975 | Baleia Rossi
+ Superior                |      220605 | Bandeira de Mello
+ Superior                |       73701 | Benedita da Silva
+ Superior                |      109429 | Benes Leocádio
+ Superior                |      204358 | Beto Pereira
+ Superior                |      220683 | Beto Richa
+ Superior                |      204374 | Bia Kicis
+ Superior                |      220635 | Bruno Ganem
+ Superior                |      220574 | Cabo Gilberto Silva
+ Superior                |      143942 | Caio Vianna
+ Superior                |      220548 | Camila Jara
+ Superior                |      220690 | Capitão Alden
+ Superior                |      229069 | Capitão Samuel
+ Superior                |      213762 | Carla Dickson
+ Superior                |      204361 | Carlos Chiodini
+ Superior                |      204460 | Carlos Jordy
+ Superior                |       74262 | Carlos Sampaio
+ Superior                |      204426 | Carlos Veras
+ Superior                |      141398 | Carlos Zarattini
+ Superior                |      164360 | Carmen Zanotto
+ Superior                |      220704 | Carol Dartora
+ Superior                |      220699 | Castro Neto
+ Superior                |      178876 | Célio Silveira
+ Superior                |      204488 | Célio Studart
+ Superior                |       73441 | Celso Russomanno
+ Superior                |      204504 | Cezinha de Madureira
+ Superior                |      205476 | Charles Fernandes
+ Superior                |      204462 | Chris Tonietto
+ Superior                |       74537 | Claudio Cajado
+ Superior                |      141408 | Cleber Verde
+ Superior                |       88256 | Clodoaldo Magalhães
+ Superior                |       98148 | Cobalchini
+ Superior                |      220594 | Coronel Assis
+ Superior                |      204378 | Coronel Chrisóstomo
+ Superior                |      220595 | Coronel Fernanda
+ Superior                |      220666 | Coronel Meira
+ Superior                |      178963 | Covatti Filho
+ Superior                |      220608 | Cristiane Lopes
+ Superior                |      141411 | Dagoberto Nogueira
+ Superior                |      220555 | Daiana Santos
+ Superior                |       74060 | Daniel Almeida
+ Superior                |      220557 | Daniela Reinehr
+ Superior                |      204367 | Daniel Freitas
+ Superior                |      228941 | Daniel José
+ Superior                |      204409 | Daniel Trzeciak
+ Superior                |       62881 | Danilo Forte
+ Superior                |      116379 | Darci de Matos
+ Superior                |      204355 | Da Vitoria
+ Superior                |      220565 | Delegada Adriana Accorsi
+ Superior                |      220673 | Delegado Caveira
+ Superior                |      178908 | Delegado Éder Mauro
+ Superior                |      220652 | Delegado Palumbo
+ Superior                |      228272 | Délio Pinheiro
+ Superior                |      220553 | Denise Pessôa
+ Superior                |      220689 | Detinha
+ Superior                |      220691 | Diego Coronel
+ Superior                |      178929 | Diego Garcia
+ Superior                |       73768 | Dilceu Sperafico
+ Superior                |      160599 | Dimas Fabiano
+ Superior                |      220573 | Dorinaldo Malafaia
+ Superior                |      204450 | Doutor Luizinho
+ Superior                |      220674 | Dra. Alessandra Haber
+ Superior                |      230088 | Dra. Mayra Pinheiro
+ Superior                |      221339 | Dr. Benjamim
+ Superior                |      204518 | Dr. Frederico
+ Superior                |      212625 | Dr. Gonçalo
+ Superior                |      204481 | Dr. Jaziel
+ Superior                |      204351 | Dr. Luiz Ovando
+ Superior                |      204412 | Dr. Zacharias Calil
+ Superior                |      220540 | Duda Ramos
+ Superior                |      220623 | Duda Salabert
+ Superior                |      204541 | Eduardo Bismarck
+ Superior                |       92346 | Eduardo Bolsonaro
+ Superior                |      220589 | Eduardo Velloso
+ Superior                |      226553 | Eliane Braz
+ Superior                |      204364 | Eli Borges
+ Superior                |      220008 | Eliza Virgínia
+ Superior                |      234406 | Elmano Férrer
+ Superior                |      198783 | Emanuel Pinheiro Neto
+ Superior                |      225730 | Enfermeira Ana Paula
+ Superior                |      230765 | Enfermeira Rejane
+ Superior                |      220663 | Eriberto Medeiros
+ Superior                |      220645 | Erika Hilton
+ Superior                |      160575 | Erika Kokay
+ Superior                |      204482 | Euclydes Pettersen
+ Superior                |       74454 | Eunício Oliveira
+ Superior                |       68720 | Fábio Henrique
+ Superior                |      204368 | Fabio Schiochet
+ Superior                |      220653 | Fábio Teruel
+ Superior                |       74065 | Fatima Pelaes
+ Superior                |      220712 | Fausto Jr.
+ Superior                |       66828 | Fausto Pinato
+ Superior                |      220646 | Felipe Becari
+ Superior                |      204398 | Felipe Francischini
+ Superior                |      160666 | Félix Mendonça Júnior
+ Superior                |      204407 | Fernanda Melchionna
+ Superior                |      220656 | Fernanda Pessoa
+ Superior                |      141431 | Fernando Coelho Filho
+ Superior                |      204445 | Fernando Mineiro
+ Superior                |       92699 | Fernando Monteiro
+ Superior                |      204427 | Fernando Rodolfo
+ Superior                |      204411 | Filipe Barros
+ Superior                |      220545 | Filipe Martins
+ Superior                |      160598 | Flávia Morais
+ Superior                |      225727 | Flavinha
+ Superior                |      191923 | Flávio Nogueira
+ Superior                |      220551 | Franciane Bayer
+ Superior                |      220534 | Fred Linhares
+ Superior                |      224117 | Gabriel Mota
+ Superior                |       74374 | Geraldo Resende
+ Superior                |      220587 | Gerlen Diniz
+ Superior                |      204394 | Gervásio Maia
+ Superior                |       74383 | Giacobo
+ Superior                |       74270 | Gilberto Nascimento
+ Superior                |      220526 | Gilvan da Federal
+ Superior                |      226179 | Gisela Simona
+ Superior                |      152605 | Glauber Braga
+ Superior                |      204419 | Glaustin da Fokus
+ Superior                |      198197 | Greyce Elias
+ Superior                |      220664 | Guilherme Uchoa
+ Superior                |      220568 | Gustavo Gayer
+ Superior                |      204408 | Gustinho Ribeiro
+ Superior                |      178909 | Hélio Leite
+ Superior                |      204444 | Helio Lopes
+ Superior                |      234788 | Heloísa Helena
+ Superior                |      141450 | Hugo Leal
+ Superior                |      160674 | Hugo Motta
+ Superior                |      235620 | Ilacir Bicalho
+ Superior                |       98615 | Ismael
+ Superior                |      204436 | Isnaldo Bulhões Jr.
+ Superior                |      230764 | Ivan Junior
+ Superior                |       73531 | Ivan Valente
+ Superior                |      220696 | Ivoneide Caetano
+ Superior                |       74273 | Jefferson Campos
+ Superior                |      160531 | Jhonatan de Jesus
+ Superior                |      141456 | Jilmar Tatto
+ Superior                |      230957 | João Cury
+ Superior                |      141459 | João Maia
+ Superior                |      178910 | Joaquim Passarinho
+ Superior                |      217480 | Jones Moura
+ Superior                |      205550 | Jorge Braz
+ Superior                |      214694 | Jorge Goetten
+ Superior                |      141470 | José Guimarães
+ Superior                |      209189 | Joseildo Ramos
+ Superior                |      204391 | José Nelto
+ Superior                |       74079 | José Priante
+ Superior                |      204563 | Josimar Maranhãozinho
+ Superior                |      220640 | Juliana Cardoso
+ Superior                |      220559 | Julia Zanatta
+ Superior                |       66385 | Julio Arcoverde
+ Superior                |       74317 | Júlio Cesar
+ Superior                |      204372 | Julio Cesar Ribeiro
+ Superior                |       74253 | Julio Lopes
+ Superior                |      204520 | Junio Amaral
+ Superior                |      204497 | Júnior Ferrari
+ Superior                |      204574 | Junior Lourenço
+ Superior                |      204550 | Júnior Mano
+ Superior                |      178886 | Juscelino Filho
+ Superior                |      162067 | Kiko Celeguim
+ Superior                |       74856 | Laura Carneiro
+ Superior                |      178832 | Leandre
+ Superior                |      220566 | Lêda Borges
+ Superior                |      231911 | Lenir de Assis
+ Superior                |       74156 | Leonardo Monteiro
+ Superior                |       74299 | Leônidas Cristino
+ Superior                |       92102 | Leur Lomanto Júnior
+ Superior                |      139285 | Lídice da Mata
+ Superior                |       74585 | Lincoln Portela
+ Superior                |      234253 | Lucas Abrahao
+ Superior                |      220662 | Lucas Ramos
+ Superior                |      204404 | Lucas Redecker
+ Superior                |      138286 | Luciano Alves
+ Superior                |      220581 | Luciano Amaral
+ Superior                |      103758 | Luciano Azevedo
+ Superior                |       74478 | Luciano Bivar
+ Superior                |      178931 | Luciano Ducci
+ Superior                |      220616 | Luciano Vieira
+ Superior                |      222429 | Luis Carlos Gomes
+ Superior                |      204448 | Luiz Antonio Corrêa
+ Superior                |      141485 | Luiz Carlos Busato
+ Superior                |       73778 | Luiz Carlos Hauly
+ Superior                |      204485 | Luiz Carlos Motta
+ Superior                |       74041 | Luiz Couto
+ Superior                |      141487 | Luiz Fernando Faria
+ Superior                |      229432 | Luiz Fernando Vampiro
+ Superior                |      220658 | Luiz Gastão
+ Superior                |      204455 | Luiz Lima
+ Superior                |      220636 | Luiz Marinho
+ Superior                |      162332 | Luiz Nishimori
+ Superior                |      220599 | Marcelo Crivella
+ Superior                |      220634 | Marcelo Lima
+ Superior                |      204558 | Marcelo Nilo
+ Superior                |      178983 | Marcio Alvino
+ Superior                |      179001 | Márcio Biolchi
+ Superior                |      226410 | Márcio Correa
+ Superior                |       81055 | Márcio Jerry
+ Superior                |      150418 | Márcio Marinho
+ Superior                |      204431 | Marcos Aurélio Sampaio
+ Superior                |      220547 | Marcos Pollon
+ Superior                |      178943 | Marcos Soares
+ Superior                |      220637 | Marina Silva
+ Superior                |       74158 | Mário Heringer
+ Superior                |      178858 | Mário Negromonte Jr.
+ Superior                |      220572 | Marussa Boldrin
+ Superior                |      178843 | Marx Beltrão
+ Superior                |      220550 | Mauricio Marcon
+ Superior                |      220647 | Mauricio Neves
+ Superior                |      220607 | Max Lemos
+ Superior                |      220591 | Meire Serafim
+ Superior                |       74428 | Mendonça Filho
+ Superior                |      178985 | Miguel Lombardi
+ Superior                |      160561 | Missionário José Olimpio
+ Superior                |      220617 | Murillo Gouvea
+ Superior                |      220584 | Murilo Galdino
+ Superior                |      220703 | Neto Carletto
+ Superior                |      204479 | Nicoletti
+ Superior                |      209787 | Nikolas Ferreira
+ Superior                |      178986 | Nilto Tatto
+ Superior                |       74159 | Odair Cunha
+ Superior                |      204498 | Olival Marques
+ Superior                |      178987 | Orlando Silva
+ Superior                |      220706 | Padovani
+ Superior                |      160556 | Padre João
+ Superior                |      180214 | Pastor Diniz
+ Superior                |      204570 | Pastor Gil
+ Superior                |       74095 | Pauderney Avelino
+ Superior                |      220650 | Paulo Alexandre Barbosa
+ Superior                |      178860 | Paulo Azi
+ Superior                |      160517 | Paulo Folletto
+ Superior                |      160558 | Paulo Freire Costa
+ Superior                |      233592 | Paulo Lemos
+ Superior                |       74574 | Paulo Magalhães
+ Superior                |      128760 | Paulo Marinho Jr
+ Superior                |       74400 | Paulo Pimenta
+ Superior                |      122974 | Pedro Lucas Fernandes
+ Superior                |      204406 | Pedro Westphalen
+ Superior                |      161440 | Pezenti
+ Superior                |      204524 | Pinheirinho
+ Superior                |       73486 | Pompeo de Mattos
+ Superior                |      226075 | Priscila Costa
+ Superior                |      160601 | Pr. Marco Feliciano
+ Superior                |      221338 | Professora Luciene Cavalcante
+ Superior                |      160641 | Professora Marcivania
+ Superior                |       89536 | Prof. Paulo Fernando
+ Superior                |      220532 | Rafael Prudente
+ Superior                |      220626 | Rafael Simoes
+ Superior                |      204567 | Raimundo Costa
+ Superior                |       74084 | Raimundo Santos
+ Superior                |      115200 | Raniery Paulino
+ Superior                |       74161 | Reginaldo Lopes
+ Superior                |      221378 | Reginete Bispo
+ Superior                |      205865 | Reinhold Stephanes
+ Superior                |      225386 | Renan Ferreirinha
+ Superior                |      178989 | Renata Abreu
+ Superior                |      153423 | Renilce Nicodemos
+ Superior                |       73801 | Renildo Calheiros
+ Superior                |      235088 | Ribeiro Neto
+ Superior                |      221329 | Ricardo Abrão
+ Superior                |       73788 | Ricardo Barros
+ Superior                |      220633 | Ricardo Salles
+ Superior                |      213274 | Ricardo Silva
+ Superior                |      220693 | Roberta Roma
+ Superior                |      220624 | Robinson Faria
+ Superior                |      220546 | Rodolfo Nogueira
+ Superior                |      230767 | Rodrigo da Zaeli
+ Superior                |      141533 | Rodrigo Rollemberg
+ Superior                |      165470 | Rodrigo Valadares
+ Superior                |      220695 | Rogéria Santos
+ Superior                |      204480 | Rogério Correia
+ Superior                |      163321 | Ronaldo Nogueira
+ Superior                |      204525 | Rosana Valle
+ Superior                |      220620 | Rosângela Reis
+ Superior                |       73806 | Roseana Sarney
+ Superior                |       74371 | Rubens Otoni
+ Superior                |      178887 | Rubens Pereira Júnior
+ Superior                |       73604 | Rui Falcão
+ Superior                |      160635 | Ruy Carneiro
+ Superior                |      204535 | Sâmia Bomfim
+ Superior                |      160621 | Sandro Alex
+ Superior                |      220621 | Sargento Gonçalves
+ Superior                |      220713 | Saullo Vianna
+ Superior                |      226837 | Saulo Pedroso
+ Superior                |       73808 | Sérgio Brito
+ Superior                |      235776 | Sérgio Turra
+ Superior                |      204557 | Sidney Leite
+ Superior                |       74356 | Silas Câmara
+ Superior                |      204360 | Silvia Cristina
+ Superior                |      204425 | Silvio Costa Filho
+ Superior                |      220569 | Silvye Alves
+ Superior                |      220651 | Simone Marquetto
+ Superior                |      220643 | Sônia Guajajara
+ Superior                |      220575 | Sonize Barbosa
+ Superior                |      178946 | Soraya Santos
+ Superior                |      178947 | Sóstenes Cavalcante
+ Superior                |       92776 | Stefano Aguiar
+ Superior                |      204534 | Tabata Amaral
+ Superior                |      220684 | Tião Medeiros
+ Superior                |      178934 | Toninho Wandscheer
+ Superior                |      157130 | Túlio Gadêlha
+ Superior                |       74376 | Vander Loubet
+ Superior                |      204396 | Vermelho
+ Superior                |      160591 | Vinicius Gurgel
+ Superior                |      178992 | Vitor Lippi
+ Superior                |       91228 | Waldemar Oliveira
+ Superior                |      220601 | Washington Quaquá
+ Superior                |      224333 | Welter
+ Superior                |       74044 | Wilson Santiago
+ Superior                |      182146 | Wolmer Araújo
+ Superior                |      220564 | Yandra Moura
+ Superior                |      220660 | Yury do Paredão
+ Superior                |      160592 | Zeca Dirceu
+ Superior                |      220536 | Zé Haroldo Cathedral
+ Superior                |      204517 | Zé Vitor
+ Superior Incompleto     |      220714 | Adail Filho
+ Superior Incompleto     |      160559 | Alceu Moreira
+ Superior Incompleto     |      178927 | Aliel Machado
+ Superior Incompleto     |      160512 | Aureo Ribeiro
+ Superior Incompleto     |      204388 | Bibo Nunes
+ Superior Incompleto     |       74052 | Bosco Costa
+ Superior Incompleto     |      178962 | Carlos Gomes
+ Superior Incompleto     |      171623 | Fabio Reis
+ Superior Incompleto     |       72442 | Felipe Carreras
+ Superior Incompleto     |      204494 | Fred Costa
+ Superior Incompleto     |      178964 | Heitor Schuch
+ Superior Incompleto     |      220672 | Henderson Pinto
+ Superior Incompleto     |      227324 | Henrique Júnior
+ Superior Incompleto     |      204539 | Hercílio Coelho Diniz
+ Superior Incompleto     |      204508 | Igor Timo
+ Superior Incompleto     |       74295 | Inácio Arruda
+ Superior Incompleto     |      220527 | Jack Rocha
+ Superior Incompleto     |      220697 | Jadyel Alencar
+ Superior Incompleto     |      160548 | Jonas Donizette
+ Superior Incompleto     |      220677 | Keniston Braga
+ Superior Incompleto     |      204536 | Kim Kataguiri
+ Superior Incompleto     |       74858 | Lindbergh Farias
+ Superior Incompleto     |      160510 | Luis Tibé
+ Superior Incompleto     |      220669 | Lula da Fonte
+ Superior Incompleto     |      179000 | Marcelo Álvaro Antônio
+ Superior Incompleto     |      133810 | Marcelo Moraes
+ Superior Incompleto     |      204566 | Marreca Filho
+ Superior Incompleto     |      220661 | Matheus Noronha
+ Superior Incompleto     |      220628 | Mauricio do Vôlei
+ Superior Incompleto     |      154178 | Milton Vieira
+ Superior Incompleto     |      220622 | Nely Aquino
+ Superior Incompleto     |      204422 | Ossesio Silva
+ Superior Incompleto     |      204441 | Otoni de Paula
+ Superior Incompleto     |      160642 | Pastor Eurico
+ Superior Incompleto     |      204553 | Pastor Sargento Isidório
+ Superior Incompleto     |      220627 | Paulinho Freire
+ Superior Incompleto     |      204492 | Paulo Guedes
+ Superior Incompleto     |      220613 | Roberto Monteiro Pai
+ Superior Incompleto     |      223128 | Rodrigo Estacho
+ Superior Incompleto     |      220641 | Rodrigo Gambale
+ Superior Incompleto     |      220682 | Tadeu Veneri
+ Superior Incompleto     |      143084 | Tiago Dimas
+ Superior Incompleto     |      137070 | Vicentinho Júnior
+ Superior Incompleto     |       74043 | Wellington Roberto
+

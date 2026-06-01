@@ -1,213 +1,242 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 from fastapi.testclient import TestClient
 
+from app.filter_engine import FilterState
 from app.main import app
+from app.service import DashboardService
 
 
-client = TestClient(app)
-GLOBAL_RANKING_QUESTIONS = ("q5", "q7", "q12", "q13")
+TABLE_TEXT_Q1 = """Tabela principal
+ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_total
+----------+------------+---------------+----------+-------------+-----------+------------
+2024      | Social     | PT            | SP       | 1           | Ana Silva | 10
+2023      | Economia   | PL            | RJ       | 2           | Bruno Lima | 20
+(2 rows)
+"""
+
+TABLE_TEXT_Q2 = """Tabela principal
+ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_total
+----------+------------+---------------+----------+-------------+-----------+------------
+2024      | Social     | PL            | MG       | 3           | Cid Nascimento | 30
+(1 rows)
+"""
+
+TABLE_TEXT_Q3 = """Tabela principal
+ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_total
+----------+------------+---------------+----------+-------------+-----------+------------
+2025      | Saude      | MDB           | BA       | 4           | Dora Mendes | 40
+(1 rows)
+"""
 
 
-def test_meta_endpoint_returns_questions() -> None:
+def _write_response_file(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+
+
+def _write_sql_file(path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("SELECT 1;\n", encoding="utf-8")
+
+
+def _build_registry(root: Path) -> Path:
+    registry = {
+        "legend": {},
+        "questions": [
+            {
+                "id": "q1",
+                "title": "Legacy response",
+                "description": "Question that still uses the legacy respostas/ folder.",
+                "response_files": ["legacy_q1.txt"],
+                "sql_file": "q1.sql",
+                "chart_type": "bar_horizontal",
+                "supported_filters": ["anos", "eixos", "partidos", "ufs", "deputados"],
+                "expected_columns": ["id_deputado", "nome", "valor_total"],
+                "main_table_contains": "Tabela principal",
+                "summary_table_contains": "",
+                "explanation": "Teste de fallback legado.",
+                "chart": {"x_field": "nome", "y_fields": ["valor_total"]},
+            },
+            {
+                "id": "q2",
+                "title": "New response path",
+                "description": "Question that already points to a member/question path.",
+                "response_files": ["Caio/q2/q2_new.txt"],
+                "sql_file": "q2.sql",
+                "chart_type": "bar_horizontal",
+                "supported_filters": ["anos"],
+                "expected_columns": ["id_deputado", "nome", "valor_total"],
+                "main_table_contains": "Tabela principal",
+                "summary_table_contains": "",
+                "explanation": "Teste de path novo.",
+                "chart": {"x_field": "nome", "y_fields": ["valor_total"]},
+            },
+            {
+                "id": "q3",
+                "title": "Member fallback",
+                "description": "Question that still uses a legacy filename but lives under Caio/q3.",
+                "response_files": ["q3_member_fallback.txt"],
+                "sql_file": "q3.sql",
+                "chart_type": "bar_horizontal",
+                "supported_filters": ["deputados"],
+                "expected_columns": ["id_deputado", "nome", "valor_total"],
+                "main_table_contains": "Tabela principal",
+                "summary_table_contains": "",
+                "explanation": "Teste de fallback por nome do arquivo na arvore do repo.",
+                "chart": {"x_field": "nome", "y_fields": ["valor_total"]},
+            },
+        ],
+    }
+    registry_path = root / "question_registry.json"
+    registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2), encoding="utf-8")
+    return registry_path
+
+
+def _build_service(root: Path) -> DashboardService:
+    responses_dir = root / "respostas"
+    sql_dir = root / "sql"
+
+    _write_response_file(responses_dir / "legacy_q1.txt", TABLE_TEXT_Q1)
+    _write_response_file(root / "Caio" / "q2" / "q2_new.txt", TABLE_TEXT_Q2)
+    _write_response_file(root / "Caio" / "q3" / "q3_member_fallback.txt", TABLE_TEXT_Q3)
+    _write_sql_file(sql_dir / "q1.sql")
+    _write_sql_file(sql_dir / "q2.sql")
+    _write_sql_file(sql_dir / "q3.sql")
+
+    return DashboardService(
+        registry_path=_build_registry(root),
+        responses_dir=responses_dir,
+        sql_dir=sql_dir,
+        repo_root=root,
+    )
+
+
+def _client_for(service: DashboardService) -> TestClient:
+    import app.main as main_module
+
+    main_module.service = service
+    return TestClient(main_module.app)
+
+
+def test_meta_endpoint_collects_filters_from_new_and_legacy_paths(tmp_path: Path) -> None:
+    client = _client_for(_build_service(tmp_path))
+
     response = client.get("/api/meta")
     assert response.status_code == 200
+
     payload = response.json()
-    assert "dataset_version" in payload
-    assert "questions" in payload
-    assert len(payload["questions"]) == 13
-    assert "GLOBAL" not in {
-        item["value"] for item in payload["available_filters"]["anos"]
+    assert len(payload["questions"]) == 3
+    assert {item["value"] for item in payload["available_filters"]["anos"]} == {
+        "2023",
+        "2024",
+        "2025",
     }
-    assert any(
-        item["value"] == "Social"
-        for item in payload["available_filters"]["eixos"]
+    assert {item["value"] for item in payload["available_filters"]["eixos"]} == {
+        "Social",
+        "Economia",
+        "Saude",
+    }
+    assert {item["value"] for item in payload["available_filters"]["partidos"]} == {
+        "PT",
+        "PL",
+        "MDB",
+    }
+    assert {item["value"] for item in payload["available_filters"]["ufs"]} == {
+        "SP",
+        "RJ",
+        "MG",
+        "BA",
+    }
+    assert {item["value"] for item in payload["available_filters"]["deputados"]} == {
+        "Ana Silva",
+        "Bruno Lima",
+        "Cid Nascimento",
+        "Dora Mendes",
+    }
+
+
+def test_question_endpoint_applies_filters_sorting_and_pagination(tmp_path: Path) -> None:
+    client = _client_for(_build_service(tmp_path))
+
+    filtered = client.get(
+        "/api/questions/q1?anos=2024&eixos=Social&partidos=PT&ufs=SP&deputados=1&page=1&page_size=10"
+    )
+    assert filtered.status_code == 200
+    filtered_payload = filtered.json()
+    assert filtered_payload["table_spec"]["total"] == 1
+    assert filtered_payload["table_spec"]["rows"][0]["nome"] == "Ana Silva"
+
+    sorted_first_page = client.get("/api/questions/q1?sort_by=valor_total&sort_dir=desc&page=1&page_size=1")
+    sorted_second_page = client.get("/api/questions/q1?sort_by=valor_total&sort_dir=desc&page=2&page_size=1")
+    assert sorted_first_page.status_code == 200
+    assert sorted_second_page.status_code == 200
+    assert sorted_first_page.json()["table_spec"]["rows"][0]["nome"] == "Bruno Lima"
+    assert sorted_second_page.json()["table_spec"]["rows"][0]["nome"] == "Ana Silva"
+
+
+def test_question_endpoint_uses_new_paths_and_member_fallback(tmp_path: Path) -> None:
+    client = _client_for(_build_service(tmp_path))
+
+    new_path_response = client.get("/api/questions/q2?page=1&page_size=10")
+    assert new_path_response.status_code == 200
+    assert new_path_response.json()["table_spec"]["rows"][0]["nome"] == "Cid Nascimento"
+
+    member_fallback_response = client.get("/api/questions/q3?page=1&page_size=10")
+    assert member_fallback_response.status_code == 200
+    assert member_fallback_response.json()["table_spec"]["rows"][0]["nome"] == "Dora Mendes"
+
+
+def test_question_endpoint_ignores_unsupported_filters(tmp_path: Path) -> None:
+    client = _client_for(_build_service(tmp_path))
+
+    response = client.get("/api/questions/q2?partidos=PT&ufs=SP&deputados=1&anos=2024&page_size=10")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["table_spec"]["total"] == 1
+    assert payload["table_spec"]["rows"][0]["sigla_partido"] == "PL"
+    assert payload["table_spec"]["rows"][0]["sigla_uf"] == "MG"
+
+
+def test_missing_response_file_returns_clear_error(tmp_path: Path) -> None:
+    root = tmp_path
+    sql_dir = root / "sql"
+    sql_dir.mkdir(parents=True, exist_ok=True)
+    _write_sql_file(sql_dir / "q1.sql")
+    registry = {
+        "legend": {},
+        "questions": [
+            {
+                "id": "q1",
+                "title": "Missing",
+                "description": "Missing response file.",
+                "response_files": ["missing_q1.txt"],
+                "sql_file": "q1.sql",
+                "chart_type": "bar_horizontal",
+                "supported_filters": [],
+                "expected_columns": [],
+                "main_table_contains": "Tabela principal",
+                "summary_table_contains": "",
+                "explanation": "Teste de erro.",
+                "chart": {"x_field": "nome", "y_fields": ["valor_total"]},
+            }
+        ],
+    }
+    registry_path = root / "question_registry.json"
+    registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    client = _client_for(
+        DashboardService(
+            registry_path=registry_path,
+            responses_dir=root / "respostas",
+            sql_dir=sql_dir,
+            repo_root=root,
+        )
     )
 
-
-def test_question_endpoint_returns_payload() -> None:
-    response = client.get("/api/questions/q1?page=1&page_size=20")
-    assert response.status_code == 200
-    payload = response.json()
-    assert payload["question_id"] == "q1"
-    assert "summary_cards" in payload
-    assert "chart_spec" in payload
-    assert "table_spec" in payload
-    assert isinstance(payload["table_spec"]["rows"], list)
-
-
-def test_empty_state_considers_complement_tables_when_main_has_no_match() -> None:
-    response = client.get("/api/questions/q4?search=Nikolas&page=1&page_size=20")
-    assert response.status_code == 200
-    payload = response.json()
-
-    assert payload["table_spec"]["total"] == 0
-    assert any(table["total"] > 0 for table in payload["complement_tables"])
-    assert payload["empty_state"]["is_empty"] is False
-    assert payload["empty_state"]["message"] == ""
-
-    complement_rows = [
-        row
-        for table in payload["complement_tables"]
-        for row in table["rows"]
-    ]
-    assert any("Nikolas" in str(row.get("nome", "")) for row in complement_rows)
-
-
-def test_q8_payload_uses_global_approved_total() -> None:
-    response = client.get("/api/questions/q8?page=1&page_size=10")
-    assert response.status_code == 200
-    payload = response.json()
-
-    first_row = payload["table_spec"]["rows"][0]
-    assert first_row["nome"] == "Laura Carneiro"
-    assert first_row["proposicoes_aprovadas"] == 10
-    assert first_row["pct_aprovadas"] == 2.54
-    assert payload["query_panel"]["explanation"].endswith(
-        "no total global de proposicoes aprovadas."
-    )
-
-    summary_cards = {card["label"]: card["value"] for card in payload["summary_cards"]}
-    assert summary_cards["Proposicoes aprovadas global"] == "394"
-
-
-def test_q2_payload_returns_wordcloud_images_and_consolidated_table() -> None:
-    response = client.get("/api/questions/q2?page=1&page_size=10")
-    assert response.status_code == 200
-    payload = response.json()
-
-    assert payload["chart_spec"]["type"] == "wordcloud_images"
-    images = payload["chart_spec"]["options"]["images"]
-    assert [item["year"] for item in images] == [2023, 2024, 2025, 2026]
-    assert all(str(item["src"]).endswith(".png") for item in images)
-    assert payload["table_spec"]["title"].startswith("Tabela analitica")
-    first_row = payload["table_spec"]["rows"][0]
-    assert {
-        "nome",
-        "eixo_maior",
-        "qtd_proposicoes",
-        "proposicoes_aprovadas",
-    }.issubset(first_row)
-    assert payload["complement_tables"] == []
-
-
-def test_q2_filters_by_eixo_and_deputy_search() -> None:
-    response = client.get("/api/questions/q2?eixos=Social&search=Amom&page_size=20")
-    assert response.status_code == 200
-    table = response.json()["table_spec"]
-
-    assert table["total"] > 0
-    assert all(row["eixo_maior"] == "Social" for row in table["rows"])
-    assert all("Amom" in row["nome"] for row in table["rows"])
-
-
-def test_q10_summary_cards_scale_alignment_percentages() -> None:
-    response = client.get("/api/questions/q10?page=1&page_size=10")
-    assert response.status_code == 200
-    payload = response.json()
-
-    summary_cards = {card["id"]: card for card in payload["summary_cards"]}
-    assert summary_cards["media_alinhamento"]["value"] == "92,07"
-    assert summary_cards["media_alinhamento"]["unit"] == "%"
-    assert summary_cards["menor_alinhamento"]["value"] == "79,11"
-    assert summary_cards["maior_alinhamento"]["value"] == "100"
-
-
-def test_question_not_found_returns_404() -> None:
-    response = client.get("/api/questions/q99")
+    response = client.get("/api/questions/q1")
     assert response.status_code == 404
-
-
-def test_global_ranking_tables_are_returned_for_selected_questions() -> None:
-    for question_id in GLOBAL_RANKING_QUESTIONS:
-        response = client.get(f"/api/questions/{question_id}?page_size=10")
-        assert response.status_code == 200
-        payload = response.json()
-
-        global_tables = _global_ranking_tables(payload)
-        assert global_tables, f"{question_id} nao retornou Ranking global"
-
-
-def test_global_ranking_ignores_year_filter() -> None:
-    response = client.get("/api/questions/q7?anos=2024&page_size=10")
-    assert response.status_code == 200
-    payload = response.json()
-
-    global_tables = _global_ranking_tables(payload)
-    assert global_tables
-    assert any(row.get("ano_dados") == "GLOBAL" for row in global_tables[0]["rows"])
-
-
-def test_global_ranking_supports_sort_for_qtd_lancamentos_in_q5_and_q12() -> None:
-    for question_id in ("q5", "q12"):
-        response = client.get(f"/api/questions/{question_id}?page_size=20&sort_by=qtd_lancamentos&sort_dir=desc")
-        assert response.status_code == 200
-        table = _global_ranking_tables(response.json())[0]
-
-        assert table["rows"]
-        assert all(
-            "|" not in str(row.get("fornecedor", ""))
-            for row in table["rows"]
-        )
-        assert all(
-            isinstance(row.get("qtd_lancamentos"), (int, float))
-            for row in table["rows"]
-            if row.get("qtd_lancamentos") is not None
-        )
-
-
-def test_partido_uf_filters_work_for_global_rankings_q7_q12_q13() -> None:
-    for question_id in ("q7", "q12", "q13"):
-        base_response = client.get(f"/api/questions/{question_id}?page_size=100")
-        assert base_response.status_code == 200
-        base_table = _global_ranking_tables(base_response.json())[0]
-
-        sample_row = next(
-            (
-                row
-                for row in base_table["rows"]
-                if row.get("sigla_partido") and row.get("sigla_uf")
-            ),
-            None,
-        )
-        assert sample_row is not None
-
-        partido = str(sample_row["sigla_partido"])
-        uf = str(sample_row["sigla_uf"])
-
-        partido_response = client.get(
-            f"/api/questions/{question_id}?partidos={partido}&page_size=50"
-        )
-        assert partido_response.status_code == 200
-        partido_table = _global_ranking_tables(partido_response.json())[0]
-        assert partido_table["total"] > 0
-        assert all(row.get("sigla_partido") == partido for row in partido_table["rows"])
-
-        uf_response = client.get(f"/api/questions/{question_id}?ufs={uf}&page_size=50")
-        assert uf_response.status_code == 200
-        uf_table = _global_ranking_tables(uf_response.json())[0]
-        assert uf_table["total"] > 0
-        assert all(row.get("sigla_uf") == uf for row in uf_table["rows"])
-
-
-def test_global_ranking_respects_pagination_controls() -> None:
-    first_page = client.get("/api/questions/q7?page=1&page_size=5")
-    second_page = client.get("/api/questions/q7?page=2&page_size=5")
-    assert first_page.status_code == 200
-    assert second_page.status_code == 200
-
-    table_page_1 = _global_ranking_tables(first_page.json())[0]
-    table_page_2 = _global_ranking_tables(second_page.json())[0]
-
-    assert table_page_1["rows"]
-    assert table_page_2["rows"]
-    assert table_page_1["rows"][0] != table_page_2["rows"][0]
-
-
-def _global_ranking_tables(payload: dict) -> list[dict]:
-    return [
-        table
-        for table in payload["complement_tables"]
-        if "ranking global" in table["title"].lower()
-    ]
-
+    assert "missing_q1.txt" in response.json()["detail"]

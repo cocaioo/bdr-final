@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import asyncio
+import logging
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -7,11 +11,31 @@ from .filter_engine import FilterState
 from .models import MetaResponse, QuestionPayload
 from .service import DashboardService
 
+logger = logging.getLogger(__name__)
+
+service = DashboardService()
+
+
+@asynccontextmanager
+async def lifespan(application: FastAPI):
+    # Warm cache in background thread — server starts immediately
+    async def _warm_cache():
+        try:
+            await asyncio.to_thread(service.get_meta)
+            logger.info("Cache warmed successfully.")
+        except Exception:
+            logger.warning("Cache warmup failed — first request will be slower.", exc_info=True)
+
+    warmup_task = asyncio.create_task(_warm_cache())
+    yield
+    warmup_task.cancel()
+
 
 app = FastAPI(
     title="BDR Dashboard API",
     version="1.0.0",
     description="API adapter para respostas Q1-Q13 com filtros, tabela e especificacao de grafico.",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -21,9 +45,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-service = DashboardService()
-
 
 @app.get("/api/health")
 def health() -> dict[str, str]:
@@ -68,4 +89,6 @@ def get_question(
     try:
         return service.get_question_payload(question_id=question_id, state=state)
     except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc

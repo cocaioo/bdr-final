@@ -23,8 +23,26 @@ O projeto tem tres partes principais:
 3. **Interface**
    - Backend: FastAPI em `dashboard/backend`, porta `8000`.
    - Frontend: React/Vite em `dashboard/frontend`, porta `5173`.
-   - A interface le os arquivos de `respostas/*.txt` via API, nao consulta o
-     banco diretamente.
+    - A interface le os arquivos exportados via API, sem consultar o banco
+       diretamente.
+
+## Estrutura das respostas do dashboard
+
+O dashboard agora aceita caminhos relativos por membro/pergunta dentro do
+`question_registry.json`, por exemplo `Caio/q2/q2_eixos_nuvem_palavras.txt` e
+`Caio/q4/q4_escolaridade.txt`.
+
+Regras de resolucao:
+
+- Caminhos relativos apontando para subpastas do repo sao aceitos diretamente.
+- Se um arquivo nao existir no caminho novo, o backend tenta o nome legado em
+   `respostas/`.
+- Se o arquivo ainda nao tiver migrado, o backend continua aceitando o nome
+   antigo sem quebrar a API.
+
+Quando registrar uma pergunta nova ou migrar uma existente, use sempre o
+menor caminho relativo possivel no `question_registry.json` e mantenha o nome
+do arquivo consistente com a pergunta.
 
 ## Diagnostico da refatoracao
 
@@ -220,7 +238,17 @@ ENRICH_DEPUTADOS_API=false
 
 ## Respostas
 
-As respostas sao exportadas por `sql/export_respostas.sql` para `respostas/`.
+As respostas sao exportadas por `sql/export_respostas.sql` para a arvore do
+projeto por membro/pergunta. O backend continua com fallback para `respostas/`
+quando necessario.
+
+Exemplos de registro no dashboard:
+
+- `Caio/q2/q2_eixos_nuvem_palavras.txt`
+- `Caio/q2/q2_eixo_nuvens_complemento.txt`
+- `Caio/q4/q4_escolaridade.txt`
+- `Caio/q4/q4_escolaridade_complementar.txt`
+
 O arquivo cobre as perguntas Q1 a Q13 do PDF:
 
 - gastos por deputado
