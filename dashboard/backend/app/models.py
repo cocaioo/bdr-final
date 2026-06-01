@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field
 class FilterChoice(BaseModel):
     value: str
     label: str
+    status: str | None = None
 
 
 class FilterCatalog(BaseModel):

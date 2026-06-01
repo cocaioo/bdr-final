@@ -36,7 +36,7 @@ perfil_dominante AS (
 )
 SELECT
     d.id_deputado,
-    d.nome AS nome,
+    COALESCE(NULLIF(BTRIM(d.nome_civil), ''), d.nome) AS nome,
     p.sigla_uf,
     p.sigla_partido,
     g.gasto_total

@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
+from .party_catalog import normalize_party
+
 
 @dataclass(slots=True)
 class FilterState:
@@ -40,9 +42,7 @@ class FilterEngine:
         if "eixos" in supported_filters and state.eixos:
             filtered = cls._filter_by_columns(filtered, cls.COLUMN_MAP["eixos"], state.eixos)
         if "partidos" in supported_filters and state.partidos:
-            filtered = cls._filter_by_columns(
-                filtered, cls.COLUMN_MAP["partidos"], state.partidos
-            )
+            filtered = cls._filter_parties(filtered, state.partidos)
         if "ufs" in supported_filters and state.ufs:
             filtered = cls._filter_by_columns(filtered, cls.COLUMN_MAP["ufs"], state.ufs)
         if "deputados" in supported_filters and state.deputados:
@@ -96,6 +96,27 @@ class FilterEngine:
                 if str(raw).strip().lower() in normalized:
                     output.append(row)
                     break
+        return output
+
+    @classmethod
+    def _filter_parties(
+        cls,
+        rows: list[dict[str, Any]],
+        allowed_values: list[str],
+    ) -> list[dict[str, Any]]:
+        normalized = {
+            normalized_value
+            for value in allowed_values
+            if (normalized_value := normalize_party(value))
+        }
+        if not normalized:
+            return rows
+        if not any("sigla_partido" in row for row in rows):
+            return rows
+        output: list[dict[str, Any]] = []
+        for row in rows:
+            if normalize_party(row.get("sigla_partido")) in normalized:
+                output.append(row)
         return output
 
     @classmethod

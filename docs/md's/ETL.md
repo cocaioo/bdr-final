@@ -24,12 +24,31 @@
 - Elimina registros de lideranca na tabela `gastos`.
 - Valida colunas numericas e salva amostras de erros em `logs/`.
 - Enriquecimento opcional pela API preenche `cpf`, `nome_civil` e `escolaridade`.
+- O nome civil e mantido em `deputados.nome_civil` e deve ser preferido como
+  rotulo de exibicao quando existir; `deputados.nome` segue como fallback
+  operacional para casos sem nome civil.
+
+## Catalogo de partidos
+
+- `catalogos/partidos.csv` e a fonte canonica de siglas usadas pelo ETL e pelo
+  dashboard.
+- Cada sigla tem `status` explicito. Siglas com `status=ativo` entram no
+  catalogo padrao de filtros do dashboard.
+- Siglas historicas ou descontinuadas, como `ARENA`, `PATRIOTA`, `PROS`,
+  `PSC` e `PTB`, permanecem catalogadas com status historico, mas nao aparecem
+  como opcoes ativas por acidente.
+- A tabela analitica `partidos_ideologia` continua com o contrato antigo
+  (`sigla_partido`, `ideologia`) e recebe apenas siglas ativas.
 
 ## Carga no banco
 
 - `src/main.py` orquestra o pipeline completo.
 - `src/mappings.py` define o mapeamento CSV -> tabela.
-- `src/loaders.py` aplica a limpeza e grava CSVs em `dados_padronizados/`.
+- `src/loaders.py` separa as etapas em extracao (`extract_table_frame`),
+  padronizacao (`standardize_table_frame`) e carga (`load_standardized_frame`).
+- A etapa de padronizacao continua removendo duplicatas, validando campos
+  obrigatorios e tipos numericos, normalizando siglas e preservando o
+  enriquecimento via API da Camara para deputados.
 - `src/db.py` usa `COPY` para carga rapida no schema `grupo4`.
 - Cada tabela gera seu proprio CSV padronizado, nao um unico arquivo gigante.
 

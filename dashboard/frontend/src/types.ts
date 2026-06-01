@@ -1,6 +1,7 @@
 export interface FilterChoice {
   value: string
   label: string
+  status?: string | null
 }
 
 export interface FilterCatalog {

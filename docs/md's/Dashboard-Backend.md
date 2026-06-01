@@ -14,6 +14,10 @@ Carregamento de dados
 - Le `respostas/*.txt` e interpreta tabelas psql via `parser.py`.
 - `service.py` monta `MetaResponse` e `QuestionPayload`.
 - `FilterEngine` aplica filtros em `ano_dados`, `sigla_partido`, `sigla_uf`, `id_deputado`, `nome`.
+- O filtro de partidos usa `catalogos/partidos.csv` como catalogo canonico e
+  expoe por padrao apenas siglas com `status=ativo`.
+- A Q1 mantem a coluna `nome`, mas o valor exibido passa a ser o nome civil
+  quando disponivel, com fallback para o nome parlamentar.
 
 Cache
 - Cache em memoria com TTL de 300s.

@@ -14,6 +14,7 @@ from .cache import MemoryCache
 from .config import REPO_ROOT, REGISTRY_PATH, RESPONSES_DIR, SQL_DIR
 from .filter_engine import FilterState
 from .models import FilterCatalog, FilterChoice, MetaResponse, QuestionMeta, QuestionPayload
+from .party_catalog import active_party_entries, normalize_party, PARTY_CATALOG_RELATIVE_PATH
 from .parser import ParsedDocument, parse_psql_file, read_text_with_fallback
 from .registry import QuestionDefinition, QuestionRegistry, load_registry
 
@@ -123,6 +124,7 @@ class DashboardService:
                     hash_builder.update(b"missing")
             sql_path = self.sql_dir / question.sql_file
             _update_hash_with_file(hash_builder, sql_path)
+        _update_hash_with_file(hash_builder, self.repo_root / PARTY_CATALOG_RELATIVE_PATH)
         digest = hash_builder.hexdigest()[:16]
         self._version_cache = (now, digest)
         return digest
@@ -150,7 +152,7 @@ class DashboardService:
             return cached
 
         anos: set[str] = set()
-        partidos: set[str] = set()
+        partidos_observed: set[str] = set()
         eixos: set[str] = set()
         ufs: set[str] = set()
         deputados: set[str] = set()
@@ -167,14 +169,26 @@ class DashboardService:
                         _maybe_add(anos, row.get("ano"), excluded={"GLOBAL"})
                         _maybe_add(eixos, row.get("eixo_maior"))
                         _maybe_add(eixos, row.get("eixo_mais_atuante"))
-                        _maybe_add(partidos, row.get("sigla_partido"))
+                        _maybe_add_party(partidos_observed, row.get("sigla_partido"))
                         _maybe_add(ufs, row.get("sigla_uf"))
                         _maybe_add(deputados, row.get("nome") or row.get("id_deputado"))
+
+        active_parties = active_party_entries(self.repo_root)
+        if active_parties:
+            party_choices = [
+                FilterChoice(value=entry.sigla, label=entry.sigla, status=entry.status)
+                for entry in active_parties
+            ]
+        else:
+            party_choices = [
+                FilterChoice(value=item, label=item, status="sem_catalogo")
+                for item in sorted(partidos_observed)
+            ]
 
         catalog = FilterCatalog(
             anos=[FilterChoice(value=item, label=item) for item in sorted(anos)],
             eixos=[FilterChoice(value=item, label=item) for item in sorted(eixos)],
-            partidos=[FilterChoice(value=item, label=item) for item in sorted(partidos)],
+            partidos=party_choices,
             ufs=[FilterChoice(value=item, label=item) for item in sorted(ufs)],
             deputados=[FilterChoice(value=item, label=item) for item in sorted(deputados)],
         )
@@ -276,6 +290,12 @@ def _maybe_add(container: set[str], value: Any, excluded: set[str] | None = None
         return
     if text:
         container.add(text)
+
+
+def _maybe_add_party(container: set[str], value: Any) -> None:
+    normalized = normalize_party(value)
+    if normalized:
+        container.add(normalized)
 
 
 def _relative_path(path: Path, base_dir: Path) -> str:

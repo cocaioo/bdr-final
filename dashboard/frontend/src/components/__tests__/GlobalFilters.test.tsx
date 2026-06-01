@@ -64,4 +64,28 @@ describe('GlobalFilters', () => {
 
     expect(screen.queryByText(/buscar deputado por id/i)).not.toBeInTheDocument()
   })
+
+  it('renders party options exactly from the backend catalog', () => {
+    const onChange = vi.fn()
+    const backendCatalog: FilterCatalog = {
+      ...catalog,
+      partidos: [
+        { value: 'PL', label: 'PL', status: 'ativo' },
+        { value: 'PT', label: 'PT', status: 'ativo' },
+      ],
+    }
+
+    render(
+      <GlobalFilters
+        catalog={backendCatalog}
+        value={value}
+        onChange={onChange}
+        supportedFilters={['partidos']}
+      />,
+    )
+
+    expect(screen.getByRole('option', { name: 'PL' })).toBeInTheDocument()
+    expect(screen.getByRole('option', { name: 'PT' })).toBeInTheDocument()
+    expect(screen.queryByRole('option', { name: 'ARENA' })).not.toBeInTheDocument()
+  })
 })
