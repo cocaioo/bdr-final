@@ -1,31 +1,10 @@
 """Table mapping for the local ETL."""
 
 from . import cleaning as C
+from .party_catalog import active_party_ideology_rows
 
 
-PARTIDOS_IDEOLOGIA = [
-    {"sigla_partido": "AVANTE", "ideologia": "centro"},
-    {"sigla_partido": "CIDADANIA", "ideologia": "centro"},
-    {"sigla_partido": "MDB", "ideologia": "centro"},
-    {"sigla_partido": "MISSAO", "ideologia": "centro"},
-    {"sigla_partido": "NOVO", "ideologia": "direita"},
-    {"sigla_partido": "PCDOB", "ideologia": "esquerda"},
-    {"sigla_partido": "PDT", "ideologia": "esquerda"},
-    {"sigla_partido": "PL", "ideologia": "direita"},
-    {"sigla_partido": "PODE", "ideologia": "centro"},
-    {"sigla_partido": "PP", "ideologia": "direita"},
-    {"sigla_partido": "PRD", "ideologia": "centro"},
-    {"sigla_partido": "PSB", "ideologia": "esquerda"},
-    {"sigla_partido": "PSD", "ideologia": "centro"},
-    {"sigla_partido": "PSDB", "ideologia": "centro"},
-    {"sigla_partido": "PSOL", "ideologia": "esquerda"},
-    {"sigla_partido": "PT", "ideologia": "esquerda"},
-    {"sigla_partido": "PV", "ideologia": "esquerda"},
-    {"sigla_partido": "REDE", "ideologia": "esquerda"},
-    {"sigla_partido": "REPUBLICANOS", "ideologia": "direita"},
-    {"sigla_partido": "SOLIDARIEDADE", "ideologia": "centro"},
-    {"sigla_partido": "UNIAO", "ideologia": "centro"},
-]
+PARTIDOS_IDEOLOGIA = active_party_ideology_rows()
 
 
 LOAD_ORDER = [

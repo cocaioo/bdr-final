@@ -23,67 +23,91 @@ logger = logging.getLogger(__name__)
 
 def load_table(config, conn, schema, data_dir, clean_dir, log_dir=None):
     table_name = config["table"]
+    data_dir = Path(data_dir)
+    log_dir = Path(log_dir or os.getenv("LOG_DIR", "./logs"))
+    df, stats = extract_table_frame(config, data_dir)
+    if df is None:
+        return stats
+
+    out_copy = standardize_table_frame(config, df, data_dir, log_dir)
+    stats["rows_clean"] = len(out_copy)
+    logger.info(f"  {len(out_copy):,} linhas padronizadas")
+
+    clean_path = write_standardized_frame(config, out_copy, clean_dir)
+    logger.info(f"  CSV padronizado salvo: {clean_path.name}")
+
+    try:
+        load_standardized_frame(conn, schema, table_name, out_copy.columns.tolist(), clean_path)
+        stats["rows_loaded"] = stats["rows_clean"]
+        logger.info(f"  {stats['rows_loaded']:,} linhas carregadas no banco")
+    except Exception as exc:
+        stats["status"] = "erro_carga"
+        stats["error"] = str(exc)
+        conn.rollback()
+        logger.error(f"  Erro no COPY: {exc}")
+
+    return stats
+
+
+def extract_table_frame(config, data_dir):
+    table_name = config["table"]
     csv_file = config.get("file")
     csv_pattern = config.get("file_pattern")
     data_dir = Path(data_dir)
-    log_dir = Path(log_dir or os.getenv("LOG_DIR", "./logs"))
-    stats = {
-        "table": table_name,
-        "source_files": "",
-        "years": "",
-        "rows_raw": 0,
-        "rows_bad": 0,
-        "rows_clean": 0,
-        "rows_loaded": 0,
-        "status": "ok",
-        "error": None,
-    }
+    stats = _empty_stats(table_name)
 
     if "generated_rows" in config:
         df = pd.DataFrame(config["generated_rows"])
         stats["source_files"] = "generated"
         stats["rows_raw"] = len(df)
         logger.info(f"  Gerando {table_name}.csv...")
-    else:
-        csv_paths = _resolve_csv_paths(data_dir, csv_file, csv_pattern)
-        if not csv_paths:
-            stats["status"] = "skip"
-            expected = csv_pattern or csv_file or "sem CSV configurado"
-            stats["error"] = f"arquivo nao encontrado: {expected} em {data_dir.resolve()}"
-            logger.warning(f"  Skip: {stats['error']}")
-            return stats
+        return df, stats
 
-        frames = []
-        source_files = []
-        years = []
-        for csv_path in csv_paths:
-            year = extract_year(csv_path)
-            raw_label = str(csv_path)
-            if csv_path.parent.resolve() != data_dir.resolve():
-                logger.info(f"  Arquivo encontrado em subpasta: {raw_label}")
-            logger.info(f"  Lendo {raw_label}...")
+    csv_paths = _resolve_csv_paths(data_dir, csv_file, csv_pattern)
+    if not csv_paths:
+        stats["status"] = "skip"
+        expected = csv_pattern or csv_file or "sem CSV configurado"
+        stats["error"] = f"arquivo nao encontrado: {expected} em {data_dir.resolve()}"
+        logger.warning(f"  Skip: {stats['error']}")
+        return None, stats
 
-            bad_lines = []
-            frame = read_csv(csv_path, bad_lines=bad_lines)
-            skipped_rows = len(bad_lines)
-            if skipped_rows:
-                logger.warning(f"  {skipped_rows:,} linhas possivelmente puladas em {csv_path.name}")
+    frames = []
+    source_files = []
+    years = []
+    for csv_path in csv_paths:
+        year = extract_year(csv_path)
+        raw_label = str(csv_path)
+        if csv_path.parent.resolve() != data_dir.resolve():
+            logger.info(f"  Arquivo encontrado em subpasta: {raw_label}")
+        logger.info(f"  Lendo {raw_label}...")
 
-            if config.get("year_from_file"):
-                frame["__ano_dados"] = str(year) if year is not None else None
+        bad_lines = []
+        frame = read_csv(csv_path, bad_lines=bad_lines)
+        skipped_rows = len(bad_lines)
+        if skipped_rows:
+            logger.warning(f"  {skipped_rows:,} linhas possivelmente puladas em {csv_path.name}")
 
-            frames.append(frame)
-            source_files.append(str(csv_path))
-            if year is not None:
-                years.append(str(year))
-            stats["rows_raw"] += len(frame)
-            stats["rows_bad"] += skipped_rows
+        if config.get("year_from_file"):
+            frame["__ano_dados"] = str(year) if year is not None else None
 
-        df = pd.concat(frames, ignore_index=True) if len(frames) > 1 else frames[0]
-        stats["source_files"] = "|".join(source_files)
-        stats["years"] = "|".join(sorted(set(years)))
-        logger.info(f"  {stats['rows_raw']:,} linhas lidas em {len(csv_paths)} arquivo(s)")
+        frames.append(frame)
+        source_files.append(str(csv_path))
+        if year is not None:
+            years.append(str(year))
+        stats["rows_raw"] += len(frame)
+        stats["rows_bad"] += skipped_rows
 
+    df = pd.concat(frames, ignore_index=True) if len(frames) > 1 else frames[0]
+    stats["source_files"] = "|".join(source_files)
+    stats["years"] = "|".join(sorted(set(years)))
+    logger.info(f"  {stats['rows_raw']:,} linhas lidas em {len(csv_paths)} arquivo(s)")
+    return df, stats
+
+
+def standardize_table_frame(config, df, data_dir, log_dir=None):
+    table_name = config["table"]
+    data_dir = Path(data_dir)
+    log_dir = Path(log_dir or os.getenv("LOG_DIR", "./logs"))
     transform_type = config.get("transform")
     if transform_type == "deputados":
         out = _transform_deputados(df, data_dir)
@@ -128,25 +152,31 @@ def load_table(config, conn, schema, data_dir, clean_dir, log_dir=None):
     copy_columns = [c for c in out.columns if c not in skip]
     out_copy = out[copy_columns]
     _validate_numeric_columns(out_copy, config, log_dir, table_name)
+    return out_copy
 
-    stats["rows_clean"] = len(out_copy)
-    logger.info(f"  {len(out_copy):,} linhas padronizadas")
 
-    clean_path = Path(clean_dir) / f"{table_name}.csv"
-    write_clean_csv(out_copy, clean_path)
-    logger.info(f"  CSV padronizado salvo: {clean_path.name}")
+def write_standardized_frame(config, frame, clean_dir):
+    clean_path = Path(clean_dir) / f"{config['table']}.csv"
+    write_clean_csv(frame, clean_path)
+    return clean_path
 
-    try:
-        db.copy_csv(conn, schema, table_name, copy_columns, clean_path)
-        stats["rows_loaded"] = stats["rows_clean"]
-        logger.info(f"  {stats['rows_loaded']:,} linhas carregadas no banco")
-    except Exception as exc:
-        stats["status"] = "erro_carga"
-        stats["error"] = str(exc)
-        conn.rollback()
-        logger.error(f"  Erro no COPY: {exc}")
 
-    return stats
+def load_standardized_frame(conn, schema, table_name, columns, clean_path):
+    db.copy_csv(conn, schema, table_name, columns, clean_path)
+
+
+def _empty_stats(table_name):
+    return {
+        "table": table_name,
+        "source_files": "",
+        "years": "",
+        "rows_raw": 0,
+        "rows_bad": 0,
+        "rows_clean": 0,
+        "rows_loaded": 0,
+        "status": "ok",
+        "error": None,
+    }
 
 
 def _resolve_csv_paths(data_dir, csv_file, csv_pattern):

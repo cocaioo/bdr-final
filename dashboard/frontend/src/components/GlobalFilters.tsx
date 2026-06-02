@@ -16,6 +16,11 @@ function readSelectedValues(target: HTMLSelectElement) {
   return Array.from(target.selectedOptions).map((option) => option.value)
 }
 
+function choiceLabel(choice: { label: string; status?: string | null }) {
+  if (!choice.status || choice.status === 'ativo') return choice.label
+  return `${choice.label} (${choice.status})`
+}
+
 export function GlobalFilters({
   catalog,
   value,
@@ -75,8 +80,8 @@ export function GlobalFilters({
               onChange={(event) => setList('partidos', readSelectedValues(event.target))}
             >
               {catalog.partidos.map((choice) => (
-                <option key={choice.value} value={choice.value}>
-                  {choice.label}
+                <option key={choice.value} value={choice.value} title={choice.status ?? undefined}>
+                  {choiceLabel(choice)}
                 </option>
               ))}
             </select>
@@ -92,6 +97,23 @@ export function GlobalFilters({
               onChange={(event) => setList('ufs', readSelectedValues(event.target))}
             >
               {catalog.ufs.map((choice) => (
+                <option key={choice.value} value={choice.value}>
+                  {choice.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+
+        {isEnabled(supportedFilters, 'deputados') && (
+          <label className="filter-item">
+            <span>Deputado</span>
+            <select
+              multiple
+              value={value.deputados}
+              onChange={(event) => setList('deputados', readSelectedValues(event.target))}
+            >
+              {catalog.deputados.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>

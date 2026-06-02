@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:16
-    container_name: postgres-grupo4
+    container_name: bdr-postgres
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
@@ -9,11 +9,26 @@ services:
     ports:
       - "${DB_PORT:-5433}:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - bdr_postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./sql:/sql:ro
       - ./respostas:/respostas
     restart: unless-stopped
 
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: bdr-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    volumes:
+      - bdr_pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
 volumes:
-  postgres_data:
+  bdr_postgres_data:
+  bdr_pgadmin_data:

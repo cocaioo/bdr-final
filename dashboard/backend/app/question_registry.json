@@ -21,7 +21,7 @@
     {
       "id": "q1",
       "title": "Gastos por deputado",
-      "description": "Ranking de gasto total por deputado com destaque para partido e UF.",
+      "description": "Ranking de gasto total por deputado com nome civil preferencial, partido e UF.",
       "response_files": ["q1_gastos_deputados.txt"],
       "sql_file": "q1.sql",
       "chart_type": "bar_horizontal",
@@ -29,7 +29,7 @@
       "expected_columns": ["id_deputado", "nome", "sigla_uf", "sigla_partido", "gasto_total"],
       "main_table_contains": "",
       "summary_table_contains": "",
-      "explanation": "Soma valor_liquido por deputado e ordena do maior para o menor gasto.",
+      "explanation": "Soma valor_liquido por deputado, usa nome_civil como rotulo quando disponivel e ordena do maior para o menor gasto.",
       "chart": { "x_field": "nome", "y_fields": ["gasto_total"] }
     },
     {

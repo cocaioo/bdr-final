@@ -43,6 +43,14 @@ def _write_sql_file(path: Path) -> None:
     path.write_text("SELECT 1;\n", encoding="utf-8")
 
 
+def _write_party_catalog(root: Path, rows: list[tuple[str, str, str]]) -> None:
+    catalog_dir = root / "catalogos"
+    catalog_dir.mkdir(parents=True, exist_ok=True)
+    lines = ["sigla_partido;status;ideologia"]
+    lines.extend(";".join(row) for row in rows)
+    (catalog_dir / "partidos.csv").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def _build_registry(root: Path) -> Path:
     registry = {
         "legend": {},
@@ -159,6 +167,25 @@ def test_meta_endpoint_collects_filters_from_new_and_legacy_paths(tmp_path: Path
     }
 
 
+def test_meta_endpoint_uses_active_party_catalog_when_available(tmp_path: Path) -> None:
+    _write_party_catalog(
+        tmp_path,
+        [
+            ("PT", "ativo", "esquerda"),
+            ("PL", "ativo", "direita"),
+            ("ARENA", "historico", "direita"),
+        ],
+    )
+    client = _client_for(_build_service(tmp_path))
+
+    response = client.get("/api/meta")
+    assert response.status_code == 200
+
+    parties = response.json()["available_filters"]["partidos"]
+    assert [item["value"] for item in parties] == ["PL", "PT"]
+    assert {item["status"] for item in parties} == {"ativo"}
+
+
 def test_question_endpoint_applies_filters_sorting_and_pagination(tmp_path: Path) -> None:
     client = _client_for(_build_service(tmp_path))
 
@@ -176,6 +203,27 @@ def test_question_endpoint_applies_filters_sorting_and_pagination(tmp_path: Path
     assert sorted_second_page.status_code == 200
     assert sorted_first_page.json()["table_spec"]["rows"][0]["nome"] == "Bruno Lima"
     assert sorted_second_page.json()["table_spec"]["rows"][0]["nome"] == "Ana Silva"
+
+
+def test_question_endpoint_normalizes_party_filter_aliases(tmp_path: Path) -> None:
+    service = _build_service(tmp_path)
+    _write_response_file(
+        tmp_path / "respostas" / "legacy_q1.txt",
+        """Tabela principal
+ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_total
+----------+------------+---------------+----------+-------------+-----------+------------
+2024      | Social     | REPUBLICANOS  | SP       | 1           | Ana Silva | 10
+(1 rows)
+""",
+    )
+    service._version_cache = None
+    client = _client_for(service)
+
+    response = client.get("/api/questions/q1?partidos=republic&page_size=10")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["table_spec"]["total"] == 1
+    assert payload["table_spec"]["rows"][0]["sigla_partido"] == "REPUBLICANOS"
 
 
 def test_question_endpoint_uses_new_paths_and_member_fallback(tmp_path: Path) -> None:
