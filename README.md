@@ -18,15 +18,47 @@ Projeto local para padronizar dados da Camara dos Deputados, carregar o PostgreS
 ## Como rodar
 
 1. Suba o banco, se ele ainda nao estiver no ar: `docker compose up -d`
-2. Abra um terminal na raiz do projeto e inicie a API:
+2. Instale as dependencias do frontend uma vez:
+
+PowerShell:
+
+```powershell
+cd dashboard/frontend
+npm install
+```
+
+Git Bash:
+
+```bash
+cd dashboard/frontend
+npm install
+```
+
+3. Inicie a API em um terminal na raiz do projeto.
+
+PowerShell:
 
 ```powershell
 .\venv\Scripts\python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
 ```
 
-3. Abra outro terminal em `dashboard/frontend` e inicie o front:
+Git Bash:
+
+```bash
+./venv/Scripts/python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
+```
+
+4. Abra outro terminal em `dashboard/frontend` e inicie o front.
+
+PowerShell:
 
 ```powershell
+npm run dev -- --host 0.0.0.0 --port 5173
+```
+
+Git Bash:
+
+```bash
 npm run dev -- --host 0.0.0.0 --port 5173
 ```
 
