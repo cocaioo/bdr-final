@@ -1,130 +1,130 @@
 [
   {
     "eixo": "Direitos Humanos e Minorias",
-    "count": 11741
+    "count": 5302
   },
   {
     "eixo": "Administração Pública",
-    "count": 11500
+    "count": 4970
   },
   {
     "eixo": "Saúde",
-    "count": 8481
+    "count": 3854
   },
   {
     "eixo": "Finanças Públicas e Orçamento",
-    "count": 6848
+    "count": 3665
   },
   {
     "eixo": "Defesa e Segurança",
-    "count": 5686
-  },
-  {
-    "eixo": "Agricultura, Pecuária, Pesca e Extrativismo",
-    "count": 5398
+    "count": 3251
   },
   {
     "eixo": "Educação",
-    "count": 5220
-  },
-  {
-    "eixo": "Meio Ambiente e Desenvolvimento Sustentável",
-    "count": 4303
-  },
-  {
-    "eixo": "Comunicações",
-    "count": 4077
+    "count": 2911
   },
   {
     "eixo": "Trabalho e Emprego",
-    "count": 3632
+    "count": 2010
   },
   {
-    "eixo": "Viação, Transporte e Mobilidade",
-    "count": 3154
+    "eixo": "Meio Ambiente e Desenvolvimento Sustentável",
+    "count": 2004
+  },
+  {
+    "eixo": "Comunicações",
+    "count": 1812
   },
   {
     "eixo": "Economia",
-    "count": 3146
-  },
-  {
-    "eixo": "Indústria, Comércio e Serviços",
-    "count": 2922
+    "count": 1760
   },
   {
     "eixo": "Direito Penal e Processual Penal",
-    "count": 2912
+    "count": 1660
   },
   {
-    "eixo": "Cidades e Desenvolvimento Urbano",
-    "count": 2450
+    "eixo": "Viação, Transporte e Mobilidade",
+    "count": 1620
+  },
+  {
+    "eixo": "Indústria, Comércio e Serviços",
+    "count": 1529
   },
   {
     "eixo": "Previdência e Assistência Social",
-    "count": 2373
+    "count": 1041
   },
   {
-    "eixo": "Energia, Recursos Hídricos e Minerais",
-    "count": 2053
+    "eixo": "Agricultura, Pecuária, Pesca e Extrativismo",
+    "count": 1006
   },
   {
     "eixo": "Homenagens e Datas Comemorativas",
-    "count": 1680
+    "count": 916
+  },
+  {
+    "eixo": "Cidades e Desenvolvimento Urbano",
+    "count": 903
+  },
+  {
+    "eixo": "Energia, Recursos Hídricos e Minerais",
+    "count": 879
   },
   {
     "eixo": "Arte, Cultura e Religião",
-    "count": 1634
-  },
-  {
-    "eixo": "Relações Internacionais e Comércio Exterior",
-    "count": 1533
+    "count": 863
   },
   {
     "eixo": "Direito e Defesa do Consumidor",
-    "count": 1510
-  },
-  {
-    "eixo": "Esporte e Lazer",
-    "count": 1489
+    "count": 849
   },
   {
     "eixo": "Ciência, Tecnologia e Inovação",
-    "count": 1417
+    "count": 835
+  },
+  {
+    "eixo": "Relações Internacionais e Comércio Exterior",
+    "count": 788
+  },
+  {
+    "eixo": "Esporte e Lazer",
+    "count": 775
   },
   {
     "eixo": "Direito Civil e Processual Civil",
-    "count": 1347
-  },
-  {
-    "eixo": "Direito e Justiça",
-    "count": 859
+    "count": 755
   },
   {
     "eixo": "Estrutura Fundiária",
-    "count": 686
+    "count": 442
   },
   {
-    "eixo": "Turismo",
-    "count": 551
+    "eixo": "Direito e Justiça",
+    "count": 385
   },
   {
     "eixo": "Processo Legislativo e Atuação Parlamentar",
-    "count": 543
+    "count": 354
+  },
+  {
+    "eixo": "Turismo",
+    "count": 349
   },
   {
     "eixo": "Política, Partidos e Eleições",
-    "count": 433
+    "count": 265
   },
   {
     "eixo": "Direito Constitucional",
-    "count": 125
-  },
-  {
-    "eixo": "Ciências Sociais e Humanas",
-    "count": 18
+    "count": 78
   },
   {
     "eixo": "Ciências Exatas e da Terra",
-    "count": 11
+    "count": 7
+  },
+  {
+    "eixo": "Ciências Sociais e Humanas",
+    "count": 5
   }
 ]

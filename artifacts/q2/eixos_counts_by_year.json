@@ -161,323 +161,313 @@
   },
   {
     "year": 2024,
-    "eixo": "Administração Pública",
-    "count": 2551
-  },
-  {
-    "year": 2024,
     "eixo": "Saúde",
-    "count": 2524
+    "count": 645
   },
   {
     "year": 2024,
     "eixo": "Direitos Humanos e Minorias",
-    "count": 2283
+    "count": 621
+  },
+  {
+    "year": 2024,
+    "eixo": "Administração Pública",
+    "count": 554
   },
   {
     "year": 2024,
     "eixo": "Finanças Públicas e Orçamento",
-    "count": 1663
-  },
-  {
-    "year": 2024,
-    "eixo": "Meio Ambiente e Desenvolvimento Sustentável",
-    "count": 1402
+    "count": 433
   },
   {
     "year": 2024,
     "eixo": "Educação",
-    "count": 1310
-  },
-  {
-    "year": 2024,
-    "eixo": "Defesa e Segurança",
-    "count": 1282
+    "count": 417
   },
   {
     "year": 2024,
     "eixo": "Comunicações",
-    "count": 1234
+    "count": 354
   },
   {
     "year": 2024,
-    "eixo": "Cidades e Desenvolvimento Urbano",
-    "count": 1045
+    "eixo": "Defesa e Segurança",
+    "count": 341
   },
   {
     "year": 2024,
-    "eixo": "Viação, Transporte e Mobilidade",
-    "count": 1024
-  },
-  {
-    "year": 2024,
-    "eixo": "Trabalho e Emprego",
-    "count": 822
+    "eixo": "Meio Ambiente e Desenvolvimento Sustentável",
+    "count": 272
   },
   {
     "year": 2024,
     "eixo": "Economia",
-    "count": 759
+    "count": 242
   },
   {
     "year": 2024,
-    "eixo": "Energia, Recursos Hídricos e Minerais",
-    "count": 664
+    "eixo": "Trabalho e Emprego",
+    "count": 232
+  },
+  {
+    "year": 2024,
+    "eixo": "Viação, Transporte e Mobilidade",
+    "count": 229
   },
   {
     "year": 2024,
     "eixo": "Direito Penal e Processual Penal",
-    "count": 629
+    "count": 212
+  },
+  {
+    "year": 2024,
+    "eixo": "Cidades e Desenvolvimento Urbano",
+    "count": 202
   },
   {
     "year": 2024,
     "eixo": "Indústria, Comércio e Serviços",
-    "count": 614
+    "count": 168
   },
   {
     "year": 2024,
     "eixo": "Previdência e Assistência Social",
-    "count": 557
-  },
-  {
-    "year": 2024,
-    "eixo": "Homenagens e Datas Comemorativas",
-    "count": 403
-  },
-  {
-    "year": 2024,
-    "eixo": "Agricultura, Pecuária, Pesca e Extrativismo",
-    "count": 384
+    "count": 143
   },
   {
     "year": 2024,
     "eixo": "Arte, Cultura e Religião",
-    "count": 363
+    "count": 133
   },
   {
     "year": 2024,
-    "eixo": "Relações Internacionais e Comércio Exterior",
-    "count": 334
+    "eixo": "Energia, Recursos Hídricos e Minerais",
+    "count": 106
   },
   {
     "year": 2024,
-    "eixo": "Direito Civil e Processual Civil",
-    "count": 298
-  },
-  {
-    "year": 2024,
-    "eixo": "Esporte e Lazer",
-    "count": 292
-  },
-  {
-    "year": 2024,
-    "eixo": "Ciência, Tecnologia e Inovação",
-    "count": 262
-  },
-  {
-    "year": 2024,
-    "eixo": "Direito e Defesa do Consumidor",
-    "count": 251
-  },
-  {
-    "year": 2024,
-    "eixo": "Direito e Justiça",
-    "count": 227
-  },
-  {
-    "year": 2024,
-    "eixo": "Estrutura Fundiária",
-    "count": 137
-  },
-  {
-    "year": 2024,
-    "eixo": "Política, Partidos e Eleições",
-    "count": 132
-  },
-  {
-    "year": 2024,
-    "eixo": "Turismo",
-    "count": 108
-  },
-  {
-    "year": 2024,
-    "eixo": "Processo Legislativo e Atuação Parlamentar",
+    "eixo": "Agricultura, Pecuária, Pesca e Extrativismo",
     "count": 103
   },
   {
     "year": 2024,
-    "eixo": "Direito Constitucional",
+    "eixo": "Homenagens e Datas Comemorativas",
+    "count": 101
+  },
+  {
+    "year": 2024,
+    "eixo": "Direito Civil e Processual Civil",
+    "count": 100
+  },
+  {
+    "year": 2024,
+    "eixo": "Relações Internacionais e Comércio Exterior",
+    "count": 88
+  },
+  {
+    "year": 2024,
+    "eixo": "Direito e Defesa do Consumidor",
+    "count": 84
+  },
+  {
+    "year": 2024,
+    "eixo": "Ciência, Tecnologia e Inovação",
+    "count": 73
+  },
+  {
+    "year": 2024,
+    "eixo": "Direito e Justiça",
+    "count": 58
+  },
+  {
+    "year": 2024,
+    "eixo": "Esporte e Lazer",
+    "count": 56
+  },
+  {
+    "year": 2024,
+    "eixo": "Estrutura Fundiária",
+    "count": 42
+  },
+  {
+    "year": 2024,
+    "eixo": "Política, Partidos e Eleições",
+    "count": 36
+  },
+  {
+    "year": 2024,
+    "eixo": "Processo Legislativo e Atuação Parlamentar",
     "count": 28
   },
   {
     "year": 2024,
-    "eixo": "Ciências Sociais e Humanas",
-    "count": 4
+    "eixo": "Turismo",
+    "count": 27
   },
   {
     "year": 2024,
-    "eixo": "Ciências Exatas e da Terra",
+    "eixo": "Direito Constitucional",
+    "count": 8
+  },
+  {
+    "year": 2024,
+    "eixo": "Ciências Sociais e Humanas",
     "count": 1
   },
   {
     "year": 2025,
-    "eixo": "Direitos Humanos e Minorias",
-    "count": 5476
-  },
-  {
-    "year": 2025,
     "eixo": "Administração Pública",
-    "count": 5282
+    "count": 749
   },
   {
     "year": 2025,
-    "eixo": "Agricultura, Pecuária, Pesca e Extrativismo",
-    "count": 4348
+    "eixo": "Direitos Humanos e Minorias",
+    "count": 699
   },
   {
     "year": 2025,
     "eixo": "Saúde",
-    "count": 3412
-  },
-  {
-    "year": 2025,
-    "eixo": "Finanças Públicas e Orçamento",
-    "count": 2442
-  },
-  {
-    "year": 2025,
-    "eixo": "Defesa e Segurança",
-    "count": 1928
-  },
-  {
-    "year": 2025,
-    "eixo": "Educação",
-    "count": 1649
-  },
-  {
-    "year": 2025,
-    "eixo": "Comunicações",
-    "count": 1526
-  },
-  {
-    "year": 2025,
-    "eixo": "Meio Ambiente e Desenvolvimento Sustentável",
-    "count": 1426
-  },
-  {
-    "year": 2025,
-    "eixo": "Trabalho e Emprego",
-    "count": 1285
-  },
-  {
-    "year": 2025,
-    "eixo": "Indústria, Comércio e Serviços",
-    "count": 1158
-  },
-  {
-    "year": 2025,
-    "eixo": "Economia",
-    "count": 1112
-  },
-  {
-    "year": 2025,
-    "eixo": "Previdência e Assistência Social",
-    "count": 1096
-  },
-  {
-    "year": 2025,
-    "eixo": "Direito Penal e Processual Penal",
-    "count": 1041
-  },
-  {
-    "year": 2025,
-    "eixo": "Viação, Transporte e Mobilidade",
-    "count": 971
-  },
-  {
-    "year": 2025,
-    "eixo": "Cidades e Desenvolvimento Urbano",
-    "count": 838
-  },
-  {
-    "year": 2025,
-    "eixo": "Energia, Recursos Hídricos e Minerais",
-    "count": 712
-  },
-  {
-    "year": 2025,
-    "eixo": "Arte, Cultura e Religião",
     "count": 664
   },
   {
     "year": 2025,
-    "eixo": "Relações Internacionais e Comércio Exterior",
-    "count": 630
+    "eixo": "Finanças Públicas e Orçamento",
+    "count": 489
+  },
+  {
+    "year": 2025,
+    "eixo": "Defesa e Segurança",
+    "count": 434
+  },
+  {
+    "year": 2025,
+    "eixo": "Meio Ambiente e Desenvolvimento Sustentável",
+    "count": 257
+  },
+  {
+    "year": 2025,
+    "eixo": "Trabalho e Emprego",
+    "count": 253
+  },
+  {
+    "year": 2025,
+    "eixo": "Economia",
+    "count": 243
+  },
+  {
+    "year": 2025,
+    "eixo": "Agricultura, Pecuária, Pesca e Extrativismo",
+    "count": 237
+  },
+  {
+    "year": 2025,
+    "eixo": "Educação",
+    "count": 233
+  },
+  {
+    "year": 2025,
+    "eixo": "Viação, Transporte e Mobilidade",
+    "count": 232
+  },
+  {
+    "year": 2025,
+    "eixo": "Indústria, Comércio e Serviços",
+    "count": 211
+  },
+  {
+    "year": 2025,
+    "eixo": "Direito Penal e Processual Penal",
+    "count": 206
+  },
+  {
+    "year": 2025,
+    "eixo": "Previdência e Assistência Social",
+    "count": 178
+  },
+  {
+    "year": 2025,
+    "eixo": "Comunicações",
+    "count": 141
+  },
+  {
+    "year": 2025,
+    "eixo": "Cidades e Desenvolvimento Urbano",
+    "count": 134
   },
   {
     "year": 2025,
     "eixo": "Direito e Defesa do Consumidor",
-    "count": 625
+    "count": 131
+  },
+  {
+    "year": 2025,
+    "eixo": "Relações Internacionais e Comércio Exterior",
+    "count": 131
   },
   {
     "year": 2025,
     "eixo": "Esporte e Lazer",
-    "count": 607
+    "count": 129
   },
   {
     "year": 2025,
-    "eixo": "Homenagens e Datas Comemorativas",
-    "count": 555
-  },
-  {
-    "year": 2025,
-    "eixo": "Direito Civil e Processual Civil",
-    "count": 491
+    "eixo": "Arte, Cultura e Religião",
+    "count": 123
   },
   {
     "year": 2025,
     "eixo": "Ciência, Tecnologia e Inovação",
-    "count": 490
+    "count": 97
   },
   {
     "year": 2025,
-    "eixo": "Direito e Justiça",
-    "count": 381
+    "eixo": "Direito Civil e Processual Civil",
+    "count": 97
+  },
+  {
+    "year": 2025,
+    "eixo": "Energia, Recursos Hídricos e Minerais",
+    "count": 96
   },
   {
     "year": 2025,
     "eixo": "Estrutura Fundiária",
-    "count": 244
+    "count": 95
+  },
+  {
+    "year": 2025,
+    "eixo": "Homenagens e Datas Comemorativas",
+    "count": 93
+  },
+  {
+    "year": 2025,
+    "eixo": "Direito e Justiça",
+    "count": 76
   },
   {
     "year": 2025,
     "eixo": "Processo Legislativo e Atuação Parlamentar",
-    "count": 151
-  },
-  {
-    "year": 2025,
-    "eixo": "Turismo",
-    "count": 151
+    "count": 37
   },
   {
     "year": 2025,
     "eixo": "Política, Partidos e Eleições",
-    "count": 103
+    "count": 31
+  },
+  {
+    "year": 2025,
+    "eixo": "Turismo",
+    "count": 30
   },
   {
     "year": 2025,
     "eixo": "Direito Constitucional",
-    "count": 45
+    "count": 18
   },
   {
     "year": 2025,
     "eixo": "Ciências Sociais e Humanas",
-    "count": 11
-  },
-  {
-    "year": 2025,
-    "eixo": "Ciências Exatas e da Terra",
-    "count": 3
+    "count": 1
   },
   {
     "year": 2026,

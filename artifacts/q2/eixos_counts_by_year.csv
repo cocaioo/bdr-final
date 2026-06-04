@@ -31,70 +31,68 @@ year,eixo,count
 2023,Direito Constitucional,40
 2023,Ciências Exatas e da Terra,4
 2023,Ciências Sociais e Humanas,2
-2024,Administração Pública,2551
-2024,Saúde,2524
-2024,Direitos Humanos e Minorias,2283
-2024,Finanças Públicas e Orçamento,1663
-2024,Meio Ambiente e Desenvolvimento Sustentável,1402
-2024,Educação,1310
-2024,Defesa e Segurança,1282
-2024,Comunicações,1234
-2024,Cidades e Desenvolvimento Urbano,1045
-2024,"Viação, Transporte e Mobilidade",1024
-2024,Trabalho e Emprego,822
-2024,Economia,759
-2024,"Energia, Recursos Hídricos e Minerais",664
-2024,Direito Penal e Processual Penal,629
-2024,"Indústria, Comércio e Serviços",614
-2024,Previdência e Assistência Social,557
-2024,Homenagens e Datas Comemorativas,403
-2024,"Agricultura, Pecuária, Pesca e Extrativismo",384
-2024,"Arte, Cultura e Religião",363
-2024,Relações Internacionais e Comércio Exterior,334
-2024,Direito Civil e Processual Civil,298
-2024,Esporte e Lazer,292
-2024,"Ciência, Tecnologia e Inovação",262
-2024,Direito e Defesa do Consumidor,251
-2024,Direito e Justiça,227
-2024,Estrutura Fundiária,137
-2024,"Política, Partidos e Eleições",132
-2024,Turismo,108
-2024,Processo Legislativo e Atuação Parlamentar,103
-2024,Direito Constitucional,28
-2024,Ciências Sociais e Humanas,4
-2024,Ciências Exatas e da Terra,1
-2025,Direitos Humanos e Minorias,5476
-2025,Administração Pública,5282
-2025,"Agricultura, Pecuária, Pesca e Extrativismo",4348
-2025,Saúde,3412
-2025,Finanças Públicas e Orçamento,2442
-2025,Defesa e Segurança,1928
-2025,Educação,1649
-2025,Comunicações,1526
-2025,Meio Ambiente e Desenvolvimento Sustentável,1426
-2025,Trabalho e Emprego,1285
-2025,"Indústria, Comércio e Serviços",1158
-2025,Economia,1112
-2025,Previdência e Assistência Social,1096
-2025,Direito Penal e Processual Penal,1041
-2025,"Viação, Transporte e Mobilidade",971
-2025,Cidades e Desenvolvimento Urbano,838
-2025,"Energia, Recursos Hídricos e Minerais",712
-2025,"Arte, Cultura e Religião",664
-2025,Relações Internacionais e Comércio Exterior,630
-2025,Direito e Defesa do Consumidor,625
-2025,Esporte e Lazer,607
-2025,Homenagens e Datas Comemorativas,555
-2025,Direito Civil e Processual Civil,491
-2025,"Ciência, Tecnologia e Inovação",490
-2025,Direito e Justiça,381
-2025,Estrutura Fundiária,244
-2025,Processo Legislativo e Atuação Parlamentar,151
-2025,Turismo,151
-2025,"Política, Partidos e Eleições",103
-2025,Direito Constitucional,45
-2025,Ciências Sociais e Humanas,11
-2025,Ciências Exatas e da Terra,3
+2024,Saúde,645
+2024,Direitos Humanos e Minorias,621
+2024,Administração Pública,554
+2024,Finanças Públicas e Orçamento,433
+2024,Educação,417
+2024,Comunicações,354
+2024,Defesa e Segurança,341
+2024,Meio Ambiente e Desenvolvimento Sustentável,272
+2024,Economia,242
+2024,Trabalho e Emprego,232
+2024,"Viação, Transporte e Mobilidade",229
+2024,Direito Penal e Processual Penal,212
+2024,Cidades e Desenvolvimento Urbano,202
+2024,"Indústria, Comércio e Serviços",168
+2024,Previdência e Assistência Social,143
+2024,"Arte, Cultura e Religião",133
+2024,"Energia, Recursos Hídricos e Minerais",106
+2024,"Agricultura, Pecuária, Pesca e Extrativismo",103
+2024,Homenagens e Datas Comemorativas,101
+2024,Direito Civil e Processual Civil,100
+2024,Relações Internacionais e Comércio Exterior,88
+2024,Direito e Defesa do Consumidor,84
+2024,"Ciência, Tecnologia e Inovação",73
+2024,Direito e Justiça,58
+2024,Esporte e Lazer,56
+2024,Estrutura Fundiária,42
+2024,"Política, Partidos e Eleições",36
+2024,Processo Legislativo e Atuação Parlamentar,28
+2024,Turismo,27
+2024,Direito Constitucional,8
+2024,Ciências Sociais e Humanas,1
+2025,Administração Pública,749
+2025,Direitos Humanos e Minorias,699
+2025,Saúde,664
+2025,Finanças Públicas e Orçamento,489
+2025,Defesa e Segurança,434
+2025,Meio Ambiente e Desenvolvimento Sustentável,257
+2025,Trabalho e Emprego,253
+2025,Economia,243
+2025,"Agricultura, Pecuária, Pesca e Extrativismo",237
+2025,Educação,233
+2025,"Viação, Transporte e Mobilidade",232
+2025,"Indústria, Comércio e Serviços",211
+2025,Direito Penal e Processual Penal,206
+2025,Previdência e Assistência Social,178
+2025,Comunicações,141
+2025,Cidades e Desenvolvimento Urbano,134
+2025,Direito e Defesa do Consumidor,131
+2025,Relações Internacionais e Comércio Exterior,131
+2025,Esporte e Lazer,129
+2025,"Arte, Cultura e Religião",123
+2025,"Ciência, Tecnologia e Inovação",97
+2025,Direito Civil e Processual Civil,97
+2025,"Energia, Recursos Hídricos e Minerais",96
+2025,Estrutura Fundiária,95
+2025,Homenagens e Datas Comemorativas,93
+2025,Direito e Justiça,76
+2025,Processo Legislativo e Atuação Parlamentar,37
+2025,"Política, Partidos e Eleições",31
+2025,Turismo,30
+2025,Direito Constitucional,18
+2025,Ciências Sociais e Humanas,1
 2026,Direitos Humanos e Minorias,1342
 2026,Administração Pública,1231
 2026,Finanças Públicas e Orçamento,986
