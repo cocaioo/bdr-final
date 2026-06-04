@@ -85,13 +85,20 @@ def main() -> None:
     RESPONSES_DIR.mkdir(parents=True, exist_ok=True)
 
     proposicoes, autores, deputados, temas = load_dataframes()
-    counts = build_eixo_counts(proposicoes, temas, selected_years)
+
+    # Filtro da 57ª Legislatura: apenas temas de proposições com autoria de deputados da base
+    valid_dep_ids = set(deputados["id_deputado"].dropna().astype(str).unique())
+    valid_autores = autores[autores["id_deputado"].astype(str).isin(valid_dep_ids)]
+    valid_uris = set(valid_autores["uri_proposicao"].dropna().unique())
+    temas_filtered = temas[temas["uri_proposicao"].isin(valid_uris)].copy()
+
+    counts = build_eixo_counts(proposicoes, temas_filtered, selected_years)
     consolidated = build_consolidated_counts(counts)
 
     write_count_artifacts(counts, consolidated)
-    write_wordcloud_pngs(counts, consolidated, temas, selected_years)
+    write_wordcloud_pngs(counts, consolidated, temas_filtered, selected_years)
 
-    analytic_rows = build_analytic_rows(proposicoes, autores, deputados, temas, selected_years)
+    analytic_rows = build_analytic_rows(proposicoes, autores, deputados, temas_filtered, selected_years)
     write_q2_response_files(analytic_rows, counts, consolidated, selected_years)
     print_validation_summary(counts, consolidated, proposicoes, selected_years)
 

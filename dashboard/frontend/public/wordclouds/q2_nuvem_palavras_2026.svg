@@ -2,28 +2,28 @@
 <style>text{font-family:'Arial';font-weight:normal;font-style:normal;}</style>
 <rect width="100%" height="100%" style="fill:white"></rect>
 <text transform="translate(20,626)" font-size="97" style="fill:#2A9D8F">Direitos Humanos e Minorias</text>
-<text transform="translate(347,147)" font-size="91" style="fill:#0B3C5D">Administração Pública</text>
-<text transform="translate(56,513)" font-size="79" style="fill:#E07A5F">Finanças Públicas e Orçamento</text>
-<text transform="translate(967,378)" font-size="66" style="fill:#2A9D8F">Saúde</text>
-<text transform="translate(219,338)" font-size="66" style="fill:#C0392B">Defesa e Segurança</text>
-<text transform="translate(107,424)" font-size="59" style="fill:#2A9D8F">Trabalho e Emprego</text>
-<text transform="translate(690,428)" font-size="54" style="fill:#2A9D8F">Educação</text>
-<text transform="translate(45,689)" font-size="53" style="fill:#E07A5F">Economia</text>
-<text transform="translate(131,215)" font-size="53" style="fill:#4F7CAC">Meio Ambiente e Desenvolvimento Sustentável</text>
-<text transform="translate(259,269)" font-size="52" style="fill:#E07A5F">Indústria, Comércio e Serviços</text>
-<text transform="translate(328,695)" font-size="52" style="fill:#6A7FDB">Comunicações</text>
-<text transform="translate(515,53)" font-size="47" style="fill:#C0392B">Direito Penal e Processual Penal</text>
-<text transform="translate(679,684)" font-size="41" style="fill:#6A7FDB">Viação, Transporte e Mobilidade</text>
-<text transform="translate(40,373) rotate(-90)" font-size="41" style="fill:#B7791F">Esporte e Lazer</text>
-<text transform="translate(345,547)" font-size="36" style="fill:#2A9D8F">Previdência e Assistência Social</text>
-<text transform="translate(17,37)" font-size="34" style="fill:#0B3C5D">Direito e Defesa do Consumidor</text>
-<text transform="translate(49,365)" font-size="27" style="fill:#E07A5F">Agricultura, Pecuária, Pesca e Extrativismo</text>
-<text transform="translate(46,68)" font-size="27" style="fill:#6A7FDB">Cidades e Desenvolvimento Urbano</text>
-<text transform="translate(831,305)" font-size="22" style="fill:#5A6772">Relações Internacionais e Comércio Exterior</text>
-<text transform="translate(592,376)" font-size="21" style="fill:#4F7CAC">Energia, Recursos Hídricos e Minerais</text>
-<text transform="translate(966,399)" font-size="19" style="fill:#B7791F">Arte, Cultura e Religião</text>
-<text transform="translate(1118,432)" font-size="19" style="fill:#B7791F">Turismo</text>
-<text transform="translate(943,541)" font-size="19" style="fill:#6A7FDB">Ciência, Tecnologia e Inovação</text>
-<text transform="translate(965,705)" font-size="18" style="fill:#B7791F">Homenagens e Datas Comemorativas</text>
-<text transform="translate(1006,249)" font-size="18" style="fill:#0B3C5D">Direito Civil e Processual Civil</text>
+<text transform="translate(91,523)" font-size="89" style="fill:#0B3C5D">Administração Pública</text>
+<text transform="translate(103,103)" font-size="77" style="fill:#E07A5F">Finanças Públicas e Orçamento</text>
+<text transform="translate(996,506)" font-size="65" style="fill:#2A9D8F">Saúde</text>
+<text transform="translate(587,327)" font-size="61" style="fill:#C0392B">Defesa e Segurança</text>
+<text transform="translate(689,685)" font-size="57" style="fill:#2A9D8F">Trabalho e Emprego</text>
+<text transform="translate(108,399)" font-size="53" style="fill:#4F7CAC">Meio Ambiente e Desenvolvimento Sustentável</text>
+<text transform="translate(439,150)" font-size="53" style="fill:#2A9D8F">Educação</text>
+<text transform="translate(991,206)" font-size="53" style="fill:#E07A5F">Economia</text>
+<text transform="translate(135,219)" font-size="53" style="fill:#E07A5F">Indústria, Comércio e Serviços</text>
+<text transform="translate(420,448)" font-size="48" style="fill:#C0392B">Direito Penal e Processual Penal</text>
+<text transform="translate(253,310)" font-size="42" style="fill:#B7791F">Esporte e Lazer</text>
+<text transform="translate(75,677)" font-size="42" style="fill:#6A7FDB">Viação, Transporte e Mobilidade</text>
+<text transform="translate(690,271)" font-size="39" style="fill:#2A9D8F">Previdência e Assistência Social</text>
+<text transform="translate(711,156)" font-size="37" style="fill:#0B3C5D">Direito e Defesa do Consumidor</text>
+<text transform="translate(69,513) rotate(-90)" font-size="35" style="fill:#6A7FDB">Comunicações</text>
+<text transform="translate(20,262)" font-size="34" style="fill:#E07A5F">Agricultura, Pecuária, Pesca e Extrativismo</text>
+<text transform="translate(246,36)" font-size="34" style="fill:#6A7FDB">Cidades e Desenvolvimento Urbano</text>
+<text transform="translate(84,346)" font-size="29" style="fill:#4F7CAC">Energia, Recursos Hídricos e Minerais</text>
+<text transform="translate(574,551)" font-size="27" style="fill:#B7791F">Turismo</text>
+<text transform="translate(94,157)" font-size="27" style="fill:#B7791F">Arte, Cultura e Religião</text>
+<text transform="translate(875,30)" font-size="26" style="fill:#6A7FDB">Ciência, Tecnologia e Inovação</text>
+<text transform="translate(620,707)" font-size="20" style="fill:#5A6772">Relações Internacionais e Comércio Exterior</text>
+<text transform="translate(203,706)" font-size="19" style="fill:#0B3C5D">Direito Civil e Processual Civil</text>
+<text transform="translate(82,439)" font-size="19" style="fill:#B7791F">Homenagens e Datas Comemorativas</text>
 </svg>

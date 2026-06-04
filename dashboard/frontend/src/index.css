@@ -650,6 +650,7 @@ td {
   align-items: center;
   justify-content: center;
   background: #ffffff;
+  pointer-events: none; /* Disable all clicks and mouse hovers */
 }
 
 .wordcloud-svg-wrapper svg {
@@ -659,16 +660,15 @@ td {
 }
 
 .wordcloud-card svg text {
-  cursor: pointer;
+  cursor: default;
   transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 
 .wordcloud-card svg text:hover {
-  opacity: 0.85 !important;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .wordcloud-card svg text.selected-word {
-  filter: drop-shadow(0 2px 4px rgba(11, 60, 93, 0.2));
+  filter: none;
 }
 

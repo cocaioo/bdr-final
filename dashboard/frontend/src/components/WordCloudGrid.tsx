@@ -61,31 +61,14 @@ export function WordCloudCard({ year, src, selectedTheme, onWordClick }: WordClo
     if (!wrapperRef.current || !svgContent) return
     const texts = wrapperRef.current.querySelectorAll('text')
     texts.forEach((textNode) => {
-      const word = (textNode.textContent || '').trim()
-      if (selectedTheme) {
-        if (word.toLowerCase() === selectedTheme.trim().toLowerCase()) {
-          textNode.style.opacity = '1'
-          textNode.style.filter = 'none'
-          textNode.classList.add('selected-word')
-        } else {
-          textNode.style.opacity = '0.3'
-          textNode.style.filter = 'grayscale(80%)'
-          textNode.classList.remove('selected-word')
-        }
-      } else {
-        textNode.style.opacity = '1'
-        textNode.style.filter = 'none'
-        textNode.classList.remove('selected-word')
-      }
+      textNode.style.opacity = '1'
+      textNode.style.filter = 'none'
+      textNode.classList.remove('selected-word')
     })
-  }, [svgContent, selectedTheme])
+  }, [svgContent])
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as SVGTextElement
-    if (target.tagName === 'text') {
-      const text = (target.textContent || '').trim()
-      onWordClick(text)
-    }
+    // Clicabilidade temporariamente desativada
   }
 
   return (
