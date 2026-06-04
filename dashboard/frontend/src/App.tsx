@@ -69,7 +69,7 @@ function App() {
       ) : null}
       <Routes>
         <Route path="/" element={<HomePage meta={meta} />} />
-        <Route path="/q/:questionId" element={<QuestionPage meta={meta} filters={filters} />} />
+        <Route path="/q/:questionId" element={<QuestionPage meta={meta} filters={filters} onFiltersChange={setFilters} />} />
       </Routes>
       <footer className="app-footer">
         Fonte: schema grupo4 + arquivos respostas/*.txt | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}

@@ -1,34 +1,130 @@
 [
   {
-    "eixo": "Social",
-    "count": 24247
+    "eixo": "Direitos Humanos e Minorias",
+    "count": 11741
   },
   {
-    "eixo": "Economico",
-    "count": 15420
+    "eixo": "Administração Pública",
+    "count": 11500
   },
   {
-    "eixo": "Institucional e juridico",
-    "count": 15318
+    "eixo": "Saúde",
+    "count": 8481
   },
   {
-    "eixo": "Infraestrutura e tecnologia",
-    "count": 9951
+    "eixo": "Finanças Públicas e Orçamento",
+    "count": 6848
   },
   {
-    "eixo": "Seguranca",
-    "count": 7755
+    "eixo": "Defesa e Segurança",
+    "count": 5686
   },
   {
-    "eixo": "Ambiental e energetico",
-    "count": 6595
+    "eixo": "Agricultura, Pecuária, Pesca e Extrativismo",
+    "count": 5398
   },
   {
-    "eixo": "Cultura e sociedade",
-    "count": 4563
+    "eixo": "Educação",
+    "count": 5220
   },
   {
-    "eixo": "Internacional",
+    "eixo": "Meio Ambiente e Desenvolvimento Sustentável",
+    "count": 4303
+  },
+  {
+    "eixo": "Comunicações",
+    "count": 4077
+  },
+  {
+    "eixo": "Trabalho e Emprego",
+    "count": 3632
+  },
+  {
+    "eixo": "Viação, Transporte e Mobilidade",
+    "count": 3154
+  },
+  {
+    "eixo": "Economia",
+    "count": 3146
+  },
+  {
+    "eixo": "Indústria, Comércio e Serviços",
+    "count": 2922
+  },
+  {
+    "eixo": "Direito Penal e Processual Penal",
+    "count": 2912
+  },
+  {
+    "eixo": "Cidades e Desenvolvimento Urbano",
+    "count": 2450
+  },
+  {
+    "eixo": "Previdência e Assistência Social",
+    "count": 2373
+  },
+  {
+    "eixo": "Energia, Recursos Hídricos e Minerais",
+    "count": 2053
+  },
+  {
+    "eixo": "Homenagens e Datas Comemorativas",
+    "count": 1680
+  },
+  {
+    "eixo": "Arte, Cultura e Religião",
+    "count": 1634
+  },
+  {
+    "eixo": "Relações Internacionais e Comércio Exterior",
     "count": 1533
+  },
+  {
+    "eixo": "Direito e Defesa do Consumidor",
+    "count": 1510
+  },
+  {
+    "eixo": "Esporte e Lazer",
+    "count": 1489
+  },
+  {
+    "eixo": "Ciência, Tecnologia e Inovação",
+    "count": 1417
+  },
+  {
+    "eixo": "Direito Civil e Processual Civil",
+    "count": 1347
+  },
+  {
+    "eixo": "Direito e Justiça",
+    "count": 859
+  },
+  {
+    "eixo": "Estrutura Fundiária",
+    "count": 686
+  },
+  {
+    "eixo": "Turismo",
+    "count": 551
+  },
+  {
+    "eixo": "Processo Legislativo e Atuação Parlamentar",
+    "count": 543
+  },
+  {
+    "eixo": "Política, Partidos e Eleições",
+    "count": 433
+  },
+  {
+    "eixo": "Direito Constitucional",
+    "count": 125
+  },
+  {
+    "eixo": "Ciências Sociais e Humanas",
+    "count": 18
+  },
+  {
+    "eixo": "Ciências Exatas e da Terra",
+    "count": 11
   }
 ]

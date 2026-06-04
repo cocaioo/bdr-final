@@ -167,6 +167,9 @@ class DashboardService:
                     for row in table.rows:
                         _maybe_add(anos, row.get("ano_dados"), excluded={"GLOBAL"})
                         _maybe_add(anos, row.get("ano"), excluded={"GLOBAL"})
+                        _maybe_add(eixos, row.get("tema"))
+                        _maybe_add(eixos, row.get("tema_mais_atuante"))
+                        _maybe_add(eixos, row.get("tema_mais_atuante_deputado"))
                         _maybe_add(eixos, row.get("eixo_maior"))
                         _maybe_add(eixos, row.get("eixo_mais_atuante"))
                         _maybe_add_party(partidos_observed, row.get("sigla_partido"))

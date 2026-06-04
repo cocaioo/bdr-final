@@ -18,7 +18,7 @@ class Q2Adapter(QuestionAdapter):
         images = [
             {
                 "year": year,
-                "src": f"/wordclouds/q2_nuvem_palavras_{year}.png",
+                "src": f"/wordclouds/q2_nuvem_palavras_{year}.svg",
                 "alt": f"Nuvem de palavras dos eixos tematicos em {year}",
             }
             for year in (2023, 2024, 2025, 2026)
@@ -27,8 +27,8 @@ class Q2Adapter(QuestionAdapter):
             type="wordcloud_images",
             title="Nuvens de eixos por ano",
             description=(
-                "Imagens PNG geradas com os eixos tematicos como termos e peso proporcional "
-                "a quantidade de proposicoes."
+                "Nuvens de palavras geradas com os temas como termos e peso proporcional "
+                "a quantidade de proposicoes (interativo)."
             ),
             series=[],
             options={"images": images},

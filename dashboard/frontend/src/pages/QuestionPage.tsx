@@ -16,6 +16,7 @@ import { formatCellValue } from '../utils/format'
 interface QuestionPageProps {
   meta: MetaResponse
   filters: FilterState
+  onFiltersChange?: (next: FilterState) => void
 }
 
 const DEFAULT_TABLE_STATE: TableState = {
@@ -35,7 +36,7 @@ function sortYears(values: string[]): string[] {
   })
 }
 
-export function QuestionPage({ meta, filters }: QuestionPageProps) {
+export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPageProps) {
   const { questionId } = useParams()
   const questionMeta = useMemo(
     () => meta.questions.find((question) => question.id === questionId),
@@ -186,11 +187,39 @@ export function QuestionPage({ meta, filters }: QuestionPageProps) {
         />
       ) : null}
 
+      {isQ2 && filters.eixos.length > 0 && (
+        <div className="active-filter-banner stagger-item">
+          <span>
+            Filtrado por Tema: <strong>{filters.eixos[0]}</strong>
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              if (onFiltersChange) {
+                onFiltersChange({ ...filters, eixos: [] })
+              }
+            }}
+          >
+            Limpar Filtro
+          </button>
+        </div>
+      )}
+
       {payload.empty_state.is_empty ? (
         <NoDataState message={payload.empty_state.message} />
       ) : (
         <>
-          {isQ2 ? <WordCloudGrid spec={payload.chart_spec} /> : null}
+          {isQ2 ? (
+            <WordCloudGrid 
+              spec={payload.chart_spec} 
+              selectedTheme={filters.eixos[0] || null}
+              onWordClick={(word) => {
+                if (onFiltersChange) {
+                  onFiltersChange({ ...filters, eixos: [word] })
+                }
+              }}
+            />
+          ) : null}
           {shouldShowChart ? <ChartPanel spec={payload.chart_spec} yearLabels={yearLegend} /> : null}
           <DataTablePanel
             table={mainTable}

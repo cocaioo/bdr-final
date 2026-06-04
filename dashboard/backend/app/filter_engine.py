@@ -23,7 +23,7 @@ class FilterState:
 class FilterEngine:
     COLUMN_MAP = {
         "anos": ["ano_dados", "ano"],
-        "eixos": ["eixo_maior", "eixo_mais_atuante"],
+        "eixos": ["tema", "tema_mais_atuante", "tema_mais_atuante_deputado", "eixo_maior", "eixo_mais_atuante"],
         "partidos": ["sigla_partido"],
         "ufs": ["sigla_uf"],
         "deputados": ["id_deputado", "nome"],

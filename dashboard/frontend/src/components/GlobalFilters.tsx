@@ -56,7 +56,7 @@ export function GlobalFilters({
 
         {isEnabled(supportedFilters, 'eixos') && (
           <label className="filter-item">
-            <span>Eixo</span>
+            <span>Tema</span>
             <select
               multiple
               value={value.eixos}
