@@ -73,6 +73,8 @@ EIXO_COLORS = {
     "Internacional": "#5A6772",
 }
 
+TEMA_TO_EIXO = {}
+
 
 def main() -> None:
     args = parse_args()
@@ -87,7 +89,7 @@ def main() -> None:
     consolidated = build_consolidated_counts(counts)
 
     write_count_artifacts(counts, consolidated)
-    write_wordcloud_pngs(counts, consolidated, selected_years)
+    write_wordcloud_pngs(counts, consolidated, temas, selected_years)
 
     analytic_rows = build_analytic_rows(proposicoes, autores, deputados, temas, selected_years)
     write_q2_response_files(analytic_rows, counts, consolidated, selected_years)
@@ -169,17 +171,12 @@ def map_eixos(temas: pd.DataFrame) -> pd.Series:
 def build_eixo_counts(
     proposicoes: pd.DataFrame, temas: pd.DataFrame, selected_years: tuple[int, ...]
 ) -> pd.DataFrame:
-    scoped_props = proposicoes[
-        proposicoes["ano_dados"].isin(selected_years)
-    ][["ano_dados", "uri_proposicao"]].drop_duplicates()
     scoped_themes = temas[temas["ano_dados"].isin(selected_years)][
         ["ano_dados", "uri_proposicao", "eixo_maior"]
     ].drop_duplicates()
 
-    base = scoped_props.merge(scoped_themes, on=["ano_dados", "uri_proposicao"], how="inner")
     counts = (
-        base.drop_duplicates(["ano_dados", "uri_proposicao", "eixo_maior"])
-        .groupby(["ano_dados", "eixo_maior"], as_index=False)
+        scoped_themes.groupby(["ano_dados", "eixo_maior"], as_index=False)
         .agg(count=("uri_proposicao", "nunique"))
         .rename(columns={"ano_dados": "year", "eixo_maior": "eixo"})
         .sort_values(["year", "count", "eixo"], ascending=[True, False, True])
@@ -210,7 +207,10 @@ def write_count_artifacts(counts: pd.DataFrame, consolidated: pd.DataFrame) -> N
 
 
 def write_wordcloud_pngs(
-    counts: pd.DataFrame, consolidated: pd.DataFrame, selected_years: tuple[int, ...]
+    counts: pd.DataFrame,
+    consolidated: pd.DataFrame,
+    temas: pd.DataFrame,
+    selected_years: tuple[int, ...],
 ) -> None:
     if WordCloud is None:
         raise SystemExit(
@@ -218,13 +218,17 @@ def write_wordcloud_pngs(
             f"Erro original: {WORDCLOUD_IMPORT_ERROR}"
         )
 
+    global TEMA_TO_EIXO
+    TEMA_TO_EIXO = dict(zip(temas["tema"], temas["eixo_maior"]))
+
     manifest = []
     for year in selected_years:
-        freqs = dict(
-            zip(
-                counts.loc[counts["year"].eq(year), "eixo"],
-                counts.loc[counts["year"].eq(year), "count"],
-            )
+        year_temas = temas[temas["ano_dados"] == year]
+        freqs = (
+            year_temas.drop_duplicates(["uri_proposicao", "tema"])
+            .groupby("tema")
+            .size()
+            .to_dict()
         )
         if not freqs:
             continue
@@ -235,7 +239,13 @@ def write_wordcloud_pngs(
         render_wordcloud(freqs, f"Nuvem de eixos tematicos - {year}", public_path, seed=year)
         manifest.append({"year": year, "src": f"/wordclouds/{public_path.name}"})
 
-    consolidated_freqs = dict(zip(consolidated["eixo"], consolidated["count"]))
+    consolidated_freqs = (
+        temas[temas["ano_dados"].isin(selected_years)]
+        .drop_duplicates(["uri_proposicao", "tema"])
+        .groupby("tema")
+        .size()
+        .to_dict()
+    )
     render_wordcloud(
         consolidated_freqs,
         "Nuvem de eixos tematicos - consolidado 2023-2026",
@@ -283,7 +293,8 @@ def color_for_eixo(
     random_state: object | None = None,
     **kwargs: object,
 ) -> str:
-    return EIXO_COLORS.get(word, "#5A6772")
+    eixo = TEMA_TO_EIXO.get(word)
+    return EIXO_COLORS.get(eixo, "#5A6772")
 
 
 def find_font_path() -> str | None:
@@ -447,6 +458,10 @@ def write_q2_response_files(
     )
     (RESPONSES_DIR / "q2_eixos_nuvem_palavras.txt").write_text(main_text, encoding="utf-8")
 
+    caio_q2_dir = REPO_ROOT / "Caio" / "q2"
+    caio_q2_dir.mkdir(parents=True, exist_ok=True)
+    (caio_q2_dir / "q2_eixos_nuvem_palavras.txt").write_text(main_text, encoding="utf-8")
+
     top_rows = [
         {
             "id_deputado": row["id_deputado"],
@@ -476,6 +491,9 @@ def write_q2_response_files(
         ]
     )
     (RESPONSES_DIR / "q2_eixo_nuvens_complemento.txt").write_text(
+        complement_text, encoding="utf-8"
+    )
+    (caio_q2_dir / "q2_eixo_nuvens_complemento.txt").write_text(
         complement_text, encoding="utf-8"
     )
 
