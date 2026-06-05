@@ -4,7 +4,7 @@
 WITH deputados_legislatura_57 AS (
     SELECT DISTINCT
         d.id_deputado,
-        d.nome,
+        COALESCE(NULLIF(BTRIM(d.nome_civil), ''), d.nome) AS nome,
         COALESCE(NULLIF(BTRIM(d.escolaridade), ''), 'Nao informado') AS escolaridade
     FROM deputados d
     WHERE d.id_legislatura_final = 57
@@ -20,7 +20,7 @@ ORDER BY qtd_deputados DESC, escolaridade;
 WITH deputados_legislatura_57 AS (
     SELECT DISTINCT
         d.id_deputado,
-        d.nome,
+        COALESCE(NULLIF(BTRIM(d.nome_civil), ''), d.nome) AS nome,
         COALESCE(NULLIF(BTRIM(d.escolaridade), ''), 'Nao informado') AS escolaridade
     FROM deputados d
     WHERE d.id_legislatura_final = 57
