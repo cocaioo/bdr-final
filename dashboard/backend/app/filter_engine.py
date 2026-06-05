@@ -13,6 +13,7 @@ class FilterState:
     partidos: list[str]
     ufs: list[str]
     deputados: list[str]
+    escolaridade: list[str]
     search: str | None
     sort_by: str | None
     sort_dir: str
@@ -23,10 +24,11 @@ class FilterState:
 class FilterEngine:
     COLUMN_MAP = {
         "anos": ["ano_dados", "ano"],
-        "eixos": ["eixo_maior", "eixo_mais_atuante"],
+        "eixos": ["tema", "tema_mais_atuante", "tema_mais_atuante_deputado", "eixo_maior", "eixo_mais_atuante"],
         "partidos": ["sigla_partido"],
         "ufs": ["sigla_uf"],
         "deputados": ["id_deputado", "nome"],
+        "escolaridade": ["escolaridade"],
     }
 
     @classmethod
@@ -47,6 +49,8 @@ class FilterEngine:
             filtered = cls._filter_by_columns(filtered, cls.COLUMN_MAP["ufs"], state.ufs)
         if "deputados" in supported_filters and state.deputados:
             filtered = cls._filter_deputados(filtered, state.deputados)
+        if "escolaridade" in supported_filters and state.escolaridade:
+            filtered = cls._filter_by_columns(filtered, cls.COLUMN_MAP["escolaridade"], state.escolaridade)
         if state.search:
             filtered = cls._search(filtered, state.search)
         return filtered

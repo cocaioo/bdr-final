@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<style>text{font-family:'Arial';font-weight:normal;font-style:normal;}</style>
+<rect width="100%" height="100%" style="fill:white"></rect>
+<text transform="translate(10,539)" font-size="127" style="fill:#0B3C5D">Administração Pública</text>
+<text transform="translate(16,172)" font-size="97" style="fill:#2A9D8F">Direitos Humanos e Minorias</text>
+<text transform="translate(722,425)" font-size="94" style="fill:#2A9D8F">Saúde</text>
+<text transform="translate(145,631)" font-size="77" style="fill:#E07A5F">Finanças Públicas e Orçamento</text>
+<text transform="translate(567,293)" font-size="71" style="fill:#C0392B">Defesa e Segurança</text>
+<text transform="translate(21,50)" font-size="52" style="fill:#4F7CAC">Meio Ambiente e Desenvolvimento Sustentável</text>
+<text transform="translate(23,316)" font-size="51" style="fill:#2A9D8F">Trabalho e Emprego</text>
+<text transform="translate(537,409) rotate(-90)" font-size="50" style="fill:#E07A5F">Economia</text>
+<text transform="translate(283,699)" font-size="49" style="fill:#E07A5F">Agricultura, Pecuária, Pesca e Extrativismo</text>
+<text transform="translate(170,396)" font-size="48" style="fill:#2A9D8F">Educação</text>
+<text transform="translate(576,217)" font-size="48" style="fill:#6A7FDB">Viação, Transporte e Mobilidade</text>
+<text transform="translate(34,85)" font-size="39" style="fill:#E07A5F">Indústria, Comércio e Serviços</text>
+<text transform="translate(576,343)" font-size="38" style="fill:#C0392B">Direito Penal e Processual Penal</text>
+<text transform="translate(606,89)" font-size="34" style="fill:#2A9D8F">Previdência e Assistência Social</text>
+<text transform="translate(111,204)" font-size="29" style="fill:#6A7FDB">Comunicações</text>
+<text transform="translate(201,436)" font-size="28" style="fill:#6A7FDB">Cidades e Desenvolvimento Urbano</text>
+<text transform="translate(20,243)" font-size="28" style="fill:#0B3C5D">Direito e Defesa do Consumidor</text>
+<text transform="translate(15,265)" font-size="21" style="fill:#5A6772">Relações Internacionais e Comércio Exterior</text>
+<text transform="translate(1087,365)" font-size="21" style="fill:#B7791F">Esporte e Lazer</text>
+<text transform="translate(884,562)" font-size="20" style="fill:#B7791F">Arte, Cultura e Religião</text>
+</svg>

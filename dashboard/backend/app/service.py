@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import time
 from typing import Any
@@ -156,6 +157,7 @@ class DashboardService:
         eixos: set[str] = set()
         ufs: set[str] = set()
         deputados: set[str] = set()
+        escolaridades: set[str] = set()
 
         for question in self.registry.questions:
             try:
@@ -167,11 +169,15 @@ class DashboardService:
                     for row in table.rows:
                         _maybe_add(anos, row.get("ano_dados"), excluded={"GLOBAL"})
                         _maybe_add(anos, row.get("ano"), excluded={"GLOBAL"})
+                        _maybe_add(eixos, row.get("tema"))
+                        _maybe_add(eixos, row.get("tema_mais_atuante"))
+                        _maybe_add(eixos, row.get("tema_mais_atuante_deputado"))
                         _maybe_add(eixos, row.get("eixo_maior"))
                         _maybe_add(eixos, row.get("eixo_mais_atuante"))
                         _maybe_add_party(partidos_observed, row.get("sigla_partido"))
                         _maybe_add(ufs, row.get("sigla_uf"))
                         _maybe_add(deputados, row.get("nome") or row.get("id_deputado"))
+                        _maybe_add(escolaridades, row.get("escolaridade"))
 
         active_parties = active_party_entries(self.repo_root)
         if active_parties:
@@ -191,6 +197,7 @@ class DashboardService:
             partidos=party_choices,
             ufs=[FilterChoice(value=item, label=item) for item in sorted(ufs)],
             deputados=[FilterChoice(value=item, label=item) for item in sorted(deputados)],
+            escolaridade=[FilterChoice(value=item, label=item) for item in sorted(escolaridades)],
         )
         self.cache.set(cache_key, catalog)
         return catalog
@@ -239,11 +246,11 @@ class DashboardService:
 
     def _search_repo_for_filename(self, filename: str) -> list[Path]:
         matches: list[Path] = []
-        for candidate in self.repo_root.rglob(filename):
-            if any(part in _EXCLUDED_DIRS for part in candidate.parts):
-                continue
-            if candidate.is_file():
-                matches.append(candidate.resolve())
+        for root, dirs, files in os.walk(self.repo_root):
+            # Prune excluded directories in-place to avoid entering them
+            dirs[:] = [d for d in dirs if d not in _EXCLUDED_DIRS]
+            if filename in files:
+                matches.append((Path(root) / filename).resolve())
 
         def sort_key(path: Path) -> tuple[int, int, str]:
             parts = path.parts
@@ -260,6 +267,7 @@ class DashboardService:
             "partidos": sorted(state.partidos),
             "ufs": sorted(state.ufs),
             "deputados": sorted(state.deputados),
+            "escolaridade": sorted(state.escolaridade),
             "search": state.search or "",
             "sort_by": state.sort_by or "",
             "sort_dir": state.sort_dir,

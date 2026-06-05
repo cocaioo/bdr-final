@@ -50,6 +50,7 @@ def test_missing_expected_columns_emits_warning() -> None:
             partidos=[],
             ufs=[],
             deputados=[],
+            escolaridade=[],
             search=None,
             sort_by=None,
             sort_dir="desc",

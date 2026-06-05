@@ -114,6 +114,59 @@ def standardize_table_frame(config, df, data_dir, log_dir=None):
     else:
         out = _standardize_columns(df, config)
 
+    # Restrict to the 57th Legislature (01/02/2023 to 31/01/2027)
+    if transform_type != "deputados":
+        # 1. Filter by deputy ID
+        if "id_deputado" in out.columns:
+            valid_dep_ids = get_valid_57th_deputado_ids(data_dir)
+            is_empty = out["id_deputado"].isna() | (out["id_deputado"].astype(str) == "")
+            is_valid = out["id_deputado"].dropna().astype(str).isin(valid_dep_ids)
+            is_valid = is_valid.reindex(out.index, fill_value=False)
+            out = out[is_empty | is_valid].copy()
+
+        # 2. Filter Gastos by codLegislatura
+        if table_name == "gastos" and "codLegislatura" in df.columns:
+            is_57_leg = df["codLegislatura"].astype(str).str.strip() == "57"
+            is_57_leg = is_57_leg.reindex(out.index, fill_value=False)
+            out = out[is_57_leg].copy()
+
+        # 3. Filter Votacoes by date
+        if table_name == "votacoes" and "data_votacao" in out.columns:
+            is_after_start = out["data_votacao"].isna() | (out["data_votacao"] >= "2023-02-01")
+            out = out[is_after_start].copy()
+
+        # 4. Filter Eventos by date
+        if table_name == "eventos" and "data_hora_inicio" in out.columns:
+            is_after_start = out["data_hora_inicio"].isna() | (out["data_hora_inicio"] >= "2023-02-01")
+            out = out[is_after_start].copy()
+
+        # 5. Filter dependent tables to maintain referential integrity
+        clean_dir = Path(os.getenv("CLEAN_DATA_DIR", "./dados_padronizados"))
+
+        # Votos / Orientacoes / Objetos -> Votacoes
+        if "id_votacao" in out.columns and table_name != "votacoes":
+            valid_vots = _get_valid_voting_ids(clean_dir)
+            if valid_vots is not None:
+                out = out[out["id_votacao"].dropna().astype(str).isin(valid_vots)].copy()
+
+        # Presenca -> Eventos
+        if "id_evento" in out.columns and table_name != "eventos":
+            valid_evs = _get_valid_event_ids(clean_dir)
+            if valid_evs is not None:
+                out = out[out["id_evento"].dropna().astype(str).isin(valid_evs)].copy()
+
+        # Autores / Temas -> Proposicoes
+        if table_name in ("proposicoes_autores", "proposicoes_temas"):
+            if "id_proposicao" in out.columns:
+                valid_props = _get_valid_proposition_ids(clean_dir)
+                if valid_props is not None:
+                    out = out[out["id_proposicao"].dropna().astype(str).isin(valid_props)].copy()
+            if "uri_proposicao" in out.columns:
+                valid_prop_uris = _get_valid_proposition_uris(clean_dir)
+                if valid_prop_uris is not None:
+                    out = out[out["uri_proposicao"].dropna().astype(str).isin(valid_prop_uris)].copy()
+
+
     if config.get("year_from_file"):
         out.insert(0, "ano_dados", df["__ano_dados"].apply(C.clean_int))
 
@@ -198,9 +251,68 @@ def _standardize_columns(df, config):
     return out
 
 
-def _transform_deputados(df, data_dir):
-    relevant = _collect_relevant_deputados(data_dir)
+_valid_57th_deputado_ids = None
 
+
+def get_valid_57th_deputado_ids(data_dir):
+    global _valid_57th_deputado_ids
+    if _valid_57th_deputado_ids is None:
+        deputados_path = find_data_file(data_dir, "deputados.csv")
+        if not deputados_path:
+            return set()
+        df = read_csv(deputados_path)
+        df["id_deputado"] = df["uri"].apply(C.extract_id_from_uri).apply(C.clean_int)
+        df["id_legislatura_final"] = df["idLegislaturaFinal"].apply(C.clean_int)
+        valid_ids = df[df["id_legislatura_final"] == "57"]["id_deputado"].dropna().astype(str).unique()
+        _valid_57th_deputado_ids = set(valid_ids)
+    return _valid_57th_deputado_ids
+
+
+def _get_valid_voting_ids(clean_dir):
+    votacoes_path = Path(clean_dir) / "votacoes.csv"
+    if not votacoes_path.exists():
+        return None
+    try:
+        df = pd.read_csv(votacoes_path, sep=";", usecols=["id_votacao"], dtype=str)
+        return set(df["id_votacao"].dropna().unique())
+    except Exception:
+        return None
+
+
+def _get_valid_event_ids(clean_dir):
+    eventos_path = Path(clean_dir) / "eventos.csv"
+    if not eventos_path.exists():
+        return None
+    try:
+        df = pd.read_csv(eventos_path, sep=";", usecols=["id_evento"], dtype=str)
+        return set(df["id_evento"].dropna().unique())
+    except Exception:
+        return None
+
+
+def _get_valid_proposition_ids(clean_dir):
+    proposicoes_path = Path(clean_dir) / "proposicoes.csv"
+    if not proposicoes_path.exists():
+        return None
+    try:
+        df = pd.read_csv(proposicoes_path, sep=";", usecols=["id_proposicao"], dtype=str)
+        return set(df["id_proposicao"].dropna().unique())
+    except Exception:
+        return None
+
+
+def _get_valid_proposition_uris(clean_dir):
+    proposicoes_path = Path(clean_dir) / "proposicoes.csv"
+    if not proposicoes_path.exists():
+        return None
+    try:
+        df = pd.read_csv(proposicoes_path, sep=";", usecols=["uri_proposicao"], dtype=str)
+        return set(df["uri_proposicao"].dropna().unique())
+    except Exception:
+        return None
+
+
+def _transform_deputados(df, data_dir):
     out = pd.DataFrame()
     out["id_deputado"] = df["uri"].apply(C.extract_id_from_uri).apply(C.clean_int)
     out["uri_deputado"] = df["uri"].apply(C.clean_text)
@@ -219,34 +331,19 @@ def _transform_deputados(df, data_dir):
     )
     out["escolaridade"] = None
 
-    if "idLegislaturaFinal" in df.columns:
-        is_current = out["id_legislatura_final"] == "57"
-    else:
-        is_current = pd.Series(False, index=df.index)
+    # Restrict to ONLY deputies of the 57th legislature
+    is_current = out["id_legislatura_final"] == "57"
+    out = out[is_current].copy()
 
-    is_relevant = out["id_deputado"].isin(relevant.keys())
-    out = out[is_current | is_relevant].copy()
+    # Also collect relevant information only for 57th legislature deputies
+    relevant = _collect_relevant_deputados(data_dir)
+    valid_57_ids = set(out["id_deputado"].dropna().astype(str))
+    relevant = {k: v for k, v in relevant.items() if k in valid_57_ids}
 
-    existing_ids = set(out["id_deputado"].dropna().astype(str))
-    missing_rows = []
+    # Now merge info for the relevant 57th legislature deputies
     for id_deputado, info in relevant.items():
-        if id_deputado in existing_ids:
-            _merge_deputado_info(out, id_deputado, info)
-            continue
-        missing_rows.append({
-            "id_deputado": id_deputado,
-            "uri_deputado": f"https://dadosabertos.camara.leg.br/api/v2/deputados/{id_deputado}",
-            "nome": info.get("nome") or f"Deputado {id_deputado}",
-            "nome_civil": None,
-            "cpf": info.get("cpf"),
-            "id_legislatura_inicial": None,
-            "id_legislatura_final": None,
-            "escolaridade": None,
-        })
+        _merge_deputado_info(out, id_deputado, info)
 
-    if missing_rows:
-        out = pd.concat([out, pd.DataFrame(missing_rows)], ignore_index=True)
-        logger.info(f"  {len(missing_rows):,} deputados ausentes adicionados por outras tabelas")
 
     return enrichment.enrich_deputados(out)
 

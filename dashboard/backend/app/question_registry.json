@@ -40,11 +40,11 @@
       "sql_file": "q2.sql",
       "chart_type": "wordcloud_images",
       "supported_filters": ["eixos", "deputados"],
-      "expected_columns": ["id_deputado", "nome", "eixo_maior", "qtd_proposicoes", "proposicoes_aprovadas"],
+      "expected_columns": ["id_deputado", "nome", "tema", "qtd_proposicoes", "proposicoes_aprovadas"],
       "main_table_contains": "Tabela analitica",
       "summary_table_contains": "",
       "explanation": "Consolida autoria de proposicoes por deputado e eixo tematico em 2023-2026, contabilizando tambem proposicoes aprovadas e termos usados nas nuvens anuais.",
-      "chart": { "x_field": "nome", "y_fields": ["qtd_proposicoes", "proposicoes_aprovadas"], "group_field": "eixo_maior" }
+      "chart": { "x_field": "nome", "y_fields": ["qtd_proposicoes", "proposicoes_aprovadas"], "group_field": "tema" }
     },
     {
       "id": "q3",
@@ -67,7 +67,7 @@
       "response_files": ["Caio/q4/q4_escolaridade.txt", "Caio/q4/q4_escolaridade_complementar.txt"],
       "sql_file": "q4.sql",
       "chart_type": "bar_vertical",
-      "supported_filters": ["deputados"],
+      "supported_filters": ["deputados", "escolaridade"],
       "expected_columns": ["escolaridade", "qtd_deputados"],
       "main_table_contains": "",
       "summary_table_contains": "",

@@ -14,4 +14,5 @@
  Secundário              |             2
  Primário Incompleto     |             1
  Secundário Incompleto   |             1
+(14 rows)
 

@@ -15,6 +15,7 @@ const EMPTY_FILTER_STATE: FilterState = {
   partidos: [],
   ufs: [],
   deputados: [],
+  escolaridade: [],
   search: '',
 }
 
@@ -25,10 +26,14 @@ function App() {
   const location = useLocation()
 
   const activeQuestionId = location.pathname.startsWith('/q/')
-    ? location.pathname.replace('/q/', '')
+    ? location.pathname.split('/')[2]?.replace(/\/$/, '') || null
     : null
   const activeQuestion = meta?.questions.find((question) => question.id === activeQuestionId)
   const hiddenQuestionRoute = Boolean(activeQuestionId && isQuestionHidden(activeQuestionId))
+
+  useEffect(() => {
+    setFilters(EMPTY_FILTER_STATE)
+  }, [activeQuestionId])
 
   useEffect(() => {
     fetchMeta()
@@ -56,6 +61,8 @@ function App() {
     )
   }
 
+  console.log('App rendering main shell')
+
   return (
     <div className="app-shell">
       <Header questions={meta.questions} datasetVersion={meta.dataset_version} />
@@ -69,7 +76,7 @@ function App() {
       ) : null}
       <Routes>
         <Route path="/" element={<HomePage meta={meta} />} />
-        <Route path="/q/:questionId" element={<QuestionPage meta={meta} filters={filters} />} />
+        <Route path="/q/:questionId" element={<QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />} />
       </Routes>
       <footer className="app-footer">
         Fonte: schema grupo4 + arquivos respostas/*.txt | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}

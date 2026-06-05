@@ -288,3 +288,77 @@ def test_missing_response_file_returns_clear_error(tmp_path: Path) -> None:
     response = client.get("/api/questions/q1")
     assert response.status_code == 404
     assert "missing_q1.txt" in response.json()["detail"]
+
+
+def test_question_endpoint_applies_escolaridade_filter(tmp_path: Path) -> None:
+    root = tmp_path
+    responses_dir = root / "respostas"
+    sql_dir = root / "sql"
+    
+    main_content = """Tabela principal
+escolaridade | qtd_deputados
+-------------+--------------
+ Superior    | 1
+ Mestrado    | 1
+(2 rows)
+"""
+    comp_content = """Tabela complementar
+escolaridade | id_deputado | nome
+-------------+-------------+-----
+ Superior    | 1           | Ana Silva
+ Mestrado    | 2           | Bruno Lima
+(2 rows)
+"""
+    _write_response_file(root / "Caio" / "q4" / "q4_escolaridade.txt", main_content)
+    _write_response_file(root / "Caio" / "q4" / "q4_escolaridade_complementar.txt", comp_content)
+    _write_sql_file(sql_dir / "q4.sql")
+    
+    registry = {
+        "legend": {},
+        "questions": [
+            {
+                "id": "q4",
+                "title": "Escolaridade",
+                "description": "Escolaridade da 57 legislatura",
+                "response_files": ["Caio/q4/q4_escolaridade.txt", "Caio/q4/q4_escolaridade_complementar.txt"],
+                "sql_file": "q4.sql",
+                "chart_type": "bar_vertical",
+                "supported_filters": ["deputados", "escolaridade"],
+                "expected_columns": ["escolaridade", "qtd_deputados"],
+                "main_table_contains": "",
+                "summary_table_contains": "",
+                "explanation": "Teste de Q4Adapter",
+                "chart": {"x_field": "escolaridade", "y_fields": ["qtd_deputados"]},
+            }
+        ]
+    }
+    registry_path = root / "question_registry.json"
+    registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2), encoding="utf-8")
+    
+    from app.adapters.questions import Q4Adapter
+    import app.adapters.factory as factory_module
+    factory_module.ADAPTERS_BY_ID["q4"] = Q4Adapter
+    
+    service = DashboardService(
+        registry_path=registry_path,
+        responses_dir=responses_dir,
+        sql_dir=sql_dir,
+        repo_root=root,
+    )
+    client = _client_for(service)
+    
+    response = client.get("/api/questions/q4")
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["table_spec"]["total"] == 2
+    assert len(payload["complement_tables"][0]["rows"]) == 2
+    assert payload["summary_cards"][0]["value"] == "2"
+    
+    filtered = client.get("/api/questions/q4?escolaridade=Mestrado")
+    assert filtered.status_code == 200
+    filtered_payload = filtered.json()
+    assert filtered_payload["table_spec"]["total"] == 2
+    assert len(filtered_payload["complement_tables"][0]["rows"]) == 1
+    assert filtered_payload["complement_tables"][0]["rows"][0]["nome"] == "Bruno Lima"
+    assert filtered_payload["summary_cards"][0]["value"] == "1"
+

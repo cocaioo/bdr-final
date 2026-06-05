@@ -111,6 +111,13 @@ WITH ranked AS (
       ON te.ano_dados = p.ano_dados
      AND te.uri_proposicao = p.uri_proposicao
     WHERE t.ano_dados BETWEEN 2023 AND 2026
+      AND EXISTS (
+          SELECT 1 
+          FROM proposicoes_autores a
+          JOIN deputados d ON d.id_deputado = a.id_deputado
+          WHERE a.ano_dados = p.ano_dados
+            AND a.id_proposicao = p.id_proposicao
+      )
     GROUP BY t.ano_dados, t.token
 )
 SELECT

@@ -1,706 +1,747 @@
-Q2 complemento - eixo mais atuante por deputado no periodo 2023-2026
-Eixo mais atuante por deputado - consolidado
-id_deputado |                                nome |           eixo_mais_atuante | qtd_proposicoes | proposicoes_aprovadas
-------------+-------------------------------------+-----------------------------+-----------------+----------------------
-     220715 |                         Amom Mandel |                      Social |            1307 |                     1
-      74084 |                     Raimundo Santos |                      Social |            1282 |                     1
-     220604 |                      Marcos Tavares |                      Social |             837 |                     0
-      74356 |                        Silas Câmara |                   Economico |             743 |                     0
-     204572 |                Capitão Alberto Neto |                      Social |             456 |                     2
-     220713 |                       Saullo Vianna |                      Social |             365 |                     0
-     204528 |                     Adriana Ventura |    Institucional e juridico |             328 |                     0
-     220540 |                          Duda Ramos |                      Social |             289 |                     0
-     220568 |                       Gustavo Gayer |    Institucional e juridico |             261 |                     1
-     178871 |                Evair Vieira de Melo |    Institucional e juridico |             237 |                     0
-      74856 |                      Laura Carneiro |                      Social |             197 |                     8
-     156190 |                   Marcel van Hattem |    Institucional e juridico |             190 |                     0
-     220574 |                 Cabo Gilberto Silva |    Institucional e juridico |             185 |                     1
-     204365 |                      Gilson Marques |    Institucional e juridico |             184 |                     0
-     220695 |                      Rogéria Santos |                      Social |             169 |                     2
-     220538 |                         Albuquerque |                      Social |             163 |                     0
-     204472 |                       José Medeiros |    Institucional e juridico |             151 |                     0
-     160512 |                       Aureo Ribeiro |    Institucional e juridico |             145 |                     1
-     204455 |                           Luiz Lima |    Institucional e juridico |             141 |                     1
-     220530 |                      Messias Donato |                      Social |             139 |                     1
-     220686 |                          Duarte Jr. |                      Social |             135 |                     1
-     204462 |                      Chris Tonietto |                      Social |             131 |                     0
-     160548 |                     Jonas Donizette |    Institucional e juridico |             127 |                     0
-     220547 |                       Marcos Pollon |                   Seguranca |             125 |                     1
-     220623 |                       Duda Salabert |                      Social |             122 |                     1
-     204536 |                       Kim Kataguiri |    Institucional e juridico |             121 |                     0
-     178887 |               Rubens Pereira Júnior |    Institucional e juridico |             107 |                     0
-     204535 |                        Sâmia Bomfim |                      Social |             105 |                     0
-     220673 |                    Delegado Caveira |    Institucional e juridico |             103 |                     0
-     204534 |                       Tabata Amaral |                      Social |             102 |                     2
-     220616 |                      Luciano Vieira |                      Social |             102 |                     0
-     204526 | Luiz Philippe de Orleans e Bragança |    Institucional e juridico |             102 |                     0
-     220690 |                       Capitão Alden |                   Seguranca |             100 |                     0
-     220559 |                       Julia Zanatta |                      Social |              99 |                     0
-     178989 |                        Renata Abreu |                      Social |              98 |                     1
-      73579 |                       Alberto Fraga |    Institucional e juridico |              94 |                     0
-     178947 |                 Sóstenes Cavalcante |    Institucional e juridico |              88 |                     2
-     220556 |                      Ana Paula Lima |                      Social |              87 |                     2
-     204444 |                         Helio Lopes |                      Social |              87 |                     0
-     220654 |            Delegado Paulo Bilynskyj |    Institucional e juridico |              83 |                     1
-      73486 |                    Pompeo de Mattos |                      Social |              81 |                     0
-     220648 |                           Marangoni |    Institucional e juridico |              80 |                     2
-     178929 |                        Diego Garcia |                      Social |              79 |                     2
-     220550 |                     Mauricio Marcon |    Institucional e juridico |              79 |                     1
-     220615 |              Pastor Henrique Vieira |                      Social |              79 |                     0
-     220618 |                   Sargento Portugal |                   Seguranca |              79 |                     0
-     204518 |                       Dr. Frederico |                      Social |              78 |                     0
-     204407 |                 Fernanda Melchionna |                      Social |              78 |                     0
-     220714 |                         Adail Filho |      Ambiental e energetico |              77 |                     0
-     206018 |                      Célia Xakriabá |                      Social |              76 |                     2
-     220553 |                       Denise Pessôa |                      Social |              73 |                     1
-     160598 |                       Flávia Morais |                      Social |              72 |                     3
-     220640 |                     Juliana Cardoso |                      Social |              72 |                     1
-     220579 |                       Silvia Waiãpi |                      Social |              72 |                     1
-     104552 |                        Socorro Neri |                      Social |              72 |                     1
-     220630 |                        Pedro Aihara |                      Social |              72 |                     0
-      89536 |                Prof. Paulo Fernando |    Institucional e juridico |              71 |                     2
-     220576 |                      Alfredo Gaspar |    Institucional e juridico |              71 |                     0
-     220657 |                     André Fernandes |                   Seguranca |              71 |                     0
-     220659 |                  Dayany Bittencourt |                      Social |              71 |                     0
-     209787 |                    Nikolas Ferreira |    Institucional e juridico |              71 |                     0
-      74171 |                       Chico Alencar |    Institucional e juridico |              70 |                     1
-      74171 |                       Chico Alencar |                      Social |              70 |                     1
-     160575 |                         Erika Kokay |                      Social |              70 |                     1
-     220558 |                           Zé Trovão |    Institucional e juridico |              70 |                     1
-     220548 |                         Camila Jara |                      Social |              69 |                     3
-     220645 |                        Erika Hilton |                      Social |              69 |                     1
-     178843 |                        Marx Beltrão |                      Social |              69 |                     0
-     220569 |                        Silvye Alves |                      Social |              69 |                     0
-     204369 |                    Caroline de Toni |    Institucional e juridico |              68 |                     1
-     220534 |                       Fred Linhares |                      Social |              68 |                     1
-     221338 |       Professora Luciene Cavalcante |                      Social |              68 |                     1
-     220701 |             Delegado Matheus Laiola |      Ambiental e energetico |              68 |                     0
-      98148 |                          Cobalchini |                      Social |              67 |                     1
-     123756 |                       Antônia Lúcia |                      Social |              67 |                     0
-     229225 |         Missionária Michele Collins |                      Social |              66 |                     0
-     165470 |                   Rodrigo Valadares |    Institucional e juridico |              66 |                     0
-     220595 |                    Coronel Fernanda |                      Social |              65 |                     1
-     178829 |                     Capitão Augusto |                      Social |              65 |                     0
-     220665 |                     Clarissa Tércio |                      Social |              64 |                     0
-     220598 |                      Tarcísio Motta |                      Social |              64 |                     0
-     141421 |                    Eduardo da Fonte |                      Social |              63 |                     0
-     220633 |                      Ricardo Salles |    Institucional e juridico |              63 |                     0
-     204464 |                     Talíria Petrone |                      Social |              62 |                     1
-     204412 |                 Dr. Zacharias Calil |                      Social |              62 |                     0
-     220667 |                        Pedro Campos |                      Social |              59 |                     1
-     220635 |                         Bruno Ganem |                      Social |              58 |                     0
-     220642 |                 Delegado Bruno Lima |      Ambiental e energetico |              58 |                     0
-     220586 |                        Rafael Brito |                      Social |              57 |                     1
-     204388 |                          Bibo Nunes |    Institucional e juridico |              57 |                     0
-     220583 |                Delegado Fabio Costa |                   Seguranca |              57 |                     0
-     204479 |                           Nicoletti |    Institucional e juridico |              57 |                     0
-     160629 |                    Romero Rodrigues |                      Social |              56 |                     0
-     220564 |                        Yandra Moura |                      Social |              56 |                     0
-      74253 |                         Julio Lopes |    Institucional e juridico |              55 |                     1
-     220652 |                    Delegado Palumbo |                   Seguranca |              54 |                     0
-     204570 |                          Pastor Gil |                      Social |              54 |                     0
-     220610 |                 Dr. Fernando Máximo |                      Social |              53 |                     0
-     220655 |                         Mario Frias |    Institucional e juridico |              53 |                     0
-     204416 |                           Sanderson |    Institucional e juridico |              53 |                     0
-     220531 |                       Gilvan Maximo |                      Social |              52 |                     0
-     220543 |                       Ricardo Ayres |    Institucional e juridico |              52 |                     0
-     161440 |                             Pezenti |    Institucional e juridico |              51 |                     1
-     220607 |                           Max Lemos |                      Social |              51 |                     0
-     220546 |                    Rodolfo Nogueira |    Institucional e juridico |              51 |                     0
-     204387 |                      Sargento Fahur |    Institucional e juridico |              50 |                     1
-     204374 |                           Bia Kicis |    Institucional e juridico |              50 |                     0
-     235088 |                        Ribeiro Neto |                      Social |              50 |                     0
-     220613 |                Roberto Monteiro Pai |                      Social |              50 |                     0
-     220557 |                     Daniela Reinehr |                      Social |              49 |                     1
-     204460 |                        Carlos Jordy |    Institucional e juridico |              48 |                     1
-     220666 |                       Coronel Meira |                   Seguranca |              48 |                     1
-     220644 |                      Rosangela Moro |                      Social |              48 |                     1
-     157130 |                       Túlio Gadêlha |                      Social |              48 |                     1
-     220549 |                           Any Ortiz |                      Social |              48 |                     0
-     220594 |                       Coronel Assis |                   Seguranca |              48 |                     0
-     220621 |                  Sargento Gonçalves |    Institucional e juridico |              48 |                     0
-     220606 |                             Reimont |                      Social |              47 |                     2
-     220629 |                             Dandara |                      Social |              47 |                     1
-     214694 |                       Jorge Goetten |                      Social |              47 |                     1
-      74398 |                    Maria do Rosário |                      Social |              47 |                     1
-     204378 |                 Coronel Chrisóstomo |                      Social |              47 |                     0
-     220704 |                       Carol Dartora |                      Social |              46 |                     1
-     160604 |                         Pedro Uczai |                      Social |              46 |                     0
-     220668 |                        Maria Arraes |                      Social |              45 |                     2
-     178970 |                         João Daniel |    Institucional e juridico |              45 |                     1
-     220669 |                       Lula da Fonte |                      Social |              45 |                     1
-     204557 |                        Sidney Leite |    Institucional e juridico |              45 |                     1
-     204488 |                       Célio Studart |      Ambiental e energetico |              45 |                     0
-     204457 |                     Juninho do Pneu |                      Social |              45 |                     0
-     204520 |                        Junio Amaral |    Institucional e juridico |              44 |                     0
-     220599 |                    Marcelo Crivella |    Institucional e juridico |              43 |                     2
-     160666 |               Félix Mendonça Júnior |                   Economico |              43 |                     0
-     220565 |            Delegada Adriana Accorsi |                      Social |              42 |                     2
-     204491 |                     Gilberto Abramo |                      Social |              42 |                     2
-     139285 |                      Lídice da Mata |                      Social |              42 |                     1
-     220588 |                      Roberto Duarte |    Institucional e juridico |              42 |                     1
-     204494 |                          Fred Costa |      Ambiental e energetico |              42 |                     0
-     204494 |                          Fred Costa |                      Social |              42 |                     0
-     234788 |                      Heloísa Helena |                      Social |              42 |                     0
-      80815 |                          Leo Prates |                      Social |              42 |                     0
-     220593 |                      Abilio Brunini |                      Social |              41 |                     1
-      74784 |                      Luiza Erundina |                      Social |              41 |                     1
-     160601 |                 Pr. Marco Feliciano |                      Social |              41 |                     1
-     220555 |                       Daiana Santos |                      Social |              41 |                     0
-      66828 |                       Fausto Pinato |    Institucional e juridico |              41 |                     0
-     220632 |                        Ana Pimentel |                      Social |              40 |                     1
-     220674 |               Dra. Alessandra Haber |                      Social |              40 |                     1
-      72442 |                     Felipe Carreras |    Institucional e juridico |              40 |                     1
-     204410 |                      Luisa Canziani |                      Social |              40 |                     1
-      74041 |                          Luiz Couto |                      Social |              40 |                     1
-     204511 |                        David Soares |                      Social |              40 |                     0
-     160161 |                     Marcelo Queiroz |      Ambiental e energetico |              40 |                     0
-     220641 |                     Rodrigo Gambale |                      Social |              39 |                     2
-     220656 |                     Fernanda Pessoa |                      Social |              39 |                     1
-     220551 |                     Franciane Bayer |                      Social |              39 |                     1
-     178993 |              Carlos Henrique Gaguim |                      Social |              39 |                     0
-     220566 |                         Lêda Borges |                      Social |              39 |                     0
-     220542 |                 Alexandre Guimarães |    Institucional e juridico |              38 |                     2
-      88256 |                 Clodoaldo Magalhães |                      Social |              38 |                     1
-     178908 |                 Delegado Éder Mauro |    Institucional e juridico |              38 |                     1
-     204411 |                       Filipe Barros |                   Economico |              38 |                     1
-     204411 |                       Filipe Barros |    Institucional e juridico |              38 |                     1
-      98615 |                              Ismael |                      Social |              38 |                     1
-      98057 |                Lafayette de Andrada |    Institucional e juridico |              38 |                     1
-      74371 |                        Rubens Otoni |                      Social |              38 |                     1
-     220571 |                      Daniel Agrobom |                      Social |              38 |                     0
-     220712 |                          Fausto Jr. |    Institucional e juridico |              38 |                     0
-      74057 |                      Alice Portugal |                      Social |              37 |                     2
-     220529 |                       Gilson Daniel |    Institucional e juridico |              37 |                     1
-     220663 |                   Eriberto Medeiros |                   Seguranca |              37 |                     0
-     204473 |                       General Girão |                      Social |              37 |                     0
-     122974 |               Pedro Lucas Fernandes |                      Social |              37 |                     0
-     220684 |                       Tião Medeiros |    Institucional e juridico |              37 |                     0
-     204540 |                         Maria Rosas |                      Social |              36 |                     1
-     220703 |                       Neto Carletto |                      Social |              36 |                     1
-     204395 |                        Pedro Lupion |    Institucional e juridico |              36 |                     1
-     224333 |                              Welter |                   Economico |              36 |                     1
-      73701 |                   Benedita da Silva |                      Social |              35 |                     2
-     133439 |                    André Figueiredo |                   Economico |              35 |                     1
-     222142 |                     Coronel Telhada |    Institucional e juridico |              35 |                     1
-     178946 |                       Soraya Santos |                      Social |              35 |                     1
-     204517 |                            Zé Vitor |                   Economico |              35 |                     1
-     220528 |                 Dr. Victor Linhalis |                      Social |              35 |                     0
-     220646 |                       Felipe Becari |      Ambiental e energetico |              35 |                     0
-     220611 |                    General Pazuello |    Institucional e juridico |              35 |                     0
-      74374 |                     Geraldo Resende |                      Social |              35 |                     0
-      74428 |                      Mendonça Filho |    Institucional e juridico |              35 |                     0
-     220670 |                          Iza Arruda |                      Social |              34 |                     3
-     220625 |                       Delegada Ione |                      Social |              34 |                     1
-     220580 |                   Professora Goreth |                      Social |              34 |                     1
-      69871 |                             Bacelar |                      Social |              34 |                     0
-     204507 |                      Carla Zambelli |    Institucional e juridico |              34 |                     0
-     220590 |                     Coronel Ulysses |    Institucional e juridico |              34 |                     0
-     220608 |                     Cristiane Lopes |    Institucional e juridico |              34 |                     0
-     204351 |                     Dr. Luiz Ovando |                      Social |              34 |                     0
-     204550 |                         Júnior Mano |                      Social |              34 |                     0
-      74858 |                    Lindbergh Farias |                      Social |              34 |                     0
-     204396 |                            Vermelho |    Institucional e juridico |              34 |                     0
-     220552 |                               Zucco |                   Economico |              34 |                     0
-      74273 |                    Jefferson Campos |    Institucional e juridico |              33 |                     1
-      74585 |                     Lincoln Portela |                      Social |              33 |                     1
-     178954 |                      Lucio Mosquini |                   Economico |              33 |                     1
-     178866 |                      Luizianne Lins |                      Social |              33 |                     1
-     160518 |                       Weliton Prado |                      Social |              33 |                     1
-     178972 |                        Alex Manente |                      Social |              33 |                     0
-      73441 |                    Celso Russomanno |    Institucional e juridico |              33 |                     0
-     204355 |                          Da Vitoria |    Institucional e juridico |              33 |                     0
-     220526 |                   Gilvan da Federal |                   Seguranca |              33 |                     0
-     178943 |                       Marcos Soares |    Institucional e juridico |              33 |                     0
-     143632 |                       Domingos Neto |                   Economico |              32 |                     1
-     220628 |                   Mauricio do Vôlei |                      Social |              32 |                     1
-     220584 |                      Murilo Galdino |                      Social |              32 |                     1
-      74283 |                          Vicentinho |                      Social |              32 |                     1
-     220639 |                    Guilherme Boulos |                      Social |              32 |                     0
-     178857 |                         Jorge Solla |                      Social |              32 |                     0
-     204391 |                          José Nelto |                      Social |              32 |                     0
-     204480 |                     Rogério Correia |    Institucional e juridico |              32 |                     0
-     204525 |                        Rosana Valle |                      Social |              32 |                     0
-     220545 |                      Filipe Martins |    Institucional e juridico |              31 |                     1
-     204485 |                   Luiz Carlos Motta |                      Social |              31 |                     1
-     160642 |                       Pastor Eurico |    Institucional e juridico |              31 |                     1
-     220554 |               Alexandre Lindenmeyer |    Institucional e juridico |              31 |                     0
-     152605 |                       Glauber Braga |                      Social |              31 |                     0
-      73531 |                        Ivan Valente |                      Social |              31 |                     0
-     220697 |                      Jadyel Alencar |    Institucional e juridico |              31 |                     0
-     178881 |                      Aluisio Mendes |    Institucional e juridico |              30 |                     2
-     220536 |                Zé Haroldo Cathedral |                      Social |              30 |                     2
-     221328 |                     Adilson Barroso |    Institucional e juridico |              30 |                     1
-     179000 |              Marcelo Álvaro Antônio |    Institucional e juridico |              30 |                     1
-     204441 |                      Otoni de Paula |    Institucional e juridico |              30 |                     1
-     220597 |                       Thiago Flores |    Institucional e juridico |              30 |                     1
-     137070 |                   Vicentinho Júnior |                   Economico |              30 |                     1
-      92346 |                   Eduardo Bolsonaro |    Institucional e juridico |              30 |                     0
-     178873 |                      Helder Salomão |    Institucional e juridico |              30 |                     0
-     204360 |                     Silvia Cristina |                      Social |              30 |                     0
-     178986 |                         Nilto Tatto |                   Economico |              29 |                     2
-     204501 |                     Alencar Santana |    Institucional e juridico |              29 |                     1
-     204406 |                    Pedro Westphalen |                   Economico |              29 |                     1
-     109429 |                      Benes Leocádio |                      Social |              29 |                     0
-     220619 |                    Delegado Ramagem |                   Seguranca |              29 |                     0
-     178910 |                  Joaquim Passarinho |    Institucional e juridico |              29 |                     0
-      73778 |                   Luiz Carlos Hauly |    Institucional e juridico |              29 |                     0
-     220706 |                            Padovani |    Institucional e juridico |              29 |                     0
-     160758 |                      Domingos Sávio |    Institucional e juridico |              28 |                     1
-     141470 |                      José Guimarães |                   Economico |              28 |                     1
-     220702 |                      Geraldo Mendes |                   Economico |              28 |                     0
-     220587 |                        Gerlen Diniz |                      Social |              28 |                     0
-     220527 |                          Jack Rocha |                      Social |              28 |                     0
-     178931 |                       Luciano Ducci |    Institucional e juridico |              28 |                     0
-     220647 |                      Mauricio Neves |                   Economico |              28 |                     0
-     220591 |                       Meire Serafim |    Institucional e juridico |              28 |                     0
-     220617 |                      Murillo Gouvea |                      Social |              28 |                     0
-     220533 |               Prof. Reginaldo Veras |                      Social |              28 |                     0
-     204356 |                          Amaro Neto |    Institucional e juridico |              27 |                     2
-     220676 |                    Andreia Siqueira |                      Social |              27 |                     1
-     220688 |                       Dr. Francisco |                      Social |              27 |                     1
-     204453 |                   Natália Bonavides |                      Social |              27 |                     1
-     160556 |                          Padre João |                   Economico |              27 |                     1
-     220605 |                   Bandeira de Mello |    Institucional e juridico |              27 |                     0
-      62881 |                        Danilo Forte |    Institucional e juridico |              27 |                     0
-     204512 |            Delegado Marcelo Freitas |    Institucional e juridico |              27 |                     0
-     204512 |            Delegado Marcelo Freitas |                      Social |              27 |                     0
-     204427 |                    Fernando Rodolfo |                      Social |              27 |                     0
-     178964 |                       Heitor Schuch |                   Economico |              27 |                     0
-     220687 |                     Márcio Honaiser |                      Social |              27 |                     0
-     180214 |                        Pastor Diniz |                      Social |              27 |                     0
-     204553 |            Pastor Sargento Isidório |    Institucional e juridico |              27 |                     0
-     204553 |            Pastor Sargento Isidório |                      Social |              27 |                     0
-     204559 |                             Zé Neto |                   Economico |              27 |                     0
-     220539 |               Defensor Stélio Dener |    Institucional e juridico |              26 |                     2
-     204495 |                      Airton Faleiro |                      Social |              26 |                     1
-     178937 |                      Altineu Côrtes |    Institucional e juridico |              26 |                     1
-     160673 |                     Giovani Cherini |    Institucional e juridico |              26 |                     1
-     160673 |                     Giovani Cherini |                      Social |              26 |                     1
-      74848 |                     Jandira Feghali |                      Social |              26 |                     1
-     178835 |                        Afonso Motta |                      Social |              26 |                     0
-     204481 |                          Dr. Jaziel |    Institucional e juridico |              26 |                     0
-     204481 |                          Dr. Jaziel |                      Social |              26 |                     0
-     198197 |                        Greyce Elias |                      Social |              26 |                     0
-     160610 |                     Valmir Assunção |                      Social |              26 |                     0
-     160569 |                    Waldenor Pereira |                      Social |              26 |                     0
-     220707 |                       Amanda Gentil |                      Social |              25 |                     2
-     220700 |                     Florentino Neto |                      Social |              25 |                     2
-     178933 |                        Sergio Souza |                   Economico |              25 |                     2
-     220651 |                    Simone Marquetto |                      Social |              25 |                     2
-     204379 |                      Acácio Favacho |    Institucional e juridico |              25 |                     1
-     141450 |                           Hugo Leal |    Institucional e juridico |              25 |                     1
-     220693 |                        Roberta Roma |    Institucional e juridico |              25 |                     1
-     220693 |                        Roberta Roma |                      Social |              25 |                     1
-     220614 |                   Dr. Daniel Soranz |                      Social |              25 |                     0
-     204398 |                 Felipe Francischini |    Institucional e juridico |              25 |                     0
-     204394 |                       Gervásio Maia |    Institucional e juridico |              25 |                     0
-     204539 |               Hercílio Coelho Diniz |                      Social |              25 |                     0
-     220567 |                  Jeferson Rodrigues |                      Social |              25 |                     0
-     141456 |                        Jilmar Tatto |                      Social |              25 |                     0
-      74158 |                      Mário Heringer |                      Social |              25 |                     0
-     150418 |                      Márcio Marinho |    Institucional e juridico |              24 |                     2
-     141408 |                        Cleber Verde |                      Social |              24 |                     1
-     220563 |                     Icaro de Valmir |    Institucional e juridico |              24 |                     1
-     133810 |                      Marcelo Moraes |    Institucional e juridico |              24 |                     1
-     220622 |                         Nely Aquino |                      Social |              24 |                     1
-     213274 |                       Ricardo Silva |                      Social |              24 |                     1
-     160665 |                    Augusto Coutinho |    Institucional e juridico |              24 |                     0
-     220589 |                     Eduardo Velloso |    Institucional e juridico |              24 |                     0
-     204445 |                    Fernando Mineiro |                      Social |              24 |                     0
-     226179 |                       Gisela Simona |    Institucional e juridico |              24 |                     0
-     204449 |                      Nelson Barbudo |                      Social |              24 |                     0
-      73692 |                         Osmar Terra |    Institucional e juridico |              24 |                     0
-      74696 |                      Alberto Mourão |    Institucional e juridico |              23 |                     1
-     220532 |                     Rafael Prudente |                      Social |              23 |                     1
-     220620 |                      Rosângela Reis |                      Social |              23 |                     1
-      91228 |                   Waldemar Oliveira |    Institucional e juridico |              23 |                     1
-     226708 |                        Allan Garcês |                      Social |              23 |                     0
-     220561 |                   Delegada Katarina |                      Social |              23 |                     0
-     220602 |                       Dimas Gadelha |                   Economico |              23 |                     0
-     220573 |                  Dorinaldo Malafaia |    Institucional e juridico |              23 |                     0
-     220573 |                  Dorinaldo Malafaia |                      Social |              23 |                     0
-     220627 |                     Paulinho Freire |                      Social |              23 |                     0
-     160635 |                        Ruy Carneiro |                      Social |              23 |                     0
-     160559 |                       Alceu Moreira |                   Economico |              22 |                     1
-     221148 |                          Alfredinho |    Institucional e juridico |              22 |                     1
-      73433 |                   Arlindo Chinaglia |    Institucional e juridico |              22 |                     1
-     178876 |                      Célio Silveira |    Institucional e juridico |              22 |                     1
-     166402 |                       Magda Mofatto |    Institucional e juridico |              22 |                     1
-     220560 |                    Thiago de Joaldo |    Institucional e juridico |              22 |                     1
-     136811 |                         Afonso Hamm |    Institucional e juridico |              22 |                     0
-     220596 |                       Amália Barros |    Institucional e juridico |              22 |                     0
-     204423 |                      André Ferreira |    Institucional e juridico |              22 |                     0
-     229106 |                         Carla Ayres |                      Social |              22 |                     0
-     213762 |                       Carla Dickson |                      Social |              22 |                     0
-     204367 |                      Daniel Freitas |    Institucional e juridico |              22 |                     0
-     204459 |                 Daniela do Waguinho |                      Social |              22 |                     0
-     198783 |               Emanuel Pinheiro Neto |    Institucional e juridico |              22 |                     0
-     220653 |                        Fábio Teruel |    Institucional e juridico |              22 |                     0
-     220578 |                           Josenildo |                      Social |              22 |                     0
-     204372 |                 Julio Cesar Ribeiro |                      Social |              22 |                     0
-      74156 |                   Leonardo Monteiro |                      Social |              22 |                     0
-     160535 |                              Marcon |                   Economico |              22 |                     0
-     204390 |                   Professor Alcides |    Institucional e juridico |              22 |                     0
-     220560 |                    Thiago de Joaldo |                      Social |              22 |                     0
-     141555 |                   Vinicius Carvalho |    Institucional e juridico |              21 |                     2
-      73768 |                    Dilceu Sperafico |    Institucional e juridico |              21 |                     1
-     141458 |                 João Carlos Bacelar |    Institucional e juridico |              21 |                     1
-     219585 |                        Marco Brasil |    Institucional e juridico |              21 |                     1
-     219585 |                        Marco Brasil |                      Social |              21 |                     1
-     204524 |                         Pinheirinho |                      Social |              21 |                     1
-     204409 |                     Daniel Trzeciak |    Institucional e juridico |              21 |                     0
-     220705 |                    Deltan Dallagnol |    Institucional e juridico |              21 |                     0
-     218086 |                          Ely Santos |    Institucional e juridico |              21 |                     0
-     225730 |                Enfermeira Ana Paula |                      Social |              21 |                     0
-     160640 |                       Eros Biondini |                      Social |              21 |                     0
-     162067 |                       Kiko Celeguim |    Institucional e juridico |              21 |                     0
-     234253 |                       Lucas Abrahao |    Institucional e juridico |              21 |                     0
-     204404 |                      Lucas Redecker |    Institucional e juridico |              21 |                     0
-     204404 |                      Lucas Redecker |                      Social |              21 |                     0
-     138286 |                       Luciano Alves |                   Economico |              21 |                     0
-     220631 |                        Samuel Viana |    Institucional e juridico |              21 |                     0
-     220682 |                        Tadeu Veneri |    Institucional e juridico |              21 |                     0
-     220682 |                        Tadeu Veneri |                      Social |              21 |                     0
-     160592 |                         Zeca Dirceu |                   Economico |              21 |                     0
-     160538 |                           Bohn Gass |                   Economico |              20 |                     1
-     220603 |                          Dani Cunha |    Institucional e juridico |              20 |                     1
-     220671 |                       Dilvanda Faro |                      Social |              20 |                     1
-     220685 |                         Paulo Litro |    Institucional e juridico |              20 |                     1
-     171617 |                              Paulão |                      Social |              20 |                     1
-     204358 |                        Beto Pereira |    Institucional e juridico |              20 |                     0
-     210989 |                        Bruno Farias |                      Social |              20 |                     0
-     178963 |                       Covatti Filho |    Institucional e juridico |              20 |                     0
-     204364 |                          Eli Borges |    Institucional e juridico |              20 |                     0
-     220585 |                     Mersinho Lucena |    Institucional e juridico |              20 |                     0
-     220626 |                       Rafael Simoes |    Institucional e juridico |              20 |                     0
-     220660 |                     Yury do Paredão |                      Social |              20 |                     0
-     160632 |                            Zé Silva |                   Economico |              20 |                     0
-     160632 |                            Zé Silva |    Institucional e juridico |              20 |                     0
-     204456 |                      Gutemberg Reis |                      Social |              19 |                     2
-     107970 |                      Ana Paula Leão |    Institucional e juridico |              19 |                     1
-     220638 |            Antonio Carlos Rodrigues |                      Social |              19 |                     1
-     204504 |                Cezinha de Madureira |                      Social |              19 |                     1
-     191923 |                     Flávio Nogueira |    Institucional e juridico |              19 |                     1
-     220672 |                     Henderson Pinto |                      Social |              19 |                     1
-     141464 |            José Airton Félix Cirilo |    Institucional e juridico |              19 |                     1
-     220658 |                         Luiz Gastão |    Institucional e juridico |              19 |                     1
-     220572 |                     Marussa Boldrin |                      Social |              19 |                     1
-     178985 |                     Miguel Lombardi |                      Social |              19 |                     1
-     178997 |                     Moses Rodrigues |    Institucional e juridico |              19 |                     1
-      74159 |                         Odair Cunha |                   Economico |              19 |                     1
-     204573 |                  Otto Alencar Filho |    Institucional e juridico |              19 |                     1
-     153423 |                   Renilce Nicodemos |                      Social |              19 |                     1
-      92776 |                      Stefano Aguiar |    Institucional e juridico |              19 |                     1
-      92776 |                      Stefano Aguiar |                      Social |              19 |                     1
-     123086 |                          Átila Lira |    Institucional e juridico |              19 |                     1
-     204426 |                        Carlos Veras |    Institucional e juridico |              19 |                     0
-      74060 |                      Daniel Almeida |    Institucional e juridico |              19 |                     0
-     204450 |                     Doutor Luizinho |    Institucional e juridico |              19 |                     0
-     230765 |                   Enfermeira Rejane |                      Social |              19 |                     0
-      81055 |                        Márcio Jerry |    Institucional e juridico |              19 |                     0
-      74160 |                      Patrus Ananias |    Institucional e juridico |              19 |                     0
-     220650 |             Paulo Alexandre Barbosa |                      Social |              19 |                     0
-      74376 |                       Vander Loubet |    Institucional e juridico |              19 |                     0
-      74376 |                       Vander Loubet |                      Social |              19 |                     0
-     234673 |                     Vanderlan Alves |                      Social |              19 |                     0
-     204571 |                        Alex Santana |    Institucional e juridico |              18 |                     1
-     220649 |                   Delegado da Cunha |                   Seguranca |              18 |                     1
-     178934 |                  Toninho Wandscheer |    Institucional e juridico |              18 |                     1
-     178934 |                  Toninho Wandscheer |                      Social |              18 |                     1
-      74043 |                  Wellington Roberto |    Institucional e juridico |              18 |                     1
-     220577 |                      Augusto Puppio |                      Social |              18 |                     0
-     220612 |                              Bebeto |    Institucional e juridico |              18 |                     0
-     204541 |                    Eduardo Bismarck |                      Social |              18 |                     0
-     215043 |                        Josivaldo JP |                      Social |              18 |                     0
-     231911 |                      Lenir de Assis |                      Social |              18 |                     0
-     141485 |                  Luiz Carlos Busato |    Institucional e juridico |              18 |                     0
-     220609 |                   Maurício Carvalho |    Institucional e juridico |              18 |                     0
-     178987 |                       Orlando Silva |                      Social |              18 |                     0
-     205865 |                  Reinhold Stephanes |    Institucional e juridico |              18 |                     0
-     220544 |                     Antonio Andrade |    Institucional e juridico |              17 |                     1
-     220691 |                       Diego Coronel |    Institucional e juridico |              17 |                     1
-      66385 |                     Julio Arcoverde |    Institucional e juridico |              17 |                     1
-     221378 |                      Reginete Bispo |                      Social |              17 |                     1
-     178927 |                       Aliel Machado |    Institucional e juridico |              17 |                     0
-     141411 |                  Dagoberto Nogueira |                      Social |              17 |                     0
-     116379 |                      Darci de Matos |    Institucional e juridico |              17 |                     0
-      74270 |                 Gilberto Nascimento |    Institucional e juridico |              17 |                     0
-     220581 |                      Luciano Amaral |                      Social |              17 |                     0
-      74161 |                     Reginaldo Lopes |                      Social |              17 |                     0
-     163321 |                    Ronaldo Nogueira |    Institucional e juridico |              17 |                     0
-     220570 |              Dr. Ismael Alexandrino |    Institucional e juridico |              16 |                     1
-     224117 |                        Gabriel Mota |    Institucional e juridico |              16 |                     1
-     220537 |                         Helena Lima |                      Social |              16 |                     1
-     220696 |                    Ivoneide Caetano |                      Social |              16 |                     1
-     188097 |                      Merlong Solano |    Institucional e juridico |              16 |                     1
-     188097 |                      Merlong Solano |                      Social |              16 |                     1
-     122158 |                         Pedro Paulo |                   Economico |              16 |                     1
-     141391 |                      Arnaldo Jardim |                   Economico |              16 |                     0
-     160600 |                Arthur Oliveira Maia |    Institucional e juridico |              16 |                     0
-     220683 |                          Beto Richa |                      Social |              16 |                     0
-      74262 |                      Carlos Sampaio |    Institucional e juridico |              16 |                     0
-     178966 |                      Geovania de Sá |                      Social |              16 |                     0
-     209189 |                      Joseildo Ramos |    Institucional e juridico |              16 |                     0
-      74554 |                          José Rocha |    Institucional e juridico |              16 |                     0
-     220600 |                              Lebrão |                   Economico |              16 |                     0
-     160517 |                      Paulo Folletto |    Institucional e juridico |              16 |                     0
-     221329 |                       Ricardo Abrão |                      Social |              16 |                     0
-     220575 |                      Sonize Barbosa |                      Social |              16 |                     0
-     220601 |                   Washington Quaquá |    Institucional e juridico |              16 |                     0
-     141398 |                    Carlos Zarattini |                   Economico |              15 |                     2
-     220698 |                          Beto Preto |                      Social |              15 |                     1
-     141398 |                    Carlos Zarattini |    Institucional e juridico |              15 |                     1
-      74467 |                    Damião Feliciano |    Institucional e juridico |              15 |                     1
-     204474 |                        Juarez Costa |    Institucional e juridico |              15 |                     1
-      74317 |                         Júlio Cesar |                      Social |              15 |                     1
-      74044 |                     Wilson Santiago |    Institucional e juridico |              15 |                     1
-     204574 |                     Junior Lourenço |    Institucional e juridico |              15 |                     0
-      92102 |                 Leur Lomanto Júnior |    Institucional e juridico |              15 |                     0
-     178860 |                           Paulo Azi |    Institucional e juridico |              15 |                     0
-     205550 |                          Jorge Braz |    Institucional e juridico |              14 |                     2
-     220708 |                       Gabriel Nunes |    Institucional e juridico |              14 |                     1
-     204436 |                 Isnaldo Bulhões Jr. |    Institucional e juridico |              14 |                     1
-     223128 |                     Rodrigo Estacho |    Institucional e juridico |              14 |                     1
-     220582 |                      Daniel Barbosa |                      Social |              14 |                     0
-     229585 |                   Elisangela Araujo |                      Social |              14 |                     0
-     204368 |                     Fabio Schiochet |                   Economico |              14 |                     0
-     107283 |                     Gleisi Hoffmann |    Institucional e juridico |              14 |                     0
-     220664 |                     Guilherme Uchoa |    Institucional e juridico |              14 |                     0
-     220662 |                         Lucas Ramos |    Institucional e juridico |              14 |                     0
-     141531 |                   Rodrigo de Castro |    Institucional e juridico |              14 |                     0
-     226837 |                       Saulo Pedroso |    Institucional e juridico |              14 |                     0
-     220699 |                         Castro Neto |    Institucional e juridico |              13 |                     1
-     160588 |                       Diego Andrade |                   Economico |              13 |                     1
-     160674 |                          Hugo Motta |    Institucional e juridico |              13 |                     1
-      74090 |                          Átila Lins |    Institucional e juridico |              13 |                     1
-     227433 |                      Douglas Viegas |                      Social |              13 |                     0
-     204419 |                   Glaustin da Fokus |                      Social |              13 |                     0
-     178884 |                         Hildo Rocha |                      Social |              13 |                     0
-     162332 |                      Luiz Nishimori |    Institucional e juridico |              13 |                     0
-     178983 |                       Marcio Alvino |    Institucional e juridico |              13 |                     0
-     204566 |                       Marreca Filho |    Institucional e juridico |              13 |                     0
-     204566 |                       Marreca Filho |                      Social |              13 |                     0
-     204422 |                       Ossesio Silva |                      Social |              13 |                     0
-      73604 |                          Rui Falcão |                   Economico |              13 |                     0
-      73604 |                          Rui Falcão |    Institucional e juridico |              13 |                     0
-     222429 |                   Luis Carlos Gomes |    Institucional e juridico |              12 |                     2
-     204361 |                     Carlos Chiodini |                      Social |              12 |                     1
-      74075 |                    Elcione Barbalho |                   Economico |              12 |                     1
-      92699 |                   Fernando Monteiro |    Institucional e juridico |              12 |                     1
-     204408 |                    Gustinho Ribeiro |    Institucional e juridico |              12 |                     1
-     204497 |                      Júnior Ferrari |                   Economico |              12 |                     1
-     141487 |                 Luiz Fernando Faria |    Institucional e juridico |              12 |                     1
-     204498 |                      Olival Marques |                      Social |              12 |                     1
-      73801 |                   Renildo Calheiros |    Institucional e juridico |              12 |                     1
-     160545 |                     Alexandre Leite |    Institucional e juridico |              12 |                     0
-     178854 |                    Elmar Nascimento |    Institucional e juridico |              12 |                     0
-      74383 |                             Giacobo |    Institucional e juridico |              12 |                     0
-     204533 |                     Idilvan Alencar |                      Social |              12 |                     0
-     204486 |               Mauro Benevides Filho |    Institucional e juridico |              12 |                     0
-     160558 |                  Paulo Freire Costa |    Institucional e juridico |              12 |                     0
-     160558 |                  Paulo Freire Costa |                      Social |              12 |                     0
-      73801 |                   Renildo Calheiros |                      Social |              12 |                     0
-     220694 |                        Ricardo Maia |                   Economico |              12 |                     0
-     220624 |                      Robinson Faria |    Institucional e juridico |              12 |                     0
-     178992 |                         Vitor Lippi |                   Economico |              12 |                     0
-     178992 |                         Vitor Lippi |    Institucional e juridico |              12 |                     0
-     154178 |                       Milton Vieira |                      Social |              11 |                     2
-     204560 |                        Adolfo Viana |    Institucional e juridico |              11 |                     1
-     205476 |                   Charles Fernandes |    Institucional e juridico |              11 |                     1
-      74537 |                      Claudio Cajado |    Institucional e juridico |              11 |                     1
-     204482 |                  Euclydes Pettersen |                   Economico |              11 |                     1
-     204482 |                  Euclydes Pettersen |                      Social |              11 |                     1
-     141459 |                           João Maia |    Institucional e juridico |              11 |                     1
-      74478 |                       Luciano Bivar |    Institucional e juridico |              11 |                     1
-     220661 |                     Matheus Noronha |    Institucional e juridico |              11 |                     1
-     164360 |                      Carmen Zanotto |                      Social |              11 |                     0
-     204508 |                           Igor Timo |    Institucional e juridico |              11 |                     0
-     204506 |                      Marcos Pereira |    Institucional e juridico |              11 |                     0
-     220592 |                     Zezinho Barbary |    Institucional e juridico |              11 |                     0
-     178975 |                        Baleia Rossi |    Institucional e juridico |              10 |                     1
-      74079 |                        José Priante |                      Social |              10 |                     1
-     103758 |                     Luciano Azevedo |                   Economico |              10 |                     1
-     103758 |                     Luciano Azevedo |                      Social |              10 |                     1
-     171786 |                       Miguel Ângelo |    Institucional e juridico |              10 |                     1
-     178896 |                   Newton Cardoso Jr |    Institucional e juridico |              10 |                     1
-     204567 |                      Raimundo Costa |    Institucional e juridico |              10 |                     1
-     204567 |                      Raimundo Costa |                      Social |              10 |                     1
-     204515 |                       André Janones |                      Social |              10 |                     0
-     204496 |                        Celso Sabino |         Cultura e sociedade |              10 |                     0
-     220689 |                             Detinha |                      Social |              10 |                     0
-     161550 |                    Emidinho Madeira |                   Economico |              10 |                     0
-     161550 |                    Emidinho Madeira |    Institucional e juridico |              10 |                     0
-     141480 |                      Lázaro Botelho |    Institucional e juridico |              10 |                     0
-     160641 |               Professora Marcivania |                      Social |              10 |                     0
-     160976 |                            Tiririca |    Institucional e juridico |              10 |                     0
-     160510 |                           Luis Tibé |    Institucional e juridico |               9 |                     2
-     220681 |                        Fábio Macedo |                      Social |               9 |                     1
-     178895 |                      Misael Varella |    Institucional e juridico |               9 |                     1
-     121948 |                    Adriano do Baldy |                   Economico |               9 |                     0
-     143942 |                         Caio Vianna |                   Economico |               9 |                     0
-     143942 |                         Caio Vianna |    Institucional e juridico |               9 |                     0
-     143942 |                         Caio Vianna |                   Seguranca |               9 |                     0
-     204476 |                    Chiquinho Brazão |    Institucional e juridico |               9 |                     0
-     217480 |                         Jones Moura |                   Seguranca |               9 |                     0
-     178858 |                Mário Negromonte Jr. |                   Economico |               9 |                     0
-     178858 |                Mário Negromonte Jr. |    Institucional e juridico |               9 |                     0
-     204492 |                        Paulo Guedes |    Institucional e juridico |               9 |                     0
-      74400 |                       Paulo Pimenta |    Institucional e juridico |               9 |                     0
-     141533 |                  Rodrigo Rollemberg |    Institucional e juridico |               9 |                     0
-     141533 |                  Rodrigo Rollemberg |                      Social |               9 |                     0
-     226075 |                      Priscila Costa |                      Social |               8 |                     1
-     204549 |                      AJ Albuquerque |    Institucional e juridico |               8 |                     0
-     220634 |                        Marcelo Lima |    Institucional e juridico |               8 |                     0
-     220634 |                        Marcelo Lima |                      Social |               8 |                     0
-     225386 |                   Renan Ferreirinha |                      Social |               8 |                     0
-     222565 |                      Soldado Noelio |    Institucional e juridico |               8 |                     0
-     160591 |                     Vinicius Gurgel |    Institucional e juridico |               8 |                     0
-     160553 |                       Antonio Brito |    Institucional e juridico |               7 |                     1
-     179001 |                      Márcio Biolchi |                   Economico |               7 |                     1
-      74574 |                     Paulo Magalhães |    Institucional e juridico |               7 |                     1
-      74574 |                     Paulo Magalhães |                      Social |               7 |                     1
-      73806 |                      Roseana Sarney |                      Social |               7 |                     1
-      74646 |                         Aécio Neves |                   Economico |               7 |                     0
-      74646 |                         Aécio Neves |    Institucional e juridico |               7 |                     0
-     220692 |                         Dal Barreto |                   Economico |               7 |                     0
-     220692 |                         Dal Barreto |    Institucional e juridico |               7 |                     0
-     160599 |                       Dimas Fabiano |                   Economico |               7 |                     0
-     227991 |                           Dr Flávio |                      Social |               7 |                     0
-     178905 |                        Fabio Garcia |    Institucional e juridico |               7 |                     0
-     204563 |               Josimar Maranhãozinho |                      Social |               7 |                     0
-     122195 |                    Leonardo Gadelha | Infraestrutura e tecnologia |               7 |                     0
-     122195 |                    Leonardo Gadelha |    Institucional e juridico |               7 |                     0
-      74299 |                   Leônidas Cristino | Infraestrutura e tecnologia |               7 |                     0
-     171139 |                              Loreny |                   Economico |               7 |                     0
-     229082 |                     Lucyana Genésio |                      Social |               7 |                     0
-     226410 |                       Márcio Correa |    Institucional e juridico |               7 |                     0
-     141516 |                     Paulo Abi-Ackel |                   Economico |               7 |                     0
-     233594 |                         Rafael Fera |                   Economico |               7 |                     0
-     230767 |                    Rodrigo da Zaeli |                      Social |               7 |                     0
-     204425 |                  Silvio Costa Filho |    Institucional e juridico |               7 |                     0
-     178882 |                        André Fufuca |                   Economico |               6 |                     0
-     228941 |                         Daniel José |                      Social |               6 |                     0
-     160552 |          Danrlei de Deus Hinterholz |                      Social |               6 |                     0
-     220008 |                      Eliza Virgínia |                      Social |               6 |                     0
-     228797 |                      Júlio Oliveira |                      Social |               6 |                     0
-     229432 |               Luiz Fernando Vampiro |                   Economico |               6 |                     0
-     141518 |                   Paulinho da Força |    Institucional e juridico |               6 |                     0
-     204362 |                       Ricardo Guidi |    Institucional e juridico |               6 |                     0
-     223398 |                   Ulisses Guimarães |    Institucional e juridico |               6 |                     0
-     220675 |                       Antônio Doido |                   Economico |               5 |                     1
-     178962 |                        Carlos Gomes |    Institucional e juridico |               5 |                     1
-     204522 |                    Marco Bertaiolli |                   Economico |               5 |                     1
-     230088 |                 Dra. Mayra Pinheiro |                      Social |               5 |                     0
-      74454 |                    Eunício Oliveira |                   Economico |               5 |                     0
-     234388 |                      Fabiano Cazeca |    Institucional e juridico |               5 |                     0
-     141431 |               Fernando Coelho Filho |                   Economico |               5 |                     0
-      68720 |                      Fábio Henrique |    Institucional e juridico |               5 |                     0
-     204531 |                   Guilherme Derrite |                   Seguranca |               5 |                     0
-      74141 |                        Josias Gomes |                   Economico |               5 |                     0
-      74550 |                           João Leão |    Institucional e juridico |               5 |                     0
-     160561 |            Missionário José Olimpio |                      Social |               5 |                     0
-     227660 |                             Nitinho |                      Social |               5 |                     0
-      74095 |                   Pauderney Avelino |                   Economico |               5 |                     0
-     141488 |                      Paulo Teixeira |    Institucional e juridico |               5 |                     0
-     175765 |                       Ribamar Silva |                      Social |               5 |                     0
-      77003 |             Sergio Santos Rodrigues |    Institucional e juridico |               5 |                     0
-     204431 |              Marcos Aurélio Sampaio |    Institucional e juridico |               4 |                     1
-     160508 |                     Afonso Florence |    Institucional e juridico |               4 |                     0
-     160508 |                     Afonso Florence |                   Seguranca |               4 |                     0
-     229069 |                      Capitão Samuel |                      Social |               4 |                     0
-     178909 |                         Hélio Leite |                      Social |               4 |                     0
-     228837 |                Juliana Kolankiewicz |                      Social |               4 |                     0
-     220677 |                      Keniston Braga |      Ambiental e energetico |               4 |                     0
-     220677 |                      Keniston Braga |                   Economico |               4 |                     0
-     220677 |                      Keniston Braga |    Institucional e juridico |               4 |                     0
-     204448 |                 Luiz Antonio Corrêa |    Institucional e juridico |               4 |                     0
-     234310 |                      Ricardo Galvão |                   Economico |               4 |                     0
-     234310 |                      Ricardo Galvão |                      Social |               4 |                     0
-     178945 |                     Rosangela Gomes |                      Social |               4 |                     0
-     160621 |                         Sandro Alex |                      Social |               4 |                     0
-     227310 |                      Silvio Antonio |                   Economico |               4 |                     0
-     227310 |                      Silvio Antonio | Infraestrutura e tecnologia |               4 |                     0
-     227310 |                      Silvio Antonio |                   Seguranca |               4 |                     0
-     227310 |                      Silvio Antonio |                      Social |               4 |                     0
-     143084 |                         Tiago Dimas |                   Economico |               4 |                     0
-     160527 |                   Aguinaldo Ribeiro |                   Economico |               3 |                     0
-     160527 |                   Aguinaldo Ribeiro |    Institucional e juridico |               3 |                     0
-     160527 |                   Aguinaldo Ribeiro |                   Seguranca |               3 |                     0
-     221339 |                        Dr. Benjamim |                   Economico |               3 |                     0
-     221339 |                        Dr. Benjamim |    Institucional e juridico |               3 |                     0
-     221339 |                        Dr. Benjamim |                      Social |               3 |                     0
-     221339 |                        Dr. Benjamim |                      Social |               3 |                     0
-     228616 |                     Dr. Remy Soares |    Institucional e juridico |               3 |                     0
-     228272 |                      Délio Pinheiro |                      Social |               3 |                     0
-     225727 |                            Flavinha |                   Economico |               3 |                     0
-     229333 |                    Gláucia Santiago |                      Social |               3 |                     0
-     178886 |                     Juscelino Filho | Infraestrutura e tecnologia |               3 |                     0
-     233592 |                         Paulo Lemos |      Ambiental e energetico |               3 |                     0
-     233592 |                         Paulo Lemos |                   Economico |               3 |                     0
-     233592 |                         Paulo Lemos |                   Seguranca |               3 |                     0
-     128760 |                    Paulo Marinho Jr |                      Social |               3 |                     0
-     229259 |                      Pedro Tourinho |                   Economico |               3 |                     0
-     230177 |                      Tadeu Oliveira |    Institucional e juridico |               3 |                     0
-     230177 |                      Tadeu Oliveira |                      Social |               3 |                     0
-     230768 |                          Zé Adriano |                   Economico |               3 |                     0
-     178831 |                         André Abdon |                   Economico |               2 |                     0
-     178831 |                         André Abdon |    Institucional e juridico |               2 |                     0
-     227401 |                      Dr Fabio Rueda |                      Social |               2 |                     0
-     227800 |                 Duarte Gonçalves Jr | Infraestrutura e tecnologia |               2 |                     0
-     227800 |                 Duarte Gonçalves Jr |    Institucional e juridico |               2 |                     0
-     227800 |                 Duarte Gonçalves Jr |                      Social |               2 |                     0
-     226553 |                         Eliane Braz |      Ambiental e energetico |               2 |                     0
-     226553 |                         Eliane Braz |                   Economico |               2 |                     0
-     226553 |                         Eliane Braz |                   Seguranca |               2 |                     0
-     226553 |                         Eliane Braz |                      Social |               2 |                     0
-     227370 |                       Felipe Saliba |                      Social |               2 |                     0
-     129618 |                      Gorete Pereira |                   Seguranca |               2 |                     0
-     129618 |                      Gorete Pereira |                      Social |               2 |                     0
-     227324 |                     Henrique Júnior |      Ambiental e energetico |               2 |                     0
-     227324 |                     Henrique Júnior |    Institucional e juridico |               2 |                     0
-     100689 |                   Hildo do Candango |      Ambiental e energetico |               2 |                     0
-     100689 |                   Hildo do Candango |    Institucional e juridico |               2 |                     0
-     225846 |                         Itamar Paim |                   Seguranca |               2 |                     0
-     225846 |                         Itamar Paim |                      Social |               2 |                     0
-     230957 |                           João Cury |         Cultura e sociedade |               2 |                     0
-     230957 |                           João Cury |                      Social |               2 |                     0
-     227275 |                    Mariana Carvalho |    Institucional e juridico |               2 |                     0
-     229939 |                        Newton Bonin |    Institucional e juridico |               2 |                     0
-     229112 |                            Pedro Jr |                   Economico |               2 |                     0
-     229112 |                            Pedro Jr | Infraestrutura e tecnologia |               2 |                     0
-     229112 |                            Pedro Jr |    Institucional e juridico |               2 |                     0
-     233598 |                       Samuel Santos |                   Economico |               2 |                     0
-     233598 |                       Samuel Santos |                      Social |               2 |                     0
-     178832 |                             Leandre |                   Economico |               1 |                     1
-     178832 |                             Leandre |                   Seguranca |               1 |                     1
-     178832 |                             Leandre |                      Social |               1 |                     1
-     160565 |                       MARA GABRILLI |                      Social |               1 |                     1
-     178930 |                               Roman |                   Seguranca |               1 |                     1
-     130398 |                     ANDRÉ FERNANDES |         Cultura e sociedade |               1 |                     0
-     204353 |                        Aline Gurgel |      Ambiental e energetico |               1 |                     0
-     204353 |                        Aline Gurgel |                   Seguranca |               1 |                     0
-     141416 |                         EDGAR MOURY |                   Economico |               1 |                     0
-     141416 |                         EDGAR MOURY |                      Social |               1 |                     0
-     141422 |                        Efraim Filho |                   Seguranca |               1 |                     0
-     132504 |                          Enio Verri |         Cultura e sociedade |               1 |                     0
-     171623 |                          Fabio Reis |      Ambiental e energetico |               1 |                     0
-     171623 |                          Fabio Reis |                   Economico |               1 |                     0
-     171623 |                          Fabio Reis |    Institucional e juridico |               1 |                     0
-     171623 |                          Fabio Reis |                   Seguranca |               1 |                     0
-      73788 |                      Ricardo Barros |                   Economico |               1 |                     0
-      73788 |                      Ricardo Barros | Infraestrutura e tecnologia |               1 |                     0
-      73788 |                      Ricardo Barros |    Institucional e juridico |               1 |                     0
-     204489 |                    Robério Monteiro |      Ambiental e energetico |               1 |                     0
-     204489 |                    Robério Monteiro |                   Economico |               1 |                     0
-     204489 |                    Robério Monteiro |    Institucional e juridico |               1 |                     0
-     204489 |                    Robério Monteiro |                   Seguranca |               1 |                     0
-     204489 |                    Robério Monteiro |                      Social |               1 |                     0
-     235776 |                        Sérgio Turra |      Ambiental e energetico |               1 |                     0
-     235776 |                        Sérgio Turra |                   Economico |               1 |                     0
-     235776 |                        Sérgio Turra |                   Seguranca |               1 |                     0
-     235776 |                        Sérgio Turra |                      Social |               1 |                     0
-     220643 |                     Sônia Guajajara |         Cultura e sociedade |               1 |                     0
-     220643 |                     Sônia Guajajara |    Institucional e juridico |               1 |                     0
-     220643 |                     Sônia Guajajara |                      Social |               1 |                     0
-(701 rows)
+Q2 complemento - tema mais atuante por deputado no periodo 2023-2026
+Tema mais atuante por deputado - consolidado
+id_deputado |                                nome |                           tema_mais_atuante | qtd_proposicoes | proposicoes_aprovadas
+------------+-------------------------------------+---------------------------------------------+-----------------+----------------------
+      74084 |                     Raimundo Santos |                 Direitos Humanos e Minorias |             374 |                     1
+     220715 |                         Amom Mandel |                       Administração Pública |             329 |                     0
+     204528 |                     Adriana Ventura |                       Administração Pública |             229 |                     0
+      74356 |                        Silas Câmara |                                Comunicações |             168 |                     0
+     220604 |                      Marcos Tavares |                                       Saúde |             140 |                     0
+     156190 |                   Marcel van Hattem |                       Administração Pública |             135 |                     0
+     204365 |                      Gilson Marques |                       Administração Pública |             132 |                     0
+     220568 |                       Gustavo Gayer |                       Administração Pública |             123 |                     0
+     204572 |                Capitão Alberto Neto |                       Administração Pública |             116 |                     0
+     178871 |                Evair Vieira de Melo |                       Administração Pública |              93 |                     0
+      74856 |                      Laura Carneiro |                 Direitos Humanos e Minorias |              81 |                     7
+     220713 |                       Saullo Vianna |                          Defesa e Segurança |              73 |                     0
+     204455 |                           Luiz Lima |                       Administração Pública |              72 |                     0
+     178947 |                 Sóstenes Cavalcante |                    Arte, Cultura e Religião |              66 |                     0
+     220547 |                       Marcos Pollon |                          Defesa e Segurança |              65 |                     0
+     220574 |                 Cabo Gilberto Silva |                          Defesa e Segurança |              63 |                     0
+     204472 |                       José Medeiros |                       Administração Pública |              61 |                     0
+     220695 |                      Rogéria Santos |                 Direitos Humanos e Minorias |              59 |                     2
+     204462 |                      Chris Tonietto |                 Direitos Humanos e Minorias |              57 |                     0
+     220701 |             Delegado Matheus Laiola | Meio Ambiente e Desenvolvimento Sustentável |              57 |                     0
+     204536 |                       Kim Kataguiri |            Direito Penal e Processual Penal |              55 |                     1
+     178989 |                        Renata Abreu |                 Direitos Humanos e Minorias |              55 |                     1
+     220618 |                   Sargento Portugal |                          Defesa e Segurança |              54 |                     0
+     220690 |                       Capitão Alden |                          Defesa e Segurança |              51 |                     0
+     220616 |                      Luciano Vieira |              Direito e Defesa do Consumidor |              50 |                     0
+     204526 | Luiz Philippe de Orleans e Bragança |                       Administração Pública |              50 |                     0
+     220673 |                    Delegado Caveira |                       Administração Pública |              49 |                     0
+     220686 |                          Duarte Jr. |                                       Saúde |              49 |                     0
+     160548 |                     Jonas Donizette |                 Direitos Humanos e Minorias |              48 |                     1
+      73579 |                       Alberto Fraga |                          Defesa e Segurança |              48 |                     0
+     220556 |                      Ana Paula Lima |                 Direitos Humanos e Minorias |              46 |                     2
+     220623 |                       Duda Salabert |                 Direitos Humanos e Minorias |              46 |                     0
+     220642 |                 Delegado Bruno Lima | Meio Ambiente e Desenvolvimento Sustentável |              45 |                     0
+     204534 |                       Tabata Amaral |                 Direitos Humanos e Minorias |              44 |                     1
+     178887 |               Rubens Pereira Júnior |                       Administração Pública |              44 |                     0
+     220553 |                       Denise Pessôa |                 Direitos Humanos e Minorias |              43 |                     1
+     220550 |                     Mauricio Marcon |                       Administração Pública |              43 |                     0
+     220530 |                      Messias Donato |                       Administração Pública |              43 |                     0
+     220548 |                         Camila Jara |                 Direitos Humanos e Minorias |              41 |                     2
+     178829 |                     Capitão Augusto |                          Defesa e Segurança |              40 |                     0
+     220645 |                        Erika Hilton |                 Direitos Humanos e Minorias |              39 |                     1
+     220640 |                     Juliana Cardoso |                 Direitos Humanos e Minorias |              39 |                     1
+     220654 |            Delegado Paulo Bilynskyj |                          Defesa e Segurança |              39 |                     0
+     220569 |                        Silvye Alves |                 Direitos Humanos e Minorias |              39 |                     0
+     204535 |                        Sâmia Bomfim |                 Direitos Humanos e Minorias |              39 |                     0
+      74171 |                       Chico Alencar |                       Administração Pública |              38 |                     0
+     220559 |                       Julia Zanatta |                 Direitos Humanos e Minorias |              38 |                     0
+     220665 |                     Clarissa Tércio |                 Direitos Humanos e Minorias |              37 |                     0
+     220630 |                        Pedro Aihara |                          Defesa e Segurança |              36 |                     0
+     220635 |                         Bruno Ganem | Meio Ambiente e Desenvolvimento Sustentável |              35 |                     0
+     204518 |                       Dr. Frederico |                       Administração Pública |              35 |                     0
+     204444 |                         Helio Lopes |                 Direitos Humanos e Minorias |              35 |                     0
+     206018 |                      Célia Xakriabá |                 Direitos Humanos e Minorias |              34 |                     2
+     204369 |                    Caroline de Toni |                       Administração Pública |              34 |                     0
+     178929 |                        Diego Garcia |                                       Saúde |              34 |                     0
+     220646 |                       Felipe Becari | Meio Ambiente e Desenvolvimento Sustentável |              34 |                     0
+     204494 |                          Fred Costa | Meio Ambiente e Desenvolvimento Sustentável |              34 |                     0
+     235088 |                        Ribeiro Neto |                 Direitos Humanos e Minorias |              34 |                     0
+     220534 |                       Fred Linhares |                 Direitos Humanos e Minorias |              33 |                     1
+     220576 |                      Alfredo Gaspar |                          Defesa e Segurança |              33 |                     0
+     220663 |                   Eriberto Medeiros |                          Defesa e Segurança |              33 |                     0
+     220615 |              Pastor Henrique Vieira |                 Direitos Humanos e Minorias |              33 |                     0
+     160598 |                       Flávia Morais |                                       Saúde |              32 |                     2
+     160575 |                         Erika Kokay |                       Administração Pública |              32 |                     0
+      89536 |                Prof. Paulo Fernando |                 Direitos Humanos e Minorias |              31 |                     1
+     104552 |                        Socorro Neri |                                    Educação |              31 |                     1
+     204488 |                       Célio Studart | Meio Ambiente e Desenvolvimento Sustentável |              31 |                     0
+     220583 |                Delegado Fabio Costa |                          Defesa e Segurança |              31 |                     0
+     204479 |                           Nicoletti |                          Defesa e Segurança |              31 |                     0
+     209787 |                    Nikolas Ferreira |                 Direitos Humanos e Minorias |              31 |                     0
+      74253 |                         Julio Lopes |               Finanças Públicas e Orçamento |              30 |                     1
+     204464 |                     Talíria Petrone |                 Direitos Humanos e Minorias |              30 |                     1
+     141421 |                    Eduardo da Fonte |                 Direitos Humanos e Minorias |              30 |                     0
+     160161 |                     Marcelo Queiroz | Meio Ambiente e Desenvolvimento Sustentável |              30 |                     0
+     220595 |                    Coronel Fernanda |                 Direitos Humanos e Minorias |              29 |                     1
+     220644 |                      Rosangela Moro |                                       Saúde |              29 |                     1
+     234788 |                      Heloísa Helena |                 Direitos Humanos e Minorias |              29 |                     0
+     220621 |                  Sargento Gonçalves |                          Defesa e Segurança |              29 |                     0
+     220564 |                        Yandra Moura |                 Direitos Humanos e Minorias |              29 |                     0
+     220704 |                       Carol Dartora |                 Direitos Humanos e Minorias |              28 |                     1
+      74398 |                    Maria do Rosário |                 Direitos Humanos e Minorias |              27 |                     1
+     220652 |                    Delegado Palumbo |            Direito Penal e Processual Penal |              27 |                     0
+     220712 |                          Fausto Jr. |                          Defesa e Segurança |              27 |                     0
+     204520 |                        Junio Amaral |                          Defesa e Segurança |              27 |                     0
+     220669 |                       Lula da Fonte |                 Direitos Humanos e Minorias |              26 |                     1
+     220558 |                           Zé Trovão |               Finanças Públicas e Orçamento |              26 |                     1
+     220657 |                     André Fernandes |            Direito Penal e Processual Penal |              26 |                     0
+     220594 |                       Coronel Assis |                          Defesa e Segurança |              26 |                     0
+     220666 |                       Coronel Meira |                          Defesa e Segurança |              26 |                     0
+     220557 |                     Daniela Reinehr |                          Defesa e Segurança |              26 |                     0
+     220540 |                          Duda Ramos |                 Direitos Humanos e Minorias |              26 |                     0
+     122974 |               Pedro Lucas Fernandes |                          Defesa e Segurança |              26 |                     0
+     220546 |                    Rodolfo Nogueira |                          Defesa e Segurança |              26 |                     0
+     220579 |                       Silvia Waiãpi |                          Defesa e Segurança |              26 |                     0
+     123756 |                       Antônia Lúcia |                                    Educação |              25 |                     0
+     123756 |                       Antônia Lúcia |                                       Saúde |              25 |                     0
+     204407 |                 Fernanda Melchionna |                 Direitos Humanos e Minorias |              25 |                     0
+     220648 |                           Marangoni |               Finanças Públicas e Orçamento |              25 |                     0
+     220667 |                        Pedro Campos |                 Direitos Humanos e Minorias |              25 |                     0
+     220613 |                Roberto Monteiro Pai |                                       Saúde |              25 |                     0
+     204374 |                           Bia Kicis |                 Direitos Humanos e Minorias |              24 |                     0
+     220526 |                   Gilvan da Federal |                          Defesa e Segurança |              24 |                     0
+     204570 |                          Pastor Gil |                 Direitos Humanos e Minorias |              24 |                     0
+      73486 |                    Pompeo de Mattos |               Finanças Públicas e Orçamento |              24 |                     0
+     165470 |                   Rodrigo Valadares |                       Administração Pública |              24 |                     0
+     220629 |                             Dandara |                 Direitos Humanos e Minorias |              23 |                     1
+     221338 |       Professora Luciene Cavalcante |                                    Educação |              23 |                     1
+     220538 |                         Albuquerque |               Finanças Públicas e Orçamento |              23 |                     0
+     160512 |                       Aureo Ribeiro |               Finanças Públicas e Orçamento |              23 |                     0
+     220702 |                      Geraldo Mendes |               Finanças Públicas e Orçamento |              23 |                     0
+     220586 |                        Rafael Brito |                                    Educação |              23 |                     0
+     160629 |                    Romero Rodrigues |                 Direitos Humanos e Minorias |              23 |                     0
+     220598 |                      Tarcísio Motta |                 Direitos Humanos e Minorias |              23 |                     0
+     220555 |                       Daiana Santos |                 Direitos Humanos e Minorias |              22 |                     0
+     220655 |                         Mario Frias |                          Defesa e Segurança |              22 |                     0
+     220655 |                         Mario Frias |                 Direitos Humanos e Minorias |              22 |                     0
+     204387 |                      Sargento Fahur |                          Defesa e Segurança |              22 |                     0
+     204491 |                     Gilberto Abramo |                 Direitos Humanos e Minorias |              21 |                     2
+     214694 |                       Jorge Goetten |               Finanças Públicas e Orçamento |              21 |                     1
+      74041 |                          Luiz Couto |                 Direitos Humanos e Minorias |              21 |                     1
+     139285 |                      Lídice da Mata |                 Direitos Humanos e Minorias |              21 |                     1
+     160518 |                       Weliton Prado |                                       Saúde |              21 |                     1
+     220531 |                       Gilvan Maximo |               Finanças Públicas e Orçamento |              21 |                     0
+     178843 |                        Marx Beltrão |                 Direitos Humanos e Minorias |              21 |                     0
+     220607 |                           Max Lemos |               Finanças Públicas e Orçamento |              21 |                     0
+     160604 |                         Pedro Uczai |                 Direitos Humanos e Minorias |              21 |                     0
+     220543 |                       Ricardo Ayres |               Finanças Públicas e Orçamento |              21 |                     0
+     204416 |                           Sanderson |                          Defesa e Segurança |              21 |                     0
+      73701 |                   Benedita da Silva |                 Direitos Humanos e Minorias |              20 |                     2
+     204460 |                        Carlos Jordy |                 Direitos Humanos e Minorias |              20 |                     1
+      72442 |                     Felipe Carreras |               Finanças Públicas e Orçamento |              20 |                     1
+     178970 |                         João Daniel |                 Direitos Humanos e Minorias |              20 |                     1
+     178866 |                      Luizianne Lins |                 Direitos Humanos e Minorias |              20 |                     1
+     220668 |                        Maria Arraes |                 Direitos Humanos e Minorias |              20 |                     1
+     204540 |                         Maria Rosas |                 Direitos Humanos e Minorias |              20 |                     1
+     220606 |                             Reimont |                 Direitos Humanos e Minorias |              20 |                     1
+     204517 |                            Zé Vitor |               Finanças Públicas e Orçamento |              20 |                     1
+      98148 |                          Cobalchini | Agricultura, Pecuária, Pesca e Extrativismo |              20 |                     0
+     220659 |                  Dayany Bittencourt |                 Direitos Humanos e Minorias |              20 |                     0
+     204457 |                     Juninho do Pneu |                 Direitos Humanos e Minorias |              20 |                     0
+     220632 |                        Ana Pimentel |                 Direitos Humanos e Minorias |              19 |                     1
+     204411 |                       Filipe Barros |               Finanças Públicas e Orçamento |              19 |                     1
+     220529 |                       Gilson Daniel |               Finanças Públicas e Orçamento |              19 |                     1
+     220641 |                     Rodrigo Gambale |                 Direitos Humanos e Minorias |              19 |                     1
+     137070 |                   Vicentinho Júnior |               Finanças Públicas e Orçamento |              19 |                     1
+     204411 |                       Filipe Barros |                                    Economia |              19 |                     0
+     220566 |                         Lêda Borges |                 Direitos Humanos e Minorias |              19 |                     0
+     220633 |                      Ricardo Salles |               Finanças Públicas e Orçamento |              19 |                     0
+     204406 |                    Pedro Westphalen |               Finanças Públicas e Orçamento |              18 |                     1
+     160601 |                 Pr. Marco Feliciano |                 Direitos Humanos e Minorias |              18 |                     1
+     220549 |                           Any Ortiz |                 Direitos Humanos e Minorias |              18 |                     0
+     204388 |                          Bibo Nunes |                          Defesa e Segurança |              18 |                     0
+     222142 |                     Coronel Telhada |                          Defesa e Segurança |              18 |                     0
+     204410 |                      Luisa Canziani |                                    Educação |              18 |                     0
+     220707 |                       Amanda Gentil |                 Direitos Humanos e Minorias |              17 |                     2
+     220625 |                       Delegada Ione |                 Direitos Humanos e Minorias |              17 |                     1
+      74784 |                      Luiza Erundina |                 Direitos Humanos e Minorias |              17 |                     1
+     220703 |                       Neto Carletto |                 Direitos Humanos e Minorias |              17 |                     1
+     157130 |                       Túlio Gadêlha |                 Direitos Humanos e Minorias |              17 |                     1
+     220593 |                      Abilio Brunini |                                       Saúde |              17 |                     0
+     220608 |                     Cristiane Lopes |                          Defesa e Segurança |              17 |                     0
+     204511 |                        David Soares |  Processo Legislativo e Atuação Parlamentar |              17 |                     0
+     220705 |                    Deltan Dallagnol |                       Administração Pública |              17 |                     0
+     160666 |               Félix Mendonça Júnior |               Finanças Públicas e Orçamento |              17 |                     0
+      74428 |                      Mendonça Filho |               Finanças Públicas e Orçamento |              17 |                     0
+     161440 |                             Pezenti |  Processo Legislativo e Atuação Parlamentar |              17 |                     0
+     204559 |                             Zé Neto |               Finanças Públicas e Orçamento |              17 |                     0
+     143632 |                       Domingos Neto |               Finanças Públicas e Orçamento |              16 |                     1
+     220674 |               Dra. Alessandra Haber |                 Direitos Humanos e Minorias |              16 |                     1
+     220551 |                     Franciane Bayer |                 Direitos Humanos e Minorias |              16 |                     1
+      74585 |                     Lincoln Portela |                 Direitos Humanos e Minorias |              16 |                     1
+     224333 |                              Welter |               Finanças Públicas e Orçamento |              16 |                     1
+     213762 |                       Carla Dickson |                 Direitos Humanos e Minorias |              16 |                     0
+     220590 |                     Coronel Ulysses |                          Defesa e Segurança |              16 |                     0
+     220687 |                     Márcio Honaiser |               Finanças Públicas e Orçamento |              16 |                     0
+      74057 |                      Alice Portugal |                       Administração Pública |              15 |                     1
+     220614 |                   Dr. Daniel Soranz |                                       Saúde |              15 |                     1
+     220628 |                   Mauricio do Vôlei |               Finanças Públicas e Orçamento |              15 |                     1
+      74371 |                        Rubens Otoni |                 Direitos Humanos e Minorias |              15 |                     1
+      74696 |                      Alberto Mourão |                       Administração Pública |              15 |                     0
+     178972 |                        Alex Manente |                 Direitos Humanos e Minorias |              15 |                     0
+     204378 |                 Coronel Chrisóstomo |                          Defesa e Segurança |              15 |                     0
+     220610 |                 Dr. Fernando Máximo |                          Defesa e Segurança |              15 |                     0
+     204427 |                    Fernando Rodolfo |               Finanças Públicas e Orçamento |              15 |                     0
+     204473 |                       General Girão |                          Defesa e Segurança |              15 |                     0
+     220611 |                    General Pazuello |  Processo Legislativo e Atuação Parlamentar |              15 |                     0
+     204391 |                          José Nelto |                                       Saúde |              15 |                     0
+     160642 |                       Pastor Eurico |                          Defesa e Segurança |              15 |                     0
+     220580 |                   Professora Goreth |                                    Educação |              15 |                     0
+     220588 |                      Roberto Duarte |               Finanças Públicas e Orçamento |              15 |                     0
+     220588 |                      Roberto Duarte |  Processo Legislativo e Atuação Parlamentar |              15 |                     0
+     204360 |                     Silvia Cristina |                                       Saúde |              15 |                     0
+     160610 |                     Valmir Assunção |                 Direitos Humanos e Minorias |              15 |                     0
+     204396 |                            Vermelho |               Finanças Públicas e Orçamento |              15 |                     0
+     220565 |            Delegada Adriana Accorsi |                 Direitos Humanos e Minorias |              14 |                     2
+     220700 |                     Florentino Neto |                 Direitos Humanos e Minorias |              14 |                     2
+     220599 |                    Marcelo Crivella |                 Direitos Humanos e Minorias |              14 |                     2
+     220542 |                 Alexandre Guimarães |  Processo Legislativo e Atuação Parlamentar |              14 |                     1
+     133439 |                    André Figueiredo |               Finanças Públicas e Orçamento |              14 |                     1
+      88256 |                 Clodoaldo Magalhães |                 Direitos Humanos e Minorias |              14 |                     1
+     204453 |                   Natália Bonavides |                 Direitos Humanos e Minorias |              14 |                     1
+     178986 |                         Nilto Tatto |                 Direitos Humanos e Minorias |              14 |                     1
+     204395 |                        Pedro Lupion |               Finanças Públicas e Orçamento |              14 |                     1
+     204557 |                        Sidney Leite |               Finanças Públicas e Orçamento |              14 |                     1
+      74283 |                          Vicentinho |                 Direitos Humanos e Minorias |              14 |                     1
+     220536 |                Zé Haroldo Cathedral |                                       Saúde |              14 |                     1
+     178937 |                      Altineu Côrtes |  Processo Legislativo e Atuação Parlamentar |              14 |                     0
+     204507 |                      Carla Zambelli |                          Defesa e Segurança |              14 |                     0
+     204481 |                          Dr. Jaziel |                 Direitos Humanos e Minorias |              14 |                     0
+     220587 |                        Gerlen Diniz |               Finanças Públicas e Orçamento |              14 |                     0
+      80815 |                          Leo Prates |                                       Saúde |              14 |                     0
+      74858 |                    Lindbergh Farias |                          Trabalho e Emprego |              14 |                     0
+     204525 |                        Rosana Valle |                 Direitos Humanos e Minorias |              14 |                     0
+     220552 |                               Zucco |                          Defesa e Segurança |              14 |                     0
+     141555 |                   Vinicius Carvalho |                 Direitos Humanos e Minorias |              13 |                     2
+     178908 |                 Delegado Éder Mauro |                 Direitos Humanos e Minorias |              13 |                     1
+     220656 |                     Fernanda Pessoa |                 Direitos Humanos e Minorias |              13 |                     1
+     220696 |                    Ivoneide Caetano |                 Direitos Humanos e Minorias |              13 |                     1
+      74273 |                    Jefferson Campos |                 Direitos Humanos e Minorias |              13 |                     1
+     179000 |              Marcelo Álvaro Antônio |                 Direitos Humanos e Minorias |              13 |                     1
+     178985 |                     Miguel Lombardi |                 Direitos Humanos e Minorias |              13 |                     1
+     220584 |                      Murilo Galdino |                 Direitos Humanos e Minorias |              13 |                     1
+     178881 |                      Aluisio Mendes |                          Defesa e Segurança |              13 |                     0
+     160665 |                    Augusto Coutinho |               Finanças Públicas e Orçamento |              13 |                     0
+      69871 |                             Bacelar |               Finanças Públicas e Orçamento |              13 |                     0
+     178993 |              Carlos Henrique Gaguim |                 Direitos Humanos e Minorias |              13 |                     0
+     220571 |                      Daniel Agrobom |                 Direitos Humanos e Minorias |              13 |                     0
+     178908 |                 Delegado Éder Mauro |  Processo Legislativo e Atuação Parlamentar |              13 |                     0
+     220528 |                 Dr. Victor Linhalis |                 Direitos Humanos e Minorias |              13 |                     0
+     204412 |                 Dr. Zacharias Calil |                 Direitos Humanos e Minorias |              13 |                     0
+     204412 |                 Dr. Zacharias Calil |  Processo Legislativo e Atuação Parlamentar |              13 |                     0
+     204412 |                 Dr. Zacharias Calil |                                       Saúde |              13 |                     0
+      92346 |                   Eduardo Bolsonaro |                       Administração Pública |              13 |                     0
+     220656 |                     Fernanda Pessoa |                                       Saúde |              13 |                     0
+      74374 |                     Geraldo Resende |                                       Saúde |              13 |                     0
+     178873 |                      Helder Salomão |                       Administração Pública |              13 |                     0
+     204539 |               Hercílio Coelho Diniz |                 Direitos Humanos e Minorias |              13 |                     0
+     220527 |                          Jack Rocha |                 Direitos Humanos e Minorias |              13 |                     0
+     178910 |                  Joaquim Passarinho |               Finanças Públicas e Orçamento |              13 |                     0
+      98057 |                Lafayette de Andrada |  Processo Legislativo e Atuação Parlamentar |              13 |                     0
+     160569 |                    Waldenor Pereira |                 Direitos Humanos e Minorias |              13 |                     0
+     220676 |                    Andreia Siqueira |                 Direitos Humanos e Minorias |              12 |                     1
+     204355 |                          Da Vitoria |               Finanças Públicas e Orçamento |              12 |                     1
+     178954 |                      Lucio Mosquini |               Finanças Públicas e Orçamento |              12 |                     1
+     220554 |               Alexandre Lindenmeyer |                       Administração Pública |              12 |                     0
+     220554 |               Alexandre Lindenmeyer |                 Direitos Humanos e Minorias |              12 |                     0
+      73433 |                   Arlindo Chinaglia |                       Administração Pública |              12 |                     0
+      73441 |                    Celso Russomanno |  Processo Legislativo e Atuação Parlamentar |              12 |                     0
+     220619 |                    Delegado Ramagem |                          Defesa e Segurança |              12 |                     0
+     220602 |                       Dimas Gadelha |               Finanças Públicas e Orçamento |              12 |                     0
+     160758 |                      Domingos Sávio |  Processo Legislativo e Atuação Parlamentar |              12 |                     0
+     178857 |                         Jorge Solla |                       Administração Pública |              12 |                     0
+     204550 |                         Júnior Mano |                 Direitos Humanos e Minorias |              12 |                     0
+     204550 |                         Júnior Mano |               Finanças Públicas e Orçamento |              12 |                     0
+     231911 |                      Lenir de Assis |                 Direitos Humanos e Minorias |              12 |                     0
+      74156 |                   Leonardo Monteiro |                 Direitos Humanos e Minorias |              12 |                     0
+     178954 |                      Lucio Mosquini |                         Estrutura Fundiária |              12 |                     0
+     166402 |                       Magda Mofatto |  Processo Legislativo e Atuação Parlamentar |              12 |                     0
+     160535 |                              Marcon |                 Direitos Humanos e Minorias |              12 |                     0
+     220617 |                      Murillo Gouvea |                 Direitos Humanos e Minorias |              12 |                     0
+     220617 |                      Murillo Gouvea |               Finanças Públicas e Orçamento |              12 |                     0
+     204441 |                      Otoni de Paula |  Processo Legislativo e Atuação Parlamentar |              12 |                     0
+     220597 |                       Thiago Flores |                          Defesa e Segurança |              12 |                     0
+     220684 |                       Tião Medeiros |                       Administração Pública |              12 |                     0
+     220539 |               Defensor Stélio Dener |                 Direitos Humanos e Minorias |              11 |                     2
+     220670 |                          Iza Arruda |                                       Saúde |              11 |                     2
+     221148 |                          Alfredinho |                 Direitos Humanos e Minorias |              11 |                     1
+     220545 |                      Filipe Martins |                 Direitos Humanos e Minorias |              11 |                     1
+     160673 |                     Giovani Cherini |               Finanças Públicas e Orçamento |              11 |                     1
+     220563 |                     Icaro de Valmir |               Finanças Públicas e Orçamento |              11 |                     1
+      98615 |                              Ismael |                 Direitos Humanos e Minorias |              11 |                     1
+     141470 |                      José Guimarães |               Finanças Públicas e Orçamento |              11 |                     1
+     219585 |                        Marco Brasil |               Finanças Públicas e Orçamento |              11 |                     1
+     178946 |                       Soraya Santos |                 Direitos Humanos e Minorias |              11 |                     1
+     221328 |                     Adilson Barroso |  Processo Legislativo e Atuação Parlamentar |              11 |                     0
+     220596 |                       Amália Barros |                          Defesa e Segurança |              11 |                     0
+     220596 |                       Amália Barros |  Processo Legislativo e Atuação Parlamentar |              11 |                     0
+     204423 |                      André Ferreira |  Processo Legislativo e Atuação Parlamentar |              11 |                     0
+     204409 |                     Daniel Trzeciak |               Finanças Públicas e Orçamento |              11 |                     0
+     220561 |                   Delegada Katarina |                 Direitos Humanos e Minorias |              11 |                     0
+     204398 |                 Felipe Francischini |                          Defesa e Segurança |              11 |                     0
+     204445 |                    Fernando Mineiro |                 Direitos Humanos e Minorias |              11 |                     0
+     152605 |                       Glauber Braga |                       Administração Pública |              11 |                     0
+     198197 |                        Greyce Elias |                 Direitos Humanos e Minorias |              11 |                     0
+     178964 |                       Heitor Schuch |               Finanças Públicas e Orçamento |              11 |                     0
+     220567 |                  Jeferson Rodrigues |                 Direitos Humanos e Minorias |              11 |                     0
+     178943 |                       Marcos Soares |                 Direitos Humanos e Minorias |              11 |                     0
+     220647 |                      Mauricio Neves |               Finanças Públicas e Orçamento |              11 |                     0
+     220706 |                            Padovani |               Finanças Públicas e Orçamento |              11 |                     0
+     180214 |                        Pastor Diniz |  Processo Legislativo e Atuação Parlamentar |              11 |                     0
+     160517 |                      Paulo Folletto |                       Administração Pública |              11 |                     0
+     220693 |                        Roberta Roma |                          Defesa e Segurança |              11 |                     0
+     220693 |                        Roberta Roma |  Processo Legislativo e Atuação Parlamentar |              11 |                     0
+     204480 |                     Rogério Correia |                       Administração Pública |              11 |                     0
+     204480 |                     Rogério Correia |                 Direitos Humanos e Minorias |              11 |                     0
+     220560 |                    Thiago de Joaldo |               Finanças Públicas e Orçamento |              11 |                     0
+     204356 |                          Amaro Neto |                 Direitos Humanos e Minorias |              10 |                     2
+     160588 |                       Diego Andrade |               Finanças Públicas e Orçamento |              10 |                     1
+     204456 |                      Gutemberg Reis |               Finanças Públicas e Orçamento |              10 |                     1
+     204485 |                   Luiz Carlos Motta |               Finanças Públicas e Orçamento |              10 |                     1
+     220622 |                         Nely Aquino |                 Direitos Humanos e Minorias |              10 |                     1
+     160559 |                       Alceu Moreira | Meio Ambiente e Desenvolvimento Sustentável |              10 |                     0
+     204356 |                          Amaro Neto |  Processo Legislativo e Atuação Parlamentar |              10 |                     0
+     107970 |                      Ana Paula Leão |  Processo Legislativo e Atuação Parlamentar |              10 |                     0
+     109429 |                      Benes Leocádio |                 Direitos Humanos e Minorias |              10 |                     0
+     109429 |                      Benes Leocádio |               Finanças Públicas e Orçamento |              10 |                     0
+     204367 |                      Daniel Freitas |                          Defesa e Segurança |              10 |                     0
+     204351 |                     Dr. Luiz Ovando |               Finanças Públicas e Orçamento |              10 |                     0
+     220589 |                     Eduardo Velloso |               Finanças Públicas e Orçamento |              10 |                     0
+     204364 |                          Eli Borges |                 Direitos Humanos e Minorias |              10 |                     0
+     225730 |                Enfermeira Ana Paula |                          Trabalho e Emprego |              10 |                     0
+     178966 |                      Geovania de Sá |                 Direitos Humanos e Minorias |              10 |                     0
+     178966 |                      Geovania de Sá |               Finanças Públicas e Orçamento |              10 |                     0
+     204404 |                      Lucas Redecker |                          Defesa e Segurança |              10 |                     0
+     178931 |                       Luciano Ducci |                       Administração Pública |              10 |                     0
+      73692 |                         Osmar Terra |  Processo Legislativo e Atuação Parlamentar |              10 |                     0
+      74160 |                      Patrus Ananias |                       Administração Pública |              10 |                     0
+     220650 |             Paulo Alexandre Barbosa |                 Direitos Humanos e Minorias |              10 |                     0
+     220533 |               Prof. Reginaldo Veras |                 Direitos Humanos e Minorias |              10 |                     0
+     220626 |                       Rafael Simoes |  Processo Legislativo e Atuação Parlamentar |              10 |                     0
+     220631 |                        Samuel Viana |  Processo Legislativo e Atuação Parlamentar |              10 |                     0
+     204379 |                      Acácio Favacho |                 Direitos Humanos e Minorias |               9 |                     1
+     178876 |                      Célio Silveira |               Finanças Públicas e Orçamento |               9 |                     1
+     220672 |                     Henderson Pinto |               Finanças Públicas e Orçamento |               9 |                     1
+      74848 |                     Jandira Feghali |                 Direitos Humanos e Minorias |               9 |                     1
+     141464 |            José Airton Félix Cirilo |               Finanças Públicas e Orçamento |               9 |                     1
+     141458 |                 João Carlos Bacelar |               Finanças Públicas e Orçamento |               9 |                     1
+     178997 |                     Moses Rodrigues |               Finanças Públicas e Orçamento |               9 |                     1
+     171617 |                              Paulão |                 Direitos Humanos e Minorias |               9 |                     1
+     220532 |                     Rafael Prudente |               Finanças Públicas e Orçamento |               9 |                     1
+     178933 |                        Sergio Souza | Agricultura, Pecuária, Pesca e Extrativismo |               9 |                     1
+     220714 |                         Adail Filho |                       Administração Pública |               9 |                     0
+     136811 |                         Afonso Hamm |               Finanças Públicas e Orçamento |               9 |                     0
+     178927 |                       Aliel Machado |                       Administração Pública |               9 |                     0
+     220605 |                   Bandeira de Mello |               Finanças Públicas e Orçamento |               9 |                     0
+      62881 |                        Danilo Forte |  Processo Legislativo e Atuação Parlamentar |               9 |                     0
+     204512 |            Delegado Marcelo Freitas |               Finanças Públicas e Orçamento |               9 |                     0
+      73768 |                    Dilceu Sperafico |  Processo Legislativo e Atuação Parlamentar |               9 |                     0
+     220573 |                  Dorinaldo Malafaia |                                       Saúde |               9 |                     0
+     220688 |                       Dr. Francisco |                          Trabalho e Emprego |               9 |                     0
+     218086 |                          Ely Santos |                 Direitos Humanos e Minorias |               9 |                     0
+     198783 |               Emanuel Pinheiro Neto |               Finanças Públicas e Orçamento |               9 |                     0
+     161550 |                    Emidinho Madeira |  Processo Legislativo e Atuação Parlamentar |               9 |                     0
+     230765 |                   Enfermeira Rejane |                 Direitos Humanos e Minorias |               9 |                     0
+     230765 |                   Enfermeira Rejane |                          Trabalho e Emprego |               9 |                     0
+     160640 |                       Eros Biondini |                 Direitos Humanos e Minorias |               9 |                     0
+     204368 |                     Fabio Schiochet |               Finanças Públicas e Orçamento |               9 |                     0
+      66828 |                       Fausto Pinato |               Finanças Públicas e Orçamento |               9 |                     0
+     220653 |                        Fábio Teruel |                                Comunicações |               9 |                     0
+     204394 |                       Gervásio Maia |                       Administração Pública |               9 |                     0
+     204394 |                       Gervásio Maia |               Finanças Públicas e Orçamento |               9 |                     0
+     220639 |                    Guilherme Boulos |                 Direitos Humanos e Minorias |               9 |                     0
+      73531 |                        Ivan Valente |                 Direitos Humanos e Minorias |               9 |                     0
+      74848 |                     Jandira Feghali |                          Defesa e Segurança |               9 |                     0
+      74554 |                          José Rocha |  Processo Legislativo e Atuação Parlamentar |               9 |                     0
+     204372 |                 Julio Cesar Ribeiro |                 Direitos Humanos e Minorias |               9 |                     0
+     204372 |                 Julio Cesar Ribeiro |                                       Saúde |               9 |                     0
+     220600 |                              Lebrão |               Finanças Públicas e Orçamento |               9 |                     0
+     220591 |                       Meire Serafim |                       Administração Pública |               9 |                     0
+      74158 |                      Mário Heringer |                 Direitos Humanos e Minorias |               9 |                     0
+     204553 |            Pastor Sargento Isidório |                 Direitos Humanos e Minorias |               9 |                     0
+      74376 |                       Vander Loubet |                          Defesa e Segurança |               9 |                     0
+      74376 |                       Vander Loubet |                 Direitos Humanos e Minorias |               9 |                     0
+     141398 |                    Carlos Zarattini |               Finanças Públicas e Orçamento |               8 |                     2
+     154178 |                       Milton Vieira |                 Direitos Humanos e Minorias |               8 |                     2
+     141408 |                        Cleber Verde |                          Trabalho e Emprego |               8 |                     1
+     220671 |                       Dilvanda Faro |                 Direitos Humanos e Minorias |               8 |                     1
+     204482 |                  Euclydes Pettersen |               Finanças Públicas e Orçamento |               8 |                     1
+     220658 |                         Luiz Gastão |               Finanças Públicas e Orçamento |               8 |                     1
+     133810 |                      Marcelo Moraes |               Finanças Públicas e Orçamento |               8 |                     1
+     188097 |                      Merlong Solano |                 Direitos Humanos e Minorias |               8 |                     1
+     178896 |                   Newton Cardoso Jr |               Finanças Públicas e Orçamento |               8 |                     1
+     204498 |                      Olival Marques |                 Direitos Humanos e Minorias |               8 |                     1
+     122158 |                         Pedro Paulo |               Finanças Públicas e Orçamento |               8 |                     1
+     221378 |                      Reginete Bispo |                 Direitos Humanos e Minorias |               8 |                     1
+     153423 |                   Renilce Nicodemos |                 Direitos Humanos e Minorias |               8 |                     1
+     213274 |                       Ricardo Silva |                 Direitos Humanos e Minorias |               8 |                     1
+      74043 |                  Wellington Roberto |               Finanças Públicas e Orçamento |               8 |                     1
+     204495 |                      Airton Faleiro |                          Trabalho e Emprego |               8 |                     0
+     141391 |                      Arnaldo Jardim |               Finanças Públicas e Orçamento |               8 |                     0
+     204426 |                        Carlos Veras |               Finanças Públicas e Orçamento |               8 |                     0
+     220603 |                          Dani Cunha |                                    Educação |               8 |                     0
+     220649 |                   Delegado da Cunha |                          Defesa e Segurança |               8 |                     0
+     229585 |                   Elisangela Araujo |                 Direitos Humanos e Minorias |               8 |                     0
+      74270 |                 Gilberto Nascimento |                 Direitos Humanos e Minorias |               8 |                     0
+     141456 |                        Jilmar Tatto |                       Administração Pública |               8 |                     0
+     141456 |                        Jilmar Tatto |                          Defesa e Segurança |               8 |                     0
+     204574 |                     Junior Lourenço |                 Direitos Humanos e Minorias |               8 |                     0
+     162067 |                       Kiko Celeguim |                       Administração Pública |               8 |                     0
+      92102 |                 Leur Lomanto Júnior |  Processo Legislativo e Atuação Parlamentar |               8 |                     0
+     234253 |                       Lucas Abrahao |                 Direitos Humanos e Minorias |               8 |                     0
+     220581 |                      Luciano Amaral |                                    Educação |               8 |                     0
+     133810 |                      Marcelo Moraes |  Processo Legislativo e Atuação Parlamentar |               8 |                     0
+     220609 |                   Maurício Carvalho |                          Defesa e Segurança |               8 |                     0
+     220609 |                   Maurício Carvalho |                 Direitos Humanos e Minorias |               8 |                     0
+     160556 |                          Padre João | Agricultura, Pecuária, Pesca e Extrativismo |               8 |                     0
+     220627 |                     Paulinho Freire |                          Defesa e Segurança |               8 |                     0
+     220627 |                     Paulinho Freire |               Finanças Públicas e Orçamento |               8 |                     0
+     178860 |                           Paulo Azi |  Processo Legislativo e Atuação Parlamentar |               8 |                     0
+     204390 |                   Professor Alcides |  Processo Legislativo e Atuação Parlamentar |               8 |                     0
+     205865 |                  Reinhold Stephanes |  Processo Legislativo e Atuação Parlamentar |               8 |                     0
+     221329 |                       Ricardo Abrão |                 Direitos Humanos e Minorias |               8 |                     0
+     160635 |                        Ruy Carneiro |                                       Saúde |               8 |                     0
+     222565 |                      Soldado Noelio |                       Administração Pública |               8 |                     0
+     220682 |                        Tadeu Veneri |                       Administração Pública |               8 |                     0
+     220682 |                        Tadeu Veneri |               Finanças Públicas e Orçamento |               8 |                     0
+     234673 |                     Vanderlan Alves |                          Trabalho e Emprego |               8 |                     0
+     178992 |                         Vitor Lippi |               Finanças Públicas e Orçamento |               8 |                     0
+     220660 |                     Yury do Paredão |                 Direitos Humanos e Minorias |               8 |                     0
+     160592 |                         Zeca Dirceu | Agricultura, Pecuária, Pesca e Extrativismo |               8 |                     0
+     160592 |                         Zeca Dirceu |               Finanças Públicas e Orçamento |               8 |                     0
+     123086 |                          Átila Lira |  Processo Legislativo e Atuação Parlamentar |               8 |                     0
+     150418 |                      Márcio Marinho |                 Direitos Humanos e Minorias |               7 |                     2
+     204501 |                     Alencar Santana |               Finanças Públicas e Orçamento |               7 |                     1
+     204361 |                     Carlos Chiodini |               Finanças Públicas e Orçamento |               7 |                     1
+     204504 |                Cezinha de Madureira |                 Direitos Humanos e Minorias |               7 |                     1
+     191923 |                     Flávio Nogueira |               Finanças Públicas e Orçamento |               7 |                     1
+     141487 |                 Luiz Fernando Faria |               Finanças Públicas e Orçamento |               7 |                     1
+     220661 |                     Matheus Noronha |               Finanças Públicas e Orçamento |               7 |                     1
+     150418 |                      Márcio Marinho |               Finanças Públicas e Orçamento |               7 |                     1
+      74159 |                         Odair Cunha |                 Direitos Humanos e Minorias |               7 |                     1
+     220685 |                         Paulo Litro |                 Direitos Humanos e Minorias |               7 |                     1
+     220685 |                         Paulo Litro |               Finanças Públicas e Orçamento |               7 |                     1
+     226075 |                      Priscila Costa |                 Direitos Humanos e Minorias |               7 |                     1
+     220651 |                    Simone Marquetto |                 Direitos Humanos e Minorias |               7 |                     1
+     178934 |                  Toninho Wandscheer |               Finanças Públicas e Orçamento |               7 |                     1
+     178835 |                        Afonso Motta |               Finanças Públicas e Orçamento |               7 |                     0
+     178835 |                        Afonso Motta |                                       Saúde |               7 |                     0
+     204501 |                     Alencar Santana |                       Administração Pública |               7 |                     0
+     160545 |                     Alexandre Leite |               Finanças Públicas e Orçamento |               7 |                     0
+     160600 |                Arthur Oliveira Maia |  Processo Legislativo e Atuação Parlamentar |               7 |                     0
+     204358 |                        Beto Pereira |               Finanças Públicas e Orçamento |               7 |                     0
+     220698 |                          Beto Preto |             Viação, Transporte e Mobilidade |               7 |                     0
+     143942 |                         Caio Vianna |                          Defesa e Segurança |               7 |                     0
+      74262 |                      Carlos Sampaio |               Finanças Públicas e Orçamento |               7 |                     0
+     204496 |                        Celso Sabino |            Homenagens e Datas Comemorativas |               7 |                     0
+     178963 |                       Covatti Filho |               Finanças Públicas e Orçamento |               7 |                     0
+      74060 |                      Daniel Almeida |               Finanças Públicas e Orçamento |               7 |                     0
+     204459 |                 Daniela do Waguinho |                 Direitos Humanos e Minorias |               7 |                     0
+     204541 |                    Eduardo Bismarck |               Finanças Públicas e Orçamento |               7 |                     0
+     226179 |                       Gisela Simona |                          Defesa e Segurança |               7 |                     0
+     226179 |                       Gisela Simona |              Direito e Defesa do Consumidor |               7 |                     0
+     226179 |                       Gisela Simona |                 Direitos Humanos e Minorias |               7 |                     0
+     107283 |                     Gleisi Hoffmann |                 Direitos Humanos e Minorias |               7 |                     0
+     107283 |                     Gleisi Hoffmann |               Finanças Públicas e Orçamento |               7 |                     0
+     204408 |                    Gustinho Ribeiro |  Processo Legislativo e Atuação Parlamentar |               7 |                     0
+     204533 |                     Idilvan Alencar |                                    Educação |               7 |                     0
+     204508 |                           Igor Timo |  Processo Legislativo e Atuação Parlamentar |               7 |                     0
+     220697 |                      Jadyel Alencar |               Finanças Públicas e Orçamento |               7 |                     0
+     217480 |                         Jones Moura |                          Defesa e Segurança |               7 |                     0
+     141485 |                  Luiz Carlos Busato |                          Defesa e Segurança |               7 |                     0
+     141485 |                  Luiz Carlos Busato |  Processo Legislativo e Atuação Parlamentar |               7 |                     0
+     141487 |                 Luiz Fernando Faria |  Processo Legislativo e Atuação Parlamentar |               7 |                     0
+     220685 |                         Paulo Litro | Meio Ambiente e Desenvolvimento Sustentável |               7 |                     0
+     160641 |               Professora Marcivania |                 Direitos Humanos e Minorias |               7 |                     0
+     141533 |                  Rodrigo Rollemberg |                 Direitos Humanos e Minorias |               7 |                     0
+     220570 |              Dr. Ismael Alexandrino |               Finanças Públicas e Orçamento |               6 |                     1
+     220681 |                        Fábio Macedo |                 Direitos Humanos e Minorias |               6 |                     1
+     224117 |                        Gabriel Mota |                 Direitos Humanos e Minorias |               6 |                     1
+     220708 |                       Gabriel Nunes |               Finanças Públicas e Orçamento |               6 |                     1
+     141450 |                           Hugo Leal |               Finanças Públicas e Orçamento |               6 |                     1
+     205550 |                          Jorge Braz |               Finanças Públicas e Orçamento |               6 |                     1
+      74079 |                        José Priante |               Finanças Públicas e Orçamento |               6 |                     1
+     103758 |                     Luciano Azevedo |                 Direitos Humanos e Minorias |               6 |                     1
+     103758 |                     Luciano Azevedo |               Finanças Públicas e Orçamento |               6 |                     1
+     178895 |                      Misael Varella |               Finanças Públicas e Orçamento |               6 |                     1
+     220620 |                      Rosângela Reis |                 Direitos Humanos e Minorias |               6 |                     1
+     220620 |                      Rosângela Reis |               Finanças Públicas e Orçamento |               6 |                     1
+      92776 |                      Stefano Aguiar |               Finanças Públicas e Orçamento |               6 |                     1
+     204515 |                       André Janones |                          Trabalho e Emprego |               6 |                     0
+     220544 |                     Antonio Andrade |               Finanças Públicas e Orçamento |               6 |                     0
+     220544 |                     Antonio Andrade |  Processo Legislativo e Atuação Parlamentar |               6 |                     0
+      74646 |                         Aécio Neves |               Finanças Públicas e Orçamento |               6 |                     0
+     220683 |                          Beto Richa |               Finanças Públicas e Orçamento |               6 |                     0
+     160538 |                           Bohn Gass | Agricultura, Pecuária, Pesca e Extrativismo |               6 |                     0
+     210989 |                        Bruno Farias |               Finanças Públicas e Orçamento |               6 |                     0
+     141411 |                  Dagoberto Nogueira |                 Direitos Humanos e Minorias |               6 |                     0
+     160599 |                       Dimas Fabiano |               Finanças Públicas e Orçamento |               6 |                     0
+     227991 |                           Dr Flávio |                 Direitos Humanos e Minorias |               6 |                     0
+     220664 |                     Guilherme Uchoa |               Finanças Públicas e Orçamento |               6 |                     0
+     209189 |                      Joseildo Ramos |               Finanças Públicas e Orçamento |               6 |                     0
+     220578 |                           Josenildo |               Finanças Públicas e Orçamento |               6 |                     0
+      66385 |                     Julio Arcoverde |            Direito Penal e Processual Penal |               6 |                     0
+      74299 |                   Leônidas Cristino |             Viação, Transporte e Mobilidade |               6 |                     0
+     220662 |                         Lucas Ramos |  Processo Legislativo e Atuação Parlamentar |               6 |                     0
+     138286 |                       Luciano Alves |                       Administração Pública |               6 |                     0
+     138286 |                       Luciano Alves |                          Defesa e Segurança |               6 |                     0
+     138286 |                       Luciano Alves |               Finanças Públicas e Orçamento |               6 |                     0
+      73778 |                   Luiz Carlos Hauly |                       Administração Pública |               6 |                     0
+     141480 |                      Lázaro Botelho |                          Defesa e Segurança |               6 |                     0
+     204566 |                       Marreca Filho |               Finanças Públicas e Orçamento |               6 |                     0
+     220572 |                     Marussa Boldrin |                          Defesa e Segurança |               6 |                     0
+     220585 |                     Mersinho Lucena |                 Direitos Humanos e Minorias |               6 |                     0
+      81055 |                        Márcio Jerry |                    Arte, Cultura e Religião |               6 |                     0
+     178987 |                       Orlando Silva |                       Administração Pública |               6 |                     0
+     178987 |                       Orlando Silva |                          Trabalho e Emprego |               6 |                     0
+     204573 |                  Otto Alencar Filho |       Energia, Recursos Hídricos e Minerais |               6 |                     0
+     141516 |                     Paulo Abi-Ackel |               Finanças Públicas e Orçamento |               6 |                     0
+     204524 |                         Pinheirinho |                          Defesa e Segurança |               6 |                     0
+      74161 |                     Reginaldo Lopes |                          Defesa e Segurança |               6 |                     0
+      73801 |                   Renildo Calheiros |                 Direitos Humanos e Minorias |               6 |                     0
+     220694 |                        Ricardo Maia |               Finanças Públicas e Orçamento |               6 |                     0
+     220624 |                      Robinson Faria |                          Defesa e Segurança |               6 |                     0
+     223128 |                     Rodrigo Estacho |                          Defesa e Segurança |               6 |                     0
+     223128 |                     Rodrigo Estacho |  Processo Legislativo e Atuação Parlamentar |               6 |                     0
+     141531 |                   Rodrigo de Castro |               Finanças Públicas e Orçamento |               6 |                     0
+      73604 |                          Rui Falcão |                       Administração Pública |               6 |                     0
+     204425 |                  Silvio Costa Filho |               Finanças Públicas e Orçamento |               6 |                     0
+     204425 |                  Silvio Costa Filho |  Processo Legislativo e Atuação Parlamentar |               6 |                     0
+     160632 |                            Zé Silva |               Finanças Públicas e Orçamento |               6 |                     0
+     204560 |                        Adolfo Viana |               Finanças Públicas e Orçamento |               5 |                     1
+     220638 |            Antonio Carlos Rodrigues |               Finanças Públicas e Orçamento |               5 |                     1
+      74075 |                    Elcione Barbalho |                 Direitos Humanos e Minorias |               5 |                     1
+     141459 |                           João Maia |               Finanças Públicas e Orçamento |               5 |                     1
+     204474 |                        Juarez Costa |               Finanças Públicas e Orçamento |               5 |                     1
+      74317 |                         Júlio Cesar |               Finanças Públicas e Orçamento |               5 |                     1
+     222429 |                   Luis Carlos Gomes |               Finanças Públicas e Orçamento |               5 |                     1
+     204522 |                    Marco Bertaiolli |               Finanças Públicas e Orçamento |               5 |                     1
+      91228 |                   Waldemar Oliveira |                 Direitos Humanos e Minorias |               5 |                     1
+      91228 |                   Waldemar Oliveira |               Finanças Públicas e Orçamento |               5 |                     1
+     220612 |                              Bebeto |                          Defesa e Segurança |               5 |                     0
+     220612 |                              Bebeto |  Processo Legislativo e Atuação Parlamentar |               5 |                     0
+     160552 |          Danrlei de Deus Hinterholz |                 Direitos Humanos e Minorias |               5 |                     0
+      74075 |                    Elcione Barbalho |                          Defesa e Segurança |               5 |                     0
+      74075 |                    Elcione Barbalho |               Finanças Públicas e Orçamento |               5 |                     0
+      74383 |                             Giacobo |               Finanças Públicas e Orçamento |               5 |                     0
+      74383 |                             Giacobo |  Processo Legislativo e Atuação Parlamentar |               5 |                     0
+     204419 |                   Glaustin da Fokus |                          Defesa e Segurança |               5 |                     0
+     204419 |                   Glaustin da Fokus |                 Direitos Humanos e Minorias |               5 |                     0
+     204531 |                   Guilherme Derrite |            Direito Penal e Processual Penal |               5 |                     0
+     220537 |                         Helena Lima |             Viação, Transporte e Mobilidade |               5 |                     0
+     178884 |                         Hildo Rocha |            Homenagens e Datas Comemorativas |               5 |                     0
+     204436 |                 Isnaldo Bulhões Jr. |               Finanças Públicas e Orçamento |               5 |                     0
+     215043 |                        Josivaldo JP |                          Defesa e Segurança |               5 |                     0
+     222429 |                   Luis Carlos Gomes |  Processo Legislativo e Atuação Parlamentar |               5 |                     0
+     162332 |                      Luiz Nishimori |               Finanças Públicas e Orçamento |               5 |                     0
+     162332 |                      Luiz Nishimori |  Processo Legislativo e Atuação Parlamentar |               5 |                     0
+     220634 |                        Marcelo Lima |                 Direitos Humanos e Minorias |               5 |                     0
+     220634 |                        Marcelo Lima |               Finanças Públicas e Orçamento |               5 |                     0
+     220634 |                        Marcelo Lima |                                       Saúde |               5 |                     0
+     171786 |                       Miguel Ângelo |                       Administração Pública |               5 |                     0
+     171786 |                       Miguel Ângelo |       Energia, Recursos Hídricos e Minerais |               5 |                     0
+     178858 |                Mário Negromonte Jr. |               Finanças Públicas e Orçamento |               5 |                     0
+     204449 |                      Nelson Barbudo |                       Administração Pública |               5 |                     0
+     204449 |                      Nelson Barbudo |                 Direitos Humanos e Minorias |               5 |                     0
+      74400 |                       Paulo Pimenta |              Direito e Defesa do Consumidor |               5 |                     0
+      74400 |                       Paulo Pimenta |                                    Economia |               5 |                     0
+     220575 |                      Sonize Barbosa |               Finanças Públicas e Orçamento |               5 |                     0
+      91228 |                   Waldemar Oliveira |                          Trabalho e Emprego |               5 |                     0
+     220601 |                   Washington Quaquá |  Processo Legislativo e Atuação Parlamentar |               5 |                     0
+      74044 |                     Wilson Santiago |                          Trabalho e Emprego |               5 |                     0
+     220592 |                     Zezinho Barbary |               Finanças Públicas e Orçamento |               5 |                     0
+     220675 |                       Antônio Doido |               Finanças Públicas e Orçamento |               4 |                     1
+     178975 |                        Baleia Rossi |                 Direitos Humanos e Minorias |               4 |                     1
+     205476 |                   Charles Fernandes |               Finanças Públicas e Orçamento |               4 |                     1
+     220689 |                             Detinha |                    Arte, Cultura e Religião |               4 |                     1
+     220691 |                       Diego Coronel |               Finanças Públicas e Orçamento |               4 |                     1
+     160674 |                          Hugo Motta |               Finanças Públicas e Orçamento |               4 |                     1
+     204497 |                      Júnior Ferrari |               Finanças Públicas e Orçamento |               4 |                     1
+     160510 |                           Luis Tibé |                 Direitos Humanos e Minorias |               4 |                     1
+     160510 |                           Luis Tibé |               Finanças Públicas e Orçamento |               4 |                     1
+     179001 |                      Márcio Biolchi |               Finanças Públicas e Orçamento |               4 |                     1
+      73806 |                      Roseana Sarney |                 Direitos Humanos e Minorias |               4 |                     1
+      74090 |                          Átila Lins |               Finanças Públicas e Orçamento |               4 |                     1
+     204549 |                      AJ Albuquerque |  Processo Legislativo e Atuação Parlamentar |               4 |                     0
+     121948 |                    Adriano do Baldy |               Finanças Públicas e Orçamento |               4 |                     0
+     160508 |                     Afonso Florence |                       Administração Pública |               4 |                     0
+     160508 |                     Afonso Florence |                          Defesa e Segurança |               4 |                     0
+     204571 |                        Alex Santana |                       Administração Pública |               4 |                     0
+     178882 |                        André Fufuca |               Finanças Públicas e Orçamento |               4 |                     0
+     178882 |                        André Fufuca |                                       Saúde |               4 |                     0
+     220577 |                      Augusto Puppio |                                       Saúde |               4 |                     0
+     205476 |                   Charles Fernandes |                          Defesa e Segurança |               4 |                     0
+     205476 |                   Charles Fernandes |             Viação, Transporte e Mobilidade |               4 |                     0
+     204476 |                    Chiquinho Brazão |  Processo Legislativo e Atuação Parlamentar |               4 |                     0
+     220692 |                         Dal Barreto |               Finanças Públicas e Orçamento |               4 |                     0
+      74467 |                    Damião Feliciano |                          Defesa e Segurança |               4 |                     0
+      74467 |                    Damião Feliciano |               Finanças Públicas e Orçamento |               4 |                     0
+      74467 |                    Damião Feliciano |                          Trabalho e Emprego |               4 |                     0
+     220582 |                      Daniel Barbosa |            Previdência e Assistência Social |               4 |                     0
+     220582 |                      Daniel Barbosa |  Processo Legislativo e Atuação Parlamentar |               4 |                     0
+     116379 |                      Darci de Matos |              Indústria, Comércio e Serviços |               4 |                     0
+     116379 |                      Darci de Matos |  Processo Legislativo e Atuação Parlamentar |               4 |                     0
+     204450 |                     Doutor Luizinho |                                       Saúde |               4 |                     0
+     204450 |                     Doutor Luizinho |                          Trabalho e Emprego |               4 |                     0
+     178854 |                    Elmar Nascimento |  Processo Legislativo e Atuação Parlamentar |               4 |                     0
+     141431 |               Fernando Coelho Filho |               Finanças Públicas e Orçamento |               4 |                     0
+      74550 |                           João Leão |                          Defesa e Segurança |               4 |                     0
+      74478 |                       Luciano Bivar |               Finanças Públicas e Orçamento |               4 |                     0
+     178983 |                       Marcio Alvino |            Direito Penal e Processual Penal |               4 |                     0
+     178983 |                       Marcio Alvino |                 Direitos Humanos e Minorias |               4 |                     0
+     178983 |                       Marcio Alvino |               Finanças Públicas e Orçamento |               4 |                     0
+     178983 |                       Marcio Alvino |  Processo Legislativo e Atuação Parlamentar |               4 |                     0
+     204486 |               Mauro Benevides Filho |               Finanças Públicas e Orçamento |               4 |                     0
+     160561 |            Missionário José Olimpio |                 Direitos Humanos e Minorias |               4 |                     0
+     226410 |                       Márcio Correa |  Processo Legislativo e Atuação Parlamentar |               4 |                     0
+     160558 |                  Paulo Freire Costa |                 Direitos Humanos e Minorias |               4 |                     0
+     204492 |                        Paulo Guedes |                          Defesa e Segurança |               4 |                     0
+     141488 |                      Paulo Teixeira |                       Administração Pública |               4 |                     0
+     225386 |                   Renan Ferreirinha |                 Direitos Humanos e Minorias |               4 |                     0
+     225386 |                   Renan Ferreirinha |                                    Educação |               4 |                     0
+     204362 |                       Ricardo Guidi |               Finanças Públicas e Orçamento |               4 |                     0
+     178945 |                     Rosangela Gomes |                                       Saúde |               4 |                     0
+     226837 |                       Saulo Pedroso |                          Defesa e Segurança |               4 |                     0
+     227310 |                      Silvio Antonio |               Finanças Públicas e Orçamento |               4 |                     0
+     160976 |                            Tiririca |               Finanças Públicas e Orçamento |               4 |                     0
+     220699 |                         Castro Neto |                 Direitos Humanos e Minorias |               3 |                     1
+      74537 |                      Claudio Cajado |               Finanças Públicas e Orçamento |               3 |                     1
+      92699 |                   Fernando Monteiro |               Finanças Públicas e Orçamento |               3 |                     1
+     204567 |                      Raimundo Costa |               Finanças Públicas e Orçamento |               3 |                     1
+     160527 |                   Aguinaldo Ribeiro |                          Defesa e Segurança |               3 |                     0
+     226708 |                        Allan Garcês |                          Defesa e Segurança |               3 |                     0
+     226708 |                        Allan Garcês |  Processo Legislativo e Atuação Parlamentar |               3 |                     0
+     226708 |                        Allan Garcês |                                       Saúde |               3 |                     0
+     220699 |                         Castro Neto |              Direito e Defesa do Consumidor |               3 |                     0
+      74537 |                      Claudio Cajado |  Processo Legislativo e Atuação Parlamentar |               3 |                     0
+     221339 |                        Dr. Benjamim |                                       Saúde |               3 |                     0
+      74454 |                    Eunício Oliveira |               Finanças Públicas e Orçamento |               3 |                     0
+     178905 |                        Fabio Garcia |            Direito Penal e Processual Penal |               3 |                     0
+     178905 |                        Fabio Garcia |               Finanças Públicas e Orçamento |               3 |                     0
+     178905 |                        Fabio Garcia |  Processo Legislativo e Atuação Parlamentar |               3 |                     0
+      92699 |                   Fernando Monteiro |                       Administração Pública |               3 |                     0
+     225727 |                            Flavinha | Agricultura, Pecuária, Pesca e Extrativismo |               3 |                     0
+      74141 |                        Josias Gomes |               Finanças Públicas e Orçamento |               3 |                     0
+     204506 |                      Marcos Pereira |                          Defesa e Segurança |               3 |                     0
+     204506 |                      Marcos Pereira |               Finanças Públicas e Orçamento |               3 |                     0
+     204506 |                      Marcos Pereira |  Processo Legislativo e Atuação Parlamentar |               3 |                     0
+     128760 |                    Paulo Marinho Jr |                 Direitos Humanos e Minorias |               3 |                     0
+     233594 |                         Rafael Fera |                       Administração Pública |               3 |                     0
+     233594 |                         Rafael Fera |               Finanças Públicas e Orçamento |               3 |                     0
+     234310 |                      Ricardo Galvão |                                    Educação |               3 |                     0
+     230767 |                    Rodrigo da Zaeli |                       Administração Pública |               3 |                     0
+     163321 |                    Ronaldo Nogueira |                       Administração Pública |               3 |                     0
+     163321 |                    Ronaldo Nogueira |                                    Economia |               3 |                     0
+     163321 |                    Ronaldo Nogueira |  Processo Legislativo e Atuação Parlamentar |               3 |                     0
+     160591 |                     Vinicius Gurgel |               Finanças Públicas e Orçamento |               3 |                     0
+     160553 |                       Antonio Brito |                 Direitos Humanos e Minorias |               2 |                     1
+     160553 |                       Antonio Brito |               Finanças Públicas e Orçamento |               2 |                     1
+     178962 |                        Carlos Gomes |            Direito Penal e Processual Penal |               2 |                     1
+     178962 |                        Carlos Gomes |                 Direitos Humanos e Minorias |               2 |                     1
+      74574 |                     Paulo Magalhães |                 Direitos Humanos e Minorias |               2 |                     1
+      74574 |                     Paulo Magalhães |               Finanças Públicas e Orçamento |               2 |                     1
+     178962 |                        Carlos Gomes |                       Administração Pública |               2 |                     0
+     178962 |                        Carlos Gomes |                          Defesa e Segurança |               2 |                     0
+     178962 |                        Carlos Gomes |               Finanças Públicas e Orçamento |               2 |                     0
+     227433 |                      Douglas Viegas |                       Administração Pública |               2 |                     0
+     227433 |                      Douglas Viegas |               Finanças Públicas e Orçamento |               2 |                     0
+     226553 |                         Eliane Braz | Agricultura, Pecuária, Pesca e Extrativismo |               2 |                     0
+     226553 |                         Eliane Braz |                                    Economia |               2 |                     0
+     226553 |                         Eliane Braz | Meio Ambiente e Desenvolvimento Sustentável |               2 |                     0
+     234388 |                      Fabiano Cazeca |            Direito Civil e Processual Civil |               2 |                     0
+     227370 |                       Felipe Saliba |                 Direitos Humanos e Minorias |               2 |                     0
+     129618 |                      Gorete Pereira |                          Defesa e Segurança |               2 |                     0
+     129618 |                      Gorete Pereira |                 Direitos Humanos e Minorias |               2 |                     0
+     227324 |                     Henrique Júnior |              Direito e Defesa do Consumidor |               2 |                     0
+     227324 |                     Henrique Júnior |       Energia, Recursos Hídricos e Minerais |               2 |                     0
+     227324 |                     Henrique Júnior |  Processo Legislativo e Atuação Parlamentar |               2 |                     0
+     100689 |                   Hildo do Candango |              Direito e Defesa do Consumidor |               2 |                     0
+     100689 |                   Hildo do Candango |       Energia, Recursos Hídricos e Minerais |               2 |                     0
+     100689 |                   Hildo do Candango |  Processo Legislativo e Atuação Parlamentar |               2 |                     0
+     225846 |                         Itamar Paim |            Direito Penal e Processual Penal |               2 |                     0
+     225846 |                         Itamar Paim |                 Direitos Humanos e Minorias |               2 |                     0
+     204563 |               Josimar Maranhãozinho |                       Administração Pública |               2 |                     0
+     204563 |               Josimar Maranhãozinho |                 Direitos Humanos e Minorias |               2 |                     0
+     204563 |               Josimar Maranhãozinho |                                       Saúde |               2 |                     0
+     204448 |                 Luiz Antonio Corrêa |               Finanças Públicas e Orçamento |               2 |                     0
+     204448 |                 Luiz Antonio Corrêa |  Processo Legislativo e Atuação Parlamentar |               2 |                     0
+     204431 |              Marcos Aurélio Sampaio |       Energia, Recursos Hídricos e Minerais |               2 |                     0
+     227275 |                    Mariana Carvalho |  Processo Legislativo e Atuação Parlamentar |               2 |                     0
+     204422 |                       Ossesio Silva |              Direito e Defesa do Consumidor |               2 |                     0
+     204422 |                       Ossesio Silva |       Energia, Recursos Hídricos e Minerais |               2 |                     0
+     204422 |                       Ossesio Silva |  Processo Legislativo e Atuação Parlamentar |               2 |                     0
+     204422 |                       Ossesio Silva |                                       Saúde |               2 |                     0
+     141518 |                   Paulinho da Força |              Direito e Defesa do Consumidor |               2 |                     0
+     141518 |                   Paulinho da Força |                 Direitos Humanos e Minorias |               2 |                     0
+     233592 |                         Paulo Lemos |                       Administração Pública |               2 |                     0
+     233592 |                         Paulo Lemos |                          Defesa e Segurança |               2 |                     0
+     233592 |                         Paulo Lemos |       Energia, Recursos Hídricos e Minerais |               2 |                     0
+     233592 |                         Paulo Lemos |               Finanças Públicas e Orçamento |               2 |                     0
+      74574 |                     Paulo Magalhães |              Direito e Defesa do Consumidor |               2 |                     0
+      74574 |                     Paulo Magalhães |  Processo Legislativo e Atuação Parlamentar |               2 |                     0
+     160621 |                         Sandro Alex |                          Defesa e Segurança |               2 |                     0
+     160621 |                         Sandro Alex |                 Direitos Humanos e Minorias |               2 |                     0
+      77003 |             Sergio Santos Rodrigues |            Direito Civil e Processual Civil |               2 |                     0
+     143084 |                         Tiago Dimas |                       Administração Pública |               2 |                     0
+     178832 |                             Leandre |            Direito Penal e Processual Penal |               1 |                     1
+     178832 |                             Leandre |                 Direitos Humanos e Minorias |               1 |                     1
+     178832 |                             Leandre |              Indústria, Comércio e Serviços |               1 |                     1
+     204353 |                        Aline Gurgel |            Direito Penal e Processual Penal |               1 |                     0
+     204353 |                        Aline Gurgel | Meio Ambiente e Desenvolvimento Sustentável |               1 |                     0
+     178831 |                         André Abdon |            Direito Penal e Processual Penal |               1 |                     0
+     178831 |                         André Abdon | Meio Ambiente e Desenvolvimento Sustentável |               1 |                     0
+     164360 |                      Carmen Zanotto |                 Direitos Humanos e Minorias |               1 |                     0
+     164360 |                      Carmen Zanotto |                                       Saúde |               1 |                     0
+     227401 |                      Dr Fabio Rueda |                       Administração Pública |               1 |                     0
+     227401 |                      Dr Fabio Rueda |                                    Educação |               1 |                     0
+     227401 |                      Dr Fabio Rueda |                                       Saúde |               1 |                     0
+     132504 |                          Enio Verri |            Homenagens e Datas Comemorativas |               1 |                     0
+     171623 |                          Fabio Reis |                          Defesa e Segurança |               1 |                     0
+     171623 |                          Fabio Reis |              Direito e Defesa do Consumidor |               1 |                     0
+     171623 |                          Fabio Reis |       Energia, Recursos Hídricos e Minerais |               1 |                     0
+     171623 |                          Fabio Reis |  Processo Legislativo e Atuação Parlamentar |               1 |                     0
+     178909 |                         Hélio Leite |                          Defesa e Segurança |               1 |                     0
+     178909 |                         Hélio Leite |                 Direitos Humanos e Minorias |               1 |                     0
+     178909 |                         Hélio Leite |       Energia, Recursos Hídricos e Minerais |               1 |                     0
+     230957 |                           João Cury |                    Arte, Cultura e Religião |               1 |                     0
+     230957 |                           João Cury |            Direito Civil e Processual Civil |               1 |                     0
+     230957 |                           João Cury |                 Direitos Humanos e Minorias |               1 |                     0
+     178886 |                     Juscelino Filho |              Ciência, Tecnologia e Inovação |               1 |                     0
+     178886 |                     Juscelino Filho |                                Comunicações |               1 |                     0
+     178886 |                     Juscelino Filho |            Homenagens e Datas Comemorativas |               1 |                     0
+     220677 |                      Keniston Braga |                       Administração Pública |               1 |                     0
+     220677 |                      Keniston Braga |                          Defesa e Segurança |               1 |                     0
+     220677 |                      Keniston Braga |       Energia, Recursos Hídricos e Minerais |               1 |                     0
+     220677 |                      Keniston Braga |               Finanças Públicas e Orçamento |               1 |                     0
+     229432 |               Luiz Fernando Vampiro |               Finanças Públicas e Orçamento |               1 |                     0
+     229432 |               Luiz Fernando Vampiro |            Previdência e Assistência Social |               1 |                     0
+     229432 |               Luiz Fernando Vampiro |                          Trabalho e Emprego |               1 |                     0
+      74095 |                   Pauderney Avelino |                       Administração Pública |               1 |                     0
+      74095 |                   Pauderney Avelino |                                    Economia |               1 |                     0
+      74095 |                   Pauderney Avelino |  Processo Legislativo e Atuação Parlamentar |               1 |                     0
+     175765 |                       Ribamar Silva |                       Administração Pública |               1 |                     0
+     175765 |                       Ribamar Silva |            Direito Penal e Processual Penal |               1 |                     0
+     175765 |                       Ribamar Silva |                                    Economia |               1 |                     0
+     175765 |                       Ribamar Silva |            Homenagens e Datas Comemorativas |               1 |                     0
+     175765 |                       Ribamar Silva | Meio Ambiente e Desenvolvimento Sustentável |               1 |                     0
+     175765 |                       Ribamar Silva |  Processo Legislativo e Atuação Parlamentar |               1 |                     0
+     175765 |                       Ribamar Silva |                          Trabalho e Emprego |               1 |                     0
+     204489 |                    Robério Monteiro |            Direito Penal e Processual Penal |               1 |                     0
+     204489 |                    Robério Monteiro | Meio Ambiente e Desenvolvimento Sustentável |               1 |                     0
+     235776 |                        Sérgio Turra | Agricultura, Pecuária, Pesca e Extrativismo |               1 |                     0
+     235776 |                        Sérgio Turra |            Direito Penal e Processual Penal |               1 |                     0
+     235776 |                        Sérgio Turra |                 Direitos Humanos e Minorias |               1 |                     0
+     235776 |                        Sérgio Turra |                                    Economia |               1 |                     0
+     235776 |                        Sérgio Turra |               Finanças Públicas e Orçamento |               1 |                     0
+     235776 |                        Sérgio Turra | Meio Ambiente e Desenvolvimento Sustentável |               1 |                     0
+     220643 |                     Sônia Guajajara |                       Administração Pública |               1 |                     0
+     220643 |                     Sônia Guajajara |                 Direitos Humanos e Minorias |               1 |                     0
+     220643 |                     Sônia Guajajara |                             Esporte e Lazer |               1 |                     0
+     230768 |                          Zé Adriano | Agricultura, Pecuária, Pesca e Extrativismo |               1 |                     0
+     230768 |                          Zé Adriano |                                    Economia |               1 |                     0
+     230768 |                          Zé Adriano |               Finanças Públicas e Orçamento |               1 |                     0
+(742 rows)

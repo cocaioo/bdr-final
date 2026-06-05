@@ -27,7 +27,7 @@ validate:
 
 export-respostas:
 	powershell -NoProfile -Command "New-Item -ItemType Directory -Force respostas | Out-Null; Remove-Item -Path respostas/*.txt -Force -ErrorAction SilentlyContinue"
-	$(COMPOSE) exec -T postgres psql -U admin -d dossie_grupo4 -f /sql/export_respostas.sql
+	$(PYTHON) -m src.export_respostas
 
 clean-outputs:
 	powershell -NoProfile -Command "Remove-Item -Path dados_padronizados -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path respostas/*.txt -Force -ErrorAction SilentlyContinue"

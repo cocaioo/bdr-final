@@ -73,6 +73,8 @@ EIXO_COLORS = {
     "Internacional": "#5A6772",
 }
 
+TEMA_TO_EIXO = {}
+
 
 def main() -> None:
     args = parse_args()
@@ -83,13 +85,20 @@ def main() -> None:
     RESPONSES_DIR.mkdir(parents=True, exist_ok=True)
 
     proposicoes, autores, deputados, temas = load_dataframes()
-    counts = build_eixo_counts(proposicoes, temas, selected_years)
+
+    # Filtro da 57ª Legislatura: apenas temas de proposições com autoria de deputados da base
+    valid_dep_ids = set(deputados["id_deputado"].dropna().astype(str).unique())
+    valid_autores = autores[autores["id_deputado"].astype(str).isin(valid_dep_ids)]
+    valid_uris = set(valid_autores["uri_proposicao"].dropna().unique())
+    temas_filtered = temas[temas["uri_proposicao"].isin(valid_uris)].copy()
+
+    counts = build_eixo_counts(proposicoes, temas_filtered, selected_years)
     consolidated = build_consolidated_counts(counts)
 
     write_count_artifacts(counts, consolidated)
-    write_wordcloud_pngs(counts, consolidated, selected_years)
+    write_wordcloud_pngs(counts, consolidated, temas_filtered, selected_years)
 
-    analytic_rows = build_analytic_rows(proposicoes, autores, deputados, temas, selected_years)
+    analytic_rows = build_analytic_rows(proposicoes, autores, deputados, temas_filtered, selected_years)
     write_q2_response_files(analytic_rows, counts, consolidated, selected_years)
     print_validation_summary(counts, consolidated, proposicoes, selected_years)
 
@@ -169,19 +178,14 @@ def map_eixos(temas: pd.DataFrame) -> pd.Series:
 def build_eixo_counts(
     proposicoes: pd.DataFrame, temas: pd.DataFrame, selected_years: tuple[int, ...]
 ) -> pd.DataFrame:
-    scoped_props = proposicoes[
-        proposicoes["ano_dados"].isin(selected_years)
-    ][["ano_dados", "uri_proposicao"]].drop_duplicates()
     scoped_themes = temas[temas["ano_dados"].isin(selected_years)][
-        ["ano_dados", "uri_proposicao", "eixo_maior"]
+        ["ano_dados", "uri_proposicao", "tema"]
     ].drop_duplicates()
 
-    base = scoped_props.merge(scoped_themes, on=["ano_dados", "uri_proposicao"], how="inner")
     counts = (
-        base.drop_duplicates(["ano_dados", "uri_proposicao", "eixo_maior"])
-        .groupby(["ano_dados", "eixo_maior"], as_index=False)
+        scoped_themes.groupby(["ano_dados", "tema"], as_index=False)
         .agg(count=("uri_proposicao", "nunique"))
-        .rename(columns={"ano_dados": "year", "eixo_maior": "eixo"})
+        .rename(columns={"ano_dados": "year", "tema": "eixo"})
         .sort_values(["year", "count", "eixo"], ascending=[True, False, True])
     )
     return counts
@@ -210,7 +214,10 @@ def write_count_artifacts(counts: pd.DataFrame, consolidated: pd.DataFrame) -> N
 
 
 def write_wordcloud_pngs(
-    counts: pd.DataFrame, consolidated: pd.DataFrame, selected_years: tuple[int, ...]
+    counts: pd.DataFrame,
+    consolidated: pd.DataFrame,
+    temas: pd.DataFrame,
+    selected_years: tuple[int, ...],
 ) -> None:
     if WordCloud is None:
         raise SystemExit(
@@ -218,13 +225,17 @@ def write_wordcloud_pngs(
             f"Erro original: {WORDCLOUD_IMPORT_ERROR}"
         )
 
+    global TEMA_TO_EIXO
+    TEMA_TO_EIXO = dict(zip(temas["tema"], temas["eixo_maior"]))
+
     manifest = []
     for year in selected_years:
-        freqs = dict(
-            zip(
-                counts.loc[counts["year"].eq(year), "eixo"],
-                counts.loc[counts["year"].eq(year), "count"],
-            )
+        year_temas = temas[temas["ano_dados"] == year]
+        freqs = (
+            year_temas.drop_duplicates(["uri_proposicao", "tema"])
+            .groupby("tema")
+            .size()
+            .to_dict()
         )
         if not freqs:
             continue
@@ -235,7 +246,13 @@ def write_wordcloud_pngs(
         render_wordcloud(freqs, f"Nuvem de eixos tematicos - {year}", public_path, seed=year)
         manifest.append({"year": year, "src": f"/wordclouds/{public_path.name}"})
 
-    consolidated_freqs = dict(zip(consolidated["eixo"], consolidated["count"]))
+    consolidated_freqs = (
+        temas[temas["ano_dados"].isin(selected_years)]
+        .drop_duplicates(["uri_proposicao", "tema"])
+        .groupby("tema")
+        .size()
+        .to_dict()
+    )
     render_wordcloud(
         consolidated_freqs,
         "Nuvem de eixos tematicos - consolidado 2023-2026",
@@ -273,6 +290,14 @@ def render_wordcloud(freqs: dict[str, int], title: str, path: Path, seed: int) -
     ).generate_from_frequencies(freqs)
 
     wordcloud.to_file(str(path))
+    svg_path = path.with_suffix(".svg")
+    svg_content = wordcloud.to_svg()
+    if "viewBox" not in svg_content:
+        svg_content = svg_content.replace(
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}">',
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" width="{WIDTH}" height="{HEIGHT}">'
+        )
+    svg_path.write_text(svg_content, encoding="utf-8")
 
 
 def color_for_eixo(
@@ -283,7 +308,8 @@ def color_for_eixo(
     random_state: object | None = None,
     **kwargs: object,
 ) -> str:
-    return EIXO_COLORS.get(word, "#5A6772")
+    eixo = TEMA_TO_EIXO.get(word)
+    return EIXO_COLORS.get(eixo, "#5A6772")
 
 
 def find_font_path() -> str | None:
@@ -317,7 +343,7 @@ def build_analytic_rows(
     ][["ano_dados", "id_proposicao", "uri_proposicao", "id_deputado", "nome_autor"]].copy()
 
     base = autoria.merge(
-        temas[["ano_dados", "uri_proposicao", "eixo_maior"]],
+        temas[["ano_dados", "uri_proposicao", "tema"]],
         on=["ano_dados", "uri_proposicao"],
         how="inner",
     ).merge(
@@ -326,14 +352,14 @@ def build_analytic_rows(
         how="left",
     )
     base = base.drop_duplicates(
-        subset=["ano_dados", "id_proposicao", "id_deputado", "eixo_maior"]
+        subset=["ano_dados", "id_proposicao", "id_deputado", "tema"]
     )
     base["aprovada"] = base["aprovada"].map(
         lambda value: bool(value) if pd.notna(value) else False
     )
 
     grouped = (
-        base.groupby(["id_deputado", "nome_autor", "eixo_maior"], dropna=False)
+        base.groupby(["id_deputado", "nome_autor", "tema"], dropna=False)
         .agg(
             qtd_proposicoes=("id_proposicao", "nunique"),
             proposicoes_aprovadas=("aprovada", "sum"),
@@ -346,20 +372,20 @@ def build_analytic_rows(
     grouped["nome"] = grouped["nome"].fillna(grouped["nome_autor"])
 
     max_by_dep = grouped.groupby("id_deputado")["qtd_proposicoes"].transform("max")
-    grouped["maior_atuacao_no_eixo"] = grouped["qtd_proposicoes"].eq(max_by_dep)
+    grouped["maior_atuacao_no_tema"] = grouped["qtd_proposicoes"].eq(max_by_dep)
 
     eixo_labels = (
-        grouped[grouped["maior_atuacao_no_eixo"]]
-        .sort_values(["id_deputado", "eixo_maior"])
-        .groupby("id_deputado")["eixo_maior"]
+        grouped[grouped["maior_atuacao_no_tema"]]
+        .sort_values(["id_deputado", "tema"])
+        .groupby("id_deputado")["tema"]
         .apply(lambda values: ", ".join(values))
-        .rename("eixo_mais_atuante_deputado")
+        .rename("tema_mais_atuante_deputado")
         .reset_index()
     )
     grouped = grouped.merge(eixo_labels, on="id_deputado", how="left")
 
     grouped = grouped.sort_values(
-        ["qtd_proposicoes", "proposicoes_aprovadas", "nome", "eixo_maior"],
+        ["qtd_proposicoes", "proposicoes_aprovadas", "nome", "tema"],
         ascending=[False, False, True, True],
     )
 
@@ -369,11 +395,11 @@ def build_analytic_rows(
             {
                 "id_deputado": str(row.id_deputado),
                 "nome": str(row.nome),
-                "eixo_maior": str(row.eixo_maior),
+                "tema": str(row.tema),
                 "qtd_proposicoes": int(row.qtd_proposicoes),
                 "proposicoes_aprovadas": int(row.proposicoes_aprovadas),
-                "maior_atuacao_no_eixo": "Sim" if bool(row.maior_atuacao_no_eixo) else "Nao",
-                "eixo_mais_atuante_deputado": str(row.eixo_mais_atuante_deputado),
+                "maior_atuacao_no_tema": "Sim" if bool(row.maior_atuacao_no_tema) else "Nao",
+                "tema_mais_atuante_deputado": str(row.tema_mais_atuante_deputado),
             }
         )
     return rows
@@ -388,14 +414,14 @@ def write_q2_response_files(
     count_rows = [
         {
             "year": int(row.year),
-            "eixo": str(row.eixo),
+            "tema": str(row.eixo),
             "count": int(row.count),
         }
         for row in counts.itertuples(index=False)
     ]
     consolidated_rows = [
         {
-            "eixo": str(row.eixo),
+            "tema": str(row.eixo),
             "count": int(row.count),
         }
         for row in consolidated.itertuples(index=False)
@@ -404,8 +430,8 @@ def write_q2_response_files(
         {
             "periodo": format_period(selected_years),
             "deputados": len({row["id_deputado"] for row in analytic_rows}),
-            "eixos": len({row["eixo_maior"] for row in analytic_rows}),
-            "registros_deputado_eixo": len(analytic_rows),
+            "temas": len({row["tema"] for row in analytic_rows}),
+            "registros_deputado_tema": len(analytic_rows),
             "proposicoes": sum(int(row["qtd_proposicoes"]) for row in analytic_rows),
             "proposicoes_aprovadas": sum(int(row["proposicoes_aprovadas"]) for row in analytic_rows),
         }
@@ -413,11 +439,11 @@ def write_q2_response_files(
     main_columns = [
         "id_deputado",
         "nome",
-        "eixo_maior",
+        "tema",
         "qtd_proposicoes",
         "proposicoes_aprovadas",
-        "maior_atuacao_no_eixo",
-        "eixo_mais_atuante_deputado",
+        "maior_atuacao_no_tema",
+        "tema_mais_atuante_deputado",
     ]
 
     main_text = "\n".join(
@@ -426,48 +452,52 @@ def write_q2_response_files(
             render_table("Resumo executivo - periodo consolidado", summary_rows, list(summary_rows[0].keys())),
             "",
             render_table(
-                f"Tabela analitica - deputados por eixo tematico ({format_period(selected_years)})",
+                f"Tabela analitica - deputados por tema ({format_period(selected_years)})",
                 analytic_rows,
                 main_columns,
             ),
             "",
             render_table(
-                "Q2.2 - contagem de proposicoes por eixo por ano",
+                "Q2.2 - contagem de proposicoes por tema por ano",
                 count_rows,
-                ["year", "eixo", "count"],
+                ["year", "tema", "count"],
             ),
             "",
             render_table(
-                "Q2.3 - contagem consolidada de proposicoes por eixo",
+                "Q2.3 - contagem consolidada de proposicoes por tema",
                 consolidated_rows,
-                ["eixo", "count"],
+                ["tema", "count"],
             ),
             "",
         ]
     )
     (RESPONSES_DIR / "q2_eixos_nuvem_palavras.txt").write_text(main_text, encoding="utf-8")
 
+    caio_q2_dir = REPO_ROOT / "Caio" / "q2"
+    caio_q2_dir.mkdir(parents=True, exist_ok=True)
+    (caio_q2_dir / "q2_eixos_nuvem_palavras.txt").write_text(main_text, encoding="utf-8")
+
     top_rows = [
         {
             "id_deputado": row["id_deputado"],
             "nome": row["nome"],
-            "eixo_mais_atuante": row["eixo_maior"],
+            "tema_mais_atuante": row["tema"],
             "qtd_proposicoes": row["qtd_proposicoes"],
             "proposicoes_aprovadas": row["proposicoes_aprovadas"],
         }
         for row in analytic_rows
-        if row["maior_atuacao_no_eixo"] == "Sim"
+        if row["maior_atuacao_no_tema"] == "Sim"
     ]
     complement_text = "\n".join(
         [
-            f"Q2 complemento - eixo mais atuante por deputado no periodo {format_period(selected_years)}",
+            f"Q2 complemento - tema mais atuante por deputado no periodo {format_period(selected_years)}",
             render_table(
-                "Eixo mais atuante por deputado - consolidado",
+                "Tema mais atuante por deputado - consolidado",
                 top_rows,
                 [
                     "id_deputado",
                     "nome",
-                    "eixo_mais_atuante",
+                    "tema_mais_atuante",
                     "qtd_proposicoes",
                     "proposicoes_aprovadas",
                 ],
@@ -476,6 +506,9 @@ def write_q2_response_files(
         ]
     )
     (RESPONSES_DIR / "q2_eixo_nuvens_complemento.txt").write_text(
+        complement_text, encoding="utf-8"
+    )
+    (caio_q2_dir / "caio_q2_dir" / "q2_eixo_nuvens_complemento.txt" if False else caio_q2_dir / "q2_eixo_nuvens_complemento.txt").write_text(
         complement_text, encoding="utf-8"
     )
 

@@ -1,6 +1,6 @@
 import type { EChartsOption } from 'echarts'
 
-import type { ChartSpec } from '../types'
+import type { ChartSpec, FilterState } from '../types'
 
 function toNumber(value: unknown): number {
   if (typeof value === 'number') return value
@@ -8,7 +8,7 @@ function toNumber(value: unknown): number {
   return Number.isNaN(parsed) ? 0 : parsed
 }
 
-export function buildChartOption(spec: ChartSpec): EChartsOption {
+export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): EChartsOption {
   const series = spec.series as Array<Record<string, unknown>>
 
   if (spec.type === 'bar_horizontal') {
@@ -28,6 +28,7 @@ export function buildChartOption(spec: ChartSpec): EChartsOption {
   }
 
   if (spec.type === 'bar_vertical' || spec.type === 'composite') {
+    const hasEscolaridadeFilter = Boolean(activeFilters?.escolaridade && activeFilters.escolaridade.length > 0)
     return {
       tooltip: { trigger: 'axis' },
       legend: {},
@@ -37,7 +38,21 @@ export function buildChartOption(spec: ChartSpec): EChartsOption {
       series: series.map((entry) => ({
         type: 'bar',
         name: String(entry.name ?? ''),
-        data: (entry.data as unknown[]) ?? [],
+        data: ((entry.data as unknown[]) ?? []).map((val, idx) => {
+          const category = spec.categories[idx]
+          if (hasEscolaridadeFilter) {
+            const isSelected = activeFilters?.escolaridade?.includes(category)
+            return {
+              value: val,
+              itemStyle: {
+                opacity: isSelected ? 1.0 : 0.35,
+                borderWidth: isSelected ? 2 : 0,
+                borderColor: isSelected ? '#1E293B' : 'transparent',
+              }
+            }
+          }
+          return val
+        }),
         barMaxWidth: 28,
       })),
     } as EChartsOption
