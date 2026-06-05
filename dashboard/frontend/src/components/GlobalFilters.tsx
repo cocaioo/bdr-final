@@ -34,6 +34,7 @@ const EMPTY_FILTER_STATE: FilterState = {
   partidos: [],
   ufs: [],
   deputados: [],
+  escolaridade: [],
   search: '',
 }
 
@@ -61,7 +62,7 @@ export function GlobalFilters({
   }, [searchValue, onChange, value])
 
   const setList = (
-    key: keyof Pick<FilterState, 'anos' | 'eixos' | 'partidos' | 'ufs' | 'deputados'>,
+    key: keyof Pick<FilterState, 'anos' | 'eixos' | 'partidos' | 'ufs' | 'deputados' | 'escolaridade'>,
     values: string[],
   ) => {
     onChange({ ...value, [key]: values })
@@ -80,6 +81,7 @@ export function GlobalFilters({
       isFilterActive('partidos') ||
       isFilterActive('ufs') ||
       isFilterActive('deputados') ||
+      isFilterActive('escolaridade') ||
       value.search.trim().length > 0
     )
   }
@@ -294,6 +296,47 @@ export function GlobalFilters({
                       type="button"
                       className="remove-tag-btn"
                       onClick={() => setList('deputados', value.deputados.filter((v) => v !== val))}
+                    >
+                      &times;
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {isEnabled(supportedFilters, 'escolaridade') && (
+          <div className="filter-item">
+            <div className="filter-item-header">
+              <label htmlFor="filter-escolaridade">Escolaridade</label>
+              {value.escolaridade.length > 0 && (
+                <button type="button" className="clear-btn" onClick={() => setList('escolaridade', [])}>
+                  Limpar
+                </button>
+              )}
+            </div>
+            <select
+              id="filter-escolaridade"
+              multiple
+              value={value.escolaridade}
+              onChange={(event) => setList('escolaridade', readSelectedValues(event.target))}
+            >
+              {(catalog.escolaridade || []).map((choice) => (
+                <option key={choice.value} value={choice.value}>
+                  {choice.label}
+                </option>
+              ))}
+            </select>
+            {value.escolaridade.length > 0 && (
+              <div className="filter-tags">
+                {value.escolaridade.map((val) => (
+                  <span key={val} className="filter-tag">
+                    {getChoiceLabel(catalog.escolaridade || [], val)}
+                    <button
+                      type="button"
+                      className="remove-tag-btn"
+                      onClick={() => setList('escolaridade', value.escolaridade.filter((v) => v !== val))}
                     >
                       &times;
                     </button>

@@ -67,7 +67,7 @@
       "response_files": ["Caio/q4/q4_escolaridade.txt", "Caio/q4/q4_escolaridade_complementar.txt"],
       "sql_file": "q4.sql",
       "chart_type": "bar_vertical",
-      "supported_filters": ["deputados"],
+      "supported_filters": ["deputados", "escolaridade"],
       "expected_columns": ["escolaridade", "qtd_deputados"],
       "main_table_contains": "",
       "summary_table_contains": "",

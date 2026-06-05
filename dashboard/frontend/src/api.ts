@@ -53,6 +53,7 @@ export function fetchQuestion(
   if (isEnabled('partidos')) queryParams.partidos = filters.partidos
   if (isEnabled('ufs')) queryParams.ufs = filters.ufs
   if (isEnabled('deputados')) queryParams.deputados = filters.deputados
+  if (isEnabled('escolaridade')) queryParams.escolaridade = filters.escolaridade
 
   const query = buildQuery(queryParams)
   return fetchJson<QuestionPayload>(`${API_BASE}/api/questions/${questionId}?${query}`)

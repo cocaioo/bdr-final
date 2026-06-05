@@ -1,27 +1,43 @@
 import { useEffect, useMemo, useRef } from 'react'
 import * as echarts from 'echarts'
 
-import type { ChartSpec } from '../types'
+import type { ChartSpec, FilterState } from '../types'
 import { buildChartOption } from '../utils/chartOptions'
 
 interface ChartPanelProps {
   spec: ChartSpec
   yearLabels?: string[]
+  activeFilters?: FilterState
+  onBarClick?: (category: string) => void
 }
 
-export function ChartPanel({ spec, yearLabels }: ChartPanelProps) {
+export function ChartPanel({ spec, yearLabels, activeFilters, onBarClick }: ChartPanelProps) {
   const ref = useRef<HTMLDivElement | null>(null)
   const chartRef = useRef<echarts.ECharts | null>(null)
-  const option = useMemo(() => buildChartOption(spec), [spec])
+  const option = useMemo(() => buildChartOption(spec, activeFilters), [spec, activeFilters])
+
+  const onBarClickRef = useRef(onBarClick)
+  useEffect(() => {
+    onBarClickRef.current = onBarClick
+  }, [onBarClick])
 
   useEffect(() => {
     if (!ref.current) return undefined
     const chart = echarts.init(ref.current, undefined, { renderer: 'canvas' })
     chartRef.current = chart
+
+    const onClick = (params: any) => {
+      if (params.componentType === 'series' && onBarClickRef.current) {
+        onBarClickRef.current(params.name)
+      }
+    }
+    chart.on('click', onClick)
+
     const onResize = () => chart.resize()
     window.addEventListener('resize', onResize)
     return () => {
       window.removeEventListener('resize', onResize)
+      chart.off('click', onClick)
       chart.dispose()
       chartRef.current = null
     }

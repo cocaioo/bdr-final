@@ -157,6 +157,7 @@ class DashboardService:
         eixos: set[str] = set()
         ufs: set[str] = set()
         deputados: set[str] = set()
+        escolaridades: set[str] = set()
 
         for question in self.registry.questions:
             try:
@@ -176,6 +177,7 @@ class DashboardService:
                         _maybe_add_party(partidos_observed, row.get("sigla_partido"))
                         _maybe_add(ufs, row.get("sigla_uf"))
                         _maybe_add(deputados, row.get("nome") or row.get("id_deputado"))
+                        _maybe_add(escolaridades, row.get("escolaridade"))
 
         active_parties = active_party_entries(self.repo_root)
         if active_parties:
@@ -195,6 +197,7 @@ class DashboardService:
             partidos=party_choices,
             ufs=[FilterChoice(value=item, label=item) for item in sorted(ufs)],
             deputados=[FilterChoice(value=item, label=item) for item in sorted(deputados)],
+            escolaridade=[FilterChoice(value=item, label=item) for item in sorted(escolaridades)],
         )
         self.cache.set(cache_key, catalog)
         return catalog
@@ -264,6 +267,7 @@ class DashboardService:
             "partidos": sorted(state.partidos),
             "ufs": sorted(state.ufs),
             "deputados": sorted(state.deputados),
+            "escolaridade": sorted(state.escolaridade),
             "search": state.search or "",
             "sort_by": state.sort_by or "",
             "sort_dir": state.sort_dir,

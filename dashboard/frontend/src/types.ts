@@ -10,6 +10,7 @@ export interface FilterCatalog {
   partidos: FilterChoice[]
   ufs: FilterChoice[]
   deputados: FilterChoice[]
+  escolaridade: FilterChoice[]
 }
 
 export interface QuestionMeta {
@@ -103,6 +104,7 @@ export interface FilterState {
   partidos: string[]
   ufs: string[]
   deputados: string[]
+  escolaridade: string[]
   search: string
 }
 

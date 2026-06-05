@@ -17,6 +17,7 @@ class FilterCatalog(BaseModel):
     partidos: list[FilterChoice] = Field(default_factory=list)
     ufs: list[FilterChoice] = Field(default_factory=list)
     deputados: list[FilterChoice] = Field(default_factory=list)
+    escolaridade: list[FilterChoice] = Field(default_factory=list)
 
 
 class QuestionMeta(BaseModel):

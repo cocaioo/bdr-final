@@ -15,6 +15,7 @@ const EMPTY_FILTER_STATE: FilterState = {
   partidos: [],
   ufs: [],
   deputados: [],
+  escolaridade: [],
   search: '',
 }
 
