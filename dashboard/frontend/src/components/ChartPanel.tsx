@@ -11,17 +11,25 @@ interface ChartPanelProps {
 
 export function ChartPanel({ spec, yearLabels }: ChartPanelProps) {
   const ref = useRef<HTMLDivElement | null>(null)
+  const chartRef = useRef<echarts.ECharts | null>(null)
   const option = useMemo(() => buildChartOption(spec), [spec])
 
   useEffect(() => {
     if (!ref.current) return undefined
     const chart = echarts.init(ref.current, undefined, { renderer: 'canvas' })
-    chart.setOption(option, true)
+    chartRef.current = chart
     const onResize = () => chart.resize()
     window.addEventListener('resize', onResize)
     return () => {
       window.removeEventListener('resize', onResize)
       chart.dispose()
+      chartRef.current = null
+    }
+  }, [])
+
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.setOption(option, true)
     }
   }, [option])
 

@@ -33,19 +33,28 @@ export function fetchQuestion(
   questionId: string,
   filters: FilterState,
   table: TableState,
+  supportedFilters?: string[],
 ): Promise<QuestionPayload> {
-  const query = buildQuery({
-    anos: filters.anos,
-    eixos: filters.eixos,
-    partidos: filters.partidos,
-    ufs: filters.ufs,
-    deputados: filters.deputados,
+  const queryParams: Record<string, string | number | undefined | string[]> = {
     search: filters.search,
     sort_by: table.sortBy,
     sort_dir: table.sortDir,
     page: table.page,
     page_size: table.pageSize,
-  })
+  }
+
+  const isEnabled = (filterName: string) => {
+    if (!supportedFilters || supportedFilters.length === 0) return true
+    return supportedFilters.includes(filterName)
+  }
+
+  if (isEnabled('anos')) queryParams.anos = filters.anos
+  if (isEnabled('eixos')) queryParams.eixos = filters.eixos
+  if (isEnabled('partidos')) queryParams.partidos = filters.partidos
+  if (isEnabled('ufs')) queryParams.ufs = filters.ufs
+  if (isEnabled('deputados')) queryParams.deputados = filters.deputados
+
+  const query = buildQuery(queryParams)
   return fetchJson<QuestionPayload>(`${API_BASE}/api/questions/${questionId}?${query}`)
 }
 

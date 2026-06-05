@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import time
 from typing import Any
@@ -242,11 +243,11 @@ class DashboardService:
 
     def _search_repo_for_filename(self, filename: str) -> list[Path]:
         matches: list[Path] = []
-        for candidate in self.repo_root.rglob(filename):
-            if any(part in _EXCLUDED_DIRS for part in candidate.parts):
-                continue
-            if candidate.is_file():
-                matches.append(candidate.resolve())
+        for root, dirs, files in os.walk(self.repo_root):
+            # Prune excluded directories in-place to avoid entering them
+            dirs[:] = [d for d in dirs if d not in _EXCLUDED_DIRS]
+            if filename in files:
+                matches.append((Path(root) / filename).resolve())
 
         def sort_key(path: Path) -> tuple[int, int, str]:
             parts = path.parts

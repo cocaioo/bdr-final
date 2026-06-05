@@ -65,7 +65,7 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
     let mounted = true
     setLoading(true)
     setError(null)
-    fetchQuestion(questionMeta.id, filters, tableState)
+    fetchQuestion(questionMeta.id, filters, tableState, questionMeta.supported_filters)
       .then((result) => {
         if (!mounted) return
         setPayload(result)
