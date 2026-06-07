@@ -152,11 +152,189 @@ class Q8Adapter(QuestionAdapter):
 
 
 class Q9Adapter(QuestionAdapter):
-    """Vies ideologico e partidario."""
+    """Vies ideologico e partidario.
+
+    Tabelas produzidas pelo SQL (3 secoes):
+      - Q9.1 Catalogo:        ideologia | partidos | qtd_partidos   (resumo agrupado)
+      - Q9.1 Lista completa:  sigla_partido | ideologia              (tabela principal → sankey)
+      - Q9.2 Correlacao:      ano_dados | id_votacao | titulo | ideologia | pct_sim  (complemento)
+      - Q9.3 Voto individual: ano_dados | id_votacao | titulo | id_deputado | ... | aderiu_orientacao
+    """
+
+    def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
+        """Sankey ideologia → partido a partir da tabela lista completa (Q9.1)."""
+        links: dict[tuple[str, str], int] = {}
+        nodes: set[str] = set()
+        for row in rows:
+            ideologia = str(row.get("ideologia") or "nao classificado").strip()
+            partido = str(row.get("sigla_partido") or "Sem partido").strip()
+            if not ideologia or not partido:
+                continue
+            nodes.add(ideologia)
+            nodes.add(partido)
+            key = (ideologia, partido)
+            links[key] = links.get(key, 0) + 1
+
+        if not nodes:
+            return ChartSpec(
+                type="sankey",
+                title="Sem dados",
+                description="Nao ha dados suficientes para montar o grafico.",
+            )
+
+        return ChartSpec(
+            type="sankey",
+            title=self.context.question.title,
+            description=self.context.question.description,
+            series=[
+                {
+                    "nodes": [{"name": name} for name in sorted(nodes)],
+                    "links": [
+                        {"source": source, "target": target, "value": value}
+                        for (source, target), value in links.items()
+                    ],
+                }
+            ],
+            options={},
+        )
+
+    def _build_complements(self, state: FilterState) -> list[TableSpec]:
+        """Expoe Q9.2 (correlacao) e Q9.3 (voto individual) como tabelas complementares."""
+        specs: list[TableSpec] = []
+        # Q9.2 — pct de Sim por campo ideologico
+        q92 = _find_table_by_hint(self.complement_tables, "correlacao")
+        # Q9.3 — voto individual
+        q93 = _find_table_by_hint(self.complement_tables, "voto individual")
+
+        for table in [q92, q93]:
+            if table is None:
+                continue
+            filtered = FilterEngine.apply_filters(
+                table.rows,
+                state,
+                self.context.question.supported_filters,
+            )
+            sorted_rows = FilterEngine.apply_sort(filtered, state.sort_by, state.sort_dir)
+            page_size = min(state.page_size, 200)
+            paged = FilterEngine.apply_pagination(sorted_rows, 1, page_size)
+            specs.append(
+                self._build_table_spec(
+                    title=table.title,
+                    columns=table.columns,
+                    rows=paged,
+                    total=len(sorted_rows),
+                    state=FilterState(
+                        anos=state.anos,
+                        eixos=state.eixos,
+                        partidos=state.partidos,
+                        ufs=state.ufs,
+                        deputados=state.deputados,
+                        escolaridade=state.escolaridade,
+                        search=state.search,
+                        sort_by=state.sort_by,
+                        sort_dir=state.sort_dir,
+                        page=1,
+                        page_size=page_size,
+                    ),
+                )
+            )
+        return specs
 
 
 class Q10Adapter(QuestionAdapter):
-    """Alinhamento interno de partidos."""
+    """Alinhamento interno de partidos.
+
+    Tabelas produzidas pelo SQL (3 secoes):
+      - Ranking consolidado:    posicao | sigla_partido | ideologia | pct_alinhamento  (principal)
+      - Alinhamento por ano:    ano_dados | sigla_partido | ideologia | pct_alinhamento (complemento)
+      - Disciplina individual:  sigla_partido | id_deputado | nome | pct_disciplina_individual (complemento)
+    """
+
+    def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
+        """Grafico de barras verticais com ranking de alinhamento consolidado."""
+        if not rows:
+            return ChartSpec(
+                type="bar_vertical",
+                title="Sem dados",
+                description="Nao ha dados suficientes para montar o grafico.",
+            )
+
+        # Ordena por pct_alinhamento decrescente e usa todos os partidos (sem limite de 30)
+        sorted_rows = sorted(
+            rows,
+            key=lambda r: float(r.get("pct_alinhamento", 0) or 0),
+            reverse=True,
+        )
+
+        categories = [str(row.get("sigla_partido", "")) for row in sorted_rows]
+        pct_values = [float(row.get("pct_alinhamento", 0) or 0) for row in sorted_rows]
+
+        return ChartSpec(
+            type="bar_vertical",
+            title=self.context.question.title,
+            description=self.context.question.description,
+            x_field="sigla_partido",
+            y_fields=["pct_alinhamento"],
+            categories=categories,
+            series=[
+                {
+                    "name": "% Alinhamento",
+                    "data": pct_values,
+                }
+            ],
+            options={"orientation": "vertical", "y_max": 100},
+        )
+
+    def _build_complements(self, state: FilterState) -> list[TableSpec]:
+        """Expoe alinhamento por ano e disciplina individual como tabelas complementares."""
+        specs: list[TableSpec] = []
+        # Alinhamento por ano
+        por_ano = _find_table_by_hint(self.complement_tables, "por ano")
+        # Disciplina individual
+        individual = _find_table_by_hint(self.complement_tables, "disciplina individual")
+
+        for table in [por_ano, individual]:
+            if table is None:
+                continue
+            filtered = FilterEngine.apply_filters(
+                table.rows,
+                state,
+                self.context.question.supported_filters,
+            )
+            sorted_rows = FilterEngine.apply_sort(filtered, state.sort_by, state.sort_dir)
+            page_size = min(state.page_size, 200)
+            paged = FilterEngine.apply_pagination(sorted_rows, 1, page_size)
+            specs.append(
+                self._build_table_spec(
+                    title=table.title,
+                    columns=table.columns,
+                    rows=paged,
+                    total=len(sorted_rows),
+                    state=FilterState(
+                        anos=state.anos,
+                        eixos=state.eixos,
+                        partidos=state.partidos,
+                        ufs=state.ufs,
+                        deputados=state.deputados,
+                        escolaridade=state.escolaridade,
+                        search=state.search,
+                        sort_by=state.sort_by,
+                        sort_dir=state.sort_dir,
+                        page=1,
+                        page_size=page_size,
+                    ),
+                )
+            )
+        return specs
+
+
+def _find_table_by_hint(tables: list, hint: str):
+    """Retorna a primeira tabela cujo titulo contenha o hint (case-insensitive)."""
+    hint_lower = hint.lower()
+    for table in tables:
+        if hint_lower in table.title.lower():
+            return table
+    return None
 
 
 class Q11Adapter(QuestionAdapter):
