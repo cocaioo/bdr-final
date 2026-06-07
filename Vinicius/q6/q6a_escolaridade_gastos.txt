@@ -1,0 +1,19 @@
+Q6A - escolaridade x gastos
+Tabela principal - media geral de gastos por escolaridade
+           escolaridade | qtd_registros_deputado_ano | qtd_deputados | media_gasto
+------------------------+----------------------------+---------------+------------
+  Secundário Incompleto |                          1 |             1 |   511089.19
+             Secundário |                          7 |             2 |   427561.46
+   Doutorado Incompleto |                         25 |             7 |   378211.57
+    Primário Incompleto |                          4 |             1 |   376930.52
+               Superior |                       1273 |           352 |   362308.40
+          Pós-Graduação |                        318 |            83 |   361297.94
+     Ensino Fundamental |                         44 |            12 |   354316.95
+           Ensino Médio |                        104 |            28 |   344686.04
+    Superior Incompleto |                        163 |            44 |   344620.80
+Ensino Médio Incompleto |                          8 |             2 |   343966.86
+               Mestrado |                        164 |            45 |   341500.15
+              Doutorado |                         62 |            18 |   319252.73
+    Mestrado Incompleto |                         20 |             5 |   318514.63
+          Nao informado |                         74 |            40 |   211905.65
+(14 rows)
