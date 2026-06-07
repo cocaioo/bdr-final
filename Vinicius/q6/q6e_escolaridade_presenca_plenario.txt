@@ -1,0 +1,19 @@
+Q6E - escolaridade x presenca no plenario
+Tabela principal - media geral de presenca no plenario por escolaridade
+           escolaridade | qtd_registros_deputado_ano | qtd_deputados | media_presenca_plenario
+------------------------+----------------------------+---------------+------------------------
+    Mestrado Incompleto |                         20 |             5 |                  201.15
+   Doutorado Incompleto |                         25 |             7 |                  166.00
+          Pós-Graduação |                        318 |            83 |                  161.28
+              Doutorado |                         62 |            18 |                  153.18
+               Superior |                       1273 |           352 |                  144.88
+    Superior Incompleto |                        163 |            44 |                  140.28
+               Mestrado |                        164 |            45 |                  138.11
+           Ensino Médio |                        104 |            28 |                  132.68
+             Secundário |                          7 |             2 |                  126.00
+    Primário Incompleto |                          4 |             1 |                  125.25
+     Ensino Fundamental |                         44 |            12 |                  115.64
+Ensino Médio Incompleto |                          8 |             2 |                  110.25
+  Secundário Incompleto |                          1 |             1 |                   99.00
+          Nao informado |                         74 |            40 |                   87.88
+(14 rows)

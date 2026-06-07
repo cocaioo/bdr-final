@@ -1,0 +1,19 @@
+Q6D - escolaridade x presenca em eventos
+Tabela principal - media geral de presenca em eventos por escolaridade
+           escolaridade | qtd_registros_deputado_ano | qtd_deputados | media_presenca_eventos
+------------------------+----------------------------+---------------+-----------------------
+    Mestrado Incompleto |                         20 |             5 |                 203.25
+   Doutorado Incompleto |                         25 |             7 |                 168.40
+          Pós-Graduação |                        318 |            83 |                 162.56
+              Doutorado |                         62 |            18 |                 156.08
+               Superior |                       1273 |           352 |                 146.18
+    Superior Incompleto |                        163 |            44 |                 141.67
+               Mestrado |                        164 |            45 |                 139.67
+           Ensino Médio |                        104 |            28 |                 133.53
+    Primário Incompleto |                          4 |             1 |                 126.50
+             Secundário |                          7 |             2 |                 126.29
+     Ensino Fundamental |                         44 |            12 |                 116.52
+Ensino Médio Incompleto |                          8 |             2 |                 110.25
+  Secundário Incompleto |                          1 |             1 |                  99.00
+          Nao informado |                         74 |            40 |                  88.57
+(14 rows)

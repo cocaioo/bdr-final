@@ -1,0 +1,17 @@
+Q6B - escolaridade x fidelidade partidaria
+Tabela principal - media geral de fidelidade partidaria por escolaridade
+           escolaridade | qtd_registros_deputado_ano | qtd_registros_com_fidelidade | qtd_deputados | media_fidelidade
+------------------------+----------------------------+------------------------------+---------------+-----------------
+   Doutorado Incompleto |                         25 |                           10 |             7 |            95.28
+    Mestrado Incompleto |                         20 |                            4 |             5 |            95.00
+             Secundário |                          7 |                            3 |             2 |            94.61
+Ensino Médio Incompleto |                          8 |                            5 |             2 |            93.46
+          Nao informado |                         74 |                           22 |            40 |            93.26
+              Doutorado |                         62 |                           22 |            18 |            92.44
+               Superior |                       1273 |                          506 |           352 |            91.60
+               Mestrado |                        164 |                           57 |            45 |            90.71
+    Superior Incompleto |                        163 |                           59 |            44 |            90.32
+           Ensino Médio |                        104 |                           31 |            28 |            89.88
+          Pós-Graduação |                        318 |                          120 |            83 |            89.86
+     Ensino Fundamental |                         44 |                           15 |            12 |            83.74
+(12 rows)
