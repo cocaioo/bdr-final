@@ -15,10 +15,13 @@ def main():
         except Exception as e:
             print(f"Error removing {txt_file}: {e}")
         
-    # 2. Run Q1 and Q4 in Postgres container
+    # 2. Run SQL queries in Postgres container
     queries = {
         "q1": Path("Caio/consultas/q1.sql"),
         "q4": Path("Caio/consultas/q4.sql"),
+        "q9": Path("JF/consultas/q9.sql"),
+        "q10": Path("JF/consultas/q10.sql"),
+        "q11": Path("JF/consultas/q11.sql"),
     }
     
     for name, sql_path in queries.items():
@@ -79,6 +82,18 @@ def main():
         "q4_escolaridade_complementar.txt": [
             Path("respostas/q4_escolaridade_complementar.txt"),
             Path("Caio/q4/q4_escolaridade_complementar.txt")
+        ],
+        "q9_vies_deputado.txt": [
+            Path("respostas/q9_vies_deputado.txt"),
+            Path("JF/q9/q9_vies_deputado.txt")
+        ],
+        "q10_alinhamento_partidos.txt": [
+            Path("respostas/q10_alinhamento_partidos.txt"),
+            Path("JF/q10/q10_alinhamento_partidos.txt")
+        ],
+        "q11_ranking_partidos.txt": [
+            Path("respostas/q11_ranking_partidos.txt"),
+            Path("JF/q11/q11_ranking_partidos.txt")
         ],
     }
     

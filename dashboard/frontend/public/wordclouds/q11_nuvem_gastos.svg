@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<style>text{font-family:'Arial';font-weight:normal;font-style:normal;}</style>
+<rect width="100%" height="100%" style="fill:white"></rect>
+<text transform="translate(542,204)" font-size="160" style="fill:#E76F51">PL</text>
+<text transform="translate(155,150)" font-size="135" style="fill:#2A9D8F">PT</text>
+<text transform="translate(218,472)" font-size="122" style="fill:#E9C46A">UNIAO</text>
+<text transform="translate(850,534)" font-size="112" style="fill:#E9C46A">PSD</text>
+<text transform="translate(1122,316) rotate(-90)" font-size="112" style="fill:#E76F51">PP</text>
+<text transform="translate(432,706)" font-size="105" style="fill:#E76F51">REPUBLICANOS</text>
+<text transform="translate(114,559)" font-size="98" style="fill:#E9C46A">MDB</text>
+<text transform="translate(1242,282) rotate(-90)" font-size="79" style="fill:#E9C46A">PODE</text>
+<text transform="translate(835,611)" font-size="64" style="fill:#2A9D8F">PSB</text>
+<text transform="translate(734,405)" font-size="61" style="fill:#E9C46A">PSDB</text>
+<text transform="translate(243,220)" font-size="55" style="fill:#2A9D8F">PSOL</text>
+<text transform="translate(538,542)" font-size="51" style="fill:#2A9D8F">PDT</text>
+<text transform="translate(955,265) rotate(-90)" font-size="46" style="fill:#2A9D8F">PCDOB</text>
+<text transform="translate(774,465)" font-size="37" style="fill:#2A9D8F">PV</text>
+<text transform="translate(949,43)" font-size="32" style="fill:#E9C46A">AVANTE</text>
+<text transform="translate(360,30)" font-size="30" style="fill:#E9C46A">SOLIDARIEDADE</text>
+<text transform="translate(346,346)" font-size="27" style="fill:#E76F51">NOVO</text>
+<text transform="translate(573,265)" font-size="27" style="fill:#E9C46A">PRD</text>
+<text transform="translate(155,216)" font-size="23" style="fill:#2A9D8F">REDE</text>
+<text transform="translate(326,130)" font-size="20" style="fill:#E9C46A">CIDADANIA</text>
+</svg>
