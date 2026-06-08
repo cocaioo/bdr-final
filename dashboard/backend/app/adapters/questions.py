@@ -40,6 +40,52 @@ class Q2Adapter(QuestionAdapter):
 class Q3Adapter(QuestionAdapter):
     """Votos por eixo."""
 
+    def build_payload(self, state: FilterState) -> QuestionPayload:
+        payload = super().build_payload(state)
+        
+        main_rows = self.main_table.rows if self.main_table else []
+        if not main_rows or "votos_total" not in main_rows[0]:
+            return payload
+
+        filtered = FilterEngine.apply_filters(
+            main_rows,
+            state,
+            self.context.question.supported_filters,
+        )
+        
+        total_sim = sum(int(row.get("votos_sim") or 0) for row in filtered)
+        total_nao = sum(int(row.get("votos_nao") or 0) for row in filtered)
+        total_abst = sum(int(row.get("abstencoes") or 0) for row in filtered)
+        total_votos = sum(int(row.get("votos_total") or 0) for row in filtered)
+        
+        payload.summary_cards = [
+            SummaryCard(
+                id="total_votos",
+                label="Total de votos",
+                value=f"{total_votos:,}".replace(",", "."),
+                unit="votos",
+            ),
+            SummaryCard(
+                id="votos_sim",
+                label="Votos Sim",
+                value=f"{total_sim:,}".replace(",", "."),
+                unit="votos",
+            ),
+            SummaryCard(
+                id="votos_nao",
+                label="Votos Não",
+                value=f"{total_nao:,}".replace(",", "."),
+                unit="votos",
+            ),
+            SummaryCard(
+                id="abstencoes",
+                label="Abstenções",
+                value=f"{total_abst:,}".replace(",", "."),
+                unit="votos",
+            ),
+        ]
+        return payload
+
 
 class Q4Adapter(QuestionAdapter):
     """Escolaridade de deputados ativos."""
