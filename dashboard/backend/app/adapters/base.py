@@ -4,6 +4,9 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Iterable
 
+from pathlib import Path
+
+from ..config import REPO_ROOT
 from ..filter_engine import FilterEngine, FilterState
 from ..models import (
     ChartSpec,
@@ -26,6 +29,7 @@ class AdapterContext:
     sql_text: str
     sql_path: str
     dataset_version: str
+    repo_root: Path = REPO_ROOT
 
 
 class QuestionAdapter:

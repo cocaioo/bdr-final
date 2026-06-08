@@ -21,7 +21,7 @@ ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_t
 TABLE_TEXT_Q2 = """Tabela principal
 ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_total
 ----------+------------+---------------+----------+-------------+-----------+------------
-2024      | Social     | PL            | MG       | 3           | Cid Nascimento | 30
+2023      | Social     | PL            | MG       | 3           | Cid Nascimento | 30
 (1 rows)
 """
 
@@ -241,7 +241,7 @@ def test_question_endpoint_uses_new_paths_and_member_fallback(tmp_path: Path) ->
 def test_question_endpoint_ignores_unsupported_filters(tmp_path: Path) -> None:
     client = _client_for(_build_service(tmp_path))
 
-    response = client.get("/api/questions/q2?partidos=PT&ufs=SP&deputados=1&anos=2024&page_size=10")
+    response = client.get("/api/questions/q2?partidos=PT&ufs=SP&deputados=1&anos=2023&page_size=10")
     assert response.status_code == 200
     payload = response.json()
     assert payload["table_spec"]["total"] == 1
@@ -361,4 +361,107 @@ escolaridade | id_deputado | nome
     assert len(filtered_payload["complement_tables"][0]["rows"]) == 1
     assert filtered_payload["complement_tables"][0]["rows"][0]["nome"] == "Bruno Lima"
     assert filtered_payload["summary_cards"][0]["value"] == "1"
+
+
+def test_q4_charts_and_party_filtering(tmp_path: Path) -> None:
+    root = tmp_path
+    responses_dir = root / "respostas"
+    sql_dir = root / "sql"
+    
+    # 1. Mock q1_gastos_deputados.txt to contain party mappings for our test deputies
+    q1_content = """Tabela principal
+ id_deputado | nome | sigla_uf | sigla_partido | gasto_total
+-------------+------+----------+---------------+-------------
+ 1           | Ana Silva  | SP       | PT            | 10
+ 2           | Bruno Lima | RJ       | PL            | 20
+(2 rows)
+"""
+    _write_response_file(responses_dir / "q1_gastos_deputados.txt", q1_content)
+    
+    main_content = """Tabela principal
+escolaridade | qtd_deputados
+-------------+--------------
+ Superior    | 1
+ Mestrado    | 1
+(2 rows)
+"""
+    comp_content = """Tabela complementar
+escolaridade | id_deputado | nome
+-------------+-------------+-----
+ Superior    | 1           | Ana Silva
+ Mestrado    | 2           | Bruno Lima
+(2 rows)
+"""
+    _write_response_file(root / "Caio" / "q4" / "q4_escolaridade.txt", main_content)
+    _write_response_file(root / "Caio" / "q4" / "q4_escolaridade_complementar.txt", comp_content)
+    _write_sql_file(sql_dir / "q4.sql")
+    
+    registry = {
+        "legend": {},
+        "questions": [
+            {
+                "id": "q4",
+                "title": "Escolaridade",
+                "description": "Escolaridade da 57 legislatura",
+                "response_files": ["Caio/q4/q4_escolaridade.txt", "Caio/q4/q4_escolaridade_complementar.txt"],
+                "sql_file": "q4.sql",
+                "chart_type": "bar_vertical",
+                "supported_filters": ["partidos", "escolaridade"],
+                "expected_columns": ["escolaridade", "qtd_deputados"],
+                "main_table_contains": "",
+                "summary_table_contains": "",
+                "explanation": "Teste de Q4Adapter",
+                "chart": {"x_field": "escolaridade", "y_fields": ["qtd_deputados"]},
+            }
+        ]
+    }
+    registry_path = root / "question_registry.json"
+    registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2), encoding="utf-8")
+    
+    from app.adapters.questions import Q4Adapter
+    import app.adapters.factory as factory_module
+    factory_module.ADAPTERS_BY_ID["q4"] = Q4Adapter
+    
+    service = DashboardService(
+        registry_path=registry_path,
+        responses_dir=responses_dir,
+        sql_dir=sql_dir,
+        repo_root=root,
+    )
+    client = _client_for(service)
+    
+    # Check default request (no filters)
+    response = client.get("/api/questions/q4")
+    assert response.status_code == 200
+    payload = response.json()
+    
+    # Gráfico 1 (geral) - categories/series
+    chart = payload["chart_spec"]
+    assert chart["title"] == "Distribuição Geral de Escolaridade"
+    assert len(chart["categories"]) == 2  # Superior, Mestrado
+    
+    # Gráfico 2 (por partido)
+    second_chart = chart["options"]["second_chart"]
+    assert second_chart["title"] == "Distribuição de Escolaridade por Partido"
+    # both parties should be visible since there are no filters
+    assert set(second_chart["categories"]) == {"PL", "PT"}
+    
+    # Now check request with partidos=PT filter
+    response_pt = client.get("/api/questions/q4?partidos=PT")
+    assert response_pt.status_code == 200
+    payload_pt = response_pt.json()
+    
+    # Gráfico 1 (geral) MUST remain unfiltered (Design A)
+    chart_pt = payload_pt["chart_spec"]
+    assert len(chart_pt["categories"]) == 2  # both levels still present
+    
+    # Gráfico 2 (por partido) MUST still exhibit all parties (Opção 1)
+    second_chart_pt = chart_pt["options"]["second_chart"]
+    assert set(second_chart_pt["categories"]) == {"PL", "PT"}
+    
+    # Tabela principal MUST be filtered by party (Only Ana Silva who is PT has Superior)
+    table_rows_pt = payload_pt["table_spec"]["rows"]
+    assert len(table_rows_pt) == 1
+    assert table_rows_pt[0]["escolaridade"] == "Superior"
+
 

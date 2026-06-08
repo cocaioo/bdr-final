@@ -13,6 +13,95 @@ class Q1Adapter(QuestionAdapter):
 class Q2Adapter(QuestionAdapter):
     """Eixos e nuvem de palavras."""
 
+    def build_payload(self, state: FilterState) -> QuestionPayload:
+        main_rows = self.main_table.rows if self.main_table else []
+        main_rows = [r for r in main_rows if r.get("ano_dados") in (2023, 2026)]
+
+        if state.anos:
+            allowed_years = {int(y) for y in state.anos if str(y).isdigit()}
+            filtered_by_year = [r for r in main_rows if r.get("ano_dados") in allowed_years]
+        else:
+            aggregated: dict[tuple, dict[str, Any]] = {}
+            for r in main_rows:
+                key = (
+                    r.get("id_deputado"),
+                    r.get("nome"),
+                    r.get("nome_civil"),
+                    r.get("sigla_partido"),
+                    r.get("sigla_uf"),
+                    r.get("tema"),
+                )
+                if key not in aggregated:
+                    aggregated[key] = {
+                        "id_deputado": key[0],
+                        "nome": key[1],
+                        "nome_civil": key[2],
+                        "sigla_partido": key[3],
+                        "sigla_uf": key[4],
+                        "tema": key[5],
+                        "qtd_proposicoes": 0,
+                        "proposicoes_aprovadas": 0,
+                    }
+                aggregated[key]["qtd_proposicoes"] += r.get("qtd_proposicoes") or 0
+                aggregated[key]["proposicoes_aprovadas"] += r.get("proposicoes_aprovadas") or 0
+            filtered_by_year = list(aggregated.values())
+
+        supported_other = [f for f in self.context.question.supported_filters if f != "anos"]
+        filtered_rows = FilterEngine.apply_filters(filtered_by_year, state, supported_other)
+
+        sorted_rows = FilterEngine.apply_sort(filtered_rows, state.sort_by or "qtd_proposicoes", state.sort_dir)
+        paged_rows = FilterEngine.apply_pagination(sorted_rows, state.page, state.page_size)
+
+        chart_spec = self.build_chart_spec(filtered_rows)
+        table_spec = self._build_table_spec(
+            title=self.main_table.title if self.main_table else "Tabela principal",
+            columns=self.main_table.columns if self.main_table else [],
+            rows=paged_rows,
+            total=len(sorted_rows),
+            state=state,
+        )
+
+        summary_cards = self._build_summary_cards()
+        complement_specs = self._build_complements(state)
+
+        has_data = table_spec.total > 0
+        empty = EmptyState(
+            is_empty=not has_data,
+            message="Sem dados para os filtros selecionados." if not has_data else "",
+        )
+
+        return QuestionPayload(
+            question_id=self.context.question.id,
+            title=self.context.question.title,
+            description=self.context.question.description,
+            filters_supported=self.context.question.supported_filters,
+            filters_applied={
+                "anos": state.anos,
+                "eixos": state.eixos,
+                "partidos": state.partidos,
+                "ufs": state.ufs,
+                "deputados": state.deputados,
+                "search": state.search,
+                "sort_by": state.sort_by,
+                "sort_dir": state.sort_dir,
+                "page": state.page,
+                "page_size": state.page_size,
+            },
+            summary_cards=summary_cards,
+            chart_spec=chart_spec,
+            table_spec=table_spec,
+            complement_tables=complement_specs,
+            query_panel=QueryPanel(
+                sql_path=self.context.sql_path,
+                sql_text=self.context.sql_text,
+                explanation=self.context.question.explanation,
+            ),
+            warnings=self.warnings,
+            empty_state=empty,
+            dataset_version=self.context.dataset_version,
+            generated_at=datetime.now(timezone.utc).isoformat(),
+        )
+
     def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
         images = [
             {
@@ -20,7 +109,7 @@ class Q2Adapter(QuestionAdapter):
                 "src": f"/wordclouds/q2_nuvem_palavras_{year}.svg",
                 "alt": f"Nuvem de palavras dos eixos tematicos em {year}",
             }
-            for year in (2023, 2024, 2025, 2026)
+            for year in (2023, 2026)
         ]
         return ChartSpec(
             type="wordcloud_images",
@@ -91,34 +180,121 @@ class Q4Adapter(QuestionAdapter):
     """Escolaridade de deputados ativos."""
 
     def build_payload(self, state: FilterState) -> QuestionPayload:
-        # Para a Q4, as linhas principais (tabela principal e gráfico) NÃO devem ser filtradas por escolaridade.
-        # Isso mantém a tabela principal e o gráfico exibindo a distribuição completa.
-        main_rows = self.main_table.rows if self.main_table else []
+        # 1. Carrega os deputados a partir da tabela complementar original (q4_escolaridade_complementar.txt)
+        comp_table = self.complement_tables[0] if self.complement_tables else None
+        comp_rows = comp_table.rows if comp_table else []
+
+        # 2. Carrega o mapeamento de deputado -> partido/UF a partir da Q1
+        deputy_to_party = {}
+        deputy_to_uf = {}
+        
+        q1_file = self.context.repo_root / "respostas" / "q1_gastos_deputados.txt"
+        if not q1_file.exists():
+            q1_file = self.context.repo_root / "Caio" / "q1" / "q1_gastos_deputados.txt"
+            
+        if q1_file.exists():
+            try:
+                from ..parser import parse_psql_file
+                q1_doc = parse_psql_file(q1_file)
+                for r in q1_doc.tables[0].rows:
+                    dep_id = r.get("id_deputado")
+                    party = r.get("sigla_partido")
+                    uf = r.get("sigla_uf")
+                    if dep_id:
+                        dep_id_int = int(dep_id)
+                        if party:
+                            deputy_to_party[dep_id_int] = str(party).strip()
+                        if uf:
+                            deputy_to_uf[dep_id_int] = str(uf).strip()
+            except Exception:
+                pass
+
+        # Enrich comp_rows in place so that _build_complements and FilterEngine can find the attributes
+        from ..party_catalog import normalize_party
+        for r in comp_rows:
+            dep_id = r.get("id_deputado")
+            dep_id_int = int(dep_id) if dep_id else -1
+            party_raw = deputy_to_party.get(dep_id_int, "Nao informado")
+            party_normalized = normalize_party(party_raw)
+            if not party_normalized or party_normalized == "NAOINFORMADO":
+                party_normalized = "Nao informado"
+            r["sigla_partido"] = party_normalized
+            r["sigla_uf"] = deputy_to_uf.get(dep_id_int, "Nao informado")
+
+        deputy_records = comp_rows
+
+        # 4. Aplica os filtros nos registros de deputados de acordo com a responsabilidade de cada componente
+        # Gráfico 1 (Geral): Completamente sem filtros (Design A)
+        records_for_chart1 = deputy_records
+        
+        # Gráfico 2 (Por Partido): Filtrado por escolaridade, mas NÃO por partidos (Opção 1)
+        chart2_supported = [f for f in self.context.question.supported_filters if f != "partidos"]
+        records_for_chart2 = FilterEngine.apply_filters(
+            deputy_records,
+            state,
+            chart2_supported,
+        )
+
+        # Tabela principal: Filtrada por partidos, mas NÃO por escolaridade
         main_supported_filters = [f for f in self.context.question.supported_filters if f != "escolaridade"]
-        filtered_rows = FilterEngine.apply_filters(
-            main_rows,
+        filtered_records_for_main = FilterEngine.apply_filters(
+            deputy_records,
             state,
             main_supported_filters,
         )
-        sorted_rows = FilterEngine.apply_sort(filtered_rows, state.sort_by, state.sort_dir)
+
+        # 5. Agrupa por escolaridade para montar as linhas da tabela principal (escolaridade | qtd_deputados)
+        edu_counts = {}
+        for r in filtered_records_for_main:
+            edu = r["escolaridade"]
+            edu_counts[edu] = edu_counts.get(edu, 0) + 1
+
+        main_rows = []
+        for edu, count in edu_counts.items():
+            main_rows.append({
+                "escolaridade": edu,
+                "qtd_deputados": count
+            })
+        
+        # Ordena a tabela principal como a original
+        main_rows.sort(key=lambda x: (-x["qtd_deputados"], x["escolaridade"]))
+
+        # Paginação e ordenação
+        sorted_rows = FilterEngine.apply_sort(main_rows, state.sort_by or "qtd_deputados", state.sort_dir)
         paged_rows = FilterEngine.apply_pagination(sorted_rows, state.page, state.page_size)
 
-        # Gera cards de resumo dinâmicos baseados no total de deputados na tabela complementar filtrada
-        summary_cards = self._build_q4_summary_cards(state)
-        
-        chart_spec = self.build_chart_spec(filtered_rows)
+        # 6. Card de resumo e complementos: Contando total de deputados que batem com todos os filtros (incluindo escolaridade)
+        filtered_records_all = FilterEngine.apply_filters(
+            deputy_records,
+            state,
+            self.context.question.supported_filters,
+        )
+        total_deputados = len(filtered_records_all)
+        summary_cards = [
+            SummaryCard(
+                id="total_deputados",
+                label="Total de deputados",
+                value=str(total_deputados),
+                unit="deputados",
+            )
+        ]
+
+        # 7. Constrói os gráficos (dois gráficos: um simples e outro empilhado por partido)
+        chart_spec = self.build_chart_spec(records_for_chart1, state, chart2_rows=records_for_chart2)
+
+        # Tabela principal com as colunas originais (escolaridade | qtd_deputados)
         table_spec = self._build_table_spec(
-            title=self.main_table.title if self.main_table else "Tabela principal",
-            columns=self.main_table.columns if self.main_table else [],
+            title="Distribuição de Escolaridade",
+            columns=["escolaridade", "qtd_deputados"],
             rows=paged_rows,
             total=len(sorted_rows),
             state=state,
         )
-        
-        # A tabela complementar é filtrada normalmente (incluindo o filtro de escolaridade)
+
+        # Tabela complementar para compatibilidade com a API
         complement_specs = self._build_complements(state)
 
-        has_data = table_spec.total > 0 or any(spec.total > 0 for spec in complement_specs)
+        has_data = table_spec.total > 0
         empty = EmptyState(
             is_empty=not has_data,
             message="Sem dados para os filtros selecionados." if not has_data else "",
@@ -147,7 +323,7 @@ class Q4Adapter(QuestionAdapter):
             summary_cards=summary_cards,
             chart_spec=chart_spec,
             table_spec=table_spec,
-            complement_tables=complement_specs,
+            complement_tables=complement_specs, # Retorna para compatibilidade de API e testes
             query_panel=QueryPanel(
                 sql_path=self.context.sql_path,
                 sql_text=self.context.sql_text,
@@ -159,26 +335,87 @@ class Q4Adapter(QuestionAdapter):
             generated_at=datetime.now(timezone.utc).isoformat(),
         )
 
-    def _build_q4_summary_cards(self, state: FilterState) -> list[SummaryCard]:
-        if not self.complement_tables:
-            return []
-        
-        comp_table = self.complement_tables[0]
-        filtered = FilterEngine.apply_filters(
-            comp_table.rows,
-            state,
-            self.context.question.supported_filters,
-        )
-        total_deputados = len(filtered)
-        
-        return [
-            SummaryCard(
-                id="total_deputados",
-                label="Total de deputados",
-                value=str(total_deputados),
-                unit="deputados",
+    def build_chart_spec(
+        self,
+        rows: list[dict[str, Any]],
+        state: FilterState | None = None,
+        chart2_rows: list[dict[str, Any]] | None = None
+    ) -> ChartSpec:
+        if not rows:
+            return ChartSpec(
+                type="bar_vertical",
+                title="Sem dados",
+                description="Não há dados suficientes para montar o gráfico.",
             )
-        ]
+
+        # 1. Gráfico Principal (Distribuição Geral de Escolaridade)
+        edu_counts = {}
+        for r in rows:
+            edu = r["escolaridade"]
+            edu_counts[edu] = edu_counts.get(edu, 0) + 1
+
+        sorted_edu = sorted(list(edu_counts.keys()), key=lambda e: (-edu_counts[e], e))
+        categories_edu = sorted_edu
+        series_edu = [{
+            "name": "Qtd deputados",
+            "data": [edu_counts[e] for e in sorted_edu]
+        }]
+
+        main_chart = ChartSpec(
+            type="bar_vertical",
+            title="Distribuição Geral de Escolaridade",
+            description="Total de deputados por nível de instrução.",
+            x_field="escolaridade",
+            y_fields=["qtd_deputados"],
+            categories=categories_edu,
+            series=series_edu,
+            options={}
+        )
+
+        # 2. Segundo Gráfico (Gráfico Empilhado por Partido)
+        c2_rows = chart2_rows if chart2_rows is not None else rows
+        categories_party = sorted(list({str(row.get("sigla_partido", "")) for row in c2_rows if row.get("sigla_partido")}))
+        escolaridades = sorted(list({str(row.get("escolaridade", "")) for row in c2_rows if row.get("escolaridade")}))
+
+        # Filtra as séries do gráfico dinamicamente com base nos filtros ativos
+        if state and state.escolaridade:
+            selected_esc = {e.strip().lower() for e in state.escolaridade if e.strip()}
+            if selected_esc:
+                escolaridades = [e for e in escolaridades if e.strip().lower() in selected_esc]
+
+        series_party = []
+        for esc in escolaridades:
+            data = []
+            for party in categories_party:
+                val = sum(
+                    1 for r in c2_rows
+                    if str(r.get("sigla_partido", "")) == party
+                    and str(r.get("escolaridade", "")) == esc
+                )
+                data.append(val)
+            
+            if sum(data) > 0 or not state or not state.escolaridade:
+                series_party.append({
+                    "name": esc,
+                    "data": data,
+                    "stack": "total",
+                })
+
+        second_chart = ChartSpec(
+            type="stacked_bar",
+            title="Distribuição de Escolaridade por Partido",
+            description="Nível de instrução detalhado de cada partido.",
+            x_field="sigla_partido",
+            y_fields=["qtd_deputados"],
+            categories=categories_party,
+            series=series_party,
+            options={"orientation": "vertical"},
+        )
+
+        # Adiciona o segundo gráfico nas opções do primeiro
+        main_chart.options["second_chart"] = second_chart
+
+        return main_chart
 
 
 class Q5Adapter(QuestionAdapter):

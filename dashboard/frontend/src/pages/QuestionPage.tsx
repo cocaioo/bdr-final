@@ -223,45 +223,93 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
             />
           ) : null}
           {shouldShowChart ? (
-            <ChartPanel
-              spec={payload.chart_spec}
-              yearLabels={yearLegend}
-              activeFilters={filters}
-              onBarClick={
-                questionMeta.id.toLowerCase() === 'q4'
-                  ? (category) => {
-                      if (!onFiltersChange) return
-                      const current = filters.escolaridade || []
-                      const next = current.includes(category)
-                        ? current.filter((item) => item !== category)
-                        : [...current, category]
-                      onFiltersChange({
-                        ...filters,
-                        escolaridade: next,
-                      })
-                    }
-                  : undefined
-              }
-            />
+            <>
+              <ChartPanel
+                spec={payload.chart_spec}
+                yearLabels={yearLegend}
+                activeFilters={undefined}
+                onBarClick={undefined}
+              />
+              {payload.chart_spec.options?.second_chart && (
+                <ChartPanel
+                  spec={payload.chart_spec.options.second_chart as any}
+                  yearLabels={yearLegend}
+                  activeFilters={filters}
+                  onBarClick={
+                    questionMeta.id.toLowerCase() === 'q4'
+                      ? (category) => {
+                          if (!onFiltersChange) return
+                          const current = filters.partidos || []
+                          const next = current.includes(category)
+                            ? current.filter((item) => item !== category)
+                            : [...current, category]
+                          onFiltersChange({
+                            ...filters,
+                            partidos: next,
+                          })
+                        }
+                      : undefined
+                  }
+                />
+              )}
+            </>
           ) : null}
-          <DataTablePanel
-            table={mainTable}
-            state={tableStateView}
-            onChange={handleTableChange}
-            lockPageSize={isQ8}
-          />
+          {!isQ2 && (
+            <DataTablePanel
+              table={mainTable}
+              state={tableStateView}
+              onChange={handleTableChange}
+              lockPageSize={isQ8}
+            />
+          )}
+          {isQ2 && (
+            filters.eixos.length > 0 ? (
+              <section className="deputies-grid-section stagger-item">
+                <h2>Atuação no Eixo: {filters.eixos[0]}</h2>
+                <div className="deputies-card-grid" data-testid="deputies-cards-grid">
+                  {payload.table_spec.rows.map((row: any) => (
+                    <article className="deputy-card" key={`${row.id_deputado}-${row.tema}-${row.sigla_partido}-${row.ano_dados || ''}`} data-testid="deputy-card">
+                      <div className="deputy-card-header">
+                        <h3>{row.nome}</h3>
+                        <p className="deputy-civil-name">{row.nome_civil}</p>
+                        <span className="deputy-badge">
+                          {row.sigla_partido} / {row.sigla_uf}
+                        </span>
+                      </div>
+                      <div className="deputy-card-body">
+                        <div className="deputy-metric">
+                          <span className="metric-label">Proposições:</span>
+                          <span className="metric-value">{row.qtd_proposicoes}</span>
+                        </div>
+                        <div className="deputy-specialization">
+                          <span className="specialization-label">Principal Eixo:</span>
+                          <span className="specialization-value">{row.tema_mais_atuante_deputado}</span>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <div className="q2-empty-selection stagger-item">
+                <p>Selecione um tema na nuvem de palavras ou no painel de filtros para visualizar a atuação dos deputados.</p>
+              </div>
+            )
+          )}
         </>
       )}
 
-      {complementTables.map((table) => (
-        table.title.toLowerCase().includes('ranking global') ? (
-          <DataTablePanel
-            key={table.title}
-            table={table}
-            state={tableStateView}
-            onChange={handleTableChange}
-          />
-        ) : (
+      {complementTables
+        .filter((table) => !table.title.toLowerCase().includes('complementar'))
+        .map((table) => (
+          table.title.toLowerCase().includes('ranking global') ? (
+            <DataTablePanel
+              key={table.title}
+              table={table}
+              state={tableStateView}
+              onChange={handleTableChange}
+            />
+          ) : (
           <section key={table.title} className="complement-section stagger-item">
             <h2>{table.title}</h2>
             <div className="table-wrapper">

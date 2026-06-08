@@ -59,6 +59,7 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
   }
 
   if (spec.type === 'stacked_bar') {
+    const hasPartidoFilter = Boolean(activeFilters?.partidos && activeFilters.partidos.length > 0)
     return {
       tooltip: { trigger: 'axis' },
       legend: {},
@@ -69,7 +70,21 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
         type: 'bar',
         stack: 'total',
         name: String(entry.name ?? ''),
-        data: (entry.data as unknown[]) ?? [],
+        data: ((entry.data as unknown[]) ?? []).map((val, idx) => {
+          if (hasPartidoFilter) {
+            const category = spec.categories[idx]
+            const isSelected = activeFilters?.partidos?.includes(category)
+            return {
+              value: val,
+              itemStyle: {
+                opacity: isSelected ? 1.0 : 0.35,
+                borderWidth: isSelected ? 2 : 0,
+                borderColor: isSelected ? '#1E293B' : 'transparent',
+              }
+            }
+          }
+          return val
+        }),
       })),
     } as EChartsOption
   }
