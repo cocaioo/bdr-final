@@ -1,0 +1,642 @@
+Ranking global - todos os anos
+ id_deputado |                        nome                         | sigla_uf | sigla_partido | gasto_total 
+-------------+-----------------------------------------------------+----------+---------------+-------------
+       73486 | DARCI POMPEO DE MATTOS                              | RS       | PDT           |  2130784.95
+      220538 | JOSÉ FRANCISCO LOPES DE ALBUQUERQUE                 | RR       | REPUBLICANOS  |  2005136.28
+      160591 | VINICIUS DE AZEVEDO GURGEL                          | AP       | PL            |  1992801.19
+      224117 | GABRIEL MOTA E SILVA                                | RR       | UNIAO         |  1991150.28
+      220590 | ULYSSES FREITAS PEREIRA DE ARAÚJO                   | AC       | UNIAO         |  1984600.81
+      220536 | JOSÉ HAROLDO FIGUEIREDO CAMPOS                      | RR       | UNIAO         |  1959268.02
+      141459 | JOÃO DA SILVA MAIA                                  | RN       | PP            |  1958221.79
+      204360 | SILVIA CRISTINA AMANCIO CHAGAS                      | RO       | PP            |  1953608.83
+      220537 | MARIA HELENA TEIXEIRA LIMA                          | RR       | PSD           |  1947635.51
+      204426 | JOSÉ CARLOS VERAS DOS SANTOS                        | PE       | PT            |  1943489.67
+      204473 | ELIÉSER GIRÃO MONTEIRO FILHO                        | RN       | PL            |  1943274.43
+      220539 | STÉLIO DENER DE SOUZA CRUZ                          | RR       | UNIAO         |  1910414.03
+      220608 | CRISTIANE LOPES DA LUZ                              | RO       | PODE          |  1909531.25
+      220591 | ROZIMEIRE RIBEIRO ANDRADE                           | AC       | UNIAO         |  1904160.60
+      191923 | FLÁVIO RODRIGUES NOGUEIRA                           | PI       | PT            |  1899792.33
+      204479 | ANTONIO CARLOS NICOLETTI                            | RR       | PL            |  1898259.50
+       74090 | ÁTILA SIDNEY LINS DE ALBUQUERQUE                    | AM       | PSD           |  1895721.71
+      141408 | CLEBER VERDE CORDEIRO MENDES                        | MA       | MDB           |  1889282.55
+      204406 | PEDRO BANDARRA WESTPHALEN                           | RS       | PP            |  1886855.87
+      220551 | FRANCIANE ABADE BAYER MULLER                        | RS       | REPUBLICANOS  |  1884207.45
+      220610 | FERNANDO RODRIGUES MÁXIMO                           | RO       | PL            |  1884112.44
+      204423 | ANDRÉ FERREIRA RODRIGUES                            | PE       | PL            |  1876645.56
+      204388 | ALCIBIO MESQUITA BIBO NUNES                         | RS       | PL            |  1876254.86
+       74374 | GERALDO RESENDE PEREIRA                             | MS       | UNIAO         |  1874824.04
+      178908 | EDER MAURO CARDOSO BARRA                            | PA       | PL            |  1863522.50
+      188097 | MERLONG SOLANO NOGUEIRA                             | PI       | PT            |  1857152.57
+      220574 | GILBERTO GOMES DA SILVA                             | PB       | PL            |  1855761.30
+       91228 | WALDEMAR DE ANDRADA IGNÁCIO DE OLIVEIRA             | PE       | AVANTE        |  1848401.62
+      204557 | SIDNEY RICARDO DE OLIVEIRA LEITE                    | AM       | PSD           |  1848001.14
+      220578 | JOSENILDO SANTOS ABRANTES                           | AP       | PDT           |  1846435.37
+      220546 | RODOLFO OLIVEIRA NOGUEIRA                           | MS       | PL            |  1844297.51
+      123756 | ANTÔNIA LUCILÉIA CRUZ RAMOS CÂMARA                  | AC       | MDB           |  1841879.18
+      220662 | LUCAS CAVALCANTI RAMOS                              | PE       | PSB           |  1838833.79
+      204453 | NATÁLIA BASTOS BONAVIDES                            | RN       | PT            |  1837792.21
+      220688 | FRANCISCO DE ASSIS DE OLIVEIRA COSTA                | PI       | PT            |  1837699.47
+      178997 | MOSES HAENDEL MELO RODRIGUES                        | CE       | UNIAO         |  1837245.04
+      220714 | ADAIL JOSÉ FIGUEIREDO PINHEIRO                      | AM       | MDB           |  1831560.49
+      178954 | LUCIO ANTONIO MOSQUINI                              | RO       | PL            |  1829515.44
+      220592 | JOSÉ ESTEPHAN AMORIM BARBARY FILHO                  | AC       | PP            |  1826847.67
+      178835 | AFONSO ANTUNES DA MOTTA                             | RS       | PDT           |  1824755.65
+      220708 | GABRIEL JOSE MOURA NUNES SOARES                     | BA       | PSD           |  1821461.45
+       74060 | DANIEL GOMES DE ALMEIDA                             | BA       | PCDOB         |  1820827.37
+      220677 | KENISTON DE JESUS REGO BRAGA                        | PA       | MDB           |  1817944.25
+      204358 | HUMBERTO REZENDE PEREIRA                            | MS       | REPUBLICANOS  |  1817658.75
+      220584 | CÁSSIO MURILO GALDINO DE ARAÚJO                     | PB       | REPUBLICANOS  |  1814413.50
+      220581 | LUCIANO SURUAGY DO AMARAL FILHO                     | AL       | PSD           |  1814330.53
+      204431 | MARCOS AURÉLIO PÁDUA RIBEIRO GONÇALVES DE SAMPAIO   | PI       | MDB           |  1809949.00
+      178964 | HEITOR JOSE SCHUCH                                  | RS       | PSD           |  1808886.07
+      204498 | OLIVAL HENRIQUE MARQUES DE SOUZA                    | PA       | PODE          |  1807990.66
+      204378 | JOÃO CHRISÓSTOMO DE MOURA                           | RO       | PL            |  1806154.99
+       74041 | LUIZ ALBUQUERQUE COUTO                              | PB       | PT            |  1802835.34
+      160538 | ELVINO JOSÉ BOHN GASS                               | RS       | PT            |  1802052.08
+      220558 | MARCOS ANTONIO PEREIRA GOMES                        | SC       | PL            |  1798222.59
+      180214 | RAIMUNDO DINIZ ARAÚJO                               | RR       | UNIAO         |  1795940.28
+      220553 | DENISE DA SILVA PESSÔA                              | RS       | PT            |  1795805.71
+      220544 | ANTONIO POINCARE ANDRADE FILHO                      | TO       | PSDB          |  1795762.96
+      220672 | HENDERSON LIRA PINTO                                | PA       | UNIAO         |  1795351.88
+      141411 | DAGOBERTO NOGUEIRA FILHO                            | MS       | PP            |  1793289.59
+      220589 | EDUARDO OVÍDIO BORGES DE VELLOSO VIANNA             | AC       | SOLIDARIEDADE |  1793265.52
+      178866 | LUIZIANNE DE OLIVEIRA LINS                          | CE       | REDE          |  1791170.67
+      220561 | KATARINA FEITOZA LIMA SANTANA                       | SE       | PSD           |  1788423.75
+      220658 | LUIZ GASTÃO BITTENCOURT DA SILVA                    | CE       | PSD           |  1786557.96
+      136811 | JOSÉ ALFONSO EBERT HAMM                             | RS       | PP            |  1784895.02
+      220685 | PAULO HENRIQUE COLETTI FERNANDES                    | PR       | UNIAO         |  1783533.25
+      220666 | LUIZ DE FRANÇA E SILVA MEIRA                        | PE       | PL            |  1783065.29
+      160674 | HUGO MOTTA WANDERLEY DA NÓBREGA                     | PB       | REPUBLICANOS  |  1782257.76
+      160559 | ALCEU MOREIRA DA SILVA                              | RS       | MDB           |  1780177.64
+       74398 | MARIA DO ROSÁRIO NUNES                              | RS       | PT            |  1778274.58
+      204379 | ACÁCIO DA SILVA FAVACHO NETO                        | AP       | MDB           |  1778107.56
+      220540 | DUDA BRITO RAMOS                                    | RR       | PODE          |  1776660.43
+      160665 | AUGUSTO RODRIGUES COUTINHO DE MELO                  | PE       | REPUBLICANOS  |  1775627.42
+      104552 | MARIA DO SOCORRO NERI MEDEIROS DE SOUZA             | AC       | PP            |  1773995.96
+      204396 | NELSI COGUETTO MARIA                                | PR       | PL            |  1770026.19
+       74454 | EUNÍCIO LOPES DE OLIVEIRA                           | CE       | MDB           |  1768508.46
+      141421 | EDUARDO HENRIQUE DA FONTE DE ALBUQUERQUE SILVA      | PE       | PP            |  1767316.55
+      220542 | JOSÉ ALEXANDRE DOMINGUES GUIMARÃES                  | TO       | MDB           |  1766907.67
+       81055 | MÁRCIO JERRY SARAIVA BARROSO                        | MA       | PCDOB         |  1765336.53
+      143632 | DOMINGOS GOMES DE AGUIAR NETO                       | CE       | PSD           |  1764811.31
+      178829 | JOSE AUGUSTO ROSA                                   | SP       | PL            |  1763285.67
+      141485 | LUIZ CARLOS GHIORZZI BUSATO                         | RS       | UNIAO         |  1763164.22
+      160673 | GIOVANI CHERINI                                     | RS       | PL            |  1762973.01
+      122974 | PEDRO LUCAS ANDRADE FERNANDES RIBEIRO               | MA       | UNIAO         |  1762046.91
+       62881 | FRANCISCO DANILO BASTOS FORTE                       | CE       | PP            |  1761454.36
+      220671 | DILVANDA FURTADO FARO                               | PA       | PT            |  1760834.02
+       73692 | OSMAR GASPARINI TERRA                               | RS       | PL            |  1760582.72
+      178929 | DIEGO ALEXSANDER GONCALO PAULA GARCIA               | PR       | UNIAO         |  1760360.05
+       74043 | JOSÉ WELLINGTON ROBERTO                             | PB       | PSD           |  1759866.05
+      220588 | ROBERTO DUARTE JUNIOR                               | AC       | REPUBLICANOS  |  1758491.65
+      220548 | CAMILA BAZACHI JARA MARZOCHI                        | MS       | PT            |  1756301.69
+      209189 | JOSEILDO RIBEIRO RAMOS                              | BA       | PT            |  1756063.34
+      220597 | THIAGO LEITE FLORES PEREIRA                         | RO       | UNIAO         |  1753601.32
+      220555 | DAIANA SILVA DOS SANTOS                             | RS       | PCDOB         |  1752991.12
+      220573 | DORINALDO BARBOSA MALAFAIA                          | AP       | PDT           |  1751777.53
+      220675 | ANTONIO LEOCÁDIO DOS SANTOS                         | PA       | MDB           |  1750315.54
+       74044 | JOSÉ WILSON SANTIAGO                                | PB       | REPUBLICANOS  |  1741547.06
+      178963 | LUIS ANTONIO FRANCISCATTO COVATTI                   | RS       | PP            |  1739144.52
+      220669 | LUIZ EDUARDO DE QUEIROZ CAMPOS DA FONTE ALBUQUERQUE | PE       | PP            |  1737328.53
+      178887 | RUBENS PEREIRA E SILVA JUNIOR                       | MA       | PT            |  1734004.48
+      153423 | RENILCE CONCEIÇÃO NICODEMOS DE ALBUQUERQUE          | PA       | MDB           |  1733789.66
+      220697 | JADYEL SILVA ALENCAR                                | PI       | REPUBLICANOS  |  1732479.55
+      160635 | RUY MANUEL CARNEIRO BARBOSA DE ACA BELCHIOR         | PB       | PODE          |  1732121.96
+      141470 | JOSÉ NOBRE GUIMARÃES                                | CE       | PT            |  1731468.95
+      220703 | ORLANDO SULZ DE ALMEIDA NETO                        | BA       | AVANTE        |  1729324.80
+      109429 | LUIZ BENES LEOCADIO DE ARAUJO                       | RN       | UNIAO         |  1728125.68
+      220633 | RICARDO DE AQUINO SALLES                            | SP       | NOVO          |  1728099.35
+      220663 | JOSÉ ERIBERTO MEDEIROS DE OLIVEIRA                  | PE       | PSB           |  1727600.23
+      220557 | DANIELA CRISTINA REINEHR                            | SC       | PL            |  1726966.61
+       88256 | CLODOALDO MAGALHÃES OLIVEIRA LYRA                   | PE       | PV            |  1724153.60
+      220609 | MAURICIO FONSECA RIBEIRO CARVALHO DE MORAES         | RO       | UNIAO         |  1720691.47
+       69871 | JOAO CARLOS BACELAR BATISTA                         | BA       | PV            |  1720351.14
+      204416 | UBIRATAN ANTUNES SANDERSON                          | RS       | PL            |  1718901.37
+      178934 | ANTONIO WANDSCHEER                                  | PR       | PP            |  1718891.37
+       73768 | DILCEU JOÃO SPERAFICO                               | PR       | PP            |  1718424.29
+      162067 | FRANCISCO DANIEL CELEGUIM DE MORAIS                 | SP       | PT            |  1716291.24
+       74376 | VANDER LUIZ DOS SANTOS LOUBET                       | MS       | PT            |  1713531.39
+      178927 | ALIEL MACHADO BARK                                  | PR       | PV            |  1712063.98
+      204481 | JAZIEL PEREIRA DE SOUSA                             | CE       | PL            |  1710065.89
+      220684 | SEBASTIÃO HENRIQUE DE MEDEIROS                      | PR       | PP            |  1709086.42
+      220640 | JULIANA CARDOSO                                     | SP       | PT            |  1708388.39
+      220664 | GUILHERME A. UCHOA CAVALCANTI PESSOA DE MELO JUNIOR | PE       | PSD           |  1708034.17
+      220556 | ANA PAULA DE SOUZA LIMA                             | SC       | PT            |  1707297.71
+      204567 | RAIMUNDO MAGALHÃES COSTA                            | BA       | PSD           |  1700253.26
+       74383 | FERNANDO LÚCIO GIACOBO                              | PR       | PSD           |  1699879.60
+      160553 | ANTONIO LUIZ PARANHOS RIBEIRO LEITE DE BRITO        | BA       | PSD           |  1699469.84
+      220693 | Roberta de Araujo Costa Roma                        | BA       | PL            |  1698544.27
+      123086 | ÁTILA DE MELO LIRA                                  | PI       | PP            |  1697412.97
+      204409 | DANIEL TRZECIAK DUARTE                              | RS       | PSDB          |  1696421.76
+      204504 | ANTONIO CEZAR CORREIA FREIRE                        | SP       | PL            |  1696266.77
+      220583 | FABIO MICHEY COSTA DA SILVA                         | AL       | PP            |  1695731.70
+      160517 | PAULO ROBERTO FOLLETTO                              | ES       | PSB           |  1694417.92
+      204534 | TABATA CLAUDIA AMARAL DE PONTES                     | SP       | PSB           |  1692705.36
+      204472 | JOSE ANTONIO DOS SANTOS MEDEIROS                    | MT       | PL            |  1691813.62
+       74356 | SILAS CÂMARA                                        | AM       | REPUBLICANOS  |  1691660.17
+      160548 | JONAS DONIZETTE FERREIRA                            | SP       | PSB           |  1690945.45
+      220695 | ROGÉRIA DE ALMEIDA PEREIRA DOS SANTOS               | BA       | REPUBLICANOS  |  1690550.65
+      160600 | ARTHUR DE OLIVEIRA MAIA DA SILVA                    | BA       | UNIAO         |  1689989.37
+      139285 | LÍDICE DA MATA E SOUZA                              | BA       | PSB           |  1689346.02
+      178843 | MARX BELTRÃO LIMA SIQUEIRA                          | AL       | UNIAO         |  1688680.07
+      220701 | MATHEUS ARAUJO LAIOLA                               | PR       | UNIAO         |  1687736.43
+       92699 | FERNANDO MONTEIRO DE ALBUQUERQUE                    | PE       | PSD           |  1685954.54
+       74159 | ODAIR JOSÉ DA CUNHA                                 | MG       | PT            |  1685925.14
+       74428 | JOSÉ MENDONÇA BEZERRA FILHO                         | PE       | PL            |  1685375.55
+      178993 | CARLOS HENRIQUE AMORIM                              | TO       | UNIAO         |  1684805.20
+      160569 | WALDENOR ALVES PEREIRA FILHO                        | BA       | PT            |  1683030.78
+      178860 | PAULO VELLOSO DANTAS AZI                            | BA       | UNIAO         |  1678916.81
+      210989 | BRUNO SOUZA FARIAS                                  | MG       | REPUBLICANOS  |  1677126.84
+      220690 | ALDEN JOSE LAZARO DA SILVA                          | BA       | PL            |  1677123.11
+      204486 | CARLOS MAURO BENEVIDES FILHO                        | CE       | UNIAO         |  1676588.03
+      220668 | MARIA LEAL ARRAES DE ALENCAR                        | PE       | PSB           |  1674304.78
+      220543 | RICARDO AYRES DE CARVALHO                           | TO       | REPUBLICANOS  |  1674085.34
+      220656 | FERNANDA ENEIDA PESSOA CARACAS DE SOUZA             | CE       | PSD           |  1673982.65
+      204495 | AIRTON LUIZ FALEIRO                                 | PA       | PT            |  1673417.10
+      220699 | JOSÉ DIAS DE CASTRO NETO                            | PI       | MDB           |  1672868.64
+      220559 | JULIA PEDROSO ZANATTA                               | SC       | PL            |  1672712.77
+      133439 | ANDRÉ PEIXOTO FIGUEIREDO LIMA                       | CE       | PDT           |  1670939.57
+      204367 | DANIEL COSTA DE FREITAS                             | SC       | PL            |  1669741.29
+      160642 | FRANCISCO EURICO DA SILVA                           | PE       | PSDB          |  1669252.29
+      220624 | ROBINSON MESQUITA DE FARIA                          | RN       | PP            |  1667734.70
+      220612 | Carlos Roberto Rodrigues                            | RJ       | PP            |  1667609.95
+      178933 | SERGIO DE SOUZA                                     | PR       | MDB           |  1666803.61
+       74317 | JÚLIO CÉSAR DE CARVALHO LIMA                        | PI       | PSD           |  1666492.81
+      204427 | FERNANDO RODOLFO TENORIO DE VASCONCELOS             | PE       | PRD           |  1666091.38
+      141398 | CARLOS ALBERTO ROLIM ZARATTINI                      | SP       | PT            |  1663986.34
+      178871 | EVAIR VIEIRA DE MELO                                | ES       | REPUBLICANOS  |  1662974.25
+      220696 | IVONEIDE SOUZA CAETANO                              | BA       | PT            |  1662697.00
+      220586 | RAFAEL DE GOES BRITO                                | AL       | MDB           |  1662620.94
+      220545 | FILIPE MARTINS DOS SANTOS                           | TO       | PL            |  1662165.78
+      204488 | CELIO STUDART BARBOSA                               | CE       | PSD           |  1660165.32
+      162332 | LUIZ HILOSHI NISHIMORI                              | PR       | PSD           |  1658119.79
+      220599 | MARCELO BEZERRA CRIVELLA                            | RJ       | REPUBLICANOS  |  1657671.33
+      220547 | MARCOS SBOROWSKI POLLON                             | MS       | PL            |  1655003.30
+      204408 | LUIZ AUGUSTO CARVALHO RIBEIRO FILHO                 | SE       | PP            |  1654030.20
+      160601 | MARCO ANTÔNIO FELICIANO                             | SP       | PL            |  1652267.49
+      204351 | LUIZ ALBERTO OVANDO                                 | MS       | PP            |  1650368.40
+       80815 | LEONARDO SILVA PRATES                               | BA       | REPUBLICANOS  |  1649588.15
+       74467 | DAMIÃO FELICIANO DA SILVA                           | PB       | UNIAO         |  1649545.52
+      220529 | GILSON DANIEL BATISTA                               | ES       | PODE          |  1649272.16
+      204518 | FREDERICO DE CASTRO ESCALEIRA                       | MG       | PL            |  1649199.60
+       92102 | LEUR ANTONIO DE BRITTO LOMANTO JUNIOR               | BA       | UNIAO         |  1648876.74
+       66385 | JULIO FERRAZ ARCOVERDE                              | PI       | PP            |  1648449.55
+      204457 | ROGERIO TEIXEIRA JUNIOR                             | RJ       | PSDB          |  1646783.90
+      220607 | MAX RODRIGUES LEMOS                                 | RJ       | UNIAO         |  1646068.16
+      204445 | FERNANDO WANDERLEY VARGAS DA SILVA                  | RN       | PT            |  1645404.84
+      220626 | RAFAEL TADEU SIMÕES                                 | MG       | UNIAO         |  1644233.85
+      220628 | MAURICIO LUIZ DE SOUZA                              | MG       | PL            |  1643694.18
+      220692 | ADALBERTO ROSA BARRETO                              | BA       | UNIAO         |  1642095.54
+      178992 | VITOR LIPPI                                         | SP       | PSD           |  1641385.86
+      220530 | Manoel Messias Donato Bezerra                       | ES       | UNIAO         |  1641249.32
+      150418 | MÁRCIO CARLOS MARINHO                               | BA       | REPUBLICANOS  |  1640509.36
+       92776 | STEFANO AGUIAR DOS SANTOS                           | MG       | PSD           |  1639238.62
+      220582 | DANIEL BARBOSA DE ALMEIDA SILVA                     | AL       | PP            |  1639066.07
+      141464 | JOSÉ AIRTON FÉLIX CIRILO DA SILVA                   | CE       | PT            |  1638309.80
+      220603 | DANIELLE DYTZ DA CUNHA                              | RJ       | PL            |  1637057.33
+      160758 | DOMINGOS SÁVIO CAMPOS RESENDE                       | MG       | PL            |  1636518.11
+      160610 | VALMIR CARLOS DA ASSUNÇÃO                           | BA       | PT            |  1635520.25
+      221328 | ADILSON BARROSO OLIVEIRA                            | SP       | PL            |  1632988.41
+      204512 | MARCELO EDUARDO FREITAS                             | MG       | UNIAO         |  1631279.64
+       74057 | ALICE MAZZUCO PORTUGAL                              | BA       | PCDOB         |  1631172.12
+      178857 | JORGE JOSE SANTOS PEREIRA SOLLA                     | BA       | PT            |  1630848.36
+      220620 | ROSANGELA DE OLIVEIRA CAMPOS REIS                   | MG       | PL            |  1628916.17
+      220648 | FERNANDO JOSE DE SOUZA MARANGONI                    | SP       | PODE          |  1628182.48
+      220651 | SIMONE APARECIDA MARQUETO CURRALADAS                | SP       | PP            |  1627969.56
+      220631 | SAMUEL JOSÉ RODRIGUES DE VIANA                      | MG       | UNIAO         |  1627474.09
+      215043 | JOSIVALDO DOS SANTOS MELO                           | MA       | UNIAO         |  1627047.86
+      204356 | AMARO ROCHA NASCIMENTO NETO                         | ES       | PP            |  1624761.11
+      220594 | JONILDO JOSÉ DE ASSIS                               | MT       | PL            |  1624487.76
+       74550 | JOÃO FELIPE DE SOUZA LEÃO                           | BA       | PP            |  1623888.06
+      204398 | LUIS FELIPE BONATTO FRANCISCHINI                    | PR       | PODE          |  1622388.00
+      204410 | LUISA CANZIANI DOS SANTOS SILVEIRA                  | PR       | UNIAO         |  1621643.61
+      220667 | PEDRO HENRIQUE DE A. L. C. CAMPOS                   | PE       | PSB           |  1621479.34
+      220670 | IZA PAULA DE DEUS E MELLO ALBUQUERQUE ARRUDA        | PE       | MDB           |  1620891.01
+       74371 | RUBENS OTONI GOMIDE                                 | GO       | PT            |  1618807.44
+       74156 | JOSÉ LEONARDO COSTA MONTEIRO                        | MG       | PT            |  1618307.47
+      220528 | VICTOR GAROZI LINHALIS                              | ES       | PSB           |  1617640.65
+      220615 | HENRIQUE DOS SANTOS VIEIRA LIMA                     | RJ       | PSOL          |  1615350.44
+      160527 | AGUINALDO VELLOSO BORGES RIBEIRO                    | PB       | PP            |  1613812.03
+      141456 | JILMAR AUGUSTINHO TATTO                             | SP       | PT            |  1610509.66
+      178858 | MARIO S. M. NEGROMONTE JR.                          | BA       | PSB           |  1609664.44
+       74270 | GILBERTO NASCIMENTO SILVA                           | SP       | PODE          |  1607847.89
+       66828 | FAUSTO RUY PINATO                                   | SP       | UNIAO         |  1607752.69
+      220606 | REIMONT LUIZ OTONI SANTA BARBARA                    | RJ       | PT            |  1606652.87
+      220554 | ALEXANDRE DUARTE LINDENMEYER                        | RS       | PT            |  1606529.87
+      220704 | ANA CAROLINA MOURA MELO DARTORA                     | PR       | PT            |  1604385.83
+      160556 | JOÃO CARLOS SIQUEIRA                                | MG       | PT            |  1602944.92
+      204501 | ALENCAR SANTANA BRAGA                               | SP       | PT            |  1601688.20
+       74084 | RAIMUNDO JOSÉ PEREIRA DOS SANTOS                    | PA       | PSD           |  1601638.99
+      220572 | MARUSSA CASSIA FAVARO BOLDRIN                       | GO       | REPUBLICANOS  |  1599869.58
+      204368 | FÁBIO LUIZ SCHIOCHET FILHO                          | SC       | UNIAO         |  1599108.48
+      178986 | NILTO IGNACIO TATTO                                 | SP       | PT            |  1598509.44
+      204355 | JOSIAS MARIO DA VITORIA                             | ES       | PP            |  1597973.00
+       74171 | FRANCISCO RODRIGUES DE ALENCAR FILHO                | RJ       | PSOL          |  1597770.78
+      204480 | ROGÉRIO CORREIA DE MOURA BAPTISTA                   | MG       | PT            |  1596744.06
+      121948 | ADRIANO ANTÔNIO AVELAR                              | GO       | PP            |  1595633.25
+      178895 | MISAEL ARTUR FERREIRA VARELLA                       | MG       | PSD           |  1595480.54
+      160632 | JOSÉ SILVA SOARES                                   | MG       | UNIAO         |  1594926.83
+      220632 | ANA CRISTINA DE LIMA PIMENTEL                       | MG       | PT            |  1592799.36
+      220694 | RICARDO MAIA CHAVES DE SOUZA                        | BA       | MDB           |  1592612.80
+      205476 | CHARLES FERNANDES SILVEIRA SANTANA                  | BA       | PSD           |  1591240.35
+      220595 | RUBIA FERNANDA DINIZ ROBSON SANTOS DE SIQUEIRA      | MT       | PL            |  1587916.48
+      178970 | JOAO SOMARIVA DANIEL                                | SE       | PT            |  1586030.39
+      220560 | JOSE THIAGO ALVES DE CARVALHO                       | SE       | REPUBLICANOS  |  1583589.49
+      220682 | ANTONIO TADEU VENERI                                | PR       | PT            |  1582650.02
+      204508 | IGOR TARCIANO TIMO                                  | MG       | UNIAO         |  1582540.79
+      220625 | IONE MARIA MOREIRA DIAS BARBOSA                     | MG       | PL            |  1582507.55
+      220550 | MAURICIO BEDIN MARCON                               | RS       | PL            |  1580092.96
+      107970 | ANA PAULA PROCOPIO JUNQUEIRA                        | MG       | PP            |  1579335.04
+      204455 | LUIZ EDUARDO CARNEIRO DA SILVA DE SOUZA LIMA        | RJ       | NOVO          |  1575272.65
+      220617 | MURILLO GOUVEA RODRIGUES                            | RJ       | PSDB          |  1575014.98
+      204411 | FILIPE BARROS BAPTISTA DE TOLEDO RIBEIRO            | PR       | PL            |  1574722.03
+      160629 | ROMERO RODRIGUES VEIGA                              | PB       | PODE          |  1574255.56
+      179000 | MARCELO HENRIQUE TEIXEIRA DIAS                      | MG       | PL            |  1574081.25
+      220649 | CARLOS ALBERTO DA CUNHA                             | SP       | UNIAO         |  1572744.59
+      206018 | CÉLIA NUNES CORREA                                  | MG       | PSOL          |  1568308.02
+      178987 | ORLANDO SILVA DE JESUS JUNIOR                       | SP       | PCDOB         |  1565993.78
+       74273 | JEFFERSON ALVES DE CAMPOS                           | SP       | PL            |  1565708.56
+      160666 | FELIX DE ALMEIDA MENDONÇA JÚNIOR                    | BA       | PDT           |  1565416.25
+      179001 | MARCIO DELLA VALLE BIOLCHI                          | RS       | MDB           |  1563814.31
+      178931 | LUCIANO DUCCI                                       | PR       | PSB           |  1563719.94
+      204506 | MARCOS ANTONIO PEREIRA                              | SP       | REPUBLICANOS  |  1562479.13
+      220652 | MARIO PALUMBO JUNIOR                                | SP       | PODE          |  1562360.84
+      220659 | DAYANY BITTENCOURT SANTIL                           | CE       | UNIAO         |  1562341.51
+      204390 | ALCIDES RIBEIRO FILHO                               | GO       | PSDB          |  1561745.45
+      204492 | PAULO JOSE CARLOS GUEDES                            | MG       | PT            |  1559386.09
+      204540 | MARIA DO PARTO MENDES ROSAS                         | SP       | REPUBLICANOS  |  1559107.14
+      204517 | JOSE VITOR DE RESENDE AGUIAR                        | MG       | PL            |  1558182.93
+       74262 | CARLOS HENRIQUE FOCESI SAMPAIO                      | SP       | PSD           |  1554536.83
+      220647 | MANOEL MAURICIO SILVA NEVES                         | SP       | PP            |  1553625.51
+      204511 | DAVID BEZERRA RIBEIRO SOARES                        | SP       | PODE          |  1553557.77
+      220700 | FLORENTINO ALVES VERAS NETO                         | PI       | PT            |  1553369.87
+       74856 | MARIA LAURA MONTEZA DE SOUZA CARNEIRO               | RJ       | PSD           |  1552993.91
+      205865 | REINHOLD STEPHANES JUNIOR                           | PR       | PL            |  1549519.85
+      224333 | ELTON CARLOS WELTER                                 | PR       | PT            |  1548672.97
+      221148 | ALFREDO ALVES CAVALCANTE                            | SP       | PT            |  1547927.37
+      204395 | PEDRO DEBONI LUPION MELLO                           | PR       | REPUBLICANOS  |  1543305.43
+       74585 | LINCOLN DINIZ PORTELA                               | MG       | PL            |  1543023.63
+      204550 | ANTÔNIO LUIZ RODRIGUES MANO JÚNIOR                  | CE       | PSB           |  1542822.70
+       74253 | JULIO LUIZ BAPTISTA LOPES                           | RJ       | PP            |  1539177.70
+      198783 | EMANUEL PINHEIRO DA SILVA PRIMO                     | MT       | PSD           |  1534985.58
+      204574 | JOSE LOURENÇO BOMFIM JUNIOR                         | MA       | MDB           |  1534627.78
+      220570 | ISMAEL ALEXANDRINO JUNIOR                           | GO       | PSD           |  1533459.02
+      204566 | ANTONIO DA CRUZ FILGUEIRA NETO                      | MA       | PRD           |  1532300.24
+       74537 | CLÁUDIO CAJADO SAMPAIO                              | BA       | PP            |  1529438.44
+      178947 | SOSTENES SILVA CAVALCANTE                           | RJ       | PL            |  1529345.09
+      160588 | DIEGO LEONARDO DE ANDRADE CARVALHO                  | MG       | PSD           |  1528635.16
+      222429 | LUIS CARLOS GOMES DA SILVA                          | RJ       | REPUBLICANOS  |  1527930.69
+       74160 | PATRUS ANANIAS DE SOUZA                             | MG       | PT            |  1526554.33
+      160518 | WELITON FERNANDES PRADO                             | MG       | PSD           |  1525737.05
+       74574 | PAULO SÉRGIO PARANHOS DE MAGALHÃES                  | BA       | PSD           |  1523465.14
+      204391 | JOSÉ NELTO LAGARES DAS MERCEZ                       | GO       | UNIAO         |  1521555.09
+      220683 | CARLOS ALBERTO RICHA                                | PR       | PSDB          |  1517785.57
+      178989 | RENATA HELLMEISTER DE ABREU                         | SP       | PODE          |  1515180.07
+      204491 | GILBERTO APARECIDO ABRAMO                           | MG       | REPUBLICANOS  |  1514863.65
+       98057 | LAFAYETTE LUIZ DOORGAL DE ANDRADA                   | MG       | PL            |  1513563.38
+      220674 | ALESSANDRA HABER CARVALHO SANTOS                    | PA       | PODE          |  1512152.50
+      220527 | JACKELINE OLIVEIRA ROCHA                            | ES       | PT            |  1512112.54
+      204364 | ELI DIAS BORGES                                     | TO       | REPUBLICANOS  |  1509800.08
+      166402 | MAGDA MOFATTO HON                                   | GO       | PL            |  1508991.55
+      160535 | DIONILSO MATEUS MARCON                              | RS       | PT            |  1507722.07
+      178910 | JOAQUIM PASSARINHO PINTO DE SOUZA PORTO             | PA       | PL            |  1506565.56
+      220655 | MARIO LUIS FRIAS                                    | SP       | PL            |  1504903.82
+      220611 | EDUARDO PAZUELLO                                    | RJ       | PL            |  1504520.44
+      160592 | JOSÉ CARLOS BECKER DE OLIVEIRA E SILVA              | PR       | PT            |  1500845.43
+      220622 | NELI PEREIRA DE AQUINO                              | MG       | PODE          |  1494211.04
+      178881 | ALUISIO GUIMARAES MENDES FILHO                      | MA       | REPUBLICANOS  |  1491871.50
+      220641 | RODRIGO GAMBALE VIEIRA                              | SP       | PODE          |  1490743.34
+      220654 | PAULO FRANCISCO MUNIZ BILYNSKYJ                     | SP       | PL            |  1490720.50
+      205550 | JORGE BRAZ DE OLIVEIRA                              | RJ       | REPUBLICANOS  |  1490597.74
+      141531 | RODRIGO BATISTA DE CASTRO                           | MG       | UNIAO         |  1490299.76
+      220706 | NELSON FERNANDO PADOVANI                            | PR       | PP            |  1489246.38
+       74141 | JOSIAS GOMES DA SILVA                               | BA       | PT            |  1488596.72
+      160604 | PEDRO FRANCISCO UCZAI                               | SC       | PT            |  1488218.62
+      220702 | GERALDO GABRIEL MENDES                              | PR       | UNIAO         |  1488201.25
+      204407 | FERNANDA MELCHIONNA E SILVA                         | RS       | PSOL          |  1487792.99
+      220580 | MARIA GORETH DA SILVA E SOUSA                       | AP       | PDT           |  1486660.32
+      204525 | ROSANA DE OLIVEIRA VALLE                            | SP       | PL            |  1486531.13
+      165470 | RODRIGO SANTANA VALADARES                           | SE       | PL            |  1485962.83
+      220635 | BRUNO AREVALO GANEM                                 | SP       | PODE          |  1485863.77
+      220600 | JOSE EURIPEDES CLEMENTE                             | RO       | UNIAO         |  1484839.30
+      204412 | ZACARIAS CALIL HAMU                                 | GO       | MDB           |  1484023.74
+      204563 | JOSIMAR CUNHA RODRIGUES                             | MA       | PL            |  1482878.87
+      161550 | EMIDIO ALVES MADEIRA JUNIOR                         | MG       | PL            |  1482323.32
+      204441 | OTONI MOURA DE PAULO JUNIOR                         | RJ       | PSD           |  1481785.29
+      171617 | PAULO FERNANDO DOS SANTOS                           | AL       | PT            |  1480732.65
+       98148 | VALDIR VITAL COBALCHINI                             | SC       | MDB           |  1478692.14
+      220707 | AMANDA KELLY GENTIL GUIMARÃES ROSA                  | MA       | PP            |  1478520.97
+      220564 | YANDRA BARRETO FERREIRA                             | SE       | UNIAO         |  1477953.17
+      220691 | DIEGO HENRIQUE SILVA CERQUEIRA MARTINS              | BA       | REPUBLICANOS  |  1476720.91
+      220575 | SONIZE PIMENTEL DOS SANTOS BARBOSA                  | AP       | PL            |  1476152.56
+      160599 | DIMAS FABIANO TOLEDO JÚNIOR                         | MG       | PP            |  1474162.29
+      141487 | LUIZ FERNANDO RAMOS FARIA                           | MG       | UNIAO         |  1473569.37
+      220579 | SILVIA NOBRE LOPES                                  | AP       | PL            |  1472791.83
+      157130 | TÚLIO GADÊLHA SALES DE MELO                         | PE       | PSD           |  1472126.83
+       73433 | ARLINDO CHIGNALIA JUNIOR                            | SP       | PT            |  1472074.74
+      220618 | JOSÉ PORTUGAL NETO                                  | RJ       | PODE          |  1471127.74
+      171786 | MIGUEL ÂNGELO MONTEIRO ANDRADE                      | MG       | PT            |  1465285.95
+       98615 | ISMAEL DOS SANTOS                                   | SC       | PL            |  1462449.97
+      204560 | ADOLFO VIANA DE CASTRO NETO                         | BA       | PSDB          |  1462196.85
+      141391 | ARNALDO CALIL PEREIRA JARDIM                        | SP       | CIDADANIA     |  1459560.98
+      220566 | Lêda Borges de Moura                                | GO       | REPUBLICANOS  |  1457900.10
+      204570 | GILDENEMIR DE LIMA SOUSA                            | MA       | PL            |  1457579.02
+      220689 | MARIA DEUSDETE LIMA CUNHA RODRIGUES                 | MA       | PL            |  1456289.93
+      220613 | ROBERTO LUIZ RODRIGUES DE OLIVEIRA                  | RJ       | PL            |  1455090.92
+       73579 | JOÃO ALBERTO FRAGA SILVA                            | DF       | PL            |  1450680.07
+      122158 | PEDRO PAULO CARVALHO TEIXEIRA                       | RJ       | PSD           |  1445768.06
+      220687 | MARCIO JOSE HONAISER                                | MA       | SOLIDARIEDADE |  1443124.31
+       74646 | AÉCIO NEVES DA CUNHA                                | MG       | PSDB          |  1443049.09
+      220567 | JEFERSON RODRIGUES LEMOS                            | GO       | PSDB          |  1441683.09
+      204460 | Carlos Roberto Jordy Coelho de Mattos               | RJ       | PL            |  1440662.77
+      223128 | RODRIGO TLUSTIK VENEK                               | PR       | PSD           |  1439474.62
+      220598 | TARCISIO MOTTA DE CARVALHO                          | RJ       | PSOL          |  1434528.67
+      204394 | GERVÁSIO AGRIPINO MAIA                              | PB       | PCDOB         |  1433556.40
+      141555 | VINICIUS RAPOZO DE CARVALHO                         | SP       | PL            |  1433379.46
+      160558 | PAULO ROBERTO FREIRE DA COSTA                       | SP       | PL            |  1431271.16
+      220563 | ICARO BARBOSA COSTA                                 | SE       | REPUBLICANOS  |  1430554.86
+      204559 | JOSÉ CERQUEIRA DE SANTANA NETO                      | BA       | PT            |  1427085.23
+      141431 | FERNANDO BEZERRA DE SOUZA COELHO FILHO              | PE       | UNIAO         |  1425330.51
+      178854 | ELMAR JOSE VIEIRA NASCIMENTO                        | BA       | UNIAO         |  1425280.50
+       72442 | FELIPE AUGUSTO LYRA CARRERAS                        | PE       | PSB           |  1425199.13
+      220585 | FRANCISCO EMERSON ASSIS DE LUCENA                   | PB       | PSD           |  1421168.75
+      220577 | JOSÉ AUGUSTO PUPPIO REIS JÚNIOR                     | AP       | MDB           |  1418782.95
+      220576 | ALFREDO GASPAR DE MENDONÇA NETO                     | AL       | PL            |  1414686.44
+      160575 | ÉRIKA JUCÁ KOKAY                                    | DF       | PT            |  1413053.39
+      220629 | DANDARA TONANTZIN SILVA CASTRO                      | MG       | PT            |  1412281.42
+      178943 | MARCOS BEZERRA RIBEIRO SOARES                       | RJ       | PSDB          |  1411698.46
+      160598 | FLÁVIA CARREIRO ALBUQUERQUE MORAIS                  | GO       | MDB           |  1410337.05
+      204535 | SAMIA DE SOUZA BOMFIM                               | SP       | PSOL          |  1409483.07
+       74158 | MÁRIO LÚCIO HERINGER                                | MG       | PDT           |  1409343.74
+      204526 | LUIZ PHILIPPE DE ORLEANS BRAGANÇA                   | SP       | PL            |  1406612.66
+      220602 | DIMAS DE PAIVA GADELHA JUNIOR                       | RJ       | PT            |  1406557.26
+       73701 | BENEDITA SOUZA DA SILVA SAMPAIO                     | RJ       | PT            |  1405856.99
+      220621 | EVANDRO GONÇALVES DA SILVA JÚNIOR                   | RN       | PL            |  1404926.88
+       74283 | VICENTE PAULO DA SILVA                              | SP       | PT            |  1401545.11
+      178876 | CELIO ANTONIO DA SILVEIRA                           | GO       | MDB           |  1400905.22
+       74554 | JOSÉ ALVES ROCHA                                    | BA       | UNIAO         |  1400840.35
+      141516 | PAULO ABI-ACKEL                                     | MG       | PSDB          |  1400091.39
+      220661 | MATHEUS SOARES NORONHA                              | CE       | PL            |  1397822.17
+      220676 | ANDREIA BRITO GONÇALVES SIQUEIRA                    | PA       | PSB           |  1397106.11
+      204456 | GUTEMBERG REIS DE OLIVEIRA                          | RJ       | MDB           |  1392001.63
+      220623 | DUDA SALABERT ROSA                                  | MG       | PSOL          |  1391715.16
+      220605 | EDUARDO CARVALHO BANDEIRA DE MELLO                  | RJ       | PV            |  1391216.15
+      141458 | JOÃO CARLOS PAOLILO BACELAR FILHO                   | BA       | PL            |  1390147.16
+      214694 | JORGE GOETTEN DE LIMA                               | SC       | REPUBLICANOS  |  1387233.08
+      160512 | AUREO LIDIO MOREIRA RIBEIRO                         | RJ       | SOLIDARIEDADE |  1385001.66
+       74161 | REGINALDO LÁZARO DE OLIVEIRA LOPES                  | MG       | PT            |  1382125.38
+      220565 | ADRIANA SAUTHIER ACCORSI                            | GO       | PT            |  1380520.15
+      204515 | ANDRE LUIS GASPAR JANONES                           | MG       | REDE          |  1378289.51
+       74784 | LUIZA ERUNDINA DE SOUSA                             | SP       | PSOL          |  1375228.94
+      204404 | LUCAS BELLO REDECKER                                | RS       | PSD           |  1375114.98
+      204464 | TALIRIA PETRONE SOARES                              | RJ       | PSOL          |  1370502.32
+      204524 | ANTÔNIO PINHEIRO NETO                               | MG       | PP            |  1370055.96
+      141480 | LÁZARO BOTELHO MARTINS                              | TO       | PP            |  1369042.18
+      204572 | ALBERTO BARROS CAVALCANTE NETO                      | AM       | PL            |  1366293.89
+      220681 | FÁBIO HENRIQUE DIAS DE MACEDO                       | MA       | PODE          |  1364053.73
+      204419 | GLAUSKSTON BATISTA RIOS                             | GO       | PODE          |  1363006.48
+      204494 | FREDERICO BORGES DA COSTA                           | MG       | PRD           |  1361910.44
+      220534 | DAVYS FREDERICO TEIXEIRA LINHARES                   | DF       | REPUBLICANOS  |  1360905.37
+      220604 | MARCOS PAULO BARBOSA TAVARES                        | RJ       | PDT           |  1358060.86
+       74848 | JANDIRA FEGHALI                                     | RJ       | PCDOB         |  1357972.41
+      218086 | ELIANE DE SOUSA ALVES                               | SP       | REPUBLICANOS  |  1357640.81
+       73604 | RUI GOETHE DA COSTA FALCÃO                          | SP       | PT            |  1353206.54
+      220532 | RAFAEL CAVALCANTI PRUDENTE                          | DF       | MDB           |  1352339.59
+      160161 | MARCELO ANDRE CID HERACLITO DO PORTO QUEIROZ        | RJ       | PSDB          |  1351962.16
+      220616 | LUCIANO VIEIRA MENDES                               | RJ       | PSDB          |  1349393.14
+      160640 | EROS FERREIRA BIONDINI                              | MG       | PL            |  1349018.23
+      220630 | PEDRO DOSHIKAZU PIANCHAO AIHARA                     | MG       | PP            |  1347926.90
+      204573 | OTTO ROBERTO MENDONÇA DE ALENCAR FILHO              | BA       | PSD           |  1346690.52
+       73801 | RENILDO VASCONCELOS CALHEIROS                       | PE       | PCDOB         |  1343383.03
+      160976 | FRANCISCO EVERARDO TIRIRICA OLIVEIRA SILVA          | SP       | PSD           |  1334793.79
+       73531 | IVAN VALENTE                                        | SP       | PSOL          |  1332876.20
+      220660 | YURY BRUNO ALENCAR ARAUJO                           | CE       | MDB           |  1327954.02
+      220665 | ERICA CLARISSA BORBA CORDEIRO DE MOURA              | PE       | PP            |  1325091.58
+      220686 | HILDELIS SILVA DUARTE JUNIOR                        | MA       | AVANTE        |  1324370.05
+      178896 | NEWTON CARDOSO JUNIOR                               | MG       | MDB           |  1319489.04
+      204571 | ALEX MARCO SANTANA SOUSA                            | BA       | REPUBLICANOS  |  1319321.16
+      220645 | ERIKA SANTOS SILVA                                  | SP       | PSOL          |  1317969.42
+      178966 | Geovânia de Sá                                      | SC       | REPUBLICANOS  |  1315794.37
+      204374 | BEATRIZ KICIS TORRENTS DE SORDI                     | DF       | PL            |  1315758.43
+      220526 | GILVAN AGUIAR COSTA                                 | ES       | PL            |  1310535.46
+      198197 | GREYCE DE QUEIROZ ELIAS                             | MG       | PL            |  1309472.94
+       73778 | LUIZ CARLOS JORGE HAULY                             | PR       | PODE          |  1304919.10
+      226708 | ALLAN QUADROS GARCÊS                                | MA       | PP            |  1302604.62
+      220638 | ANTONIO CARLOS RODRIGUES                            | SP       | PODE          |  1280454.39
+      178937 | ALTINEU CÔRTES FREITAS COUTINHO                     | RJ       | PL            |  1278101.83
+      204539 | HERCÍLIO ARAÚJO DINIZ FILHO                         | MG       | MDB           |  1266443.36
+      204474 | JUAREZ ALVES DA COSTA                               | MT       | REPUBLICANOS  |  1263533.62
+      220569 | SILVYE ALVES DA SILVA                               | GO       | UNIAO         |  1262240.56
+      204422 | OSSESIO JOSE DA SILVA                               | PE       | REPUBLICANOS  |  1255170.09
+      220712 | FAUSTO VIEIRA DOS SANTOS JUNIOR                     | AM       | UNIAO         |  1253927.59
+      226837 | SAULO PEDROSO DE SOUZA                              | SP       | PSD           |  1244120.66
+      178873 | HELDER IGNACIO SALOMAO                              | ES       | PT            |  1238380.35
+       74478 | LUCIANO CALDAS BIVAR                                | PE       | MDB           |  1220019.59
+      220644 | ROSANGELA MARIA WOLFF DE QUADROS MORO               | SP       | PL            |  1219492.40
+      220639 | GUILHERME CASTRO BOULOS                             | SP       | PSOL          |  1211737.28
+      152605 | GLAUBER DE MEDEIROS BRAGA                           | RJ       | PSOL          |  1207506.91
+      220713 | SAULLO VELAME VIANNA                                | AM       | MDB           |  1207034.80
+      161440 | RAFAEL PEZENTI                                      | SC       | MDB           |  1205051.46
+      204462 | CHRISTINE NOGUEIRA DOS REIS TONIETTO                | RJ       | PL            |  1203921.25
+      204507 | CARLA ZAMBELLI SALGADO DE OLIVEIRA                  | SP       | PL            |  1199457.19
+      220533 | Reginaldo Veras Coelho                              | DF       | PV            |  1183768.42
+      220552 | LUCIANO LORENZINI ZUCCO                             | RS       | PL            |  1176965.01
+      221338 | LUCIENE CAVALCANTE DA SILVA                         | SP       | PSOL          |  1174159.14
+      138286 | LUCIANO ALVES DOS SANTOS                            | PR       | PSD           |  1172127.70
+       74858 | LUIZ LINDBERGH FARIAS FILHO                         | RJ       | PT            |  1167353.45
+      204485 | LUIZ CARLOS MOTTA                                   | SP       | PL            |  1160376.62
+      209787 | NIKOLAS FERREIRA DE OLIVEIRA                        | MG       | PL            |  1156082.31
+      160510 | LUIS HENRIQUE DE OLIVEIRA RESENDE                   | MG       | AVANTE        |  1153034.71
+      226179 | GISELA SIMONA VIANA DE SOUZA                        | MT       | UNIAO         |  1130117.75
+      178972 | ALEX SPINELLI MANENTE                               | SP       | CIDADANIA     |  1122316.13
+      220646 | FELIPE BECARI COMENALE                              | SP       | PODE          |  1120482.59
+      163321 | RONALDO NOGUEIRA DE OLIVEIRA                        | RS       | REPUBLICANOS  |  1119752.52
+      221378 | REGINETE SOUZA BISPO                                | RS       | PT            |  1115453.49
+      220587 | GEHLEN DINIZ ANDRADE                                | AC       | PP            |  1107082.05
+      178975 | LUIZ FELIPE BALEIA TENUTO ROSSI                     | SP       | MDB           |  1105398.38
+      178985 | MIGUEL LOMBARDI                                     | SP       | PL            |  1104815.59
+      204497 | JOÃO FERRARI JÚNIOR                                 | PA       | PSD           |  1103461.23
+      220619 | ALEXANDRE RAMAGEM RODRIGUES                         | RJ       | PL            |  1101562.70
+      220568 | GUSTAVO GAYER MACHADO DE ARAUJO                     | GO       | PL            |  1099690.92
+      204444 | HELIO FERNANDO BARBOSA LOPES                        | RJ       | PL            |  1094487.92
+       74299 | JOSÉ LEÔNIDAS DE MENEZES CRISTINO                   | CE       | PDT           |  1090308.60
+      220531 | GILVAM MAXIMO                                       | DF       | REPUBLICANOS  |  1083952.43
+      204549 | ANTONIO JOSE AGUIAR ALBUQUERQUE                     | CE       | PP            |  1083074.74
+      107283 | GLEISI HELENA HOFFMANN                              | PR       | PT            |  1081422.81
+      204436 | ISNALDO BULHOES BARROS JUNIOR                       | AL       | MDB           |  1074014.02
+      219585 | MARCO AURELIO RIBEIRO                               | PR       | PP            |  1057690.06
+      221339 | BENJAMIM DE OLIVEIRA                                | MA       | UNIAO         |  1057264.32
+      204482 | EUCLYDES MARCOS PETTERSEN NETO                      | MG       | REPUBLICANOS  |  1056043.26
+      204372 | JULIO CESAR RIBEIRO                                 | DF       | REPUBLICANOS  |  1055007.86
+      137070 | VICENTE ALVES DE OLIVEIRA JUNIOR                    | TO       | PSDB          |  1026486.00
+       74079 | JOSÉ BENITO PRIANTE JÚNIOR                          | PA       | MDB           |  1004970.90
+      220627 | PAULO EDUARDO DA COSTA FREIRE                       | RN       | UNIAO         |   999971.97
+      204533 | ANTONIO IDILVAN DE LIMA ALENCAR                     | CE       | PSB           |   999084.48
+      204449 | NELSON NED PREVIDENTE                               | MT       | PODE          |   993612.89
+      220653 | Fábio Eduardo de Oliveira Teruel                    | SP       | MDB           |   990623.41
+       74095 | PAUDERNEY TOMAZ AVELINO                             | AM       | UNIAO         |   987902.04
+      204520 | GERALDO JUNIO DO AMARAL                             | MG       | PL            |   985661.51
+      178946 | SORAYA ALENCAR DOS SANTOS                           | RJ       | PL            |   978232.75
+      220657 | ANDRÉ FERNANDES DE MOURA                            | CE       | PL            |   974701.20
+      220549 | ANY MACHADO ORTIZ                                   | RS       | PP            |   960805.90
+      141450 | HUGO LEAL MELO DA SILVA                             | RJ       | PSD           |   946619.42
+       74075 | ELCIONE THEREZINHA ZAHLUTH BARBALHO                 | PA       | MDB           |   944365.46
+      204450 | LUIZ ANTONIO DE SOUZA TEIXEIRA JÚNIOR               | RJ       | PP            |   943973.34
+      220601 | WASHINGTON LUIZ CARDOSO SIQUEIRA                    | RJ       | PT            |   937018.98
+      133810 | MARCELO PIRES MORAES                                | RS       | PL            |   920295.58
+      204541 | EDUARDO HENRIQUE MAIA BISMARCK                      | CE       | PV            |   919252.96
+      204362 | RICARDO ZANATTA GUIDI                               | SC       | PL            |   919198.21
+      204489 | MARCOS ROBERIO RIBEIRO MONTEIRO                     | CE       | PSB           |   896319.71
+      220650 | PAULO ALEXANDRE PEREIRA BARBOSA                     | SP       | PSD           |   880895.06
+      220593 | ABILIO JACQUES BRUNINI MOUMER                       | MT       | PL            |   871819.53
+      156190 | MARCEL VAN HATTEM                                   | RS       | NOVO          |   855410.04
+      204459 | DANIELA MOTE DE SOUZA CARNEIRO                      | RJ       | REPUBLICANOS  |   853316.15
+      220642 | BRUNO MARCELLO DE OLIVEIRA LIMA                     | SP       | PODE          |   835847.42
+       73806 | Roseana Sarney Murad                                | MA       | MDB           |   833031.00
+       92346 | EDUARDO NANTES BOLSONARO                            | SP       | PL            |   824286.63
+      230768 | JOSE ADRIANO RIBEIRO DA SILVA                       | AC       | PP            |   816441.28
+      225730 | ANA PAULA BRANDÃO DA SILVA FARIAS                   | CE       | PODE          |   811752.19
+      227433 | DOUGLAS DE PAULO VIEGAS                             | SP       | UNIAO         |   801898.27
+       73441 | CELSO UBIRAJARA RUSSOMANNO                          | SP       | REPUBLICANOS  |   800367.29
+      171623 | FABIO DE ALMEIDA REIS                               | SE       | PSD           |   800056.82
+      213274 | RICARDO AUGUSTO MACHADO DA SILVA                    | SP       | PSD           |   789558.83
+      204361 | CARLOS ALBERTO CHIODINI                             | SC       | MDB           |   776109.08
+      141518 | PAULO PEREIRA DA SILVA                              | SP       | SOLIDARIEDADE |   766724.42
+      222142 | PAULO ADRIANO LOPES LUCINDA TELHADA                 | SP       | PP            |   765528.23
+      178909 | HELIO LEITE DA SILVA                                | PA       | UNIAO         |   763163.11
+      220673 | LENILDO MENDES DOS SANTOS SERTÃO                    | PA       | PL            |   758835.90
+      204387 | GILSON CARDOSO FAHUR                                | PR       | PL            |   750713.72
+       74696 | ALBERTO PEREIRA MOURÃO                              | SP       | MDB           |   737490.97
+      213762 | HILKEA CARLA DE SOUZA MEDEIROS LIMA                 | RN       | PL            |   730384.14
+      178884 | HILDO AUGUSTO DA ROCHA NETO                         | MA       | MDB           |   722731.72
+      103758 | LUCIANO PALMA DE AZEVEDO                            | RS       | PSD           |   722353.16
+      230767 | RODRIGO LUGLI                                       | MT       | PL            |   713324.08
+      220596 | AMÁLIA SCUDELER DE BARROS SANTOS                    | MT       | PL            |   689194.99
+      204369 | CAROLINE RODRIGUES DE TONI                          | SC       | PL            |   687807.04
+      227660 | JOSENITO VITALE DE JESUS                            | SE       | PSD           |   685527.08
+      230957 | João Cury Neto                                      | SP       | MDB           |   679957.55
+       74400 | PAULO ROBERTO SEVERO PIMENTA                        | RS       | PT            |   661798.94
+      221329 | RICARDO MARTINS DAVID                               | RJ       | PSDB          |   653627.78
+      160552 | DANRLEI DE DEUS HINTERHOLZ                          | RS       | PSD           |   644832.87
+      160545 | ALEXANDRE LEITE DA SILVA                            | SP       | UNIAO         |   624767.38
+      204553 | MANOEL ISIDORIO DE SANTANA JUNIOR                   | BA       | AVANTE        |   622571.92
+      175765 | RIBAMAR ANTONIO DA SILVA                            | SP       | PODE          |   609754.94
+      116379 | DARCI DE MATOS                                      | SC       | PSD           |   609073.68
+      220571 | DANIEL VIEIRA RAMOS                                 | GO       | PSD           |   569399.56
+      229432 | LUIZ FERNANDO CARDOSO                               | SC       | MDB           |   564787.21
+      204536 | KIM PATROCA KATAGUIRI                               | SP       | MISSAO        |   546688.43
+      143942 | CAIO SANTOS VIANNA                                  | RJ       | PSD           |   544139.93
+      160541 | ARTHUR CÉSAR PEREIRA DE LIRA                        | AL       | PP            |   528928.23
+      230762 | CLAUDIO MARIANO SILVA                               | PA       | UNIAO         |   511089.19
+      204365 | GILSON MARQUES VIEIRA                               | SC       | NOVO          |   506352.79
+      204448 | LUIZ ANTONIO C. C. CORRÊA DA SILVA                  | RJ       | PP            |   499029.25
+      231911 | LENIR CANDIDA DE ASSIS                              | PR       | PT            |   484733.80
+      230765 | REJANE DE ALMEIDA                                   | RJ       | PCDOB         |   463541.04
+      220634 | MARCELO DE LIMA FERNANDES                           | SP       | PSB           |   452932.25
+       73788 | RICARDO JOSÉ MAGALHÃES BARROS                       | PR       | PP            |   444015.70
+      178831 | ANDRE DOS SANTOS ABDON                              | AP       | PP            |   401111.80
+      204476 | JOÃO FRANCISCO INÁCIO BRAZÃO                        | RJ       | S.PART.       |   399039.18
+      233594 | RAFAEL BENTO PEREIRA                                | RO       | PODE          |   389248.21
+      160561 | JOSÉ OLIMPIO SILVEIRA MORAES                        | SP       | PL            |   383394.36
+      220614 | DANIEL RICARDO SORANZ PINTO                         | RJ       | PSD           |   378584.59
+      178886 | JOSE JUSCELINO DOS SANTOS REZENDE FILHO             | MA       | PSDB          |   373349.83
+      143084 | Tiago Dimas Braga Pereira                           | TO       | PODE          |   338967.21
+      220698 | CARLOS ALBERTO GEBRIM PRETO                         | PR       | PSD           |   335271.38
+      160641 | MARCIVANIA DO SOCORRO DA ROCHA FLEXA                | AP       | PCDOB         |   331171.13
+      227991 | FLAVIO CAMPOS FERREIRA                              | RJ       | PL            |   326638.25
+      204496 | CELSO SABINO DE OLIVEIRA                            | PA       | PDT           |   319219.31
+      178962 | ANTONIO CARLOS GOMES DA SILVA                       | RS       | REPUBLICANOS  |   317841.73
+      204425 | SILVIO SERAFIM COSTA FILHO                          | PE       | REPUBLICANOS  |   314949.08
+      217480 | JONES BARBOSA DE MOURA                              | RJ       | PSD           |   275949.59
+      227310 | SILVIO ANTONIO GUIMARAES MACHADO                    | MA       | PL            |   274573.45
+      154178 | MILTON VIEIRA PINTO                                 | SP       | REPUBLICANOS  |   270239.73
+      229585 | ELISANGELA DOS SANTOS ARAUJO                        | BA       | PT            |   270131.28
+      141533 | RODRIGO SOBRAL ROLLEMBERG                           | DF       | PSB           |   258032.98
+      128760 | PAULO CELSO FONSECA MARINHO JÚNIOR                  | MA       | PL            |   248194.33
+       89536 | PAULO FERNANDO MELO DA COSTA                        | DF       | REPUBLICANOS  |   246997.40
+       74065 | FÁTIMA LÚCIA PELAES                                 | AP       | REPUBLICANOS  |   240537.04
+      204528 | ADRIANA MIGUEL VENTURA                              | SP       | NOVO          |   231401.90
+      182146 | WOLMER DE AZEVEDO ARAUJO                            | MA       | SOLIDARIEDADE |   198602.50
+      115200 | ROBERTO RANIERY DE AQUINO PAULINO                   | PB       | REPUBLICANOS  |   198107.21
+      227401 | FABIO GONÇALVES DE RUEDA                            | AC       | UNIAO         |   196344.58
+      227275 | TACILLA MARIANA CARVALHO SILVA                      | MA       | REPUBLICANOS  |   188355.18
+      229082 | KARLA LUCYANA SOARES CANTO COSTA                    | MA       | PDT           |   188221.02
+      228616 | REMY ALVES SOARES FILHO                             | MA       | PP            |   187671.30
+      204522 | MARCO AURELIO BERTAIOLLI                            | SP       | PSD           |   186772.51
+      227323 | LUCIANO RODRIGUES SEIDEL                            | MA       | PL            |   185617.55
+      227324 | HENRIQUE CESAR FERREIRA DE MELO LIMA JUNIOR         | MA       | PL            |   184239.21
+      204376 | LUIZ ARMANDO SCHROEDER REIS                         | SC       | PP            |   181874.33
+      229225 | DAÍZE MICHELE DE AGUIAR GONÇALVES COLLINS           | PE       | PP            |   180903.67
+      220008 | ELIZA VIRGINIA DE SOUZA FERNANDES                   | PB       | PP            |   179732.24
+       73808 | SÉRGIO LUÍS LACERDA BRITO                           | BA       | PSD           |   179312.23
+      122195 | LEONARDO DE MELO GADELHA                            | PB       | PODE          |   177945.54
+      234673 | VALDERLAN ALVES DE SOUZA                            | CE       | SOLIDARIEDADE |   177447.74
+      229112 | PEDRO SOUZA CATINGUEIRO JUNIOR                      | TO       | PL            |   175492.24
+      229069 | SAMUEL ALVES BARRETO                                | SE       | PP            |   174706.21
+       74052 | JOÃO BOSCO DA COSTA                                 | SE       | PL            |   173716.14
+      233218 | RONDINELLE PEREIRA DE FREITAS                       | CE       | MDB           |   173089.99
+      229939 | NEWTON BONIN                                        | PR       | UNIAO         |   172069.17
+      226075 | PRISCILA BEZERRA DA COSTA                           | CE       | PL            |   170230.05
+      230177 | TADEU MAGELA DE OLIVEIRA                            | CE       | PL            |   169926.25
+      234788 | HELOÍSA HELENA LIMA DE MORAES CARVALHO              | RJ       | REDE          |   169488.67
+      229333 | GLÁUCIA MARIA SANTIAGO RODRIGUES                    | MG       | PL            |   166310.14
+      178882 | ANDRE LUIZ CARVALHO RIBEIRO                         | MA       | PP            |   164150.38
+      225727 | ANA FLÁVIA RODRIGUES RAMIRO                         | MT       | MDB           |   161654.52
+      129618 | MARIA GORETE PEREIRA                                | CE       | MDB           |   160407.34
+      223398 | ULISSES SUAID PORTO GUIMARÃES BORGES                | MG       | MDB           |   158398.59
+      234310 | RICARDO MAGNUS OSÓRIO GALVÃO                        | SP       | REDE          |   156472.52
+      220705 | DELTAN MARTINAZZO DALLAGNOL                         | PR       | PODE          |   156371.72
+      208297 | KATIA REGINA OLIVEIRA DIAS                          | MG       | REPUBLICANOS  |   152277.87
+      100689 | OSMARILDO ALVES DE SOUSA                            | GO       | REPUBLICANOS  |   149927.90
+       68720 | FABIO HENRIQUE SANTANA DE CARVALHO                  | SE       | UNIAO         |   147119.22
+      227370 | FELIPE MAURÍCIO SALIBA DE SOUZA                     | MG       | PRD           |   146797.99
+      228941 | DANIEL JOSÉ DA SILVA OLIVEIRA                       | SP       | PODE          |   144400.00
+      233598 | SAMUEL JOSE DOS SANTOS                              | GO       | PODE          |   137787.62
+      228797 | JÚLIO DA SILVA OLIVEIRA                             | TO       | PP            |   136758.01
+      178983 | MARCIO LUIZ ALVINO DE SOUZA                         | SP       | PL            |   135908.70
+      235088 | AIRES DO ESPIRITO SANTO RIBEIRO NETO                | MA       | SOLIDARIEDADE |   134929.59
+      178905 | FABIO PAULINO GARCIA                                | MT       | UNIAO         |   133242.06
+      228837 | JULIANA ROSA DE SOUZA KOLANKIEWICZ                  | MT       | MDB           |   131844.31
+      229106 | CARLA SIMARA LUCIANA DA SILVA AYRES                 | SC       | PT            |   129327.56
+      226410 | MÁRCIO AURÉLIO CORRÊA                               | GO       | MDB           |   128836.37
+      230764 | MAURO IVAN F. SANTIAGO JR                           | MA       | UNIAO         |   126968.00
+       77003 | SERGIO AUGUSTO SANTOS RODRIGUES                     | MG       | PODE          |   120320.49
+      164360 | CARMEN EMÍLIA BONFÁ ZANOTTO                         | SC       | CIDADANIA     |   116920.36
+      226553 | FRANCISCA ELIANE BRAZ DE CARVALHO                   | CE       | PSD           |   114344.94
+      234406 | ELMANO FÉRRER DE ALMEIDA                            | PI       | PP            |   114099.77
+      234388 | FABIANO LOPES FERREIRA CAZECA                       | MG       | PRD           |   113065.75
+      230088 | MAYRA ISABEL CORREIA PINHEIRO                       | CE       | PL            |   105982.73
+      160621 | SANDRO ALEX CRUZ DE OLIVEIRA                        | PR       | PSD           |   100384.97
+      228272 | DELIO PINHEIRO NETO                                 | MG       | PDT           |    97742.25
+      220715 | AMOM MANDEL LINS FILHO                              | AM       | REPUBLICANOS  |    89463.44
+      234253 | LUCAS ABRAHAO ROSA CEZARIO DE ALMEIDA               | AP       | REDE          |    84345.50
+      233592 | PAULO CESAR LEMOS DE OLIVEIRA                       | AP       | PT            |    81986.16
+      227800 | DUARTE EUSTÁQUIO GONÇALVES JUNIOR                   | MG       | REPUBLICANOS  |    81944.51
+      160531 | JOHNATHAN PEREIRA DE JESUS                          | RR       | REPUBLICANOS  |    81927.19
+      234840 | CRISTIANO BEVILACQUA FURLAN                         | AP       | REDE          |    80000.00
+      229259 | PEDRO TOURINHO DE SIQUEIRA                          | SP       | PT            |    78180.83
+      222565 | NOELIO DA ROCHA OLIVEIRA                            | CE       | UNIAO         |    71971.34
+      132504 | ENIO JOSÉ VERRI                                     | PR       | PT            |    70442.84
+      171139 | LORENY MAYARA CAETANO ROBERTO                       | SP       | SOLIDARIEDADE |    64801.73
+      204531 | GUILHERME MURARO DERRITE                            | SP       | PP            |    53962.88
+      225386 | RENAN FERREIRINHA CARNEIRO                          | RJ       | PSD           |    51059.62
+      204514 | MARCIO TADEU ANHAIA DE LEMOS                        | SP       | PL            |    44639.68
+      235776 | SERGIO BERGONSI TURRA                               | RS       | PP            |    34261.24
+      204433 | MARCELO CALERO FARIA GARCIA                         | RJ       | PSD           |    33235.92
+      178832 | LEANDRE DAL PONTE                                   | PR       | PSD           |    30820.57
+      204558 | JOSÉ MARCELO DO NASCIMENTO NILO                     | BA       | REPUBLICANOS  |    27309.17
+      160508 | AFONSO BANDEIRA FLORENCE                            | BA       | PT            |    21978.64
+      228042 | NAUMI GOMES DE AMORIM                               | CE       | PSD           |    21742.69
+      235800 | JORGE SILVA DE ARAÚJO                               | BA       | PP            |    16921.48
+      178945 | ROSANGELA DE SOUZA GOMES                            | RJ       | REPUBLICANOS  |    15883.00
+      235620 | ILACIR BICALHO DE BARROS                            | MG       | REPUBLICANOS  |     7120.00
+      235712 | HEBER GOMES NEIVA                                   | MG       | AVANTE        |     5822.61
+      220637 | MARIA OSMARINA MARINA DA SILVA VAZ DE LIMA          | SP       | REDE          |     5649.34
+      141488 | LUIZ PAULO TEIXEIRA FERREIRA                        | SP       | PT            |     5121.54
+      212625 | ANTONIO ELIZABETH GONÇALO DE SOUSA                  | MA       | PODE          |     1137.69
+      225846 | ITAMAR PAIM PRUCH                                   | PR       | PL            |      746.14
+      220636 | LUIZ MARINHO                                        | SP       | PT            |        0.18
+      204503 | ALEXANDRE ROCHA SANTOS PADILHA                      | SP       | PT            |        0.03
+      204353 | ALINE PARANHOS VARONIL GURGEL                       | AP       | UNIAO         |    -4044.80
+(637 rows)
+

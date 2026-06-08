@@ -1,0 +1,18 @@
+      escolaridade       | qtd_deputados 
+-------------------------+---------------
+ Superior                |           352
+ Pós-Graduação           |            83
+ Mestrado                |            45
+ Superior Incompleto     |            44
+ Nao informado           |            40
+ Ensino Médio            |            28
+ Doutorado               |            18
+ Ensino Fundamental      |            12
+ Doutorado Incompleto    |             7
+ Mestrado Incompleto     |             5
+ Ensino Médio Incompleto |             2
+ Secundário              |             2
+ Primário Incompleto     |             1
+ Secundário Incompleto   |             1
+(14 rows)
+

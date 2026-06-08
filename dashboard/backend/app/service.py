@@ -138,6 +138,10 @@ class DashboardService:
             docs.append(parse_psql_file(file_path))
 
         sql_path = self.sql_dir / question.sql_file
+        if not sql_path.exists():
+            candidates = self._search_repo_for_filename(question.sql_file)
+            if candidates:
+                sql_path = candidates[0]
         sql_text = read_text_with_fallback(sql_path) if sql_path.exists() else "-- SQL nao encontrado"
 
         return DataBundle(
