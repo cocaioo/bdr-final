@@ -1,0 +1,605 @@
+Q8 complemento - ranking completo de influencia legislativa global
+Tabela principal - ranking completo de influencia legislativa global
+id_deputado |                                nome | proposicoes_autoria | proposicoes_aprovadas | pct_aprovadas
+------------+-------------------------------------+---------------------+-----------------------+--------------
+      74856 |                      Laura Carneiro |                1934 |                    10 |          2.49
+     160598 |                       Flávia Morais |                 887 |                     5 |          1.24
+     220648 |                           Marangoni |                1373 |                     4 |          1.00
+      74057 |                      Alice Portugal |                 340 |                     3 |          0.75
+      73701 |                   Benedita da Silva |                 366 |                     3 |          0.75
+     220548 |                         Camila Jara |                 586 |                     3 |          0.75
+     204572 |                Capitão Alberto Neto |                2047 |                     3 |          0.75
+     220539 |               Defensor Stélio Dener |                 388 |                     3 |          0.75
+     220614 |                   Dr. Daniel Soranz |                 201 |                     3 |          0.75
+     204412 |                 Dr. Zacharias Calil |                 656 |                     3 |          0.75
+     220670 |                          Iza Arruda |                 161 |                     3 |          0.75
+     204536 |                       Kim Kataguiri |                 975 |                     3 |          0.75
+     220668 |                        Maria Arraes |                 385 |                     3 |          0.75
+     220627 |                     Paulinho Freire |                 164 |                     3 |          0.75
+      74084 |                     Raimundo Santos |                1832 |                     3 |          0.75
+     220543 |                       Ricardo Ayres |                 748 |                     3 |          0.75
+     220641 |                     Rodrigo Gambale |                 395 |                     3 |          0.75
+     220695 |                      Rogéria Santos |                 829 |                     3 |          0.75
+     220651 |                    Simone Marquetto |                 154 |                     3 |          0.75
+     141555 |                   Vinicius Carvalho |                 521 |                     3 |          0.75
+     204517 |                            Zé Vitor |                 349 |                     3 |          0.75
+     178835 |                        Afonso Motta |                 330 |                     2 |          0.50
+     204495 |                      Airton Faleiro |                 313 |                     2 |          0.50
+     220542 |                 Alexandre Guimarães |                 319 |                     2 |          0.50
+     178881 |                      Aluisio Mendes |                 338 |                     2 |          0.50
+     220707 |                       Amanda Gentil |                 419 |                     2 |          0.50
+     204356 |                          Amaro Neto |                 209 |                     2 |          0.50
+     220556 |                      Ana Paula Lima |                 511 |                     2 |          0.50
+     220632 |                        Ana Pimentel |                 359 |                     2 |          0.50
+     220676 |                    Andreia Siqueira |                 351 |                     2 |          0.50
+     133439 |                    André Figueiredo |                 862 |                     2 |          0.50
+     160512 |                       Aureo Ribeiro |                 706 |                     2 |          0.50
+     141398 |                    Carlos Zarattini |                 178 |                     2 |          0.50
+     204504 |                Cezinha de Madureira |                 350 |                     2 |          0.50
+     220595 |                    Coronel Fernanda |                 511 |                     2 |          0.50
+     220666 |                       Coronel Meira |                 584 |                     2 |          0.50
+     206018 |                      Célia Xakriabá |                 444 |                     2 |          0.50
+     220565 |            Delegada Adriana Accorsi |                 273 |                     2 |          0.50
+     220649 |                   Delegado da Cunha |                 179 |                     2 |          0.50
+     178929 |                        Diego Garcia |                 870 |                     2 |          0.50
+     143632 |                       Domingos Neto |                 208 |                     2 |          0.50
+     220686 |                          Duarte Jr. |                 610 |                     2 |          0.50
+      72442 |                     Felipe Carreras |                 550 |                     2 |          0.50
+     220656 |                     Fernanda Pessoa |                 451 |                     2 |          0.50
+     220700 |                     Florentino Neto |                 368 |                     2 |          0.50
+     220587 |                        Gerlen Diniz |                 187 |                     2 |          0.50
+     204491 |                     Gilberto Abramo |                 500 |                     2 |          0.50
+     220529 |                       Gilson Daniel |                 513 |                     2 |          0.50
+     160673 |                     Giovani Cherini |                 360 |                     2 |          0.50
+     204456 |                      Gutemberg Reis |                 190 |                     2 |          0.50
+     160674 |                          Hugo Motta |                 359 |                     2 |          0.50
+     160548 |                     Jonas Donizette |                 477 |                     2 |          0.50
+     205550 |                          Jorge Braz |                 144 |                     2 |          0.50
+     214694 |                       Jorge Goetten |                 388 |                     2 |          0.50
+      74253 |                         Julio Lopes |                 578 |                     2 |          0.50
+     222429 |                   Luis Carlos Gomes |                 118 |                     2 |          0.50
+     160510 |                           Luis Tibé |                  82 |                     2 |          0.50
+     204410 |                      Luisa Canziani |                 440 |                     2 |          0.50
+      74041 |                          Luiz Couto |                 469 |                     2 |          0.50
+     139285 |                      Lídice da Mata |                 724 |                     2 |          0.50
+     220599 |                    Marcelo Crivella |                 399 |                     2 |          0.50
+     219585 |                        Marco Brasil |                 107 |                     2 |          0.50
+     188097 |                      Merlong Solano |                 195 |                     2 |          0.50
+     154178 |                       Milton Vieira |                  86 |                     2 |          0.50
+     150418 |                      Márcio Marinho |                 561 |                     2 |          0.50
+     178986 |                         Nilto Tatto |                 990 |                     2 |          0.50
+     160556 |                          Padre João |                 724 |                     2 |          0.50
+     220667 |                        Pedro Campos |                 287 |                     2 |          0.50
+      89536 |                Prof. Paulo Fernando |                 504 |                     2 |          0.50
+     220580 |                   Professora Goreth |                 363 |                     2 |          0.50
+     220532 |                     Rafael Prudente |                 157 |                     2 |          0.50
+     220606 |                             Reimont |                 362 |                     2 |          0.50
+     178933 |                        Sergio Souza |                 130 |                     2 |          0.50
+     178947 |                 Sóstenes Cavalcante |                1332 |                     2 |          0.50
+     204534 |                       Tabata Amaral |                 393 |                     2 |          0.50
+     137070 |                   Vicentinho Júnior |                 386 |                     2 |          0.50
+      74044 |                     Wilson Santiago |                 454 |                     2 |          0.50
+     220552 |                               Zucco |                 505 |                     2 |          0.50
+     220536 |                Zé Haroldo Cathedral |                 234 |                     2 |          0.50
+     220593 |                      Abilio Brunini |                 480 |                     1 |          0.25
+     204379 |                      Acácio Favacho |                 259 |                     1 |          0.25
+     221328 |                     Adilson Barroso |                 180 |                     1 |          0.25
+     204560 |                        Adolfo Viana |                 339 |                     1 |          0.25
+     204528 |                     Adriana Ventura |                1360 |                     1 |          0.25
+      74696 |                      Alberto Mourão |                  91 |                     1 |          0.25
+     220538 |                         Albuquerque |                 524 |                     1 |          0.25
+     160559 |                       Alceu Moreira |                 314 |                     1 |          0.25
+     204501 |                     Alencar Santana |                 635 |                     1 |          0.25
+     204571 |                        Alex Santana |                  98 |                     1 |          0.25
+     221148 |                          Alfredinho |                 316 |                     1 |          0.25
+     220576 |                      Alfredo Gaspar |                 427 |                     1 |          0.25
+     178937 |                      Altineu Côrtes |                3060 |                     1 |          0.25
+     220715 |                         Amom Mandel |                1060 |                     1 |          0.25
+     220596 |                       Amália Barros |                 289 |                     1 |          0.25
+     107970 |                      Ana Paula Leão |                 253 |                     1 |          0.25
+     220657 |                     André Fernandes |                 272 |                     1 |          0.25
+     220544 |                     Antonio Andrade |                 108 |                     1 |          0.25
+     160553 |                       Antonio Brito |                 534 |                     1 |          0.25
+     220638 |            Antonio Carlos Rodrigues |                 202 |                     1 |          0.25
+     123756 |                       Antônia Lúcia |                 282 |                     1 |          0.25
+     220675 |                       Antônio Doido |                  74 |                     1 |          0.25
+      73433 |                   Arlindo Chinaglia |                 309 |                     1 |          0.25
+     220577 |                      Augusto Puppio |                 211 |                     1 |          0.25
+     178975 |                        Baleia Rossi |                  62 |                     1 |          0.25
+     220698 |                          Beto Preto |                  95 |                     1 |          0.25
+     204374 |                           Bia Kicis |                 693 |                     1 |          0.25
+     204388 |                          Bibo Nunes |                 425 |                     1 |          0.25
+     160538 |                           Bohn Gass |                 206 |                     1 |          0.25
+     220574 |                 Cabo Gilberto Silva |                 741 |                     1 |          0.25
+     178829 |                     Capitão Augusto |                 395 |                     1 |          0.25
+     204361 |                     Carlos Chiodini |                 343 |                     1 |          0.25
+     178962 |                        Carlos Gomes |                 243 |                     1 |          0.25
+     204460 |                        Carlos Jordy |                 277 |                     1 |          0.25
+     220704 |                       Carol Dartora |                 377 |                     1 |          0.25
+     204369 |                    Caroline de Toni |                 371 |                     1 |          0.25
+     220699 |                         Castro Neto |                  84 |                     1 |          0.25
+      73441 |                    Celso Russomanno |                 468 |                     1 |          0.25
+     204496 |                        Celso Sabino |                 210 |                     1 |          0.25
+     205476 |                   Charles Fernandes |                  99 |                     1 |          0.25
+      74171 |                       Chico Alencar |                 706 |                     1 |          0.25
+     204476 |                    Chiquinho Brazão |                 272 |                     1 |          0.25
+      74537 |                      Claudio Cajado |                 151 |                     1 |          0.25
+     141408 |                        Cleber Verde |                 456 |                     1 |          0.25
+      88256 |                 Clodoaldo Magalhães |                 201 |                     1 |          0.25
+      98148 |                          Cobalchini |                 369 |                     1 |          0.25
+     222142 |                     Coronel Telhada |                 331 |                     1 |          0.25
+     220590 |                     Coronel Ulysses |                 371 |                     1 |          0.25
+     178876 |                      Célio Silveira |                 330 |                     1 |          0.25
+     204355 |                          Da Vitoria |                 229 |                     1 |          0.25
+     141411 |                  Dagoberto Nogueira |                 161 |                     1 |          0.25
+      74467 |                    Damião Feliciano |                  70 |                     1 |          0.25
+     220629 |                             Dandara |                 234 |                     1 |          0.25
+     220603 |                          Dani Cunha |                 168 |                     1 |          0.25
+     220557 |                     Daniela Reinehr |                 311 |                     1 |          0.25
+     220659 |                  Dayany Bittencourt |                 469 |                     1 |          0.25
+     220625 |                       Delegada Ione |                 478 |                     1 |          0.25
+     220561 |                   Delegada Katarina |                 265 |                     1 |          0.25
+     220654 |            Delegado Paulo Bilynskyj |                1173 |                     1 |          0.25
+     220619 |                    Delegado Ramagem |                 308 |                     1 |          0.25
+     178908 |                 Delegado Éder Mauro |                 207 |                     1 |          0.25
+     220553 |                       Denise Pessôa |                 406 |                     1 |          0.25
+     220689 |                             Detinha |                  80 |                     1 |          0.25
+     160588 |                       Diego Andrade |                 196 |                     1 |          0.25
+     220691 |                       Diego Coronel |                 303 |                     1 |          0.25
+      73768 |                    Dilceu Sperafico |                  93 |                     1 |          0.25
+     220671 |                       Dilvanda Faro |                  76 |                     1 |          0.25
+     160758 |                      Domingos Sávio |                 397 |                     1 |          0.25
+     220573 |                  Dorinaldo Malafaia |                 342 |                     1 |          0.25
+     221339 |                        Dr. Benjamim |                 112 |                     1 |          0.25
+     220610 |                 Dr. Fernando Máximo |                 415 |                     1 |          0.25
+     220688 |                       Dr. Francisco |                 162 |                     1 |          0.25
+     220570 |              Dr. Ismael Alexandrino |                 138 |                     1 |          0.25
+     220674 |               Dra. Alessandra Haber |                 180 |                     1 |          0.25
+     220623 |                       Duda Salabert |                 354 |                     1 |          0.25
+     204541 |                    Eduardo Bismarck |                 329 |                     1 |          0.25
+     220589 |                     Eduardo Velloso |                 329 |                     1 |          0.25
+     141421 |                    Eduardo da Fonte |                 274 |                     1 |          0.25
+      74075 |                    Elcione Barbalho |                 259 |                     1 |          0.25
+     220645 |                        Erika Hilton |                 414 |                     1 |          0.25
+     160575 |                         Erika Kokay |                 945 |                     1 |          0.25
+     204482 |                  Euclydes Pettersen |                  91 |                     1 |          0.25
+     220712 |                          Fausto Jr. |                 396 |                     1 |          0.25
+     204398 |                 Felipe Francischini |                 392 |                     1 |          0.25
+      92699 |                   Fernando Monteiro |                  67 |                     1 |          0.25
+     204411 |                       Filipe Barros |                 137 |                     1 |          0.25
+     220545 |                      Filipe Martins |                 226 |                     1 |          0.25
+     191923 |                     Flávio Nogueira |                 264 |                     1 |          0.25
+     220551 |                     Franciane Bayer |                 229 |                     1 |          0.25
+     220534 |                       Fred Linhares |                 565 |                     1 |          0.25
+     220681 |                        Fábio Macedo |                 179 |                     1 |          0.25
+     224117 |                        Gabriel Mota |                 116 |                     1 |          0.25
+     220708 |                       Gabriel Nunes |                  59 |                     1 |          0.25
+     204365 |                      Gilson Marques |                3366 |                     1 |          0.25
+     220531 |                       Gilvan Maximo |                 419 |                     1 |          0.25
+     220568 |                       Gustavo Gayer |                 739 |                     1 |          0.25
+     204408 |                    Gustinho Ribeiro |                 113 |                     1 |          0.25
+     220537 |                         Helena Lima |                 150 |                     1 |          0.25
+     220672 |                     Henderson Pinto |                 236 |                     1 |          0.25
+     141450 |                           Hugo Leal |                 266 |                     1 |          0.25
+     220563 |                     Icaro de Valmir |                 389 |                     1 |          0.25
+      98615 |                              Ismael |                 154 |                     1 |          0.25
+     204436 |                 Isnaldo Bulhões Jr. |                 247 |                     1 |          0.25
+     220696 |                    Ivoneide Caetano |                 105 |                     1 |          0.25
+      74848 |                     Jandira Feghali |                 273 |                     1 |          0.25
+      74273 |                    Jefferson Campos |                 203 |                     1 |          0.25
+     178857 |                         Jorge Solla |                 612 |                     1 |          0.25
+     141464 |            José Airton Félix Cirilo |                 123 |                     1 |          0.25
+     141470 |                      José Guimarães |                 349 |                     1 |          0.25
+      74079 |                        José Priante |                  96 |                     1 |          0.25
+     141458 |                 João Carlos Bacelar |                 279 |                     1 |          0.25
+     178970 |                         João Daniel |                 454 |                     1 |          0.25
+     141459 |                           João Maia |                  67 |                     1 |          0.25
+     204474 |                        Juarez Costa |                 114 |                     1 |          0.25
+     220640 |                     Juliana Cardoso |                 341 |                     1 |          0.25
+      66385 |                     Julio Arcoverde |                 117 |                     1 |          0.25
+     204520 |                        Junio Amaral |                 652 |                     1 |          0.25
+      74317 |                         Júlio Cesar |                 163 |                     1 |          0.25
+     204497 |                      Júnior Ferrari |                 258 |                     1 |          0.25
+      98057 |                Lafayette de Andrada |                 540 |                     1 |          0.25
+     178832 |                             Leandre |                   9 |                     1 |          0.25
+      74156 |                   Leonardo Monteiro |                 418 |                     1 |          0.25
+      74585 |                     Lincoln Portela |                 333 |                     1 |          0.25
+     103758 |                     Luciano Azevedo |                  38 |                     1 |          0.25
+      74478 |                       Luciano Bivar |                 843 |                     1 |          0.25
+     178931 |                       Luciano Ducci |                 265 |                     1 |          0.25
+     178954 |                      Lucio Mosquini |                 438 |                     1 |          0.25
+     204485 |                   Luiz Carlos Motta |                 159 |                     1 |          0.25
+     141487 |                 Luiz Fernando Faria |                 168 |                     1 |          0.25
+     220658 |                         Luiz Gastão |                 275 |                     1 |          0.25
+     204455 |                           Luiz Lima |                 490 |                     1 |          0.25
+      74784 |                      Luiza Erundina |                 220 |                     1 |          0.25
+     178866 |                      Luizianne Lins |                 251 |                     1 |          0.25
+     220669 |                       Lula da Fonte |                 179 |                     1 |          0.25
+     166402 |                       Magda Mofatto |                 115 |                     1 |          0.25
+     133810 |                      Marcelo Moraes |                 104 |                     1 |          0.25
+     160161 |                     Marcelo Queiroz |                 487 |                     1 |          0.25
+     179000 |              Marcelo Álvaro Antônio |                 300 |                     1 |          0.25
+     204522 |                    Marco Bertaiolli |                 294 |                     1 |          0.25
+     204431 |              Marcos Aurélio Sampaio |                  24 |                     1 |          0.25
+     204506 |                      Marcos Pereira |                3119 |                     1 |          0.25
+     220547 |                       Marcos Pollon |                 879 |                     1 |          0.25
+     204540 |                         Maria Rosas |                 334 |                     1 |          0.25
+      74398 |                    Maria do Rosário |                 493 |                     1 |          0.25
+     204566 |                       Marreca Filho |                 293 |                     1 |          0.25
+     220572 |                     Marussa Boldrin |                 273 |                     1 |          0.25
+     220661 |                     Matheus Noronha |                  78 |                     1 |          0.25
+     220550 |                     Mauricio Marcon |                 547 |                     1 |          0.25
+     220647 |                      Mauricio Neves |                 285 |                     1 |          0.25
+     220628 |                   Mauricio do Vôlei |                 217 |                     1 |          0.25
+     220591 |                       Meire Serafim |                 399 |                     1 |          0.25
+      74428 |                      Mendonça Filho |                 384 |                     1 |          0.25
+     220530 |                      Messias Donato |                 650 |                     1 |          0.25
+     178985 |                     Miguel Lombardi |                 158 |                     1 |          0.25
+     171786 |                       Miguel Ângelo |                 165 |                     1 |          0.25
+     178895 |                      Misael Varella |                 114 |                     1 |          0.25
+     178997 |                     Moses Rodrigues |                 317 |                     1 |          0.25
+     220584 |                      Murilo Galdino |                 176 |                     1 |          0.25
+     179001 |                      Márcio Biolchi |                  39 |                     1 |          0.25
+     204453 |                   Natália Bonavides |                 229 |                     1 |          0.25
+     220622 |                         Nely Aquino |                 131 |                     1 |          0.25
+     220703 |                       Neto Carletto |                 267 |                     1 |          0.25
+     178896 |                   Newton Cardoso Jr |                 278 |                     1 |          0.25
+      74159 |                         Odair Cunha |                 199 |                     1 |          0.25
+     204498 |                      Olival Marques |                  65 |                     1 |          0.25
+     204441 |                      Otoni de Paula |                 229 |                     1 |          0.25
+     204573 |                  Otto Alencar Filho |                 238 |                     1 |          0.25
+     180214 |                        Pastor Diniz |                 258 |                     1 |          0.25
+     160642 |                       Pastor Eurico |                 312 |                     1 |          0.25
+     160517 |                      Paulo Folletto |                 484 |                     1 |          0.25
+     220685 |                         Paulo Litro |                 124 |                     1 |          0.25
+      74574 |                     Paulo Magalhães |                  93 |                     1 |          0.25
+     171617 |                              Paulão |                 516 |                     1 |          0.25
+     204395 |                        Pedro Lupion |                 263 |                     1 |          0.25
+     122158 |                         Pedro Paulo |                  64 |                     1 |          0.25
+     204406 |                    Pedro Westphalen |                 441 |                     1 |          0.25
+     161440 |                             Pezenti |                 421 |                     1 |          0.25
+     204524 |                         Pinheirinho |                 115 |                     1 |          0.25
+     160601 |                 Pr. Marco Feliciano |                 264 |                     1 |          0.25
+     226075 |                      Priscila Costa |                  43 |                     1 |          0.25
+     221338 |       Professora Luciene Cavalcante |                 534 |                     1 |          0.25
+     220586 |                        Rafael Brito |                 146 |                     1 |          0.25
+     220626 |                       Rafael Simoes |                 229 |                     1 |          0.25
+     204567 |                      Raimundo Costa |                 193 |                     1 |          0.25
+     221378 |                      Reginete Bispo |                 227 |                     1 |          0.25
+     178989 |                        Renata Abreu |                 387 |                     1 |          0.25
+     153423 |                   Renilce Nicodemos |                 346 |                     1 |          0.25
+      73801 |                   Renildo Calheiros |                 199 |                     1 |          0.25
+     213274 |                       Ricardo Silva |                 275 |                     1 |          0.25
+     220693 |                        Roberta Roma |                 171 |                     1 |          0.25
+     220588 |                      Roberto Duarte |                 412 |                     1 |          0.25
+     223128 |                     Rodrigo Estacho |                 127 |                     1 |          0.25
+     141531 |                   Rodrigo de Castro |                 133 |                     1 |          0.25
+     220644 |                      Rosangela Moro |                 460 |                     1 |          0.25
+      73806 |                      Roseana Sarney |                  60 |                     1 |          0.25
+     220620 |                      Rosângela Reis |                 182 |                     1 |          0.25
+      74371 |                        Rubens Otoni |                 228 |                     1 |          0.25
+     160635 |                        Ruy Carneiro |                 199 |                     1 |          0.25
+     204416 |                           Sanderson |                 468 |                     1 |          0.25
+     204387 |                      Sargento Fahur |                 336 |                     1 |          0.25
+     220618 |                   Sargento Portugal |                2964 |                     1 |          0.25
+     220713 |                       Saullo Vianna |                 542 |                     1 |          0.25
+     204557 |                        Sidney Leite |                 254 |                     1 |          0.25
+     220579 |                       Silvia Waiãpi |                 429 |                     1 |          0.25
+     220569 |                        Silvye Alves |                 435 |                     1 |          0.25
+     104552 |                        Socorro Neri |                 471 |                     1 |          0.25
+     178946 |                       Soraya Santos |                 188 |                     1 |          0.25
+      92776 |                      Stefano Aguiar |                  81 |                     1 |          0.25
+     204464 |                     Talíria Petrone |                 563 |                     1 |          0.25
+     220597 |                       Thiago Flores |                 156 |                     1 |          0.25
+     220560 |                    Thiago de Joaldo |                 200 |                     1 |          0.25
+     178934 |                  Toninho Wandscheer |                 241 |                     1 |          0.25
+     157130 |                       Túlio Gadêlha |                 368 |                     1 |          0.25
+     204396 |                            Vermelho |                 206 |                     1 |          0.25
+      74283 |                          Vicentinho |                 226 |                     1 |          0.25
+      91228 |                   Waldemar Oliveira |                 115 |                     1 |          0.25
+     160518 |                       Weliton Prado |                 262 |                     1 |          0.25
+      74043 |                  Wellington Roberto |                 146 |                     1 |          0.25
+     224333 |                              Welter |                 178 |                     1 |          0.25
+     220564 |                        Yandra Moura |                 510 |                     1 |          0.25
+     220660 |                     Yury do Paredão |                 145 |                     1 |          0.25
+     220592 |                     Zezinho Barbary |                 263 |                     1 |          0.25
+     220558 |                           Zé Trovão |                 679 |                     1 |          0.25
+      74090 |                          Átila Lins |                  97 |                     1 |          0.25
+     123086 |                          Átila Lira |                 131 |                     1 |          0.25
+     204549 |                      AJ Albuquerque |                  47 |                     0 |          0.00
+     220714 |                         Adail Filho |                 277 |                     0 |          0.00
+     121948 |                    Adriano do Baldy |                 399 |                     0 |          0.00
+     160508 |                     Afonso Florence |                   7 |                     0 |          0.00
+     136811 |                         Afonso Hamm |                 371 |                     0 |          0.00
+     160527 |                   Aguinaldo Ribeiro |                  77 |                     0 |          0.00
+      73579 |                       Alberto Fraga |                 670 |                     0 |          0.00
+     178972 |                        Alex Manente |                 213 |                     0 |          0.00
+     160545 |                     Alexandre Leite |                 116 |                     0 |          0.00
+     220554 |               Alexandre Lindenmeyer |                 325 |                     0 |          0.00
+     204503 |                   Alexandre Padilha |                   1 |                     0 |          0.00
+     178927 |                       Aliel Machado |                 109 |                     0 |          0.00
+     204353 |                        Aline Gurgel |                  13 |                     0 |          0.00
+     226708 |                        Allan Garcês |                  45 |                     0 |          0.00
+     178831 |                         André Abdon |                   2 |                     0 |          0.00
+     204423 |                      André Ferreira |                 258 |                     0 |          0.00
+     178882 |                        André Fufuca |                 126 |                     0 |          0.00
+     204515 |                       André Janones |                  91 |                     0 |          0.00
+     220549 |                           Any Ortiz |                 382 |                     0 |          0.00
+     141391 |                      Arnaldo Jardim |                 243 |                     0 |          0.00
+     160541 |                         Arthur Lira |                   2 |                     0 |          0.00
+     160600 |                Arthur Oliveira Maia |                 292 |                     0 |          0.00
+     160665 |                    Augusto Coutinho |                 599 |                     0 |          0.00
+      74646 |                         Aécio Neves |                  24 |                     0 |          0.00
+      69871 |                             Bacelar |                 461 |                     0 |          0.00
+     220605 |                   Bandeira de Mello |                 313 |                     0 |          0.00
+     220612 |                              Bebeto |                 310 |                     0 |          0.00
+     109429 |                      Benes Leocádio |                 165 |                     0 |          0.00
+     204358 |                        Beto Pereira |                 126 |                     0 |          0.00
+     220683 |                          Beto Richa |                 258 |                     0 |          0.00
+     210989 |                        Bruno Farias |                 294 |                     0 |          0.00
+     220635 |                         Bruno Ganem |                 250 |                     0 |          0.00
+     143942 |                         Caio Vianna |                 134 |                     0 |          0.00
+     220690 |                       Capitão Alden |                 633 |                     0 |          0.00
+     213762 |                       Carla Dickson |                  87 |                     0 |          0.00
+     204507 |                      Carla Zambelli |                 265 |                     0 |          0.00
+     178993 |              Carlos Henrique Gaguim |                 449 |                     0 |          0.00
+      74262 |                      Carlos Sampaio |                 115 |                     0 |          0.00
+     204426 |                        Carlos Veras |                 876 |                     0 |          0.00
+     164360 |                      Carmen Zanotto |                   5 |                     0 |          0.00
+     204462 |                      Chris Tonietto |                 987 |                     0 |          0.00
+     220665 |                     Clarissa Tércio |                 260 |                     0 |          0.00
+     220594 |                       Coronel Assis |                 309 |                     0 |          0.00
+     204378 |                 Coronel Chrisóstomo |                 455 |                     0 |          0.00
+     178963 |                       Covatti Filho |                 295 |                     0 |          0.00
+     220608 |                     Cristiane Lopes |                 344 |                     0 |          0.00
+     204488 |                       Célio Studart |                 343 |                     0 |          0.00
+     220555 |                       Daiana Santos |                 396 |                     0 |          0.00
+     220692 |                         Dal Barreto |                 144 |                     0 |          0.00
+     220571 |                      Daniel Agrobom |                 301 |                     0 |          0.00
+      74060 |                      Daniel Almeida |                 270 |                     0 |          0.00
+     220582 |                      Daniel Barbosa |                  47 |                     0 |          0.00
+     204367 |                      Daniel Freitas |                 274 |                     0 |          0.00
+     204409 |                     Daniel Trzeciak |                 110 |                     0 |          0.00
+     204459 |                 Daniela do Waguinho |                  70 |                     0 |          0.00
+      62881 |                        Danilo Forte |                 301 |                     0 |          0.00
+     160552 |          Danrlei de Deus Hinterholz |                  12 |                     0 |          0.00
+     116379 |                      Darci de Matos |                  65 |                     0 |          0.00
+     204511 |                        David Soares |                 297 |                     0 |          0.00
+     220642 |                 Delegado Bruno Lima |                 105 |                     0 |          0.00
+     220673 |                    Delegado Caveira |                 324 |                     0 |          0.00
+     220583 |                Delegado Fabio Costa |                 318 |                     0 |          0.00
+     204512 |            Delegado Marcelo Freitas |                 236 |                     0 |          0.00
+     220701 |             Delegado Matheus Laiola |                 293 |                     0 |          0.00
+     220652 |                    Delegado Palumbo |                 191 |                     0 |          0.00
+     220705 |                    Deltan Dallagnol |                 178 |                     0 |          0.00
+     160599 |                       Dimas Fabiano |                  53 |                     0 |          0.00
+     220602 |                       Dimas Gadelha |                 265 |                     0 |          0.00
+     227433 |                      Douglas Viegas |                  10 |                     0 |          0.00
+     204450 |                     Doutor Luizinho |                 368 |                     0 |          0.00
+     227401 |                      Dr Fabio Rueda |                   2 |                     0 |          0.00
+     227991 |                           Dr Flávio |                  27 |                     0 |          0.00
+     204518 |                       Dr. Frederico |                 397 |                     0 |          0.00
+     204481 |                          Dr. Jaziel |                 152 |                     0 |          0.00
+     204351 |                     Dr. Luiz Ovando |                 260 |                     0 |          0.00
+     220528 |                 Dr. Victor Linhalis |                 336 |                     0 |          0.00
+     227800 |                 Duarte Gonçalves Jr |                   2 |                     0 |          0.00
+     220540 |                          Duda Ramos |                 293 |                     0 |          0.00
+      92346 |                   Eduardo Bolsonaro |                 339 |                     0 |          0.00
+     204364 |                          Eli Borges |                 147 |                     0 |          0.00
+     226553 |                         Eliane Braz |                   9 |                     0 |          0.00
+     229585 |                   Elisangela Araujo |                  16 |                     0 |          0.00
+     178854 |                    Elmar Nascimento |                 346 |                     0 |          0.00
+     218086 |                          Ely Santos |                  28 |                     0 |          0.00
+     198783 |               Emanuel Pinheiro Neto |                 201 |                     0 |          0.00
+     161550 |                    Emidinho Madeira |                 327 |                     0 |          0.00
+     225730 |                Enfermeira Ana Paula |                  85 |                     0 |          0.00
+     230765 |                   Enfermeira Rejane |                  32 |                     0 |          0.00
+     132504 |                          Enio Verri |                  27 |                     0 |          0.00
+     220663 |                   Eriberto Medeiros |                 412 |                     0 |          0.00
+     160640 |                       Eros Biondini |                 319 |                     0 |          0.00
+      74454 |                    Eunício Oliveira |                  48 |                     0 |          0.00
+     178871 |                Evair Vieira de Melo |                1144 |                     0 |          0.00
+     234388 |                      Fabiano Cazeca |                   2 |                     0 |          0.00
+     178905 |                        Fabio Garcia |                 113 |                     0 |          0.00
+     171623 |                          Fabio Reis |                  39 |                     0 |          0.00
+     204368 |                     Fabio Schiochet |                 102 |                     0 |          0.00
+      74065 |                       Fatima Pelaes |                   9 |                     0 |          0.00
+      66828 |                       Fausto Pinato |                 436 |                     0 |          0.00
+     220646 |                       Felipe Becari |                 660 |                     0 |          0.00
+     227370 |                       Felipe Saliba |                   2 |                     0 |          0.00
+     204407 |                 Fernanda Melchionna |                 489 |                     0 |          0.00
+     141431 |               Fernando Coelho Filho |                  61 |                     0 |          0.00
+     204445 |                    Fernando Mineiro |                 155 |                     0 |          0.00
+     204427 |                    Fernando Rodolfo |                 353 |                     0 |          0.00
+     225727 |                            Flavinha |                  14 |                     0 |          0.00
+     204494 |                          Fred Costa |                 397 |                     0 |          0.00
+     220653 |                        Fábio Teruel |                  42 |                     0 |          0.00
+     160666 |               Félix Mendonça Júnior |                 506 |                     0 |          0.00
+     204473 |                       General Girão |                 395 |                     0 |          0.00
+     220611 |                    General Pazuello |                 264 |                     0 |          0.00
+     178966 |                      Geovania de Sá |                 154 |                     0 |          0.00
+     220702 |                      Geraldo Mendes |                 265 |                     0 |          0.00
+      74374 |                     Geraldo Resende |                 399 |                     0 |          0.00
+     204394 |                       Gervásio Maia |                 197 |                     0 |          0.00
+      74383 |                             Giacobo |                 211 |                     0 |          0.00
+      74270 |                 Gilberto Nascimento |                 194 |                     0 |          0.00
+     220526 |                   Gilvan da Federal |                 203 |                     0 |          0.00
+     226179 |                       Gisela Simona |                  80 |                     0 |          0.00
+     152605 |                       Glauber Braga |                 163 |                     0 |          0.00
+     204419 |                   Glaustin da Fokus |                 109 |                     0 |          0.00
+     107283 |                     Gleisi Hoffmann |                 173 |                     0 |          0.00
+     129618 |                      Gorete Pereira |                   5 |                     0 |          0.00
+     198197 |                        Greyce Elias |                 198 |                     0 |          0.00
+     220639 |                    Guilherme Boulos |                 508 |                     0 |          0.00
+     204531 |                   Guilherme Derrite |                  12 |                     0 |          0.00
+     220664 |                     Guilherme Uchoa |                 116 |                     0 |          0.00
+     178964 |                       Heitor Schuch |                 268 |                     0 |          0.00
+     178873 |                      Helder Salomão |                 740 |                     0 |          0.00
+     204444 |                         Helio Lopes |                 349 |                     0 |          0.00
+     234788 |                      Heloísa Helena |                  82 |                     0 |          0.00
+     227324 |                     Henrique Júnior |                   2 |                     0 |          0.00
+     204539 |               Hercílio Coelho Diniz |                 122 |                     0 |          0.00
+     178884 |                         Hildo Rocha |                  47 |                     0 |          0.00
+     100689 |                   Hildo do Candango |                   2 |                     0 |          0.00
+     178909 |                         Hélio Leite |                  17 |                     0 |          0.00
+     204533 |                     Idilvan Alencar |                 187 |                     0 |          0.00
+     204508 |                           Igor Timo |                  55 |                     0 |          0.00
+      74295 |                       Inácio Arruda |                  11 |                     0 |          0.00
+     225846 |                         Itamar Paim |                   2 |                     0 |          0.00
+      73531 |                        Ivan Valente |                 170 |                     0 |          0.00
+     220527 |                          Jack Rocha |                 202 |                     0 |          0.00
+     220697 |                      Jadyel Alencar |                 477 |                     0 |          0.00
+     220567 |                  Jeferson Rodrigues |                 252 |                     0 |          0.00
+     160531 |                   Jhonatan de Jesus |                   7 |                     0 |          0.00
+     141456 |                        Jilmar Tatto |                 201 |                     0 |          0.00
+     178910 |                  Joaquim Passarinho |                 368 |                     0 |          0.00
+     217480 |                         Jones Moura |                  41 |                     0 |          0.00
+     209189 |                      Joseildo Ramos |                 187 |                     0 |          0.00
+     220578 |                           Josenildo |                 254 |                     0 |          0.00
+      74141 |                        Josias Gomes |                  61 |                     0 |          0.00
+     204563 |               Josimar Maranhãozinho |                  35 |                     0 |          0.00
+     215043 |                        Josivaldo JP |                 125 |                     0 |          0.00
+     204472 |                       José Medeiros |                 752 |                     0 |          0.00
+     204391 |                          José Nelto |                 159 |                     0 |          0.00
+      74554 |                          José Rocha |                 354 |                     0 |          0.00
+     230957 |                           João Cury |                   4 |                     0 |          0.00
+      74550 |                           João Leão |                 123 |                     0 |          0.00
+     220559 |                       Julia Zanatta |                 786 |                     0 |          0.00
+     204372 |                 Julio Cesar Ribeiro |                 371 |                     0 |          0.00
+     204457 |                     Juninho do Pneu |                 263 |                     0 |          0.00
+     204574 |                     Junior Lourenço |                 117 |                     0 |          0.00
+     178886 |                     Juscelino Filho |                   9 |                     0 |          0.00
+     204550 |                         Júnior Mano |                 300 |                     0 |          0.00
+     220677 |                      Keniston Braga |                  37 |                     0 |          0.00
+     162067 |                       Kiko Celeguim |                 204 |                     0 |          0.00
+     220600 |                              Lebrão |                 159 |                     0 |          0.00
+     231911 |                      Lenir de Assis |                  38 |                     0 |          0.00
+      80815 |                          Leo Prates |                 234 |                     0 |          0.00
+      92102 |                 Leur Lomanto Júnior |                 135 |                     0 |          0.00
+      74299 |                   Leônidas Cristino |                 142 |                     0 |          0.00
+      74858 |                    Lindbergh Farias |                 373 |                     0 |          0.00
+     234253 |                       Lucas Abrahao |                  20 |                     0 |          0.00
+     220662 |                         Lucas Ramos |                 275 |                     0 |          0.00
+     204404 |                      Lucas Redecker |                 363 |                     0 |          0.00
+     138286 |                       Luciano Alves |                  79 |                     0 |          0.00
+     220581 |                      Luciano Amaral |                  66 |                     0 |          0.00
+     227323 |                      Luciano Galego |                   1 |                     0 |          0.00
+     220616 |                      Luciano Vieira |                 437 |                     0 |          0.00
+     204448 |                 Luiz Antonio Corrêa |                  24 |                     0 |          0.00
+     141485 |                  Luiz Carlos Busato |                 168 |                     0 |          0.00
+      73778 |                   Luiz Carlos Hauly |                 104 |                     0 |          0.00
+     229432 |               Luiz Fernando Vampiro |                   1 |                     0 |          0.00
+     220636 |                        Luiz Marinho |                   1 |                     0 |          0.00
+     162332 |                      Luiz Nishimori |                 252 |                     0 |          0.00
+     204526 | Luiz Philippe de Orleans e Bragança |                 538 |                     0 |          0.00
+     141480 |                      Lázaro Botelho |                  84 |                     0 |          0.00
+     220566 |                         Lêda Borges |                 368 |                     0 |          0.00
+     156190 |                   Marcel van Hattem |                 810 |                     0 |          0.00
+     220634 |                        Marcelo Lima |                 177 |                     0 |          0.00
+     178983 |                       Marcio Alvino |                  93 |                     0 |          0.00
+     160535 |                              Marcon |                 653 |                     0 |          0.00
+     178943 |                       Marcos Soares |                  91 |                     0 |          0.00
+     220604 |                      Marcos Tavares |                 639 |                     0 |          0.00
+     227275 |                    Mariana Carvalho |                   7 |                     0 |          0.00
+     220637 |                        Marina Silva |                   5 |                     0 |          0.00
+     220655 |                         Mario Frias |                 346 |                     0 |          0.00
+     178843 |                        Marx Beltrão |                 268 |                     0 |          0.00
+     204486 |               Mauro Benevides Filho |                 160 |                     0 |          0.00
+     220609 |                   Maurício Carvalho |                 155 |                     0 |          0.00
+     220607 |                           Max Lemos |                 393 |                     0 |          0.00
+     220585 |                     Mersinho Lucena |                 202 |                     0 |          0.00
+     160561 |            Missionário José Olimpio |                  14 |                     0 |          0.00
+     220617 |                      Murillo Gouvea |                 281 |                     0 |          0.00
+     226410 |                       Márcio Correa |                  25 |                     0 |          0.00
+     220687 |                     Márcio Honaiser |                 434 |                     0 |          0.00
+      81055 |                        Márcio Jerry |                 250 |                     0 |          0.00
+      74158 |                      Mário Heringer |                 427 |                     0 |          0.00
+     178858 |                Mário Negromonte Jr. |                  60 |                     0 |          0.00
+     204449 |                      Nelson Barbudo |                  30 |                     0 |          0.00
+     204479 |                           Nicoletti |                 493 |                     0 |          0.00
+     209787 |                    Nikolas Ferreira |                 537 |                     0 |          0.00
+     178987 |                       Orlando Silva |                 232 |                     0 |          0.00
+      73692 |                         Osmar Terra |                 250 |                     0 |          0.00
+     204422 |                       Ossesio Silva |                  44 |                     0 |          0.00
+     220706 |                            Padovani |                 177 |                     0 |          0.00
+     204570 |                          Pastor Gil |                 120 |                     0 |          0.00
+     220615 |              Pastor Henrique Vieira |                 619 |                     0 |          0.00
+     204553 |            Pastor Sargento Isidório |                 131 |                     0 |          0.00
+      74160 |                      Patrus Ananias |                 499 |                     0 |          0.00
+      74095 |                   Pauderney Avelino |                   6 |                     0 |          0.00
+     141518 |                   Paulinho da Força |                   8 |                     0 |          0.00
+     141516 |                     Paulo Abi-Ackel |                  76 |                     0 |          0.00
+     220650 |             Paulo Alexandre Barbosa |                 362 |                     0 |          0.00
+     178860 |                           Paulo Azi |                  70 |                     0 |          0.00
+     160558 |                  Paulo Freire Costa |                 110 |                     0 |          0.00
+     204492 |                        Paulo Guedes |                 283 |                     0 |          0.00
+     233592 |                         Paulo Lemos |                   7 |                     0 |          0.00
+     128760 |                    Paulo Marinho Jr |                  12 |                     0 |          0.00
+      74400 |                       Paulo Pimenta |                  31 |                     0 |          0.00
+     141488 |                      Paulo Teixeira |                  11 |                     0 |          0.00
+     220630 |                        Pedro Aihara |                 488 |                     0 |          0.00
+     122974 |               Pedro Lucas Fernandes |                 405 |                     0 |          0.00
+     160604 |                         Pedro Uczai |                1008 |                     0 |          0.00
+      73486 |                    Pompeo de Mattos |                 406 |                     0 |          0.00
+     220533 |               Prof. Reginaldo Veras |                 341 |                     0 |          0.00
+     204390 |                   Professor Alcides |                 213 |                     0 |          0.00
+     160641 |               Professora Marcivania |                  27 |                     0 |          0.00
+     233594 |                         Rafael Fera |                  19 |                     0 |          0.00
+     115200 |                     Raniery Paulino |                   2 |                     0 |          0.00
+      74161 |                     Reginaldo Lopes |                 164 |                     0 |          0.00
+     205865 |                  Reinhold Stephanes |                  66 |                     0 |          0.00
+     225386 |                   Renan Ferreirinha |                   7 |                     0 |          0.00
+     175765 |                       Ribamar Silva |                  11 |                     0 |          0.00
+     235088 |                        Ribeiro Neto |                  69 |                     0 |          0.00
+     221329 |                       Ricardo Abrão |                 116 |                     0 |          0.00
+      73788 |                      Ricardo Barros |                   9 |                     0 |          0.00
+     234310 |                      Ricardo Galvão |                  35 |                     0 |          0.00
+     204362 |                       Ricardo Guidi |                  49 |                     0 |          0.00
+     220694 |                        Ricardo Maia |                  64 |                     0 |          0.00
+     220633 |                      Ricardo Salles |                 253 |                     0 |          0.00
+     220613 |                Roberto Monteiro Pai |                 358 |                     0 |          0.00
+     220624 |                      Robinson Faria |                  86 |                     0 |          0.00
+     204489 |                    Robério Monteiro |                  10 |                     0 |          0.00
+     220546 |                    Rodolfo Nogueira |                 268 |                     0 |          0.00
+     141533 |                  Rodrigo Rollemberg |                  70 |                     0 |          0.00
+     165470 |                   Rodrigo Valadares |                 517 |                     0 |          0.00
+     230767 |                    Rodrigo da Zaeli |                 143 |                     0 |          0.00
+     204480 |                     Rogério Correia |                 442 |                     0 |          0.00
+     160629 |                    Romero Rodrigues |                 280 |                     0 |          0.00
+     163321 |                    Ronaldo Nogueira |                  13 |                     0 |          0.00
+     204525 |                        Rosana Valle |                 303 |                     0 |          0.00
+     178945 |                     Rosangela Gomes |                  15 |                     0 |          0.00
+     178887 |               Rubens Pereira Júnior |                 863 |                     0 |          0.00
+      73604 |                          Rui Falcão |                 134 |                     0 |          0.00
+     220631 |                        Samuel Viana |                 141 |                     0 |          0.00
+     160621 |                         Sandro Alex |                  13 |                     0 |          0.00
+     220621 |                  Sargento Gonçalves |                 373 |                     0 |          0.00
+     226837 |                       Saulo Pedroso |                  40 |                     0 |          0.00
+      77003 |             Sergio Santos Rodrigues |                  15 |                     0 |          0.00
+      74356 |                        Silas Câmara |                 445 |                     0 |          0.00
+     204360 |                     Silvia Cristina |                 504 |                     0 |          0.00
+     227310 |                      Silvio Antonio |                  30 |                     0 |          0.00
+     204425 |                  Silvio Costa Filho |                 260 |                     0 |          0.00
+     222565 |                      Soldado Noelio |                  45 |                     0 |          0.00
+     220575 |                      Sonize Barbosa |                 175 |                     0 |          0.00
+     204535 |                        Sâmia Bomfim |                1344 |                     0 |          0.00
+      73808 |                        Sérgio Brito |                   3 |                     0 |          0.00
+     235776 |                        Sérgio Turra |                   6 |                     0 |          0.00
+     220643 |                     Sônia Guajajara |                   4 |                     0 |          0.00
+     220682 |                        Tadeu Veneri |                 287 |                     0 |          0.00
+     220598 |                      Tarcísio Motta |                1075 |                     0 |          0.00
+     143084 |                         Tiago Dimas |                   3 |                     0 |          0.00
+     160976 |                            Tiririca |                 102 |                     0 |          0.00
+     220684 |                       Tião Medeiros |                 222 |                     0 |          0.00
+     160610 |                     Valmir Assunção |                 618 |                     0 |          0.00
+      74376 |                       Vander Loubet |                 281 |                     0 |          0.00
+     234673 |                     Vanderlan Alves |                  36 |                     0 |          0.00
+     160591 |                     Vinicius Gurgel |                  35 |                     0 |          0.00
+     178992 |                         Vitor Lippi |                 440 |                     0 |          0.00
+     160569 |                    Waldenor Pereira |                 240 |                     0 |          0.00
+     220601 |                   Washington Quaquá |                 318 |                     0 |          0.00
+     160592 |                         Zeca Dirceu |                 820 |                     0 |          0.00
+     230768 |                          Zé Adriano |                  25 |                     0 |          0.00
+     204559 |                             Zé Neto |                 241 |                     0 |          0.00
+     160632 |                            Zé Silva |                 295 |                     0 |          0.00
+(600 rows)

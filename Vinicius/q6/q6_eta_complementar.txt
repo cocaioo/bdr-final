@@ -1,0 +1,15 @@
+Q6 - analise complementar por eta quadrado
+eta quadrado foi usado porque escolaridade e uma variavel categorica e os indicadores sao numericos.
+eta quadrado mede a forca da associacao entre escolaridade e cada indicador parlamentar.
+A analise indica associacao, nao causalidade.
+A Q6 original continua sendo a analise descritiva por medias; este arquivo e apenas complementar.
+
+Tabela principal - forca da associacao entre escolaridade e indicadores
+            indicador | registros_validos | grupos_escolaridade | eta_quadrado |          interpretacao
+----------------------+-------------------+---------------------+--------------+-----------------------
+     presenca_eventos |              2193 |                  13 |       0.0120 |       associacao fraca
+    presenca_plenario |              2193 |                  13 |       0.0119 |       associacao fraca
+fidelidade_partidaria |               832 |                  11 |       0.0103 |       associacao fraca
+   numero_proposicoes |              2193 |                  13 |       0.0082 | associacao muito fraca
+               gastos |              2193 |                  13 |       0.0043 | associacao muito fraca
+(5 rows)

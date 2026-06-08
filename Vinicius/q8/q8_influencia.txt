@@ -1,0 +1,43 @@
+Q8 - influencia legislativa por participacao no total aprovado
+Resumo executivo
+deputados_com_autoria | proposicoes_autoria | proposicoes_aprovadas_global | deputados_com_proposicoes_aprovadas
+----------------------+---------------------+------------------------------+------------------------------------
+                  600 |              183103 |                          402 |                                 304
+(1 rows)
+
+Tabela principal - top 30 por participacao no total aprovado
+id_deputado |                  nome | proposicoes_autoria | proposicoes_aprovadas | pct_aprovadas
+------------+-----------------------+---------------------+-----------------------+--------------
+      74856 |        Laura Carneiro |                1934 |                    10 |          2.49
+     160598 |         Flávia Morais |                 887 |                     5 |          1.24
+     220648 |             Marangoni |                1373 |                     4 |          1.00
+      74057 |        Alice Portugal |                 340 |                     3 |          0.75
+      73701 |     Benedita da Silva |                 366 |                     3 |          0.75
+     220548 |           Camila Jara |                 586 |                     3 |          0.75
+     204572 |  Capitão Alberto Neto |                2047 |                     3 |          0.75
+     220539 | Defensor Stélio Dener |                 388 |                     3 |          0.75
+     220614 |     Dr. Daniel Soranz |                 201 |                     3 |          0.75
+     204412 |   Dr. Zacharias Calil |                 656 |                     3 |          0.75
+     220670 |            Iza Arruda |                 161 |                     3 |          0.75
+     204536 |         Kim Kataguiri |                 975 |                     3 |          0.75
+     220668 |          Maria Arraes |                 385 |                     3 |          0.75
+     220627 |       Paulinho Freire |                 164 |                     3 |          0.75
+      74084 |       Raimundo Santos |                1832 |                     3 |          0.75
+     220543 |         Ricardo Ayres |                 748 |                     3 |          0.75
+     220641 |       Rodrigo Gambale |                 395 |                     3 |          0.75
+     220695 |        Rogéria Santos |                 829 |                     3 |          0.75
+     220651 |      Simone Marquetto |                 154 |                     3 |          0.75
+     141555 |     Vinicius Carvalho |                 521 |                     3 |          0.75
+     204517 |              Zé Vitor |                 349 |                     3 |          0.75
+     178835 |          Afonso Motta |                 330 |                     2 |          0.50
+     204495 |        Airton Faleiro |                 313 |                     2 |          0.50
+     220542 |   Alexandre Guimarães |                 319 |                     2 |          0.50
+     178881 |        Aluisio Mendes |                 338 |                     2 |          0.50
+     220707 |         Amanda Gentil |                 419 |                     2 |          0.50
+     204356 |            Amaro Neto |                 209 |                     2 |          0.50
+     220556 |        Ana Paula Lima |                 511 |                     2 |          0.50
+     220632 |          Ana Pimentel |                 359 |                     2 |          0.50
+     220676 |      Andreia Siqueira |                 351 |                     2 |          0.50
+(30 rows)
+
+Complemento detalhado: q8_influencia_complemento.txt contem o ranking completo.

@@ -2,71 +2,126 @@
 
 Projeto local para padronizar dados da Camara dos Deputados, carregar o PostgreSQL via Docker e servir um dashboard com backend FastAPI e frontend React/Vite.
 
-## O que tem aqui
+## Estrutura
 
 - `src/`: ETL em Python para ler os CSVs, padronizar os dados e gerar as respostas.
-- `Banco/` e `docker-compose.yml`: banco PostgreSQL e schema inicial.
-- `dashboard/backend`: API FastAPI que entrega os arquivos e metadados do dashboard.
+- `Banco/`: banco PostgreSQL, `docker-compose.yml` e schema inicial.
+- `dashboard/backend`: API FastAPI usada pelo dashboard.
 - `dashboard/frontend`: interface React/Vite.
+- `respostas/`: arquivos consumidos pelo backend quando disponiveis.
 
 ## Requisitos
 
 - Python 3.11+
 - Docker Desktop
 - Node.js 20+ e npm
+- PowerShell
 
-## Como rodar
+## Primeira vez no projeto
 
-1. Suba o banco, se ele ainda nao estiver no ar: `docker compose up -d`
-2. Instale as dependencias do frontend uma vez:
-
-PowerShell:
+Na raiz do projeto, crie o ambiente Python e instale as dependencias:
 
 ```powershell
-cd dashboard/frontend
-npm install
+python -m venv venv
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
+.\venv\Scripts\python.exe -m pip install -r dashboard/backend/requirements.txt
 ```
 
-Git Bash:
-
-```bash
-cd dashboard/frontend
-npm install
-```
-
-3. Inicie a API em um terminal na raiz do projeto.
-
-PowerShell:
+Instale tambem as dependencias do frontend:
 
 ```powershell
+cd dashboard\frontend
+npm install
+cd ..\..
+```
+
+## Como subir o dashboard
+
+Use 3 terminais separados.
+
+### Terminal 1: banco de dados
+
+Na raiz do projeto:
+
+```powershell
+cd Banco
+docker compose up -d
+cd ..
+```
+
+O banco sobe pela configuracao em `Banco/docker-compose.yml`.
+
+### Terminal 2: backend
+
+Na raiz do projeto:
+
+```powershell
+
+
 .\venv\Scripts\python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
 ```
 
-Git Bash:
+Quando estiver rodando, teste no navegador:
 
-```bash
-./venv/Scripts/python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
+```text
+http://localhost:8000/api/health
 ```
 
-4. Abra outro terminal em `dashboard/frontend` e inicie o front.
+### Terminal 3: frontend
 
-PowerShell:
+Na raiz do projeto:
 
 ```powershell
+cd dashboard\frontend
 npm run dev -- --host 0.0.0.0 --port 5173
 ```
 
-Git Bash:
+Acesse o dashboard em:
 
-```bash
-npm run dev -- --host 0.0.0.0 --port 5173
+```text
+http://localhost:5173
 ```
 
-## Acesso
+O frontend envia as chamadas `/api` para o backend em `http://127.0.0.1:8000`.
+
+## Atalho com Makefile
+
+Se preferir usar os atalhos do `Makefile`, rode pela raiz do projeto:
+
+```powershell
+make dashboard-install
+make dashboard-api
+```
+
+Em outro terminal, tambem na raiz:
+
+```powershell
+make dashboard-web
+```
+
+Para abrir backend e frontend de uma vez em processos separados:
+
+```powershell
+make dashboard-dev
+```
+
+## Enderecos uteis
 
 - Frontend: `http://localhost:5173`
-- API: `http://localhost:8000/api/health`
+- Saude da API: `http://localhost:8000/api/health`
 - Metadados: `http://localhost:8000/api/meta`
+
+## Problemas comuns
+
+- Se `npm run dev` abrir outra porta, confira se a `5173` ja esta ocupada.
+- Se o frontend abrir mas nao carregar dados, confirme se o backend esta rodando na porta `8000`.
+- Se o backend reclamar de dependencia ausente, rode novamente:
+
+```powershell
+.\venv\Scripts\python.exe -m pip install -r dashboard/backend/requirements.txt
+```
+
+- Se o banco nao subir, confirme se o Docker Desktop esta aberto antes de rodar `docker compose up -d`.
 
 ## Observacoes
 
