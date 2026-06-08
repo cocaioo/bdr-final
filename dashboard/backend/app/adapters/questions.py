@@ -13,6 +13,94 @@ class Q1Adapter(QuestionAdapter):
 class Q2Adapter(QuestionAdapter):
     """Eixos e nuvem de palavras."""
 
+    def build_payload(self, state: FilterState) -> QuestionPayload:
+        main_rows = self.main_table.rows if self.main_table else []
+
+        if state.anos:
+            allowed_years = {int(y) for y in state.anos if str(y).isdigit()}
+            filtered_by_year = [r for r in main_rows if r.get("ano_dados") in allowed_years]
+        else:
+            aggregated: dict[tuple, dict[str, Any]] = {}
+            for r in main_rows:
+                key = (
+                    r.get("id_deputado"),
+                    r.get("nome"),
+                    r.get("nome_civil"),
+                    r.get("sigla_partido"),
+                    r.get("sigla_uf"),
+                    r.get("tema"),
+                )
+                if key not in aggregated:
+                    aggregated[key] = {
+                        "id_deputado": key[0],
+                        "nome": key[1],
+                        "nome_civil": key[2],
+                        "sigla_partido": key[3],
+                        "sigla_uf": key[4],
+                        "tema": key[5],
+                        "qtd_proposicoes": 0,
+                        "proposicoes_aprovadas": 0,
+                    }
+                aggregated[key]["qtd_proposicoes"] += r.get("qtd_proposicoes") or 0
+                aggregated[key]["proposicoes_aprovadas"] += r.get("proposicoes_aprovadas") or 0
+            filtered_by_year = list(aggregated.values())
+
+        supported_other = [f for f in self.context.question.supported_filters if f != "anos"]
+        filtered_rows = FilterEngine.apply_filters(filtered_by_year, state, supported_other)
+
+        sorted_rows = FilterEngine.apply_sort(filtered_rows, state.sort_by or "qtd_proposicoes", state.sort_dir)
+        paged_rows = FilterEngine.apply_pagination(sorted_rows, state.page, state.page_size)
+
+        chart_spec = self.build_chart_spec(filtered_rows)
+        table_spec = self._build_table_spec(
+            title=self.main_table.title if self.main_table else "Tabela principal",
+            columns=self.main_table.columns if self.main_table else [],
+            rows=paged_rows,
+            total=len(sorted_rows),
+            state=state,
+        )
+
+        summary_cards = self._build_summary_cards()
+        complement_specs = self._build_complements(state)
+
+        has_data = table_spec.total > 0
+        empty = EmptyState(
+            is_empty=not has_data,
+            message="Sem dados para os filtros selecionados." if not has_data else "",
+        )
+
+        return QuestionPayload(
+            question_id=self.context.question.id,
+            title=self.context.question.title,
+            description=self.context.question.description,
+            filters_supported=self.context.question.supported_filters,
+            filters_applied={
+                "anos": state.anos,
+                "eixos": state.eixos,
+                "partidos": state.partidos,
+                "ufs": state.ufs,
+                "deputados": state.deputados,
+                "search": state.search,
+                "sort_by": state.sort_by,
+                "sort_dir": state.sort_dir,
+                "page": state.page,
+                "page_size": state.page_size,
+            },
+            summary_cards=summary_cards,
+            chart_spec=chart_spec,
+            table_spec=table_spec,
+            complement_tables=complement_specs,
+            query_panel=QueryPanel(
+                sql_path=self.context.sql_path,
+                sql_text=self.context.sql_text,
+                explanation=self.context.question.explanation,
+            ),
+            warnings=self.warnings,
+            empty_state=empty,
+            dataset_version=self.context.dataset_version,
+            generated_at=datetime.now(timezone.utc).isoformat(),
+        )
+
     def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
         images = [
             {

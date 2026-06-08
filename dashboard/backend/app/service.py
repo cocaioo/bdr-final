@@ -297,7 +297,11 @@ def _maybe_add(container: set[str], value: Any, excluded: set[str] | None = None
     if excluded and text.upper() in excluded:
         return
     if text:
-        container.add(text)
+        if "," in text:
+            for part in text.split(","):
+                _maybe_add(container, part.strip(), excluded)
+        else:
+            container.add(text)
 
 
 def _maybe_add_party(container: set[str], value: Any) -> None:

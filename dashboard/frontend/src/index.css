@@ -775,3 +775,139 @@ td {
   filter: none;
 }
 
+/* Q2 Deputies Grid and Cards */
+.deputies-grid-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.deputies-grid-section h2 {
+  margin-bottom: 16px;
+  color: var(--primary);
+  font-family: 'Sora', sans-serif;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 10px;
+}
+
+.deputies-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.deputy-card {
+  background: linear-gradient(165deg, #ffffff 0%, #f9fbfd 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deputy-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(11, 60, 93, 0.12);
+}
+
+.deputy-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-bottom: 1px solid rgba(11, 60, 93, 0.08);
+  padding-bottom: 8px;
+}
+
+.deputy-card-header h3 {
+  font-size: 1.15rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.deputy-civil-name {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.deputy-badge {
+  align-self: flex-start;
+  background: rgba(11, 60, 93, 0.08);
+  color: var(--primary);
+  border: 1px solid rgba(11, 60, 93, 0.15);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+  margin-top: 4px;
+}
+
+.deputy-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.deputy-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.9rem;
+}
+
+.metric-label {
+  color: var(--muted);
+}
+
+.metric-value {
+  font-weight: 700;
+  color: var(--ink);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.deputy-specialization {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  border-top: 1px dashed rgba(11, 60, 93, 0.1);
+  padding-top: 8px;
+}
+
+.specialization-label {
+  color: var(--muted);
+}
+
+.specialization-value {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.q2-empty-selection {
+  background: #fff8f3;
+  border: 1px dashed var(--accent);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+@media (max-width: 960px) {
+  .deputies-card-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .deputies-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

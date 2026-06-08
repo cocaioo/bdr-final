@@ -116,11 +116,11 @@ const payload: QuestionPayload = {
   generated_at: '2026-05-26T12:00:00Z',
 }
 
-function renderQuestionPage(meta: MetaResponse, route: string) {
+function renderQuestionPage(meta: MetaResponse, route: string, customFilters: FilterState = filters) {
   return render(
     <MemoryRouter initialEntries={[route]}>
       <Routes>
-        <Route path="/q/:questionId" element={<QuestionPage meta={meta} filters={filters} />} />
+        <Route path="/q/:questionId" element={<QuestionPage meta={meta} filters={customFilters} />} />
       </Routes>
     </MemoryRouter>,
   )
@@ -140,7 +140,7 @@ describe('QuestionPage', () => {
     expect(screen.queryByTestId('chart-panel')).not.toBeInTheDocument()
   })
 
-  it('renders Q2 word clouds and analytical table', async () => {
+  it('renders Q2 word clouds without analytical table', async () => {
     fetchQuestionMock.mockResolvedValue({
       ...payload,
       question_id: 'q2',
@@ -160,8 +160,42 @@ describe('QuestionPage', () => {
     renderQuestionPage(buildMeta('q2', 'Eixos e nuvem de palavras'), '/q/q2')
 
     expect(await screen.findByTestId('wordcloud-grid')).toBeInTheDocument()
-    expect(screen.getByTestId('table-panel')).toHaveTextContent('Tabela principal')
+    expect(screen.queryByTestId('table-panel')).not.toBeInTheDocument()
     expect(screen.queryByTestId('chart-panel')).not.toBeInTheDocument()
+    expect(screen.getByText('Selecione um tema na nuvem de palavras', { exact: false })).toBeInTheDocument()
+  })
+
+  it('renders Q2 deputies grid when a theme is selected', async () => {
+    const customPayload = {
+      ...payload,
+      question_id: 'q2',
+      table_spec: {
+        ...payload.table_spec,
+        rows: [
+          {
+            id_deputado: '123',
+            nome: 'Deputado Teste',
+            nome_civil: 'Nome Civil Teste',
+            sigla_partido: 'PT',
+            sigla_uf: 'SP',
+            tema: 'Seguranca',
+            qtd_proposicoes: 15,
+            proposicoes_aprovadas: 2,
+            tema_mais_atuante_deputado: 'Seguranca',
+          },
+        ],
+      },
+    }
+    fetchQuestionMock.mockResolvedValue(customPayload)
+
+    const activeFilters = { ...filters, eixos: ['Seguranca'] }
+    renderQuestionPage(buildMeta('q2', 'Eixos e nuvem de palavras'), '/q/q2', activeFilters)
+
+    expect(await screen.findByTestId('deputies-cards-grid')).toBeInTheDocument()
+    expect(screen.getByText('Deputado Teste')).toBeInTheDocument()
+    expect(screen.getByText('Nome Civil Teste')).toBeInTheDocument()
+    expect(screen.getByText('PT / SP')).toBeInTheDocument()
+    expect(screen.queryByTestId('table-panel')).not.toBeInTheDocument()
   })
 
   it('loads Q7 like a regular enabled question', async () => {

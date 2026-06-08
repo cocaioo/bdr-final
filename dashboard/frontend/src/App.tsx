@@ -71,7 +71,11 @@ function App() {
           catalog={meta.available_filters}
           value={filters}
           onChange={setFilters}
-          supportedFilters={activeQuestion?.supported_filters}
+          supportedFilters={
+            activeQuestionId?.toLowerCase() === 'q2'
+              ? activeQuestion?.supported_filters?.filter((f) => f !== 'deputados')
+              : activeQuestion?.supported_filters
+          }
         />
       ) : null}
       <Routes>

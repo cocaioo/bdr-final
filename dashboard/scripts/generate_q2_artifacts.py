@@ -147,14 +147,14 @@ def load_dataframes() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.Data
         sep=";",
         dtype=str,
         encoding="utf-8",
-        usecols=["ano_dados", "id_proposicao", "uri_proposicao", "id_deputado", "nome_autor"],
+        usecols=["ano_dados", "id_proposicao", "uri_proposicao", "id_deputado", "nome_autor", "sigla_partido", "sigla_uf"],
     )
     deputados = pd.read_csv(
         DATA_DIR / "deputados.csv",
         sep=";",
         dtype=str,
         encoding="utf-8",
-        usecols=["id_deputado", "nome"],
+        usecols=["id_deputado", "nome", "nome_civil"],
     )
     temas = pd.read_csv(DATA_DIR / "proposicoes_temas.csv", sep=";", dtype=str, encoding="utf-8")
 
@@ -340,7 +340,7 @@ def build_analytic_rows(
         autores["ano_dados"].isin(selected_years)
         & autores["id_deputado"].notna()
         & (autores["id_deputado"].str.strip() != "")
-    ][["ano_dados", "id_proposicao", "uri_proposicao", "id_deputado", "nome_autor"]].copy()
+    ][["ano_dados", "id_proposicao", "uri_proposicao", "id_deputado", "nome_autor", "sigla_partido", "sigla_uf"]].copy()
 
     base = autoria.merge(
         temas[["ano_dados", "uri_proposicao", "tema"]],
@@ -359,7 +359,7 @@ def build_analytic_rows(
     )
 
     grouped = (
-        base.groupby(["id_deputado", "nome_autor", "tema"], dropna=False)
+        base.groupby(["ano_dados", "id_deputado", "nome_autor", "sigla_partido", "sigla_uf", "tema"], dropna=False)
         .agg(
             qtd_proposicoes=("id_proposicao", "nunique"),
             proposicoes_aprovadas=("aprovada", "sum"),
@@ -370,31 +370,38 @@ def build_analytic_rows(
 
     grouped = grouped.merge(deputados, on="id_deputado", how="left")
     grouped["nome"] = grouped["nome"].fillna(grouped["nome_autor"])
+    grouped["nome_civil"] = grouped["nome_civil"].fillna(grouped["nome"])
+    grouped["sigla_partido"] = grouped["sigla_partido"].fillna("S.Part.")
+    grouped["sigla_uf"] = grouped["sigla_uf"].fillna("-")
 
-    max_by_dep = grouped.groupby("id_deputado")["qtd_proposicoes"].transform("max")
+    max_by_dep = grouped.groupby(["ano_dados", "id_deputado"])["qtd_proposicoes"].transform("max")
     grouped["maior_atuacao_no_tema"] = grouped["qtd_proposicoes"].eq(max_by_dep)
 
     eixo_labels = (
         grouped[grouped["maior_atuacao_no_tema"]]
-        .sort_values(["id_deputado", "tema"])
-        .groupby("id_deputado")["tema"]
+        .sort_values(["ano_dados", "id_deputado", "tema"])
+        .groupby(["ano_dados", "id_deputado"])["tema"]
         .apply(lambda values: ", ".join(values))
         .rename("tema_mais_atuante_deputado")
         .reset_index()
     )
-    grouped = grouped.merge(eixo_labels, on="id_deputado", how="left")
+    grouped = grouped.merge(eixo_labels, on=["ano_dados", "id_deputado"], how="left")
 
     grouped = grouped.sort_values(
-        ["qtd_proposicoes", "proposicoes_aprovadas", "nome", "tema"],
-        ascending=[False, False, True, True],
+        ["ano_dados", "qtd_proposicoes", "proposicoes_aprovadas", "nome", "tema"],
+        ascending=[True, False, False, True, True],
     )
 
     rows: list[dict[str, object]] = []
     for row in grouped.itertuples(index=False):
         rows.append(
             {
+                "ano_dados": int(row.ano_dados),
                 "id_deputado": str(row.id_deputado),
                 "nome": str(row.nome),
+                "nome_civil": str(row.nome_civil),
+                "sigla_partido": str(row.sigla_partido),
+                "sigla_uf": str(row.sigla_uf),
                 "tema": str(row.tema),
                 "qtd_proposicoes": int(row.qtd_proposicoes),
                 "proposicoes_aprovadas": int(row.proposicoes_aprovadas),
@@ -437,8 +444,12 @@ def write_q2_response_files(
         }
     ]
     main_columns = [
+        "ano_dados",
         "id_deputado",
         "nome",
+        "nome_civil",
+        "sigla_partido",
+        "sigla_uf",
         "tema",
         "qtd_proposicoes",
         "proposicoes_aprovadas",

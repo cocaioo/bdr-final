@@ -92,12 +92,12 @@ class FilterEngine:
         output: list[dict[str, Any]] = []
         for row in rows:
             for column in columns:
-                if column not in row:
-                    continue
                 raw = row.get(column)
                 if raw is None:
                     continue
-                if str(raw).strip().lower() in normalized:
+                raw_str = str(raw).strip().lower()
+                parts = {p.strip() for p in raw_str.split(",") if p.strip()}
+                if parts & normalized:
                     output.append(row)
                     break
         return output
