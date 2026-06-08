@@ -72,7 +72,7 @@ function App() {
           value={filters}
           onChange={setFilters}
           supportedFilters={
-            activeQuestionId?.toLowerCase() === 'q2'
+            activeQuestionId?.toLowerCase() === 'q2' || activeQuestionId?.toLowerCase() === 'q4'
               ? activeQuestion?.supported_filters?.filter((f) => f !== 'deputados')
               : activeQuestion?.supported_filters
           }
