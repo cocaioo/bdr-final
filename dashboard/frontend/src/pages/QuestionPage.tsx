@@ -161,7 +161,7 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
   const shouldShowChart = questionMeta.id.toLowerCase() !== 'q1' && !hasWordClouds
   const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
   const mainTable = isQ8 ? { ...payload.table_spec, title: 'Tabela principal' } : payload.table_spec
-  const complementTables = isQ8 ? [] : payload.complement_tables
+  const complementTables = payload.complement_tables
   const handleTableChange = (next: TableState) => {
     if (isQ8) {
       setTableState({ ...next, pageSize: 50 })
