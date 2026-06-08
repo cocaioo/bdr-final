@@ -268,7 +268,7 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
                 <h2>Atuação no Eixo: {filters.eixos[0]}</h2>
                 <div className="deputies-card-grid" data-testid="deputies-cards-grid">
                   {payload.table_spec.rows.map((row: any) => (
-                    <article className="deputy-card" key={row.id_deputado} data-testid="deputy-card">
+                    <article className="deputy-card" key={`${row.id_deputado}-${row.tema}-${row.sigla_partido}-${row.ano_dados || ''}`} data-testid="deputy-card">
                       <div className="deputy-card-header">
                         <h3>{row.nome}</h3>
                         <p className="deputy-civil-name">{row.nome_civil}</p>

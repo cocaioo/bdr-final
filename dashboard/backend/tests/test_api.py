@@ -21,7 +21,7 @@ ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_t
 TABLE_TEXT_Q2 = """Tabela principal
 ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_total
 ----------+------------+---------------+----------+-------------+-----------+------------
-2024      | Social     | PL            | MG       | 3           | Cid Nascimento | 30
+2023      | Social     | PL            | MG       | 3           | Cid Nascimento | 30
 (1 rows)
 """
 
@@ -241,7 +241,7 @@ def test_question_endpoint_uses_new_paths_and_member_fallback(tmp_path: Path) ->
 def test_question_endpoint_ignores_unsupported_filters(tmp_path: Path) -> None:
     client = _client_for(_build_service(tmp_path))
 
-    response = client.get("/api/questions/q2?partidos=PT&ufs=SP&deputados=1&anos=2024&page_size=10")
+    response = client.get("/api/questions/q2?partidos=PT&ufs=SP&deputados=1&anos=2023&page_size=10")
     assert response.status_code == 200
     payload = response.json()
     assert payload["table_spec"]["total"] == 1
