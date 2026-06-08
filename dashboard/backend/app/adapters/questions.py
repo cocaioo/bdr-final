@@ -133,8 +133,8 @@ class Q4Adapter(QuestionAdapter):
     """Escolaridade de deputados ativos."""
 
     def build_payload(self, state: FilterState) -> QuestionPayload:
-        # Para a Q4, as linhas principais (tabela principal e gráfico) NÃO devem ser filtradas por escolaridade.
-        # Isso mantém a tabela principal e o gráfico exibindo a distribuição completa.
+        # Para a Q4, as linhas principais (tabela principal e gráfico) NÃO devem ser filtradas por escolaridade no banco de dados.
+        # Isso mantém a tabela principal exibindo a distribuição completa (conforme exigido pelo teste de contrato).
         main_rows = self.main_table.rows if self.main_table else []
         main_supported_filters = [f for f in self.context.question.supported_filters if f != "escolaridade"]
         filtered_rows = FilterEngine.apply_filters(
@@ -148,7 +148,8 @@ class Q4Adapter(QuestionAdapter):
         # Gera cards de resumo dinâmicos baseados no total de deputados na tabela complementar filtrada
         summary_cards = self._build_q4_summary_cards(state)
         
-        chart_spec = self.build_chart_spec(filtered_rows)
+        # Filtramos a escolaridade no gráfico dinamicamente
+        chart_spec = self.build_chart_spec(filtered_rows, state)
         table_spec = self._build_table_spec(
             title=self.main_table.title if self.main_table else "Tabela principal",
             columns=self.main_table.columns if self.main_table else [],
@@ -157,7 +158,7 @@ class Q4Adapter(QuestionAdapter):
             state=state,
         )
         
-        # A tabela complementar é filtrada normalmente (incluindo o filtro de escolaridade)
+        # A tabela complementar é filtrada normalmente
         complement_specs = self._build_complements(state)
 
         has_data = table_spec.total > 0 or any(spec.total > 0 for spec in complement_specs)
@@ -199,6 +200,57 @@ class Q4Adapter(QuestionAdapter):
             empty_state=empty,
             dataset_version=self.context.dataset_version,
             generated_at=datetime.now(timezone.utc).isoformat(),
+        )
+
+    def build_chart_spec(self, rows: list[dict[str, Any]], state: FilterState | None = None) -> ChartSpec:
+        if not rows:
+            return ChartSpec(
+                type="stacked_bar",
+                title="Sem dados",
+                description="Não há dados suficientes para montar o gráfico.",
+            )
+
+        # Agrupa partidos únicos presentes para as categorias (eixo X)
+        categories = sorted(list({str(row.get("sigla_partido", "")) for row in rows if row.get("sigla_partido")}))
+        
+        # Agrupa os níveis de escolaridade únicos presentes (séries/empilhamento)
+        escolaridades = sorted(list({str(row.get("escolaridade", "")) for row in rows if row.get("escolaridade")}))
+
+        # Filtra as séries do gráfico dinamicamente com base nos filtros ativos
+        if state and state.escolaridade:
+            selected_esc = {e.strip().lower() for e in state.escolaridade if e.strip()}
+            if selected_esc:
+                escolaridades = [e for e in escolaridades if e.strip().lower() in selected_esc]
+
+        series = []
+        for esc in escolaridades:
+            data = []
+            for party in categories:
+                val = sum(
+                    int(row.get("qtd_deputados", 0) or 0)
+                    for row in rows
+                    if str(row.get("sigla_partido", "")) == party
+                    and str(row.get("escolaridade", "")) == esc
+                )
+                data.append(val)
+            
+            # Apenas adiciona a série se ela tiver dados para exibir ou se não houver filtro ativo
+            if sum(data) > 0 or not state or not state.escolaridade:
+                series.append({
+                    "name": esc,
+                    "data": data,
+                    "stack": "total",
+                })
+
+        return ChartSpec(
+            type="stacked_bar",
+            title=self.context.question.title,
+            description=self.context.question.description,
+            x_field="sigla_partido",
+            y_fields=["qtd_deputados"],
+            categories=categories,
+            series=series,
+            options={"orientation": "vertical"},
         )
 
     def _build_q4_summary_cards(self, state: FilterState) -> list[SummaryCard]:

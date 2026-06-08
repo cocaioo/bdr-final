@@ -231,13 +231,13 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
                 questionMeta.id.toLowerCase() === 'q4'
                   ? (category) => {
                       if (!onFiltersChange) return
-                      const current = filters.escolaridade || []
+                      const current = filters.partidos || []
                       const next = current.includes(category)
                         ? current.filter((item) => item !== category)
                         : [...current, category]
                       onFiltersChange({
                         ...filters,
-                        escolaridade: next,
+                        partidos: next,
                       })
                     }
                   : undefined
