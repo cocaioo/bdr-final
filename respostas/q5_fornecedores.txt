@@ -2,13 +2,13 @@ CREATE VIEW
 Q5 - fornecedores com maior total pago (57a Legislatura - Cota Parlamentar)
 =============================================================================
 
-Resumo executivo - totais por ano e concentracao no top 10
- ano_dados | fornecedores | lancamentos |  total_pago  | pct_top_10 
+Resumo executivo - totais por ano e concentracao no top 30
+ ano_dados | fornecedores | lancamentos |  total_pago  | pct_top_30 
 -----------+--------------+-------------+--------------+------------
-      2023 |        21868 |      213240 | 245280034.40 |      26.57
-      2024 |        22288 |      220401 | 263302700.07 |      23.76
-      2025 |        21953 |      200157 | 249254389.30 |      18.63
-      2026 |        12813 |       51963 |  70012026.95 |       6.25
+      2023 |        21868 |      213240 | 245280034.40 |      30.88
+      2024 |        22288 |      220401 | 263302700.07 |      28.18
+      2025 |        21953 |      200157 | 249254389.30 |      23.31
+      2026 |        12813 |       51963 |  70012026.95 |      11.22
 (4 rows)
 
 

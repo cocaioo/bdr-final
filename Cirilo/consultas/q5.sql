@@ -43,7 +43,7 @@ GROUP BY
 \qecho Q5 - fornecedores com maior total pago (57a Legislatura - Cota Parlamentar)
 \qecho =============================================================================
 \qecho
-\qecho Resumo executivo - totais por ano e concentracao no top 10
+\qecho Resumo executivo - totais por ano e concentracao no top 30
 SELECT
     ano_dados,
     COUNT(*)                            AS fornecedores,
@@ -51,10 +51,10 @@ SELECT
     ROUND(SUM(total_pago)::NUMERIC, 2)  AS total_pago,
     ROUND(
         100.0 * SUM(total_pago) FILTER (
-            WHERE posicao <= 10
+            WHERE posicao <= 30
         ) / NULLIF(SUM(total_pago), 0),
         2
-    )                                   AS pct_top_10
+    )                                   AS pct_top_30
 FROM (
     SELECT
         ano_dados,
