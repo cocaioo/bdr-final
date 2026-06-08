@@ -94,9 +94,9 @@ def main():
             Path("respostas/q5_fornecedores.txt"),
             Path("Cirilo/q5/q5_fornecedores.txt")
         ],
-        "q5_fornecedores_por_categoria.txt": [
-            Path("respostas/q5_fornecedores_por_categoria.txt"),
-            Path("Cirilo/q5/q5_fornecedores_por_categoria.txt")
+        "q5_fornecedores_complemento.txt": [
+            Path("respostas/q5_fornecedores_complemento.txt"),
+            Path("Cirilo/q5/q5_fornecedores_complemento.txt")
         ],
         "q13_categorias_gasto_deputado.txt": [
             Path("respostas/q13_categorias_gasto_deputado.txt"),

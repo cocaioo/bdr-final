@@ -142,8 +142,8 @@ ORDER BY total_pago DESC, fornecedor;
 -- SEÇÃO 3 - Q5 EXTRA: TOP 10 POR CATEGORIA DE GASTO
 -- =============================================================================
 
-\o /respostas/q5_fornecedores_por_categoria.txt
-\qecho Q5 extra - maior fornecedor por categoria de gasto e por ano (57a leg.)
+\o /respostas/q5_fornecedores_complemento.txt
+\qecho Q5 complemento - maior fornecedor por categoria de gasto e por ano (57a leg.)
 WITH por_categoria AS (
     SELECT
         g.ano_dados,
