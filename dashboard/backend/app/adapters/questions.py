@@ -141,11 +141,9 @@ class Q4Adapter(QuestionAdapter):
         deputy_to_party = {}
         deputy_to_uf = {}
         
-        from pathlib import Path
-        repo_root = Path(__file__).resolve().parent.parent.parent.parent
-        q1_file = repo_root / "respostas" / "q1_gastos_deputados.txt"
+        q1_file = self.context.repo_root / "respostas" / "q1_gastos_deputados.txt"
         if not q1_file.exists():
-            q1_file = repo_root / "Caio" / "q1" / "q1_gastos_deputados.txt"
+            q1_file = self.context.repo_root / "Caio" / "q1" / "q1_gastos_deputados.txt"
             
         if q1_file.exists():
             try:
@@ -164,21 +162,33 @@ class Q4Adapter(QuestionAdapter):
             except Exception:
                 pass
 
-        # 3. Reconstrói os registros de deputados com as colunas necessárias para filtro em memória
-        deputy_records = []
+        # Enrich comp_rows in place so that _build_complements and FilterEngine can find the attributes
+        from ..party_catalog import normalize_party
         for r in comp_rows:
             dep_id = r.get("id_deputado")
             dep_id_int = int(dep_id) if dep_id else -1
-            deputy_records.append({
-                "id_deputado": dep_id,
-                "nome": r.get("nome"),
-                "escolaridade": r.get("escolaridade"),
-                "sigla_partido": deputy_to_party.get(dep_id_int, "Nao informado"),
-                "sigla_uf": deputy_to_uf.get(dep_id_int, "Nao informado"),
-            })
+            party_raw = deputy_to_party.get(dep_id_int, "Nao informado")
+            party_normalized = normalize_party(party_raw)
+            if not party_normalized or party_normalized == "NAOINFORMADO":
+                party_normalized = "Nao informado"
+            r["sigla_partido"] = party_normalized
+            r["sigla_uf"] = deputy_to_uf.get(dep_id_int, "Nao informado")
 
-        # 4. Aplica os filtros nos registros de deputados
-        # Para a tabela principal, NÃO filtramos por escolaridade para satisfazer o teste de contrato
+        deputy_records = comp_rows
+
+        # 4. Aplica os filtros nos registros de deputados de acordo com a responsabilidade de cada componente
+        # Gráfico 1 (Geral): Completamente sem filtros (Design A)
+        records_for_chart1 = deputy_records
+        
+        # Gráfico 2 (Por Partido): Filtrado por escolaridade, mas NÃO por partidos (Opção 1)
+        chart2_supported = [f for f in self.context.question.supported_filters if f != "partidos"]
+        records_for_chart2 = FilterEngine.apply_filters(
+            deputy_records,
+            state,
+            chart2_supported,
+        )
+
+        # Tabela principal: Filtrada por partidos, mas NÃO por escolaridade
         main_supported_filters = [f for f in self.context.question.supported_filters if f != "escolaridade"]
         filtered_records_for_main = FilterEngine.apply_filters(
             deputy_records,
@@ -206,7 +216,7 @@ class Q4Adapter(QuestionAdapter):
         sorted_rows = FilterEngine.apply_sort(main_rows, state.sort_by or "qtd_deputados", state.sort_dir)
         paged_rows = FilterEngine.apply_pagination(sorted_rows, state.page, state.page_size)
 
-        # 6. Card de resumo contando total de deputados que batem com todos os filtros (incluindo escolaridade)
+        # 6. Card de resumo e complementos: Contando total de deputados que batem com todos os filtros (incluindo escolaridade)
         filtered_records_all = FilterEngine.apply_filters(
             deputy_records,
             state,
@@ -223,7 +233,7 @@ class Q4Adapter(QuestionAdapter):
         ]
 
         # 7. Constrói os gráficos (dois gráficos: um simples e outro empilhado por partido)
-        chart_spec = self.build_chart_spec(filtered_records_for_main, state)
+        chart_spec = self.build_chart_spec(records_for_chart1, state, chart2_rows=records_for_chart2)
 
         # Tabela principal com as colunas originais (escolaridade | qtd_deputados)
         table_spec = self._build_table_spec(
@@ -278,7 +288,12 @@ class Q4Adapter(QuestionAdapter):
             generated_at=datetime.now(timezone.utc).isoformat(),
         )
 
-    def build_chart_spec(self, rows: list[dict[str, Any]], state: FilterState | None = None) -> ChartSpec:
+    def build_chart_spec(
+        self,
+        rows: list[dict[str, Any]],
+        state: FilterState | None = None,
+        chart2_rows: list[dict[str, Any]] | None = None
+    ) -> ChartSpec:
         if not rows:
             return ChartSpec(
                 type="bar_vertical",
@@ -311,8 +326,9 @@ class Q4Adapter(QuestionAdapter):
         )
 
         # 2. Segundo Gráfico (Gráfico Empilhado por Partido)
-        categories_party = sorted(list({str(row.get("sigla_partido", "")) for row in rows if row.get("sigla_partido")}))
-        escolaridades = sorted(list({str(row.get("escolaridade", "")) for row in rows if row.get("escolaridade")}))
+        c2_rows = chart2_rows if chart2_rows is not None else rows
+        categories_party = sorted(list({str(row.get("sigla_partido", "")) for row in c2_rows if row.get("sigla_partido")}))
+        escolaridades = sorted(list({str(row.get("escolaridade", "")) for row in c2_rows if row.get("escolaridade")}))
 
         # Filtra as séries do gráfico dinamicamente com base nos filtros ativos
         if state and state.escolaridade:
@@ -325,7 +341,7 @@ class Q4Adapter(QuestionAdapter):
             data = []
             for party in categories_party:
                 val = sum(
-                    1 for r in rows
+                    1 for r in c2_rows
                     if str(r.get("sigla_partido", "")) == party
                     and str(r.get("escolaridade", "")) == esc
                 )

@@ -101,6 +101,7 @@ class DashboardService:
                 sql_text=bundle.sql_text,
                 sql_path=bundle.sql_path,
                 dataset_version=version,
+                repo_root=self.repo_root,
             )
         )
         payload = adapter.build_payload(state)
