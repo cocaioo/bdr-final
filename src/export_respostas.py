@@ -18,7 +18,10 @@ def main():
     # 2. Run SQL queries in Postgres container
     queries = {
         "q1": Path("Caio/consultas/q1.sql"),
+        "q3": Path("Cirilo/consultas/q3.sql"),
         "q4": Path("Caio/consultas/q4.sql"),
+        "q5": Path("Cirilo/consultas/q5.sql"),
+        "q13": Path("Cirilo/consultas/q13.sql"),
         "q9": Path("JF/consultas/q9.sql"),
         "q10": Path("JF/consultas/q10.sql"),
         "q11": Path("JF/consultas/q11.sql"),
@@ -75,6 +78,10 @@ def main():
             Path("respostas/q1_gastos_deputados.txt"),
             Path("Caio/q1/q1_gastos_deputados.txt")
         ],
+        "q3_voto_deputado_tema.txt": [
+            Path("respostas/q3_voto_deputado_tema.txt"),
+            Path("Cirilo/q3/q3_voto_deputado_tema.txt")
+        ],        
         "q4_escolaridade.txt": [
             Path("respostas/q4_escolaridade.txt"),
             Path("Caio/q4/q4_escolaridade.txt")
@@ -82,6 +89,22 @@ def main():
         "q4_escolaridade_complementar.txt": [
             Path("respostas/q4_escolaridade_complementar.txt"),
             Path("Caio/q4/q4_escolaridade_complementar.txt")
+        ],
+        "q5_fornecedores.txt": [
+            Path("respostas/q5_fornecedores.txt"),
+            Path("Cirilo/q5/q5_fornecedores.txt")
+        ],
+        "q5_fornecedores_complemento.txt": [
+            Path("respostas/q5_fornecedores_complemento.txt"),
+            Path("Cirilo/q5/q5_fornecedores_complemento.txt")
+        ],
+        "q13_categorias_gasto_deputado.txt": [
+            Path("respostas/q13_categorias_gasto_deputado.txt"),
+            Path("Cirilo/q13/q13_categorias_gasto_deputado.txt")
+        ],
+        "q13_categorias_gasto_deputado_complemento.txt": [
+            Path("respostas/q13_categorias_gasto_deputado_complemento.txt"),
+            Path("Cirilo/q13/q13_categorias_gasto_deputado_complemento.txt")
         ],
         "q9_vies_deputado.txt": [
             Path("respostas/q9_vies_deputado.txt"),
