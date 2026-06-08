@@ -200,6 +200,41 @@ class Q12Adapter(QuestionAdapter):
 class Q13Adapter(QuestionAdapter):
     """Categorias de gasto por deputado."""
 
+    def build_payload(self, state: FilterState) -> QuestionPayload:
+        payload = super().build_payload(state)
+        
+        # Se houver um único ano selecionado no filtro, atualiza os cards de resumo com a linha correspondente
+        if state.anos and len(state.anos) == 1 and self.summary_table and self.summary_table.rows:
+            target_year = str(state.anos[0])
+            selected_row = None
+            for row in self.summary_table.rows:
+                if str(row.get("ano_dados")) == target_year:
+                    selected_row = row
+                    break
+            
+            if selected_row:
+                from .base import _humanize_label, _format_summary_card_value, _infer_unit
+                payload.summary_cards = [
+                    SummaryCard(
+                        id=key,
+                        label=_humanize_label(key),
+                        value=_format_summary_card_value(key, value),
+                        unit=_infer_unit(key),
+                    )
+                    for key, value in selected_row.items()
+                    if key != "ano_dados"
+                ]
+        
+        # Garante que o card "ano_dados" nunca seja exibido (inclusive no estado inicial sem filtros)
+        payload.summary_cards = [card for card in payload.summary_cards if card.id != "ano_dados"]
+        
+        # Remove as duas últimas tabelas de categorias de gastos consolidados,
+        # já que essa informação já é apresentada dinamicamente no gráfico de treemap.
+        if payload.complement_tables:
+            payload.complement_tables = payload.complement_tables[:1]
+                
+        return payload
+
 
 ADAPTERS_BY_ID = {
     "q1": Q1Adapter,

@@ -21,7 +21,7 @@ def main():
         "q3": Path("Cirilo/consultas/q3.sql"),
         "q4": Path("Caio/consultas/q4.sql"),
         "q5": Path("Cirilo/consultas/q5.sql"),
-        
+        "q13": Path("Cirilo/consultas/q13.sql"),
     }
     
     for name, sql_path in queries.items():
@@ -94,6 +94,14 @@ def main():
         "q5_fornecedores_por_categoria.txt": [
             Path("respostas/q5_fornecedores_por_categoria.txt"),
             Path("Cirilo/q5/q5_fornecedores_por_categoria.txt")
+        ],
+        "q13_categorias_gasto_deputado.txt": [
+            Path("respostas/q13_categorias_gasto_deputado.txt"),
+            Path("Cirilo/q13/q13_categorias_gasto_deputado.txt")
+        ],
+        "q13_categorias_gasto_deputado_complemento.txt": [
+            Path("respostas/q13_categorias_gasto_deputado_complemento.txt"),
+            Path("Cirilo/q13/q13_categorias_gasto_deputado_complemento.txt")
         ],
     }
     
