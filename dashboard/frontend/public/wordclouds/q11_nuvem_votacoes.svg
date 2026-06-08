@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<style>text{font-family:'Arial';font-weight:normal;font-style:normal;}</style>
+<rect width="100%" height="100%" style="fill:white"></rect>
+<text transform="translate(851,164)" font-size="160" style="fill:#E76F51">PL</text>
+<text transform="translate(12,519)" font-size="160" style="fill:#E76F51">REPUBLICANOS</text>
+<text transform="translate(505,316)" font-size="160" style="fill:#E9C46A">UNIAO</text>
+<text transform="translate(97,380)" font-size="159" style="fill:#2A9D8F">PT</text>
+<text transform="translate(399,223) rotate(-90)" font-size="158" style="fill:#E76F51">PP</text>
+<text transform="translate(591,677)" font-size="157" style="fill:#E9C46A">MDB</text>
+<text transform="translate(92,654)" font-size="156" style="fill:#2A9D8F">PSOL</text>
+<text transform="translate(455,182)" font-size="155" style="fill:#E9C46A">PSD</text>
+<text transform="translate(955,708)" font-size="154" style="fill:#2A9D8F">PSB</text>
+<text transform="translate(986,391)" font-size="100" style="fill:#E9C46A">PODE</text>
+<text transform="translate(52,178)" font-size="99" style="fill:#2A9D8F">PDT</text>
+<text transform="translate(555,393)" font-size="95" style="fill:#E9C46A">AVANTE</text>
+<text transform="translate(1267,302) rotate(-90)" font-size="95" style="fill:#E76F51">NOVO</text>
+<text transform="translate(54,710)" font-size="64" style="fill:#E9C46A">SOLIDARIEDADE</text>
+<text transform="translate(61,233)" font-size="64" style="fill:#E9C46A">PSDB</text>
+<text transform="translate(100,87)" font-size="64" style="fill:#2A9D8F">PV</text>
+<text transform="translate(309,374)" font-size="63" style="fill:#2A9D8F">PCDOB</text>
+<text transform="translate(413,52)" font-size="57" style="fill:#E9C46A">CIDADANIA</text>
+<text transform="translate(1034,57)" font-size="53" style="fill:#2A9D8F">REDE</text>
+<text transform="translate(257,255)" font-size="45" style="fill:#8D99AE">PATRIOTA</text>
+<text transform="translate(936,555)" font-size="36" style="fill:#E9C46A">PRD</text>
+<text transform="translate(800,164)" font-size="26" style="fill:#8D99AE">PSC</text>
+<text transform="translate(1057,168)" font-size="23" style="fill:#8D99AE">S.PART.</text>
+<text transform="translate(359,296)" font-size="19" style="fill:#E9C46A">MISSAO</text>
+</svg>

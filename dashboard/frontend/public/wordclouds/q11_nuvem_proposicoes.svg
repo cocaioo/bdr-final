@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+<style>text{font-family:'Arial';font-weight:normal;font-style:normal;}</style>
+<rect width="100%" height="100%" style="fill:white"></rect>
+<text transform="translate(268,461)" font-size="160" style="fill:#E76F51">PL</text>
+<text transform="translate(937,450) rotate(-90)" font-size="121" style="fill:#2A9D8F">PT</text>
+<text transform="translate(113,153)" font-size="118" style="fill:#E76F51">REPUBLICANOS</text>
+<text transform="translate(354,266)" font-size="106" style="fill:#E9C46A">UNIAO</text>
+<text transform="translate(62,605)" font-size="95" style="fill:#E9C46A">PSD</text>
+<text transform="translate(282,705)" font-size="84" style="fill:#E76F51">PP</text>
+<text transform="translate(680,707)" font-size="84" style="fill:#E9C46A">PODE</text>
+<text transform="translate(759,571)" font-size="82" style="fill:#E76F51">NOVO</text>
+<text transform="translate(462,708) rotate(-90)" font-size="73" style="fill:#2A9D8F">PDT</text>
+<text transform="translate(486,581)" font-size="72" style="fill:#2A9D8F">PSOL</text>
+<text transform="translate(450,415)" font-size="67" style="fill:#E9C46A">MDB</text>
+<text transform="translate(452,56)" font-size="65" style="fill:#2A9D8F">PSB</text>
+<text transform="translate(71,453)" font-size="50" style="fill:#E9C46A">PSDB</text>
+<text transform="translate(856,205)" font-size="44" style="fill:#E9C46A">CIDADANIA</text>
+<text transform="translate(861,620)" font-size="42" style="fill:#2A9D8F">PCDOB</text>
+<text transform="translate(98,509)" font-size="41" style="fill:#E9C46A">SOLIDARIEDADE</text>
+<text transform="translate(1253,290) rotate(-90)" font-size="37" style="fill:#2A9D8F">PV</text>
+<text transform="translate(772,433) rotate(-90)" font-size="33" style="fill:#8D99AE">PATRIOTA</text>
+<text transform="translate(99,312) rotate(-90)" font-size="33" style="fill:#E9C46A">AVANTE</text>
+<text transform="translate(1087,598) rotate(-90)" font-size="25" style="fill:#2A9D8F">REDE</text>
+<text transform="translate(427,303)" font-size="21" style="fill:#8D99AE">PSC</text>
+<text transform="translate(511,671)" font-size="17" style="fill:#E9C46A">PRD</text>
+</svg>

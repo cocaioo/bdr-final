@@ -168,16 +168,16 @@
     {
       "id": "q11",
       "title": "Rankings partidarios",
-      "description": "Painel de votos, proposicoes, gastos e nuvem de palavras por partido.",
-      "response_files": ["q11_rankings_partidos.txt", "q11_nuvem_palavras_partidos_complemento.txt"],
-      "sql_file": "q11.sql",
-      "chart_type": "composite",
+      "description": "Ordenacao dos partidos por frequencia nas votacoes, proposicoes de projetos, gastos e nuvem de palavras composta.",
+      "response_files": ["JF/q11/q11_ranking_partidos.txt"],
+      "sql_file": "JF/consultas/q11.sql",
+      "chart_type": "wordcloud_images",
       "supported_filters": ["anos", "partidos"],
-      "expected_columns": ["sigla_partido", "ideologia", "votos_registrados", "deputados_votantes", "votacoes", "qtd_proposicoes", "gasto_total", "pos_votos", "pos_proposicoes", "pos_gastos"],
-      "main_table_contains": "Tabela principal",
-      "summary_table_contains": "Resumo executivo",
-      "explanation": "Consolida metricas partidarias e top tokens por partido.",
-      "chart": { "x_field": "sigla_partido", "y_fields": ["votos_registrados", "qtd_proposicoes", "gasto_total"] }
+      "expected_columns": ["posicao", "sigla_partido", "ideologia", "votacoes_participadas", "total_votos_registrados"],
+      "main_table_contains": "Q11.a - Ranking de partidos por frequencia nas votacoes (consolidado)",
+      "summary_table_contains": "",
+      "explanation": "Q11.a ordena partidos por frequencia nas votacoes. Q11.b ordena por proposicoes de projetos. Q11.c ordena por gastos totais. Q11.d combina as tres dimensoes em um score normalizado para nuvem de palavras.",
+      "chart": { "x_field": "sigla_partido", "y_fields": ["votacoes_participadas"] }
     },
     {
       "id": "q12",
