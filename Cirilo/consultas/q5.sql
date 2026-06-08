@@ -1,8 +1,8 @@
 -- =============================================================================
--- Q5 – FORNECEDORES ORDENADOS POR VALOR DE CONTRATO
--- Universo: 57ª Legislatura (2023–2027), Cota Parlamentar (CEAP)
+-- Q5 - FORNECEDORES ORDENADOS POR VALOR DE CONTRATO
+-- Universo: 57ª Legislatura (2023-2027), Cota Parlamentar (CEAP)
 --
--- Saída (via Banco/respostas/, copiado pelo export_respostas.py para):
+-- Saída (via /respostas/, copiado pelo export_respostas.py para):
 --   Cirilo/q5/q5_fornecedores.txt
 --   Cirilo/q5/q5_fornecedores_por_categoria.txt
 --   respostas/q5_fornecedores.txt
@@ -14,57 +14,31 @@
 -- =============================================================================
 
 
--- =============================================================================
--- SEÇÃO 1 – VIEW BASE "gastos"
--- Traduz os nomes originais do CSV para aliases limpos.
--- =============================================================================
-CREATE OR REPLACE VIEW gastos AS
-SELECT
-    ano_dados,
-    codLegislatura            AS cod_legislatura,
-    nuLegislatura             AS ano_inicio_leg,
-    numAno                    AS ano_emissao,
-    numMes                    AS mes,
-    txNomeParlamentar         AS parlamentar,
-    sgPartido                 AS partido,
-    sgUF                      AS uf,
-    nuDeputadoId              AS id_deputado,
-    txtDescricao              AS descricao,
-    txtDescricaoEspecificacao AS descricao_especificacao,
-    txtFornecedor             AS fornecedor,
-    txtCNPJCPF                AS cnpj_cpf,
-    vlrDocumento              AS valor_documento,
-    vlrGlosa                  AS valor_glosa,
-    vlrLiquido                AS valor_liquido,
-    vlrRestituicao            AS valor_restituicao,
-    datEmissao                AS data_emissao,
-    indTipoDocumento          AS tipo_documento,
-    ideDocumento              AS id_documento,
-    urlDocumento              AS url_documento
-FROM despesas;
+-- A view 'gastos' baseada na tabela 'despesas' foi removida porque a tabela
+-- física 'gastos' criada no init.sql já está padronizada e carregada pelo ETL.
 
 
 -- =============================================================================
--- SEÇÃO 2 – Q5: FORNECEDORES POR VALOR (57ª LEGISLATURA)
+-- SEÇÃO 2 - Q5: FORNECEDORES POR VALOR (57ª LEGISLATURA)
 -- =============================================================================
 
-\o Banco/respostas/q5_fornecedores.txt
+\o /respostas/q5_fornecedores.txt
 
 CREATE OR REPLACE TEMP VIEW resposta_fornecedores AS
 SELECT
-    ano_dados,
-    REPLACE(fornecedor, '|', '/')       AS fornecedor,
-    cnpj_cpf,
-    COUNT(*)                            AS qtd_lancamentos,
-    SUM(valor_liquido)                  AS total_pago
-FROM gastos
-WHERE cod_legislatura  = 57
-  AND fornecedor        IS NOT NULL
-  AND valor_liquido     > 0
+    g.ano_dados,
+    REPLACE(REPLACE(g.fornecedor, '|', '/'), CHR(8211), '-') AS fornecedor,
+    CAST(NULL AS VARCHAR)                 AS cnpj_cpf,
+    COUNT(*)                              AS qtd_lancamentos,
+    SUM(g.valor_liquido)                  AS total_pago
+FROM gastos g
+JOIN deputados d ON d.id_deputado = g.id_deputado
+WHERE d.id_legislatura_final = 57
+  AND g.fornecedor           IS NOT NULL
+  AND g.valor_liquido        > 0
 GROUP BY
-    ano_dados,
-    REPLACE(fornecedor, '|', '/'),
-    cnpj_cpf;
+    g.ano_dados,
+    REPLACE(REPLACE(g.fornecedor, '|', '/'), CHR(8211), '-');
 
 \qecho Q5 - fornecedores com maior total pago (57a Legislatura - Cota Parlamentar)
 \qecho =============================================================================
@@ -165,43 +139,42 @@ ORDER BY total_pago DESC, fornecedor;
 
 
 -- =============================================================================
--- SEÇÃO 3 – Q5 EXTRA: TOP 10 POR CATEGORIA DE GASTO
+-- SEÇÃO 3 - Q5 EXTRA: TOP 10 POR CATEGORIA DE GASTO
 -- =============================================================================
 
-\o Banco/respostas/q5_fornecedores_por_categoria.txt
-\qecho Q5 extra - top 10 fornecedores por categoria de gasto e por ano (57a leg.)
+\o /respostas/q5_fornecedores_por_categoria.txt
+\qecho Q5 extra - maior fornecedor por categoria de gasto e por ano (57a leg.)
 WITH por_categoria AS (
     SELECT
         g.ano_dados,
-        g.descricao                             AS categoria,
-        REPLACE(g.fornecedor, '|', '/')         AS fornecedor,
-        g.cnpj_cpf,
+        g.descricao_despesa                     AS categoria,
+        REPLACE(REPLACE(g.fornecedor, '|', '/'), CHR(8211), '-') AS fornecedor,
+        CAST(NULL AS VARCHAR)                   AS cnpj_cpf,
         COUNT(*)                                AS qtd_lancamentos,
         SUM(g.valor_liquido)                    AS total_pago,
         RANK() OVER (
-            PARTITION BY g.ano_dados, g.descricao
+            PARTITION BY g.ano_dados, g.descricao_despesa
             ORDER BY SUM(g.valor_liquido) DESC
         )                                       AS posicao
     FROM gastos g
-    WHERE g.cod_legislatura  = 57
-      AND g.fornecedor        IS NOT NULL
-      AND g.valor_liquido     > 0
+    JOIN deputados d ON d.id_deputado = g.id_deputado
+    WHERE d.id_legislatura_final = 57
+      AND g.fornecedor           IS NOT NULL
+      AND g.valor_liquido        > 0
     GROUP BY
         g.ano_dados,
-        g.descricao,
-        REPLACE(g.fornecedor, '|', '/'),
-        g.cnpj_cpf
+        g.descricao_despesa,
+        REPLACE(REPLACE(g.fornecedor, '|', '/'), CHR(8211), '-')
 )
 SELECT
     ano_dados,
     categoria,
-    posicao,
     fornecedor,
     cnpj_cpf,
     qtd_lancamentos,
     ROUND(total_pago::NUMERIC, 2)   AS total_pago
 FROM por_categoria
-WHERE posicao <= 10
+WHERE posicao = 1
 ORDER BY
     ano_dados,
     categoria,

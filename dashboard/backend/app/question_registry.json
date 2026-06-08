@@ -78,7 +78,7 @@
       "id": "q5",
       "title": "Fornecedores com maior total pago",
       "description": "Ranking de fornecedores com total pago e participacao no total geral.",
-      "response_files": ["q5_fornecedores.txt", "q5_fornecedores_complemento.txt"],
+      "response_files": ["q5_fornecedores.txt", "q5_fornecedores_por_categoria.txt"],
       "sql_file": "q5.sql",
       "chart_type": "bar_horizontal",
       "supported_filters": ["anos"],
