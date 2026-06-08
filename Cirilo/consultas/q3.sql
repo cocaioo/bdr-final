@@ -24,6 +24,7 @@ votos_eixos_brutos AS (
     FROM votacoes_votos vv
     JOIN deputados d ON d.id_deputado = vv.id_deputado
     WHERE vv.ano_dados BETWEEN 2023 AND 2026
+      AND d.id_legislatura_final = 57
 ),
 votos_eixos_resolvidos AS (
     SELECT 
