@@ -1,0 +1,17 @@
+[
+  {
+    "year": "Frequencia nas votacoes",
+    "src": "/wordclouds/q11_nuvem_votacoes.svg",
+    "alt": "Nuvem de palavras - Frequencia nas votacoes"
+  },
+  {
+    "year": "Proposicoes de projetos",
+    "src": "/wordclouds/q11_nuvem_proposicoes.svg",
+    "alt": "Nuvem de palavras - Proposicoes de projetos"
+  },
+  {
+    "year": "Gastos por partido",
+    "src": "/wordclouds/q11_nuvem_gastos.svg",
+    "alt": "Nuvem de palavras - Gastos por partido"
+  }
+]

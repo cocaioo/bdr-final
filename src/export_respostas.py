@@ -21,6 +21,7 @@ def main():
         "q4": Path("Caio/consultas/q4.sql"),
         "q9": Path("JF/consultas/q9.sql"),
         "q10": Path("JF/consultas/q10.sql"),
+        "q11": Path("JF/consultas/q11.sql"),
     }
     
     for name, sql_path in queries.items():
@@ -89,6 +90,10 @@ def main():
         "q10_alinhamento_partidos.txt": [
             Path("respostas/q10_alinhamento_partidos.txt"),
             Path("JF/q10/q10_alinhamento_partidos.txt")
+        ],
+        "q11_ranking_partidos.txt": [
+            Path("respostas/q11_ranking_partidos.txt"),
+            Path("JF/q11/q11_ranking_partidos.txt")
         ],
     }
     

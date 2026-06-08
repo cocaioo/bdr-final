@@ -156,7 +156,9 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
 
   const isQ8 = questionMeta.id.toLowerCase() === 'q8'
   const isQ2 = questionMeta.id.toLowerCase() === 'q2'
-  const shouldShowChart = questionMeta.id.toLowerCase() !== 'q1' && !isQ2
+  const isQ11 = questionMeta.id.toLowerCase() === 'q11'
+  const hasWordClouds = isQ2 || isQ11
+  const shouldShowChart = questionMeta.id.toLowerCase() !== 'q1' && !hasWordClouds
   const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
   const mainTable = isQ8 ? { ...payload.table_spec, title: 'Tabela principal' } : payload.table_spec
   const complementTables = isQ8 ? [] : payload.complement_tables
@@ -177,7 +179,7 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
       </section>
 
       <WarningBanner warnings={payload.warnings} />
-      {!isQ2 ? (
+      {!hasWordClouds ? (
         <ExecutiveCards
           cards={
             questionMeta.id.toLowerCase() === 'q4'
@@ -325,6 +327,14 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
           </section>
         )
       ))}
+
+      {isQ11 ? (
+        <WordCloudGrid 
+          spec={payload.chart_spec} 
+          selectedTheme={null}
+          onWordClick={() => {}}
+        />
+      ) : null}
 
       <QueryDrawer panel={payload.query_panel} />
     </main>
