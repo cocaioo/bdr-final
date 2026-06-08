@@ -66,13 +66,13 @@
       "description": "Distribuicao da escolaridade dos deputados da 57a legislatura.",
       "response_files": ["Caio/q4/q4_escolaridade.txt", "Caio/q4/q4_escolaridade_complementar.txt"],
       "sql_file": "Caio/consultas/q4.sql",
-      "chart_type": "stacked_bar",
+      "chart_type": "bar_vertical",
       "supported_filters": ["partidos", "deputados", "escolaridade"],
-      "expected_columns": ["sigla_partido", "escolaridade", "qtd_deputados"],
+      "expected_columns": ["escolaridade", "qtd_deputados"],
       "main_table_contains": "",
       "summary_table_contains": "",
       "explanation": "Conta deputados unicos da 57a legislatura por escolaridade com complemento nominal.",
-      "chart": { "x_field": "sigla_partido", "y_fields": ["qtd_deputados"] }
+      "chart": { "x_field": "escolaridade", "y_fields": ["qtd_deputados"] }
     },
     {
       "id": "q5",

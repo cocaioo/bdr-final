@@ -1,123 +1,18 @@
-q4_escolaridade
+      escolaridade       | qtd_deputados 
+-------------------------+---------------
+ Superior                |           352
+ P�s-Gradua��o           |            83
+ Mestrado                |            45
+ Superior Incompleto     |            44
+ Nao informado           |            40
+ Ensino M�dio            |            28
+ Doutorado               |            18
+ Ensino Fundamental      |            12
+ Doutorado Incompleto    |             7
+ Mestrado Incompleto     |             5
+ Ensino M�dio Incompleto |             2
+ Secund�rio              |             2
+ Prim�rio Incompleto     |             1
+ Secund�rio Incompleto   |             1
+(14 rows)
 
- sigla_partido | escolaridade            | qtd_deputados 
----------------+-------------------------+---------------
- AVANTE        | Doutorado Incompleto    |             1 
- AVANTE        | Nao informado           |             1 
- AVANTE        | Superior                |             2 
- AVANTE        | Superior Incompleto     |             2 
- CIDADANIA     | Superior                |             3 
- MDB           | Ensino Médio            |             2 
- MDB           | Mestrado Incompleto     |             1 
- MDB           | Nao informado           |             4 
- MDB           | Pós-Graduação           |             6 
- MDB           | Superior                |            31 
- MDB           | Superior Incompleto     |             4 
- MISSAO        | Superior Incompleto     |             1 
- NOVO          | Doutorado               |             1 
- NOVO          | Mestrado                |             1 
- NOVO          | Pós-Graduação           |             1 
- NOVO          | Superior                |             2 
- Nao informado | Nao informado           |             1 
- Nao informado | Superior                |             1 
- Nao informado | Superior Incompleto     |             1 
- PCDOB         | Pós-Graduação           |             1 
- PCDOB         | Superior                |             9 
- PDT           | Doutorado               |             1 
- PDT           | Doutorado Incompleto    |             1 
- PDT           | Nao informado           |             1 
- PDT           | Pós-Graduação           |             3 
- PDT           | Superior                |             7 
- PL            | Doutorado               |             1 
- PL            | Doutorado Incompleto    |             1 
- PL            | Ensino Fundamental      |             3 
- PL            | Ensino Médio            |             2 
- PL            | Mestrado                |            10 
- PL            | Nao informado           |             8 
- PL            | Pós-Graduação           |            16 
- PL            | Superior                |            67 
- PL            | Superior Incompleto     |             8 
- PODE          | Doutorado               |             1 
- PODE          | Doutorado Incompleto    |             1 
- PODE          | Ensino Médio            |             2 
- PODE          | Mestrado                |             4 
- PODE          | Nao informado           |             3 
- PODE          | Pós-Graduação           |             4 
- PODE          | Superior                |            16 
- PODE          | Superior Incompleto     |             3 
- PP            | Doutorado               |             1 
- PP            | Ensino Fundamental      |             1 
- PP            | Ensino Médio            |             5 
- PP            | Mestrado                |             1 
- PP            | Nao informado           |             4 
- PP            | Pós-Graduação           |             9 
- PP            | Secundário              |             2 
- PP            | Superior                |            38 
- PP            | Superior Incompleto     |             1 
- PRD           | Nao informado           |             2 
- PRD           | Superior                |             1 
- PRD           | Superior Incompleto     |             2 
- PSB           | Ensino Fundamental      |             1 
- PSB           | Mestrado                |             1 
- PSB           | Nao informado           |             1 
- PSB           | Pós-Graduação           |             2 
- PSB           | Superior                |            11 
- PSB           | Superior Incompleto     |             2 
- PSD           | Doutorado               |             1 
- PSD           | Ensino Fundamental      |             1 
- PSD           | Ensino Médio            |             5 
- PSD           | Mestrado                |             4 
- PSD           | Pós-Graduação           |             9 
- PSD           | Superior                |            38 
- PSD           | Superior Incompleto     |             5 
- PSDB          | Ensino Médio            |             2 
- PSDB          | Mestrado                |             3 
- PSDB          | Superior                |            10 
- PSDB          | Superior Incompleto     |             2 
- PSOL          | Doutorado               |             2 
- PSOL          | Mestrado                |             3 
- PSOL          | Mestrado Incompleto     |             2 
- PSOL          | Superior                |             7 
- PT            | Doutorado               |             5 
- PT            | Doutorado Incompleto    |             2 
- PT            | Ensino Fundamental      |             3 
- PT            | Ensino Médio            |             3 
- PT            | Mestrado                |            10 
- PT            | Nao informado           |             2 
- PT            | Primário Incompleto     |             1 
- PT            | Pós-Graduação           |            10 
- PT            | Superior                |            38 
- PT            | Superior Incompleto     |             4 
- PV            | Pós-Graduação           |             2 
- PV            | Superior                |             3 
- PV            | Superior Incompleto     |             1 
- REDE          | Doutorado               |             2 
- REDE          | Nao informado           |             1 
- REDE          | Superior                |             4 
- REPUBLICANOS  | Ensino Fundamental      |             1 
- REPUBLICANOS  | Ensino Médio            |             3 
- REPUBLICANOS  | Ensino Médio Incompleto |             1 
- REPUBLICANOS  | Mestrado                |             3 
- REPUBLICANOS  | Mestrado Incompleto     |             2 
- REPUBLICANOS  | Nao informado           |             4 
- REPUBLICANOS  | Pós-Graduação           |             9 
- REPUBLICANOS  | Superior                |            31 
- REPUBLICANOS  | Superior Incompleto     |             4 
- S.PART.       | Ensino Médio            |             1 
- SOLIDARIEDADE | Ensino Médio            |             1 
- SOLIDARIEDADE | Nao informado           |             2 
- SOLIDARIEDADE | Pós-Graduação           |             1 
- SOLIDARIEDADE | Superior                |             3 
- SOLIDARIEDADE | Superior Incompleto     |             1 
- UNIAO         | Doutorado               |             3 
- UNIAO         | Doutorado Incompleto    |             1 
- UNIAO         | Ensino Fundamental      |             2 
- UNIAO         | Ensino Médio            |             2 
- UNIAO         | Ensino Médio Incompleto |             1 
- UNIAO         | Mestrado                |             5 
- UNIAO         | Nao informado           |             6 
- UNIAO         | Pós-Graduação           |            10 
- UNIAO         | Secundário Incompleto   |             1 
- UNIAO         | Superior                |            30 
- UNIAO         | Superior Incompleto     |             3 
-(118 rows)

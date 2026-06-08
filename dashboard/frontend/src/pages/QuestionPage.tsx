@@ -223,26 +223,50 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
             />
           ) : null}
           {shouldShowChart ? (
-            <ChartPanel
-              spec={payload.chart_spec}
-              yearLabels={yearLegend}
-              activeFilters={filters}
-              onBarClick={
-                questionMeta.id.toLowerCase() === 'q4'
-                  ? (category) => {
-                      if (!onFiltersChange) return
-                      const current = filters.partidos || []
-                      const next = current.includes(category)
-                        ? current.filter((item) => item !== category)
-                        : [...current, category]
-                      onFiltersChange({
-                        ...filters,
-                        partidos: next,
-                      })
-                    }
-                  : undefined
-              }
-            />
+            <>
+              <ChartPanel
+                spec={payload.chart_spec}
+                yearLabels={yearLegend}
+                activeFilters={filters}
+                onBarClick={
+                  questionMeta.id.toLowerCase() === 'q4'
+                    ? (category) => {
+                        if (!onFiltersChange) return
+                        const current = filters.escolaridade || []
+                        const next = current.includes(category)
+                          ? current.filter((item) => item !== category)
+                          : [...current, category]
+                        onFiltersChange({
+                          ...filters,
+                          escolaridade: next,
+                        })
+                      }
+                    : undefined
+                }
+              />
+              {payload.chart_spec.options?.second_chart && (
+                <ChartPanel
+                  spec={payload.chart_spec.options.second_chart as any}
+                  yearLabels={yearLegend}
+                  activeFilters={filters}
+                  onBarClick={
+                    questionMeta.id.toLowerCase() === 'q4'
+                      ? (category) => {
+                          if (!onFiltersChange) return
+                          const current = filters.partidos || []
+                          const next = current.includes(category)
+                            ? current.filter((item) => item !== category)
+                            : [...current, category]
+                          onFiltersChange({
+                            ...filters,
+                            partidos: next,
+                          })
+                        }
+                      : undefined
+                  }
+                />
+              )}
+            </>
           ) : null}
           {!isQ2 && (
             <DataTablePanel
@@ -293,15 +317,17 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
         </>
       )}
 
-      {complementTables.map((table) => (
-        table.title.toLowerCase().includes('ranking global') ? (
-          <DataTablePanel
-            key={table.title}
-            table={table}
-            state={tableStateView}
-            onChange={handleTableChange}
-          />
-        ) : (
+      {complementTables
+        .filter((table) => !table.title.toLowerCase().includes('complementar'))
+        .map((table) => (
+          table.title.toLowerCase().includes('ranking global') ? (
+            <DataTablePanel
+              key={table.title}
+              table={table}
+              state={tableStateView}
+              onChange={handleTableChange}
+            />
+          ) : (
           <section key={table.title} className="complement-section stagger-item">
             <h2>{table.title}</h2>
             <div className="table-wrapper">

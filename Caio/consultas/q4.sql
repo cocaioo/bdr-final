@@ -5,33 +5,29 @@ WITH deputados_legislatura_57 AS (
     SELECT DISTINCT
         d.id_deputado,
         COALESCE(NULLIF(BTRIM(d.nome_civil), ''), d.nome) AS nome,
-        d.sigla_partido,
         COALESCE(NULLIF(BTRIM(d.escolaridade), ''), 'Nao informado') AS escolaridade
     FROM deputados d
     WHERE d.id_legislatura_final = 57
 )
 SELECT
-    sigla_partido,
     escolaridade,
     COUNT(*) AS qtd_deputados
 FROM deputados_legislatura_57
-GROUP BY sigla_partido, escolaridade
-ORDER BY sigla_partido, escolaridade;
+GROUP BY escolaridade
+ORDER BY qtd_deputados DESC, escolaridade;
 
 \o /respostas/q4_escolaridade_complementar.txt
 WITH deputados_legislatura_57 AS (
     SELECT DISTINCT
         d.id_deputado,
         COALESCE(NULLIF(BTRIM(d.nome_civil), ''), d.nome) AS nome,
-        d.sigla_partido,
         COALESCE(NULLIF(BTRIM(d.escolaridade), ''), 'Nao informado') AS escolaridade
     FROM deputados d
     WHERE d.id_legislatura_final = 57
 )
 SELECT
     escolaridade,
-    sigla_partido,
     id_deputado,
     nome
 FROM deputados_legislatura_57
-ORDER BY escolaridade, sigla_partido, nome, id_deputado;
+ORDER BY escolaridade, nome, id_deputado;
