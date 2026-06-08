@@ -281,10 +281,6 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
                           <span className="metric-label">Proposições:</span>
                           <span className="metric-value">{row.qtd_proposicoes}</span>
                         </div>
-                        <div className="deputy-metric">
-                          <span className="metric-label">Aprovadas:</span>
-                          <span className="metric-value">{row.proposicoes_aprovadas}</span>
-                        </div>
                         <div className="deputy-specialization">
                           <span className="specialization-label">Principal Eixo:</span>
                           <span className="specialization-value">{row.tema_mais_atuante_deputado}</span>
