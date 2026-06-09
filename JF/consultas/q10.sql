@@ -29,9 +29,14 @@ WITH votos_com_diretriz AS (
         vo.orientacao AS orientacao_partido
     FROM votacoes_votos vv
     JOIN votacoes_orientacoes vo
-        ON vo.ano_dados    = vv.ano_dados
-       AND vo.id_votacao   = vv.id_votacao
-       AND vo.sigla_bancada = vv.sigla_partido
+        ON vo.ano_dados  = vv.ano_dados
+       AND vo.id_votacao = vv.id_votacao
+       AND (
+           -- caso 1: bancada individual (correspondencia exata)
+           vo.sigla_bancada = vv.sigla_partido
+           -- caso 2: federacao/bloco que contem o partido como componente
+           OR vo.sigla_bancada LIKE '%' || vv.sigla_partido || '%'
+       )
     WHERE
         -- exclui orientacoes sem diretriz clara
         vo.orientacao NOT IN ('Liberado', 'Abstencao', 'Obstrucao')
@@ -79,9 +84,12 @@ WITH votos_com_diretriz AS (
         vo.orientacao AS orientacao_partido
     FROM votacoes_votos vv
     JOIN votacoes_orientacoes vo
-        ON vo.ano_dados    = vv.ano_dados
-       AND vo.id_votacao   = vv.id_votacao
-       AND vo.sigla_bancada = vv.sigla_partido
+        ON vo.ano_dados  = vv.ano_dados
+       AND vo.id_votacao = vv.id_votacao
+       AND (
+           vo.sigla_bancada = vv.sigla_partido
+           OR vo.sigla_bancada LIKE '%' || vv.sigla_partido || '%'
+       )
     WHERE
         vo.orientacao NOT IN ('Liberado', 'Abstencao', 'Obstrucao')
         AND vv.voto NOT IN ('Abstencao', 'Artigo 17', 'Obstrucao')
@@ -124,9 +132,12 @@ WITH votos_com_diretriz AS (
         vo.orientacao AS orientacao_partido
     FROM votacoes_votos vv
     JOIN votacoes_orientacoes vo
-        ON vo.ano_dados    = vv.ano_dados
-       AND vo.id_votacao   = vv.id_votacao
-       AND vo.sigla_bancada = vv.sigla_partido
+        ON vo.ano_dados  = vv.ano_dados
+       AND vo.id_votacao = vv.id_votacao
+       AND (
+           vo.sigla_bancada = vv.sigla_partido
+           OR vo.sigla_bancada LIKE '%' || vv.sigla_partido || '%'
+       )
     WHERE
         vo.orientacao NOT IN ('Liberado', 'Abstencao', 'Obstrucao')
         AND vv.voto NOT IN ('Abstencao', 'Artigo 17', 'Obstrucao')
