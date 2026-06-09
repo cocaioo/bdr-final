@@ -731,13 +731,30 @@ class Q11Adapter(QuestionAdapter):
         sorted_rows = FilterEngine.apply_sort(filtered_rows, state.sort_by, state.sort_dir)
         paged_rows = FilterEngine.apply_pagination(sorted_rows, state.page, state.page_size)
 
+        BASE_TITLE_A = "Q11.a - Ranking de partidos por frequência nas votações"
+        table_title = BASE_TITLE_A if has_year_filter else f"{BASE_TITLE_A} (Todos os anos)"
+
         table_spec = self._build_table_spec(
-            title=main.title if main else "Tabela principal",
+            title=table_title,
             columns=main_columns,
             rows=paged_rows,
             total=len(sorted_rows),
             state=state,
         )
+
+        # Mapeamento de títulos normalizados para tabelas B e C
+        _TITLE_MAP = {
+            "proposicoes": "Q11.b - Ranking de partidos por proposicoes de projetos",
+            "proposições": "Q11.b - Ranking de partidos por proposicoes de projetos",
+            "gastos":      "Q11.c - Ranking de partidos por gastos",
+        }
+
+        def _normalized_complement_title(raw_title: str) -> str:
+            lower = raw_title.lower()
+            for keyword, base in _TITLE_MAP.items():
+                if keyword in lower:
+                    return base if has_year_filter else f"{base} (Todos os anos)"
+            return raw_title
 
         # Complementos
         complement_specs = []
@@ -756,7 +773,7 @@ class Q11Adapter(QuestionAdapter):
             t_paged = FilterEngine.apply_pagination(t_sorted, 1, page_size)
             complement_specs.append(
                 self._build_table_spec(
-                    title=table.title,
+                    title=_normalized_complement_title(table.title),
                     columns=t_cols,
                     rows=t_paged,
                     total=len(t_sorted),
