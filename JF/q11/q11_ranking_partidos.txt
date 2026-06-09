@@ -93,7 +93,7 @@ Q11.a - Frequencia nas votacoes por ano
       2025 |      14 | SOLIDARIEDADE | centro           |                    47 |                     143
       2025 |      15 | PODE          | centro           |                    45 |                     509
       2025 |      16 | NOVO          | direita          |                    44 |                     178
-      2025 |      16 | PV            | esquerda       ag  |                    44 |                     145
+      2025 |      16 | PV            | esquerda         |                    44 |                     145
       2025 |      18 | CIDADANIA     | centro           |                    41 |                     110
       2025 |      19 | PRD           | centro           |                    40 |                     141
       2025 |      20 | REDE          | esquerda         |                    31 |                      45
