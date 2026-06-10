@@ -28,6 +28,7 @@ export interface MetaResponse {
   questions: QuestionMeta[]
   legend: Record<string, unknown>
   available_filters: FilterCatalog
+  question_filters?: Record<string, FilterCatalog>
 }
 
 export interface SummaryCard {

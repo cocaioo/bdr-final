@@ -157,6 +157,7 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
   const isQ8 = questionMeta.id.toLowerCase() === 'q8'
   const isQ2 = questionMeta.id.toLowerCase() === 'q2'
   const isQ11 = questionMeta.id.toLowerCase() === 'q11'
+  const isQ3 = questionMeta.id.toLowerCase() === 'q3'
   const hasWordClouds = isQ2 || isQ11
   const shouldShowChart = !hasWordClouds
   const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
@@ -179,7 +180,7 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
       </section>
 
       <WarningBanner warnings={payload.warnings} />
-      {!hasWordClouds ? (
+      {!hasWordClouds && !isQ3 ? (
         <ExecutiveCards
           cards={
             questionMeta.id.toLowerCase() === 'q4'
@@ -209,6 +210,28 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
 
       {payload.empty_state.is_empty ? (
         <NoDataState message={payload.empty_state.message} />
+      ) : isQ3 ? (
+        <>
+          <section className="q3-methodology stagger-item">
+            <p>
+              Os eixos tematicos sao inferidos a partir dos textos das proposicoes e objetos
+              associados a votacao. Cada voto nominal e contado uma unica vez.
+            </p>
+          </section>
+          <DataTablePanel
+            table={mainTable}
+            state={tableStateView}
+            onChange={handleTableChange}
+            compact
+          />
+          {shouldShowChart ? (
+            <ChartPanel
+              spec={payload.chart_spec}
+              activeFilters={undefined}
+              onBarClick={undefined}
+            />
+          ) : null}
+        </>
       ) : (
         <>
           {isQ2 ? (

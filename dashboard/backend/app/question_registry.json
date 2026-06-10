@@ -48,17 +48,21 @@
     },
     {
       "id": "q3",
-      "title": "Votos por eixo de atuacao",
-      "description": "Mostra como cada deputado vota por eixo tematico.",
-      "response_files": ["q3_voto_deputado_tema.txt"],
+      "title": "Votos por eixo principal da votacao",
+      "description": "Mostra como cada deputado votou em votacoes classificadas por eixo tematico principal.",
+      "response_files": [
+        "artifacts/q3/q3_resumos_agregados.csv",
+        "artifacts/q3/q3_votos_min.csv",
+        "artifacts/q3/q3_classificacao_votacoes.csv"
+      ],
       "sql_file": "q3.sql",
       "chart_type": "stacked_bar",
-      "supported_filters": ["anos", "deputados"],
-      "expected_columns": ["id_deputado", "nome", "eixo_maior", "votos_sim", "votos_nao", "abstencoes", "votos_total"],
+      "supported_filters": ["anos", "eixos", "deputados"],
+      "expected_columns": ["ano_dados", "eixo_principal", "voto_sim", "voto_nao", "voto_abstencao", "voto_outro", "votos_total"],
       "main_table_contains": "",
       "summary_table_contains": "",
-      "explanation": "Cruza votos por deputado com eixo tematico da materia votada.",
-      "chart": { "x_field": "eixo_maior", "y_fields": ["votos_sim", "votos_nao", "abstencoes"] }
+      "explanation": "Cada linha representa um voto nominal unico. O eixo principal e inferido previamente no nivel da votacao a partir dos textos associados; eixos secundarios aparecem apenas como contexto.",
+      "chart": { "x_field": "voto", "y_fields": ["votos_total"] }
     },
     {
       "id": "q4",

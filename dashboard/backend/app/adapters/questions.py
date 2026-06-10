@@ -973,10 +973,290 @@ class Q13Adapter(QuestionAdapter):
         return payload
 
 
+class Q3NormalizedAdapter(QuestionAdapter):
+    """Q3 normalizada: agregados para metricas, votos minimos para tabela."""
+
+    def build_payload(self, state: FilterState) -> QuestionPayload:
+        resumo_rows = self._resumo_rows()
+        if not resumo_rows:
+            return super().build_payload(state)
+
+        if not state.deputados:
+            return self._build_empty_selection_payload(state)
+
+        votos_rows = self._votos_rows()
+        classificacoes = self._classificacao_index()
+        if not resumo_rows or not votos_rows:
+            return super().build_payload(state)
+
+        aggregate_filters = [f for f in self.context.question.supported_filters if f != "search"]
+        filtered_resumo = FilterEngine.apply_filters(resumo_rows, state, aggregate_filters)
+        filtered_votos = FilterEngine.apply_filters(
+            votos_rows,
+            state,
+            self.context.question.supported_filters,
+        )
+        unique_votos = self._dedupe_vote_rows(filtered_votos)
+        sorted_votos = FilterEngine.apply_sort(unique_votos, state.sort_by, state.sort_dir)
+        paged_votos = FilterEngine.apply_pagination(sorted_votos, state.page, state.page_size)
+        display_rows = [
+            self._display_row(row, classificacoes.get(self._classification_key(row), {}))
+            for row in paged_votos
+        ]
+
+        chart_spec = self.build_chart_spec(filtered_resumo)
+        donut_data = self._build_donut_data(filtered_resumo)
+        chart_spec.options["donut"] = donut_data
+        chart_spec.options["second_chart"] = {
+            "type": "donut",
+            "title": "Distribuicao dos votos",
+            "description": "Contagem de votos nominais unicos nas votacoes filtradas.",
+            "x_field": None,
+            "y_fields": [],
+            "categories": [],
+            "series": [{"name": "Votos", "data": donut_data}],
+            "options": {},
+        }
+
+        table_spec = self._build_table_spec(
+            title="Votos individuais",
+            columns=self._display_columns(),
+            rows=display_rows,
+            total=len(sorted_votos),
+            state=state,
+        )
+        has_data = table_spec.total > 0
+        empty = EmptyState(
+            is_empty=not has_data,
+            message="Sem dados para os filtros selecionados." if not has_data else "",
+        )
+
+        return QuestionPayload(
+            question_id=self.context.question.id,
+            title=self.context.question.title,
+            description=self.context.question.description,
+            filters_supported=self.context.question.supported_filters,
+            filters_applied={
+                "anos": state.anos,
+                "eixos": state.eixos,
+                "partidos": state.partidos,
+                "ufs": state.ufs,
+                "deputados": state.deputados,
+                "search": state.search,
+                "sort_by": state.sort_by,
+                "sort_dir": state.sort_dir,
+                "page": state.page,
+                "page_size": state.page_size,
+            },
+            summary_cards=self._build_vote_summary_cards(filtered_resumo),
+            chart_spec=chart_spec,
+            table_spec=table_spec,
+            complement_tables=[],
+            query_panel=QueryPanel(
+                sql_path=self.context.sql_path,
+                sql_text=self.context.sql_text,
+                explanation=self.context.question.explanation,
+            ),
+            warnings=self.warnings,
+            empty_state=empty,
+            dataset_version=self.context.dataset_version,
+            generated_at=datetime.now(timezone.utc).isoformat(),
+        )
+
+    def _resumo_rows(self) -> list[dict[str, Any]]:
+        table = self._find_table_with_columns({"votos_total", "eixo_principal"})
+        return table.rows if table else []
+
+    def _build_empty_selection_payload(self, state: FilterState) -> QuestionPayload:
+        empty_chart = ChartSpec(
+            type="bar_vertical",
+            title="Distribuicao dos votos",
+            description="Selecione um deputado para visualizar a distribuicao dos votos.",
+            x_field="voto",
+            y_fields=["votos_total"],
+            categories=["Sim", "Nao", "Abstencao", "Outros"],
+            series=[{"name": "Votos", "data": [0, 0, 0, 0]}],
+            options={"orientation": "vertical"},
+        )
+        table_spec = self._build_table_spec(
+            title="Votos individuais",
+            columns=self._display_columns(),
+            rows=[],
+            total=0,
+            state=state,
+        )
+        return QuestionPayload(
+            question_id=self.context.question.id,
+            title=self.context.question.title,
+            description=self.context.question.description,
+            filters_supported=self.context.question.supported_filters,
+            filters_applied={
+                "anos": state.anos,
+                "eixos": state.eixos,
+                "partidos": state.partidos,
+                "ufs": state.ufs,
+                "deputados": state.deputados,
+                "search": state.search,
+                "sort_by": state.sort_by,
+                "sort_dir": state.sort_dir,
+                "page": state.page,
+                "page_size": state.page_size,
+            },
+            summary_cards=[],
+            chart_spec=empty_chart,
+            table_spec=table_spec,
+            complement_tables=[],
+            query_panel=QueryPanel(
+                sql_path=self.context.sql_path,
+                sql_text=self.context.sql_text,
+                explanation=self.context.question.explanation,
+            ),
+            warnings=self.warnings,
+            empty_state=EmptyState(
+                is_empty=True,
+                message="Selecione um deputado para visualizar os votos.",
+            ),
+            dataset_version=self.context.dataset_version,
+            generated_at=datetime.now(timezone.utc).isoformat(),
+        )
+
+    def _votos_rows(self) -> list[dict[str, Any]]:
+        table = self._find_table_with_columns({"id_votacao", "id_deputado", "voto"})
+        return table.rows if table else []
+
+    def _classificacao_rows(self) -> list[dict[str, Any]]:
+        table = self._find_table_with_columns({"id_votacao", "evidencias_eixo_principal"})
+        return table.rows if table else []
+
+    def _find_table_with_columns(self, required: set[str]):
+        for doc in self.context.documents:
+            for table in doc.tables:
+                if required.issubset(set(table.columns)):
+                    return table
+        return None
+
+    @staticmethod
+    def _vote_key(row: dict[str, Any]) -> tuple[Any, Any, Any]:
+        return (row.get("ano_dados"), row.get("id_votacao"), row.get("id_deputado"))
+
+    @staticmethod
+    def _classification_key(row: dict[str, Any]) -> tuple[Any, Any]:
+        return (row.get("ano_dados"), row.get("id_votacao"))
+
+    def _dedupe_vote_rows(self, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        deduped: dict[tuple[Any, Any, Any], dict[str, Any]] = {}
+        for row in rows:
+            deduped.setdefault(self._vote_key(row), row)
+        return list(deduped.values())
+
+    def _classificacao_index(self) -> dict[tuple[Any, Any], dict[str, Any]]:
+        return {self._classification_key(row): row for row in self._classificacao_rows()}
+
+    @staticmethod
+    def _display_columns() -> list[str]:
+        return [
+            "ano_dados",
+            "voto",
+            "eixo_principal",
+            "proposicao_votacao",
+            "ementa_descricao",
+        ]
+
+    def _display_row(self, row: dict[str, Any], classificacao: dict[str, Any]) -> dict[str, Any]:
+        merged = dict(row)
+        for key, value in classificacao.items():
+            merged.setdefault(key, value)
+        merged["proposicao_votacao"] = (
+            merged.get("materia_resumo")
+            or merged.get("proposicoes_associadas_resumo")
+            or merged.get("id_votacao")
+        )
+        merged["ementa_descricao"] = (
+            merged.get("ementa_resumo")
+            or merged.get("descricao_votacao")
+            or "-"
+        )
+        return {column: merged.get(column) for column in self._display_columns()}
+
+    def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
+        if not rows:
+            return ChartSpec(
+                type="bar_vertical",
+                title="Sem dados",
+                description="Nao ha dados suficientes para montar o grafico.",
+            )
+
+        categories = ["Sim", "Nao", "Abstencao", "Outros"]
+        data = [
+            sum(self._to_int(row.get("voto_sim")) for row in rows),
+            sum(self._to_int(row.get("voto_nao")) for row in rows),
+            sum(self._to_int(row.get("voto_abstencao")) for row in rows),
+            sum(self._to_int(row.get("voto_outro")) for row in rows),
+        ]
+
+        return ChartSpec(
+            type="bar_vertical",
+            title="Distribuicao dos votos",
+            description="Total de votos por tipo, respeitando os filtros aplicados.",
+            x_field="voto",
+            y_fields=["votos_total"],
+            categories=categories,
+            series=[{"name": "Votos", "data": data}],
+            options={"orientation": "vertical"},
+        )
+
+    def _build_vote_summary_cards(self, rows: list[dict[str, Any]]) -> list[SummaryCard]:
+        total_votos = sum(self._to_int(row.get("votos_total")) for row in rows)
+        total_sim = sum(self._to_int(row.get("voto_sim")) for row in rows)
+        total_nao = sum(self._to_int(row.get("voto_nao")) for row in rows)
+        total_abst = sum(self._to_int(row.get("voto_abstencao")) for row in rows)
+        total_outros = sum(self._to_int(row.get("voto_outro")) for row in rows)
+
+        return [
+            SummaryCard(id="total_votos", label="Total de votos", value=self._format_int(total_votos), unit="votos"),
+            SummaryCard(id="votos_sim", label="Votos Sim", value=self._format_int(total_sim), unit="votos"),
+            SummaryCard(id="votos_nao", label="Votos Nao", value=self._format_int(total_nao), unit="votos"),
+            SummaryCard(id="abstencoes", label="Abstencoes", value=self._format_int(total_abst), unit="votos"),
+            SummaryCard(id="votos_outros", label="Outros votos", value=self._format_int(total_outros), unit="votos"),
+        ]
+
+    def _build_donut_data(self, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        sim = sum(self._to_int(row.get("voto_sim")) for row in rows)
+        nao = sum(self._to_int(row.get("voto_nao")) for row in rows)
+        abstencao = sum(self._to_int(row.get("voto_abstencao")) for row in rows)
+        outros = sum(self._to_int(row.get("voto_outro")) for row in rows)
+        return [
+            {"name": "Sim", "value": sim},
+            {"name": "Nao", "value": nao},
+            {"name": "Abstencao", "value": abstencao},
+            {"name": "Outros", "value": outros},
+        ]
+
+    @staticmethod
+    def _to_int(value: Any) -> int:
+        try:
+            return int(value or 0)
+        except (TypeError, ValueError):
+            return 0
+
+    @staticmethod
+    def _format_int(value: int) -> str:
+        return f"{value:,}".replace(",", ".")
+
+    @staticmethod
+    def _vote_label(field: str) -> str:
+        return {
+            "voto_sim": "Sim",
+            "voto_nao": "Nao",
+            "voto_abstencao": "Abstencao",
+            "voto_outro": "Outros",
+        }.get(field, field)
+
+
 ADAPTERS_BY_ID = {
     "q1": Q1Adapter,
     "q2": Q2Adapter,
-    "q3": Q3Adapter,
+    "q3": Q3NormalizedAdapter,
     "q4": Q4Adapter,
     "q5": Q5Adapter,
     "q6": Q6Adapter,

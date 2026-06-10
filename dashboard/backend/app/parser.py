@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import csv
 from pathlib import Path
 import re
 from typing import Any
@@ -86,6 +87,27 @@ def parse_psql_output(raw_text: str) -> ParsedDocument:
 
 def parse_psql_file(path: Path) -> ParsedDocument:
     return parse_psql_output(read_text_with_fallback(path))
+
+
+def parse_data_file(path: Path) -> ParsedDocument:
+    if path.suffix.lower() == ".csv":
+        return parse_csv_file(path)
+    return parse_psql_file(path)
+
+
+def parse_csv_file(path: Path) -> ParsedDocument:
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle, delimiter=";", quotechar='"', doublequote=True)
+        columns = list(reader.fieldnames or [])
+        rows = [
+            {column: _coerce_value(row.get(column, "")) for column in columns}
+            for row in reader
+        ]
+
+    return ParsedDocument(
+        title=path.stem,
+        tables=[ParsedTable(title="Tabela principal", columns=columns, rows=rows)],
+    )
 
 
 def _is_table_header(lines: list[str], index: int) -> bool:

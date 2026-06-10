@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 from dataclasses import dataclass
 from datetime import datetime, timezone
 import hashlib
@@ -16,7 +17,7 @@ from .config import REPO_ROOT, REGISTRY_PATH, RESPONSES_DIR, SQL_DIR
 from .filter_engine import FilterState
 from .models import FilterCatalog, FilterChoice, MetaResponse, QuestionMeta, QuestionPayload
 from .party_catalog import active_party_entries, normalize_party, PARTY_CATALOG_RELATIVE_PATH
-from .parser import ParsedDocument, parse_psql_file, read_text_with_fallback
+from .parser import ParsedDocument, parse_data_file, read_text_with_fallback
 from .registry import QuestionDefinition, QuestionRegistry, load_registry
 
 
@@ -50,6 +51,8 @@ class DashboardService:
         self.cache = MemoryCache(ttl_seconds=300)
         self._version_cache: tuple[float, str] | None = None
         self._version_cache_ttl = 60.0
+        self._document_cache: dict[tuple[str, int, int], ParsedDocument] = {}
+        self._bundle_cache: dict[tuple[str, str], DataBundle] = {}
 
     def get_meta(self) -> MetaResponse:
         version = self.get_dataset_version()
@@ -77,6 +80,7 @@ class DashboardService:
             questions=questions,
             legend=self.registry.legend,
             available_filters=available,
+            question_filters=self._collect_question_filters(),
         )
         self.cache.set(cache_key, response)
         return response
@@ -93,7 +97,7 @@ class DashboardService:
         if cached:
             return cached
 
-        bundle = self._load_question_bundle(question)
+        bundle = self._load_question_bundle(question, state)
         adapter = build_adapter(
             AdapterContext(
                 question=question,
@@ -131,11 +135,22 @@ class DashboardService:
         self._version_cache = (now, digest)
         return digest
 
-    def _load_question_bundle(self, question: QuestionDefinition) -> DataBundle:
+    def _load_question_bundle(
+        self,
+        question: QuestionDefinition,
+        state: FilterState | None = None,
+    ) -> DataBundle:
+        version = self.get_dataset_version()
+        bundle_variant = self._bundle_variant(question, state)
+        cache_key = (f"{question.id}:{bundle_variant}", version)
+        cached = self._bundle_cache.get(cache_key)
+        if cached is not None:
+            return cached
+
         docs: list[ParsedDocument] = []
-        for file_name in question.response_files:
+        for file_name in self._response_files_for_state(question, state):
             file_path = self._resolve_response_path(file_name)
-            docs.append(parse_psql_file(file_path))
+            docs.append(self._parse_document(file_path))
 
         sql_path = self.sql_dir / question.sql_file
         if not sql_path.exists():
@@ -144,12 +159,45 @@ class DashboardService:
                 sql_path = candidates[0]
         sql_text = read_text_with_fallback(sql_path) if sql_path.exists() else "-- SQL nao encontrado"
 
-        return DataBundle(
+        bundle = DataBundle(
             question=question,
             documents=docs,
             sql_text=sql_text,
             sql_path=_relative_path(sql_path, self.repo_root),
         )
+        self._bundle_cache[cache_key] = bundle
+        return bundle
+
+    def _response_files_for_state(
+        self,
+        question: QuestionDefinition,
+        state: FilterState | None,
+    ) -> list[str]:
+        if question.id != "q3" or state is None or state.deputados:
+            return question.response_files
+
+        resumo_files = [
+            file_name
+            for file_name in question.response_files
+            if Path(file_name).name == "q3_resumos_agregados.csv"
+        ]
+        return resumo_files or question.response_files
+
+    @staticmethod
+    def _bundle_variant(question: QuestionDefinition, state: FilterState | None) -> str:
+        if question.id == "q3" and state is not None and not state.deputados:
+            return "sem_deputado"
+        return "completo"
+
+    def _parse_document(self, path: Path) -> ParsedDocument:
+        stat = path.stat()
+        cache_key = (str(path.resolve()), stat.st_mtime_ns, stat.st_size)
+        cached = self._document_cache.get(cache_key)
+        if cached is not None:
+            return cached
+        parsed = parse_data_file(path)
+        self._document_cache[cache_key] = parsed
+        return parsed
 
     def _collect_global_filters(self) -> FilterCatalog:
         cache_key = f"filters:{self.get_dataset_version()}"
@@ -166,10 +214,10 @@ class DashboardService:
 
         for question in self.registry.questions:
             try:
-                bundle = self._load_question_bundle(question)
+                docs = self._load_filter_documents(question)
             except FileNotFoundError:
                 continue
-            for doc in bundle.documents:
+            for doc in docs:
                 for table in doc.tables:
                     for row in table.rows:
                         _maybe_add(anos, row.get("ano_dados"), excluded={"GLOBAL"})
@@ -179,6 +227,7 @@ class DashboardService:
                         _maybe_add(eixos, row.get("tema_mais_atuante_deputado"))
                         _maybe_add(eixos, row.get("eixo_maior"))
                         _maybe_add(eixos, row.get("eixo_mais_atuante"))
+                        _maybe_add(eixos, row.get("eixo_principal"))
                         _maybe_add_party(partidos_observed, row.get("sigla_partido"))
                         _maybe_add(ufs, row.get("sigla_uf"))
                         _maybe_add(deputados, row.get("nome") or row.get("id_deputado"))
@@ -206,6 +255,76 @@ class DashboardService:
         )
         self.cache.set(cache_key, catalog)
         return catalog
+
+    def _collect_question_filters(self) -> dict[str, FilterCatalog]:
+        q3 = self.registry.by_id("q3")
+        if q3 is None:
+            return {}
+
+        try:
+            docs = self._load_filter_documents(q3)
+        except FileNotFoundError:
+            return {}
+
+        rows = [
+            row
+            for doc in docs
+            for table in doc.tables
+            for row in table.rows
+            if "eixo_principal" in row and "id_deputado" in row and "nome" in row
+        ]
+        if not rows:
+            return {}
+
+        deputy_names = self._load_deputy_public_names()
+        anos = {str(row.get("ano_dados")).strip() for row in rows if row.get("ano_dados") not in (None, "")}
+        eixos = {str(row.get("eixo_principal")).strip() for row in rows if row.get("eixo_principal")}
+        deputy_ids: dict[str, str] = {}
+        for row in rows:
+            dep_id = str(row.get("id_deputado") or "").strip()
+            name = str(row.get("nome") or "").strip()
+            if dep_id and name:
+                deputy_ids.setdefault(dep_id, deputy_names.get(dep_id, name))
+
+        q3_catalog = FilterCatalog(
+            anos=[FilterChoice(value=item, label=item) for item in _sort_filter_values(anos)],
+            eixos=[FilterChoice(value=item, label=item) for item in _sort_filter_values(eixos)],
+            partidos=[],
+            ufs=[],
+            deputados=[
+                FilterChoice(value=dep_id, label=label)
+                for dep_id, label in sorted(deputy_ids.items(), key=lambda item: item[1].lower())
+            ],
+            escolaridade=[],
+        )
+        return {"q3": q3_catalog}
+
+    def _load_deputy_public_names(self) -> dict[str, str]:
+        path = self.repo_root / "dados_padronizados" / "deputados.csv"
+        if not path.exists():
+            return {}
+
+        names: dict[str, str] = {}
+        with path.open("r", encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle, delimiter=";")
+            for row in reader:
+                dep_id = str(row.get("id_deputado") or "").strip()
+                name = str(row.get("nome") or "").strip()
+                if dep_id and name:
+                    names[dep_id] = name
+        return names
+
+    def _load_filter_documents(self, question: QuestionDefinition) -> list[ParsedDocument]:
+        if question.id != "q3":
+            return self._load_question_bundle(question).documents
+
+        docs: list[ParsedDocument] = []
+        for file_name in question.response_files:
+            if Path(file_name).name != "q3_resumos_agregados.csv":
+                continue
+            file_path = self._resolve_response_path(file_name)
+            docs.append(self._parse_document(file_path))
+        return docs or self._load_question_bundle(question).documents
 
     def _resolve_response_path(
         self,
@@ -313,6 +432,16 @@ def _maybe_add_party(container: set[str], value: Any) -> None:
     normalized = normalize_party(value)
     if normalized:
         container.add(normalized)
+
+
+def _sort_filter_values(values: set[str]) -> list[str]:
+    def key(value: str) -> tuple[int, int | str]:
+        try:
+            return (0, int(value))
+        except ValueError:
+            return (1, value.lower())
+
+    return sorted(values, key=key)
 
 
 def _relative_path(path: Path, base_dir: Path) -> str:

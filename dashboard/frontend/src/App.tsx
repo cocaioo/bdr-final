@@ -61,14 +61,17 @@ function App() {
     )
   }
 
-  console.log('App rendering main shell')
+  const activeQuestionCatalog =
+    activeQuestionId && meta.question_filters?.[activeQuestionId]
+      ? meta.question_filters[activeQuestionId]
+      : meta.available_filters
 
   return (
     <div className="app-shell">
       <Header questions={meta.questions} datasetVersion={meta.dataset_version} />
       {!hiddenQuestionRoute ? (
         <GlobalFilters
-          catalog={meta.available_filters}
+          catalog={activeQuestionCatalog}
           value={filters}
           onChange={setFilters}
           supportedFilters={
@@ -76,6 +79,9 @@ function App() {
               ? activeQuestion?.supported_filters?.filter((f) => f !== 'deputados')
               : activeQuestion?.supported_filters
           }
+          hideSearch={activeQuestionId?.toLowerCase() === 'q3'}
+          hideNumericDeputyChoices={activeQuestionId?.toLowerCase() === 'q3'}
+          searchableDeputyFilter={activeQuestionId?.toLowerCase() === 'q3'}
         />
       ) : null}
       <Routes>

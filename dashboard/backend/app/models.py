@@ -35,6 +35,7 @@ class MetaResponse(BaseModel):
     questions: list[QuestionMeta]
     legend: dict[str, Any]
     available_filters: FilterCatalog
+    question_filters: dict[str, FilterCatalog] = Field(default_factory=dict)
 
 
 class SummaryCard(BaseModel):
