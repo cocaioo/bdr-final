@@ -230,6 +230,7 @@ body {
 }
 
 .filter-item select,
+.autocomplete-filter input,
 .filter-search input,
 .table-footer select {
   border: 1px solid var(--border);
@@ -243,6 +244,55 @@ body {
 
 .filter-item select {
   min-height: 92px;
+}
+
+.autocomplete-filter {
+  position: relative;
+}
+
+.autocomplete-filter input {
+  width: 100%;
+}
+
+.autocomplete-options {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 240px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 4px;
+}
+
+.autocomplete-option {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  display: block;
+  font-family: 'Source Sans 3', sans-serif;
+  padding: 8px 10px;
+  text-align: left;
+  border-radius: 8px;
+}
+
+.autocomplete-option:hover,
+.autocomplete-option:focus {
+  background: rgba(11, 60, 93, 0.08);
+  color: var(--primary);
+  outline: none;
+}
+
+.autocomplete-empty {
+  display: block;
+  color: var(--muted);
+  padding: 8px 10px;
 }
 
 .filter-search {

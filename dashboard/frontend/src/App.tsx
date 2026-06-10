@@ -81,6 +81,7 @@ function App() {
           }
           hideSearch={activeQuestionId?.toLowerCase() === 'q3'}
           hideNumericDeputyChoices={activeQuestionId?.toLowerCase() === 'q3'}
+          searchableDeputyFilter={activeQuestionId?.toLowerCase() === 'q3'}
         />
       ) : null}
       <Routes>

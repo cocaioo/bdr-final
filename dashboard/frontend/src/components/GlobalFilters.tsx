@@ -9,6 +9,7 @@ interface GlobalFiltersProps {
   supportedFilters?: string[]
   hideSearch?: boolean
   hideNumericDeputyChoices?: boolean
+  searchableDeputyFilter?: boolean
 }
 
 function isEnabled(supportedFilters: string[] | undefined, filterId: string) {
@@ -30,6 +31,13 @@ function getChoiceLabel(choices: Array<{ value: string; label: string }>, val: s
   return choice ? choice.label : val
 }
 
+function normalizeSearchText(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+}
+
 const EMPTY_FILTER_STATE: FilterState = {
   anos: [],
   eixos: [],
@@ -47,8 +55,11 @@ export function GlobalFilters({
   supportedFilters,
   hideSearch = false,
   hideNumericDeputyChoices = false,
+  searchableDeputyFilter = false,
 }: GlobalFiltersProps) {
   const [searchValue, setSearchValue] = useState(value.search ?? '')
+  const [deputySearchValue, setDeputySearchValue] = useState('')
+  const [isDeputySearchOpen, setIsDeputySearchOpen] = useState(false)
 
   // Sync internal state with external value.search changes (e.g. clear filters)
   useEffect(() => {
@@ -91,6 +102,8 @@ export function GlobalFilters({
   }
 
   const clearAllFilters = () => {
+    setDeputySearchValue('')
+    setIsDeputySearchOpen(false)
     onChange(EMPTY_FILTER_STATE)
   }
 
@@ -106,6 +119,35 @@ export function GlobalFilters({
   const deputyChoices = hideNumericDeputyChoices
     ? safeCatalog.deputados.filter((choice) => !/^\d+$/.test(choice.label))
     : safeCatalog.deputados
+  const selectedDeputyLabel = value.deputados.length > 0
+    ? getChoiceLabel(deputyChoices, value.deputados[0])
+    : ''
+  const normalizedDeputySearch = normalizeSearchText(deputySearchValue.trim())
+  const filteredDeputyChoices = deputyChoices
+    .filter((choice) => {
+      if (!normalizedDeputySearch) return true
+      return normalizeSearchText(choice.label).includes(normalizedDeputySearch)
+    })
+    .slice(0, 20)
+
+  useEffect(() => {
+    if (!searchableDeputyFilter) return
+    if (value.deputados.length > 0) {
+      setDeputySearchValue(selectedDeputyLabel)
+    }
+  }, [searchableDeputyFilter, selectedDeputyLabel, value.deputados.length])
+
+  const selectDeputy = (deputyId: string) => {
+    setList('deputados', [deputyId])
+    setDeputySearchValue(getChoiceLabel(deputyChoices, deputyId))
+    setIsDeputySearchOpen(false)
+  }
+
+  const clearDeputy = () => {
+    setList('deputados', [])
+    setDeputySearchValue('')
+    setIsDeputySearchOpen(false)
+  }
 
   return (
     <section className="filter-panel stagger-item">
@@ -287,23 +329,74 @@ export function GlobalFilters({
             <div className="filter-item-header">
               <label htmlFor="filter-deputados">Deputado</label>
               {value.deputados.length > 0 && (
-                <button type="button" className="clear-btn" onClick={() => setList('deputados', [])}>
+                <button type="button" className="clear-btn" onClick={searchableDeputyFilter ? clearDeputy : () => setList('deputados', [])}>
                   Limpar
                 </button>
               )}
             </div>
-            <select
-              id="filter-deputados"
-              multiple
-              value={value.deputados}
-              onChange={(event) => setList('deputados', readSelectedValues(event.target))}
-            >
-              {deputyChoices.map((choice) => (
-                <option key={choice.value} value={choice.value}>
-                  {choice.label}
-                </option>
-              ))}
-            </select>
+            {searchableDeputyFilter ? (
+              <div className="autocomplete-filter">
+                <input
+                  id="filter-deputados"
+                  value={deputySearchValue}
+                  autoComplete="off"
+                  role="combobox"
+                  aria-expanded={isDeputySearchOpen}
+                  aria-controls="filter-deputados-options"
+                  placeholder="Digite o nome do deputado..."
+                  onFocus={() => setIsDeputySearchOpen(true)}
+                  onChange={(event) => {
+                    setDeputySearchValue(event.target.value)
+                    setIsDeputySearchOpen(true)
+                    if (value.deputados.length > 0) {
+                      setList('deputados', [])
+                    }
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' && filteredDeputyChoices.length > 0) {
+                      event.preventDefault()
+                      selectDeputy(filteredDeputyChoices[0].value)
+                    }
+                    if (event.key === 'Escape') {
+                      setIsDeputySearchOpen(false)
+                    }
+                  }}
+                />
+                {isDeputySearchOpen && deputySearchValue.trim().length > 0 && (
+                  <div id="filter-deputados-options" className="autocomplete-options" role="listbox">
+                    {filteredDeputyChoices.length > 0 ? (
+                      filteredDeputyChoices.map((choice) => (
+                        <button
+                          key={choice.value}
+                          type="button"
+                          role="option"
+                          className="autocomplete-option"
+                          onMouseDown={(event) => event.preventDefault()}
+                          onClick={() => selectDeputy(choice.value)}
+                        >
+                          {choice.label}
+                        </button>
+                      ))
+                    ) : (
+                      <span className="autocomplete-empty">Nenhum deputado encontrado</span>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <select
+                id="filter-deputados"
+                multiple
+                value={value.deputados}
+                onChange={(event) => setList('deputados', readSelectedValues(event.target))}
+              >
+                {deputyChoices.map((choice) => (
+                  <option key={choice.value} value={choice.value}>
+                    {choice.label}
+                  </option>
+                ))}
+              </select>
+            )}
             {value.deputados.length > 0 && (
               <div className="filter-tags">
                 {value.deputados.map((val) => (
