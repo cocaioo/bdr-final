@@ -7,6 +7,8 @@ interface GlobalFiltersProps {
   value: FilterState
   onChange: (next: FilterState) => void
   supportedFilters?: string[]
+  hideSearch?: boolean
+  hideNumericDeputyChoices?: boolean
 }
 
 function isEnabled(supportedFilters: string[] | undefined, filterId: string) {
@@ -43,18 +45,20 @@ export function GlobalFilters({
   value,
   onChange,
   supportedFilters,
+  hideSearch = false,
+  hideNumericDeputyChoices = false,
 }: GlobalFiltersProps) {
-  const [searchValue, setSearchValue] = useState(value.search)
+  const [searchValue, setSearchValue] = useState(value.search ?? '')
 
   // Sync internal state with external value.search changes (e.g. clear filters)
   useEffect(() => {
-    setSearchValue(value.search)
+    setSearchValue(value.search ?? '')
   }, [value.search])
 
   // Debounce state propagation to parent
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchValue !== value.search) {
+      if (searchValue !== (value.search ?? '')) {
         onChange({ ...value, search: searchValue })
       }
     }, 300)
@@ -82,13 +86,26 @@ export function GlobalFilters({
       isFilterActive('ufs') ||
       isFilterActive('deputados') ||
       isFilterActive('escolaridade') ||
-      value.search.trim().length > 0
+      (!hideSearch && (value.search ?? '').trim().length > 0)
     )
   }
 
   const clearAllFilters = () => {
     onChange(EMPTY_FILTER_STATE)
   }
+
+  const safeCatalog = {
+    anos: catalog.anos ?? [],
+    eixos: catalog.eixos ?? [],
+    partidos: catalog.partidos ?? [],
+    ufs: catalog.ufs ?? [],
+    deputados: catalog.deputados ?? [],
+    escolaridade: catalog.escolaridade ?? [],
+  }
+
+  const deputyChoices = hideNumericDeputyChoices
+    ? safeCatalog.deputados.filter((choice) => !/^\d+$/.test(choice.label))
+    : safeCatalog.deputados
 
   return (
     <section className="filter-panel stagger-item">
@@ -117,7 +134,7 @@ export function GlobalFilters({
               value={value.anos}
               onChange={(event) => setList('anos', readSelectedValues(event.target))}
             >
-              {catalog.anos.map((choice) => (
+              {safeCatalog.anos.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
@@ -127,7 +144,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.anos.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.anos, val)}
+                    {getChoiceLabel(safeCatalog.anos, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -158,7 +175,7 @@ export function GlobalFilters({
               value={value.eixos}
               onChange={(event) => setList('eixos', readSelectedValues(event.target))}
             >
-              {catalog.eixos.map((choice) => (
+              {safeCatalog.eixos.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
@@ -168,7 +185,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.eixos.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.eixos, val)}
+                    {getChoiceLabel(safeCatalog.eixos, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -199,7 +216,7 @@ export function GlobalFilters({
               value={value.partidos}
               onChange={(event) => setList('partidos', readSelectedValues(event.target))}
             >
-              {catalog.partidos.map((choice) => (
+              {safeCatalog.partidos.map((choice) => (
                 <option key={choice.value} value={choice.value} title={choice.status ?? undefined}>
                   {choiceLabel(choice)}
                 </option>
@@ -209,7 +226,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.partidos.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.partidos, val)}
+                    {getChoiceLabel(safeCatalog.partidos, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -240,7 +257,7 @@ export function GlobalFilters({
               value={value.ufs}
               onChange={(event) => setList('ufs', readSelectedValues(event.target))}
             >
-              {catalog.ufs.map((choice) => (
+              {safeCatalog.ufs.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
@@ -250,7 +267,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.ufs.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.ufs, val)}
+                    {getChoiceLabel(safeCatalog.ufs, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -281,7 +298,7 @@ export function GlobalFilters({
               value={value.deputados}
               onChange={(event) => setList('deputados', readSelectedValues(event.target))}
             >
-              {catalog.deputados.map((choice) => (
+              {deputyChoices.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
@@ -291,7 +308,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.deputados.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.deputados, val)}
+                    {getChoiceLabel(safeCatalog.deputados, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -322,7 +339,7 @@ export function GlobalFilters({
               value={value.escolaridade}
               onChange={(event) => setList('escolaridade', readSelectedValues(event.target))}
             >
-              {(catalog.escolaridade || []).map((choice) => (
+              {safeCatalog.escolaridade.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
@@ -332,7 +349,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.escolaridade.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.escolaridade || [], val)}
+                    {getChoiceLabel(safeCatalog.escolaridade, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -347,25 +364,27 @@ export function GlobalFilters({
           </div>
         )}
       </div>
-      <div className="filter-search-container">
-        <div className="filter-item-header">
-          <label htmlFor="filter-search">Busca textual no ranking</label>
-          {searchValue.length > 0 && (
-            <button type="button" className="clear-btn" onClick={() => {
-              setSearchValue('')
-              onChange({ ...value, search: '' })
-            }}>
-              Limpar
-            </button>
-          )}
+      {!hideSearch ? (
+        <div className="filter-search-container">
+          <div className="filter-item-header">
+            <label htmlFor="filter-search">Busca textual no ranking</label>
+            {searchValue.length > 0 && (
+              <button type="button" className="clear-btn" onClick={() => {
+                setSearchValue('')
+                onChange({ ...value, search: '' })
+              }}>
+                Limpar
+              </button>
+            )}
+          </div>
+          <input
+            id="filter-search"
+            value={searchValue}
+            onChange={(event) => setSearchValue(event.target.value)}
+            placeholder="Digite para filtrar linhas..."
+          />
         </div>
-        <input
-          id="filter-search"
-          value={searchValue}
-          onChange={(event) => setSearchValue(event.target.value)}
-          placeholder="Digite para filtrar linhas..."
-        />
-      </div>
+      ) : null}
       <p className="filter-help">Use Ctrl/Cmd para selecionar mais de um valor em cada filtro.</p>
     </section>
   )

@@ -483,6 +483,16 @@ p {
   min-height: 420px;
 }
 
+.q3-methodology {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: var(--shadow);
+  color: var(--muted);
+}
+
 .wordcloud-section {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -562,6 +572,26 @@ th button {
 
 td {
   font-family: 'IBM Plex Mono', monospace;
+}
+
+.compact-table table {
+  min-width: 760px;
+}
+
+.compact-table th,
+.compact-table td {
+  padding: 9px 10px;
+}
+
+.compact-table td:nth-child(5) {
+  max-width: 520px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compact-table td:nth-child(4) {
+  color: var(--muted);
 }
 
 .table-footer {
