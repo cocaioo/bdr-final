@@ -9,13 +9,86 @@ from ..models import ChartSpec, TableSpec, QuestionPayload, SummaryCard, EmptySt
 class Q1Adapter(QuestionAdapter):
     """Gastos por deputado."""
 
+    def _build_summary_cards(self) -> list[SummaryCard]:
+        main_rows = self.main_table.rows if self.main_table else []
+        if not main_rows:
+            return []
+
+        total_spent = sum(float(r.get("gasto_total") or 0) for r in main_rows)
+        num_deputados = len(main_rows)
+        average_spent = total_spent / num_deputados if num_deputados > 0 else 0
+
+        # Encontra o deputado com maior gasto
+        max_dep = max(main_rows, key=lambda r: float(r.get("gasto_total") or 0))
+        max_name = max_dep.get("nome", "Desconhecido")
+        max_value = float(max_dep.get("gasto_total") or 0)
+
+        from .base import _format_value
+
+        return [
+            SummaryCard(
+                id="gasto_total",
+                label="Gasto Total Geral",
+                value=f"R$ {_format_value(total_spent)}",
+                unit=None,
+            ),
+            SummaryCard(
+                id="gasto_medio",
+                label="Média por Deputado",
+                value=f"R$ {_format_value(average_spent)}",
+                unit=None,
+            ),
+            SummaryCard(
+                id="maior_gasto",
+                label="Maior Gasto Individual",
+                value=f"{max_name} (R$ {_format_value(max_value)})",
+                unit=None,
+            ),
+            SummaryCard(
+                id="total_deputados",
+                label="Deputados Analisados",
+                value=str(num_deputados),
+                unit="deputados",
+            ),
+        ]
+
+    def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
+        # Pega os Top 15 e inverte a ordem para que o maior apareça no topo do gráfico
+        top_rows = list(reversed(rows[:15]))
+        chart_cfg = self.context.question.chart
+        x_field = chart_cfg.get("x_field")
+        y_fields = chart_cfg.get("y_fields", [])
+
+        from .base import _humanize_label
+
+        categories = [str(row.get(x_field, "")) for row in top_rows]
+        series = []
+        for y_field in y_fields:
+            series.append(
+                {
+                    "name": _humanize_label(y_field),
+                    "data": [row.get(y_field, 0) for row in top_rows],
+                    "stack": None,
+                }
+            )
+
+        return ChartSpec(
+            type="bar_horizontal",
+            title="Top 15 Deputados com Maiores Gastos",
+            description="Ranking dos 15 parlamentares que mais consumiram cota no período",
+            x_field=x_field,
+            y_fields=y_fields,
+            categories=categories,
+            series=series,
+            options={"orientation": "horizontal"},
+        )
+
 
 class Q2Adapter(QuestionAdapter):
     """Eixos e nuvem de palavras."""
 
     def build_payload(self, state: FilterState) -> QuestionPayload:
         main_rows = self.main_table.rows if self.main_table else []
-        main_rows = [r for r in main_rows if r.get("ano_dados") in (2023, 2026)]
 
         if state.anos:
             allowed_years = {int(y) for y in state.anos if str(y).isdigit()}
@@ -103,13 +176,14 @@ class Q2Adapter(QuestionAdapter):
         )
 
     def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
+        years = sorted(list({int(r["ano_dados"]) for r in self.main_table.rows if r.get("ano_dados")})) if self.main_table else []
         images = [
             {
                 "year": year,
                 "src": f"/wordclouds/q2_nuvem_palavras_{year}.svg",
                 "alt": f"Nuvem de palavras dos eixos tematicos em {year}",
             }
-            for year in (2023, 2026)
+            for year in years
         ]
         return ChartSpec(
             type="wordcloud_images",

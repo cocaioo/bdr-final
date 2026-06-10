@@ -9,11 +9,12 @@ def main():
     # 1. Clean up Banco/respostas/ directory
     banco_respostas_dir = Path("Banco/respostas")
     banco_respostas_dir.mkdir(parents=True, exist_ok=True)
-    for txt_file in banco_respostas_dir.glob("*.txt"):
-        try:
-            txt_file.unlink()
-        except Exception as e:
-            print(f"Error removing {txt_file}: {e}")
+    for ext in ("*.txt", "*.csv"):
+        for file_path in banco_respostas_dir.glob(ext):
+            try:
+                file_path.unlink()
+            except Exception as e:
+                print(f"Error removing {file_path}: {e}")
         
     # 2. Run SQL queries in Postgres container
     queries = {
@@ -109,6 +110,10 @@ def main():
         "q9_vies_deputado.txt": [
             Path("respostas/q9_vies_deputado.txt"),
             Path("JF/q9/q9_vies_deputado.txt")
+        ],
+        "q9_vies_deputado_detalhe.csv": [
+            Path("respostas/q9_vies_deputado_detalhe.csv"),
+            Path("JF/q9/q9_vies_deputado_detalhe.csv")
         ],
         "q10_alinhamento_partidos.txt": [
             Path("respostas/q10_alinhamento_partidos.txt"),

@@ -68,16 +68,7 @@ function App() {
       <Header questions={meta.questions} datasetVersion={meta.dataset_version} />
       {!hiddenQuestionRoute ? (
         <GlobalFilters
-          catalog={
-            activeQuestionId?.toLowerCase() === 'q2'
-              ? {
-                  ...meta.available_filters,
-                  anos: meta.available_filters.anos.filter(
-                    (choice) => choice.value === '2023' || choice.value === '2026'
-                  ),
-                }
-              : meta.available_filters
-          }
+          catalog={meta.available_filters}
           value={filters}
           onChange={setFilters}
           supportedFilters={

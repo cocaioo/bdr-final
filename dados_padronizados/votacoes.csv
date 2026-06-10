@@ -33058,6 +33058,7 @@ ano_dados;id_votacao;data_votacao;sigla_orgao;id_evento;aprovacao;descricao
 2026;2561269-29;2026-05-07;PLEN;81997;true;Aprovado o Substitutivo ao Projeto de Resolução nº 70, de 2025, adotado pelo relator da Mesa Diretora da Câmara dos Deputados.
 2026;2561269-32;2026-05-07;PLEN;81997;true;Aprovada a Redação Final, assinada pelo relator, Dep. Inácio Arruda (PCdoB-CE).
 2026;2622878-11;2026-05-11;PLEN;82039;true;Aprovado o Requerimento de Urgência (Art. 155 do RICD).
+2026;2623442-2;2026-05-12;CEXEXPLO;82065;true;Aprovado o Requerimento.
 2026;2623337-3;2026-05-12;CPD;81953;true;Aprovado o Requerimento.
 2026;2623338-3;2026-05-12;CPD;81953;true;Aprovado o Requerimento.
 2026;2376445-35;2026-05-12;CPD;81953;true;Aprovado o Parecer.
@@ -33172,7 +33173,6 @@ ano_dados;id_votacao;data_votacao;sigla_orgao;id_evento;aprovacao;descricao
 2026;2623276-2;2026-05-12;PEC22119;81899;true;Aprovado o Requerimento.
 2026;2623277-2;2026-05-12;PEC22119;81899;true;Aprovado o Requerimento.
 2026;2623439-2;2026-05-12;CEXEXPLO;82065;true;Aprovado o Requerimento, com aditamento do Dep. Osmar Terra para incluir o Rio Grande do Sul nas Visitas Técnicas da Comissão.
-2026;2623442-2;2026-05-12;CEXEXPLO;82065;true;Aprovado o Requerimento.
 2026;2623443-2;2026-05-12;CEXEXPLO;82065;true;Aprovado o Requerimento.
 2026;2601054-19;2026-05-13;CREDN;82057;true;Aprovado o Parecer.
 2026;2545768-41;2026-05-13;CREDN;82057;true;Aprovado o Parecer.
@@ -33453,3 +33453,691 @@ ano_dados;id_votacao;data_votacao;sigla_orgao;id_evento;aprovacao;descricao
 2026;1228863-64;2026-05-19;CCJC;82163;false;"Rejeitado o Requerimento de desmembramento da PEC 32/2015. Resultado: 5 votos ""Sim"", 38 votos ""Não"". Quórum de votação: 43 votos."
 2026;2624925-2;2026-05-19;CEXEXPLO;82172;true;Aprovado o Requerimento.
 2026;2625316-2;2026-05-19;CEXEXPLO;82172;true;Aprovado o Requerimento.
+2026;2624077-2;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento.
+2026;2624570-2;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento.
+2026;2624883-2;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento.
+2026;2625154-2;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento.
+2026;2625155-2;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento.
+2026;2625325-2;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento.
+2026;2625348-2;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento.
+2026;2625591-2;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento.
+2026;2625594-3;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento.
+2026;2551337-35;2026-05-20;CSAUDE;82102;true;Aprovado o Parecer.
+2026;2593648-23;2026-05-20;CSAUDE;82102;true;Aprovado o Parecer.
+2026;2596236-25;2026-05-20;CSAUDE;82102;true;Aprovado o Parecer.
+2026;2470715-59;2026-05-20;CSAUDE;82102;true;Aprovado o Parecer.
+2026;2588395-30;2026-05-20;CSAUDE;82102;true;Aprovado o Parecer.
+2026;2577976-25;2026-05-20;CSAUDE;82102;true;Aprovado o Parecer.
+2026;2577993-24;2026-05-20;CSAUDE;82102;true;Aprovado o Parecer.
+2026;2625589-4;2026-05-20;CSAUDE;82102;true;Aprovado o Requerimento, com a inclusão da PBMA como convidada, a pedido do Deputado Paulo Foletto.
+2026;2454352-34;2026-05-20;CMADS;82103;true;Aprovado o Parecer.
+2026;2583049-28;2026-05-20;CMADS;82103;true;Aprovado o Parecer.
+2026;2621008-2;2026-05-20;CAPADR;82134;true;Aprovado o Requerimento.
+2026;2623214-2;2026-05-20;CAPADR;82134;true;Aprovado o Requerimento.
+2026;2620973-2;2026-05-20;CTRAB;81999;true;Aprovado o Requerimento, com inclusão do Ministério Público do Trabalho entre os convidados.
+2026;2623523-2;2026-05-20;CAPADR;82134;true;Aprovado o Requerimento.
+2026;2621095-2;2026-05-20;CTRAB;81999;true;Aprovado o Requerimento.
+2026;2623580-2;2026-05-20;CAPADR;82134;true;Aprovado o Requerimento.
+2026;2623136-2;2026-05-20;CTRAB;81999;true;Aprovado o Requerimento.
+2026;2623516-2;2026-05-20;CTRAB;81999;true;Aprovado o Requerimento.
+2026;2623586-2;2026-05-20;CAPADR;82134;true;Aprovado o Requerimento.
+2026;2623517-2;2026-05-20;CTRAB;81999;true;Aprovado o Requerimento.
+2026;2623642-2;2026-05-20;CAPADR;82134;true;Aprovado o Requerimento.
+2026;2625200-2;2026-05-20;CTRAB;81999;true;Aprovado o Requerimento.
+2026;2624765-2;2026-05-20;CAPADR;82134;true;Aprovado o Requerimento.
+2026;2625434-2;2026-05-20;CTRAB;81999;true;Aprovado o Requerimento.
+2026;2495620-21;2026-05-20;CCTI;82186;true;Aprovado o Parecer.
+2026;2441886-47;2026-05-20;CE;82105;true;Aprovado o Parecer do Relator, Deputado Diego Garcia (União-PR), com Complementação de Voto.
+2026;2540980-26;2026-05-20;CE;82105;true;Aprovado o Parecer do Relator, Deputado Ismael (PL-SC)
+2026;2625164-2;2026-05-20;CINDRE;82170;true;Aprovado.
+2026;2504778-25;2026-05-20;CCTI;82186;true;Aprovado o Parecer.
+2026;2599759-23;2026-05-20;CTRAB;81999;true;Aprovado o Parecer.
+2026;2599795-26;2026-05-20;CE;82105;true;Aprovado o Parecer da Relatora, Deputada Antônia Lúcia (MDB-AC)
+2026;2309058-43;2026-05-20;CINDRE;82170;true;Aprovado o Parecer, apresentou voto em separado a Deputada Daniela Reinehr.
+2026;2599658-21;2026-05-20;CCTI;82186;true;Aprovado o Parecer.
+2026;2443770-22;2026-05-20;CE;82105;true;Aprovado o Parecer do Relator, Deputado PR. Marco Feliciano (PL-SP)
+2026;2248018-31;2026-05-20;CME;82110;true;Aprovado o Parecer.
+2026;2483087-34;2026-05-20;CTRAB;81999;true;Aprovado o Parecer.
+2026;2251434-52;2026-05-20;CME;82110;true;Aprovado o Parecer.
+2026;2481717-45;2026-05-20;CE;82105;true;Aprovado o Parecer Vencedor do Dep. Paulo Lemos (PT-AC). O parecer do Relator, Dep. Duda Ramos (Podemos-RR), passou a constituir Voto em Separado.
+2026;2599660-23;2026-05-20;CCTI;82186;true;Aprovado o Parecer.
+2026;2542203-24;2026-05-20;CAPADR;82134;true;Aprovado o Parecer.
+2026;2413764-34;2026-05-20;CME;82110;true;Aprovado o Parecer.
+2026;2416608-30;2026-05-20;CTRAB;81999;true;Aprovado o Parecer.
+2026;2594589-27;2026-05-20;CE;82105;true;Aprovado o Parecer da Relatora, Deputada Socorro Neri (PP-AC).
+2026;2448764-26;2026-05-20;CVT;82152;true;Aprovado o Parecer.
+2026;2625323-3;2026-05-20;CME;82110;true;Aditado para a inclusão de Representantes do Sindicom, do IBP e da Confederação Nacional do Comércio, por sugestão do Autor.
+2026;2583365-23;2026-05-20;CVT;82152;true;Aprovado o Parecer.
+2026;2555254-35;2026-05-20;CE;82105;true;Aprovado o Parecer da Relatora, Deputada Nely Aquino (Podemos-MG)
+2026;2586687-21;2026-05-20;CVT;82152;true;Aprovado o Parecer.
+2026;2579739-29;2026-05-20;CAPADR;82134;true;Aprovado o Parecer.
+2026;2121460-100;2026-05-20;CVT;82152;true;Aprovado o Parecer, apresentou voto em separado o Deputado Lucas Gonzalez.
+2026;2449997-31;2026-05-20;CE;82105;true;Aprovado o Parecer do Relator, Deputado Duda Ramos (Podemos - RR).
+2026;2625323-4;2026-05-20;CME;82110;true;Aprovado o Requerimento, com alteração.
+2026;2624618-3;2026-05-20;CVT;82152;true;Aprovado o Requerimento.
+2026;2625293-2;2026-05-20;CVT;82152;true;Aprovado o Requerimento.
+2026;2625294-3;2026-05-20;CVT;82152;true;Aprovado o Requerimento.
+2026;2462111-48;2026-05-20;CE;82105;true;Aprovado o Parecer do Relator, Deputado Duda Ramos (Podemos - RR)
+2026;2589376-21;2026-05-20;CVT;82152;true;Aprovado o Parecer.
+2026;2550182-37;2026-05-20;CDU;82108;true;Aprovado o Parecer.
+2026;2325768-60;2026-05-20;CVT;82152;true;Aprovado o Parecer.
+2026;2326080-57;2026-05-20;CDU;82108;true;Aprovado o Parecer.
+2026;2567631-32;2026-05-20;CDU;82108;true;Aprovado o Parecer.
+2026;2599035-28;2026-05-20;CDU;82108;true;Aprovado o Parecer.
+2026;2602190-24;2026-05-20;CDU;82108;true;Aprovado o Parecer.
+2026;2602655-26;2026-05-20;CE;82105;true;Aprovado o Parecer do Relator, Deputado Ismael (PL-SC)
+2026;2348640-31;2026-05-20;CVT;82152;true;Aprovado o Parecer.
+2026;2441481-32;2026-05-20;CVT;82152;true;Aprovado o Parecer.
+2026;2602692-26;2026-05-20;CE;82105;true;Aprovado o Parecer da Relatora, Deputada Silvia Cristina (PP-RO)
+2026;2495233-21;2026-05-20;CVT;82152;true;Aprovado o Parecer.
+2026;2594587-21;2026-05-20;CVT;82152;true;Aprovado o Parecer.
+2026;2601056-24;2026-05-20;CE;82105;true;Aprovado o Parecer do Relator, Deputado Rafael Brito (MDB-AL)
+2026;2367573-26;2026-05-20;CE;82105;true;Aprovado o Parecer do Relator, Deputado Prof. Reginaldo Veras (PV-DF)
+2026;2543090-26;2026-05-20;CE;82105;true;Aprovado o Parecer do Relator, Deputado Prof. Regindaldo Veras (PV-DF)
+2026;2625580-2;2026-05-20;CDE;82139;true;Aprovado o Requerimento.
+2026;2259497-54;2026-05-20;CDE;82139;true;Aprovado o Parecer.
+2026;2535500-33;2026-05-20;CDE;82139;true;Aprovado o Parecer.
+2026;2421320-39;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2549606-37;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2448976-39;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2190754-57;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2310180-39;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2329735-41;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2453448-57;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2456237-38;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2457729-37;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2462264-35;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2464871-46;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2504674-35;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2622988-2;2026-05-20;CFT;82084;true;Aprovado o Requerimento.
+2026;2624071-3;2026-05-20;CFT;82084;true;Aprovado o Requerimento com alteração: Inclusão do representante do Instituto Livre Mercado.
+2026;2624851-2;2026-05-20;CFT;82084;true;Aprovado o Requerimento.
+2026;2624938-2;2026-05-20;CFT;82084;true;Aprovado o Requerimento.
+2026;493688-69;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2481371-28;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2183182-63;2026-05-20;CFT;82084;true;Aprovado o Parecer.
+2026;2485961-30;2026-05-20;CESPO;82151;true;Aprovado o Parecer.
+2026;2599713-28;2026-05-20;CESPO;82151;true;Aprovado o Parecer.
+2026;2599724-24;2026-05-20;CESPO;82151;true;Aprovado o Parecer.
+2026;2599728-21;2026-05-20;CESPO;82151;true;Aprovado o Parecer.
+2026;2324176-36;2026-05-20;CMULHER;82128;true;Aprovado o Parecer.
+2026;2438795-23;2026-05-20;CMULHER;82128;true;Aprovado o Parecer.
+2026;2535622-26;2026-05-20;CMULHER;82128;true;Aprovado o Parecer.
+2026;2482966-27;2026-05-20;CMULHER;82128;true;Aprovado o Parecer.
+2026;2456652-45;2026-05-20;CMULHER;82128;true;Aprovado o Parecer.
+2026;2481855-34;2026-05-20;CMULHER;82128;true;Aprovado o Parecer.
+2026;2570847-22;2026-05-20;CMULHER;82128;true;Aprovado o Parecer.
+2026;2467681-32;2026-05-20;CMULHER;82128;true;Aprovado o Parecer.
+2026;2549677-35;2026-05-20;CMULHER;82128;true;Aprovado o Parecer.
+2026;2623572-2;2026-05-20;CTUR;82062;true;Aprovado o Requerimento.
+2026;2623573-2;2026-05-20;CTUR;82062;true;Aprovado o Requerimento.
+2026;2623880-2;2026-05-20;CTUR;82062;true;Aprovado o Requerimento.
+2026;2625697-2;2026-05-20;CTUR;82062;true;Aprovado o Requerimento.
+2026;2421199-26;2026-05-20;CTUR;82062;true;Aprovado o Parecer.
+2026;2469607-21;2026-05-20;CTUR;82062;true;Aprovado o Parecer.
+2026;2529995-22;2026-05-20;CTUR;82062;true;Aprovado o Parecer.
+2026;2572415-23;2026-05-20;CTUR;82062;true;Aprovado o Parecer.
+2026;2623182-2;2026-05-20;CTUR;82062;true;Aprovado o Requerimento, com alteração para incluir a Confederação Nacional do Comércio de Bens, Serviços e Turismo - CNC, a pedido da Deputada Ana Paula Leão (PP/MG).
+2026;2418734-9;2026-05-20;PLEN;82214;true;Aprovado o Requerimento de Urgência (Art. 155 do RICD).
+2026;2625968-7;2026-05-20;PLEN;82214;true;Aprovado o Requerimento de Urgência (Art. 155 do RICD).
+2026;2624873-7;2026-05-20;PLEN;82214;true;Aprovado o Requerimento de Urgência (Art. 155 do RICD).
+2026;2625979-8;2026-05-20;PLEN;82214;true;"Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 269; Não: 125; Abstenção: 2; Total: 396."
+2026;2599928-29;2026-05-20;PLEN;82214;true;Aprovado, em apreciação preliminar, o Parecer da Comissão Mista, na parte em que manifesta opinião favorável quanto ao atendimento dos pressupostos constitucionais de relevância e urgência e de sua adequação financeira e orçamentária, nos termos do artigo 8º da Resolução nº 01, de 2002-CN.
+2026;2599928-33;2026-05-20;PLEN;82214;true;Aprovada a Medida Provisória nº 1.334, de 2026, na forma do Projeto de Lei de Conversão.
+2026;2599928-35;2026-05-20;PLEN;82214;true;Aprovada a Redação Final, assinada pelo Dep. Rogério Correia (PT/MG).
+2026;2625949-26;2026-05-20;PLEN;82214;true;Aprovado o Substitutivo ao Projeto de Lei nº 2.486, de 2026, adotado pelo relator da Comissão do Meio Ambiente e Desenvolvimento Sustentável, ressalvado o destaque.
+2026;2625949-31;2026-05-20;PLEN;82214;;Mantido o texto.
+2026;2625949-33;2026-05-20;PLEN;82214;true;Aprovada a Redação Final assinada pelo relator, Dep. José Priante (MDB/PA).
+2026;2263446-95;2026-05-20;PLEN;82214;true;Aprovado o Projeto de Lei nº 4.733, de 2020.
+2026;2263446-97;2026-05-20;PLEN;82214;true;Aprovada a Redação Final assinada pela relatora, Dep. Lídice da Mata (PSB-BA).
+2026;2516808-57;2026-05-20;PLEN;82214;false;Rejeitado o Requerimento.
+2026;2516808-62;2026-05-20;PLEN;82214;true;Aprovado o Substitutivo ao Projeto de Lei nº 2.564, de 2025, adotado pela relatora da Comissão de Meio Ambiente e Desenvolvimento Sustentável.
+2026;2516808-65;2026-05-20;PLEN;82214;true;Aprovada a Redação Final assinada pela relatora, Dep. Marussa Boldrin (REPUBLIC/GO).
+2026;2562764-38;2026-05-20;PLEN;82214;true;Aprovado o Substitutivo ao Projeto de Lei nº 4.689, de 2025, adotado pela relatora da Comissão de Cultura.
+2026;2562764-40;2026-05-20;PLEN;82214;true;Aprovada a Redação Final assinada pela relatora, Dep. Simone Marquetto (PP/SP).
+2026;2613731-26;2026-05-20;PLEN;82214;false;Rejeitado o Requerimento.
+2026;2613731-29;2026-05-20;PLEN;82214;false;"Rejeitado o Requerimento. Sim: 115; Não: 313; Total: 428."
+2026;2613731-33;2026-05-20;PLEN;82214;false;Rejeitado o Requerimento.
+2026;2613731-39;2026-05-20;PLEN;82214;false;Rejeitado o Requerimento.
+2026;2613731-42;2026-05-20;PLEN;82214;true;Aprovada a Subemenda Substitutiva ao Projeto de Lei nº 1.625, de 2026, adotada pelo relator da Comissão de Defesa do Consumidor, ressalvados os destaques.
+2026;2613731-47;2026-05-20;PLEN;82214;false;"Rejeitada a Emenda de Plenário nº 2. Sim: 196; Não: 200; Abstenção: 1; Total: 397."
+2026;2613731-52;2026-05-20;PLEN;82214;;Mantido o texto.
+2026;2613731-56;2026-05-20;PLEN;82214;true;Aprovada a Redação Final assinada pelo relator, Dep. Merlong Solano (PT/PI).
+2026;2613731-65;2026-05-20;PLEN;82214;true;"Resultado. Sim: 182; Não: 182; Abstenção: 2; Total: 366."
+2026;2625676-2;2026-05-20;CDHMIR;82193;true;Aprovado o Requerimento.
+2026;2600322-19;2026-05-20;CPASF;82117;true;Aprovado o Parecer.
+2026;2417362-72;2026-05-20;CPASF;82117;true;Aprovado o Parecer.
+2026;299788-75;2026-05-20;CDHMIR;82193;true;Aprovado o Parecer.
+2026;2430005-48;2026-05-20;CPASF;82117;true;Aprovado o Parecer.
+2026;2453398-22;2026-05-20;CPASF;82117;true;Aprovado o Parecer.
+2026;2485627-25;2026-05-20;CPASF;82117;true;Aprovado o Parecer.
+2026;2491191-22;2026-05-20;CPASF;82117;true;Aprovado o Parecer.
+2026;2532029-28;2026-05-20;CPASF;82117;true;Aprovado o Parecer.
+2026;2623629-2;2026-05-20;CCOM;82038;true;Aprovado o Requerimento.
+2026;2623631-2;2026-05-20;CCOM;82038;true;Aprovado o Requerimento.
+2026;2295102-77;2026-05-20;CPASF;82117;true;Aprovado o Parecer.
+2026;2351536-28;2026-05-20;CDHMIR;82193;false;"Rejeitado o Requerimento de Retirada de Pauta. Resultado: 5 votos ""Sim"", 9 votos ""Não"". Quórum de votação: 14 votos."
+2026;2520847-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2520853-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2520856-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2520859-25;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2520882-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2520888-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2520891-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2520918-23;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2520921-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526436-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526450-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526454-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526463-27;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526466-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526469-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526477-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526490-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526515-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2526519-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2527342-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2527352-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2527494-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2527539-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2527553-27;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2527556-26;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2529497-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2529888-26;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2529894-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2534759-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2534768-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2535741-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2538866-27;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2538878-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2539881-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2539884-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2542573-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2542578-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2550886-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2550930-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2575432-24;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2582827-23;2026-05-20;CCOM;82038;true;Submetido à votação, foi aprovado o Parecer.
+2026;2539479-24;2026-05-20;CPASF;82117;true;Aprovado o Parecer.
+2026;2625449-2;2026-05-20;CLP;82188;true;Aprovado o Requerimento.
+2026;2625450-2;2026-05-20;CLP;82188;true;Aprovado o Requerimento.
+2026;2625451-2;2026-05-20;CLP;82188;true;Aprovado o Requerimento.
+2026;2625679-2;2026-05-20;CLP;82188;true;Aprovado o Requerimento.
+2026;2419195-38;2026-05-20;CDHMIR;82193;true;Aprovado o Parecer.
+2026;2371792-32;2026-05-20;CDHMIR;82193;true;Aprovado o Parecer.
+2026;2536293-21;2026-05-20;CDHMIR;82193;true;Aprovado o Parecer.
+2026;2612970-2;2026-05-20;CMULHER;82133;true;Aprovado o Requerimento.
+2026;2624940-2;2026-05-20;CMULHER;82133;true;Aprovado o Requerimento.
+2026;2625352-2;2026-05-20;CMULHER;82133;true;Aprovado o Requerimento.
+2026;2625576-2;2026-05-20;CMULHER;82133;true;Aprovado o Requerimento.
+2026;2625660-2;2026-05-20;CMULHER;82133;true;Aprovado o Requerimento.
+2026;2586587-30;2026-05-21;PLEN;82246;false;"Rejeitado o Requerimento. Sim: 94; Não: 228; Total: 322."
+2026;2586587-36;2026-05-21;PLEN;82246;true;Aprovado o Substitutivo ao Projeto de Lei nº 5.900, de 2025, adotado pelo relator da Comissão de Constituição e Justiça e de Cidadania.
+2026;2586587-40;2026-05-21;PLEN;82246;true;Aprovada a Redação Final assinada pelo relator, Dep. Pezenti (MDB-SC).
+2026;2531924-53;2026-05-21;PLEN;82246;true;Aprovado o Substitutivo ao Projeto de Lei nº 3.240, de 2025, adotado pelo relator da Comissão de Administração e Serviço Público, ressalvado o destaque.
+2026;2531924-56;2026-05-21;PLEN;82246;false;Rejeitadas as Emendas ao Substitutivo.
+2026;2531924-62;2026-05-21;PLEN;82246;;Mantido o texto.
+2026;2531924-64;2026-05-21;PLEN;82246;true;Aprovada a Redação Final assinada pelo relator, Dep. Sóstenes Cavalcante (PL/RJ).
+2026;258057-111;2026-05-21;PLEN;82246;true;Aprovada a Emenda do Senado Federal ao Projeto de Lei nº 3.801, de 2004.
+2026;2606519-7;2026-05-26;PLEN;82277;true;Aprovado, por unanimidade, o Requerimento de Urgência (Art. 155 do RICD).
+2026;2602910-7;2026-05-26;PLEN;82277;true;Aprovado, por unanimidade, o Requerimento de Urgência (Art. 155 do RICD).
+2026;2616017-8;2026-05-26;PLEN;82277;true;Aprovado, por unanimidade, o Requerimento de Urgência (Art. 155 do RICD).
+2026;2616688-7;2026-05-26;PLEN;82277;true;Aprovado, por unanimidade, o Requerimento de Urgência (Art. 155 do RICD).
+2026;2619394-8;2026-05-26;PLEN;82277;true;Aprovado, por unanimidade, o Requerimento de Urgência (Art. 155 do RICD).
+2026;2619966-7;2026-05-26;PLEN;82277;true;Aprovado, por unanimidade, o Requerimento de Urgência (Art. 155 do RICD).
+2026;2622214-7;2026-05-26;PLEN;82277;true;Aprovado, por unanimidade, o Requerimento de Urgência (Art. 155 do RICD).
+2026;2626432-8;2026-05-26;PLEN;82277;true;"Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 358; Não: 68; Total: 426."
+2026;2627518-7;2026-05-26;PLEN;82277;true;Aprovado, por unanimidade, o Requerimento de Urgência (Art. 155 do RICD).
+2026;2627582-8;2026-05-26;PLEN;82277;true;Aprovado o Requerimento de Urgência (Art. 155 do RICD).
+2026;2349768-66;2026-05-26;PLEN;82277;true;Aprovado o Projeto de Lei nº 780, de 2023.
+2026;2349768-68;2026-05-26;PLEN;82277;true;Aprovada a Redação Final assinada pela relatora, Dep. Camila Jara (PT-MS).
+2026;502669-99;2026-05-26;PLEN;82277;false;Rejeitado o Requerimento.
+2026;502669-106;2026-05-26;PLEN;82277;true;Aprovada a Subemenda Substitutiva ao Projeto de Lei nº 1.384, de 2011, adotada pelo relator da Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural.
+2026;502669-109;2026-05-26;PLEN;82277;true;Aprovada a Redação Final assinada pelo relator, Dep. Wilson Santiago (REPUBLIC-PB).
+2026;2596617-25;2026-05-26;PLEN;82277;true;Aprovado o Projeto de Lei nº 5.868, de 2025.
+2026;2613488-27;2026-05-26;PLEN;82277;true;Aprovado o Substitutivo ao Projeto de Lei nº 1.602, de 2026, adotado pelo relator da Comissão de Turismo.
+2026;2613488-30;2026-05-26;PLEN;82277;true;Aprovada a Redação Final assinada pelo relator, Dep. Yury do Paredão (MDB-CE).
+2026;2625989-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627072-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627337-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627338-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627339-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627340-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627341-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627342-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627343-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627344-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627345-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627407-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento.
+2026;2627408-2;2026-05-26;CPOVOS;82201;true;Aprovado o Requerimento, com alteração para converter em audiência pública conjunta com a Comissão da Mulher, a pedido da autora.
+2026;2599445-23;2026-05-26;CPOVOS;82201;true;Aprovado o Parecer.
+2026;2485315-20;2026-05-26;CPOVOS;82201;true;Aprovado o Parecer.
+2026;2536104-21;2026-05-26;CPOVOS;82201;true;Aprovado o Parecer.
+2026;2592176-26;2026-05-26;CPOVOS;82201;true;Aprovado o Parecer.
+2026;2620090-5;2026-05-26;CASP;82199;true;Aprovado o Requerimento.
+2026;2621768-2;2026-05-26;CASP;82199;true;Aprovado o Requerimento.
+2026;2621791-2;2026-05-26;CASP;82199;true;Aprovado o Requerimento.
+2026;2623550-2;2026-05-26;CASP;82199;true;Aprovado o Requerimento.
+2026;2623927-2;2026-05-26;CASP;82199;true;Aprovado o Requerimento.
+2026;2624083-2;2026-05-26;CASP;82199;true;Aprovado o Requerimento.
+2026;2624085-2;2026-05-26;CASP;82199;true;Aprovado o Requerimento.
+2026;2624961-3;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2625578-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2625579-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2625681-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2625695-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2625696-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2626789-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2626790-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2626792-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2627350-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2627351-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2627352-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2627403-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2627404-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2627412-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2627417-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento.
+2026;2624073-4;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento, com o voto contrário dos Deputados Pastor Henrique Vieira (PSOL/RJ) e Duda Salabert (PSOL/MG).
+2026;2625713-2;2026-05-26;CSPCCO;82204;false;Rejeitado o Requerimento.
+2026;2627415-2;2026-05-26;CSPCCO;82204;true;Aprovado o Requerimento, com o voto contrário da Deputada Duda Salabert (PDT/MG).
+2026;2613807-19;2026-05-26;CSPCCO;82204;true;Aprovado o Parecer.
+2026;2332742-31;2026-05-26;CASP;82199;true;Aprovado o Parecer. Com voto contrário do Deputado Kim Kataguiri
+2026;2581216-22;2026-05-26;CSPCCO;82204;true;Aprovado o Parecer.
+2026;2572502-22;2026-05-26;CASP;82199;true;Aprovado o Parecer. Com voto contrário do Deputado Kim Kataguiri.
+2026;2450417-28;2026-05-26;CSPCCO;82204;true;Aprovado o Parecer com o voto contrário da Deputada Duda Salabert (PSOL/MG).
+2026;2486170-20;2026-05-26;CSPCCO;82204;true;Aprovado o Parecer.
+2026;2611591-21;2026-05-26;MERCOSUL;82095;true;Aprovado o Parecer.
+2026;2586620-23;2026-05-26;CICS;82203;true;Aprovado o Parecer.
+2026;2468524-27;2026-05-26;CICS;82203;true;Aprovado o Parecer.
+2026;2625991-2;2026-05-27;CSAUDE;82233;true;Aprovado o Requerimento.
+2026;2626582-2;2026-05-27;CSAUDE;82233;true;Aprovado o Requerimento.
+2026;2626870-2;2026-05-27;CSAUDE;82233;true;Aprovado o Requerimento.
+2026;2627065-2;2026-05-27;CSAUDE;82233;true;Aprovado o Requerimento.
+2026;2626348-2;2026-05-27;CCTI;82278;true;Aprovado o Requerimento.
+2026;2626349-2;2026-05-27;CCTI;82278;true;Aprovado o Requerimento.
+2026;2627593-3;2026-05-27;CMADS;82243;true;Aprovado o Requerimento.
+2026;2166835-79;2026-05-27;CCTI;82278;true;Aprovado o Parecer.
+2026;2230022-32;2026-05-27;CMADS;82243;true;Aprovado o Parecer.
+2026;2421539-37;2026-05-27;CMADS;82243;true;Aprovado o Parecer.
+2026;2627253-2;2026-05-27;CFFC;82044;true;Aprovado o Requerimento.
+2026;2625163-2;2026-05-27;CFFC;82044;true;Aprovado o Requerimento.
+2026;2617346-2;2026-05-27;CFFC;82044;true;Aprovado o Requerimento.
+2026;2441040-22;2026-05-27;CMADS;82243;true;Aprovado o Parecer.
+2026;2627594-3;2026-05-27;CAPADR;82218;true;Aprovado o Requerimento.
+2026;2625694-2;2026-05-27;CE;82197;true;Aprovado o Requerimento.
+2026;2627307-2;2026-05-27;CE;82197;true;Aprovado o Requerimento.
+2026;2501290-36;2026-05-27;CMADS;82243;true;Aprovado o Parecer.
+2026;2627597-2;2026-05-27;CAPADR;82218;true;Aprovado o Requerimento, com alteração de convocação para convite e para reunião ser conjunta com a CFT.
+2026;2485094-39;2026-05-27;CE;82197;true;Aprovado o Parecer do Relator, Deputado Professor Alcides (PSDB-GO)
+2026;2604102-21;2026-05-27;CMADS;82243;true;Aprovado o Parecer.
+2026;2350576-66;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2482618-64;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2260802-69;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2451296-50;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2517840-49;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2259964-45;2026-05-27;CAPADR;82218;true;Aprovado o Parecer, apresentou voto em separado o Deputado Marcelo Brum.
+2026;1738725-55;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2427778-51;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2516565-38;2026-05-27;CAPADR;82218;true;Aprovado o Parecer.
+2026;2547365-41;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2439728-39;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2602433-27;2026-05-27;CE;82197;true;Aprovado o Parecer da Relatora, Deputada Maria Rosas (Republicanos-SP)
+2026;2392995-45;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2450072-50;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2550754-24;2026-05-27;CE;82197;true;Aprovado o Parecer do Relator, Deputado Tarcísio Motta (PSOL-RJ)
+2026;2304365-56;2026-05-27;CFT;82223;true;Aprovado o Parecer.
+2026;2627322-3;2026-05-27;CFT;82223;true;Aprovado o Requerimento.
+2026;2589212-23;2026-05-27;CAPADR;82218;true;Aprovado o Parecer.
+2026;2625290-3;2026-05-27;CDU;82221;true;Aprovado o Requerimento.
+2026;2495653-26;2026-05-27;CE;82197;true;Aprovado o Parecer do Relator, Deputado Patrus Ananias (PT-MG)
+2026;2201514-39;2026-05-27;CDU;82221;true;Aprovado o Parecer.
+2026;2625942-2;2026-05-27;CDU;82221;true;Aprovado o Requerimento.
+2026;2599291-30;2026-05-27;CE;82197;true;Aprovado o Parecer da Relatora, Deputada Nely Aquino (Podemos-MG).
+2026;2523715-30;2026-05-27;CDU;82221;true;Aprovado o Parecer.
+2026;2625986-3;2026-05-27;CVT;82259;true;Aprovado o Requerimento.
+2026;2260604-31;2026-05-27;CVT;82259;true;Aprovado o Parecer.
+2026;2601250-21;2026-05-27;CVT;82259;true;Aprovado o Parecer.
+2026;2595706-22;2026-05-27;CAPADR;82218;true;Aprovado o Parecer.
+2026;2602903-25;2026-05-27;CE;82197;true;Aprovado o Parecer da Relatora, Deputada Sâmia Bomfim (PSOL-SP)
+2026;2597279-21;2026-05-27;CAPADR;82218;true;Aprovado o Parecer.
+2026;2416781-31;2026-05-27;CE;82197;true;Aprovado o Parecer do Relator, Deputado Luiz Lima (Novo-RJ).
+2026;2536830-30;2026-05-27;CDU;82221;true;Aprovado o Parecer.
+2026;2599753-28;2026-05-27;CAPADR;82218;true;Aprovado o Parecer.
+2026;2279770-34;2026-05-27;CE;82197;true;Aprovado o Parecer do Relator, Deputado Zeca Dirceu (PT-PR).
+2026;2569135-25;2026-05-27;CAPADR;82218;true;Aprovado o Parecer.
+2026;1228863-73;2026-05-27;CCJC;82281;false;"Rejeitado o Requerimento de Retirada de Pauta. Resultado: 7 votos ""Sim"", 42 votos ""Não"". Quórum de votação: 49 votos."
+2026;2624736-2;2026-05-27;CREDN;82166;true;Subscrito pelo deputado Sargento Fahur (PL/PR). Aprovado o Requerimento, com alteração para incluir no rol de convidados o senhor Marcos Adolfo Ribeiro Ferrari, Presidente-Executivo da Conexis Brasil Digital.
+2026;2624724-2;2026-05-27;CREDN;82166;true;Subscrito pelo deputado Sargento Fahur (PL/PR). Aprovado o Requerimento.
+2026;2624726-2;2026-05-27;CREDN;82166;true;Subscrito pelo deputado Sargento Fahur (PL/PR). Aprovado o Requerimento.
+2026;2624729-2;2026-05-27;CREDN;82166;true;Subscrito pelo deputado Sargento Fahur (PL/PR). Aprovado o Requerimento.
+2026;2627288-2;2026-05-27;CREDN;82166;true;Subscrito pelo deputado Sargento Fahur (PL/PR). Aprovado o Requerimento.
+2026;2627292-2;2026-05-27;CREDN;82166;true;Subscrito pelo deputado Sargento Fahur (PL/PR). Aprovado o Requerimento.
+2026;2486206-19;2026-05-27;CREDN;82166;true;Aprovado o Parecer.
+2026;2575473-17;2026-05-27;CREDN;82166;true;Aprovado o Parecer.
+2026;2616014-19;2026-05-27;CREDN;82166;true;Aprovado o Parecer.
+2026;2589424-39;2026-05-27;CREDN;82166;true;Aprovado o Parecer.
+2026;2623185-6;2026-05-27;CME;82220;true;Aprovado o Requerimento.
+2026;2416990-38;2026-05-27;CME;82220;true;Aprovado o Parecer.
+2026;258057-119;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2190719-94;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2195766-138;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2207082-117;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2270849-61;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2308863-68;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2332773-86;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2347097-51;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2414747-38;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2348972-67;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2366737-54;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2368289-46;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2370134-50;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2385726-68;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2474105-38;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2477157-38;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2424803-52;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2430656-48;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2430657-60;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2437785-61;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2455861-37;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2480595-49;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2518459-34;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2518471-33;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2532215-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2532219-33;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2532231-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2532244-35;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2532249-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2535358-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2535378-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2484433-64;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2547315-37;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2547318-39;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2550987-35;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2554549-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2560568-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2564994-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2565015-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2565025-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2565036-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2566821-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2566831-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2566834-34;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2570162-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2572824-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2575467-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2575496-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2589834-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2487500-48;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2592218-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2592219-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2592224-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2592227-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2596113-34;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2534618-48;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2537638-56;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2550807-49;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2550942-50;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2552625-52;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2566520-49;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2604955-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2607000-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2607016-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2608728-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2608746-32;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;485251-68;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2469474-63;2026-05-27;CCJC;82145;true;Aprovada a Redação Final.
+2026;2474074-23;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2477897-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2477898-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2479188-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2500220-21;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2506998-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2532241-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2535338-20;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2535370-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2547270-24;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2547273-24;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2547290-22;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2547298-26;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2547305-22;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2547306-24;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2554544-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2560585-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2560594-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2560598-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2565002-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2566819-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2566820-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2566842-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2570175-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2572827-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2575458-21;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2575460-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2575474-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2575486-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2575490-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2583481-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2583493-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2583497-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2583507-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2583520-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2589839-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2589845-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2589853-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2589878-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2589880-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2589893-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2589898-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2592233-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2592234-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2592235-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2596081-20;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2596082-20;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2596088-20;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2596090-20;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2596091-20;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2596093-22;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2596097-22;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2596101-22;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2596124-21;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2603830-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2607005-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2607006-21;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2608731-19;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2608734-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2608735-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2608739-17;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2615105-16;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2615114-16;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2480299-42;2026-05-27;CCJC;82145;true;Aprovado o Parecer.
+2026;2233802-401;2026-05-27;PEC22119;82289;true;"Aprovado o Parecer, ressalvado(s) o(s) Destaque(s) com o seguinte resultado: 34 votos ""Sim"", 4 votos ""Não"". Quórum de votação: 38 votos, apresentou voto em separado o Deputado Gilson Marques."
+2026;2627061-3;2026-05-27;CINDRE;82230;true;Aprovado.
+2026;2433212-26;2026-05-27;CINDRE;82230;true;Aprovado o Parecer.
+2026;2539257-28;2026-05-27;CINDRE;82230;true;Aprovado o Parecer.
+2026;2627529-2;2026-05-27;CESPO;82266;true;Aprovado o Requerimento.
+2026;2627530-2;2026-05-27;CESPO;82266;true;Aprovado o Requerimento.
+2026;2618686-2;2026-05-27;CIDOSO;82282;true;Aprovado o Requerimento.
+2026;2626339-2;2026-05-27;CIDOSO;82282;true;Aprovado o Requerimento.
+2026;2627636-2;2026-05-27;CIDOSO;82282;true;Aprovado o Requerimento.
+2026;2602370-19;2026-05-27;CIDOSO;82282;true;Aprovado o Parecer.
+2026;2416919-51;2026-05-27;CIDOSO;82282;true;Aprovado o Parecer.
+2026;2502885-23;2026-05-27;CIDOSO;82282;true;Aprovado o Parecer.
+2026;2539348-27;2026-05-27;CIDOSO;82282;true;Aprovado o Parecer.
+2026;2596068-27;2026-05-27;CIDOSO;82282;true;Aprovado o Parecer.
+2026;2621285-3;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2624949-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2624950-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2624951-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625183-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625185-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625186-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625188-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625190-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625191-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625192-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625193-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625194-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625195-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625196-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625197-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625198-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625199-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625338-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625341-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625342-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625361-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625445-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625447-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2625448-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2626457-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2627562-2;2026-05-27;CCULT;82192;true;Aprovado o Requerimento.
+2026;2434257-21;2026-05-27;CCULT;82192;true;Aprovado o Parecer.
+2026;2479899-23;2026-05-27;CCULT;82192;true;Aprovado o Parecer.
+2026;2579091-24;2026-05-27;CCULT;82192;true;Aprovado o Parecer.
+2026;2573029-21;2026-05-27;CCULT;82192;true;Aprovado o Parecer.
+2026;2606944-23;2026-05-27;CCULT;82192;true;Aprovado o Parecer.
+2026;2486284-28;2026-05-27;CCULT;82192;true;Aprovado o Parecer.
+2026;2549493-21;2026-05-27;CCULT;82192;true;Aprovado o Parecer.
+2026;2309516-38;2026-05-27;CDHMIR;82217;true;Aprovado o Parecer.
+2026;2351536-36;2026-05-27;CDHMIR;82217;true;Aprovado o Parecer.
+2026;2627492-2;2026-05-27;CLP;82286;true;Aprovado o Requerimento.
+2026;2627493-2;2026-05-27;CLP;82286;true;Aprovado o Requerimento.
+2026;2627494-2;2026-05-27;CLP;82286;true;Aprovado o Requerimento.
+2026;2627721-2;2026-05-27;CLP;82286;true;Aprovado o Requerimento.
+2026;2506631-25;2026-05-27;CPASF;82236;true;Aprovado o Parecer.
+2026;2276064-38;2026-05-27;CDHMIR;82217;false;Rejeitado o Requerimento de Retirada de Pauta.
+2026;2627908-4;2026-05-27;CPASF;82236;true;Aprovada o remanejamento de programação orçamentária da Emenda de Comissão RP 8 nº 50490001.
+2026;2427672-36;2026-05-27;CPASF;82236;true;Aprovado o Parecer.
+2026;2621996-3;2026-05-27;CCOM;82241;true;Aprovado o Requerimento.
+2026;2625864-3;2026-05-27;CCOM;82241;true;Aprovado o Requerimento.
+2026;2625868-3;2026-05-27;CCOM;82241;true;Aprovado o Requerimento.
+2026;2555987-23;2026-05-27;CPASF;82236;true;Aprovado o Parecer.
+2026;2572690-51;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2473963-41;2026-05-27;CPASF;82236;true;Aprovado o Parecer.
+2026;2311361-37;2026-05-27;CDHMIR;82217;false;"Rejeitado o Parecer. Resultado: 8 votos ""Sim"", 9 votos ""Não"". Quórum de votação: 17 votos."
+2026;2479991-42;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2459320-24;2026-05-27;CPASF;82236;true;Aprovado o Parecer.
+2026;2481972-29;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2484209-29;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2484214-30;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2485988-29;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2486003-31;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2486586-29;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2486606-29;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2490252-29;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2495091-29;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2495120-32;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2504422-27;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2504544-25;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2508101-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2526605-27;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2527355-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2527359-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2527367-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2527507-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2529364-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2529452-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2529464-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2529485-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2529493-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2529503-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2529839-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2529842-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2534804-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2534818-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2534829-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2535658-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2535760-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2538719-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2538722-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2539129-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2539132-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2539135-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2539142-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2550920-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2556537-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2562685-27;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2566871-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2570891-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2575180-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2575424-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2575435-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2578532-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2578691-23;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2582757-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2582760-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2582830-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2582833-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2582836-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2588526-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2588544-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2588680-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2588792-24;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2592304-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2592316-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2592324-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2592355-22;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2592385-24;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2602259-26;2026-05-27;CCOM;82241;true;Aprovado o Parecer.
+2026;2473975-25;2026-05-27;CPASF;82236;true;Aprovado o Parecer.
+2026;2547347-32;2026-05-27;CPASF;82236;true;Aprovado o Parecer.
+2026;2431156-41;2026-05-27;CPASF;82236;true;Aprovado o Parecer com Complementação de Voto, com subemenda
+2026;2627679-2;2026-05-27;CDHMIR;82299;true;Aprovado o Requerimento.
+2026;2627676-3;2026-05-27;CDHMIR;82299;true;Aprovado o Requerimento.
+2026;2627673-2;2026-05-27;CDHMIR;82299;true;Aprovado o Requerimento.
+2026;2627677-2;2026-05-27;CDHMIR;82299;true;Aprovado o Requerimento.
+2026;2627678-2;2026-05-27;CDHMIR;82299;true;Aprovado o Requerimento.
+2026;2422907-83;2026-05-27;PLEN;82310;true;Aprovado o Substitutivo ao Projeto de Lei nº 699, de 2023, adotado pelo relator da Comissão de Finanças e Tributação.
+2026;2422907-86;2026-05-27;PLEN;82310;false;Rejeitada a Emenda ao Substitutivo.
+2026;2422907-88;2026-05-27;PLEN;82310;true;Aprovada a Redação Final assinada pelo relator, Dep. Júnior Ferrari (PSD-PA).
+2026;2596615-28;2026-05-27;PLEN;82310;true;Aprovado o Substitutivo ao Projeto de Lei nº 2.951, de 2024, adotado pelo relator da Comissão de Agricultura, Pecuária, Abastecimento e Desenvolvimento Rural, ressalvado o destaque.
+2026;2596615-32;2026-05-27;PLEN;82310;;Mantido o texto.
+2026;2596615-34;2026-05-27;PLEN;82310;true;Aprovada a Redação Final assinada pelo relator, Dep. Pedro Lupion (REPUBLIC/PR).
+2026;2628423-8;2026-05-27;PLEN;82310;false;Rejeitado o Requerimento.
+2026;2628423-9;2026-05-27;PLEN;82310;true;Aprovado o Requerimento nº 3.223/2026, dos Senhores Líderes, que solicita a dispensa de interstício de 2 sessões previsto no parágrafo único do art. 150 do RICD, para a inclusão da Proposta de Emenda à Constituição nº 221, de 2019, na Ordem do Dia.
+2026;2233802-414;2026-05-27;PLEN;82310;true;Aprovado o Requerimento.
+2026;2233802-416;2026-05-27;PLEN;82310;true;"Aprovado o Requerimento. Sim: 372; Não: 101; Total: 473."
+2026;2233802-421;2026-05-27;PLEN;82310;true;Aprovada a Preferência.
+2026;2233802-424;2026-05-27;PLEN;82310;true;"Aprovada, em primeiro turno, a Proposta de Emenda à Constituição nº 221, de 2019. Sim: 472; Não: 22; Total: 494."
+2026;2628692-5;2026-05-27;PLEN;82310;true;Aprovado o Requerimento.
+2026;2233802-437;2026-05-27;PLEN;82310;true;Aprovado o Requerimento nº 3.230/2026, dos Senhores Líderes, que solicita a quebra de interstício de 5 sessões previsto no § 6º do art. 202 do RICD, para apreciação do segundo turno da PEC 221, de 2019.
+2026;2233802-438;2026-05-27;PLEN;82310;true;"Aprovada, em segundo turno, a Proposta de Emenda à Constituição n° 221, de 2019. . Sim: 461; Não: 19; Total: 480."
+2026;2233802-440;2026-05-27;PLEN;82310;true;Aprovada a Redação Final assinada pelo relator, Dep. Leo Prates (REPUBLIC/BA).
+2026;2433663-44;2026-05-28;PLEN;82342;false;"Rejeitado o Requerimento. Sim: 99; Não: 277; Total: 376."
+2026;2433663-47;2026-05-28;PLEN;82342;false;Rejeitado o Requerimento.
+2026;2433663-53;2026-05-28;PLEN;82342;true;Aprovado o Substitutivo ao Projeto de Lei nº 1.822, de 2024, adotado pelo relator da Comissão de Previdência, Assistência Social, Infância, Adolescência e Família.
+2026;2433663-56;2026-05-28;PLEN;82342;true;Aprovada a Redação Final assinada pelo relator, Dep. Dr. Fernando Máximo (PL/RO).
+2026;2351506-95;2026-05-28;PLEN;82342;false;"Rejeitado o Requerimento. Sim: 102; Não: 322; Abstenção: 1; Total: 425."
+2026;2351506-102;2026-05-28;PLEN;82342;true;"Aprovada a preferência. Sim: 467; Não: 4; Abstenção: 1; Total: 472."
+2026;2351506-104;2026-05-28;PLEN;82342;true;"Aprovada, em primeiro turno, a Proposta de Emenda à Constituição nº 5, de 2023, na forma da Emenda Aglutinativa Substitutiva nº 3. Sim: 385; Não: 93; Abstenção: 7; Total: 485."
+2026;2351506-108;2026-05-28;PLEN;82342;;"Mantido o texto. Sim: 340; Não: 110; Abstenção: 7; Total: 457."
+2026;2351506-112;2026-05-28;PLEN;82342;;"Mantido o texto. Sim: 342; Não: 113; Abstenção: 5; Total: 460."
+2026;2351506-115;2026-05-28;PLEN;82342;;"Mantido o texto. Sim: 335; Não: 117; Abstenção: 5; Total: 457."
+2026;2469430-6;2026-05-28;PLEN;82342;true;Aprovado o Requerimento.
+2026;2351506-121;2026-05-28;PLEN;82342;true;Aprovado o Requerimento nº 4.491/2024, dos Senhores Líderes, que solicita a quebra de interstício de 5 sessões previsto no § 6º do art. 202 do RICD, para apreciação do segundo turno da PEC 5, de 2023.
+2026;2351506-122;2026-05-28;PLEN;82342;true;"Aprovada, em segundo turno, a Proposta de Emenda à Constituição n° 5, de 2023. Sim: 368; Não: 96; Abstenção: 7; Total: 471."
+2026;2351506-124;2026-05-28;PLEN;82342;true;Aprovada a Redação Final assinada pelo relator, Dep. Dr. Fernando Máximo (UNIÃO-RO).
+2026;498255-47;2026-06-02;PLEN;82362;false;Rejeitado o Requerimento.
+2026;498255-51;2026-06-02;PLEN;82362;true;Aprovado o Projeto de Decreto Legislativo nº 51, de 2011.
+2026;498255-53;2026-06-02;PLEN;82362;true;Aprovada a Redação Final, pelo Deputado Luiz Couto (PT-PB).
+2026;592921-58;2026-06-02;PLEN;82362;false;Rejeitado o Requerimento.
+2026;592921-60;2026-06-02;PLEN;82362;false;Rejeitado o Requerimento.
+2026;592921-63;2026-06-02;PLEN;82362;false;Rejeitado o Requerimento.
+2026;498255-56;2026-06-02;PLEN;82362;false;Rejeitado o Requerimento.
+2026;592921-66;2026-06-02;PLEN;82362;true;Aprovado o Substitutivo ao Projeto de Decreto Legislativo nº 1.290, de 2013, da Comissão de Relações Exteriores e de Defesa Nacional.
+2026;592921-68;2026-06-02;PLEN;82362;true;Aprovada a Redação Final assinada pelo Dep. Luiz Couto (PT-PB).
+2026;498255-57;2026-06-02;PLEN;82362;false;Rejeitado o Requerimento.
+2026;2629421-2;2026-06-02;CSPCCO;82302;true;Aprovado o Requerimento.
+2026;2629422-2;2026-06-02;CSPCCO;82302;true;Aprovado o Requerimento.
+2026;2629423-2;2026-06-02;CSPCCO;82302;true;Aprovado o Requerimento.
+2026;2629585-2;2026-06-02;CSPCCO;82302;true;Aprovado o Requerimento.
+2026;2629594-2;2026-06-02;CSPCCO;82302;true;Aprovado o Requerimento.
+2026;2629605-2;2026-06-02;CSPCCO;82302;true;Aprovado o Requerimento.
+2026;2539244-28;2026-06-02;CSPCCO;82302;true;Aprovado o Parecer.
+2026;2561007-23;2026-06-02;CSPCCO;82302;true;Aprovado o Parecer.
+2026;2556912-21;2026-06-02;CSPCCO;82302;true;Aprovado o Parecer.
+2026;2611694-24;2026-06-02;CSPCCO;82302;true;Aprovado o Parecer.
+2026;2629276-2;2026-06-02;CICS;82293;true;Aprovado o Requerimento.
+2026;2629954-8;2026-06-03;PLEN;82402;true;"Aprovado o Requerimento de Urgência (Art. 155 do RICD). Sim: 311; Não: 135; Abstenção: 2; Total: 448."
+2026;2480299-54;2026-06-03;PLEN;82402;true;Aprovado o Projeto de Decreto Legislativo nº 720, de 2024.
+2026;2480299-56;2026-06-03;PLEN;82402;true;Aprovada a Redação Final, assinada pela relatora, Dep. Laura Carneiro (PSD-RJ).

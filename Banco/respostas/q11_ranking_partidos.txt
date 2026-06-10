@@ -3,30 +3,30 @@ Q11 - Ordenar os partidos por frequencia, proposicoes, gastos e nuvem de palavra
 Q11.a - Ranking de partidos por frequencia nas votacoes (consolidado)
  posicao | sigla_partido |    ideologia     | votacoes_participadas | total_votos_registrados 
 ---------+---------------+------------------+-----------------------+-------------------------
-       1 | PL            | direita          |                   690 |                   37554
-       1 | REPUBLICANOS  | direita          |                   690 |                   16918
-       1 | UNIAO         | centro           |                   690 |                   22014
-       4 | PT            | esquerda         |                   681 |                   27972
-       5 | PP            | direita          |                   675 |                   18488
-       6 | MDB           | centro           |                   665 |                   15046
-       7 | PSOL          | esquerda         |                   658 |                    5226
-       8 | PSD           | centro           |                   653 |                   16005
-       9 | PSB           | esquerda         |                   647 |                    6161
-      10 | PODE          | centro           |                   626 |                    5986
-      11 | PDT           | esquerda         |                   620 |                    6963
-      12 | AVANTE        | centro           |                   578 |                    2726
-      13 | NOVO          | direita          |                   573 |                    1703
-      14 | SOLIDARIEDADE | centro           |                   571 |                    1783
-      15 | PSDB          | centro           |                   567 |                    5293
-      16 | PV            | esquerda         |                   564 |                    2109
-      17 | PCDOB         | esquerda         |                   552 |                    3189
-      18 | CIDADANIA     | centro           |                   461 |                    1294
-      19 | REDE          | esquerda         |                   404 |                     631
-      20 | PATRIOTA      | nao classificado |                   300 |                     992
-      21 | PRD           | centro           |                   194 |                     593
+       1 | PL            | direita          |                  1541 |                   85540
+       2 | UNIAO         | centro           |                  1536 |                   51868
+       3 | PT            | esquerda         |                  1518 |                   64867
+       4 | REPUBLICANOS  | direita          |                  1508 |                   40123
+       5 | PP            | direita          |                  1497 |                   43203
+       6 | PSOL          | esquerda         |                  1482 |                   12444
+       7 | PSD           | centro           |                  1468 |                   37880
+       8 | MDB           | centro           |                  1459 |                   34715
+       9 | PSB           | esquerda         |                  1410 |                   14054
+      10 | PODE          | centro           |                  1386 |                   14260
+      11 | PDT           | esquerda         |                  1370 |                   16108
+      12 | PCDOB         | esquerda         |                  1327 |                    7962
+      13 | AVANTE        | centro           |                  1310 |                    6442
+      14 | PSDB          | centro           |                  1295 |                   11905
+      14 | PV            | esquerda         |                  1295 |                    4534
+      16 | SOLIDARIEDADE | centro           |                  1271 |                    4130
+      17 | NOVO          | direita          |                  1259 |                    4243
+      18 | CIDADANIA     | centro           |                  1099 |                    3010
+      19 | REDE          | esquerda         |                   929 |                    1324
+      20 | PRD           | centro           |                   883 |                    2736
+      21 | PATRIOTA      | nao classificado |                   300 |                     992
       22 | PSC           | nao classificado |                   100 |                     249
       23 | S.PART.       | nao classificado |                    77 |                      77
-      24 | MISSAO        | centro           |                    50 |                      50
+      24 | MISSAO        | centro           |                    67 |                      67
       25 | PROS          | nao classificado |                     5 |                       9
 (25 rows)
 
@@ -57,105 +57,105 @@ Q11.a - Frequencia nas votacoes por ano
       2023 |      21 | PSC           | nao classificado |                   100 |                     249
       2023 |      22 | S.PART.       | nao classificado |                    77 |                      77
       2023 |      23 | PROS          | nao classificado |                     5 |                       9
-      2024 |       1 | PL            | direita          |                    91 |                    3723
-      2024 |       2 | REPUBLICANOS  | direita          |                    88 |                    1668
-      2024 |       2 | UNIAO         | centro           |                    88 |                    2214
-      2024 |       4 | PT            | esquerda         |                    86 |                    2559
-      2024 |       5 | MDB           | centro           |                    85 |                    1443
-      2024 |       6 | PSOL          | esquerda         |                    82 |                     537
-      2024 |       7 | PODE          | centro           |                    81 |                     561
-      2024 |       8 | PP            | direita          |                    80 |                    1782
-      2024 |       8 | PSD           | centro           |                    80 |                    1428
-      2024 |      10 | PCDOB         | esquerda         |                    74 |                     309
-      2024 |      11 | PDT           | esquerda         |                    70 |                     638
-      2024 |      12 | PV            | esquerda         |                    69 |                     193
-      2024 |      13 | PSB           | esquerda         |                    67 |                     526
-      2024 |      14 | PSDB          | centro           |                    65 |                     428
-      2024 |      15 | PRD           | centro           |                    64 |                     163
-      2024 |      16 | NOVO          | direita          |                    59 |                     152
-      2024 |      17 | AVANTE        | centro           |                    58 |                     240
-      2024 |      17 | SOLIDARIEDADE | centro           |                    58 |                     150
-      2024 |      19 | CIDADANIA     | centro           |                    44 |                     138
-      2024 |      20 | REDE          | esquerda         |                    28 |                      28
-      2025 |       1 | PT            | esquerda         |                    60 |                    2357
-      2025 |       2 | UNIAO         | centro           |                    59 |                    1888
-      2025 |       3 | PL            | direita          |                    58 |                    2790
-      2025 |       3 | REPUBLICANOS  | direita          |                    58 |                    1485
-      2025 |       5 | PP            | direita          |                    56 |                    1506
-      2025 |       5 | PSB           | esquerda         |                    56 |                     518
-      2025 |       7 | PCDOB         | esquerda         |                    55 |                     314
-      2025 |       7 | PSD           | centro           |                    55 |                    1357
-      2025 |       9 | PSOL          | esquerda         |                    54 |                     464
-      2025 |      10 | MDB           | centro           |                    53 |                    1222
-      2025 |      10 | PSDB          | centro           |                    53 |                     422
-      2025 |      12 | AVANTE        | centro           |                    51 |                     248
-      2025 |      13 | PDT           | esquerda         |                    50 |                     566
-      2025 |      14 | SOLIDARIEDADE | centro           |                    47 |                     143
-      2025 |      15 | PODE          | centro           |                    45 |                     509
-      2025 |      16 | NOVO          | direita          |                    44 |                     178
-      2025 |      16 | PV            | esquerda         |                    44 |                     145
-      2025 |      18 | CIDADANIA     | centro           |                    41 |                     110
-      2025 |      19 | PRD           | centro           |                    40 |                     141
-      2025 |      20 | REDE          | esquerda         |                    31 |                      45
-      2026 |       1 | PL            | direita          |                   100 |                    6346
-      2026 |       1 | PSB           | esquerda         |                   100 |                    1163
-      2026 |       1 | PT            | esquerda         |                   100 |                    4949
-      2026 |       1 | REPUBLICANOS  | direita          |                   100 |                    3083
-      2026 |       1 | UNIAO         | centro           |                   100 |                    3550
-      2026 |       6 | PP            | direita          |                    99 |                    3098
-      2026 |       7 | PCDOB         | esquerda         |                    98 |                     747
-      2026 |       7 | PSD           | centro           |                    98 |                    3051
-      2026 |       9 | MDB           | centro           |                    97 |                    2388
-      2026 |      10 | PSOL          | esquerda         |                    96 |                     838
-      2026 |      11 | AVANTE        | centro           |                    95 |                     545
-      2026 |      12 | PODE          | centro           |                    94 |                    1223
-      2026 |      12 | PV            | esquerda         |                    94 |                     326
-      2026 |      14 | REDE          | esquerda         |                    93 |                     306
-      2026 |      14 | SOLIDARIEDADE | centro           |                    93 |                     353
-      2026 |      16 | PDT           | esquerda         |                    91 |                    1081
-      2026 |      16 | PSDB          | centro           |                    91 |                    1080
-      2026 |      18 | PRD           | centro           |                    90 |                     289
-      2026 |      19 | NOVO          | direita          |                    86 |                     388
-      2026 |      20 | CIDADANIA     | centro           |                    81 |                     210
-      2026 |      21 | MISSAO        | centro           |                    50 |                      50
+      2024 |       1 | PL            | direita          |                   440 |                   22163
+      2024 |       2 | PT            | esquerda         |                   428 |                   16295
+      2024 |       2 | UNIAO         | centro           |                   428 |                   13137
+      2024 |       4 | REPUBLICANOS  | direita          |                   416 |                   10109
+      2024 |       5 | PSOL          | esquerda         |                   414 |                    3174
+      2024 |       6 | PP            | direita          |                   398 |                   11200
+      2024 |       7 | MDB           | centro           |                   396 |                    8884
+      2024 |       8 | PSD           | centro           |                   395 |                    9351
+      2024 |       9 | PCDOB         | esquerda         |                   382 |                    1843
+      2024 |      10 | PODE          | centro           |                   381 |                    3388
+      2024 |      11 | PV            | esquerda         |                   358 |                    1177
+      2024 |      12 | PSB           | esquerda         |                   351 |                    3293
+      2024 |      13 | PDT           | esquerda         |                   347 |                    4249
+      2024 |      14 | AVANTE        | centro           |                   331 |                    1520
+      2024 |      15 | PRD           | centro           |                   330 |                     932
+      2024 |      15 | PSDB          | centro           |                   330 |                    2685
+      2024 |      17 | SOLIDARIEDADE | centro           |                   325 |                    1025
+      2024 |      18 | NOVO          | direita          |                   321 |                     913
+      2024 |      19 | CIDADANIA     | centro           |                   279 |                     847
+      2024 |      20 | REDE          | esquerda         |                   215 |                     215
+      2025 |       1 | UNIAO         | centro           |                   543 |                   20080
+      2025 |       2 | PL            | direita          |                   538 |                   30760
+      2025 |       2 | PP            | direita          |                   538 |                   16159
+      2025 |       4 | PSD           | centro           |                   535 |                   14577
+      2025 |       5 | PT            | esquerda         |                   533 |                   24473
+      2025 |       6 | REPUBLICANOS  | direita          |                   527 |                   15579
+      2025 |       7 | PSOL          | esquerda         |                   524 |                    4830
+      2025 |       8 | MDB           | centro           |                   516 |                   12898
+      2025 |       9 | PSB           | esquerda         |                   515 |                    5374
+      2025 |      10 | PDT           | esquerda         |                   503 |                    5960
+      2025 |      11 | PCDOB         | esquerda         |                   501 |                    3372
+      2025 |      12 | PSDB          | centro           |                   494 |                    4515
+      2025 |      13 | AVANTE        | centro           |                   491 |                    2594
+      2025 |      14 | PODE          | centro           |                   484 |                    5505
+      2025 |      15 | PV            | esquerda         |                   468 |                    1494
+      2025 |      16 | SOLIDARIEDADE | centro           |                   461 |                    1524
+      2025 |      17 | NOVO          | direita          |                   449 |                    1881
+      2025 |      18 | PRD           | centro           |                   447 |                    1491
+      2025 |      19 | CIDADANIA     | centro           |                   426 |                    1091
+      2025 |      20 | REDE          | esquerda         |                   350 |                     489
+      2026 |       1 | PL            | direita          |                   122 |                    7922
+      2026 |       1 | PT            | esquerda         |                   122 |                    5992
+      2026 |       1 | UNIAO         | centro           |                   122 |                    4289
+      2026 |       4 | PP            | direita          |                   121 |                    3742
+      2026 |       4 | REPUBLICANOS  | direita          |                   121 |                    3753
+      2026 |       6 | PSB           | esquerda         |                   120 |                    1433
+      2026 |       7 | PCDOB         | esquerda         |                   119 |                     928
+      2026 |       8 | PSD           | centro           |                   118 |                    3783
+      2026 |       8 | PSOL          | esquerda         |                   118 |                    1053
+      2026 |      10 | MDB           | centro           |                   117 |                    2940
+      2026 |      11 | PODE          | centro           |                   115 |                    1674
+      2026 |      12 | AVANTE        | centro           |                   114 |                     635
+      2026 |      13 | PSDB          | centro           |                   113 |                    1342
+      2026 |      14 | PV            | esquerda         |                   112 |                     418
+      2026 |      14 | REDE          | esquerda         |                   112 |                     368
+      2026 |      14 | SOLIDARIEDADE | centro           |                   112 |                     444
+      2026 |      17 | PDT           | esquerda         |                   111 |                    1221
+      2026 |      18 | PRD           | centro           |                   106 |                     313
+      2026 |      19 | NOVO          | direita          |                   105 |                     464
+      2026 |      20 | CIDADANIA     | centro           |                    99 |                     236
+      2026 |      21 | MISSAO        | centro           |                    67 |                      67
 (84 rows)
 
 
 Q11.b - Ranking de partidos por proposicoes de projetos (consolidado)
  posicao | sigla_partido |    ideologia     | total_proposicoes 
 ---------+---------------+------------------+-------------------
-       1 | PL            | direita          |             18787
-       2 | PT            | esquerda         |             10458
-       3 | REPUBLICANOS  | direita          |              9940
-       4 | UNIAO         | centro           |              8106
-       5 | PSD           | centro           |              6546
-       6 | PP            | direita          |              5129
-       7 | PODE          | centro           |              5122
-       8 | NOVO          | direita          |              4877
-       9 | PDT           | esquerda         |              3929
-      10 | PSOL          | esquerda         |              3858
-      11 | MDB           | centro           |              3392
-      12 | PSB           | esquerda         |              3190
-      13 | PSDB          | centro           |              1889
-      14 | CIDADANIA     | centro           |              1510
-      15 | PCDOB         | esquerda         |              1390
-      16 | SOLIDARIEDADE | centro           |              1325
-      17 | PV            | esquerda         |              1089
-      18 | PATRIOTA      | nao classificado |               898
-      19 | AVANTE        | centro           |               878
-      20 | REDE          | esquerda         |               508
-      21 | PSC           | nao classificado |               360
-      22 | PRD           | centro           |               250
+       1 | PL            | direita          |             66665
+       2 | REPUBLICANOS  | direita          |             30394
+       3 | PT            | esquerda         |             27554
+       4 | UNIAO         | centro           |             19822
+       5 | PSD           | centro           |             16424
+       6 | PODE          | centro           |             13821
+       7 | PP            | direita          |             13765
+       8 | PSOL          | esquerda         |             11568
+       9 | NOVO          | direita          |             10987
+      10 | PDT           | esquerda         |             10540
+      11 | MDB           | centro           |              9268
+      12 | PSB           | esquerda         |              7038
+      13 | CIDADANIA     | centro           |              6129
+      14 | PSDB          | centro           |              4144
+      15 | SOLIDARIEDADE | centro           |              3154
+      16 | PCDOB         | esquerda         |              2796
+      17 | AVANTE        | centro           |              2191
+      18 | PV            | esquerda         |              2035
+      19 | REDE          | esquerda         |              1773
+      20 | PRD           | centro           |              1411
+      21 | PATRIOTA      | nao classificado |               922
+      22 | PSC           | nao classificado |               360
       23 | PROS          | nao classificado |               193
-      24 | MISSAO        | centro           |                98
-      25 | S.PART.       | nao classificado |                64
-      26 | PODEMOS       | nao classificado |                 6
-      27 | DEM           | nao classificado |                 2
-      28 | PSL           | nao classificado |                 1
-      28 | PTB           | nao classificado |                 1
-      28 | REP           | nao classificado |                 1
-      28 | REPUB         | nao classificado |                 1
-      28 | REPUBLICA     | nao classificado |                 1
+      24 | MISSAO        | centro           |               123
+      25 | S.PART.       | nao classificado |                85
+      26 | PODEMOS       | nao classificado |                15
+      27 | PSL           | nao classificado |                11
+      28 | DEM           | nao classificado |                 2
+      29 | PTB           | nao classificado |                 1
+      29 | REP           | nao classificado |                 1
+      29 | REPUB         | nao classificado |                 1
+      29 | REPUBLICA     | nao classificado |                 1
 (32 rows)
 
 
@@ -193,75 +193,100 @@ Q11.b - Proposicoes por partido por ano
       2023 |      27 | REP           | nao classificado |                 1
       2023 |      27 | REPUB         | nao classificado |                 1
       2023 |      27 | REPUBLICA     | nao classificado |                 1
-      2024 |       1 | PL            | direita          |                57
-      2024 |       2 | NOVO          | direita          |                38
-      2024 |       3 | PT            | esquerda         |                34
-      2024 |       4 | PDT           | esquerda         |                30
-      2024 |       5 | UNIAO         | centro           |                29
-      2024 |       6 | PSD           | centro           |                25
-      2024 |       6 | REPUBLICANOS  | direita          |                25
-      2024 |       8 | PP            | direita          |                19
-      2024 |       8 | PRD           | centro           |                19
-      2024 |      10 | PSB           | esquerda         |                16
-      2024 |      11 | PODE          | centro           |                15
-      2024 |      12 | MDB           | centro           |                14
-      2024 |      13 | PSDB          | centro           |                11
-      2024 |      13 | PSOL          | esquerda         |                11
-      2024 |      15 | SOLIDARIEDADE | centro           |                 9
-      2024 |      16 | CIDADANIA     | centro           |                 5
-      2024 |      17 | PV            | esquerda         |                 4
-      2024 |      18 | AVANTE        | centro           |                 3
-      2024 |      18 | PCDOB         | esquerda         |                 3
-      2024 |      20 | REDE          | esquerda         |                 2
-      2024 |      21 | S.PART.       | nao classificado |                 1
-      2026 |       1 | PL            | direita          |              6465
-      2026 |       2 | PT            | esquerda         |              3053
-      2026 |       3 | PSD           | centro           |              2114
-      2026 |       4 | PODE          | centro           |              2097
-      2026 |       5 | REPUBLICANOS  | direita          |              1980
-      2026 |       6 | UNIAO         | centro           |              1408
-      2026 |       7 | PP            | direita          |              1292
-      2026 |       8 | MDB           | centro           |               773
-      2026 |       9 | PSOL          | esquerda         |               749
-      2026 |      10 | NOVO          | direita          |               722
-      2026 |      11 | PDT           | esquerda         |               663
-      2026 |      12 | PSB           | esquerda         |               615
-      2026 |      13 | PSDB          | centro           |               609
-      2026 |      14 | PCDOB         | esquerda         |               314
-      2026 |      15 | PRD           | centro           |               229
-      2026 |      15 | SOLIDARIEDADE | centro           |               229
-      2026 |      17 | CIDADANIA     | centro           |               203
-      2026 |      18 | AVANTE        | centro           |               198
-      2026 |      19 | REDE          | esquerda         |               185
-      2026 |      20 | PV            | esquerda         |               128
-      2026 |      21 | MISSAO        | centro           |                98
-(73 rows)
+      2024 |       1 | PL            | direita          |             10905
+      2024 |       2 | REPUBLICANOS  | direita          |              8972
+      2024 |       3 | PT            | esquerda         |              6453
+      2024 |       4 | UNIAO         | centro           |              6190
+      2024 |       5 | PSD           | centro           |              4424
+      2024 |       6 | PP            | direita          |              3699
+      2024 |       7 | PODE          | centro           |              3407
+      2024 |       8 | PDT           | esquerda         |              2763
+      2024 |       9 | PSOL          | esquerda         |              2756
+      2024 |      10 | MDB           | centro           |              2213
+      2024 |      11 | NOVO          | direita          |              2107
+      2024 |      12 | CIDADANIA     | centro           |              1913
+      2024 |      13 | PSB           | esquerda         |              1419
+      2024 |      14 | REDE          | esquerda         |               977
+      2024 |      15 | SOLIDARIEDADE | centro           |               867
+      2024 |      16 | PSDB          | centro           |               763
+      2024 |      17 | PRD           | centro           |               568
+      2024 |      18 | PCDOB         | esquerda         |               506
+      2024 |      19 | PV            | esquerda         |               484
+      2024 |      20 | AVANTE        | centro           |               452
+      2024 |      21 | PATRIOTA      | nao classificado |                24
+      2024 |      22 | S.PART.       | nao classificado |                20
+      2024 |      23 | PODEMOS       | nao classificado |                 8
+      2025 |       1 | PL            | direita          |             36022
+      2025 |       2 | REPUBLICANOS  | direita          |             11162
+      2025 |       3 | PT            | esquerda         |             10335
+      2025 |       4 | UNIAO         | centro           |              5435
+      2025 |       5 | PSD           | centro           |              5094
+      2025 |       6 | PODE          | centro           |              5010
+      2025 |       7 | PP            | direita          |              4827
+      2025 |       8 | PSOL          | esquerda         |              4809
+      2025 |       9 | NOVO          | direita          |              3970
+      2025 |      10 | PDT           | esquerda         |              3822
+      2025 |      11 | MDB           | centro           |              3536
+      2025 |      12 | CIDADANIA     | centro           |              2684
+      2025 |      13 | PSB           | esquerda         |              2381
+      2025 |      14 | PSDB          | centro           |              1445
+      2025 |      15 | SOLIDARIEDADE | centro           |               893
+      2025 |      16 | PCDOB         | esquerda         |               869
+      2025 |      17 | AVANTE        | centro           |               844
+      2025 |      18 | PRD           | centro           |               609
+      2025 |      19 | PV            | esquerda         |               462
+      2025 |      20 | REDE          | esquerda         |               253
+      2025 |      21 | PSL           | nao classificado |                10
+      2025 |      22 | S.PART.       | nao classificado |                 2
+      2025 |      23 | PODEMOS       | nao classificado |                 1
+      2026 |       1 | PL            | direita          |              7473
+      2026 |       2 | PT            | esquerda         |              3395
+      2026 |       3 | PSD           | centro           |              2499
+      2026 |       4 | PODE          | centro           |              2394
+      2026 |       5 | REPUBLICANOS  | direita          |              2325
+      2026 |       6 | UNIAO         | centro           |              1528
+      2026 |       7 | PP            | direita          |              1421
+      2026 |       8 | MDB           | centro           |               914
+      2026 |       9 | PSOL          | esquerda         |               905
+      2026 |      10 | NOVO          | direita          |               793
+      2026 |      11 | PDT           | esquerda         |               719
+      2026 |      12 | PSB           | esquerda         |               679
+      2026 |      13 | PSDB          | centro           |               667
+      2026 |      14 | PCDOB         | esquerda         |               348
+      2026 |      15 | SOLIDARIEDADE | centro           |               307
+      2026 |      16 | PRD           | centro           |               232
+      2026 |      17 | CIDADANIA     | centro           |               230
+      2026 |      18 | REDE          | esquerda         |               222
+      2026 |      19 | AVANTE        | centro           |               218
+      2026 |      20 | PV            | esquerda         |               132
+      2026 |      21 | MISSAO        | centro           |               123
+(98 rows)
 
 
 Q11.c - Ranking de partidos por gastos (consolidado)
  posicao | sigla_partido |    ideologia     | qtd_deputados | qtd_despesas | gasto_total  | gasto_medio_por_deputado 
 ---------+---------------+------------------+---------------+--------------+--------------+--------------------------
-       1 | PL            | direita          |           116 |       142750 | 149837266.49 |               1291700.57
-       2 | PT            | esquerda         |            78 |       126393 | 107461836.01 |               1377715.85
-       3 | UNIAO         | centro           |            64 |        65736 |  88754004.06 |               1386781.31
-       4 | PSD           | centro           |            63 |        65953 |  75947412.36 |               1205514.48
-       5 | PP            | direita          |            62 |        66271 |  75524750.98 |               1218141.14
-       6 | REPUBLICANOS  | direita          |            58 |        53432 |  67015494.27 |               1155439.56
-       7 | MDB           | centro           |            48 |        44705 |  58913446.50 |               1227363.47
-       8 | PODE          | centro           |            34 |        26118 |  38543509.67 |               1133632.64
-       9 | PSB           | esquerda         |            18 |        22690 |  25392155.28 |               1410675.29
-      10 | PSDB          | centro           |            17 |        18761 |  23376304.70 |               1375076.75
-      11 | PSOL          | esquerda         |            14 |        22462 |  19494929.34 |               1392494.95
-      12 | PDT           | esquerda         |            13 |        13943 |  16739665.42 |               1287666.57
-      13 | PCDOB         | esquerda         |            10 |        10197 |  13465944.93 |               1346594.49
-      14 | PV            | esquerda         |             6 |         7802 |   8650806.25 |               1441801.04
-      15 | AVANTE        | centro           |             6 |         5118 |   6683525.71 |               1113920.95
-      16 | SOLIDARIEDADE | centro           |             8 |         4163 |   5963897.47 |                745487.18
-      17 | NOVO          | direita          |             5 |         6217 |   4896536.73 |                979307.35
-      18 | PRD           | centro           |             5 |         4691 |   4820165.80 |                964033.16
-      19 | REDE          | esquerda         |             7 |         2518 |   3665416.21 |                523630.89
-      20 | CIDADANIA     | centro           |             3 |         2633 |   2698797.47 |                899599.16
-      21 | MISSAO        | centro           |             1 |          579 |    546688.43 |                546688.43
+       1 | PL            | direita          |           116 |       144317 | 151600251.81 |               1306898.72
+       2 | PT            | esquerda         |            78 |       127744 | 108896334.08 |               1396106.85
+       3 | UNIAO         | centro           |            64 |        66325 |  89822634.71 |               1403478.67
+       4 | PSD           | centro           |            63 |        66591 |  76982120.99 |               1221938.43
+       5 | PP            | direita          |            62 |        66971 |  76589602.34 |               1235316.17
+       6 | REPUBLICANOS  | direita          |            58 |        54052 |  67883779.69 |               1170409.99
+       7 | MDB           | centro           |            48 |        45100 |  59638402.83 |               1242466.73
+       8 | PODE          | centro           |            34 |        26473 |  39167063.08 |               1151972.44
+       9 | PSB           | esquerda         |            18 |        23058 |  25741793.26 |               1430099.63
+      10 | PSDB          | centro           |            17 |        19015 |  23715549.11 |               1395032.30
+      11 | PSOL          | esquerda         |            15 |        22659 |  19765808.61 |               1317720.57
+      12 | PDT           | esquerda         |            13 |        14085 |  17035529.72 |               1310425.36
+      13 | PCDOB         | esquerda         |            11 |        10332 |  13699951.70 |               1245450.15
+      14 | PV            | esquerda         |             6 |         7899 |   8829921.64 |               1471653.61
+      15 | AVANTE        | centro           |             6 |         5137 |   6723904.93 |               1120650.82
+      16 | SOLIDARIEDADE | centro           |             8 |         4207 |   6076664.87 |                759583.11
+      17 | NOVO          | direita          |             5 |         6258 |   4945115.40 |                989023.08
+      18 | PRD           | centro           |             5 |         4732 |   4849886.82 |                969977.36
+      19 | REDE          | esquerda         |             7 |         2549 |   3789308.53 |                541329.79
+      20 | CIDADANIA     | centro           |             3 |         2668 |   2746839.47 |                915613.16
+      21 | MISSAO        | centro           |             1 |          582 |    549390.73 |                549390.73
       22 | S.PART.       | nao classificado |             1 |          183 |    399039.18 |                399039.18
 (22 rows)
 
@@ -335,27 +360,27 @@ Q11.c - Gastos por partido por ano
       2025 |      20 | CIDADANIA     | centro           |             2 |          685 |   892425.67 |                446212.84
       2025 |      21 | MISSAO        | centro           |             1 |          113 |    95689.76 |                 95689.76
       2025 |      22 | S.PART.       | nao classificado |             1 |            5 |        4.82 |                     4.82
-      2026 |       1 | PL            | direita          |           100 |        10222 | 12659054.05 |                126590.54
-      2026 |       2 | PT            | esquerda         |            70 |         9713 |  9624015.22 |                137485.93
-      2026 |       3 | UNIAO         | centro           |            54 |         4750 |  7416424.41 |                137341.19
-      2026 |       4 | PP            | direita          |            52 |         4734 |  6679734.11 |                128456.43
-      2026 |       5 | PSD           | centro           |            52 |         4362 |  6360643.92 |                122320.08
-      2026 |       6 | REPUBLICANOS  | direita          |            49 |         3920 |  6014140.10 |                122737.55
-      2026 |       7 | MDB           | centro           |            40 |         3154 |  4866793.43 |                121669.84
-      2026 |       8 | PODE          | centro           |            29 |         2258 |  4226933.28 |                145756.32
-      2026 |       9 | PSB           | esquerda         |            17 |         1692 |  2226076.81 |                130945.69
-      2026 |      10 | PSDB          | centro           |            17 |         1466 |  2070063.27 |                121768.43
-      2026 |      11 | PDT           | esquerda         |            10 |         1015 |  1537516.30 |                153751.63
-      2026 |      12 | PSOL          | esquerda         |            12 |         1421 |  1436847.31 |                119737.28
-      2026 |      13 | PCDOB         | esquerda         |            10 |          770 |  1313315.48 |                131331.55
-      2026 |      14 | PV            | esquerda         |             6 |          689 |   855673.45 |                142612.24
-      2026 |      15 | SOLIDARIEDADE | centro           |             6 |          410 |   685154.03 |                114192.34
-      2026 |      16 | REDE          | esquerda         |             7 |          234 |   622298.78 |                 88899.83
-      2026 |      17 | AVANTE        | centro           |             6 |          264 |   462504.25 |                 77084.04
-      2026 |      18 | NOVO          | direita          |             5 |          444 |   449730.43 |                 89946.09
-      2026 |      19 | PRD           | centro           |             4 |          360 |   319177.61 |                 79794.40
-      2026 |      20 | CIDADANIA     | centro           |             2 |           86 |   169470.51 |                 84735.26
-      2026 |      21 | MISSAO        | centro           |             1 |           10 |    13179.92 |                 13179.92
+      2026 |       1 | PL            | direita          |           100 |        11789 | 14422039.37 |                144220.39
+      2026 |       2 | PT            | esquerda         |            70 |        11064 | 11058513.29 |                157978.76
+      2026 |       3 | UNIAO         | centro           |            54 |         5339 |  8485055.06 |                157130.65
+      2026 |       4 | PP            | direita          |            52 |         5434 |  7744585.47 |                148934.34
+      2026 |       5 | PSD           | centro           |            53 |         5000 |  7395352.55 |                139534.95
+      2026 |       6 | REPUBLICANOS  | direita          |            49 |         4540 |  6882425.52 |                140457.66
+      2026 |       7 | MDB           | centro           |            40 |         3549 |  5591749.76 |                139793.74
+      2026 |       8 | PODE          | centro           |            29 |         2613 |  4850486.69 |                167258.16
+      2026 |       9 | PSB           | esquerda         |            17 |         2060 |  2575714.79 |                151512.63
+      2026 |      10 | PSDB          | centro           |            17 |         1720 |  2409307.68 |                141723.98
+      2026 |      11 | PDT           | esquerda         |            10 |         1157 |  1833380.60 |                183338.06
+      2026 |      12 | PSOL          | esquerda         |            13 |         1618 |  1707726.58 |                131363.58
+      2026 |      13 | PCDOB         | esquerda         |            11 |          905 |  1547322.25 |                140665.66
+      2026 |      14 | PV            | esquerda         |             6 |          786 |  1034788.84 |                172464.81
+      2026 |      15 | SOLIDARIEDADE | centro           |             6 |          454 |   797921.43 |                132986.91
+      2026 |      16 | REDE          | esquerda         |             7 |          265 |   746191.10 |                106598.73
+      2026 |      17 | AVANTE        | centro           |             6 |          283 |   502883.47 |                 83813.91
+      2026 |      18 | NOVO          | direita          |             5 |          485 |   498309.10 |                 99661.82
+      2026 |      19 | PRD           | centro           |             4 |          401 |   348898.63 |                 87224.66
+      2026 |      20 | CIDADANIA     | centro           |             2 |          121 |   217512.51 |                108756.26
+      2026 |      21 | MISSAO        | centro           |             1 |           13 |    15882.22 |                 15882.22
 (87 rows)
 
 
@@ -363,34 +388,34 @@ Q11.d - Nuvem de palavras - score composto por partido (consolidado)
 Cada partido e um termo; a frequencia e um score normalizado combinando votacoes, proposicoes e gastos.
  posicao |     termo     |    ideologia     | votacoes_bruto | proposicoes_bruto | gastos_bruto | norm_votacoes | norm_proposicoes | norm_gastos | score_total | frequencia 
 ---------+---------------+------------------+----------------+-------------------+--------------+---------------+------------------+-------------+-------------+------------
-       1 | PL            | direita          |            690 |             18787 | 149837266.49 |        100.00 |           100.00 |      100.00 |      300.00 |     100.00
-       2 | PT            | esquerda         |            681 |             10458 | 107461836.01 |         98.70 |            55.66 |       71.72 |      226.08 |      75.36
-       3 | UNIAO         | centro           |            690 |              8106 |  88754004.06 |        100.00 |            43.14 |       59.23 |      202.37 |      67.46
-       4 | REPUBLICANOS  | direita          |            690 |              9940 |  67015494.27 |        100.00 |            52.91 |       44.73 |      197.64 |      65.88
-       5 | PSD           | centro           |            653 |              6546 |  75947412.36 |         94.64 |            34.84 |       50.69 |      180.17 |      60.06
-       6 | PP            | direita          |            675 |              5129 |  75524750.98 |         97.83 |            27.30 |       50.40 |      175.53 |      58.51
-       7 | MDB           | centro           |            665 |              3392 |  58913446.50 |         96.38 |            18.05 |       39.32 |      153.75 |      51.25
-       8 | PODE          | centro           |            626 |              5122 |  38543509.67 |         90.72 |            27.26 |       25.72 |      143.70 |      47.90
-       9 | PSOL          | esquerda         |            658 |              3858 |  19494929.34 |         95.36 |            20.53 |       13.01 |      128.90 |      42.97
-      10 | PSB           | esquerda         |            647 |              3190 |  25392155.28 |         93.77 |            16.98 |       16.95 |      127.70 |      42.57
-      11 | PDT           | esquerda         |            620 |              3929 |  16739665.42 |         89.86 |            20.91 |       11.17 |      121.94 |      40.65
-      12 | NOVO          | direita          |            573 |              4877 |   4896536.73 |         83.04 |            25.96 |        3.27 |      112.27 |      37.42
-      13 | PSDB          | centro           |            567 |              1889 |  23376304.70 |         82.17 |            10.05 |       15.60 |      107.82 |      35.94
-      14 | PCDOB         | esquerda         |            552 |              1390 |  13465944.93 |         80.00 |             7.39 |        8.99 |       96.38 |      32.13
-      15 | SOLIDARIEDADE | centro           |            571 |              1325 |   5963897.47 |         82.75 |             7.05 |        3.98 |       93.78 |      31.26
-      16 | PV            | esquerda         |            564 |              1089 |   8650806.25 |         81.74 |             5.79 |        5.77 |       93.30 |      31.10
-      17 | AVANTE        | centro           |            578 |               878 |   6683525.71 |         83.77 |             4.67 |        4.46 |       92.90 |      30.97
-      18 | CIDADANIA     | centro           |            461 |              1510 |   2698797.47 |         66.81 |             8.03 |        1.80 |       76.64 |      25.55
-      19 | REDE          | esquerda         |            404 |               508 |   3665416.21 |         58.55 |             2.70 |        2.45 |       63.70 |      21.23
-      20 | PATRIOTA      | nao classificado |            300 |               898 |            0 |         43.48 |             4.77 |        0.00 |       48.25 |      16.08
-      21 | PRD           | centro           |            194 |               250 |   4820165.80 |         28.12 |             1.33 |        3.22 |       32.67 |      10.89
-      22 | PSC           | nao classificado |            100 |               360 |            0 |         14.49 |             1.91 |        0.00 |       16.40 |       5.47
-      23 | S.PART.       | nao classificado |             77 |                64 |    399039.18 |         11.16 |             0.34 |        0.27 |       11.77 |       3.92
-      24 | MISSAO        | centro           |             50 |                98 |    546688.43 |          7.25 |             0.52 |        0.36 |        8.13 |       2.71
-      25 | PROS          | nao classificado |              5 |               193 |            0 |          0.72 |             1.02 |        0.00 |        1.74 |       0.58
-      26 | PODEMOS       | nao classificado |              0 |                 6 |            0 |          0.00 |             0.03 |        0.00 |        0.03 |       0.01
-      27 | DEM           | nao classificado |              0 |                 2 |            0 |          0.00 |             0.01 |        0.00 |        0.01 |       0.00
-      28 | PSL           | nao classificado |              0 |                 1 |            0 |          0.00 |             0.00 |        0.00 |        0.00 |       0.00
+       1 | PL            | direita          |           1541 |             66665 | 151600251.81 |        100.00 |           100.00 |      100.00 |      300.00 |     100.00
+       2 | PT            | esquerda         |           1518 |             27554 | 108896334.08 |         98.51 |            41.33 |       71.83 |      211.67 |      70.56
+       3 | UNIAO         | centro           |           1536 |             19822 |  89822634.71 |         99.68 |            29.73 |       59.25 |      188.66 |      62.89
+       4 | REPUBLICANOS  | direita          |           1508 |             30394 |  67883779.69 |         97.86 |            45.59 |       44.78 |      188.23 |      62.74
+       5 | PSD           | centro           |           1468 |             16424 |  76982120.99 |         95.26 |            24.64 |       50.78 |      170.68 |      56.89
+       6 | PP            | direita          |           1497 |             13765 |  76589602.34 |         97.14 |            20.65 |       50.52 |      168.31 |      56.10
+       7 | MDB           | centro           |           1459 |              9268 |  59638402.83 |         94.68 |            13.90 |       39.34 |      147.92 |      49.31
+       8 | PODE          | centro           |           1386 |             13821 |  39167063.08 |         89.94 |            20.73 |       25.84 |      136.51 |      45.50
+       9 | PSOL          | esquerda         |           1482 |             11568 |  19765808.61 |         96.17 |            17.35 |       13.04 |      126.56 |      42.19
+      10 | PSB           | esquerda         |           1410 |              7038 |  25741793.26 |         91.50 |            10.56 |       16.98 |      119.04 |      39.68
+      11 | PDT           | esquerda         |           1370 |             10540 |  17035529.72 |         88.90 |            15.81 |       11.24 |      115.95 |      38.65
+      12 | PSDB          | centro           |           1295 |              4144 |  23715549.11 |         84.04 |             6.21 |       15.64 |      105.89 |      35.30
+      13 | NOVO          | direita          |           1259 |             10987 |   4945115.40 |         81.70 |            16.48 |        3.26 |      101.44 |      33.81
+      14 | PCDOB         | esquerda         |           1327 |              2796 |  13699951.70 |         86.11 |             4.19 |        9.04 |       99.34 |      33.11
+      15 | PV            | esquerda         |           1295 |              2035 |   8829921.64 |         84.04 |             3.05 |        5.82 |       92.91 |      30.97
+      16 | AVANTE        | centro           |           1310 |              2191 |   6723904.93 |         85.01 |             3.29 |        4.44 |       92.74 |      30.91
+      17 | SOLIDARIEDADE | centro           |           1271 |              3154 |   6076664.87 |         82.48 |             4.73 |        4.01 |       91.22 |      30.41
+      18 | CIDADANIA     | centro           |           1099 |              6129 |   2746839.47 |         71.32 |             9.19 |        1.81 |       82.32 |      27.44
+      19 | REDE          | esquerda         |            929 |              1773 |   3789308.53 |         60.29 |             2.66 |        2.50 |       65.45 |      21.82
+      20 | PRD           | centro           |            883 |              1411 |   4849886.82 |         57.30 |             2.12 |        3.20 |       62.62 |      20.87
+      21 | PATRIOTA      | nao classificado |            300 |               922 |            0 |         19.47 |             1.38 |        0.00 |       20.85 |       6.95
+      22 | PSC           | nao classificado |            100 |               360 |            0 |          6.49 |             0.54 |        0.00 |        7.03 |       2.34
+      23 | S.PART.       | nao classificado |             77 |                85 |    399039.18 |          5.00 |             0.13 |        0.26 |        5.39 |       1.80
+      24 | MISSAO        | centro           |             67 |               123 |    549390.73 |          4.35 |             0.18 |        0.36 |        4.89 |       1.63
+      25 | PROS          | nao classificado |              5 |               193 |            0 |          0.32 |             0.29 |        0.00 |        0.61 |       0.20
+      26 | PODEMOS       | nao classificado |              0 |                15 |            0 |          0.00 |             0.02 |        0.00 |        0.02 |       0.01
+      26 | PSL           | nao classificado |              0 |                11 |            0 |          0.00 |             0.02 |        0.00 |        0.02 |       0.01
+      28 | DEM           | nao classificado |              0 |                 2 |            0 |          0.00 |             0.00 |        0.00 |        0.00 |       0.00
       28 | PTB           | nao classificado |              0 |                 1 |            0 |          0.00 |             0.00 |        0.00 |        0.00 |       0.00
       28 | REP           | nao classificado |              0 |                 1 |            0 |          0.00 |             0.00 |        0.00 |        0.00 |       0.00
       28 | REPUB         | nao classificado |              0 |                 1 |            0 |          0.00 |             0.00 |        0.00 |        0.00 |       0.00

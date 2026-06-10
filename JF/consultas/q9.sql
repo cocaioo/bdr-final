@@ -71,12 +71,59 @@ LEFT JOIN objetos ob
 ORDER BY vc.ano_dados, vc.id_votacao, vc.ideologia;
 
 -- =======================================================================
--- Q9.3 - Voto de cada deputado por proposicao
--- Inclui: partido, ideologia, voto, orientacao da bancada,
---         e se o deputado seguiu ou contrariou a orientacao.
+-- Q9.3 - Resumo consolidado de votos e aderencia por deputado
 -- =======================================================================
 \qecho
-\qecho Q9.3 - Voto individual de cada deputado por proposicao
+\qecho Q9.3 - Resumo consolidado de votos e aderencia por deputado
+
+WITH voto_detalhado AS (
+    SELECT
+        vv.ano_dados,
+        vv.id_votacao,
+        vv.id_deputado,
+        vv.nome_deputado,
+        vv.sigla_partido,
+        pi.ideologia,
+        vv.voto,
+        vo.orientacao                                          AS orientacao_bancada,
+        CASE
+            WHEN vo.orientacao IS NULL
+                THEN 'Sem orientacao registrada'
+            WHEN vo.orientacao IN ('Liberado', 'Abstencao', 'Obstrucao')
+                THEN 'Liberado/Abstencao'
+            WHEN vv.voto = vo.orientacao
+                THEN 'Seguiu'
+            ELSE 'Contrariou'
+        END                                                    AS aderiu_orientacao
+    FROM votacoes_votos vv
+    JOIN partidos_ideologia pi
+        ON pi.sigla_partido = vv.sigla_partido
+    LEFT JOIN votacoes_orientacoes vo
+        ON vo.ano_dados   = vv.ano_dados
+       AND vo.id_votacao  = vv.id_votacao
+       AND vo.sigla_bancada = vv.sigla_partido
+)
+SELECT
+    sigla_partido,
+    id_deputado,
+    nome_deputado,
+    ideologia,
+    COUNT(*) AS total_votos,
+    COUNT(*) FILTER (WHERE voto = 'Sim') AS votos_sim,
+    COUNT(*) FILTER (WHERE voto = 'Nao') AS votos_nao,
+    COUNT(*) FILTER (WHERE voto NOT IN ('Sim', 'Nao')) AS outros_votos,
+    COUNT(*) FILTER (WHERE aderiu_orientacao = 'Seguiu') AS seguiu_orientacao,
+    COUNT(*) FILTER (WHERE aderiu_orientacao = 'Contrariou') AS contrariou_orientacao,
+    ROUND(COUNT(*) FILTER (WHERE aderiu_orientacao = 'Seguiu') * 100.0 / NULLIF(COUNT(*) FILTER (WHERE aderiu_orientacao IN ('Seguiu', 'Contrariou')), 0), 1) AS pct_aderencia_partido
+FROM voto_detalhado
+GROUP BY sigla_partido, id_deputado, nome_deputado, ideologia
+ORDER BY sigla_partido, nome_deputado;
+
+-- =======================================================================
+-- Q9.3 - Voto de cada deputado por proposicao (Detalhe para Auditoria)
+-- =======================================================================
+\o /respostas/q9_vies_deputado_detalhe.csv
+\pset format csv
 
 WITH voto_detalhado AS (
     SELECT

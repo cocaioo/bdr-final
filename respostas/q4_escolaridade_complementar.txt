@@ -1,643 +1,644 @@
-      escolaridade       | id_deputado |                         nome                        
+      escolaridade       | id_deputado |                        nome                         
 -------------------------+-------------+-----------------------------------------------------
- Doutorado              |      204528 | ADRIANA MIGUEL VENTURA                              
- Doutorado              |      204503 | ALEXANDRE ROCHA SANTOS PADILHA                      
- Doutorado              |      220632 | ANA CRISTINA DE LIMA PIMENTEL                       
- Doutorado              |      229106 | CARLA SIMARA LUCIANA DA SILVA AYRES                 
- Doutorado              |      204486 | CARLOS MAURO BENEVIDES FILHO                        
- Doutorado              |      204496 | CELSO SABINO DE OLIVEIRA                            
- Doutorado              |      206018 | C√âLIA NUNES CORREA                                  
- Doutorado              |      220614 | DANIEL RICARDO SORANZ PINTO                         
- Doutorado              |      204473 | ELI√âSER GIR√ÉO MONTEIRO FILHO                        
- Doutorado              |      132504 | ENIO JOS√â VERRI                                     
- Doutorado              |      220648 | FERNANDO JOSE DE SOUZA MARANGONI                    
- Doutorado              |      178857 | JORGE JOSE SANTOS PEREIRA SOLLA                     
- Doutorado              |      178866 | LUIZIANNE DE OLIVEIRA LINS                          
- Doutorado              |      204512 | MARCELO EDUARDO FREITAS                             
- Doutorado              |      104552 | MARIA DO SOCORRO NERI MEDEIROS DE SOUZA             
- Doutorado              |      178997 | MOSES HAENDEL MELO RODRIGUES                        
- Doutorado              |      234310 | RICARDO MAGNUS OS√ìRIO GALV√ÉO                        
- Doutorado              |      220598 | TARCISIO MOTTA DE CARVALHO                          
- Doutorado Incompleto   |      220686 | HILDELIS SILVA DUARTE JUNIOR                        
- Doutorado Incompleto   |       98057 | LAFAYETTE LUIZ DOORGAL DE ANDRADA                   
- Doutorado Incompleto   |      220580 | MARIA GORETH DA SILVA E SOUSA                       
- Doutorado Incompleto   |      220609 | MAURICIO FONSECA RIBEIRO CARVALHO DE MORAES         
- Doutorado Incompleto   |      220606 | REIMONT LUIZ OTONI SANTA BARBARA                    
- Doutorado Incompleto   |       77003 | SERGIO AUGUSTO SANTOS RODRIGUES                     
- Doutorado Incompleto   |      160569 | WALDENOR ALVES PEREIRA FILHO                        
- Ensino Fundamental     |      220692 | ADALBERTO ROSA BARRETO                              
- Ensino Fundamental     |      204495 | AIRTON LUIZ FALEIRO                                 
- Ensino Fundamental     |      229585 | ELISANGELA DOS SANTOS ARAUJO                        
- Ensino Fundamental     |      161550 | EMIDIO ALVES MADEIRA JUNIOR                         
- Ensino Fundamental     |      160976 | FRANCISCO EVERARDO TIRIRICA OLIVEIRA SILVA          
- Ensino Fundamental     |      204387 | GILSON CARDOSO FAHUR                                
- Ensino Fundamental     |      220531 | GILVAM MAXIMO                                       
- Ensino Fundamental     |      220600 | JOSE EURIPEDES CLEMENTE                             
- Ensino Fundamental     |      220592 | JOS√â ESTEPHAN AMORIM BARBARY FILHO                  
- Ensino Fundamental     |      166402 | MAGDA MOFATTO HON                                   
- Ensino Fundamental     |      204489 | MARCOS ROBERIO RIBEIRO MONTEIRO                     
- Ensino Fundamental     |      160610 | VALMIR CARLOS DA ASSUN√á√ÉO                           
- Ensino M√©dio           |      121948 | ADRIANO ANT√îNIO AVELAR                              
- Ensino M√©dio           |      204571 | ALEX MARCO SANTANA SOUSA                            
- Ensino M√©dio           |      221148 | ALFREDO ALVES CAVALCANTE                            
- Ensino M√©dio           |      220612 | Carlos Roberto Rodrigues                            
- Ensino M√©dio           |      220571 | DANIEL VIEIRA RAMOS                                 
- Ensino M√©dio           |      160552 | DANRLEI DE DEUS HINTERHOLZ                          
- Ensino M√©dio           |      220659 | DAYANY BITTENCOURT SANTIL                           
- Ensino M√©dio           |      220671 | DILVANDA FURTADO FARO                               
- Ensino M√©dio           |      141421 | EDUARDO HENRIQUE DA FONTE DE ALBUQUERQUE SILVA      
- Ensino M√©dio           |      218086 | ELIANE DE SOUSA ALVES                               
- Ensino M√©dio           |      220665 | ERICA CLARISSA BORBA CORDEIRO DE MOURA              
- Ensino M√©dio           |      220585 | FRANCISCO EMERSON ASSIS DE LUCENA                   
- Ensino M√©dio           |      220681 | F√ÅBIO HENRIQUE DIAS DE MACEDO                       
- Ensino M√©dio           |      204456 | GUTEMBERG REIS DE OLIVEIRA                          
- Ensino M√©dio           |      220563 | ICARO BARBOSA COSTA                                 
- Ensino M√©dio           |      220567 | JEFERSON RODRIGUES LEMOS                            
- Ensino M√©dio           |      178970 | JOAO SOMARIVA DANIEL                                
- Ensino M√©dio           |      227660 | JOSENITO VITALE DE JESUS                            
- Ensino M√©dio           |      215043 | JOSIVALDO DOS SANTOS MELO                           
- Ensino M√©dio           |      204476 | JO√ÉO FRANCISCO IN√ÅCIO BRAZ√ÉO                        
- Ensino M√©dio           |      219585 | MARCO AURELIO RIBEIRO                               
- Ensino M√©dio           |      220558 | MARCOS ANTONIO PEREIRA GOMES                        
- Ensino M√©dio           |      220655 | MARIO LUIS FRIAS                                    
- Ensino M√©dio           |      228042 | NAUMI GOMES DE AMORIM                               
- Ensino M√©dio           |      204449 | NELSON NED PREVIDENTE                               
- Ensino M√©dio           |      141518 | PAULO PEREIRA DA SILVA                              
- Ensino M√©dio           |      220694 | RICARDO MAIA CHAVES DE SOUZA                        
- Ensino M√©dio           |      204457 | ROGERIO TEIXEIRA JUNIOR                             
- Ensino M√©dio Incompleto|      220702 | GERALDO GABRIEL MENDES                              
- Ensino M√©dio Incompleto|      204474 | JUAREZ ALVES DA COSTA                               
- Mestrado               |      160508 | AFONSO BANDEIRA FLORENCE                            
- Mestrado               |      204390 | ALCIDES RIBEIRO FILHO                               
- Mestrado               |      204533 | ANTONIO IDILVAN DE LIMA ALENCAR                     
- Mestrado               |      160600 | ARTHUR DE OLIVEIRA MAIA DA SILVA                    
- Mestrado               |      210989 | BRUNO SOUZA FARIAS                                  
- Mestrado               |      204369 | CAROLINE RODRIGUES DE TONI                          
- Mestrado               |       74467 | DAMI√ÉO FELICIANO DA SILVA                           
- Mestrado               |      220629 | DANDARA TONANTZIN SILVA CASTRO                      
- Mestrado               |      220705 | DELTAN MARTINAZZO DALLAGNOL                         
- Mestrado               |      143632 | DOMINGOS GOMES DE AGUIAR NETO                       
- Mestrado               |      220611 | EDUARDO PAZUELLO                                    
- Mestrado               |      220610 | FERNANDO RODRIGUES M√ÅXIMO                           
- Mestrado               |       74171 | FRANCISCO RODRIGUES DE ALENCAR FILHO                
- Mestrado               |      220529 | GILSON DANIEL BATISTA                               
- Mestrado               |      220639 | GUILHERME CASTRO BOULOS                             
- Mestrado               |      220625 | IONE MARIA MOREIRA DIAS BARBOSA                     
- Mestrado               |      178829 | JOSE AUGUSTO ROSA                                   
- Mestrado               |      141464 | JOS√â AIRTON F√âLIX CIRILO DA SILVA                   
- Mestrado               |      122195 | LEONARDO DE MELO GADELHA                            
- Mestrado               |      220552 | LUCIANO LORENZINI ZUCCO                             
- Mestrado               |      204410 | LUISA CANZIANI DOS SANTOS SILVEIRA                  
- Mestrado               |      141488 | LUIZ PAULO TEIXEIRA FERREIRA                        
- Mestrado               |      204526 | LUIZ PHILIPPE DE ORLEANS BRAGAN√áA                   
- Mestrado               |       74784 | LUIZA ERUNDINA DE SOUSA                             
- Mestrado               |      156190 | MARCEL VAN HATTEM                                   
- Mestrado               |      160161 | MARCELO ANDRE CID HERACLITO DO PORTO QUEIROZ        
- Mestrado               |      204433 | MARCELO CALERO FARIA GARCIA                         
- Mestrado               |      204514 | MARCIO TADEU ANHAIA DE LEMOS                        
- Mestrado               |      204522 | MARCO AURELIO BERTAIOLLI                            
- Mestrado               |       74398 | MARIA DO ROS√ÅRIO NUNES                              
- Mestrado               |      188097 | MERLONG SOLANO NOGUEIRA                             
- Mestrado               |      171786 | MIGUEL √ÇNGELO MONTEIRO ANDRADE                      
- Mestrado               |      220530 | Manoel Messias Donato Bezerra                       
- Mestrado               |      204453 | NAT√ÅLIA BASTOS BONAVIDES                            
- Mestrado               |       74160 | PATRUS ANANIAS DE SOUZA                             
- Mestrado               |      141516 | PAULO ABI-ACKEL                                     
- Mestrado               |      204395 | PEDRO DEBONI LUPION MELLO                           
- Mestrado               |      220630 | PEDRO DOSHIKAZU PIANCHAO AIHARA                     
- Mestrado               |      160604 | PEDRO FRANCISCO UCZAI                               
- Mestrado               |      122158 | PEDRO PAULO CARVALHO TEIXEIRA                       
- Mestrado               |      141531 | RODRIGO BATISTA DE CASTRO                           
- Mestrado               |      160629 | ROMERO RODRIGUES VEIGA                              
- Mestrado               |      178945 | ROSANGELA DE SOUZA GOMES                            
- Mestrado               |      220579 | SILVIA NOBRE LOPES                                  
- Mestrado               |      141555 | VINICIUS RAPOZO DE CARVALHO                         
- Mestrado Incompleto    |      220715 | AMOM MANDEL LINS FILHO                              
- Mestrado Incompleto    |      220615 | HENRIQUE DOS SANTOS VIEIRA LIMA                     
- Mestrado Incompleto    |      220670 | IZA PAULA DE DEUS E MELLO ALBUQUERQUE ARRUDA        
- Mestrado Incompleto    |      220543 | RICARDO AYRES DE CARVALHO                           
- Mestrado Incompleto    |      204464 | TALIRIA PETRONE SOARES                              
- Nao informado          |      220619 | ALEXANDRE RAMAGEM RODRIGUES                         
- Nao informado          |      234840 | CRISTIANO BEVILACQUA FURLAN                         
- Nao informado          |      229225 | DA√çZE MICHELE DE AGUIAR GON√áALVES COLLINS           
- Nao informado          |      227433 | DOUGLAS DE PAULO VIEGAS                             
- Nao informado          |      227800 | DUARTE EUST√ÅQUIO GON√áALVES JUNIOR                   
- Nao informado          |      234388 | FABIANO LOPES FERREIRA CAZECA                       
- Nao informado          |      227401 | FABIO GON√áALVES DE RUEDA                            
- Nao informado          |      227370 | FELIPE MAUR√çCIO SALIBA DE SOUZA                     
- Nao informado          |      227991 | FLAVIO CAMPOS FERREIRA                              
- Nao informado          |      220700 | FLORENTINO ALVES VERAS NETO                         
- Nao informado          |      229333 | GL√ÅUCIA MARIA SANTIAGO RODRIGUES                    
- Nao informado          |      235712 | HEBER GOMES NEIVA                                   
- Nao informado          |      225846 | ITAMAR PAIM PRUCH                                   
- Nao informado          |      235800 | JORGE SILVA DE ARA√öJO                               
- Nao informado          |      220577 | JOS√â AUGUSTO PUPPIO REIS J√öNIOR                     
- Nao informado          |      235869 | JO√ÉO CARLOS DOS SANTOS MELLO                        
- Nao informado          |      228837 | JULIANA ROSA DE SOUZA KOLANKIEWICZ                  
- Nao informado          |      228797 | J√öLIO DA SILVA OLIVEIRA                             
- Nao informado          |      229082 | KARLA LUCYANA SOARES CANTO COSTA                    
- Nao informado          |      208297 | KATIA REGINA OLIVEIRA DIAS                          
- Nao informado          |      171139 | LORENY MAYARA CAETANO ROBERTO                       
- Nao informado          |      227323 | LUCIANO RODRIGUES SEIDEL                            
- Nao informado          |      229939 | NEWTON BONIN                                        
- Nao informado          |      222565 | NOELIO DA ROCHA OLIVEIRA                            
- Nao informado          |      100689 | OSMARILDO ALVES DE SOUSA                            
- Nao informado          |      220667 | PEDRO HENRIQUE DE A. L. C. CAMPOS                   
- Nao informado          |      229112 | PEDRO SOUZA CATINGUEIRO JUNIOR                      
- Nao informado          |      229259 | PEDRO TOURINHO DE SIQUEIRA                          
- Nao informado          |      233594 | RAFAEL BENTO PEREIRA                                
- Nao informado          |      228616 | REMY ALVES SOARES FILHO                             
- Nao informado          |      175765 | RIBAMAR ANTONIO DA SILVA                            
- Nao informado          |      233218 | RONDINELLE PEREIRA DE FREITAS                       
- Nao informado          |      233598 | SAMUEL JOSE DOS SANTOS                              
- Nao informado          |      227310 | SILVIO ANTONIO GUIMARAES MACHADO                    
- Nao informado          |      220539 | ST√âLIO DENER DE SOUZA CRUZ                          
- Nao informado          |      227275 | TACILLA MARIANA CARVALHO SILVA                      
- Nao informado          |      230177 | TADEU MAGELA DE OLIVEIRA                            
- Nao informado          |      223398 | ULISSES SUAID PORTO GUIMAR√ÉES BORGES                
- Nao informado          |      220590 | ULYSSES FREITAS PEREIRA DE ARA√öJO                   
- Nao informado          |      234673 | VALDERLAN ALVES DE SOUZA                            
- Prim√°rio Incompleto    |      160535 | DIONILSO MATEUS MARCON                              
- P√≥s-Gradua√ß√£o          |      160527 | AGUINALDO VELLOSO BORGES RIBEIRO                    
- P√≥s-Gradua√ß√£o          |      204572 | ALBERTO BARROS CAVALCANTE NETO                      
- P√≥s-Gradua√ß√£o          |      220576 | ALFREDO GASPAR DE MENDON√áA NETO                     
- P√≥s-Gradua√ß√£o          |      204356 | AMARO ROCHA NASCIMENTO NETO                         
- P√≥s-Gradua√ß√£o          |      220657 | ANDR√â FERNANDES DE MOURA                            
- P√≥s-Gradua√ß√£o          |      133439 | ANDR√â PEIXOTO FIGUEIREDO LIMA                       
- P√≥s-Gradua√ß√£o          |      220638 | ANTONIO CARLOS RODRIGUES                            
- P√≥s-Gradua√ß√£o          |      220549 | ANY MACHADO ORTIZ                                   
- P√≥s-Gradua√ß√£o          |       73433 | ARLINDO CHIGNALIA JUNIOR                            
- P√≥s-Gradua√ß√£o          |      220642 | BRUNO MARCELLO DE OLIVEIRA LIMA                     
- P√≥s-Gradua√ß√£o          |      204507 | CARLA ZAMBELLI SALGADO DE OLIVEIRA                  
- P√≥s-Gradua√ß√£o          |      220649 | CARLOS ALBERTO DA CUNHA                             
- P√≥s-Gradua√ß√£o          |      220698 | CARLOS ALBERTO GEBRIM PRETO                         
- P√≥s-Gradua√ß√£o          |      178993 | CARLOS HENRIQUE AMORIM                              
- P√≥s-Gradua√ß√£o          |      220582 | DANIEL BARBOSA DE ALMEIDA SILVA                     
- P√≥s-Gradua√ß√£o          |      204459 | DANIELA MOTE DE SOUZA CARNEIRO                      
- P√≥s-Gradua√ß√£o          |      220603 | DANIELLE DYTZ DA CUNHA                              
- P√≥s-Gradua√ß√£o          |      204511 | DAVID BEZERRA RIBEIRO SOARES                        
- P√≥s-Gradua√ß√£o          |      160588 | DIEGO LEONARDO DE ANDRADE CARVALHO                  
- P√≥s-Gradua√ß√£o          |      220602 | DIMAS DE PAIVA GADELHA JUNIOR                       
- P√≥s-Gradua√ß√£o          |      160758 | DOMINGOS S√ÅVIO CAMPOS RESENDE                       
- P√≥s-Gradua√ß√£o          |       74075 | ELCIONE THEREZINHA ZAHLUTH BARBALHO                 
- P√≥s-Gradua√ß√£o          |      178854 | ELMAR JOSE VIEIRA NASCIMENTO                        
- P√≥s-Gradua√ß√£o          |      160538 | ELVINO JOS√â BOHN GASS                               
- P√≥s-Gradua√ß√£o          |      160640 | EROS FERREIRA BIONDINI                              
- P√≥s-Gradua√ß√£o          |      178871 | EVAIR VIEIRA DE MELO                                
- P√≥s-Gradua√ß√£o          |      220583 | FABIO MICHEY COSTA DA SILVA                         
- P√≥s-Gradua√ß√£o          |      178905 | FABIO PAULINO GARCIA                                
- P√≥s-Gradua√ß√£o          |      220688 | FRANCISCO DE ASSIS DE OLIVEIRA COSTA                
- P√≥s-Gradua√ß√£o          |      220708 | GABRIEL JOSE MOURA NUNES SOARES                     
- P√≥s-Gradua√ß√£o          |      204491 | GILBERTO APARECIDO ABRAMO                           
- P√≥s-Gradua√ß√£o          |      204365 | GILSON MARQUES VIEIRA                               
- P√≥s-Gradua√ß√£o          |      160673 | GIOVANI CHERINI                                     
- P√≥s-Gradua√ß√£o          |      107283 | GLEISI HELENA HOFFMANN                              
- P√≥s-Gradua√ß√£o          |      204531 | GUILHERME MURARO DERRITE                            
- P√≥s-Gradua√ß√£o          |      178966 | Geov√¢nia de S√°                                      
- P√≥s-Gradua√ß√£o          |      178873 | HELDER IGNACIO SALOMAO                              
- P√≥s-Gradua√ß√£o          |      178884 | HILDO AUGUSTO DA ROCHA NETO                         
- P√≥s-Gradua√ß√£o          |      220570 | ISMAEL ALEXANDRINO JUNIOR                           
- P√≥s-Gradua√ß√£o          |       74848 | JANDIRA FEGHALI                                     
- P√≥s-Gradua√ß√£o          |       69871 | JOAO CARLOS BACELAR BATISTA                         
- P√≥s-Gradua√ß√£o          |      230768 | JOSE ADRIANO RIBEIRO DA SILVA                       
- P√≥s-Gradua√ß√£o          |      204472 | JOSE ANTONIO DOS SANTOS MEDEIROS                    
- P√≥s-Gradua√ß√£o          |      220560 | JOSE THIAGO ALVES DE CARVALHO                       
- P√≥s-Gradua√ß√£o          |      220578 | JOSENILDO SANTOS ABRANTES                           
- P√≥s-Gradua√ß√£o          |       74141 | JOSIAS GOMES DA SILVA                               
- P√≥s-Gradua√ß√£o          |       74554 | JOS√â ALVES ROCHA                                    
- P√≥s-Gradua√ß√£o          |      204559 | JOS√â CERQUEIRA DE SANTANA NETO                      
- P√≥s-Gradua√ß√£o          |      220618 | JOS√â PORTUGAL NETO                                  
- P√≥s-Gradua√ß√£o          |      160632 | JOS√â SILVA SOARES                                   
- P√≥s-Gradua√ß√£o          |      141458 | JO√ÉO CARLOS PAOLILO BACELAR FILHO                   
- P√≥s-Gradua√ß√£o          |      220561 | KATARINA FEITOZA LIMA SANTANA                       
- P√≥s-Gradua√ß√£o          |       80815 | LEONARDO SILVA PRATES                               
- P√≥s-Gradua√ß√£o          |      178954 | LUCIO ANTONIO MOSQUINI                              
- P√≥s-Gradua√ß√£o          |      204376 | LUIZ ARMANDO SCHROEDER REIS                         
- P√≥s-Gradua√ß√£o          |      220687 | MARCIO JOSE HONAISER                                
- P√≥s-Gradua√ß√£o          |      204506 | MARCOS ANTONIO PEREIRA                              
- P√≥s-Gradua√ß√£o          |      220604 | MARCOS PAULO BARBOSA TAVARES                        
- P√≥s-Gradua√ß√£o          |      204540 | MARIA DO PARTO MENDES ROSAS                         
- P√≥s-Gradua√ß√£o          |      129618 | MARIA GORETE PEREIRA                                
- P√≥s-Gradua√ß√£o          |      220537 | MARIA HELENA TEIXEIRA LIMA                          
- P√≥s-Gradua√ß√£o          |      220668 | MARIA LEAL ARRAES DE ALENCAR                        
- P√≥s-Gradua√ß√£o          |      220701 | MATHEUS ARAUJO LAIOLA                               
- P√≥s-Gradua√ß√£o          |      178895 | MISAEL ARTUR FERREIRA VARELLA                       
- P√≥s-Gradua√ß√£o          |      178896 | NEWTON CARDOSO JUNIOR                               
- P√≥s-Gradua√ß√£o          |       73692 | OSMAR GASPARINI TERRA                               
- P√≥s-Gradua√ß√£o          |      204573 | OTTO ROBERTO MENDON√áA DE ALENCAR FILHO              
- P√≥s-Gradua√ß√£o          |      222142 | PAULO ADRIANO LOPES LUCINDA TELHADA                 
- P√≥s-Gradua√ß√£o          |      171617 | PAULO FERNANDO DOS SANTOS                           
- P√≥s-Gradua√ß√£o          |      220654 | PAULO FRANCISCO MUNIZ BILYNSKYJ                     
- P√≥s-Gradua√ß√£o          |      220685 | PAULO HENRIQUE COLETTI FERNANDES                    
- P√≥s-Gradua√ß√£o          |      220586 | RAFAEL DE GOES BRITO                                
- P√≥s-Gradua√ß√£o          |      204362 | RICARDO ZANATTA GUIDI                               
- P√≥s-Gradua√ß√£o          |      220588 | ROBERTO DUARTE JUNIOR                               
- P√≥s-Gradua√ß√£o          |      220644 | ROSANGELA MARIA WOLFF DE QUADROS MORO               
- P√≥s-Gradua√ß√£o          |      220533 | Reginaldo Veras Coelho                              
- P√≥s-Gradua√ß√£o          |      220631 | SAMUEL JOS√â RODRIGUES DE VIANA                      
- P√≥s-Gradua√ß√£o          |      178933 | SERGIO DE SOUZA                                     
- P√≥s-Gradua√ß√£o          |      220597 | THIAGO LEITE FLORES PEREIRA                         
- P√≥s-Gradua√ß√£o          |      204416 | UBIRATAN ANTUNES SANDERSON                          
- P√≥s-Gradua√ß√£o          |       74283 | VICENTE PAULO DA SILVA                              
- P√≥s-Gradua√ß√£o          |      220528 | VICTOR GAROZI LINHALIS                              
- P√≥s-Gradua√ß√£o          |      160518 | WELITON FERNANDES PRADO                             
- Secund√°rio             |       74550 | JO√ÉO FELIPE DE SOUZA LE√ÉO                           
- Secund√°rio             |      141480 | L√ÅZARO BOTELHO MARTINS                              
- Secund√°rio Incompleto  |      230762 | CLAUDIO MARIANO SILVA                               
- Superior               |      220593 | ABILIO JACQUES BRUNINI MOUMER                       
- Superior               |      204379 | AC√ÅCIO DA SILVA FAVACHO NETO                        
- Superior               |      221328 | ADILSON BARROSO OLIVEIRA                            
- Superior               |      204560 | ADOLFO VIANA DE CASTRO NETO                         
- Superior               |      220565 | ADRIANA SAUTHIER ACCORSI                            
- Superior               |      178835 | AFONSO ANTUNES DA MOTTA                             
- Superior               |      235088 | AIRES DO ESPIRITO SANTO RIBEIRO NETO                
- Superior               |       74696 | ALBERTO PEREIRA MOUR√ÉO                              
- Superior               |      220690 | ALDEN JOSE LAZARO DA SILVA                          
- Superior               |      204501 | ALENCAR SANTANA BRAGA                               
- Superior               |      220674 | ALESSANDRA HABER CARVALHO SANTOS                    
- Superior               |      178972 | ALEX SPINELLI MANENTE                               
- Superior               |      220554 | ALEXANDRE DUARTE LINDENMEYER                        
- Superior               |      160545 | ALEXANDRE LEITE DA SILVA                            
- Superior               |       74057 | ALICE MAZZUCO PORTUGAL                              
- Superior               |      204353 | ALINE PARANHOS VARONIL GURGEL                       
- Superior               |      226708 | ALLAN QUADROS GARC√äS                                
- Superior               |      178937 | ALTINEU C√îRTES FREITAS COUTINHO                     
- Superior               |      178881 | ALUISIO GUIMARAES MENDES FILHO                      
- Superior               |      220707 | AMANDA KELLY GENTIL GUIMAR√ÉES ROSA                  
- Superior               |      220596 | AM√ÅLIA SCUDELER DE BARROS SANTOS                    
- Superior               |      220704 | ANA CAROLINA MOURA MELO DARTORA                     
- Superior               |      225727 | ANA FL√ÅVIA RODRIGUES RAMIRO                         
- Superior               |      225730 | ANA PAULA BRAND√ÉO DA SILVA FARIAS                   
- Superior               |      220556 | ANA PAULA DE SOUZA LIMA                             
- Superior               |      107970 | ANA PAULA PROCOPIO JUNQUEIRA                        
- Superior               |      178831 | ANDRE DOS SANTOS ABDON                              
- Superior               |      204515 | ANDRE LUIS GASPAR JANONES                           
- Superior               |      178882 | ANDRE LUIZ CARVALHO RIBEIRO                         
- Superior               |      220676 | ANDREIA BRITO GON√áALVES SIQUEIRA                    
- Superior               |      204423 | ANDR√â FERREIRA RODRIGUES                            
- Superior               |      204479 | ANTONIO CARLOS NICOLETTI                            
- Superior               |      204504 | ANTONIO CEZAR CORREIA FREIRE                        
- Superior               |      212625 | ANTONIO ELIZABETH GON√áALO DE SOUSA                  
- Superior               |      204549 | ANTONIO JOSE AGUIAR ALBUQUERQUE                     
- Superior               |      220675 | ANTONIO LEOC√ÅDIO DOS SANTOS                         
- Superior               |      160553 | ANTONIO LUIZ PARANHOS RIBEIRO LEITE DE BRITO        
- Superior               |      220544 | ANTONIO POINCARE ANDRADE FILHO                      
- Superior               |      178934 | ANTONIO WANDSCHEER                                  
- Superior               |      123756 | ANT√îNIA LUCIL√âIA CRUZ RAMOS C√ÇMARA                  
- Superior               |      204550 | ANT√îNIO LUIZ RODRIGUES MANO J√öNIOR                  
- Superior               |      204524 | ANT√îNIO PINHEIRO NETO                               
- Superior               |      141391 | ARNALDO CALIL PEREIRA JARDIM                        
- Superior               |      160541 | ARTHUR C√âSAR PEREIRA DE LIRA                        
- Superior               |      160665 | AUGUSTO RODRIGUES COUTINHO DE MELO                  
- Superior               |       74646 | A√âCIO NEVES DA CUNHA                                
- Superior               |      204374 | BEATRIZ KICIS TORRENTS DE SORDI                     
- Superior               |       73701 | BENEDITA SOUZA DA SILVA SAMPAIO                     
- Superior               |      221339 | BENJAMIM DE OLIVEIRA                                
- Superior               |      220635 | BRUNO AREVALO GANEM                                 
- Superior               |      143942 | CAIO SANTOS VIANNA                                  
- Superior               |      220548 | CAMILA BAZACHI JARA MARZOCHI                        
- Superior               |      204361 | CARLOS ALBERTO CHIODINI                             
- Superior               |      220683 | CARLOS ALBERTO RICHA                                
- Superior               |      141398 | CARLOS ALBERTO ROLIM ZARATTINI                      
- Superior               |       74262 | CARLOS HENRIQUE FOCESI SAMPAIO                      
- Superior               |      164360 | CARMEN EM√çLIA BONF√Å ZANOTTO                         
- Superior               |      178876 | CELIO ANTONIO DA SILVEIRA                           
- Superior               |      204488 | CELIO STUDART BARBOSA                               
- Superior               |       73441 | CELSO UBIRAJARA RUSSOMANNO                          
- Superior               |      205476 | CHARLES FERNANDES SILVEIRA SANTANA                  
- Superior               |      204462 | CHRISTINE NOGUEIRA DOS REIS TONIETTO                
- Superior               |      141408 | CLEBER VERDE CORDEIRO MENDES                        
- Superior               |       88256 | CLODOALDO MAGALH√ÉES OLIVEIRA LYRA                   
- Superior               |       74537 | CL√ÅUDIO CAJADO SAMPAIO                              
- Superior               |      220608 | CRISTIANE LOPES DA LUZ                              
- Superior               |      204460 | Carlos Roberto Jordy Coelho de Mattos               
- Superior               |      220584 | C√ÅSSIO MURILO GALDINO DE ARA√öJO                     
- Superior               |      141411 | DAGOBERTO NOGUEIRA FILHO                            
- Superior               |      220555 | DAIANA SILVA DOS SANTOS                             
- Superior               |      204367 | DANIEL COSTA DE FREITAS                             
- Superior               |       74060 | DANIEL GOMES DE ALMEIDA                             
- Superior               |      228941 | DANIEL JOS√â DA SILVA OLIVEIRA                       
- Superior               |      204409 | DANIEL TRZECIAK DUARTE                              
- Superior               |      220557 | DANIELA CRISTINA REINEHR                            
- Superior               |      116379 | DARCI DE MATOS                                      
- Superior               |       73486 | DARCI POMPEO DE MATTOS                              
- Superior               |      220534 | DAVYS FREDERICO TEIXEIRA LINHARES                   
- Superior               |      228272 | DELIO PINHEIRO NETO                                 
- Superior               |      220553 | DENISE DA SILVA PESS√îA                              
- Superior               |      178929 | DIEGO ALEXSANDER GONCALO PAULA GARCIA               
- Superior               |      220691 | DIEGO HENRIQUE SILVA CERQUEIRA MARTINS              
- Superior               |       73768 | DILCEU JO√ÉO SPERAFICO                               
- Superior               |      160599 | DIMAS FABIANO TOLEDO J√öNIOR                         
- Superior               |      220573 | DORINALDO BARBOSA MALAFAIA                          
- Superior               |      220540 | DUDA BRITO RAMOS                                    
- Superior               |      220623 | DUDA SALABERT ROSA                                  
- Superior               |      178908 | EDER MAURO CARDOSO BARRA                            
- Superior               |      220605 | EDUARDO CARVALHO BANDEIRA DE MELLO                  
- Superior               |      204541 | EDUARDO HENRIQUE MAIA BISMARCK                      
- Superior               |       92346 | EDUARDO NANTES BOLSONARO                            
- Superior               |      220589 | EDUARDO OV√çDIO BORGES DE VELLOSO VIANNA             
- Superior               |      204364 | ELI DIAS BORGES                                     
- Superior               |      220008 | ELIZA VIRGINIA DE SOUZA FERNANDES                   
- Superior               |      234406 | ELMANO F√âRRER DE ALMEIDA                            
- Superior               |      224333 | ELTON CARLOS WELTER                                 
- Superior               |      198783 | EMANUEL PINHEIRO DA SILVA PRIMO                     
- Superior               |      220645 | ERIKA SANTOS SILVA                                  
- Superior               |      204482 | EUCLYDES MARCOS PETTERSEN NETO                      
- Superior               |       74454 | EUN√çCIO LOPES DE OLIVEIRA                           
- Superior               |      220621 | EVANDRO GON√áALVES DA SILVA J√öNIOR                   
- Superior               |       68720 | FABIO HENRIQUE SANTANA DE CARVALHO                  
- Superior               |       66828 | FAUSTO RUY PINATO                                   
- Superior               |      220712 | FAUSTO VIEIRA DOS SANTOS JUNIOR                     
- Superior               |      220646 | FELIPE BECARI COMENALE                              
- Superior               |      160666 | FELIX DE ALMEIDA MENDON√áA J√öNIOR                    
- Superior               |      220656 | FERNANDA ENEIDA PESSOA CARACAS DE SOUZA             
- Superior               |      204407 | FERNANDA MELCHIONNA E SILVA                         
- Superior               |      141431 | FERNANDO BEZERRA DE SOUZA COELHO FILHO              
- Superior               |       74383 | FERNANDO L√öCIO GIACOBO                              
- Superior               |       92699 | FERNANDO MONTEIRO DE ALBUQUERQUE                    
- Superior               |      204427 | FERNANDO RODOLFO TENORIO DE VASCONCELOS             
- Superior               |      204445 | FERNANDO WANDERLEY VARGAS DA SILVA                  
- Superior               |      204411 | FILIPE BARROS BAPTISTA DE TOLEDO RIBEIRO            
- Superior               |      220545 | FILIPE MARTINS DOS SANTOS                           
- Superior               |      160598 | FL√ÅVIA CARREIRO ALBUQUERQUE MORAIS                  
- Superior               |      191923 | FL√ÅVIO RODRIGUES NOGUEIRA                           
- Superior               |      220551 | FRANCIANE ABADE BAYER MULLER                        
- Superior               |      226553 | FRANCISCA ELIANE BRAZ DE CARVALHO                   
- Superior               |      162067 | FRANCISCO DANIEL CELEGUIM DE MORAIS                 
- Superior               |       62881 | FRANCISCO DANILO BASTOS FORTE                       
- Superior               |      204518 | FREDERICO DE CASTRO ESCALEIRA                       
- Superior               |      204368 | F√ÅBIO LUIZ SCHIOCHET FILHO                          
- Superior               |       74065 | F√ÅTIMA L√öCIA PELAES                                 
- Superior               |      220653 | F√°bio Eduardo de Oliveira Teruel                    
- Superior               |      224117 | GABRIEL MOTA E SILVA                                
- Superior               |      220587 | GEHLEN DINIZ ANDRADE                                
- Superior               |      204520 | GERALDO JUNIO DO AMARAL                             
- Superior               |       74374 | GERALDO RESENDE PEREIRA                             
- Superior               |      204394 | GERV√ÅSIO AGRIPINO MAIA                              
- Superior               |      220574 | GILBERTO GOMES DA SILVA                             
- Superior               |       74270 | GILBERTO NASCIMENTO SILVA                           
- Superior               |      204570 | GILDENEMIR DE LIMA SOUSA                            
- Superior               |      220526 | GILVAN AGUIAR COSTA                                 
- Superior               |      226179 | GISELA SIMONA VIANA DE SOUZA                        
- Superior               |      152605 | GLAUBER DE MEDEIROS BRAGA                           
- Superior               |      204419 | GLAUSKSTON BATISTA RIOS                             
- Superior               |      198197 | GREYCE DE QUEIROZ ELIAS                             
- Superior               |      220664 | GUILHERME A. UCHOA CAVALCANTI PESSOA DE MELO JUNIOR 
- Superior               |      220568 | GUSTAVO GAYER MACHADO DE ARAUJO                     
- Superior               |      204444 | HELIO FERNANDO BARBOSA LOPES                        
- Superior               |      178909 | HELIO LEITE DA SILVA                                
- Superior               |      234788 | HELO√çSA HELENA LIMA DE MORAES CARVALHO              
- Superior               |      213762 | HILKEA CARLA DE SOUZA MEDEIROS LIMA                 
- Superior               |      141450 | HUGO LEAL MELO DA SILVA                             
- Superior               |      160674 | HUGO MOTTA WANDERLEY DA N√ìBREGA                     
- Superior               |      204358 | HUMBERTO REZENDE PEREIRA                            
- Superior               |      235620 | ILACIR BICALHO DE BARROS                            
- Superior               |       98615 | ISMAEL DOS SANTOS                                   
- Superior               |      204436 | ISNALDO BULHOES BARROS JUNIOR                       
- Superior               |       73531 | IVAN VALENTE                                        
- Superior               |      220696 | IVONEIDE SOUZA CAETANO                              
- Superior               |      204481 | JAZIEL PEREIRA DE SOUSA                             
- Superior               |       74273 | JEFFERSON ALVES DE CAMPOS                           
- Superior               |      141456 | JILMAR AUGUSTINHO TATTO                             
- Superior               |      178910 | JOAQUIM PASSARINHO PINTO DE SOUZA PORTO             
- Superior               |      160531 | JOHNATHAN PEREIRA DE JESUS                          
- Superior               |      217480 | JONES BARBOSA DE MOURA                              
- Superior               |      220594 | JONILDO JOS√â DE ASSIS                               
- Superior               |      205550 | JORGE BRAZ DE OLIVEIRA                              
- Superior               |      214694 | JORGE GOETTEN DE LIMA                               
- Superior               |      178886 | JOSE JUSCELINO DOS SANTOS REZENDE FILHO             
- Superior               |      204574 | JOSE LOUREN√áO BOMFIM JUNIOR                         
- Superior               |      204517 | JOSE VITOR DE RESENDE AGUIAR                        
- Superior               |      209189 | JOSEILDO RIBEIRO RAMOS                              
- Superior               |      204355 | JOSIAS MARIO DA VITORIA                             
- Superior               |      204563 | JOSIMAR CUNHA RODRIGUES                             
- Superior               |      220542 | JOS√â ALEXANDRE DOMINGUES GUIMAR√ÉES                  
- Superior               |      136811 | JOS√â ALFONSO EBERT HAMM                             
- Superior               |       74079 | JOS√â BENITO PRIANTE J√öNIOR                          
- Superior               |      160592 | JOS√â CARLOS BECKER DE OLIVEIRA E SILVA              
- Superior               |      204426 | JOS√â CARLOS VERAS DOS SANTOS                        
- Superior               |      220699 | JOS√â DIAS DE CASTRO NETO                            
- Superior               |      220663 | JOS√â ERIBERTO MEDEIROS DE OLIVEIRA                  
- Superior               |      220538 | JOS√â FRANCISCO LOPES DE ALBUQUERQUE                 
- Superior               |      220536 | JOS√â HAROLDO FIGUEIREDO CAMPOS                      
- Superior               |       74156 | JOS√â LEONARDO COSTA MONTEIRO                        
- Superior               |       74299 | JOS√â LE√îNIDAS DE MENEZES CRISTINO                   
- Superior               |      204558 | JOS√â MARCELO DO NASCIMENTO NILO                     
- Superior               |       74428 | JOS√â MENDON√áA BEZERRA FILHO                         
- Superior               |      204391 | JOS√â NELTO LAGARES DAS MERCEZ                       
- Superior               |      141470 | JOS√â NOBRE GUIMAR√ÉES                                
- Superior               |      160561 | JOS√â OLIMPIO SILVEIRA MORAES                        
- Superior               |       74044 | JOS√â WILSON SANTIAGO                                
- Superior               |       73579 | JO√ÉO ALBERTO FRAGA SILVA                            
- Superior               |      160556 | JO√ÉO CARLOS SIQUEIRA                                
- Superior               |      204378 | JO√ÉO CHRIS√ìSTOMO DE MOURA                           
- Superior               |      141459 | JO√ÉO DA SILVA MAIA                                  
- Superior               |      204497 | JO√ÉO FERRARI J√öNIOR                                 
- Superior               |      220559 | JULIA PEDROSO ZANATTA                               
- Superior               |      220640 | JULIANA CARDOSO                                     
- Superior               |      204372 | JULIO CESAR RIBEIRO                                 
- Superior               |       66385 | JULIO FERRAZ ARCOVERDE                              
- Superior               |       74253 | JULIO LUIZ BAPTISTA LOPES                           
- Superior               |      230957 | Jo√£o Cury Neto                                      
- Superior               |       74317 | J√öLIO C√âSAR DE CARVALHO LIMA                        
- Superior               |      178832 | LEANDRE DAL PONTE                                   
- Superior               |      220673 | LENILDO MENDES DOS SANTOS SERT√ÉO                    
- Superior               |      231911 | LENIR CANDIDA DE ASSIS                              
- Superior               |       92102 | LEUR ANTONIO DE BRITTO LOMANTO JUNIOR               
- Superior               |       74585 | LINCOLN DINIZ PORTELA                               
- Superior               |      234253 | LUCAS ABRAHAO ROSA CEZARIO DE ALMEIDA               
- Superior               |      204404 | LUCAS BELLO REDECKER                                
- Superior               |      220662 | LUCAS CAVALCANTI RAMOS                              
- Superior               |      138286 | LUCIANO ALVES DOS SANTOS                            
- Superior               |       74478 | LUCIANO CALDAS BIVAR                                
- Superior               |      178931 | LUCIANO DUCCI                                       
- Superior               |      103758 | LUCIANO PALMA DE AZEVEDO                            
- Superior               |      220581 | LUCIANO SURUAGY DO AMARAL FILHO                     
- Superior               |      220616 | LUCIANO VIEIRA MENDES                               
- Superior               |      221338 | LUCIENE CAVALCANTE DA SILVA                         
- Superior               |      178963 | LUIS ANTONIO FRANCISCATTO COVATTI                   
- Superior               |      222429 | LUIS CARLOS GOMES DA SILVA                          
- Superior               |      204398 | LUIS FELIPE BONATTO FRANCISCHINI                    
- Superior               |      204351 | LUIZ ALBERTO OVANDO                                 
- Superior               |       74041 | LUIZ ALBUQUERQUE COUTO                              
- Superior               |      204448 | LUIZ ANTONIO C. C. CORR√äA DA SILVA                  
- Superior               |      204450 | LUIZ ANTONIO DE SOUZA TEIXEIRA J√öNIOR               
- Superior               |      204408 | LUIZ AUGUSTO CARVALHO RIBEIRO FILHO                 
- Superior               |      109429 | LUIZ BENES LEOCADIO DE ARAUJO                       
- Superior               |      141485 | LUIZ CARLOS GHIORZZI BUSATO                         
- Superior               |       73778 | LUIZ CARLOS JORGE HAULY                             
- Superior               |      204485 | LUIZ CARLOS MOTTA                                   
- Superior               |      220666 | LUIZ DE FRAN√áA E SILVA MEIRA                        
- Superior               |      204455 | LUIZ EDUARDO CARNEIRO DA SILVA DE SOUZA LIMA        
- Superior               |      178975 | LUIZ FELIPE BALEIA TENUTO ROSSI                     
- Superior               |      229432 | LUIZ FERNANDO CARDOSO                               
- Superior               |      141487 | LUIZ FERNANDO RAMOS FARIA                           
- Superior               |      220658 | LUIZ GAST√ÉO BITTENCOURT DA SILVA                    
- Superior               |      162332 | LUIZ HILOSHI NISHIMORI                              
- Superior               |      220636 | LUIZ MARINHO                                        
- Superior               |      139285 | L√çDICE DA MATA E SOUZA                              
- Superior               |      220566 | L√™da Borges de Moura                                
- Superior               |      220647 | MANOEL MAURICIO SILVA NEVES                         
- Superior               |      220599 | MARCELO BEZERRA CRIVELLA                            
- Superior               |      220634 | MARCELO DE LIMA FERNANDES                           
- Superior               |      179001 | MARCIO DELLA VALLE BIOLCHI                          
- Superior               |      178983 | MARCIO LUIZ ALVINO DE SOUZA                         
- Superior               |      160641 | MARCIVANIA DO SOCORRO DA ROCHA FLEXA                
- Superior               |      160601 | MARCO ANT√îNIO FELICIANO                             
- Superior               |      204431 | MARCOS AUR√âLIO P√ÅDUA RIBEIRO GON√áALVES DE SAMPAIO   
- Superior               |      178943 | MARCOS BEZERRA RIBEIRO SOARES                       
- Superior               |      220547 | MARCOS SBOROWSKI POLLON                             
- Superior               |      220689 | MARIA DEUSDETE LIMA CUNHA RODRIGUES                 
- Superior               |       74856 | MARIA LAURA MONTEZA DE SOUZA CARNEIRO               
- Superior               |      220637 | MARIA OSMARINA MARINA DA SILVA VAZ DE LIMA          
- Superior               |      220652 | MARIO PALUMBO JUNIOR                                
- Superior               |      178858 | MARIO S. M. NEGROMONTE JR.                          
- Superior               |      220572 | MARUSSA CASSIA FAVARO BOLDRIN                       
- Superior               |      178843 | MARX BELTR√ÉO LIMA SIQUEIRA                          
- Superior               |      220550 | MAURICIO BEDIN MARCON                               
- Superior               |      230764 | MAURO IVAN F. SANTIAGO JR                           
- Superior               |      220607 | MAX RODRIGUES LEMOS                                 
- Superior               |      230088 | MAYRA ISABEL CORREIA PINHEIRO                       
- Superior               |      178985 | MIGUEL LOMBARDI                                     
- Superior               |      220617 | MURILLO GOUVEA RODRIGUES                            
- Superior               |      226410 | M√ÅRCIO AUR√âLIO CORR√äA                               
- Superior               |      150418 | M√ÅRCIO CARLOS MARINHO                               
- Superior               |       81055 | M√ÅRCIO JERRY SARAIVA BARROSO                        
- Superior               |       74158 | M√ÅRIO L√öCIO HERINGER                                
- Superior               |      204396 | NELSI COGUETTO MARIA                                
- Superior               |      220706 | NELSON FERNANDO PADOVANI                            
- Superior               |      209787 | NIKOLAS FERREIRA DE OLIVEIRA                        
- Superior               |      178986 | NILTO IGNACIO TATTO                                 
- Superior               |       74159 | ODAIR JOS√â DA CUNHA                                 
- Superior               |      204498 | OLIVAL HENRIQUE MARQUES DE SOUZA                    
- Superior               |      178987 | ORLANDO SILVA DE JESUS JUNIOR                       
- Superior               |      220703 | ORLANDO SULZ DE ALMEIDA NETO                        
- Superior               |       74095 | PAUDERNEY TOMAZ AVELINO                             
- Superior               |      220650 | PAULO ALEXANDRE PEREIRA BARBOSA                     
- Superior               |      128760 | PAULO CELSO FONSECA MARINHO J√öNIOR                  
- Superior               |      233592 | PAULO CESAR LEMOS DE OLIVEIRA                       
- Superior               |       89536 | PAULO FERNANDO MELO DA COSTA                        
- Superior               |      160517 | PAULO ROBERTO FOLLETTO                              
- Superior               |      160558 | PAULO ROBERTO FREIRE DA COSTA                       
- Superior               |       74400 | PAULO ROBERTO SEVERO PIMENTA                        
- Superior               |       74574 | PAULO S√âRGIO PARANHOS DE MAGALH√ÉES                  
- Superior               |      178860 | PAULO VELLOSO DANTAS AZI                            
- Superior               |      204406 | PEDRO BANDARRA WESTPHALEN                           
- Superior               |      122974 | PEDRO LUCAS ANDRADE FERNANDES RIBEIRO               
- Superior               |      226075 | PRISCILA BEZERRA DA COSTA                           
- Superior               |      220532 | RAFAEL CAVALCANTI PRUDENTE                          
- Superior               |      161440 | RAFAEL PEZENTI                                      
- Superior               |      220626 | RAFAEL TADEU SIM√ïES                                 
- Superior               |      180214 | RAIMUNDO DINIZ ARA√öJO                               
- Superior               |       74084 | RAIMUNDO JOS√â PEREIRA DOS SANTOS                    
- Superior               |      204567 | RAIMUNDO MAGALH√ÉES COSTA                            
- Superior               |       74161 | REGINALDO L√ÅZARO DE OLIVEIRA LOPES                  
- Superior               |      221378 | REGINETE SOUZA BISPO                                
- Superior               |      205865 | REINHOLD STEPHANES JUNIOR                           
- Superior               |      230765 | REJANE DE ALMEIDA                                   
- Superior               |      225386 | RENAN FERREIRINHA CARNEIRO                          
- Superior               |      178989 | RENATA HELLMEISTER DE ABREU                         
- Superior               |      153423 | RENILCE CONCEI√á√ÉO NICODEMOS DE ALBUQUERQUE          
- Superior               |       73801 | RENILDO VASCONCELOS CALHEIROS                       
- Superior               |      213274 | RICARDO AUGUSTO MACHADO DA SILVA                    
- Superior               |      220633 | RICARDO DE AQUINO SALLES                            
- Superior               |       73788 | RICARDO JOS√â MAGALH√ÉES BARROS                       
- Superior               |      221329 | RICARDO MARTINS DAVID                               
- Superior               |      115200 | ROBERTO RANIERY DE AQUINO PAULINO                   
- Superior               |      220624 | ROBINSON MESQUITA DE FARIA                          
- Superior               |      220546 | RODOLFO OLIVEIRA NOGUEIRA                           
- Superior               |      230767 | RODRIGO LUGLI                                       
- Superior               |      165470 | RODRIGO SANTANA VALADARES                           
- Superior               |      141533 | RODRIGO SOBRAL ROLLEMBERG                           
- Superior               |      220695 | ROG√âRIA DE ALMEIDA PEREIRA DOS SANTOS               
- Superior               |      204480 | ROG√âRIO CORREIA DE MOURA BAPTISTA                   
- Superior               |      163321 | RONALDO NOGUEIRA DE OLIVEIRA                        
- Superior               |      204525 | ROSANA DE OLIVEIRA VALLE                            
- Superior               |      220620 | ROSANGELA DE OLIVEIRA CAMPOS REIS                   
- Superior               |      220591 | ROZIMEIRE RIBEIRO ANDRADE                           
- Superior               |       74371 | RUBENS OTONI GOMIDE                                 
- Superior               |      178887 | RUBENS PEREIRA E SILVA JUNIOR                       
- Superior               |      220595 | RUBIA FERNANDA DINIZ ROBSON SANTOS DE SIQUEIRA      
- Superior               |       73604 | RUI GOETHE DA COSTA FALC√ÉO                          
- Superior               |      160635 | RUY MANUEL CARNEIRO BARBOSA DE ACA BELCHIOR         
- Superior               |      220693 | Roberta de Araujo Costa Roma                        
- Superior               |       73806 | Roseana Sarney Murad                                
- Superior               |      204535 | SAMIA DE SOUZA BOMFIM                               
- Superior               |      229069 | SAMUEL ALVES BARRETO                                
- Superior               |      160621 | SANDRO ALEX CRUZ DE OLIVEIRA                        
- Superior               |      220713 | SAULLO VELAME VIANNA                                
- Superior               |      226837 | SAULO PEDROSO DE SOUZA                              
- Superior               |      220684 | SEBASTI√ÉO HENRIQUE DE MEDEIROS                      
- Superior               |      235776 | SERGIO BERGONSI TURRA                               
- Superior               |      204557 | SIDNEY RICARDO DE OLIVEIRA LEITE                    
- Superior               |       74356 | SILAS C√ÇMARA                                        
- Superior               |      204360 | SILVIA CRISTINA AMANCIO CHAGAS                      
- Superior               |      204425 | SILVIO SERAFIM COSTA FILHO                          
- Superior               |      220569 | SILVYE ALVES DA SILVA                               
- Superior               |      220651 | SIMONE APARECIDA MARQUETO CURRALADAS                
- Superior               |      220643 | SONIA BONE DE SOUSA SILVA                           
- Superior               |      220575 | SONIZE PIMENTEL DOS SANTOS BARBOSA                  
- Superior               |      178946 | SORAYA ALENCAR DOS SANTOS                           
- Superior               |      178947 | SOSTENES SILVA CAVALCANTE                           
- Superior               |       92776 | STEFANO AGUIAR DOS SANTOS                           
- Superior               |       73808 | S√âRGIO LU√çS LACERDA BRITO                           
- Superior               |      204534 | TABATA CLAUDIA AMARAL DE PONTES                     
- Superior               |      157130 | T√öLIO GAD√äLHA SALES DE MELO                         
- Superior               |       98148 | VALDIR VITAL COBALCHINI                             
- Superior               |       74376 | VANDER LUIZ DOS SANTOS LOUBET                       
- Superior               |      160591 | VINICIUS DE AZEVEDO GURGEL                          
- Superior               |      178992 | VITOR LIPPI                                         
- Superior               |       91228 | WALDEMAR DE ANDRADA IGN√ÅCIO DE OLIVEIRA             
- Superior               |      220601 | WASHINGTON LUIZ CARDOSO SIQUEIRA                    
- Superior               |      182146 | WOLMER DE AZEVEDO ARAUJO                            
- Superior               |      220564 | YANDRA BARRETO FERREIRA                             
- Superior               |      220660 | YURY BRUNO ALENCAR ARAUJO                           
- Superior               |      204412 | ZACARIAS CALIL HAMU                                 
- Superior               |      123086 | √ÅTILA DE MELO LIRA                                  
- Superior               |       74090 | √ÅTILA SIDNEY LINS DE ALBUQUERQUE                    
- Superior               |      160575 | √âRIKA JUC√Å KOKAY                                    
- Superior Incompleto    |      220714 | ADAIL JOS√â FIGUEIREDO PINHEIRO                      
- Superior Incompleto    |      160559 | ALCEU MOREIRA DA SILVA                              
- Superior Incompleto    |      204388 | ALCIBIO MESQUITA BIBO NUNES                         
- Superior Incompleto    |      178927 | ALIEL MACHADO BARK                                  
- Superior Incompleto    |      178962 | ANTONIO CARLOS GOMES DA SILVA                       
- Superior Incompleto    |      204566 | ANTONIO DA CRUZ FILGUEIRA NETO                      
- Superior Incompleto    |      220682 | ANTONIO TADEU VENERI                                
- Superior Incompleto    |      160512 | AUREO LIDIO MOREIRA RIBEIRO                         
- Superior Incompleto    |      171623 | FABIO DE ALMEIDA REIS                               
- Superior Incompleto    |       72442 | FELIPE AUGUSTO LYRA CARRERAS                        
- Superior Incompleto    |      160642 | FRANCISCO EURICO DA SILVA                           
- Superior Incompleto    |      204494 | FREDERICO BORGES DA COSTA                           
- Superior Incompleto    |      178964 | HEITOR JOSE SCHUCH                                  
- Superior Incompleto    |      220672 | HENDERSON LIRA PINTO                                
- Superior Incompleto    |      227324 | HENRIQUE CESAR FERREIRA DE MELO LIMA JUNIOR         
- Superior Incompleto    |      204539 | HERC√çLIO ARA√öJO DINIZ FILHO                         
- Superior Incompleto    |      204508 | IGOR TARCIANO TIMO                                  
- Superior Incompleto    |       74295 | IN√ÅCIO FRANCISCO DE ASSIS NUNES ARRUDA              
- Superior Incompleto    |      220527 | JACKELINE OLIVEIRA ROCHA                            
- Superior Incompleto    |      220697 | JADYEL SILVA ALENCAR                                
- Superior Incompleto    |      160548 | JONAS DONIZETTE FERREIRA                            
- Superior Incompleto    |       74043 | JOS√â WELLINGTON ROBERTO                             
- Superior Incompleto    |       74052 | JO√ÉO BOSCO DA COSTA                                 
- Superior Incompleto    |      220677 | KENISTON DE JESUS REGO BRAGA                        
- Superior Incompleto    |      204536 | KIM PATROCA KATAGUIRI                               
- Superior Incompleto    |      160510 | LUIS HENRIQUE DE OLIVEIRA RESENDE                   
- Superior Incompleto    |      220669 | LUIZ EDUARDO DE QUEIROZ CAMPOS DA FONTE ALBUQUERQUE 
- Superior Incompleto    |       74858 | LUIZ LINDBERGH FARIAS FILHO                         
- Superior Incompleto    |      204553 | MANOEL ISIDORIO DE SANTANA JUNIOR                   
- Superior Incompleto    |      179000 | MARCELO HENRIQUE TEIXEIRA DIAS                      
- Superior Incompleto    |      133810 | MARCELO PIRES MORAES                                
- Superior Incompleto    |      220661 | MATHEUS SOARES NORONHA                              
- Superior Incompleto    |      220628 | MAURICIO LUIZ DE SOUZA                              
- Superior Incompleto    |      154178 | MILTON VIEIRA PINTO                                 
- Superior Incompleto    |      220622 | NELI PEREIRA DE AQUINO                              
- Superior Incompleto    |      204422 | OSSESIO JOSE DA SILVA                               
- Superior Incompleto    |      204441 | OTONI MOURA DE PAULO JUNIOR                         
- Superior Incompleto    |      220627 | PAULO EDUARDO DA COSTA FREIRE                       
- Superior Incompleto    |      204492 | PAULO JOSE CARLOS GUEDES                            
- Superior Incompleto    |      220613 | ROBERTO LUIZ RODRIGUES DE OLIVEIRA                  
- Superior Incompleto    |      220641 | RODRIGO GAMBALE VIEIRA                              
- Superior Incompleto    |      223128 | RODRIGO TLUSTIK VENEK                               
- Superior Incompleto    |      143084 | Tiago Dimas Braga Pereira                           
- Superior Incompleto    |      137070 | VICENTE ALVES DE OLIVEIRA JUNIOR                    
+ Doutorado               |      204528 | ADRIANA MIGUEL VENTURA
+ Doutorado               |      204503 | ALEXANDRE ROCHA SANTOS PADILHA
+ Doutorado               |      220632 | ANA CRISTINA DE LIMA PIMENTEL
+ Doutorado               |      229106 | CARLA SIMARA LUCIANA DA SILVA AYRES
+ Doutorado               |      204486 | CARLOS MAURO BENEVIDES FILHO
+ Doutorado               |      206018 | C…LIA NUNES CORREA
+ Doutorado               |      204496 | CELSO SABINO DE OLIVEIRA
+ Doutorado               |      220614 | DANIEL RICARDO SORANZ PINTO
+ Doutorado               |      204473 | ELI…SER GIR√O MONTEIRO FILHO
+ Doutorado               |      132504 | ENIO JOS… VERRI
+ Doutorado               |      220648 | FERNANDO JOSE DE SOUZA MARANGONI
+ Doutorado               |      178857 | JORGE JOSE SANTOS PEREIRA SOLLA
+ Doutorado               |      178866 | LUIZIANNE DE OLIVEIRA LINS
+ Doutorado               |      204512 | MARCELO EDUARDO FREITAS
+ Doutorado               |      104552 | MARIA DO SOCORRO NERI MEDEIROS DE SOUZA
+ Doutorado               |      178997 | MOSES HAENDEL MELO RODRIGUES
+ Doutorado               |      234310 | RICARDO MAGNUS OS”RIO GALV√O
+ Doutorado               |      220598 | TARCISIO MOTTA DE CARVALHO
+ Doutorado Incompleto    |      220686 | HILDELIS SILVA DUARTE JUNIOR
+ Doutorado Incompleto    |       98057 | LAFAYETTE LUIZ DOORGAL DE ANDRADA
+ Doutorado Incompleto    |      220580 | MARIA GORETH DA SILVA E SOUSA
+ Doutorado Incompleto    |      220609 | MAURICIO FONSECA RIBEIRO CARVALHO DE MORAES
+ Doutorado Incompleto    |      220606 | REIMONT LUIZ OTONI SANTA BARBARA
+ Doutorado Incompleto    |       77003 | SERGIO AUGUSTO SANTOS RODRIGUES
+ Doutorado Incompleto    |      160569 | WALDENOR ALVES PEREIRA FILHO
+ Ensino Fundamental      |      220692 | ADALBERTO ROSA BARRETO
+ Ensino Fundamental      |      204495 | AIRTON LUIZ FALEIRO
+ Ensino Fundamental      |      229585 | ELISANGELA DOS SANTOS ARAUJO
+ Ensino Fundamental      |      161550 | EMIDIO ALVES MADEIRA JUNIOR
+ Ensino Fundamental      |      160976 | FRANCISCO EVERARDO TIRIRICA OLIVEIRA SILVA
+ Ensino Fundamental      |      204387 | GILSON CARDOSO FAHUR
+ Ensino Fundamental      |      220531 | GILVAM MAXIMO
+ Ensino Fundamental      |      220592 | JOS… ESTEPHAN AMORIM BARBARY FILHO
+ Ensino Fundamental      |      220600 | JOSE EURIPEDES CLEMENTE
+ Ensino Fundamental      |      166402 | MAGDA MOFATTO HON
+ Ensino Fundamental      |      204489 | MARCOS ROBERIO RIBEIRO MONTEIRO
+ Ensino Fundamental      |      160610 | VALMIR CARLOS DA ASSUN«√O
+ Ensino MÈdio            |      121948 | ADRIANO ANT‘NIO AVELAR
+ Ensino MÈdio            |      204571 | ALEX MARCO SANTANA SOUSA
+ Ensino MÈdio            |      221148 | ALFREDO ALVES CAVALCANTE
+ Ensino MÈdio            |      220612 | Carlos Roberto Rodrigues
+ Ensino MÈdio            |      220571 | DANIEL VIEIRA RAMOS
+ Ensino MÈdio            |      160552 | DANRLEI DE DEUS HINTERHOLZ
+ Ensino MÈdio            |      220659 | DAYANY BITTENCOURT SANTIL
+ Ensino MÈdio            |      220671 | DILVANDA FURTADO FARO
+ Ensino MÈdio            |      141421 | EDUARDO HENRIQUE DA FONTE DE ALBUQUERQUE SILVA
+ Ensino MÈdio            |      218086 | ELIANE DE SOUSA ALVES
+ Ensino MÈdio            |      220665 | ERICA CLARISSA BORBA CORDEIRO DE MOURA
+ Ensino MÈdio            |      220681 | F¡BIO HENRIQUE DIAS DE MACEDO
+ Ensino MÈdio            |      220585 | FRANCISCO EMERSON ASSIS DE LUCENA
+ Ensino MÈdio            |      204456 | GUTEMBERG REIS DE OLIVEIRA
+ Ensino MÈdio            |      220563 | ICARO BARBOSA COSTA
+ Ensino MÈdio            |      220567 | JEFERSON RODRIGUES LEMOS
+ Ensino MÈdio            |      204476 | JO√O FRANCISCO IN¡CIO BRAZ√O
+ Ensino MÈdio            |      178970 | JOAO SOMARIVA DANIEL
+ Ensino MÈdio            |      227660 | JOSENITO VITALE DE JESUS
+ Ensino MÈdio            |      215043 | JOSIVALDO DOS SANTOS MELO
+ Ensino MÈdio            |      219585 | MARCO AURELIO RIBEIRO
+ Ensino MÈdio            |      220558 | MARCOS ANTONIO PEREIRA GOMES
+ Ensino MÈdio            |      220655 | MARIO LUIS FRIAS
+ Ensino MÈdio            |      228042 | NAUMI GOMES DE AMORIM
+ Ensino MÈdio            |      204449 | NELSON NED PREVIDENTE
+ Ensino MÈdio            |      141518 | PAULO PEREIRA DA SILVA
+ Ensino MÈdio            |      220694 | RICARDO MAIA CHAVES DE SOUZA
+ Ensino MÈdio            |      204457 | ROGERIO TEIXEIRA JUNIOR
+ Ensino MÈdio Incompleto |      220702 | GERALDO GABRIEL MENDES
+ Ensino MÈdio Incompleto |      204474 | JUAREZ ALVES DA COSTA
+ Mestrado                |      160508 | AFONSO BANDEIRA FLORENCE
+ Mestrado                |      204390 | ALCIDES RIBEIRO FILHO
+ Mestrado                |      204533 | ANTONIO IDILVAN DE LIMA ALENCAR
+ Mestrado                |      160600 | ARTHUR DE OLIVEIRA MAIA DA SILVA
+ Mestrado                |      210989 | BRUNO SOUZA FARIAS
+ Mestrado                |      204369 | CAROLINE RODRIGUES DE TONI
+ Mestrado                |       74467 | DAMI√O FELICIANO DA SILVA
+ Mestrado                |      220629 | DANDARA TONANTZIN SILVA CASTRO
+ Mestrado                |      220705 | DELTAN MARTINAZZO DALLAGNOL
+ Mestrado                |      143632 | DOMINGOS GOMES DE AGUIAR NETO
+ Mestrado                |      220611 | EDUARDO PAZUELLO
+ Mestrado                |      220610 | FERNANDO RODRIGUES M¡XIMO
+ Mestrado                |       74171 | FRANCISCO RODRIGUES DE ALENCAR FILHO
+ Mestrado                |      220529 | GILSON DANIEL BATISTA
+ Mestrado                |      220639 | GUILHERME CASTRO BOULOS
+ Mestrado                |      220625 | IONE MARIA MOREIRA DIAS BARBOSA
+ Mestrado                |      141464 | JOS… AIRTON F…LIX CIRILO DA SILVA
+ Mestrado                |      178829 | JOSE AUGUSTO ROSA
+ Mestrado                |      122195 | LEONARDO DE MELO GADELHA
+ Mestrado                |      220552 | LUCIANO LORENZINI ZUCCO
+ Mestrado                |      204410 | LUISA CANZIANI DOS SANTOS SILVEIRA
+ Mestrado                |       74784 | LUIZA ERUNDINA DE SOUSA
+ Mestrado                |      141488 | LUIZ PAULO TEIXEIRA FERREIRA
+ Mestrado                |      204526 | LUIZ PHILIPPE DE ORLEANS BRAGAN«A
+ Mestrado                |      220530 | Manoel Messias Donato Bezerra
+ Mestrado                |      160161 | MARCELO ANDRE CID HERACLITO DO PORTO QUEIROZ
+ Mestrado                |      204433 | MARCELO CALERO FARIA GARCIA
+ Mestrado                |      156190 | MARCEL VAN HATTEM
+ Mestrado                |      204514 | MARCIO TADEU ANHAIA DE LEMOS
+ Mestrado                |      204522 | MARCO AURELIO BERTAIOLLI
+ Mestrado                |       74398 | MARIA DO ROS¡RIO NUNES
+ Mestrado                |      188097 | MERLONG SOLANO NOGUEIRA
+ Mestrado                |      171786 | MIGUEL ¬NGELO MONTEIRO ANDRADE
+ Mestrado                |      204453 | NAT¡LIA BASTOS BONAVIDES
+ Mestrado                |       74160 | PATRUS ANANIAS DE SOUZA
+ Mestrado                |      141516 | PAULO ABI-ACKEL
+ Mestrado                |      204395 | PEDRO DEBONI LUPION MELLO
+ Mestrado                |      220630 | PEDRO DOSHIKAZU PIANCHAO AIHARA
+ Mestrado                |      160604 | PEDRO FRANCISCO UCZAI
+ Mestrado                |      122158 | PEDRO PAULO CARVALHO TEIXEIRA
+ Mestrado                |      141531 | RODRIGO BATISTA DE CASTRO
+ Mestrado                |      160629 | ROMERO RODRIGUES VEIGA
+ Mestrado                |      178945 | ROSANGELA DE SOUZA GOMES
+ Mestrado                |      220579 | SILVIA NOBRE LOPES
+ Mestrado                |      141555 | VINICIUS RAPOZO DE CARVALHO
+ Mestrado Incompleto     |      220715 | AMOM MANDEL LINS FILHO
+ Mestrado Incompleto     |      220615 | HENRIQUE DOS SANTOS VIEIRA LIMA
+ Mestrado Incompleto     |      220670 | IZA PAULA DE DEUS E MELLO ALBUQUERQUE ARRUDA
+ Mestrado Incompleto     |      220543 | RICARDO AYRES DE CARVALHO
+ Mestrado Incompleto     |      204464 | TALIRIA PETRONE SOARES
+ Nao informado           |      220619 | ALEXANDRE RAMAGEM RODRIGUES
+ Nao informado           |      234840 | CRISTIANO BEVILACQUA FURLAN
+ Nao informado           |      229225 | DAÕZE MICHELE DE AGUIAR GON«ALVES COLLINS
+ Nao informado           |      227433 | DOUGLAS DE PAULO VIEGAS
+ Nao informado           |      227800 | DUARTE EUST¡QUIO GON«ALVES JUNIOR
+ Nao informado           |      234388 | FABIANO LOPES FERREIRA CAZECA
+ Nao informado           |      227401 | FABIO GON«ALVES DE RUEDA
+ Nao informado           |      227370 | FELIPE MAURÕCIO SALIBA DE SOUZA
+ Nao informado           |      227991 | FLAVIO CAMPOS FERREIRA
+ Nao informado           |      220700 | FLORENTINO ALVES VERAS NETO
+ Nao informado           |      229333 | GL¡UCIA MARIA SANTIAGO RODRIGUES
+ Nao informado           |      235712 | HEBER GOMES NEIVA
+ Nao informado           |      225846 | ITAMAR PAIM PRUCH
+ Nao informado           |      235869 | JO√O CARLOS DOS SANTOS MELLO
+ Nao informado           |      235800 | JORGE SILVA DE ARA⁄JO
+ Nao informado           |      220577 | JOS… AUGUSTO PUPPIO REIS J⁄NIOR
+ Nao informado           |      228837 | JULIANA ROSA DE SOUZA KOLANKIEWICZ
+ Nao informado           |      228797 | J⁄LIO DA SILVA OLIVEIRA
+ Nao informado           |      229082 | KARLA LUCYANA SOARES CANTO COSTA
+ Nao informado           |      208297 | KATIA REGINA OLIVEIRA DIAS
+ Nao informado           |      171139 | LORENY MAYARA CAETANO ROBERTO
+ Nao informado           |      227323 | LUCIANO RODRIGUES SEIDEL
+ Nao informado           |      229939 | NEWTON BONIN
+ Nao informado           |      222565 | NOELIO DA ROCHA OLIVEIRA
+ Nao informado           |      100689 | OSMARILDO ALVES DE SOUSA
+ Nao informado           |      220667 | PEDRO HENRIQUE DE A. L. C. CAMPOS
+ Nao informado           |      229112 | PEDRO SOUZA CATINGUEIRO JUNIOR
+ Nao informado           |      229259 | PEDRO TOURINHO DE SIQUEIRA
+ Nao informado           |      233594 | RAFAEL BENTO PEREIRA
+ Nao informado           |      228616 | REMY ALVES SOARES FILHO
+ Nao informado           |      175765 | RIBAMAR ANTONIO DA SILVA
+ Nao informado           |      233218 | RONDINELLE PEREIRA DE FREITAS
+ Nao informado           |      233598 | SAMUEL JOSE DOS SANTOS
+ Nao informado           |      227310 | SILVIO ANTONIO GUIMARAES MACHADO
+ Nao informado           |      220539 | ST…LIO DENER DE SOUZA CRUZ
+ Nao informado           |      227275 | TACILLA MARIANA CARVALHO SILVA
+ Nao informado           |      230177 | TADEU MAGELA DE OLIVEIRA
+ Nao informado           |      223398 | ULISSES SUAID PORTO GUIMAR√ES BORGES
+ Nao informado           |      220590 | ULYSSES FREITAS PEREIRA DE ARA⁄JO
+ Nao informado           |      234673 | VALDERLAN ALVES DE SOUZA
+ PÛs-GraduaÁ„o           |      160527 | AGUINALDO VELLOSO BORGES RIBEIRO
+ PÛs-GraduaÁ„o           |      204572 | ALBERTO BARROS CAVALCANTE NETO
+ PÛs-GraduaÁ„o           |      220576 | ALFREDO GASPAR DE MENDON«A NETO
+ PÛs-GraduaÁ„o           |      204356 | AMARO ROCHA NASCIMENTO NETO
+ PÛs-GraduaÁ„o           |      220657 | ANDR… FERNANDES DE MOURA
+ PÛs-GraduaÁ„o           |      133439 | ANDR… PEIXOTO FIGUEIREDO LIMA
+ PÛs-GraduaÁ„o           |      220638 | ANTONIO CARLOS RODRIGUES
+ PÛs-GraduaÁ„o           |      220549 | ANY MACHADO ORTIZ
+ PÛs-GraduaÁ„o           |       73433 | ARLINDO CHIGNALIA JUNIOR
+ PÛs-GraduaÁ„o           |      220642 | BRUNO MARCELLO DE OLIVEIRA LIMA
+ PÛs-GraduaÁ„o           |      204507 | CARLA ZAMBELLI SALGADO DE OLIVEIRA
+ PÛs-GraduaÁ„o           |      220649 | CARLOS ALBERTO DA CUNHA
+ PÛs-GraduaÁ„o           |      220698 | CARLOS ALBERTO GEBRIM PRETO
+ PÛs-GraduaÁ„o           |      178993 | CARLOS HENRIQUE AMORIM
+ PÛs-GraduaÁ„o           |      204459 | DANIELA MOTE DE SOUZA CARNEIRO
+ PÛs-GraduaÁ„o           |      220582 | DANIEL BARBOSA DE ALMEIDA SILVA
+ PÛs-GraduaÁ„o           |      220603 | DANIELLE DYTZ DA CUNHA
+ PÛs-GraduaÁ„o           |      204511 | DAVID BEZERRA RIBEIRO SOARES
+ PÛs-GraduaÁ„o           |      160588 | DIEGO LEONARDO DE ANDRADE CARVALHO
+ PÛs-GraduaÁ„o           |      220602 | DIMAS DE PAIVA GADELHA JUNIOR
+ PÛs-GraduaÁ„o           |      160758 | DOMINGOS S¡VIO CAMPOS RESENDE
+ PÛs-GraduaÁ„o           |       74075 | ELCIONE THEREZINHA ZAHLUTH BARBALHO
+ PÛs-GraduaÁ„o           |      178854 | ELMAR JOSE VIEIRA NASCIMENTO
+ PÛs-GraduaÁ„o           |      160538 | ELVINO JOS… BOHN GASS
+ PÛs-GraduaÁ„o           |      160640 | EROS FERREIRA BIONDINI
+ PÛs-GraduaÁ„o           |      178871 | EVAIR VIEIRA DE MELO
+ PÛs-GraduaÁ„o           |      220583 | FABIO MICHEY COSTA DA SILVA
+ PÛs-GraduaÁ„o           |      178905 | FABIO PAULINO GARCIA
+ PÛs-GraduaÁ„o           |      220688 | FRANCISCO DE ASSIS DE OLIVEIRA COSTA
+ PÛs-GraduaÁ„o           |      220708 | GABRIEL JOSE MOURA NUNES SOARES
+ PÛs-GraduaÁ„o           |      178966 | Geov‚nia de S·
+ PÛs-GraduaÁ„o           |      204491 | GILBERTO APARECIDO ABRAMO
+ PÛs-GraduaÁ„o           |      204365 | GILSON MARQUES VIEIRA
+ PÛs-GraduaÁ„o           |      160673 | GIOVANI CHERINI
+ PÛs-GraduaÁ„o           |      107283 | GLEISI HELENA HOFFMANN
+ PÛs-GraduaÁ„o           |      204531 | GUILHERME MURARO DERRITE
+ PÛs-GraduaÁ„o           |      178873 | HELDER IGNACIO SALOMAO
+ PÛs-GraduaÁ„o           |      178884 | HILDO AUGUSTO DA ROCHA NETO
+ PÛs-GraduaÁ„o           |      220570 | ISMAEL ALEXANDRINO JUNIOR
+ PÛs-GraduaÁ„o           |       74848 | JANDIRA FEGHALI
+ PÛs-GraduaÁ„o           |       69871 | JOAO CARLOS BACELAR BATISTA
+ PÛs-GraduaÁ„o           |      141458 | JO√O CARLOS PAOLILO BACELAR FILHO
+ PÛs-GraduaÁ„o           |      230768 | JOSE ADRIANO RIBEIRO DA SILVA
+ PÛs-GraduaÁ„o           |       74554 | JOS… ALVES ROCHA
+ PÛs-GraduaÁ„o           |      204472 | JOSE ANTONIO DOS SANTOS MEDEIROS
+ PÛs-GraduaÁ„o           |      204559 | JOS… CERQUEIRA DE SANTANA NETO
+ PÛs-GraduaÁ„o           |      220578 | JOSENILDO SANTOS ABRANTES
+ PÛs-GraduaÁ„o           |      220618 | JOS… PORTUGAL NETO
+ PÛs-GraduaÁ„o           |      160632 | JOS… SILVA SOARES
+ PÛs-GraduaÁ„o           |      220560 | JOSE THIAGO ALVES DE CARVALHO
+ PÛs-GraduaÁ„o           |       74141 | JOSIAS GOMES DA SILVA
+ PÛs-GraduaÁ„o           |      220561 | KATARINA FEITOZA LIMA SANTANA
+ PÛs-GraduaÁ„o           |       80815 | LEONARDO SILVA PRATES
+ PÛs-GraduaÁ„o           |      178954 | LUCIO ANTONIO MOSQUINI
+ PÛs-GraduaÁ„o           |      204376 | LUIZ ARMANDO SCHROEDER REIS
+ PÛs-GraduaÁ„o           |      220687 | MARCIO JOSE HONAISER
+ PÛs-GraduaÁ„o           |      204506 | MARCOS ANTONIO PEREIRA
+ PÛs-GraduaÁ„o           |      220604 | MARCOS PAULO BARBOSA TAVARES
+ PÛs-GraduaÁ„o           |      204540 | MARIA DO PARTO MENDES ROSAS
+ PÛs-GraduaÁ„o           |      129618 | MARIA GORETE PEREIRA
+ PÛs-GraduaÁ„o           |      220537 | MARIA HELENA TEIXEIRA LIMA
+ PÛs-GraduaÁ„o           |      220668 | MARIA LEAL ARRAES DE ALENCAR
+ PÛs-GraduaÁ„o           |      220701 | MATHEUS ARAUJO LAIOLA
+ PÛs-GraduaÁ„o           |      178895 | MISAEL ARTUR FERREIRA VARELLA
+ PÛs-GraduaÁ„o           |      178896 | NEWTON CARDOSO JUNIOR
+ PÛs-GraduaÁ„o           |       73692 | OSMAR GASPARINI TERRA
+ PÛs-GraduaÁ„o           |      204573 | OTTO ROBERTO MENDON«A DE ALENCAR FILHO
+ PÛs-GraduaÁ„o           |      222142 | PAULO ADRIANO LOPES LUCINDA TELHADA
+ PÛs-GraduaÁ„o           |      171617 | PAULO FERNANDO DOS SANTOS
+ PÛs-GraduaÁ„o           |      220654 | PAULO FRANCISCO MUNIZ BILYNSKYJ
+ PÛs-GraduaÁ„o           |      220685 | PAULO HENRIQUE COLETTI FERNANDES
+ PÛs-GraduaÁ„o           |      220586 | RAFAEL DE GOES BRITO
+ PÛs-GraduaÁ„o           |      220533 | Reginaldo Veras Coelho
+ PÛs-GraduaÁ„o           |      204362 | RICARDO ZANATTA GUIDI
+ PÛs-GraduaÁ„o           |      220588 | ROBERTO DUARTE JUNIOR
+ PÛs-GraduaÁ„o           |      220644 | ROSANGELA MARIA WOLFF DE QUADROS MORO
+ PÛs-GraduaÁ„o           |      220631 | SAMUEL JOS… RODRIGUES DE VIANA
+ PÛs-GraduaÁ„o           |      178933 | SERGIO DE SOUZA
+ PÛs-GraduaÁ„o           |      220597 | THIAGO LEITE FLORES PEREIRA
+ PÛs-GraduaÁ„o           |      204416 | UBIRATAN ANTUNES SANDERSON
+ PÛs-GraduaÁ„o           |       74283 | VICENTE PAULO DA SILVA
+ PÛs-GraduaÁ„o           |      220528 | VICTOR GAROZI LINHALIS
+ PÛs-GraduaÁ„o           |      160518 | WELITON FERNANDES PRADO
+ Prim·rio Incompleto     |      160535 | DIONILSO MATEUS MARCON
+ Secund·rio              |       74550 | JO√O FELIPE DE SOUZA LE√O
+ Secund·rio              |      141480 | L¡ZARO BOTELHO MARTINS
+ Secund·rio Incompleto   |      230762 | CLAUDIO MARIANO SILVA
+ Superior                |      220593 | ABILIO JACQUES BRUNINI MOUMER
+ Superior                |      204379 | AC¡CIO DA SILVA FAVACHO NETO
+ Superior                |      221328 | ADILSON BARROSO OLIVEIRA
+ Superior                |      204560 | ADOLFO VIANA DE CASTRO NETO
+ Superior                |      220565 | ADRIANA SAUTHIER ACCORSI
+ Superior                |       74646 | A…CIO NEVES DA CUNHA
+ Superior                |      178835 | AFONSO ANTUNES DA MOTTA
+ Superior                |      235088 | AIRES DO ESPIRITO SANTO RIBEIRO NETO
+ Superior                |       74696 | ALBERTO PEREIRA MOUR√O
+ Superior                |      220690 | ALDEN JOSE LAZARO DA SILVA
+ Superior                |      204501 | ALENCAR SANTANA BRAGA
+ Superior                |      220674 | ALESSANDRA HABER CARVALHO SANTOS
+ Superior                |      220554 | ALEXANDRE DUARTE LINDENMEYER
+ Superior                |      160545 | ALEXANDRE LEITE DA SILVA
+ Superior                |      178972 | ALEX SPINELLI MANENTE
+ Superior                |       74057 | ALICE MAZZUCO PORTUGAL
+ Superior                |      204353 | ALINE PARANHOS VARONIL GURGEL
+ Superior                |      226708 | ALLAN QUADROS GARC S
+ Superior                |      178937 | ALTINEU C‘RTES FREITAS COUTINHO
+ Superior                |      178881 | ALUISIO GUIMARAES MENDES FILHO
+ Superior                |      220596 | AM¡LIA SCUDELER DE BARROS SANTOS
+ Superior                |      220707 | AMANDA KELLY GENTIL GUIMAR√ES ROSA
+ Superior                |      220704 | ANA CAROLINA MOURA MELO DARTORA
+ Superior                |      225727 | ANA FL¡VIA RODRIGUES RAMIRO
+ Superior                |      225730 | ANA PAULA BRAND√O DA SILVA FARIAS
+ Superior                |      220556 | ANA PAULA DE SOUZA LIMA
+ Superior                |      107970 | ANA PAULA PROCOPIO JUNQUEIRA
+ Superior                |      178831 | ANDRE DOS SANTOS ABDON
+ Superior                |      204423 | ANDR… FERREIRA RODRIGUES
+ Superior                |      220676 | ANDREIA BRITO GON«ALVES SIQUEIRA
+ Superior                |      204515 | ANDRE LUIS GASPAR JANONES
+ Superior                |      178882 | ANDRE LUIZ CARVALHO RIBEIRO
+ Superior                |      123756 | ANT‘NIA LUCIL…IA CRUZ RAMOS C¬MARA
+ Superior                |      204479 | ANTONIO CARLOS NICOLETTI
+ Superior                |      204504 | ANTONIO CEZAR CORREIA FREIRE
+ Superior                |      212625 | ANTONIO ELIZABETH GON«ALO DE SOUSA
+ Superior                |      204549 | ANTONIO JOSE AGUIAR ALBUQUERQUE
+ Superior                |      220675 | ANTONIO LEOC¡DIO DOS SANTOS
+ Superior                |      160553 | ANTONIO LUIZ PARANHOS RIBEIRO LEITE DE BRITO
+ Superior                |      204550 | ANT‘NIO LUIZ RODRIGUES MANO J⁄NIOR
+ Superior                |      204524 | ANT‘NIO PINHEIRO NETO
+ Superior                |      220544 | ANTONIO POINCARE ANDRADE FILHO
+ Superior                |      178934 | ANTONIO WANDSCHEER
+ Superior                |      141391 | ARNALDO CALIL PEREIRA JARDIM
+ Superior                |      160541 | ARTHUR C…SAR PEREIRA DE LIRA
+ Superior                |      123086 | ¡TILA DE MELO LIRA
+ Superior                |       74090 | ¡TILA SIDNEY LINS DE ALBUQUERQUE
+ Superior                |      160665 | AUGUSTO RODRIGUES COUTINHO DE MELO
+ Superior                |      204374 | BEATRIZ KICIS TORRENTS DE SORDI
+ Superior                |       73701 | BENEDITA SOUZA DA SILVA SAMPAIO
+ Superior                |      221339 | BENJAMIM DE OLIVEIRA
+ Superior                |      220635 | BRUNO AREVALO GANEM
+ Superior                |      143942 | CAIO SANTOS VIANNA
+ Superior                |      220548 | CAMILA BAZACHI JARA MARZOCHI
+ Superior                |      204361 | CARLOS ALBERTO CHIODINI
+ Superior                |      220683 | CARLOS ALBERTO RICHA
+ Superior                |      141398 | CARLOS ALBERTO ROLIM ZARATTINI
+ Superior                |       74262 | CARLOS HENRIQUE FOCESI SAMPAIO
+ Superior                |      204460 | Carlos Roberto Jordy Coelho de Mattos
+ Superior                |      164360 | CARMEN EMÕLIA BONF¡ ZANOTTO
+ Superior                |      220584 | C¡SSIO MURILO GALDINO DE ARA⁄JO
+ Superior                |      178876 | CELIO ANTONIO DA SILVEIRA
+ Superior                |      204488 | CELIO STUDART BARBOSA
+ Superior                |       73441 | CELSO UBIRAJARA RUSSOMANNO
+ Superior                |      205476 | CHARLES FERNANDES SILVEIRA SANTANA
+ Superior                |      204462 | CHRISTINE NOGUEIRA DOS REIS TONIETTO
+ Superior                |       74537 | CL¡UDIO CAJADO SAMPAIO
+ Superior                |      141408 | CLEBER VERDE CORDEIRO MENDES
+ Superior                |       88256 | CLODOALDO MAGALH√ES OLIVEIRA LYRA
+ Superior                |      220608 | CRISTIANE LOPES DA LUZ
+ Superior                |      141411 | DAGOBERTO NOGUEIRA FILHO
+ Superior                |      220555 | DAIANA SILVA DOS SANTOS
+ Superior                |      220557 | DANIELA CRISTINA REINEHR
+ Superior                |      204367 | DANIEL COSTA DE FREITAS
+ Superior                |       74060 | DANIEL GOMES DE ALMEIDA
+ Superior                |      228941 | DANIEL JOS… DA SILVA OLIVEIRA
+ Superior                |      204409 | DANIEL TRZECIAK DUARTE
+ Superior                |      116379 | DARCI DE MATOS
+ Superior                |       73486 | DARCI POMPEO DE MATTOS
+ Superior                |      220534 | DAVYS FREDERICO TEIXEIRA LINHARES
+ Superior                |      228272 | DELIO PINHEIRO NETO
+ Superior                |      220553 | DENISE DA SILVA PESS‘A
+ Superior                |      178929 | DIEGO ALEXSANDER GONCALO PAULA GARCIA
+ Superior                |      220691 | DIEGO HENRIQUE SILVA CERQUEIRA MARTINS
+ Superior                |       73768 | DILCEU JO√O SPERAFICO
+ Superior                |      160599 | DIMAS FABIANO TOLEDO J⁄NIOR
+ Superior                |      220573 | DORINALDO BARBOSA MALAFAIA
+ Superior                |      220540 | DUDA BRITO RAMOS
+ Superior                |      220623 | DUDA SALABERT ROSA
+ Superior                |      178908 | EDER MAURO CARDOSO BARRA
+ Superior                |      220605 | EDUARDO CARVALHO BANDEIRA DE MELLO
+ Superior                |      204541 | EDUARDO HENRIQUE MAIA BISMARCK
+ Superior                |       92346 | EDUARDO NANTES BOLSONARO
+ Superior                |      220589 | EDUARDO OVÕDIO BORGES DE VELLOSO VIANNA
+ Superior                |      204364 | ELI DIAS BORGES
+ Superior                |      220008 | ELIZA VIRGINIA DE SOUZA FERNANDES
+ Superior                |      234406 | ELMANO F…RRER DE ALMEIDA
+ Superior                |      224333 | ELTON CARLOS WELTER
+ Superior                |      198783 | EMANUEL PINHEIRO DA SILVA PRIMO
+ Superior                |      160575 | …RIKA JUC¡ KOKAY
+ Superior                |      220645 | ERIKA SANTOS SILVA
+ Superior                |      204482 | EUCLYDES MARCOS PETTERSEN NETO
+ Superior                |       74454 | EUNÕCIO LOPES DE OLIVEIRA
+ Superior                |      220621 | EVANDRO GON«ALVES DA SILVA J⁄NIOR
+ Superior                |      220653 | F·bio Eduardo de Oliveira Teruel
+ Superior                |       68720 | FABIO HENRIQUE SANTANA DE CARVALHO
+ Superior                |      204368 | F¡BIO LUIZ SCHIOCHET FILHO
+ Superior                |       74065 | F¡TIMA L⁄CIA PELAES
+ Superior                |       66828 | FAUSTO RUY PINATO
+ Superior                |      220712 | FAUSTO VIEIRA DOS SANTOS JUNIOR
+ Superior                |      220646 | FELIPE BECARI COMENALE
+ Superior                |      160666 | FELIX DE ALMEIDA MENDON«A J⁄NIOR
+ Superior                |      220656 | FERNANDA ENEIDA PESSOA CARACAS DE SOUZA
+ Superior                |      204407 | FERNANDA MELCHIONNA E SILVA
+ Superior                |      141431 | FERNANDO BEZERRA DE SOUZA COELHO FILHO
+ Superior                |       74383 | FERNANDO L⁄CIO GIACOBO
+ Superior                |       92699 | FERNANDO MONTEIRO DE ALBUQUERQUE
+ Superior                |      204427 | FERNANDO RODOLFO TENORIO DE VASCONCELOS
+ Superior                |      204445 | FERNANDO WANDERLEY VARGAS DA SILVA
+ Superior                |      204411 | FILIPE BARROS BAPTISTA DE TOLEDO RIBEIRO
+ Superior                |      220545 | FILIPE MARTINS DOS SANTOS
+ Superior                |      160598 | FL¡VIA CARREIRO ALBUQUERQUE MORAIS
+ Superior                |      191923 | FL¡VIO RODRIGUES NOGUEIRA
+ Superior                |      220551 | FRANCIANE ABADE BAYER MULLER
+ Superior                |      226553 | FRANCISCA ELIANE BRAZ DE CARVALHO
+ Superior                |      162067 | FRANCISCO DANIEL CELEGUIM DE MORAIS
+ Superior                |       62881 | FRANCISCO DANILO BASTOS FORTE
+ Superior                |      204518 | FREDERICO DE CASTRO ESCALEIRA
+ Superior                |      224117 | GABRIEL MOTA E SILVA
+ Superior                |      220587 | GEHLEN DINIZ ANDRADE
+ Superior                |      204520 | GERALDO JUNIO DO AMARAL
+ Superior                |       74374 | GERALDO RESENDE PEREIRA
+ Superior                |      204394 | GERV¡SIO AGRIPINO MAIA
+ Superior                |      220574 | GILBERTO GOMES DA SILVA
+ Superior                |       74270 | GILBERTO NASCIMENTO SILVA
+ Superior                |      204570 | GILDENEMIR DE LIMA SOUSA
+ Superior                |      220526 | GILVAN AGUIAR COSTA
+ Superior                |      226179 | GISELA SIMONA VIANA DE SOUZA
+ Superior                |      152605 | GLAUBER DE MEDEIROS BRAGA
+ Superior                |      204419 | GLAUSKSTON BATISTA RIOS
+ Superior                |      198197 | GREYCE DE QUEIROZ ELIAS
+ Superior                |      220664 | GUILHERME A. UCHOA CAVALCANTI PESSOA DE MELO JUNIOR
+ Superior                |      220568 | GUSTAVO GAYER MACHADO DE ARAUJO
+ Superior                |      204444 | HELIO FERNANDO BARBOSA LOPES
+ Superior                |      178909 | HELIO LEITE DA SILVA
+ Superior                |      234788 | HELOÕSA HELENA LIMA DE MORAES CARVALHO
+ Superior                |      213762 | HILKEA CARLA DE SOUZA MEDEIROS LIMA
+ Superior                |      141450 | HUGO LEAL MELO DA SILVA
+ Superior                |      160674 | HUGO MOTTA WANDERLEY DA N”BREGA
+ Superior                |      204358 | HUMBERTO REZENDE PEREIRA
+ Superior                |      235620 | ILACIR BICALHO DE BARROS
+ Superior                |       98615 | ISMAEL DOS SANTOS
+ Superior                |      204436 | ISNALDO BULHOES BARROS JUNIOR
+ Superior                |       73531 | IVAN VALENTE
+ Superior                |      220696 | IVONEIDE SOUZA CAETANO
+ Superior                |      204481 | JAZIEL PEREIRA DE SOUSA
+ Superior                |       74273 | JEFFERSON ALVES DE CAMPOS
+ Superior                |      141456 | JILMAR AUGUSTINHO TATTO
+ Superior                |       73579 | JO√O ALBERTO FRAGA SILVA
+ Superior                |      160556 | JO√O CARLOS SIQUEIRA
+ Superior                |      204378 | JO√O CHRIS”STOMO DE MOURA
+ Superior                |      230957 | Jo„o Cury Neto
+ Superior                |      141459 | JO√O DA SILVA MAIA
+ Superior                |      204497 | JO√O FERRARI J⁄NIOR
+ Superior                |      178910 | JOAQUIM PASSARINHO PINTO DE SOUZA PORTO
+ Superior                |      160531 | JOHNATHAN PEREIRA DE JESUS
+ Superior                |      217480 | JONES BARBOSA DE MOURA
+ Superior                |      220594 | JONILDO JOS… DE ASSIS
+ Superior                |      205550 | JORGE BRAZ DE OLIVEIRA
+ Superior                |      214694 | JORGE GOETTEN DE LIMA
+ Superior                |      220542 | JOS… ALEXANDRE DOMINGUES GUIMAR√ES
+ Superior                |      136811 | JOS… ALFONSO EBERT HAMM
+ Superior                |       74079 | JOS… BENITO PRIANTE J⁄NIOR
+ Superior                |      160592 | JOS… CARLOS BECKER DE OLIVEIRA E SILVA
+ Superior                |      204426 | JOS… CARLOS VERAS DOS SANTOS
+ Superior                |      220699 | JOS… DIAS DE CASTRO NETO
+ Superior                |      220663 | JOS… ERIBERTO MEDEIROS DE OLIVEIRA
+ Superior                |      220538 | JOS… FRANCISCO LOPES DE ALBUQUERQUE
+ Superior                |      220536 | JOS… HAROLDO FIGUEIREDO CAMPOS
+ Superior                |      209189 | JOSEILDO RIBEIRO RAMOS
+ Superior                |      178886 | JOSE JUSCELINO DOS SANTOS REZENDE FILHO
+ Superior                |       74156 | JOS… LEONARDO COSTA MONTEIRO
+ Superior                |       74299 | JOS… LE‘NIDAS DE MENEZES CRISTINO
+ Superior                |      204574 | JOSE LOUREN«O BOMFIM JUNIOR
+ Superior                |      204558 | JOS… MARCELO DO NASCIMENTO NILO
+ Superior                |       74428 | JOS… MENDON«A BEZERRA FILHO
+ Superior                |      204391 | JOS… NELTO LAGARES DAS MERCEZ
+ Superior                |      141470 | JOS… NOBRE GUIMAR√ES
+ Superior                |      160561 | JOS… OLIMPIO SILVEIRA MORAES
+ Superior                |      204517 | JOSE VITOR DE RESENDE AGUIAR
+ Superior                |       74044 | JOS… WILSON SANTIAGO
+ Superior                |      204355 | JOSIAS MARIO DA VITORIA
+ Superior                |      204563 | JOSIMAR CUNHA RODRIGUES
+ Superior                |      220640 | JULIANA CARDOSO
+ Superior                |      220559 | JULIA PEDROSO ZANATTA
+ Superior                |       74317 | J⁄LIO C…SAR DE CARVALHO LIMA
+ Superior                |      204372 | JULIO CESAR RIBEIRO
+ Superior                |       66385 | JULIO FERRAZ ARCOVERDE
+ Superior                |       74253 | JULIO LUIZ BAPTISTA LOPES
+ Superior                |      178832 | LEANDRE DAL PONTE
+ Superior                |      220566 | LÍda Borges de Moura
+ Superior                |      220673 | LENILDO MENDES DOS SANTOS SERT√O
+ Superior                |      231911 | LENIR CANDIDA DE ASSIS
+ Superior                |       92102 | LEUR ANTONIO DE BRITTO LOMANTO JUNIOR
+ Superior                |      139285 | LÕDICE DA MATA E SOUZA
+ Superior                |       74585 | LINCOLN DINIZ PORTELA
+ Superior                |      234253 | LUCAS ABRAHAO ROSA CEZARIO DE ALMEIDA
+ Superior                |      204404 | LUCAS BELLO REDECKER
+ Superior                |      220662 | LUCAS CAVALCANTI RAMOS
+ Superior                |      138286 | LUCIANO ALVES DOS SANTOS
+ Superior                |       74478 | LUCIANO CALDAS BIVAR
+ Superior                |      178931 | LUCIANO DUCCI
+ Superior                |      103758 | LUCIANO PALMA DE AZEVEDO
+ Superior                |      220581 | LUCIANO SURUAGY DO AMARAL FILHO
+ Superior                |      220616 | LUCIANO VIEIRA MENDES
+ Superior                |      221338 | LUCIENE CAVALCANTE DA SILVA
+ Superior                |      178963 | LUIS ANTONIO FRANCISCATTO COVATTI
+ Superior                |      222429 | LUIS CARLOS GOMES DA SILVA
+ Superior                |      204398 | LUIS FELIPE BONATTO FRANCISCHINI
+ Superior                |      204351 | LUIZ ALBERTO OVANDO
+ Superior                |       74041 | LUIZ ALBUQUERQUE COUTO
+ Superior                |      204448 | LUIZ ANTONIO C. C. CORR A DA SILVA
+ Superior                |      204450 | LUIZ ANTONIO DE SOUZA TEIXEIRA J⁄NIOR
+ Superior                |      204408 | LUIZ AUGUSTO CARVALHO RIBEIRO FILHO
+ Superior                |      109429 | LUIZ BENES LEOCADIO DE ARAUJO
+ Superior                |      141485 | LUIZ CARLOS GHIORZZI BUSATO
+ Superior                |       73778 | LUIZ CARLOS JORGE HAULY
+ Superior                |      204485 | LUIZ CARLOS MOTTA
+ Superior                |      220666 | LUIZ DE FRAN«A E SILVA MEIRA
+ Superior                |      204455 | LUIZ EDUARDO CARNEIRO DA SILVA DE SOUZA LIMA
+ Superior                |      178975 | LUIZ FELIPE BALEIA TENUTO ROSSI
+ Superior                |      229432 | LUIZ FERNANDO CARDOSO
+ Superior                |      141487 | LUIZ FERNANDO RAMOS FARIA
+ Superior                |      220658 | LUIZ GAST√O BITTENCOURT DA SILVA
+ Superior                |      162332 | LUIZ HILOSHI NISHIMORI
+ Superior                |      220636 | LUIZ MARINHO
+ Superior                |      220647 | MANOEL MAURICIO SILVA NEVES
+ Superior                |      220599 | MARCELO BEZERRA CRIVELLA
+ Superior                |      220634 | MARCELO DE LIMA FERNANDES
+ Superior                |      226410 | M¡RCIO AUR…LIO CORR A
+ Superior                |      150418 | M¡RCIO CARLOS MARINHO
+ Superior                |      179001 | MARCIO DELLA VALLE BIOLCHI
+ Superior                |       81055 | M¡RCIO JERRY SARAIVA BARROSO
+ Superior                |      178983 | MARCIO LUIZ ALVINO DE SOUZA
+ Superior                |      160641 | MARCIVANIA DO SOCORRO DA ROCHA FLEXA
+ Superior                |      160601 | MARCO ANT‘NIO FELICIANO
+ Superior                |      204431 | MARCOS AUR…LIO P¡DUA RIBEIRO GON«ALVES DE SAMPAIO
+ Superior                |      178943 | MARCOS BEZERRA RIBEIRO SOARES
+ Superior                |      220547 | MARCOS SBOROWSKI POLLON
+ Superior                |      220689 | MARIA DEUSDETE LIMA CUNHA RODRIGUES
+ Superior                |       74856 | MARIA LAURA MONTEZA DE SOUZA CARNEIRO
+ Superior                |      220637 | MARIA OSMARINA MARINA DA SILVA VAZ DE LIMA
+ Superior                |       74158 | M¡RIO L⁄CIO HERINGER
+ Superior                |      220652 | MARIO PALUMBO JUNIOR
+ Superior                |      178858 | MARIO S. M. NEGROMONTE JR.
+ Superior                |      220572 | MARUSSA CASSIA FAVARO BOLDRIN
+ Superior                |      178843 | MARX BELTR√O LIMA SIQUEIRA
+ Superior                |      220550 | MAURICIO BEDIN MARCON
+ Superior                |      230764 | MAURO IVAN F. SANTIAGO JR
+ Superior                |      220607 | MAX RODRIGUES LEMOS
+ Superior                |      230088 | MAYRA ISABEL CORREIA PINHEIRO
+ Superior                |      178985 | MIGUEL LOMBARDI
+ Superior                |      220617 | MURILLO GOUVEA RODRIGUES
+ Superior                |      204396 | NELSI COGUETTO MARIA
+ Superior                |      220706 | NELSON FERNANDO PADOVANI
+ Superior                |      209787 | NIKOLAS FERREIRA DE OLIVEIRA
+ Superior                |      178986 | NILTO IGNACIO TATTO
+ Superior                |       74159 | ODAIR JOS… DA CUNHA
+ Superior                |      204498 | OLIVAL HENRIQUE MARQUES DE SOUZA
+ Superior                |      178987 | ORLANDO SILVA DE JESUS JUNIOR
+ Superior                |      220703 | ORLANDO SULZ DE ALMEIDA NETO
+ Superior                |       74095 | PAUDERNEY TOMAZ AVELINO
+ Superior                |      220650 | PAULO ALEXANDRE PEREIRA BARBOSA
+ Superior                |      128760 | PAULO CELSO FONSECA MARINHO J⁄NIOR
+ Superior                |      233592 | PAULO CESAR LEMOS DE OLIVEIRA
+ Superior                |       89536 | PAULO FERNANDO MELO DA COSTA
+ Superior                |      160517 | PAULO ROBERTO FOLLETTO
+ Superior                |      160558 | PAULO ROBERTO FREIRE DA COSTA
+ Superior                |       74400 | PAULO ROBERTO SEVERO PIMENTA
+ Superior                |       74574 | PAULO S…RGIO PARANHOS DE MAGALH√ES
+ Superior                |      178860 | PAULO VELLOSO DANTAS AZI
+ Superior                |      204406 | PEDRO BANDARRA WESTPHALEN
+ Superior                |      122974 | PEDRO LUCAS ANDRADE FERNANDES RIBEIRO
+ Superior                |      226075 | PRISCILA BEZERRA DA COSTA
+ Superior                |      220532 | RAFAEL CAVALCANTI PRUDENTE
+ Superior                |      161440 | RAFAEL PEZENTI
+ Superior                |      220626 | RAFAEL TADEU SIM’ES
+ Superior                |      180214 | RAIMUNDO DINIZ ARA⁄JO
+ Superior                |       74084 | RAIMUNDO JOS… PEREIRA DOS SANTOS
+ Superior                |      204567 | RAIMUNDO MAGALH√ES COSTA
+ Superior                |       74161 | REGINALDO L¡ZARO DE OLIVEIRA LOPES
+ Superior                |      221378 | REGINETE SOUZA BISPO
+ Superior                |      205865 | REINHOLD STEPHANES JUNIOR
+ Superior                |      230765 | REJANE DE ALMEIDA
+ Superior                |      225386 | RENAN FERREIRINHA CARNEIRO
+ Superior                |      178989 | RENATA HELLMEISTER DE ABREU
+ Superior                |      153423 | RENILCE CONCEI«√O NICODEMOS DE ALBUQUERQUE
+ Superior                |       73801 | RENILDO VASCONCELOS CALHEIROS
+ Superior                |      213274 | RICARDO AUGUSTO MACHADO DA SILVA
+ Superior                |      220633 | RICARDO DE AQUINO SALLES
+ Superior                |       73788 | RICARDO JOS… MAGALH√ES BARROS
+ Superior                |      221329 | RICARDO MARTINS DAVID
+ Superior                |      220693 | Roberta de Araujo Costa Roma
+ Superior                |      115200 | ROBERTO RANIERY DE AQUINO PAULINO
+ Superior                |      220624 | ROBINSON MESQUITA DE FARIA
+ Superior                |      220546 | RODOLFO OLIVEIRA NOGUEIRA
+ Superior                |      230767 | RODRIGO LUGLI
+ Superior                |      165470 | RODRIGO SANTANA VALADARES
+ Superior                |      141533 | RODRIGO SOBRAL ROLLEMBERG
+ Superior                |      220695 | ROG…RIA DE ALMEIDA PEREIRA DOS SANTOS
+ Superior                |      204480 | ROG…RIO CORREIA DE MOURA BAPTISTA
+ Superior                |      163321 | RONALDO NOGUEIRA DE OLIVEIRA
+ Superior                |      204525 | ROSANA DE OLIVEIRA VALLE
+ Superior                |      220620 | ROSANGELA DE OLIVEIRA CAMPOS REIS
+ Superior                |       73806 | Roseana Sarney Murad
+ Superior                |      220591 | ROZIMEIRE RIBEIRO ANDRADE
+ Superior                |       74371 | RUBENS OTONI GOMIDE
+ Superior                |      178887 | RUBENS PEREIRA E SILVA JUNIOR
+ Superior                |      220595 | RUBIA FERNANDA DINIZ ROBSON SANTOS DE SIQUEIRA
+ Superior                |       73604 | RUI GOETHE DA COSTA FALC√O
+ Superior                |      160635 | RUY MANUEL CARNEIRO BARBOSA DE ACA BELCHIOR
+ Superior                |      204535 | SAMIA DE SOUZA BOMFIM
+ Superior                |      229069 | SAMUEL ALVES BARRETO
+ Superior                |      160621 | SANDRO ALEX CRUZ DE OLIVEIRA
+ Superior                |      220713 | SAULLO VELAME VIANNA
+ Superior                |      226837 | SAULO PEDROSO DE SOUZA
+ Superior                |      220684 | SEBASTI√O HENRIQUE DE MEDEIROS
+ Superior                |      235776 | SERGIO BERGONSI TURRA
+ Superior                |       73808 | S…RGIO LUÕS LACERDA BRITO
+ Superior                |      204557 | SIDNEY RICARDO DE OLIVEIRA LEITE
+ Superior                |       74356 | SILAS C¬MARA
+ Superior                |      204360 | SILVIA CRISTINA AMANCIO CHAGAS
+ Superior                |      204425 | SILVIO SERAFIM COSTA FILHO
+ Superior                |      220569 | SILVYE ALVES DA SILVA
+ Superior                |      220651 | SIMONE APARECIDA MARQUETO CURRALADAS
+ Superior                |      220643 | SONIA BONE DE SOUSA SILVA
+ Superior                |      220575 | SONIZE PIMENTEL DOS SANTOS BARBOSA
+ Superior                |      178946 | SORAYA ALENCAR DOS SANTOS
+ Superior                |      178947 | SOSTENES SILVA CAVALCANTE
+ Superior                |       92776 | STEFANO AGUIAR DOS SANTOS
+ Superior                |      204534 | TABATA CLAUDIA AMARAL DE PONTES
+ Superior                |      157130 | T⁄LIO GAD LHA SALES DE MELO
+ Superior                |       98148 | VALDIR VITAL COBALCHINI
+ Superior                |       74376 | VANDER LUIZ DOS SANTOS LOUBET
+ Superior                |      160591 | VINICIUS DE AZEVEDO GURGEL
+ Superior                |      178992 | VITOR LIPPI
+ Superior                |       91228 | WALDEMAR DE ANDRADA IGN¡CIO DE OLIVEIRA
+ Superior                |      220601 | WASHINGTON LUIZ CARDOSO SIQUEIRA
+ Superior                |      182146 | WOLMER DE AZEVEDO ARAUJO
+ Superior                |      220564 | YANDRA BARRETO FERREIRA
+ Superior                |      220660 | YURY BRUNO ALENCAR ARAUJO
+ Superior                |      204412 | ZACARIAS CALIL HAMU
+ Superior Incompleto     |      220714 | ADAIL JOS… FIGUEIREDO PINHEIRO
+ Superior Incompleto     |      160559 | ALCEU MOREIRA DA SILVA
+ Superior Incompleto     |      204388 | ALCIBIO MESQUITA BIBO NUNES
+ Superior Incompleto     |      178927 | ALIEL MACHADO BARK
+ Superior Incompleto     |      178962 | ANTONIO CARLOS GOMES DA SILVA
+ Superior Incompleto     |      204566 | ANTONIO DA CRUZ FILGUEIRA NETO
+ Superior Incompleto     |      220682 | ANTONIO TADEU VENERI
+ Superior Incompleto     |      160512 | AUREO LIDIO MOREIRA RIBEIRO
+ Superior Incompleto     |      171623 | FABIO DE ALMEIDA REIS
+ Superior Incompleto     |       72442 | FELIPE AUGUSTO LYRA CARRERAS
+ Superior Incompleto     |      160642 | FRANCISCO EURICO DA SILVA
+ Superior Incompleto     |      204494 | FREDERICO BORGES DA COSTA
+ Superior Incompleto     |      178964 | HEITOR JOSE SCHUCH
+ Superior Incompleto     |      220672 | HENDERSON LIRA PINTO
+ Superior Incompleto     |      227324 | HENRIQUE CESAR FERREIRA DE MELO LIMA JUNIOR
+ Superior Incompleto     |      204539 | HERCÕLIO ARA⁄JO DINIZ FILHO
+ Superior Incompleto     |      204508 | IGOR TARCIANO TIMO
+ Superior Incompleto     |       74295 | IN¡CIO FRANCISCO DE ASSIS NUNES ARRUDA
+ Superior Incompleto     |      220527 | JACKELINE OLIVEIRA ROCHA
+ Superior Incompleto     |      220697 | JADYEL SILVA ALENCAR
+ Superior Incompleto     |       74052 | JO√O BOSCO DA COSTA
+ Superior Incompleto     |      160548 | JONAS DONIZETTE FERREIRA
+ Superior Incompleto     |       74043 | JOS… WELLINGTON ROBERTO
+ Superior Incompleto     |      220677 | KENISTON DE JESUS REGO BRAGA
+ Superior Incompleto     |      204536 | KIM PATROCA KATAGUIRI
+ Superior Incompleto     |      160510 | LUIS HENRIQUE DE OLIVEIRA RESENDE
+ Superior Incompleto     |      220669 | LUIZ EDUARDO DE QUEIROZ CAMPOS DA FONTE ALBUQUERQUE
+ Superior Incompleto     |       74858 | LUIZ LINDBERGH FARIAS FILHO
+ Superior Incompleto     |      204553 | MANOEL ISIDORIO DE SANTANA JUNIOR
+ Superior Incompleto     |      179000 | MARCELO HENRIQUE TEIXEIRA DIAS
+ Superior Incompleto     |      133810 | MARCELO PIRES MORAES
+ Superior Incompleto     |      220661 | MATHEUS SOARES NORONHA
+ Superior Incompleto     |      220628 | MAURICIO LUIZ DE SOUZA
+ Superior Incompleto     |      154178 | MILTON VIEIRA PINTO
+ Superior Incompleto     |      220622 | NELI PEREIRA DE AQUINO
+ Superior Incompleto     |      204422 | OSSESIO JOSE DA SILVA
+ Superior Incompleto     |      204441 | OTONI MOURA DE PAULO JUNIOR
+ Superior Incompleto     |      220627 | PAULO EDUARDO DA COSTA FREIRE
+ Superior Incompleto     |      204492 | PAULO JOSE CARLOS GUEDES
+ Superior Incompleto     |      220613 | ROBERTO LUIZ RODRIGUES DE OLIVEIRA
+ Superior Incompleto     |      220641 | RODRIGO GAMBALE VIEIRA
+ Superior Incompleto     |      223128 | RODRIGO TLUSTIK VENEK
+ Superior Incompleto     |      143084 | Tiago Dimas Braga Pereira
+ Superior Incompleto     |      137070 | VICENTE ALVES DE OLIVEIRA JUNIOR
 (640 rows)
+
