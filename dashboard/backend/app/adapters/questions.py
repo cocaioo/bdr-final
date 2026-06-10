@@ -15,7 +15,6 @@ class Q2Adapter(QuestionAdapter):
 
     def build_payload(self, state: FilterState) -> QuestionPayload:
         main_rows = self.main_table.rows if self.main_table else []
-        main_rows = [r for r in main_rows if r.get("ano_dados") in (2023, 2026)]
 
         if state.anos:
             allowed_years = {int(y) for y in state.anos if str(y).isdigit()}
@@ -103,13 +102,14 @@ class Q2Adapter(QuestionAdapter):
         )
 
     def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
+        years = sorted(list({int(r["ano_dados"]) for r in self.main_table.rows if r.get("ano_dados")})) if self.main_table else []
         images = [
             {
                 "year": year,
                 "src": f"/wordclouds/q2_nuvem_palavras_{year}.svg",
                 "alt": f"Nuvem de palavras dos eixos tematicos em {year}",
             }
-            for year in (2023, 2026)
+            for year in years
         ]
         return ChartSpec(
             type="wordcloud_images",

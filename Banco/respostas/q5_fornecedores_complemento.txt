@@ -1,4 +1,4 @@
-Q5 extra - maior fornecedor por categoria de gasto e por ano (57a leg.)
+Q5 complemento - maior fornecedor por categoria de gasto e por ano (57a leg.)
  ano_dados |                         categoria                         |                                             fornecedor                                             | cnpj_cpf | qtd_lancamentos | total_pago  
 -----------+-----------------------------------------------------------+----------------------------------------------------------------------------------------------------+----------+-----------------+-------------
       2023 | AQUISIÇÃO DE TOKENS E CERTIFICADOS DIGITAIS               | JAIRO SOUZA DA COSTA 97257621268                                                                   |          |               1 |     1000.00
@@ -58,21 +58,21 @@ Q5 extra - maior fornecedor por categoria de gasto e por ano (57a leg.)
       2025 | TELEFONIA                                                 | CELULAR FUNCIONAL                                                                                  |          |            3333 |   808218.01
       2026 | AQUISIÇÃO DE TOKENS E CERTIFICADOS DIGITAIS               | META CERTIFICADO DIGITAL LTDA                                                                      |          |               1 |      380.00
       2026 | ASSINATURA DE PUBLICAÇÕES                                 | SEISELLES DISTRIBUIÇÃO E LOGÍSTICA LTDA                                                            |          |               7 |    12959.60
-      2026 | COMBUSTÍVEIS E LUBRIFICANTES.                             | AUTO POSTO CINCO ESTRELAS LTDA                                                                     |          |             482 |   101098.99
+      2026 | COMBUSTÍVEIS E LUBRIFICANTES.                             | AUTO POSTO CINCO ESTRELAS LTDA                                                                     |          |             545 |   114821.76
       2026 | CONSULTORIAS, PESQUISAS E TRABALHOS TÉCNICOS.             | ISIS R. DE V. MARTINS                                                                              |          |               1 |     7000.00
-      2026 | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.                      | Facebook Serviços Online do Brasil Ltda.                                                           |          |             234 |  1033866.09
-      2026 | FORNECIMENTO DE ALIMENTAÇÃO DO PARLAMENTAR                | SERVICO NACIONAL DE APREND. COMERCIAL                                                              |          |             321 |    24306.69
-      2026 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    | PAIAGUAS HOTEIS LTDA                                                                               |          |              19 |    33603.61
-      2026 | LOCAÇÃO OU FRETAMENTO DE AERONAVES                        | CTA - CLEITON TAXI AEREO LTDA                                                                      |          |               9 |   240650.00
+      2026 | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.                      | Facebook Serviços Online do Brasil Ltda.                                                           |          |             292 |  1341251.88
+      2026 | FORNECIMENTO DE ALIMENTAÇÃO DO PARLAMENTAR                | SERVICO NACIONAL DE APREND. COMERCIAL                                                              |          |             355 |    26617.86
+      2026 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    | PAIAGUAS HOTEIS LTDA                                                                               |          |              23 |    38561.61
+      2026 | LOCAÇÃO OU FRETAMENTO DE AERONAVES                        | CTA - CLEITON TAXI AEREO LTDA                                                                      |          |              12 |   366400.00
       2026 | LOCAÇÃO OU FRETAMENTO DE EMBARCAÇÕES                      | JUNIO CESAR CARDOSO                                                                                |          |               7 |    42000.00
-      2026 | LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES             | PANTANAL VEÍCULOS LTDA                                                                             |          |             172 |   844571.57
-      2026 | MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR | WMS COMERCIO DE ARTIGOS DE PAPELARIA LTDA                                                          |          |             245 |   143132.70
-      2026 | PASSAGEM AÉREA - REEMBOLSO                                | Latam Linhas Aéreas S.A                                                                            |          |              50 |   137688.32
+      2026 | LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES             | PANTANAL VEÍCULOS LTDA                                                                             |          |             210 |  1010450.31
+      2026 | MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR | WMS COMERCIO DE ARTIGOS DE PAPELARIA LTDA                                                          |          |             271 |   157098.00
+      2026 | PASSAGEM AÉREA - REEMBOLSO                                | Latam Linhas Aéreas S.A                                                                            |          |              60 |   167004.07
       2026 | PASSAGEM AÉREA - RPA                                      | Cia Aérea - TAM                                                                                    |          |              49 |    82659.95
-      2026 | PASSAGENS TERRESTRES, MARÍTIMAS OU FLUVIAIS               | EMPRESA GONTIJO DE TRANSPORTES LIMITADA                                                            |          |              27 |     9388.21
+      2026 | PASSAGENS TERRESTRES, MARÍTIMAS OU FLUVIAIS               | EMPRESA GONTIJO DE TRANSPORTES LIMITADA                                                            |          |              32 |    10958.43
       2026 | SERVIÇO DE SEGURANÇA PRESTADO POR EMPRESA ESPECIALIZADA.  | SERVFAZ SERVIÇOS DE SEGURANÇA LTDA                                                                 |          |               8 |    64425.98
-      2026 | SERVIÇO DE TÁXI, PEDÁGIO E ESTACIONAMENTO                 | SEM PARAR INSTITUIÇÃO DE PAGAMENTO LTDA.                                                           |          |             207 |   106630.52
-      2026 | SERVIÇOS POSTAIS                                          | EMPRESA BRASILEIRA DE CORREIOS E TELÉGRAFOS                                                        |          |              77 |    24196.83
+      2026 | SERVIÇO DE TÁXI, PEDÁGIO E ESTACIONAMENTO                 | SEM PARAR INSTITUIÇÃO DE PAGAMENTO LTDA.                                                           |          |             232 |   123252.01
+      2026 | SERVIÇOS POSTAIS                                          | EMPRESA BRASILEIRA DE CORREIOS E TELÉGRAFOS                                                        |          |              82 |    26793.13
       2026 | TELEFONIA                                                 | TELEFÔNICA BRASIL S/A - VIVO                                                                       |          |             184 |    97921.07
 (73 rows)
 
