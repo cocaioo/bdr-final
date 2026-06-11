@@ -28,7 +28,6 @@ CREATE OR REPLACE TEMP VIEW resposta_fornecedores AS
 SELECT
     g.ano_dados,
     REPLACE(REPLACE(g.fornecedor, '|', '/'), CHR(8211), '-') AS fornecedor,
-    CAST(NULL AS VARCHAR)                 AS cnpj_cpf,
     COUNT(*)                              AS qtd_lancamentos,
     SUM(g.valor_liquido)                  AS total_pago
 FROM gastos g
@@ -76,7 +75,6 @@ WITH ranked AS (
     SELECT
         ano_dados,
         fornecedor,
-        cnpj_cpf,
         qtd_lancamentos,
         total_pago,
         RANK() OVER (
@@ -92,7 +90,6 @@ SELECT
     ano_dados,
     posicao,
     fornecedor,
-    cnpj_cpf,
     qtd_lancamentos,
     ROUND(total_pago::NUMERIC, 2)                   AS total_pago,
     ROUND(
@@ -108,11 +105,10 @@ ORDER BY ano_dados, total_pago DESC, fornecedor;
 WITH global_totais AS (
     SELECT
         fornecedor,
-        cnpj_cpf,
         SUM(qtd_lancamentos)    AS qtd_lancamentos,
         SUM(total_pago)         AS total_pago
     FROM resposta_fornecedores
-    GROUP BY fornecedor, cnpj_cpf
+    GROUP BY fornecedor
 ),
 ranked AS (
     SELECT
@@ -127,7 +123,6 @@ SELECT
     'GLOBAL'                                AS ano_dados,
     posicao,
     fornecedor,
-    cnpj_cpf,
     qtd_lancamentos,
     ROUND(total_pago::NUMERIC, 2)           AS total_pago,
     ROUND(
@@ -135,6 +130,7 @@ SELECT
         2
     )                                       AS pct_total
 FROM ranked
+WHERE posicao <= 30
 ORDER BY total_pago DESC, fornecedor;
 
 
@@ -143,13 +139,12 @@ ORDER BY total_pago DESC, fornecedor;
 -- =============================================================================
 
 \o /respostas/q5_fornecedores_complemento.txt
-\qecho Q5 complemento - maior fornecedor por categoria de gasto e por ano (57a leg.)
+\qecho Q5 complemento - top 5 fornecedores por categoria de gasto e por ano (57a leg.)
 WITH por_categoria AS (
     SELECT
         g.ano_dados,
         g.descricao_despesa                     AS categoria,
         REPLACE(REPLACE(g.fornecedor, '|', '/'), CHR(8211), '-') AS fornecedor,
-        CAST(NULL AS VARCHAR)                   AS cnpj_cpf,
         COUNT(*)                                AS qtd_lancamentos,
         SUM(g.valor_liquido)                    AS total_pago,
         RANK() OVER (
@@ -168,15 +163,15 @@ WITH por_categoria AS (
 )
 SELECT
     ano_dados,
+    posicao,
     categoria,
     fornecedor,
-    cnpj_cpf,
     qtd_lancamentos,
     ROUND(total_pago::NUMERIC, 2)   AS total_pago
 FROM por_categoria
-WHERE posicao = 1
+WHERE posicao <= 5
 ORDER BY
     ano_dados,
     categoria,
-    total_pago DESC,
+    posicao,
     fornecedor;

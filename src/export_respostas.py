@@ -40,7 +40,7 @@ def main():
             sql_content = sql_path.read_text(encoding="latin-1")
         
         # Prepend schema and client encoding (latin1) to match expected formats
-        config = "SET search_path TO grupo4; SET client_encoding TO 'latin1';\n"
+        config = "SET search_path TO grupo4; SET client_encoding TO 'UTF8';\n"
         full_sql = config + sql_content
         
         # Execute inside docker container
