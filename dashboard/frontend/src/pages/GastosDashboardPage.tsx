@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { fetchQuestion } from '../api'
 import { ChartPanel } from '../components/ChartPanel'
-import { DataTablePanel } from '../components/DataTablePanel'
 import { ExecutiveCards } from '../components/ExecutiveCards'
 import { NoDataState } from '../components/NoDataState'
 import { GlobalFilters } from '../components/GlobalFilters'
+import { DeputyAvatar } from '../components/DeputyAvatar'
+import { VisualRanking } from '../components/VisualRanking'
+import { SupplierCardGrid } from '../components/SupplierCardGrid'
+import { DeputyFinancialProfile } from '../components/DeputyFinancialProfile'
+import { formatCurrency } from '../utils/format'
 import type { FilterState, MetaResponse, QuestionPayload, TableState } from '../types'
-
 
 const EMPTY_FILTER_STATE: FilterState = {
   anos: [],
@@ -18,29 +21,21 @@ const EMPTY_FILTER_STATE: FilterState = {
   search: '',
 }
 
+const VISUAL_TABLE_STATE = {
+  page: 1,
+  pageSize: 200,
+  sortDir: 'desc',
+} satisfies TableState
+
 interface GastosDashboardPageProps {
   meta: MetaResponse
 }
 
 export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [filters, setFilters] = useState<FilterState>(EMPTY_FILTER_STATE)
-  // Configurações e estados de tabelas separados para cada bloco
-  const [tableStates, setTableStates] = useState<Record<string, TableState>>({
-    q1: { page: 1, pageSize: 10, sortDir: 'desc' },
-    q5: { page: 1, pageSize: 10, sortDir: 'desc' },
-    q7: { page: 1, pageSize: 10, sortDir: 'desc' },
-    q12: { page: 1, pageSize: 10, sortDir: 'desc' },
-    q13: { page: 1, pageSize: 10, sortDir: 'desc' },
-  })
-
-  // Estado de visibilidade individual de cada tabela
-  const [showTables, setShowTables] = useState<Record<string, boolean>>({
-    q1: false,
-    q5: false,
-    q7: false,
-    q12: false,
-    q13: false,
-  })
+  const [selectedDeputy, setSelectedDeputy] = useState<{ id: string; nome: string } | null>(null)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   const [q1Data, setQ1Data] = useState<QuestionPayload | null>(null)
   const [q5Data, setQ5Data] = useState<QuestionPayload | null>(null)
@@ -71,9 +66,8 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     })
 
     const supported = qMeta.supported_filters || []
-    const tState = tableStates[id] || { page: 1, pageSize: 10, sortDir: 'desc' }
 
-    fetchQuestion(id, filters, tState, supported)
+    fetchQuestion(id, filters, VISUAL_TABLE_STATE, supported)
       .then((res) => {
         setData(res)
       })
@@ -85,34 +79,103 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       })
   }
 
-  // Efeitos reativos individuais por bloco e por tableState correspondente
+  // Efeitos reativos individuais por bloco dependentes apenas de filters
   useEffect(() => {
     fetchBlock('q1', setQ1Data)
-  }, [filters, tableStates.q1])
+  }, [filters])
 
   useEffect(() => {
     fetchBlock('q5', setQ5Data)
-  }, [filters, tableStates.q5])
+  }, [filters])
 
   useEffect(() => {
     fetchBlock('q7', setQ7Data)
-  }, [filters, tableStates.q7])
+  }, [filters])
 
   useEffect(() => {
     fetchBlock('q12', setQ12Data)
-  }, [filters, tableStates.q12])
+  }, [filters])
 
   useEffect(() => {
     fetchBlock('q13', setQ13Data)
-  }, [filters, tableStates.q13])
+  }, [filters])
 
-  const handleTableChange = (id: string, next: TableState) => {
-    setTableStates((prev) => ({ ...prev, [id]: next }))
-  }
+  // Obter lista única de deputados a partir de q1Data + meta.available_filters para autocomplete
+  const searchOptions = useMemo(() => {
+    const map = new Map<string, { id: string; nome: string; partido?: string; uf?: string }>()
 
-  const toggleTable = (id: string) => {
-    setShowTables((prev) => ({ ...prev, [id]: !prev[id] }))
-  }
+    if (q1Data) {
+      q1Data.table_spec.rows.forEach((row) => {
+        const id = String(row.id_deputado || '')
+        const nome = String(row.nome || '')
+        if (id && nome) {
+          map.set(id, {
+            id,
+            nome,
+            partido: String(row.sigla_partido || ''),
+            uf: String(row.sigla_uf || ''),
+          })
+        }
+      })
+    }
+
+    const catalogDeps = meta.available_filters.deputados || []
+    catalogDeps.forEach((choice) => {
+      if (!map.has(choice.value)) {
+        map.set(choice.value, {
+          id: choice.value,
+          nome: choice.label,
+        })
+      }
+    })
+
+    return Array.from(map.values())
+  }, [q1Data, meta.available_filters.deputados])
+
+  // Filtragem dos deputados conforme digitação na busca
+  const filteredOptions = useMemo(() => {
+    if (!searchQuery.trim()) return []
+    const term = searchQuery
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+
+    return searchOptions
+      .filter((opt) => {
+        const nameNorm = opt.nome
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+        return nameNorm.includes(term)
+      })
+      .slice(0, 10)
+  }, [searchQuery, searchOptions])
+
+  // 3 melhores e 3 piores custo-benefício de Q7 (filtrando nulos, zeros, NaN)
+  const costBenefitRankings = useMemo(() => {
+    if (!q7Data) return { best: [], worst: [] }
+    const rows = q7Data.table_spec.rows.filter((row) => {
+      const cb = Number(row.custo_beneficio)
+      const gasto = Number(row.gasto_total)
+      return (
+        row.custo_beneficio !== null &&
+        row.custo_beneficio !== undefined &&
+        row.gasto_total !== null &&
+        row.gasto_total !== undefined &&
+        !Number.isNaN(cb) &&
+        !Number.isNaN(gasto) &&
+        cb > 0 &&
+        gasto > 0
+      )
+    })
+
+    const sorted = [...rows].sort((a, b) => Number(b.custo_beneficio) - Number(a.custo_beneficio))
+
+    return {
+      best: sorted.slice(0, 3),
+      worst: sorted.slice(-3).reverse(),
+    }
+  }, [q7Data])
 
   const q7FormulaCard = (
     <>
@@ -126,18 +189,102 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     </>
   )
 
-  // Filtros suportados pelo grupo de Gastos
   const gastosSupportedFilters = ['anos', 'partidos', 'ufs', 'deputados']
 
   return (
-    <main className="gastos-dashboard">
-      <section className="hero-card stagger-item">
-        <h1>Painel de Gastos e Fornecedores</h1>
-        <p>
-          Visão executiva consolidada das despesas parlamentares, fornecedores mais pagos,
-          relação deputado-fornecedor e índice de custo-benefício estimado.
-        </p>
+    <main className="gastos-dashboard-premium">
+      <section className="premium-hero stagger-item">
+        <div className="premium-hero-content">
+          <h1>Painel de Gastos e Fornecedores</h1>
+          <p>
+            Análise executiva de despesas parlamentares, principais fornecedores, correlações de custo-benefício e relações deputado-fornecedor.
+          </p>
+        </div>
+
+        {/* Busca Autocomplete por Deputado */}
+        <div className="premium-search-container">
+          <label htmlFor="deputy-main-search">Buscar Deputado:</label>
+          <div className="premium-search-input-wrapper">
+            <input
+              id="deputy-main-search"
+              type="text"
+              className="premium-search-input"
+              placeholder="Pesquise por nome de um deputado..."
+              value={searchQuery}
+              onFocus={() => setIsSearchOpen(true)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value)
+                setIsSearchOpen(true)
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') {
+                  setIsSearchOpen(false)
+                }
+              }}
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                className="clear-search-btn"
+                onClick={() => {
+                  setSearchQuery('')
+                  setSelectedDeputy(null)
+                  setIsSearchOpen(false)
+                }}
+              >
+                &times;
+              </button>
+            )}
+            {isSearchOpen && filteredOptions.length > 0 && (
+              <ul className="premium-search-suggestions">
+                {filteredOptions.map((opt) => (
+                  <li key={opt.id}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedDeputy({ id: opt.id, nome: opt.nome })
+                        setSearchQuery(opt.nome)
+                        setIsSearchOpen(false)
+                      }}
+                    >
+                      <DeputyAvatar id={opt.id} nome={opt.nome} size={24} />
+                      <div className="suggestion-text">
+                        <span className="suggestion-name">{opt.nome}</span>
+                        {opt.partido && (
+                          <span className="suggestion-meta">
+                            {opt.partido} - {opt.uf}
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {isSearchOpen && searchQuery.trim() && filteredOptions.length === 0 && (
+              <ul className="premium-search-suggestions">
+                <li className="no-suggestions">Nenhum deputado encontrado</li>
+              </ul>
+            )}
+          </div>
+        </div>
       </section>
+
+      {/* Perfil Expandido do Deputado Selecionado */}
+      {selectedDeputy && (
+        <DeputyFinancialProfile
+          deputyId={selectedDeputy.id}
+          deputyName={selectedDeputy.nome}
+          q1Data={q1Data}
+          q7Data={q7Data}
+          q12Data={q12Data}
+          q13Data={q13Data}
+          onClose={() => {
+            setSelectedDeputy(null)
+            setSearchQuery('')
+          }}
+        />
+      )}
 
       {/* Painel de Filtros Interno */}
       <GlobalFilters
@@ -147,7 +294,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
         supportedFilters={gastosSupportedFilters}
       />
 
-      {/* Bloco 1: Visão Geral de Indicadores (SummaryCards de Q1/Q7) */}
+      {/* Bloco 1: Visão Geral de Indicadores */}
       <section className="dashboard-section stagger-item">
         <h2>Visão Geral de Indicadores</h2>
         {loading.q1 && !q1Data ? (
@@ -161,166 +308,148 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
         )}
       </section>
 
-      <div className="dashboard-grid">
-        {/* Bloco 2: Ranking de Gastos por Deputado */}
-        <section className="dashboard-block stagger-item">
+      <div className="premium-dashboard-grid">
+        {/* Bloco 2: Ranking de Gastos por Deputado (Q1) */}
+        <section className="premium-panel stagger-item">
           <h2>Deputados que mais gastaram (Q1)</h2>
           {loading.q1 && !q1Data ? (
-            <p className="loading">Carregando dados de gastos...</p>
+            <p className="loading">Carregando dados de despesas...</p>
           ) : errors.q1 ? (
             <p className="error">Erro: {errors.q1}</p>
           ) : q1Data ? (
-            <>
+            <div className="premium-panel-content">
               <ChartPanel spec={q1Data.chart_spec} />
-              <div className="detailed-data-section">
-                <button
-                  type="button"
-                  className="toggle-detailed-data-btn"
-                  onClick={() => toggleTable('q1')}
-                >
-                  {showTables.q1 ? '▲ Ocultar dados detalhados' : '▼ Ver dados detalhados'}
-                </button>
-                <div className={`detailed-data-content${showTables.q1 ? '' : ' hidden'}`}>
-                  <DataTablePanel
-                    table={q1Data.table_spec}
-                    state={tableStates.q1}
-                    onChange={(next) => handleTableChange('q1', next)}
-                  />
-                </div>
-              </div>
-            </>
+              <VisualRanking
+                rows={q1Data.table_spec.rows}
+                idField="id_deputado"
+                labelField="nome"
+                valueField="gasto_total"
+                subtitleField="sigla_partido"
+                secondarySubtitleField="sigla_uf"
+                highlightValue={selectedDeputy?.id}
+                limit={10}
+              />
+            </div>
           ) : (
             <NoDataState message="Nenhum dado disponível." />
           )}
         </section>
 
-        {/* Bloco 3: Fornecedores com maior total pago */}
-        <section className="dashboard-block stagger-item">
+        {/* Bloco 3: Fornecedores com maior total pago (Q5) */}
+        <section className="premium-panel stagger-item">
           <h2>Fornecedores com maior total pago (Q5)</h2>
           {loading.q5 && !q5Data ? (
             <p className="loading">Carregando dados de fornecedores...</p>
           ) : errors.q5 ? (
             <p className="error">Erro: {errors.q5}</p>
           ) : q5Data ? (
-            <>
+            <div className="premium-panel-content">
               <ChartPanel spec={q5Data.chart_spec} />
-              <div className="detailed-data-section">
-                <button
-                  type="button"
-                  className="toggle-detailed-data-btn"
-                  onClick={() => toggleTable('q5')}
-                >
-                  {showTables.q5 ? '▲ Ocultar dados detalhados' : '▼ Ver dados detalhados'}
-                </button>
-                <div className={`detailed-data-content${showTables.q5 ? '' : ' hidden'}`}>
-                  <DataTablePanel
-                    table={q5Data.table_spec}
-                    state={tableStates.q5}
-                    onChange={(next) => handleTableChange('q5', next)}
-                  />
-                </div>
-              </div>
-            </>
+              <SupplierCardGrid rows={q5Data.table_spec.rows} limit={6} />
+            </div>
           ) : (
             <NoDataState message="Nenhum dado disponível." />
           )}
         </section>
 
-        {/* Bloco 4: Índice de custo-benefício */}
-        <section className="dashboard-block stagger-item">
+        {/* Bloco 4: Índice de Custo-Benefício (Q7) */}
+        <section className="premium-panel stagger-item">
           <h2>Índice de Custo-Benefício (Q7)</h2>
           {loading.q7 && !q7Data ? (
             <p className="loading">Carregando custo-benefício...</p>
           ) : errors.q7 ? (
             <p className="error">Erro: {errors.q7}</p>
           ) : q7Data ? (
-            <>
-              <ExecutiveCards
-                cards={q7Data.summary_cards}
-                extraCard={q7FormulaCard}
-              />
+            <div className="premium-panel-content">
+              <div className="custo-beneficio-row">
+                <ExecutiveCards
+                  cards={q7Data.summary_cards}
+                  extraCard={q7FormulaCard}
+                />
+              </div>
               <ChartPanel spec={q7Data.chart_spec} />
-              <div className="detailed-data-section">
-                <button
-                  type="button"
-                  className="toggle-detailed-data-btn"
-                  onClick={() => toggleTable('q7')}
-                >
-                  {showTables.q7 ? '▲ Ocultar dados detalhados' : '▼ Ver dados detalhados'}
-                </button>
-                <div className={`detailed-data-content${showTables.q7 ? '' : ' hidden'}`}>
-                  <DataTablePanel
-                    table={q7Data.table_spec}
-                    state={tableStates.q7}
-                    onChange={(next) => handleTableChange('q7', next)}
+
+              <div className="premium-cb-insights">
+                <div className="insight-column">
+                  <h4>Melhor Custo-Benefício</h4>
+                  <VisualRanking
+                    rows={costBenefitRankings.best}
+                    idField="id_deputado"
+                    labelField="nome"
+                    valueField="custo_beneficio"
+                    subtitleField="gasto_total"
+                    isCurrency={false}
+                    formatSubtitle={formatCurrency}
+                    highlightValue={selectedDeputy?.id}
+                    limit={3}
+                  />
+                </div>
+                <div className="insight-column">
+                  <h4>Pior Custo-Benefício</h4>
+                  <VisualRanking
+                    rows={costBenefitRankings.worst}
+                    idField="id_deputado"
+                    labelField="nome"
+                    valueField="custo_beneficio"
+                    subtitleField="gasto_total"
+                    isCurrency={false}
+                    formatSubtitle={formatCurrency}
+                    highlightValue={selectedDeputy?.id}
+                    limit={3}
                   />
                 </div>
               </div>
-            </>
+            </div>
           ) : (
             <NoDataState message="Nenhum dado disponível." />
           )}
         </section>
 
-        {/* Bloco 5: Deputado x fornecedor */}
-        <section className="dashboard-block stagger-item">
+        {/* Bloco 5: Relação Deputado x Fornecedor (Q12) */}
+        <section className="premium-panel stagger-item">
           <h2>Relação Deputado x Fornecedor (Q12)</h2>
           {loading.q12 && !q12Data ? (
             <p className="loading">Carregando relação...</p>
           ) : errors.q12 ? (
             <p className="error">Erro: {errors.q12}</p>
           ) : q12Data ? (
-            <>
+            <div className="premium-panel-content">
               <ChartPanel spec={q12Data.chart_spec} />
-              <div className="detailed-data-section">
-                <button
-                  type="button"
-                  className="toggle-detailed-data-btn"
-                  onClick={() => toggleTable('q12')}
-                >
-                  {showTables.q12 ? '▲ Ocultar dados detalhados' : '▼ Ver dados detalhados'}
-                </button>
-                <div className={`detailed-data-content${showTables.q12 ? '' : ' hidden'}`}>
-                  <DataTablePanel
-                    table={q12Data.table_spec}
-                    state={tableStates.q12}
-                    onChange={(next) => handleTableChange('q12', next)}
-                  />
-                </div>
-              </div>
-            </>
+              <VisualRanking
+                rows={q12Data.table_spec.rows}
+                idField="id_deputado"
+                labelField="nome"
+                valueField="total_pago"
+                subtitleField="fornecedor"
+                highlightValue={selectedDeputy?.id}
+                limit={10}
+              />
+            </div>
           ) : (
             <NoDataState message="Nenhum dado disponível." />
           )}
         </section>
 
-        {/* Bloco 6: Categorias de gasto por deputado */}
-        <section className="dashboard-block stagger-item">
-          <h2>Categorias de Gasto por Deputado (Q13)</h2>
+        {/* Bloco 6: Categorias de gasto por deputado (Q13) */}
+        <section className="premium-panel stagger-item">
+          <h2>Categorias de Gasto (Q13)</h2>
           {loading.q13 && !q13Data ? (
             <p className="loading">Carregando categorias...</p>
           ) : errors.q13 ? (
             <p className="error">Erro: {errors.q13}</p>
           ) : q13Data ? (
-            <>
+            <div className="premium-panel-content">
               <ChartPanel spec={q13Data.chart_spec} />
-              <div className="detailed-data-section">
-                <button
-                  type="button"
-                  className="toggle-detailed-data-btn"
-                  onClick={() => toggleTable('q13')}
-                >
-                  {showTables.q13 ? '▲ Ocultar dados detalhados' : '▼ Ver dados detalhados'}
-                </button>
-                <div className={`detailed-data-content${showTables.q13 ? '' : ' hidden'}`}>
-                  <DataTablePanel
-                    table={q13Data.table_spec}
-                    state={tableStates.q13}
-                    onChange={(next) => handleTableChange('q13', next)}
-                  />
-                </div>
-              </div>
-            </>
+              <VisualRanking
+                rows={q13Data.table_spec.rows}
+                labelField="descricao_despesa"
+                valueField="gasto_total"
+                subtitleField="nome"
+                extraLabelField="pct_total"
+                highlightValue={selectedDeputy?.id}
+                limit={10}
+              />
+            </div>
           ) : (
             <NoDataState message="Nenhum dado disponível." />
           )}

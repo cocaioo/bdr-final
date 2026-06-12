@@ -1276,3 +1276,642 @@ td {
   gap: 6px;
 }
 
+/* Premium Styles for Gastos Dashboard */
+.gastos-dashboard-premium {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.gastos-dashboard-premium .premium-hero {
+  background: linear-gradient(135deg, #0b3c5d 0%, #1d2731 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 10px 30px rgba(11, 60, 93, 0.15);
+}
+
+.gastos-dashboard-premium .premium-hero-content h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 2.2rem;
+  margin: 0 0 8px 0;
+  color: #ffffff;
+}
+
+.gastos-dashboard-premium .premium-hero-content p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.gastos-dashboard-premium .premium-search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.gastos-dashboard-premium .premium-search-container label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.gastos-dashboard-premium .premium-search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.gastos-dashboard-premium .premium-search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.gastos-dashboard-premium .premium-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.gastos-dashboard-premium .premium-search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.2);
+}
+
+.gastos-dashboard-premium .clear-search-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.gastos-dashboard-premium .clear-search-btn:hover {
+  color: #ffffff;
+}
+
+.gastos-dashboard-premium .premium-search-suggestions {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.gastos-dashboard-premium .premium-search-suggestions li button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--foreground);
+  transition: background 0.15s ease;
+}
+
+.gastos-dashboard-premium .premium-search-suggestions li button:hover {
+  background: rgba(11, 60, 93, 0.05);
+}
+
+.gastos-dashboard-premium .premium-search-suggestions .suggestion-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gastos-dashboard-premium .premium-search-suggestions .suggestion-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--primary);
+}
+
+.gastos-dashboard-premium .premium-search-suggestions .suggestion-meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.gastos-dashboard-premium .premium-search-suggestions .no-suggestions {
+  padding: 12px 16px;
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+/* Deputy Financial Profile Card & Grid */
+.gastos-dashboard-premium .deputy-profile-panel {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gastos-dashboard-premium .profile-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.gastos-dashboard-premium .profile-title-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.gastos-dashboard-premium .profile-meta h2 {
+  font-family: 'Sora', sans-serif;
+  color: var(--primary);
+  margin: 0 0 4px 0;
+  font-size: 1.4rem;
+}
+
+.gastos-dashboard-premium .profile-meta .profile-sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.gastos-dashboard-premium .close-profile-btn {
+  background: rgba(224, 122, 95, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(224, 122, 95, 0.2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.gastos-dashboard-premium .close-profile-btn:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.gastos-dashboard-premium .profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.gastos-dashboard-premium .profile-card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gastos-dashboard-premium .profile-card h3 {
+  margin: 0 0 4px 0;
+  font-size: 0.95rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Sora', sans-serif;
+}
+
+.gastos-dashboard-premium .profile-stat-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.gastos-dashboard-premium .profile-main-stat {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.gastos-dashboard-premium .profile-main-stat .stat-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.gastos-dashboard-premium .profile-main-stat .stat-value.highlight-currency {
+  font-family: 'Sora', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.gastos-dashboard-premium .profile-main-stat .stat-rank-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: rgba(11, 60, 93, 0.06);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.gastos-dashboard-premium .profile-cb-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gastos-dashboard-premium .profile-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.gastos-dashboard-premium .profile-stat-row .score-badge {
+  background: var(--primary);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+.gastos-dashboard-premium .profile-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.gastos-dashboard-premium .profile-mini-stat {
+  text-align: center;
+  background: #ffffff;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.gastos-dashboard-premium .profile-mini-stat .mini-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.gastos-dashboard-premium .profile-mini-stat .mini-value {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--foreground);
+}
+
+.gastos-dashboard-premium .profile-mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gastos-dashboard-premium .profile-mini-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.gastos-dashboard-premium .profile-mini-item .item-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 60%;
+}
+
+.gastos-dashboard-premium .profile-mini-item .item-label {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--primary);
+}
+
+.gastos-dashboard-premium .profile-mini-item .item-sub-desc {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.gastos-dashboard-premium .profile-mini-item .item-value {
+  color: var(--accent);
+  font-family: monospace;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.gastos-dashboard-premium .profile-info-empty {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  margin: 16px 0;
+}
+
+/* Premium Visual Rankings */
+.gastos-dashboard-premium .visual-ranking {
+  width: 100%;
+}
+
+.gastos-dashboard-premium .ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gastos-dashboard-premium .ranking-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--background);
+  transition: all 0.2s ease;
+}
+
+.gastos-dashboard-premium .ranking-row.highlight {
+  border-color: var(--accent);
+  background: rgba(224, 122, 95, 0.05);
+  box-shadow: 0 0 10px rgba(224, 122, 95, 0.12);
+}
+
+.gastos-dashboard-premium .ranking-position {
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.95rem;
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.gastos-dashboard-premium .ranking-avatar-wrapper {
+  flex-shrink: 0;
+}
+
+.gastos-dashboard-premium .ranking-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.gastos-dashboard-premium .ranking-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.gastos-dashboard-premium .ranking-item-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gastos-dashboard-premium .ranking-item-values {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.gastos-dashboard-premium .ranking-item-value {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.gastos-dashboard-premium .ranking-item-extra {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.gastos-dashboard-premium .ranking-item-subtitle {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.gastos-dashboard-premium .ranking-progress-track {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.gastos-dashboard-premium .ranking-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Supplier card grid styles */
+.gastos-dashboard-premium .supplier-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.gastos-dashboard-premium .supplier-card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gastos-dashboard-premium .supplier-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gastos-dashboard-premium .supplier-card-rank {
+  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.gastos-dashboard-premium .supplier-card-pct {
+  background: rgba(11, 60, 93, 0.08);
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.gastos-dashboard-premium .supplier-card-name {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gastos-dashboard-premium .supplier-card-stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.gastos-dashboard-premium .supplier-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gastos-dashboard-premium .supplier-stat .stat-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.gastos-dashboard-premium .supplier-stat .stat-value {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.gastos-dashboard-premium .supplier-card-progress-track {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.gastos-dashboard-premium .supplier-card-progress-bar {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.gastos-dashboard-premium .supplier-empty {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-style: italic;
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+/* Premium Custo-Benefício Insights */
+.gastos-dashboard-premium .premium-cb-insights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+
+.gastos-dashboard-premium .premium-cb-insights .insight-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gastos-dashboard-premium .premium-cb-insights .insight-column h4 {
+  margin: 0;
+  font-family: 'Sora', sans-serif;
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+
+/* Scoped layout rules */
+.gastos-dashboard-premium .premium-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.gastos-dashboard-premium .premium-panel {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gastos-dashboard-premium .premium-panel h2 {
+  font-family: 'Sora', sans-serif;
+  color: var(--primary);
+  font-size: 1.35rem;
+  margin: 0;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.gastos-dashboard-premium .premium-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.gastos-dashboard-premium .custo-beneficio-row {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1024px) {
+  .gastos-dashboard-premium .profile-grid {
+    grid-template-columns: 1fr;
+  }
+  .gastos-dashboard-premium .premium-cb-insights {
+    grid-template-columns: 1fr;
+  }
+}
+
+
