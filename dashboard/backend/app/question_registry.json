@@ -49,7 +49,7 @@
       "response_files": ["q1_gastos_deputados.txt"],
       "sql_file": "Caio/consultas/q1.sql",
       "chart_type": "bar_horizontal",
-      "supported_filters": ["partidos", "ufs"],
+      "supported_filters": ["partidos", "ufs", "deputados"],
       "expected_columns": ["id_deputado", "nome", "sigla_uf", "sigla_partido", "gasto_total"],
       "main_table_contains": "",
       "summary_table_contains": "",

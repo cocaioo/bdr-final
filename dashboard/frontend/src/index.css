@@ -1314,6 +1314,8 @@ td {
   gap: 8px;
   max-width: 500px;
   width: 100%;
+  position: relative;
+  z-index: 30;
 }
 
 .gastos-dashboard-premium .premium-search-container label {
@@ -1380,12 +1382,93 @@ td {
   border: 1px solid var(--border);
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  z-index: 100;
+  z-index: 200;
   list-style: none;
   padding: 6px 0;
   margin: 0;
   max-height: 280px;
   overflow-y: auto;
+}
+
+.gastos-dashboard-premium .premium-inline-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.gastos-dashboard-premium .premium-year-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gastos-dashboard-premium .premium-filter-chip,
+.gastos-dashboard-premium .premium-clear-filters {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.gastos-dashboard-premium .premium-filter-chip:hover,
+.gastos-dashboard-premium .premium-clear-filters:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.38);
+}
+
+.gastos-dashboard-premium .premium-filter-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(224, 122, 95, 0.24);
+}
+
+.gastos-dashboard-premium .premium-filter-selects {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.gastos-dashboard-premium .premium-filter-selects label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.gastos-dashboard-premium .premium-filter-selects select {
+  min-width: 150px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 0 34px 0 12px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 700;
+}
+
+.gastos-dashboard-premium .premium-filter-selects select option {
+  color: var(--ink);
+  background: #ffffff;
+}
+
+.gastos-dashboard-premium .premium-clear-filters {
+  color: #ffffff;
+  border-color: rgba(224, 122, 95, 0.65);
+  background: rgba(224, 122, 95, 0.18);
 }
 
 .gastos-dashboard-premium .premium-search-suggestions li button {

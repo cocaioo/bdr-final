@@ -104,7 +104,7 @@ export function DeputyFinancialProfile({
               </span>
               {q1Info && (
                 <span className="stat-rank-desc">
-                  Posição #{q1Info.rank} no ranking de gastos
+                  Posição #{q1Info.rank} no recorte atual
                 </span>
               )}
             </div>

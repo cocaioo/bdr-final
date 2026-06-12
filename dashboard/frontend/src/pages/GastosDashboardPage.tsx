@@ -1,15 +1,14 @@
 import { useState, useEffect, useMemo } from 'react'
-import { fetchQuestion } from '../api'
+import { fetchDeputiesCatalog, fetchQuestion } from '../api'
 import { ChartPanel } from '../components/ChartPanel'
 import { ExecutiveCards } from '../components/ExecutiveCards'
 import { NoDataState } from '../components/NoDataState'
-import { GlobalFilters } from '../components/GlobalFilters'
 import { DeputyAvatar } from '../components/DeputyAvatar'
 import { VisualRanking } from '../components/VisualRanking'
 import { SupplierCardGrid } from '../components/SupplierCardGrid'
 import { DeputyFinancialProfile } from '../components/DeputyFinancialProfile'
 import { formatCurrency } from '../utils/format'
-import type { FilterState, MetaResponse, QuestionPayload, TableState } from '../types'
+import type { DeputyCatalogItem, FilterState, MetaResponse, QuestionPayload, TableState } from '../types'
 
 const EMPTY_FILTER_STATE: FilterState = {
   anos: [],
@@ -36,6 +35,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [selectedDeputy, setSelectedDeputy] = useState<{ id: string; nome: string } | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [deputyCatalog, setDeputyCatalog] = useState<DeputyCatalogItem[]>([])
 
   const [q1Data, setQ1Data] = useState<QuestionPayload | null>(null)
   const [q5Data, setQ5Data] = useState<QuestionPayload | null>(null)
@@ -52,6 +52,20 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   })
 
   const [errors, setErrors] = useState<Record<string, string>>({})
+
+  useEffect(() => {
+    let mounted = true
+    fetchDeputiesCatalog()
+      .then((items) => {
+        if (mounted) setDeputyCatalog(items)
+      })
+      .catch(() => {
+        if (mounted) setDeputyCatalog([])
+      })
+    return () => {
+      mounted = false
+    }
+  }, [])
 
   // Carregamento independente de cada bloco
   const fetchBlock = (id: string, setData: (data: QuestionPayload) => void) => {
@@ -104,6 +118,13 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const searchOptions = useMemo(() => {
     const map = new Map<string, { id: string; nome: string; partido?: string; uf?: string }>()
 
+    deputyCatalog.forEach((deputy) => {
+      map.set(deputy.id_deputado, {
+        id: deputy.id_deputado,
+        nome: deputy.nome,
+      })
+    })
+
     const collectRows = (payload: QuestionPayload | null) => {
       payload?.table_spec.rows.forEach((row) => {
         const id = String(row.id_deputado || '')
@@ -126,7 +147,48 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     collectRows(q13Data)
 
     return Array.from(map.values()).sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
-  }, [q1Data, q7Data, q12Data, q13Data])
+  }, [deputyCatalog, q1Data, q7Data, q12Data, q13Data])
+
+  const applyDeputySelection = (deputy: { id: string; nome: string }) => {
+    setSelectedDeputy(deputy)
+    setSearchQuery(deputy.nome)
+    setIsSearchOpen(false)
+    setFilters((prev) => ({ ...prev, deputados: [deputy.id], search: '' }))
+  }
+
+  const clearDeputySelection = () => {
+    setSelectedDeputy(null)
+    setSearchQuery('')
+    setIsSearchOpen(false)
+    setFilters((prev) => ({ ...prev, deputados: [] }))
+  }
+
+  const toggleFilterValue = (key: 'anos', value: string) => {
+    setFilters((prev) => {
+      const current = prev[key]
+      const next = current.includes(value)
+        ? current.filter((item) => item !== value)
+        : [...current, value]
+      return { ...prev, [key]: next }
+    })
+  }
+
+  const setSingleFilterValue = (key: 'partidos' | 'ufs', value: string) => {
+    setFilters((prev) => ({ ...prev, [key]: value ? [value] : [] }))
+  }
+
+  const clearDashboardFilters = () => {
+    setFilters(EMPTY_FILTER_STATE)
+    setSelectedDeputy(null)
+    setSearchQuery('')
+    setIsSearchOpen(false)
+  }
+
+  const hasActiveDashboardFilters =
+    filters.anos.length > 0 ||
+    filters.partidos.length > 0 ||
+    filters.ufs.length > 0 ||
+    filters.deputados.length > 0
 
   // Filtragem dos deputados conforme digitação na busca
   const filteredOptions = useMemo(() => {
@@ -185,8 +247,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     </>
   )
 
-  const gastosSupportedFilters = ['anos', 'partidos', 'ufs', 'deputados']
-
   return (
     <main className="gastos-dashboard-premium">
       <section className="premium-hero stagger-item">
@@ -218,6 +278,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 setIsSearchOpen(true)
                 if (selectedDeputy && nextQuery !== selectedDeputy.nome) {
                   setSelectedDeputy(null)
+                  setFilters((prev) => ({ ...prev, deputados: [] }))
                 }
               }}
               onKeyDown={(e) => {
@@ -230,11 +291,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               <button
                 type="button"
                 className="clear-search-btn"
-                onClick={() => {
-                  setSearchQuery('')
-                  setSelectedDeputy(null)
-                  setIsSearchOpen(false)
-                }}
+                onClick={clearDeputySelection}
               >
                 &times;
               </button>
@@ -245,11 +302,8 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   <li key={opt.id}>
                     <button
                       type="button"
-                      onClick={() => {
-                        setSelectedDeputy({ id: opt.id, nome: opt.nome })
-                        setSearchQuery(opt.nome)
-                        setIsSearchOpen(false)
-                      }}
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={() => applyDeputySelection({ id: opt.id, nome: opt.nome })}
                     >
                       <DeputyAvatar id={opt.id} nome={opt.nome} size={24} />
                       <div className="suggestion-text">
@@ -272,6 +326,59 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             )}
           </div>
         </div>
+
+        <div className="premium-inline-filters" aria-label="Filtros do painel de gastos">
+          <div className="premium-year-chips" aria-label="Filtrar por ano">
+            {(meta.available_filters.anos ?? []).map((choice) => (
+              <button
+                key={choice.value}
+                type="button"
+                className={`premium-filter-chip${filters.anos.includes(choice.value) ? ' active' : ''}`}
+                onClick={() => toggleFilterValue('anos', choice.value)}
+              >
+                {choice.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="premium-filter-selects">
+            <label>
+              <span>Partido</span>
+              <select
+                value={filters.partidos[0] ?? ''}
+                onChange={(event) => setSingleFilterValue('partidos', event.target.value)}
+              >
+                <option value="">Todos</option>
+                {(meta.available_filters.partidos ?? []).map((choice) => (
+                  <option key={choice.value} value={choice.value}>
+                    {choice.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              <span>UF</span>
+              <select
+                value={filters.ufs[0] ?? ''}
+                onChange={(event) => setSingleFilterValue('ufs', event.target.value)}
+              >
+                <option value="">Todas</option>
+                {(meta.available_filters.ufs ?? []).map((choice) => (
+                  <option key={choice.value} value={choice.value}>
+                    {choice.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            {hasActiveDashboardFilters && (
+              <button type="button" className="premium-clear-filters" onClick={clearDashboardFilters}>
+                Limpar filtros
+              </button>
+            )}
+          </div>
+        </div>
       </section>
 
       {/* Perfil Expandido do Deputado Selecionado */}
@@ -283,20 +390,9 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
           q7Data={q7Data}
           q12Data={q12Data}
           q13Data={q13Data}
-          onClose={() => {
-            setSelectedDeputy(null)
-            setSearchQuery('')
-          }}
+          onClose={clearDeputySelection}
         />
       )}
-
-      {/* Painel de Filtros Interno */}
-      <GlobalFilters
-        catalog={meta.available_filters}
-        value={filters}
-        onChange={setFilters}
-        supportedFilters={gastosSupportedFilters}
-      />
 
       {/* Bloco 1: Visão Geral de Indicadores */}
       <section className="dashboard-section stagger-item">

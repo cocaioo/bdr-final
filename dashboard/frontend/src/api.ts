@@ -1,4 +1,4 @@
-import type { FilterState, MetaResponse, QuestionPayload, TableState } from './types'
+import type { DeputyCatalogItem, FilterState, MetaResponse, QuestionPayload, TableState } from './types'
 
 const API_BASE = import.meta.env.VITE_API_URL ?? ''
 
@@ -27,6 +27,35 @@ async function fetchJson<T>(url: string): Promise<T> {
 
 export function fetchMeta(): Promise<MetaResponse> {
   return fetchJson<MetaResponse>(`${API_BASE}/api/meta`)
+}
+
+function parseSemicolonCsv(text: string): Array<Record<string, string>> {
+  const lines = text.split(/\r?\n/).filter((line) => line.trim().length > 0)
+  if (lines.length === 0) return []
+  const headers = lines[0].split(';').map((item) => item.trim())
+  return lines.slice(1).map((line) => {
+    const values = line.split(';')
+    return headers.reduce<Record<string, string>>((row, header, index) => {
+      row[header] = values[index]?.trim() ?? ''
+      return row
+    }, {})
+  })
+}
+
+export async function fetchDeputiesCatalog(): Promise<DeputyCatalogItem[]> {
+  const response = await fetch('/deputados.csv')
+  if (!response.ok) {
+    throw new Error(`Erro ao carregar catalogo de deputados (${response.status})`)
+  }
+  const rows = parseSemicolonCsv(await response.text())
+  return rows
+    .map((row) => ({
+      id_deputado: row.id_deputado,
+      nome: row.nome,
+      nome_civil: row.nome_civil,
+      escolaridade: row.escolaridade,
+    }))
+    .filter((row) => row.id_deputado && row.nome)
 }
 
 export function fetchQuestion(

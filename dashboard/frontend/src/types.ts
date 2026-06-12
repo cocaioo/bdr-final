@@ -30,6 +30,13 @@ export interface QuestionMeta {
   tags?: string[]
 }
 
+export interface DeputyCatalogItem {
+  id_deputado: string
+  nome: string
+  nome_civil?: string
+  escolaridade?: string
+}
+
 export interface MetaResponse {
   dataset_version: string
   last_updated: string
