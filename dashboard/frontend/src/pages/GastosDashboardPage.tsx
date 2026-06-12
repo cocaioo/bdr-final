@@ -104,33 +104,29 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const searchOptions = useMemo(() => {
     const map = new Map<string, { id: string; nome: string; partido?: string; uf?: string }>()
 
-    if (q1Data) {
-      q1Data.table_spec.rows.forEach((row) => {
+    const collectRows = (payload: QuestionPayload | null) => {
+      payload?.table_spec.rows.forEach((row) => {
         const id = String(row.id_deputado || '')
         const nome = String(row.nome || '')
         if (id && nome) {
+          const current = map.get(id)
           map.set(id, {
             id,
-            nome,
-            partido: String(row.sigla_partido || ''),
-            uf: String(row.sigla_uf || ''),
+            nome: current?.nome || nome,
+            partido: current?.partido || String(row.sigla_partido || ''),
+            uf: current?.uf || String(row.sigla_uf || ''),
           })
         }
       })
     }
 
-    const catalogDeps = meta.available_filters.deputados || []
-    catalogDeps.forEach((choice) => {
-      if (!map.has(choice.value)) {
-        map.set(choice.value, {
-          id: choice.value,
-          nome: choice.label,
-        })
-      }
-    })
+    collectRows(q1Data)
+    collectRows(q7Data)
+    collectRows(q12Data)
+    collectRows(q13Data)
 
-    return Array.from(map.values())
-  }, [q1Data, meta.available_filters.deputados])
+    return Array.from(map.values()).sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
+  }, [q1Data, q7Data, q12Data, q13Data])
 
   // Filtragem dos deputados conforme digitação na busca
   const filteredOptions = useMemo(() => {
@@ -211,10 +207,18 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               className="premium-search-input"
               placeholder="Pesquise por nome de um deputado..."
               value={searchQuery}
-              onFocus={() => setIsSearchOpen(true)}
+              onFocus={() => {
+                if (!selectedDeputy) {
+                  setIsSearchOpen(true)
+                }
+              }}
               onChange={(e) => {
-                setSearchQuery(e.target.value)
+                const nextQuery = e.target.value
+                setSearchQuery(nextQuery)
                 setIsSearchOpen(true)
+                if (selectedDeputy && nextQuery !== selectedDeputy.nome) {
+                  setSelectedDeputy(null)
+                }
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Escape') {
