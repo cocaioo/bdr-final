@@ -13,6 +13,12 @@ export interface FilterCatalog {
   escolaridade: FilterChoice[]
 }
 
+export interface QuestionGroup {
+  id: string
+  label: string
+  description?: string
+}
+
 export interface QuestionMeta {
   id: string
   title: string
@@ -20,6 +26,8 @@ export interface QuestionMeta {
   description: string
   chart_type: string
   supported_filters: string[]
+  group_id?: string
+  tags?: string[]
 }
 
 export interface MetaResponse {
@@ -29,6 +37,7 @@ export interface MetaResponse {
   legend: Record<string, unknown>
   available_filters: FilterCatalog
   question_filters?: Record<string, FilterCatalog>
+  groups?: QuestionGroup[]
 }
 
 export interface SummaryCard {

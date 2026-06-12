@@ -50,9 +50,11 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
   const [payload, setPayload] = useState<QuestionPayload | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showDetailedData, setShowDetailedData] = useState(false)
 
   useEffect(() => {
     setTableState(DEFAULT_TABLE_STATE)
+    setShowDetailedData(false)
   }, [questionId])
 
   useEffect(() => {
@@ -218,12 +220,6 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
               associados a votacao. Cada voto nominal e contado uma unica vez.
             </p>
           </section>
-          <DataTablePanel
-            table={mainTable}
-            state={tableStateView}
-            onChange={handleTableChange}
-            compact
-          />
           {shouldShowChart ? (
             <ChartPanel
               spec={payload.chart_spec}
@@ -277,14 +273,6 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
               )}
             </>
           ) : null}
-          {!isQ2 && (
-            <DataTablePanel
-              table={mainTable}
-              state={tableStateView}
-              onChange={handleTableChange}
-              lockPageSize={isQ8}
-            />
-          )}
           {isQ2 && (
             filters.eixos.length > 0 ? (
               <section className="deputies-grid-section stagger-item">
@@ -322,49 +310,74 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
         </>
       )}
 
-      {complementTables
-        .filter((table) => !table.title.toLowerCase().includes('complementar'))
-        .map((table) => (
-          table.title.toLowerCase().includes('ranking global') ? (
-            <DataTablePanel
-              key={table.title}
-              table={table}
-              state={tableStateView}
-              onChange={handleTableChange}
-            />
-          ) : (
-          <section key={table.title} className="complement-section stagger-item">
-            <h2>{table.title}</h2>
-            <div className="table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    {table.columns.map((column) => (
-                      <th key={column.key}>{column.label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {table.rows.slice(0, 30).map((row, rowIndex) => (
-                    <tr key={`${table.title}-${rowIndex}`}>
-                      {table.columns.map((column) => (
-                        <td key={`${column.key}-${rowIndex}`}>{formatCellValue(row[column.key])}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-        )
-      ))}
-
       {isQ11 ? (
         <WordCloudGrid 
           spec={payload.chart_spec} 
           selectedTheme={null}
           onWordClick={() => {}}
         />
+      ) : null}
+
+      {/* Seção recolhível de Dados Detalhados */}
+      {!payload.empty_state.is_empty && ((!isQ2 && mainTable) || complementTables.length > 0) ? (
+        <section className="stagger-item detailed-data-section">
+          <button
+            type="button"
+            className="toggle-detailed-data-btn"
+            onClick={() => setShowDetailedData(!showDetailedData)}
+          >
+            {showDetailedData ? '▲ Ocultar Dados Detalhados' : '▼ Visualizar Dados Detalhados (Tabelas)'}
+          </button>
+          
+          <div className={`detailed-data-content stagger-item${showDetailedData ? '' : ' hidden'}`}>
+              {!isQ2 && (
+                <DataTablePanel
+                  table={mainTable}
+                  state={tableStateView}
+                  onChange={handleTableChange}
+                  lockPageSize={isQ8}
+                  compact={isQ3}
+                />
+              )}
+              
+              {complementTables
+                .filter((table) => !table.title.toLowerCase().includes('complementar'))
+                .map((table) => (
+                  table.title.toLowerCase().includes('ranking global') ? (
+                    <DataTablePanel
+                      key={table.title}
+                      table={table}
+                      state={tableStateView}
+                      onChange={handleTableChange}
+                    />
+                  ) : (
+                    <section key={table.title} className="complement-section">
+                      <h2>{table.title}</h2>
+                      <div className="table-wrapper">
+                        <table>
+                          <thead>
+                            <tr>
+                              {table.columns.map((column) => (
+                                <th key={column.key}>{column.label}</th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {table.rows.slice(0, 30).map((row, rowIndex) => (
+                              <tr key={`${table.title}-${rowIndex}`}>
+                                {table.columns.map((column) => (
+                                  <td key={`${column.key}-${rowIndex}`}>{formatCellValue(row[column.key])}</td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  )
+                ))}
+            </div>
+        </section>
       ) : null}
 
       <QueryDrawer panel={payload.query_panel} />

@@ -21,6 +21,13 @@ export function Header({ questions, datasetVersion }: HeaderProps) {
         <NavLink to="/" end className={({ isActive }) => `question-link${isActive ? ' active' : ''}`}>
           Home
         </NavLink>
+        <NavLink
+          to="/grupos/gastos"
+          className={({ isActive }) => `question-link${isActive ? ' active' : ''}`}
+          style={{ background: 'rgba(224, 122, 95, 0.08)', color: 'var(--accent)', borderColor: 'rgba(224, 122, 95, 0.2)' }}
+        >
+          Painel de Gastos
+        </NavLink>
         {questions
           .filter((question) => !isQuestionHidden(question.id))
           .map((question) => {

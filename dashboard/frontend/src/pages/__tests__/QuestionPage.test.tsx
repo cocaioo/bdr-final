@@ -131,13 +131,13 @@ describe('QuestionPage', () => {
     fetchQuestionMock.mockReset()
   })
 
-  it('keeps Q1 table visible without rendering the chart', async () => {
+  it('renders Q1 table and the chart', async () => {
     fetchQuestionMock.mockResolvedValue(payload)
 
     renderQuestionPage(buildMeta('q1', 'Gastos por deputado'), '/q/q1')
 
     expect(await screen.findByTestId('table-panel')).toHaveTextContent('Tabela principal')
-    expect(screen.queryByTestId('chart-panel')).not.toBeInTheDocument()
+    expect(await screen.findByTestId('chart-panel')).toBeInTheDocument()
   })
 
   it('renders Q2 word clouds without analytical table', async () => {

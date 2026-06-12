@@ -17,10 +17,34 @@
       "Abstencao": "#E9C46A"
     }
   },
+  "groups": [
+    {
+      "id": "gastos",
+      "label": "Gastos e Fornecedores",
+      "description": "Despesas parlamentares, fornecedores, categorias e custo-benefício."
+    },
+    {
+      "id": "perfil",
+      "label": "Escolaridade e Perfil",
+      "description": "Perfil dos deputados, escolaridade e correlações com atividade."
+    },
+    {
+      "id": "producao",
+      "label": "Produção Legislativa e Temas",
+      "description": "Proposições, eixos temáticos, nuvens de palavras e votos."
+    },
+    {
+      "id": "partidos",
+      "label": "Partidos e Ideologia",
+      "description": "Alinhamento partidário, viés ideológico e rankings."
+    }
+  ],
   "questions": [
     {
       "id": "q1",
       "title": "Gastos por deputado",
+      "group_id": "gastos",
+      "tags": ["gastos", "deputados"],
       "description": "Ranking de gasto total por deputado com nome civil preferencial, partido e UF.",
       "response_files": ["q1_gastos_deputados.txt"],
       "sql_file": "Caio/consultas/q1.sql",
@@ -35,6 +59,8 @@
     {
       "id": "q2",
       "title": "Eixos e nuvem de palavras",
+      "group_id": "producao",
+      "tags": ["temas", "nuvem", "proposições"],
       "description": "Nuvens de palavras por ano no periodo 2023-2026.",
       "response_files": ["Caio/q2/q2_eixos_nuvem_palavras.txt", "Caio/q2/q2_eixo_nuvens_complemento.txt"],
       "sql_file": "Caio/consultas/q2.sql",
@@ -49,6 +75,8 @@
     {
       "id": "q3",
       "title": "Votos por eixo principal da votacao",
+      "group_id": "producao",
+      "tags": ["votos", "eixos", "votação"],
       "description": "Mostra como cada deputado votou em votacoes classificadas por eixo tematico principal.",
       "response_files": [
         "artifacts/q3/q3_resumos_agregados.csv",
@@ -67,6 +95,8 @@
     {
       "id": "q4",
       "title": "Escolaridade da 57a legislatura",
+      "group_id": "perfil",
+      "tags": ["perfil", "escolaridade", "legislatura"],
       "description": "Distribuicao da escolaridade dos deputados da 57a legislatura.",
       "response_files": ["Caio/q4/q4_escolaridade.txt", "Caio/q4/q4_escolaridade_complementar.txt"],
       "sql_file": "Caio/consultas/q4.sql",
@@ -81,6 +111,8 @@
     {
       "id": "q5",
       "title": "Fornecedores com maior total pago",
+      "group_id": "gastos",
+      "tags": ["fornecedores", "ranking", "gastos"],
       "description": "Ranking de fornecedores com total pago e participacao no total geral.",
       "response_files": ["q5_fornecedores.txt", "q5_fornecedores_complemento.txt"],
       "sql_file": "q5.sql",
@@ -95,6 +127,8 @@
     {
       "id": "q6",
       "title": "Correlacoes por escolaridade",
+      "group_id": "perfil",
+      "tags": ["perfil", "escolaridade", "correlações", "gastos"],
       "description": "Compara medias de gasto, fidelidade, proposicoes e presenca por escolaridade.",
       "response_files": [
         "Vinicius/q6/q6_escolaridade_correlacoes.txt",
@@ -117,6 +151,8 @@
     {
       "id": "q7",
       "title": "Indice de custo-beneficio",
+      "group_id": "gastos",
+      "tags": ["custo-benefício", "deputados", "desempenho"],
       "description": "Compara beneficio estimado com gasto total por deputado.",
       "response_files": ["Vinicius/q7/q7_custo_beneficio.txt", "Vinicius/q7/q7_custo_beneficio_complemento.txt"],
       "sql_file": "Vinicius/consultas/q7.sql",
@@ -131,6 +167,8 @@
     {
       "id": "q8",
       "title": "Influencia legislativa",
+      "group_id": "producao",
+      "tags": ["influência", "proposições", "ranking"],
       "description": "Ranking pela participacao das proposicoes aprovadas de cada deputado no total global de proposicoes aprovadas.",
       "response_files": ["Vinicius/q8/q8_influencia.txt", "Vinicius/q8/q8_influencia_complemento.txt", "Vinicius/q8/q8_influencia_por_voto_extra.txt"],
       "sql_file": "Vinicius/consultas/q8.sql",
@@ -145,6 +183,8 @@
     {
       "id": "q9",
       "title": "Vies ideologico e partidario",
+      "group_id": "partidos",
+      "tags": ["ideologia", "partidos", "viés"],
       "description": "Classifica os partidos por ideologia, correlaciona partido x proposta (% de votos Sim por campo ideologico) e exibe o voto individual de cada deputado por proposicao.",
       "response_files": ["JF/q9/q9_vies_deputado.txt"],
       "sql_file": "JF/consultas/q9.sql",
@@ -159,6 +199,8 @@
     {
       "id": "q10",
       "title": "Alinhamento interno dos partidos",
+      "group_id": "partidos",
+      "tags": ["alinhamento", "partidos", "fidelidade"],
       "description": "Ordena os partidos conforme o alinhamento interno: qual partido tem maior capacidade de convencer seus deputados a votar conforme a orientacao partidaria.",
       "response_files": ["JF/q10/q10_alinhamento_partidos.txt"],
       "sql_file": "JF/consultas/q10.sql",
@@ -173,6 +215,8 @@
     {
       "id": "q11",
       "title": "Rankings partidarios",
+      "group_id": "partidos",
+      "tags": ["rankings", "partidos", "frequência"],
       "description": "Ordenacao dos partidos por frequencia nas votacoes, proposicoes de projetos, gastos e nuvem de palavras composta.",
       "response_files": ["JF/q11/q11_ranking_partidos.txt"],
       "sql_file": "JF/consultas/q11.sql",
@@ -187,6 +231,8 @@
     {
       "id": "q12",
       "title": "Deputado x fornecedor",
+      "group_id": "gastos",
+      "tags": ["deputados", "fornecedores", "relação"],
       "description": "Ranking de pares deputado-fornecedor por total pago.",
       "response_files": ["Vinicius/q12/q12_deputado_fornecedor.txt", "Vinicius/q12/q12_deputado_fornecedor_complemento.txt"],
       "sql_file": "Vinicius/consultas/q12.sql",
@@ -201,6 +247,8 @@
     {
       "id": "q13",
       "title": "Categorias de gasto por deputado",
+      "group_id": "gastos",
+      "tags": ["categorias", "gastos", "despesas"],
       "description": "Ranking de pares deputado-categoria de despesa por gasto total.",
       "response_files": ["q13_categorias_gasto_deputado.txt", "q13_categorias_gasto_deputado_complemento.txt"],
       "sql_file": "q13.sql",

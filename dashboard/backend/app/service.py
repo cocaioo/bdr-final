@@ -15,7 +15,7 @@ from .adapters.base import AdapterContext
 from .cache import MemoryCache
 from .config import REPO_ROOT, REGISTRY_PATH, RESPONSES_DIR, SQL_DIR
 from .filter_engine import FilterState
-from .models import FilterCatalog, FilterChoice, MetaResponse, QuestionMeta, QuestionPayload
+from .models import FilterCatalog, FilterChoice, MetaResponse, QuestionGroup, QuestionMeta, QuestionPayload
 from .party_catalog import active_party_entries, normalize_party, PARTY_CATALOG_RELATIVE_PATH
 from .parser import ParsedDocument, parse_data_file, read_text_with_fallback
 from .registry import QuestionDefinition, QuestionRegistry, load_registry
@@ -69,8 +69,19 @@ class DashboardService:
                 description=question.description,
                 chart_type=question.chart_type,
                 supported_filters=question.supported_filters,
+                group_id=question.group_id,
+                tags=question.tags,
             )
             for question in self.registry.questions
+        ]
+
+        groups = [
+            QuestionGroup(
+                id=group.id,
+                label=group.label,
+                description=group.description,
+            )
+            for group in self.registry.groups
         ]
 
         available = self._collect_global_filters()
@@ -81,6 +92,7 @@ class DashboardService:
             legend=self.registry.legend,
             available_filters=available,
             question_filters=self._collect_question_filters(),
+            groups=groups,
         )
         self.cache.set(cache_key, response)
         return response
@@ -120,6 +132,7 @@ class DashboardService:
                 return cached_version
 
         hash_builder = hashlib.sha256()
+        _update_hash_with_file(hash_builder, self.registry_path)
         for question in self.registry.questions:
             for response_name in question.response_files:
                 response_path = self._resolve_response_path(response_name, allow_missing=True)
