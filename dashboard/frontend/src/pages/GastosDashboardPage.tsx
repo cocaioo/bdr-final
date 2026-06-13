@@ -240,7 +240,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       <h3>Fórmula do custo-benefício</h3>
       <div className="formula-layout" aria-label="Fórmula da métrica de custo-benefício">
         <p className="formula-heading">Benefício =</p>
-        <p>(qtd_proposicoes * 2) + (proposicoes_aprovadas * 3) + (presenca_total * 0.1)</p>
+        <p>(qtd_proposicoes * 1.5) + (proposicoes_aprovadas * 36) + (presenca_total * 0.1)</p>
         <p className="formula-heading">Custo-benefício =</p>
         <p>benefício / gasto_total</p>
       </div>

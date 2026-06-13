@@ -24,7 +24,7 @@ export function Header({ questions, datasetVersion }: HeaderProps) {
         <NavLink
           to="/grupos/gastos"
           className={({ isActive }) => `question-link${isActive ? ' active' : ''}`}
-          style={{ background: 'rgba(224, 122, 95, 0.08)', color: 'var(--accent)', borderColor: 'rgba(224, 122, 95, 0.2)' }}
+          style={{ background: 'rgba(179, 157, 219, 0.08)', color: 'var(--accent)', borderColor: 'rgba(179, 157, 219, 0.2)' }}
         >
           Painel de Gastos
         </NavLink>

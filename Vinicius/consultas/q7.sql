@@ -103,7 +103,12 @@ SELECT
         COALESCE(p.qtd_proposicoes, 0) * 1.5 +
         COALESCE(p.proposicoes_aprovadas, 0) * 36.0 +
         COALESCE(pr.presenca_total, 0) * 0.1
-    ) AS beneficio
+    ) AS beneficio,
+    (
+        COALESCE(p.qtd_proposicoes, 0) * 1.5 +
+        COALESCE(p.proposicoes_aprovadas, 0) * 36.0 +
+        COALESCE(pr.presenca_total, 0) * 0.1
+    ) / NULLIF(g.gasto_total, 0) AS custo_beneficio
 FROM deputados d
 JOIN resposta_gastos_deputado g ON g.id_deputado = d.id_deputado
 LEFT JOIN resposta_perfil_deputado_ano_q7 perfil
@@ -150,7 +155,8 @@ SELECT
     qtd_proposicoes,
     proposicoes_aprovadas,
     presenca_total,
-    beneficio
+    beneficio,
+    custo_beneficio
 FROM ranked
 WHERE posicao <= 30
 ORDER BY ano_dados, beneficio DESC NULLS LAST;
@@ -202,7 +208,12 @@ global_metricas AS (
             COALESCE(p.qtd_proposicoes, 0) * 1.5 +
             COALESCE(p.proposicoes_aprovadas, 0) * 36.0 +
             COALESCE(pr.presenca_total, 0) * 0.1
-        ) AS beneficio
+        ) AS beneficio,
+        (
+            COALESCE(p.qtd_proposicoes, 0) * 1.5 +
+            COALESCE(p.proposicoes_aprovadas, 0) * 36.0 +
+            COALESCE(pr.presenca_total, 0) * 0.1
+        ) / NULLIF(g.gasto_total, 0) AS custo_beneficio
     FROM global_gastos g
     LEFT JOIN global_proposicoes p ON p.id_deputado = g.id_deputado
     LEFT JOIN global_presencas pr ON pr.id_deputado = g.id_deputado
@@ -220,7 +231,8 @@ SELECT
     qtd_proposicoes,
     proposicoes_aprovadas,
     presenca_total,
-    beneficio
+    beneficio,
+    custo_beneficio
 FROM global_metricas
 ORDER BY beneficio DESC NULLS LAST;
 
@@ -237,6 +249,7 @@ SELECT
     qtd_proposicoes,
     proposicoes_aprovadas,
     presenca_total,
-    beneficio
+    beneficio,
+    custo_beneficio
 FROM resposta_custo_beneficio
 ORDER BY ano_dados, beneficio DESC NULLS LAST;
