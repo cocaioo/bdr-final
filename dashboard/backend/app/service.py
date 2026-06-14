@@ -15,6 +15,7 @@ from .adapters.base import AdapterContext
 from .cache import MemoryCache
 from .config import REPO_ROOT, REGISTRY_PATH, RESPONSES_DIR, SQL_DIR
 from .filter_engine import FilterState
+from .gastos_service import GastosAnalyticsService
 from .models import FilterCatalog, FilterChoice, MetaResponse, QuestionGroup, QuestionMeta, QuestionPayload
 from .party_catalog import active_party_entries, normalize_party, PARTY_CATALOG_RELATIVE_PATH
 from .parser import ParsedDocument, parse_data_file, read_text_with_fallback
@@ -49,6 +50,7 @@ class DashboardService:
         self.repo_root = repo_root
         self.registry: QuestionRegistry = load_registry(self.registry_path)
         self.cache = MemoryCache(ttl_seconds=300)
+        self.gastos = GastosAnalyticsService(repo_root=self.repo_root)
         self._version_cache: tuple[float, str] | None = None
         self._version_cache_ttl = 60.0
         self._document_cache: dict[tuple[str, int, int], ParsedDocument] = {}

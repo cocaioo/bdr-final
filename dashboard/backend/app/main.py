@@ -94,3 +94,115 @@ def get_question(
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/gastos/resumo")
+def get_gastos_resumo() -> dict:
+    try:
+        return service.gastos.resumo()
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/gastos/categorias")
+def get_gastos_categorias(page: int = 1, page_size: int = 100) -> dict:
+    try:
+        return service.gastos.categorias(page=page, page_size=page_size)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/gastos/deputados")
+def get_gastos_deputados(
+    ano: str | None = None,
+    partido: str | None = None,
+    uf: str | None = None,
+    busca: str | None = None,
+    page: int = 1,
+    page_size: int = 100,
+) -> dict:
+    try:
+        return service.gastos.deputados(
+            ano=ano,
+            partido=partido,
+            uf=uf,
+            busca=busca,
+            page=page,
+            page_size=page_size,
+        )
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/gastos/fornecedores")
+def get_gastos_fornecedores(
+    categoria: str | None = None,
+    partido: str | None = None,
+    uf: str | None = None,
+    deputado: str | None = None,
+    page: int = 1,
+    page_size: int = 100,
+) -> dict:
+    try:
+        return service.gastos.fornecedores(
+            categoria=categoria,
+            partido=partido,
+            uf=uf,
+            deputado=deputado,
+            page=page,
+            page_size=page_size,
+        )
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/gastos/contexto")
+def get_gastos_contexto() -> dict:
+    try:
+        return service.gastos.contexto()
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/gastos/anomalias")
+def get_gastos_anomalias(
+    partido: str | None = None,
+    uf: str | None = None,
+    busca: str | None = None,
+    page: int = 1,
+    page_size: int = 100,
+) -> dict:
+    try:
+        return service.gastos.anomalias(
+            partido=partido,
+            uf=uf,
+            busca=busca,
+            page=page,
+            page_size=page_size,
+        )
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/gastos/anomalias/detalhes")
+def get_gastos_anomalias_detalhes(
+    deputado: str | None = None,
+    partido: str | None = None,
+    uf: str | None = None,
+    categoria: str | None = None,
+    page: int = 1,
+    page_size: int = 50,
+) -> dict:
+    try:
+        return service.gastos.detalhes_anomalias(
+            deputado=deputado,
+            partido=partido,
+            uf=uf,
+            categoria=categoria,
+            page=page,
+            page_size=page_size,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
