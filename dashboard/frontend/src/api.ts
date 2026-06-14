@@ -1,4 +1,18 @@
-import type { DeputyCatalogItem, FilterState, MetaResponse, QuestionPayload, TableState } from './types'
+import type {
+  DeputyCatalogItem,
+  FilterState,
+  GastoAnomaliaDetalhesPayload,
+  GastoAnomaliasPayload,
+  GastoCategoriaItem,
+  GastoContextoPayload,
+  GastoDeputadoItem,
+  GastoFornecedorItem,
+  GastosCollectionPayload,
+  GastosSummary,
+  MetaResponse,
+  QuestionPayload,
+  TableState,
+} from './types'
 
 const API_BASE = import.meta.env.VITE_API_URL ?? ''
 
@@ -86,5 +100,95 @@ export function fetchQuestion(
 
   const query = buildQuery(queryParams)
   return fetchJson<QuestionPayload>(`${API_BASE}/api/questions/${questionId}?${query}`)
+}
+
+export function fetchGastosResumo(): Promise<GastosSummary> {
+  return fetchJson<GastosSummary>(`${API_BASE}/api/gastos/resumo`)
+}
+
+export function fetchGastosCategorias(
+  page = 1,
+  pageSize = 100,
+): Promise<GastosCollectionPayload<GastoCategoriaItem>> {
+  const query = buildQuery({ page, page_size: pageSize })
+  return fetchJson<GastosCollectionPayload<GastoCategoriaItem>>(`${API_BASE}/api/gastos/categorias?${query}`)
+}
+
+export function fetchGastosDeputados(params: {
+  ano?: string
+  partido?: string
+  uf?: string
+  busca?: string
+  page?: number
+  pageSize?: number
+} = {}): Promise<GastosCollectionPayload<GastoDeputadoItem>> {
+  const query = buildQuery({
+    ano: params.ano,
+    partido: params.partido,
+    uf: params.uf,
+    busca: params.busca,
+    page: params.page ?? 1,
+    page_size: params.pageSize ?? 100,
+  })
+  return fetchJson<GastosCollectionPayload<GastoDeputadoItem>>(`${API_BASE}/api/gastos/deputados?${query}`)
+}
+
+export function fetchGastosFornecedores(params: {
+  categoria?: string
+  partido?: string
+  uf?: string
+  deputado?: string
+  page?: number
+  pageSize?: number
+} = {}): Promise<GastosCollectionPayload<GastoFornecedorItem>> {
+  const query = buildQuery({
+    categoria: params.categoria,
+    partido: params.partido,
+    uf: params.uf,
+    deputado: params.deputado,
+    page: params.page ?? 1,
+    page_size: params.pageSize ?? 100,
+  })
+  return fetchJson<GastosCollectionPayload<GastoFornecedorItem>>(`${API_BASE}/api/gastos/fornecedores?${query}`)
+}
+
+export function fetchGastosContexto(): Promise<GastoContextoPayload> {
+  return fetchJson<GastoContextoPayload>(`${API_BASE}/api/gastos/contexto`)
+}
+
+export function fetchGastosAnomalias(params: {
+  partido?: string
+  uf?: string
+  busca?: string
+  page?: number
+  pageSize?: number
+} = {}): Promise<GastoAnomaliasPayload> {
+  const query = buildQuery({
+    partido: params.partido,
+    uf: params.uf,
+    busca: params.busca,
+    page: params.page ?? 1,
+    page_size: params.pageSize ?? 100,
+  })
+  return fetchJson<GastoAnomaliasPayload>(`${API_BASE}/api/gastos/anomalias?${query}`)
+}
+
+export function fetchGastosAnomaliaDetalhes(params: {
+  deputado?: string
+  partido?: string
+  uf?: string
+  categoria?: string
+  page?: number
+  pageSize?: number
+}): Promise<GastoAnomaliaDetalhesPayload> {
+  const query = buildQuery({
+    deputado: params.deputado,
+    partido: params.partido,
+    uf: params.uf,
+    categoria: params.categoria,
+    page: params.page ?? 1,
+    page_size: params.pageSize ?? 50,
+  })
+  return fetchJson<GastoAnomaliaDetalhesPayload>(`${API_BASE}/api/gastos/anomalias/detalhes?${query}`)
 }
 

@@ -1,560 +1,1419 @@
-import { useState, useEffect, useMemo } from 'react'
-import { fetchDeputiesCatalog, fetchQuestion } from '../api'
+import { useEffect, useMemo, useState } from 'react'
+
+import {
+  fetchGastosAnomaliaDetalhes,
+  fetchGastosAnomalias,
+  fetchGastosCategorias,
+  fetchGastosContexto,
+  fetchGastosDeputados,
+  fetchGastosFornecedores,
+  fetchGastosResumo,
+} from '../api'
 import { ChartPanel } from '../components/ChartPanel'
-import { ExecutiveCards } from '../components/ExecutiveCards'
-import { NoDataState } from '../components/NoDataState'
 import { DeputyAvatar } from '../components/DeputyAvatar'
-import { VisualRanking } from '../components/VisualRanking'
-import { SupplierCardGrid } from '../components/SupplierCardGrid'
-import { DeputyFinancialProfile } from '../components/DeputyFinancialProfile'
-import { formatCurrency } from '../utils/format'
-import type { DeputyCatalogItem, FilterState, MetaResponse, QuestionPayload, TableState } from '../types'
+import { NoDataState } from '../components/NoDataState'
+import { formatCellValue, formatCurrency } from '../utils/format'
+import type {
+  ChartSpec,
+  GastoAnomaliaDetalhesPayload,
+  GastoAnomaliaMotivo,
+  GastoAnomaliasPayload,
+  GastoCategoriaItem,
+  GastoContextoPayload,
+  GastoDeputadoItem,
+  GastoFornecedorItem,
+  GastosCollectionPayload,
+  GastosSummary,
+  MetaResponse,
+} from '../types'
 
-const EMPTY_FILTER_STATE: FilterState = {
-  anos: [],
-  eixos: [],
-  partidos: [],
-  ufs: [],
-  deputados: [],
-  escolaridade: [],
-  search: '',
-}
-
-const VISUAL_TABLE_STATE = {
-  page: 1,
-  pageSize: 200,
-  sortDir: 'desc',
-} satisfies TableState
+type GastosTab = 'resumo' | 'categorias' | 'deputados' | 'fornecedores' | 'contexto' | 'anomalias'
 
 interface GastosDashboardPageProps {
   meta: MetaResponse
 }
 
+const TABS: Array<{ id: GastosTab; label: string; question: string }> = [
+  { id: 'resumo', label: 'Resumo', question: 'Quanto foi gasto?' },
+  { id: 'categorias', label: 'Categorias', question: 'Em que foi gasto?' },
+  { id: 'deputados', label: 'Deputados', question: 'Quem gastou?' },
+  { id: 'fornecedores', label: 'Fornecedores', question: 'Quem recebeu?' },
+  { id: 'contexto', label: 'Partidos e UFs', question: 'Como os gastos variam?' },
+  { id: 'anomalias', label: 'Gastos Atipicos', question: 'O que foge do padrao?' },
+]
+
+const TOP_LIMIT = 10
+
+const MOTIVE_LABELS: Record<string, string> = {
+  valor_extremo_categoria: 'valor extremo',
+  valor_acima_percentil_95: 'acima do percentil 95',
+  valor_acima_percentil_99: 'acima do percentil 99',
+  fornecedor_pouco_frequente: 'fornecedor pouco frequente',
+  fornecedor_baixa_dispersao: 'fornecedor com baixa dispersao',
+  ticket_acima_padrao_deputado: 'ticket acima do padrao',
+}
+
+function formatPercent(value: unknown, digits = 2): string {
+  return `${toNumber(value).toLocaleString('pt-BR', { maximumFractionDigits: digits })}%`
+}
+
+function topRows<T>(rows: T[], limit = TOP_LIMIT): T[] {
+  return rows.slice(0, limit)
+}
+
+function asRecords<T>(rows: T[]): Array<Record<string, unknown>> {
+  return rows as unknown as Array<Record<string, unknown>>
+}
+
+function toNumber(value: unknown): number {
+  const parsed = Number(value)
+  return Number.isNaN(parsed) ? 0 : parsed
+}
+
+function sortByNumber<T>(rows: T[], field: keyof T): T[] {
+  return [...rows].sort((a, b) => toNumber(b[field]) - toNumber(a[field]))
+}
+
+function rankInRows<T>(rows: T[], predicate: (row: T) => boolean): number | null {
+  const index = rows.findIndex(predicate)
+  return index >= 0 ? index + 1 : null
+}
+
+function splitList(value: unknown): string[] {
+  return String(value ?? '')
+    .split('|')
+    .map((item) => item.trim())
+    .filter(Boolean)
+}
+
+function barChart(
+  title: string,
+  description: string,
+  rows: Array<Record<string, unknown>>,
+  labelField: string,
+  valueField: string,
+  type: 'bar_horizontal' | 'bar_vertical' = 'bar_horizontal',
+): ChartSpec {
+  const ordered = type === 'bar_horizontal' ? [...rows].reverse() : rows
+  return {
+    type,
+    title,
+    description,
+    x_field: labelField,
+    y_fields: [valueField],
+    categories: ordered.map((row) => String(row[labelField] ?? '')),
+    series: [{ name: title, data: ordered.map((row) => toNumber(row[valueField])) }],
+    options: {},
+  }
+}
+
+function lineChart(title: string, description: string, rows: Array<Record<string, unknown>>): ChartSpec {
+  return {
+    type: 'line',
+    title,
+    description,
+    x_field: 'ano',
+    y_fields: ['valor_total'],
+    categories: rows.map((row) => String(row.ano)),
+    series: [{ name: 'Valor total', data: rows.map((row) => toNumber(row.valor_total)) }],
+    options: {},
+  }
+}
+
+function scatterChart(rows: Array<Record<string, unknown>>): ChartSpec {
+  return {
+    type: 'scatter',
+    title: 'Despesas atipicas filtradas',
+    description: 'Amostra paginada: valor liquido no eixo X e score de atipicidade no eixo Y.',
+    x_field: 'valor_liquido',
+    y_fields: ['score_atipicidade'],
+    categories: [],
+    series: [
+      {
+        name: 'Despesas atipicas',
+        data: rows.map((row) => [toNumber(row.valor_liquido), toNumber(row.score_atipicidade)]),
+      },
+    ],
+    options: { x_name: 'Valor liquido', y_name: 'Score' },
+  }
+}
+
+function parseMotivos(value: unknown): GastoAnomaliaMotivo[] {
+  if (Array.isArray(value)) return value as GastoAnomaliaMotivo[]
+  if (typeof value !== 'string' || !value.trim()) return []
+  try {
+    const parsed = JSON.parse(value)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
+function motiveLabel(tipo: unknown): string {
+  const key = String(tipo ?? '')
+  return MOTIVE_LABELS[key] ?? key.replaceAll('_', ' ')
+}
+
+function MotiveBadges({ motivos }: { motivos: GastoAnomaliaMotivo[] }) {
+  if (!motivos.length) {
+    return <span className="gastos-badge gastos-badge-atipico">Atípico</span>
+  }
+
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+      {motivos.map((motivo, index) => {
+        let badgeClass = 'gastos-badge-atipico'
+        let label = motiveLabel(motivo.tipo)
+        if (motivo.tipo === 'valor_acima_percentil_95') {
+          badgeClass = 'gastos-badge-p95'
+          label = 'Percentil 95'
+        } else if (motivo.tipo === 'valor_acima_percentil_99') {
+          badgeClass = 'gastos-badge-p99'
+          label = 'Percentil 99'
+        } else if (motivo.tipo === 'fornecedor_pouco_frequente') {
+          badgeClass = 'gastos-badge-raro'
+          label = 'Fornecedor Raro'
+        } else if (motivo.tipo === 'fornecedor_baixa_dispersao') {
+          badgeClass = 'gastos-badge-concentrado'
+          label = 'Fornecedor Concentrado'
+        } else if (motivo.tipo === 'valor_extremo_categoria') {
+          badgeClass = 'gastos-badge-atipico'
+          label = 'Atípico'
+        }
+        return (
+          <span className={`gastos-badge ${badgeClass}`} key={`${motivo.tipo}-${index}`}>
+            {label}
+          </span>
+        )
+      })}
+    </div>
+  )
+}
+
+function MotiveDetails({ motivos }: { motivos: GastoAnomaliaMotivo[] }) {
+  if (!motivos.length) {
+    return (
+      <p className="gastos-motive-note">
+        O modelo classificou a despesa como comportamento estatistico incomum, mas nenhum dos motivos explicativos
+        desta fase atingiu os limiares definidos.
+      </p>
+    )
+  }
+
+  return (
+    <ul className="gastos-motive-list">
+      {motivos.map((motivo, index) => (
+        <li key={`${motivo.tipo}-${index}`}>
+          <strong>{motiveLabel(motivo.tipo)}</strong>
+          <span>{motivo.descricao}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/* ==========================================
+   Skeleton Loaders Components
+   ========================================== */
+function KpisSkeleton() {
+  return (
+    <div className="skeleton-kpis">
+      <div className="skeleton skeleton-kpi" />
+      <div className="skeleton skeleton-kpi" />
+      <div className="skeleton skeleton-kpi" />
+      <div className="skeleton skeleton-kpi" />
+      <div className="skeleton skeleton-kpi" />
+    </div>
+  )
+}
+
+function InsightsSkeleton() {
+  return (
+    <div className="skeleton-insights" style={{ margin: '16px 0' }}>
+      <div className="skeleton skeleton-insight" />
+      <div className="skeleton skeleton-insight" />
+      <div className="skeleton skeleton-insight" />
+    </div>
+  )
+}
+
+function ChartsSkeleton({ count = 2 }: { count?: number }) {
+  return (
+    <div className={count === 3 ? "skeleton-charts-3" : "skeleton-charts-2"} style={{ margin: '16px 0' }}>
+      <div className="skeleton skeleton-chart" />
+      <div className="skeleton skeleton-chart" />
+      {count === 3 && <div className="skeleton skeleton-chart" />}
+    </div>
+  )
+}
+
+function CardsSkeleton({ count = 4 }: { count?: number }) {
+  return (
+    <div className="skeleton-cards" style={{ margin: '16px 0' }}>
+      {Array.from({ length: count }).map((_, idx) => (
+        <div key={idx} className="skeleton skeleton-card" />
+      ))}
+    </div>
+  )
+}
+
+function TableSkeleton() {
+  return (
+    <div className="skeleton skeleton-table" style={{ margin: '16px 0' }}>
+      <div style={{ padding: '16px' }}>
+        <div className="skeleton-text" style={{ width: '30%', height: '14px', marginBottom: '16px' }} />
+        <div className="skeleton-text" style={{ width: '95%', height: '10px', marginBottom: '8px' }} />
+        <div className="skeleton-text" style={{ width: '90%', height: '10px', marginBottom: '8px' }} />
+        <div className="skeleton-text" style={{ width: '85%', height: '10px', marginBottom: '8px' }} />
+        <div className="skeleton-text" style={{ width: '70%', height: '10px', marginBottom: '8px' }} />
+      </div>
+    </div>
+  )
+}
+
+/* ==========================================
+   Standardized KPI Grid Helper
+   ========================================== */
+function KpiGrid({ summary }: { summary: GastosSummary }) {
+  const cards = [
+    ['Valor total gasto', formatCurrency(summary.valor_total)],
+    ['Quantidade de despesas', formatCellValue(summary.qtd_despesas)],
+    ['Ticket medio', formatCurrency(summary.ticket_medio)],
+    ['Deputados', formatCellValue(summary.qtd_deputados)],
+    ['Fornecedores', formatCellValue(summary.qtd_fornecedores)],
+  ]
+
+  return (
+    <div className="gastos-kpi-grid">
+      {cards.map(([label, value]) => (
+        <article className="gastos-kpi-card" key={label}>
+          <span>{label}</span>
+          <strong>{value}</strong>
+        </article>
+      ))}
+    </div>
+  )
+}
+
+function InsightGrid({ insights }: { insights: Array<{ title: string; body: string }> }) {
+  return (
+    <div className="gastos-insight-grid">
+      {insights.map((insight) => (
+        <article className="gastos-auto-insight" key={insight.title}>
+          <span>{insight.title}</span>
+          <p>{insight.body}</p>
+        </article>
+      ))}
+    </div>
+  )
+}
+
+/* ==========================================
+   Refactored Deputy Cards with photo, name, party, UF, total, count, and average
+   ========================================== */
+function DeputyRankingCards({
+  rows,
+  selectedId,
+  onSelect,
+}: {
+  rows: GastoDeputadoItem[]
+  selectedId?: number
+  onSelect?: (row: GastoDeputadoItem) => void
+}) {
+  if (!rows.length) return <NoDataState message="Nenhum deputado encontrado para os filtros atuais." />
+
+  return (
+    <div className="gastos-deputy-card-grid">
+      {rows.map((row, index) => (
+        <button
+          type="button"
+          className={`gastos-deputy-rank-card${selectedId === row.id_deputado ? ' selected' : ''}`}
+          key={`${row.id_deputado}-${index}`}
+          onClick={() => onSelect?.(row)}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px' }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+            <span className="rank-number" style={{ fontSize: '1rem', fontWeight: 'bold' }}>#{index + 1}</span>
+            <DeputyAvatar id={row.id_deputado} nome={row.nome_parlamentar} size={52} />
+          </div>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'left', marginTop: '4px' }}>
+            <span className="rank-name" style={{ fontWeight: 'bold', fontSize: '1rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={row.nome_parlamentar}>
+              {row.nome_parlamentar}
+            </span>
+            <span className="rank-meta" style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+              {row.sigla_partido} - {row.sigla_uf}
+            </span>
+          </div>
+
+          <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+            <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 'bold' }}>Valor Total</span>
+            <strong style={{ fontSize: '1.15rem' }}>{formatCurrency(row.valor_total)}</strong>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
+              <span>{formatCellValue(row.qtd_despesas)} despesas</span>
+              <span>méd. {formatCurrency(row.ticket_medio)}</span>
+            </div>
+          </div>
+        </button>
+      ))}
+    </div>
+  )
+}
+
+function CompactTable({
+  columns,
+  rows,
+  onRowClick,
+  selectedKey,
+}: {
+  columns: Array<{ key: string; label: string; format?: (value: unknown, row: Record<string, unknown>) => string }>
+  rows: Array<Record<string, unknown>>
+  onRowClick?: (row: Record<string, unknown>) => void
+  selectedKey?: string
+}) {
+  if (!rows.length) return <NoDataState message="Nenhum registro retornado pela API." />
+
+  return (
+    <div className="gastos-table-wrap">
+      <table className="gastos-compact-table">
+        <thead>
+          <tr>
+            {columns.map((column) => (
+              <th key={column.key}>{column.label}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, index) => {
+            const key = String(row.id_deputado ?? row.fornecedor ?? row.categoria ?? index)
+            return (
+              <tr
+                key={`${key}-${index}`}
+                className={selectedKey && selectedKey === key ? 'selected' : undefined}
+                onClick={() => onRowClick?.(row)}
+              >
+                {columns.map((column) => (
+                  <td key={column.key}>
+                    {column.format
+                      ? column.format(row[column.key], row)
+                      : typeof row[column.key] === 'number'
+                        ? formatCellValue(row[column.key])
+                        : String(row[column.key] ?? '-')}
+                  </td>
+                ))}
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
 export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
-  const [filters, setFilters] = useState<FilterState>(EMPTY_FILTER_STATE)
-  const [selectedDeputy, setSelectedDeputy] = useState<{ id: string; nome: string } | null>(null)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [deputyCatalog, setDeputyCatalog] = useState<DeputyCatalogItem[]>([])
-
-  const [q1Data, setQ1Data] = useState<QuestionPayload | null>(null)
-  const [q5Data, setQ5Data] = useState<QuestionPayload | null>(null)
-  const [q7Data, setQ7Data] = useState<QuestionPayload | null>(null)
-  const [q12Data, setQ12Data] = useState<QuestionPayload | null>(null)
-  const [q13Data, setQ13Data] = useState<QuestionPayload | null>(null)
-
-  const [loading, setLoading] = useState<Record<string, boolean>>({
-    q1: false,
-    q5: false,
-    q7: false,
-    q12: false,
-    q13: false,
-  })
-
-  const [errors, setErrors] = useState<Record<string, string>>({})
-
+  // Add light theme class on body when loaded
   useEffect(() => {
-    let mounted = true
-    fetchDeputiesCatalog()
-      .then((items) => {
-        if (mounted) setDeputyCatalog(items)
-      })
-      .catch(() => {
-        if (mounted) setDeputyCatalog([])
-      })
+    document.body.classList.add('gastos-light-theme')
     return () => {
-      mounted = false
+      document.body.classList.remove('gastos-light-theme')
     }
   }, [])
 
-  // Carregamento independente de cada bloco
-  const fetchBlock = (id: string, setData: (data: QuestionPayload) => void) => {
-    const qMeta = meta.questions.find((q) => q.id === id)
-    if (!qMeta) return
+  const [activeTab, setActiveTab] = useState<GastosTab>('resumo')
+  const [visitedTabs, setVisitedTabs] = useState<Record<GastosTab, boolean>>({
+    resumo: true,
+    categorias: false,
+    deputados: false,
+    fornecedores: false,
+    contexto: false,
+    anomalias: false,
+  })
 
-    setLoading((prev) => ({ ...prev, [id]: true }))
-    setErrors((prev) => {
-      const next = { ...prev }
-      delete next[id]
-      return next
-    })
-
-    const supported = qMeta.supported_filters || []
-
-    fetchQuestion(id, filters, VISUAL_TABLE_STATE, supported)
-      .then((res) => {
-        setData(res)
-      })
-      .catch((err) => {
-        setErrors((prev) => ({ ...prev, [id]: err.message }))
-      })
-      .finally(() => {
-        setLoading((prev) => ({ ...prev, [id]: false }))
-      })
-  }
-
-  // Efeitos reativos individuais por bloco dependentes apenas de filters
+  // Set active tab as visited
   useEffect(() => {
-    fetchBlock('q1', setQ1Data)
-  }, [filters])
+    setVisitedTabs((prev) => ({ ...prev, [activeTab]: true }))
+  }, [activeTab])
 
-  useEffect(() => {
-    fetchBlock('q5', setQ5Data)
-  }, [filters])
+  // Data states
+  const [summary, setSummary] = useState<GastosSummary | null>(null)
+  const [categories, setCategories] = useState<GastosCollectionPayload<GastoCategoriaItem> | null>(null)
+  const [deputies, setDeputies] = useState<GastosCollectionPayload<GastoDeputadoItem> | null>(null)
+  const [suppliers, setSuppliers] = useState<GastosCollectionPayload<GastoFornecedorItem> | null>(null)
+  const [contexto, setContexto] = useState<GastoContextoPayload | null>(null)
+  const [anomalias, setAnomalias] = useState<GastoAnomaliasPayload | null>(null)
+  const [anomaliaDetails, setAnomaliaDetails] = useState<GastoAnomaliaDetalhesPayload | null>(null)
+  const [yearSeries, setYearSeries] = useState<Array<{ ano: string; valor_total: number }>>([])
 
-  useEffect(() => {
-    fetchBlock('q7', setQ7Data)
-  }, [filters])
+  // Loading states per tab
+  const [loadingResumo, setLoadingResumo] = useState(false)
+  const [loadingCategorias, setLoadingCategorias] = useState(false)
+  const [loadingDeputados, setLoadingDeputados] = useState(false)
+  const [loadingFornecedores, setLoadingFornecedores] = useState(false)
+  const [loadingContexto, setLoadingContexto] = useState(false)
+  const [loadingAnomalias, setLoadingAnomalias] = useState(false)
 
-  useEffect(() => {
-    fetchBlock('q12', setQ12Data)
-  }, [filters])
+  // Filter states
+  const [ano, setAno] = useState('')
+  const [partido, setPartido] = useState('')
+  const [uf, setUf] = useState('')
+  const [buscaDeputado, setBuscaDeputado] = useState('')
+  const [categoriaFiltro, setCategoriaFiltro] = useState('')
+  const [selectedDeputy, setSelectedDeputy] = useState<GastoDeputadoItem | null>(null)
+  const [selectedSupplier, setSelectedSupplier] = useState<GastoFornecedorItem | null>(null)
+  
+  const [anomaliaFilters, setAnomaliaFilters] = useState({
+    deputado: '',
+    partido: '',
+    uf: '',
+    categoria: '',
+  })
+  const [anomaliaPage, setAnomaliaPage] = useState(1)
+  const [anomaliaError, setAnomaliaError] = useState<string | null>(null)
 
-  useEffect(() => {
-    fetchBlock('q13', setQ13Data)
-  }, [filters])
-
-  // Obter lista única de deputados a partir de q1Data + meta.available_filters para autocomplete
-  const searchOptions = useMemo(() => {
-    const map = new Map<string, { id: string; nome: string; partido?: string; uf?: string }>()
-
-    deputyCatalog.forEach((deputy) => {
-      map.set(deputy.id_deputado, {
-        id: deputy.id_deputado,
-        nome: deputy.nome,
-      })
-    })
-
-    const collectRows = (payload: QuestionPayload | null) => {
-      payload?.table_spec.rows.forEach((row) => {
-        const id = String(row.id_deputado || '')
-        const nome = String(row.nome || '')
-        if (id && nome) {
-          const current = map.get(id)
-          map.set(id, {
-            id,
-            nome: current?.nome || nome,
-            partido: current?.partido || String(row.sigla_partido || ''),
-            uf: current?.uf || String(row.sigla_uf || ''),
-          })
-        }
-      })
-    }
-
-    collectRows(q1Data)
-    collectRows(q7Data)
-    collectRows(q12Data)
-    collectRows(q13Data)
-
-    return Array.from(map.values()).sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
-  }, [deputyCatalog, q1Data, q7Data, q12Data, q13Data])
-
-  const applyDeputySelection = (deputy: { id: string; nome: string }) => {
-    setSelectedDeputy(deputy)
-    setSearchQuery(deputy.nome)
-    setIsSearchOpen(false)
-    setFilters((prev) => ({ ...prev, deputados: [deputy.id], search: '' }))
-  }
-
-  const clearDeputySelection = () => {
-    setSelectedDeputy(null)
-    setSearchQuery('')
-    setIsSearchOpen(false)
-    setFilters((prev) => ({ ...prev, deputados: [] }))
-  }
-
-  const toggleFilterValue = (key: 'anos', value: string) => {
-    setFilters((prev) => {
-      const current = prev[key]
-      const next = current.includes(value)
-        ? current.filter((item) => item !== value)
-        : [...current, value]
-      return { ...prev, [key]: next }
-    })
-  }
-
-  const setSingleFilterValue = (key: 'partidos' | 'ufs', value: string) => {
-    setFilters((prev) => ({ ...prev, [key]: value ? [value] : [] }))
-  }
-
-  const clearDashboardFilters = () => {
-    setFilters(EMPTY_FILTER_STATE)
-    setSelectedDeputy(null)
-    setSearchQuery('')
-    setIsSearchOpen(false)
-  }
-
-  const hasActiveDashboardFilters =
-    filters.anos.length > 0 ||
-    filters.partidos.length > 0 ||
-    filters.ufs.length > 0 ||
-    filters.deputados.length > 0
-
-  // Filtragem dos deputados conforme digitação na busca
-  const filteredOptions = useMemo(() => {
-    if (!searchQuery.trim()) return []
-    const term = searchQuery
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
-
-    return searchOptions
-      .filter((opt) => {
-        const nameNorm = opt.nome
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .toLowerCase()
-        return nameNorm.includes(term)
-      })
-      .slice(0, 10)
-  }, [searchQuery, searchOptions])
-
-  // 3 melhores e 3 piores custo-benefício de Q7 (filtrando nulos, zeros, NaN)
-  const costBenefitRankings = useMemo(() => {
-    if (!q7Data) return { best: [], worst: [] }
-    const rows = q7Data.table_spec.rows.filter((row) => {
-      const cb = Number(row.custo_beneficio)
-      const gasto = Number(row.gasto_total)
-      return (
-        row.custo_beneficio !== null &&
-        row.custo_beneficio !== undefined &&
-        row.gasto_total !== null &&
-        row.gasto_total !== undefined &&
-        !Number.isNaN(cb) &&
-        !Number.isNaN(gasto) &&
-        cb > 0 &&
-        gasto > 0
-      )
-    })
-
-    const sorted = [...rows].sort((a, b) => Number(b.custo_beneficio) - Number(a.custo_beneficio))
-
-    return {
-      best: sorted.slice(0, 3),
-      worst: sorted.slice(-3).reverse(),
-    }
-  }, [q7Data])
-
-  const q7FormulaCard = (
-    <>
-      <h3>Fórmula do custo-benefício</h3>
-      <div className="formula-layout" aria-label="Fórmula da métrica de custo-benefício">
-        <p className="formula-heading">Benefício =</p>
-        <p>(qtd_proposicoes * 1.5) + (proposicoes_aprovadas * 36) + (presenca_total * 0.1)</p>
-        <p className="formula-heading">Custo-benefício =</p>
-        <p>benefício / gasto_total</p>
-      </div>
-    </>
+  const availableYears = useMemo(
+    () => (meta.available_filters.anos ?? []).map((choice) => choice.value).filter(Boolean).sort(),
+    [meta.available_filters.anos],
   )
 
+  // 1. Resumo Tab Loader
+  useEffect(() => {
+    if (!visitedTabs.resumo) return
+    if (summary && categories && yearSeries.length > 0) return
+
+    setLoadingResumo(true)
+    const years = availableYears.length ? availableYears : ['2023', '2024', '2025', '2026']
+
+    Promise.all([
+      fetchGastosResumo(),
+      fetchGastosCategorias(1, 200),
+      Promise.all(years.map((year) => fetchGastosDeputados({ ano: year, pageSize: 1 })))
+    ])
+      .then(([summaryData, categoryData, payloads]) => {
+        setSummary(summaryData)
+        setCategories(categoryData)
+        setYearSeries(payloads.map((payload, index) => ({ ano: years[index], valor_total: payload.summary.valor_total })))
+      })
+      .catch((err) => {
+        console.error('Error fetching resumo data:', err)
+      })
+      .finally(() => {
+        setLoadingResumo(false)
+      })
+  }, [visitedTabs.resumo, availableYears, summary, categories, yearSeries])
+
+  // 2. Categorias Tab Loader
+  useEffect(() => {
+    if (!visitedTabs.categorias) return
+    if (categories) return
+
+    setLoadingCategorias(true)
+    fetchGastosCategorias(1, 200)
+      .then((data) => {
+        setCategories(data)
+      })
+      .catch((err) => {
+        console.error('Error fetching categories:', err)
+      })
+      .finally(() => {
+        setLoadingCategorias(false)
+      })
+  }, [visitedTabs.categorias, categories])
+
+  // 3. Deputados Tab Loader
+  useEffect(() => {
+    if (!visitedTabs.deputados) return
+
+    setLoadingDeputados(true)
+    Promise.all([
+      fetchGastosDeputados({
+        ano: ano || undefined,
+        partido: partido || undefined,
+        uf: uf || undefined,
+        busca: buscaDeputado || undefined,
+        pageSize: 100,
+      }),
+      anomalias ? Promise.resolve(anomalias) : fetchGastosAnomalias({ pageSize: 100 })
+    ])
+      .then(([payload, anomalyData]) => {
+        setDeputies(payload)
+        setAnomalias(anomalyData)
+        if (selectedDeputy && !payload.items.some((item) => item.id_deputado === selectedDeputy.id_deputado)) {
+          setSelectedDeputy(null)
+        }
+      })
+      .catch((err) => {
+        console.error('Error fetching deputies:', err)
+      })
+      .finally(() => {
+        setLoadingDeputados(false)
+      })
+  }, [visitedTabs.deputados, ano, partido, uf, buscaDeputado, selectedDeputy, anomalias])
+
+  // 4. Fornecedores Tab Loader
+  useEffect(() => {
+    if (!visitedTabs.fornecedores) return
+
+    setLoadingFornecedores(true)
+    fetchGastosFornecedores({
+      categoria: categoriaFiltro || undefined,
+      partido: partido || undefined,
+      uf: uf || undefined,
+      deputado: selectedDeputy ? String(selectedDeputy.id_deputado) : undefined,
+      pageSize: 100,
+    })
+      .then((payload) => {
+        setSuppliers(payload)
+        if (selectedSupplier && !payload.items.some((item) => item.fornecedor === selectedSupplier.fornecedor)) {
+          setSelectedSupplier(null)
+        }
+      })
+      .catch((err) => {
+        console.error('Error fetching suppliers:', err)
+      })
+      .finally(() => {
+        setLoadingFornecedores(false)
+      })
+  }, [visitedTabs.fornecedores, categoriaFiltro, partido, uf, selectedDeputy, selectedSupplier])
+
+  // 5. Contexto Tab Loader
+  useEffect(() => {
+    if (!visitedTabs.contexto) return
+    if (contexto) return
+
+    setLoadingContexto(true)
+    fetchGastosContexto()
+      .then((data) => {
+        setContexto(data)
+      })
+      .catch((err) => {
+        console.error('Error fetching context:', err)
+      })
+      .finally(() => {
+        setLoadingContexto(false)
+      })
+  }, [visitedTabs.contexto, contexto])
+
+  // 6. Anomalias Tab Loader
+  useEffect(() => {
+    if (!visitedTabs.anomalias) return
+    if (anomalias) return
+
+    setLoadingAnomalias(true)
+    fetchGastosAnomalias({ pageSize: 100 })
+      .then((data) => {
+        setAnomalias(data)
+      })
+      .catch((err) => {
+        console.error('Error fetching anomalies:', err)
+      })
+      .finally(() => {
+        setLoadingAnomalias(false)
+      })
+  }, [visitedTabs.anomalias, anomalias])
+
+  // Memoized lists and fields
+  const topCategoriesByValue = useMemo(
+    () => topRows(sortByNumber(categories?.items ?? [], 'valor_total')),
+    [categories],
+  )
+  const topCategoriesByCount = useMemo(
+    () => topRows(sortByNumber(categories?.items ?? [], 'qtd_despesas')),
+    [categories],
+  )
+  const topCategoriesByTicket = useMemo(
+    () => topRows(sortByNumber(categories?.items ?? [], 'ticket_medio')),
+    [categories],
+  )
+  const topDeputies = useMemo(() => topRows(deputies?.items ?? []), [deputies])
+  const topSuppliers = useMemo(() => topRows(suppliers?.items ?? []), [suppliers])
+  const topParties = useMemo(
+    () => topRows(sortByNumber(asRecords(contexto?.partidos ?? []), 'valor_total')),
+    [contexto],
+  )
+  const topPartiesByAverage = useMemo(
+    () => topRows(sortByNumber(asRecords(contexto?.partidos ?? []), 'valor_medio_por_deputado')),
+    [contexto],
+  )
+  const topUfs = useMemo(
+    () => topRows(sortByNumber(asRecords(contexto?.ufs ?? []), 'valor_total')),
+    [contexto],
+  )
+  
+  const anomalyRanking = anomalias?.ranking ?? []
+  const hasAnomalyFilter = Object.values(anomaliaFilters).some((value) => value.trim())
+
+  const loadAnomalyDetails = () => {
+    setAnomaliaError(null)
+    if (!hasAnomalyFilter) {
+      setAnomaliaDetails(null)
+      setAnomaliaError('Informe ao menos um filtro antes de carregar o detalhamento.')
+      return
+    }
+    fetchGastosAnomaliaDetalhes({
+      ...anomaliaFilters,
+      page: anomaliaPage,
+      pageSize: 50,
+    })
+      .then(setAnomaliaDetails)
+      .catch((err) => {
+        setAnomaliaDetails(null)
+        setAnomaliaError(err instanceof Error ? err.message : 'Erro ao carregar detalhes.')
+      })
+  }
+
+  useEffect(() => {
+    if (activeTab === 'anomalias' && hasAnomalyFilter) {
+      loadAnomalyDetails()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [anomaliaPage])
+
+  const anomalySummary = anomalias?.summary ?? {}
+  const anomalyTotal = toNumber(anomalySummary.total_despesas)
+  const anomalyCount = toNumber(anomalySummary.qtd_despesas_atipicas)
+  const anomalyPct = anomalyTotal ? (anomalyCount / anomalyTotal) * 100 : 0
+  const topAnomalyDeputy = anomalyRanking[0]
+  const topCategory = topCategoriesByValue[0]
+  const mostFrequentCategory = topCategoriesByCount[0]
+  const highestTicketCategory = topCategoriesByTicket[0]
+  const topSupplier = topSuppliers[0]
+  
+  const selectedDeputyRank = selectedDeputy && deputies
+    ? rankInRows(deputies.items, (item) => item.id_deputado === selectedDeputy.id_deputado)
+    : null
+  
+  const selectedDeputyAnomaly = selectedDeputy
+    ? anomalyRanking.find((item) => item.id_deputado === selectedDeputy.id_deputado)
+    : undefined
+  
+  const topSupplierForSelectedDeputy = selectedDeputy ? topSupplier : undefined
+  const topPartyByTotal = topParties[0]
+  const topPartyByAverage = topPartiesByAverage[0]
+  const totalPartyAverageRank = topPartyByTotal
+    ? rankInRows(topPartiesByAverage, (item) => item.sigla_partido === topPartyByTotal.sigla_partido)
+    : null
+
+  // Auto Insights Generators
+  const categoryInsights = [
+    topCategory
+      ? {
+          title: 'Concentracao principal',
+          body: `${topCategory.categoria} representa ${formatPercent(topCategory.pct_total)} do valor total analisado.`,
+        }
+      : null,
+    mostFrequentCategory
+      ? {
+          title: 'Categoria mais frequente',
+          body: `${mostFrequentCategory.categoria} aparece em ${formatCellValue(mostFrequentCategory.qtd_despesas)} despesas, mostrando recorrencia de uso.`,
+        }
+      : null,
+    highestTicketCategory
+      ? {
+          title: 'Maior ticket medio',
+          body: `${highestTicketCategory.categoria} tem ticket medio de ${formatCurrency(highestTicketCategory.ticket_medio)}, sinalizando despesas individuais mais altas.`,
+        }
+      : null,
+  ].filter(Boolean) as Array<{ title: string; body: string }>
+
+  const resumoInsights = [
+    topCategory
+      ? {
+          title: 'Destino predominante',
+          body: `${topCategory.categoria} e a categoria com maior valor, concentrando ${formatPercent(topCategory.pct_total)} do total.`,
+        }
+      : null,
+    yearSeries.length > 1
+      ? {
+          title: 'Ano de maior volume',
+          body: `${sortByNumber(yearSeries, 'valor_total')[0]?.ano} aparece como o ano de maior valor agregado na serie disponivel.`,
+        }
+      : null,
+  ].filter(Boolean) as Array<{ title: string; body: string }>
+
+  const supplierInsights = [
+    topSupplier
+      ? {
+          title: 'Fornecedor de maior alcance',
+          body: `${topSupplier.fornecedor} atende ${formatCellValue(topSupplier.qtd_deputados)} deputados e representa ${formatPercent(topSupplier.pct_total)} do total recebido no recorte.`,
+        }
+      : null,
+    topSupplier?.categorias
+      ? {
+          title: 'Contexto de atuacao',
+          body: `Categorias associadas: ${splitList(topSupplier.categorias).slice(0, 3).join(', ')}.`,
+        }
+      : null,
+  ].filter(Boolean) as Array<{ title: string; body: string }>
+
+  const contextInsights = [
+    topPartyByTotal
+      ? {
+          title: 'Volume x intensidade',
+          body: `${topPartyByTotal.sigla_partido} lidera em valor total${totalPartyAverageRank ? ` e fica na posicao ${totalPartyAverageRank} por media/deputado` : ''}.`,
+        }
+      : null,
+    topPartyByAverage
+      ? {
+          title: 'Maior media por deputado',
+          body: `${topPartyByAverage.sigla_partido} lidera por gasto medio por parlamentar, com ${formatCurrency(topPartyByAverage.valor_medio_por_deputado)}.`,
+        }
+      : null,
+  ].filter(Boolean) as Array<{ title: string; body: string }>
+
+  const anomalyInsights = [
+    {
+      title: 'Proporcao de atipicidade',
+      body: `${formatPercent(anomalyPct)} das despesas analisadas foram classificadas como comportamento estatistico incomum.`,
+    },
+    topAnomalyDeputy
+      ? {
+          title: 'Maior concentracao individual',
+          body: `${topAnomalyDeputy.nome_parlamentar} lidera o ranking com ${formatCellValue(topAnomalyDeputy.qtd_despesas_atipicas)} despesas atipicas.`,
+        }
+      : null,
+  ].filter(Boolean) as Array<{ title: string; body: string }>
+
   return (
-    <main className="gastos-dashboard-premium">
+    <main className="gastos-dashboard-premium gastos-story-dashboard">
+      {/* Dynamic Header Section */}
       <section className="premium-hero stagger-item">
         <div className="premium-hero-content">
-          <h1>Painel de Gastos e Fornecedores</h1>
+          <h1>Painel de Gastos Parlamentares</h1>
           <p>
-            Análise executiva de despesas parlamentares, principais fornecedores, correlações de custo-benefício e relações deputado-fornecedor.
+            Uma jornada analitica: quanto foi gasto, em que categorias, por quais deputados, com quais fornecedores,
+            em quais contextos politicos e quais despesas apresentam comportamento estatistico incomum.
           </p>
         </div>
-
-        {/* Busca Autocomplete por Deputado */}
-        <div className="premium-search-container">
-          <label htmlFor="deputy-main-search">Buscar Deputado:</label>
-          <div className="premium-search-input-wrapper">
-            <input
-              id="deputy-main-search"
-              type="text"
-              className="premium-search-input"
-              placeholder="Pesquise por nome de um deputado..."
-              value={searchQuery}
-              onFocus={() => {
-                if (!selectedDeputy) {
-                  setIsSearchOpen(true)
-                }
-              }}
-              onChange={(e) => {
-                const nextQuery = e.target.value
-                setSearchQuery(nextQuery)
-                setIsSearchOpen(true)
-                if (selectedDeputy && nextQuery !== selectedDeputy.nome) {
-                  setSelectedDeputy(null)
-                  setFilters((prev) => ({ ...prev, deputados: [] }))
-                }
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Escape') {
-                  setIsSearchOpen(false)
-                }
-              }}
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                className="clear-search-btn"
-                onClick={clearDeputySelection}
-              >
-                &times;
-              </button>
-            )}
-            {isSearchOpen && filteredOptions.length > 0 && (
-              <ul className="premium-search-suggestions">
-                {filteredOptions.map((opt) => (
-                  <li key={opt.id}>
-                    <button
-                      type="button"
-                      onMouseDown={(event) => event.preventDefault()}
-                      onClick={() => applyDeputySelection({ id: opt.id, nome: opt.nome })}
-                    >
-                      <DeputyAvatar id={opt.id} nome={opt.nome} size={24} />
-                      <div className="suggestion-text">
-                        <span className="suggestion-name">{opt.nome}</span>
-                        {opt.partido && (
-                          <span className="suggestion-meta">
-                            {opt.partido} - {opt.uf}
-                          </span>
-                        )}
-                      </div>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {isSearchOpen && searchQuery.trim() && filteredOptions.length === 0 && (
-              <ul className="premium-search-suggestions">
-                <li className="no-suggestions">Nenhum deputado encontrado</li>
-              </ul>
-            )}
-          </div>
-        </div>
-
-        <div className="premium-inline-filters" aria-label="Filtros do painel de gastos">
-          <div className="premium-year-chips" aria-label="Filtrar por ano">
-            {(meta.available_filters.anos ?? []).map((choice) => (
-              <button
-                key={choice.value}
-                type="button"
-                className={`premium-filter-chip${filters.anos.includes(choice.value) ? ' active' : ''}`}
-                onClick={() => toggleFilterValue('anos', choice.value)}
-              >
-                {choice.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="premium-filter-selects">
-            <label>
-              <span>Partido</span>
-              <select
-                value={filters.partidos[0] ?? ''}
-                onChange={(event) => setSingleFilterValue('partidos', event.target.value)}
-              >
-                <option value="">Todos</option>
-                {(meta.available_filters.partidos ?? []).map((choice) => (
-                  <option key={choice.value} value={choice.value}>
-                    {choice.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              <span>UF</span>
-              <select
-                value={filters.ufs[0] ?? ''}
-                onChange={(event) => setSingleFilterValue('ufs', event.target.value)}
-              >
-                <option value="">Todas</option>
-                {(meta.available_filters.ufs ?? []).map((choice) => (
-                  <option key={choice.value} value={choice.value}>
-                    {choice.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            {hasActiveDashboardFilters && (
-              <button type="button" className="premium-clear-filters" onClick={clearDashboardFilters}>
-                Limpar filtros
-              </button>
-            )}
-          </div>
-        </div>
+        {summary ? <KpiGrid summary={summary} /> : <KpisSkeleton />}
       </section>
 
-      {/* Perfil Expandido do Deputado Selecionado */}
-      {selectedDeputy && (
-        <DeputyFinancialProfile
-          deputyId={selectedDeputy.id}
-          deputyName={selectedDeputy.nome}
-          q1Data={q1Data}
-          q7Data={q7Data}
-          q12Data={q12Data}
-          q13Data={q13Data}
-          onClose={clearDeputySelection}
-        />
-      )}
+      {/* Tabs Navigation */}
+      <nav className="gastos-tabs" aria-label="Abas do bloco de gastos">
+        {TABS.map((tab) => (
+          <button
+            type="button"
+            key={tab.id}
+            className={activeTab === tab.id ? 'active' : undefined}
+            onClick={() => setActiveTab(tab.id)}
+          >
+            <span>{tab.label}</span>
+            <small>{tab.question}</small>
+          </button>
+        ))}
+      </nav>
 
-      {/* Bloco 1: Visão Geral de Indicadores */}
-      <section className="dashboard-section stagger-item">
-        <h2>Visão Geral de Indicadores</h2>
-        {loading.q1 && !q1Data ? (
-          <p className="loading">Carregando indicadores...</p>
-        ) : errors.q1 ? (
-          <p className="error">Erro ao carregar indicadores: {errors.q1}</p>
-        ) : q1Data ? (
-          <ExecutiveCards cards={q1Data.summary_cards} />
-        ) : (
-          <NoDataState message="Nenhum dado disponível." />
-        )}
-      </section>
-
-      <div className="premium-dashboard-grid">
-        {/* Bloco 2: Ranking de Gastos por Deputado (Q1) */}
-        <section className="premium-panel stagger-item">
-          <h2>Deputados que mais gastaram (Q1)</h2>
-          {loading.q1 && !q1Data ? (
-            <p className="loading">Carregando dados de despesas...</p>
-          ) : errors.q1 ? (
-            <p className="error">Erro: {errors.q1}</p>
-          ) : q1Data ? (
-            <div className="premium-panel-content">
-              <ChartPanel spec={q1Data.chart_spec} />
-              <VisualRanking
-                rows={q1Data.table_spec.rows}
-                idField="id_deputado"
-                labelField="nome"
-                valueField="gasto_total"
-                subtitleField="sigla_partido"
-                secondarySubtitleField="sigla_uf"
-                highlightValue={selectedDeputy?.id}
-                limit={10}
-              />
-            </div>
+      {/* Tab Panels */}
+      {/* 1. Resumo Tab */}
+      {activeTab === 'resumo' && (
+        <section className="gastos-tab-panel">
+          <header className="gastos-tab-heading">
+            <h2>Visão Geral dos Gastos</h2>
+            <p>Quanto foi gasto pelos deputados?</p>
+          </header>
+          {loadingResumo || !summary || !categories ? (
+            <>
+              <KpisSkeleton />
+              <InsightsSkeleton />
+              <ChartsSkeleton />
+            </>
           ) : (
-            <NoDataState message="Nenhum dado disponível." />
-          )}
-        </section>
-
-        {/* Bloco 3: Fornecedores com maior total pago (Q5) */}
-        <section className="premium-panel stagger-item">
-          <h2>Fornecedores com maior total pago (Q5)</h2>
-          {loading.q5 && !q5Data ? (
-            <p className="loading">Carregando dados de fornecedores...</p>
-          ) : errors.q5 ? (
-            <p className="error">Erro: {errors.q5}</p>
-          ) : q5Data ? (
-            <div className="premium-panel-content">
-              <ChartPanel spec={q5Data.chart_spec} />
-              <SupplierCardGrid rows={q5Data.table_spec.rows} limit={6} />
-            </div>
-          ) : (
-            <NoDataState message="Nenhum dado disponível." />
-          )}
-        </section>
-
-        {/* Bloco 4: Índice de Custo-Benefício (Q7) */}
-        <section className="premium-panel stagger-item">
-          <h2>Índice de Custo-Benefício (Q7)</h2>
-          {loading.q7 && !q7Data ? (
-            <p className="loading">Carregando custo-benefício...</p>
-          ) : errors.q7 ? (
-            <p className="error">Erro: {errors.q7}</p>
-          ) : q7Data ? (
-            <div className="premium-panel-content">
-              <div className="custo-beneficio-row">
-                <ExecutiveCards
-                  cards={q7Data.summary_cards}
-                  extraCard={q7FormulaCard}
+            <>
+              <KpiGrid summary={summary} />
+              <InsightGrid insights={resumoInsights} />
+              <div className="gastos-chart-grid">
+                {yearSeries.length > 0 && (
+                  <ChartPanel
+                    spec={lineChart(
+                      'Evolucao temporal dos gastos',
+                      'A base atual nao possui mes de emissao; a serie e apresentada por ano.',
+                      yearSeries,
+                    )}
+                  />
+                )}
+                <ChartPanel
+                  spec={barChart(
+                    'Distribuicao por categoria',
+                    'Categorias com maior valor total gasto.',
+                    asRecords(topCategoriesByValue),
+                    'categoria',
+                    'valor_total',
+                  )}
                 />
               </div>
-              <ChartPanel spec={q7Data.chart_spec} />
+            </>
+          )}
+        </section>
+      )}
 
-              <div className="premium-cb-insights">
-                <div className="insight-column">
-                  <h4>Melhor Custo-Benefício</h4>
-                  <VisualRanking
-                    rows={costBenefitRankings.best}
-                    idField="id_deputado"
-                    labelField="nome"
-                    valueField="custo_beneficio"
-                    subtitleField="gasto_total"
-                    isCurrency={false}
-                    formatSubtitle={formatCurrency}
-                    highlightValue={selectedDeputy?.id}
-                    limit={3}
-                  />
+      {/* 2. Categorias Tab */}
+      {activeTab === 'categorias' && (
+        <section className="gastos-tab-panel">
+          <header className="gastos-tab-heading">
+            <h2>Categorias de Despesa</h2>
+            <p>Em que categorias os recursos foram concentrados?</p>
+          </header>
+          {loadingCategorias || !categories ? (
+            <>
+              <KpisSkeleton />
+              <InsightsSkeleton />
+              <ChartsSkeleton />
+              <TableSkeleton />
+            </>
+          ) : (
+            <>
+              <div className="gastos-kpi-grid">
+                <article className="gastos-kpi-card">
+                  <span>Categoria Principal</span>
+                  <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topCategory?.categoria}>{topCategory?.categoria ?? '-'}</strong>
+                  <small>{formatCurrency(topCategory?.valor_total ?? 0)}</small>
+                </article>
+                <article className="gastos-kpi-card">
+                  <span>Mais Frequente</span>
+                  <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={mostFrequentCategory?.categoria}>{mostFrequentCategory?.categoria ?? '-'}</strong>
+                  <small>{formatCellValue(mostFrequentCategory?.qtd_despesas ?? 0)} despesas</small>
+                </article>
+                <article className="gastos-kpi-card">
+                  <span>Maior Ticket Médio</span>
+                  <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={highestTicketCategory?.categoria}>{highestTicketCategory?.categoria ?? '-'}</strong>
+                  <small>{formatCurrency(highestTicketCategory?.ticket_medio ?? 0)}/ticket</small>
+                </article>
+              </div>
+              <InsightGrid insights={categoryInsights} />
+              <div className="gastos-chart-grid">
+                <ChartPanel spec={barChart('Top categorias por valor', 'Concentracao de recursos.', asRecords(topCategoriesByValue), 'categoria', 'valor_total')} />
+                <ChartPanel spec={barChart('Ticket medio por categoria', 'Categorias com despesas individuais mais altas.', asRecords(topCategoriesByTicket), 'categoria', 'ticket_medio')} />
+              </div>
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Ranking de Categorias</h3>
+              <div className="gastos-deputy-card-grid" style={{ marginBottom: '24px' }}>
+                {topCategoriesByValue.slice(0, 4).map((cat, idx) => (
+                  <div key={`${cat.categoria}-${idx}`} className="gastos-deputy-rank-card" style={{ cursor: 'default', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <span className="rank-number">#{idx + 1}</span>
+                    <span className="rank-name" style={{ fontWeight: 'bold' }}>{cat.categoria}</span>
+                    <span className="rank-label">Valor total</span>
+                    <strong>{formatCurrency(cat.valor_total)}</strong>
+                    <small>{formatCellValue(cat.qtd_despesas)} despesas | ticket médio {formatCurrency(cat.ticket_medio)}</small>
+                  </div>
+                ))}
+              </div>
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabela Detalhada</h3>
+              <CompactTable
+                rows={asRecords(categories.items)}
+                columns={[
+                  { key: 'categoria', label: 'Categoria' },
+                  { key: 'valor_total', label: 'Valor total', format: formatCurrency },
+                  { key: 'qtd_despesas', label: 'Despesas' },
+                  { key: 'ticket_medio', label: 'Ticket medio', format: formatCurrency },
+                  { key: 'qtd_deputados', label: 'Deputados' },
+                ]}
+              />
+            </>
+          )}
+        </section>
+      )}
+
+      {/* 3. Deputados Tab */}
+      {activeTab === 'deputados' && (
+        <section className="gastos-tab-panel">
+          <header className="gastos-tab-heading">
+            <h2>Gastos por Deputado</h2>
+            <p>Quem são os deputados que mais gastaram?</p>
+          </header>
+          
+          <div className="gastos-filter-row" style={{ marginBottom: '16px' }}>
+            <label>
+              Ano
+              <select value={ano} onChange={(event) => setAno(event.target.value)}>
+                <option value="">Todos</option>
+                {availableYears.map((year) => <option key={year} value={year}>{year}</option>)}
+              </select>
+            </label>
+            <label>
+              Partido
+              <select value={partido} onChange={(event) => setPartido(event.target.value)}>
+                <option value="">Todos</option>
+                {(meta.available_filters.partidos ?? []).map((choice) => (
+                  <option key={choice.value} value={choice.value}>{choice.label}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              UF
+              <select value={uf} onChange={(event) => setUf(event.target.value)}>
+                <option value="">Todas</option>
+                {(meta.available_filters.ufs ?? []).map((choice) => (
+                  <option key={choice.value} value={choice.value}>{choice.label}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Busca
+              <input value={buscaDeputado} onChange={(event) => setBuscaDeputado(event.target.value)} placeholder="Nome ou ID" />
+            </label>
+          </div>
+
+          {loadingDeputados || !deputies ? (
+            <>
+              <KpisSkeleton />
+              <CardsSkeleton />
+              <TableSkeleton />
+            </>
+          ) : (
+            <>
+              <div className="gastos-kpi-grid">
+                <article className="gastos-kpi-card">
+                  <span>Destaque de Gastos</span>
+                  <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topDeputies[0]?.nome_parlamentar}>{topDeputies[0]?.nome_parlamentar ?? '-'}</strong>
+                  <small>{topDeputies[0] ? `${formatCurrency(topDeputies[0].valor_total)} (${topDeputies[0].sigla_partido})` : ''}</small>
+                </article>
+                <article className="gastos-kpi-card">
+                  <span>Deputados Analisados</span>
+                  <strong>{formatCellValue(deputies.summary.qtd_deputados)}</strong>
+                </article>
+                <article className="gastos-kpi-card">
+                  <span>Média por Deputado</span>
+                  <strong>{formatCurrency(deputies.summary.valor_total / Math.max(1, deputies.summary.qtd_deputados))}</strong>
+                </article>
+              </div>
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Ranking de Deputados (Clique para Analisar)</h3>
+              <DeputyRankingCards
+                rows={topDeputies}
+                selectedId={selectedDeputy?.id_deputado}
+                onSelect={setSelectedDeputy}
+              />
+
+              {selectedDeputy && (
+                <aside className="gastos-drilldown stagger-item" style={{ marginTop: '16px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                      <DeputyAvatar id={selectedDeputy.id_deputado} nome={selectedDeputy.nome_parlamentar} size={64} />
+                      <div>
+                        <small style={{ color: 'var(--primary)', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '0.75rem' }}>Analisando deputado:</small>
+                        <h3 style={{ margin: '2px 0 0 0', fontSize: '1.4rem' }}>{selectedDeputy.nome_parlamentar}</h3>
+                        <p style={{ margin: '2px 0 0 0', color: 'var(--muted)' }}>{selectedDeputy.sigla_partido} - {selectedDeputy.sigla_uf}</p>
+                      </div>
+                    </div>
+                    <button type="button" className="gastos-clear-button" onClick={() => setSelectedDeputy(null)}>
+                      Fechar Analise
+                    </button>
+                  </div>
+
+                  <div className="gastos-drilldown-grid" style={{ marginTop: '12px' }}>
+                    <span>Valor total: <strong>{formatCurrency(selectedDeputy.valor_total)}</strong></span>
+                    <span>Posicao no ranking: <strong>{selectedDeputyRank ? `#${selectedDeputyRank}` : '-'}</strong></span>
+                    <span>Ticket medio: <strong>{formatCurrency(selectedDeputy.ticket_medio)}</strong></span>
+                    <span>% do grupo filtrado: <strong>{formatPercent(selectedDeputy.pct_total)}</strong></span>
+                    <span>Categoria dominante: <strong>{selectedDeputy.categoria_principal ?? '-'}</strong></span>
+                    <span>Fornecedor mais utilizado: <strong>{topSupplierForSelectedDeputy?.fornecedor ?? '-'}</strong></span>
+                    <span>Fornecedores unicos: <strong>{formatCellValue(selectedDeputy.qtd_fornecedores)}</strong></span>
+                    <span>Gastos atipicos: <strong>{formatCellValue(selectedDeputyAnomaly?.qtd_despesas_atipicas ?? 0)}</strong></span>
+                  </div>
+                </aside>
+              )}
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabela Detalhada (Secundária)</h3>
+              <CompactTable
+                rows={asRecords(deputies.items)}
+                selectedKey={selectedDeputy ? String(selectedDeputy.id_deputado) : undefined}
+                onRowClick={(row) => setSelectedDeputy(row as unknown as GastoDeputadoItem)}
+                columns={[
+                  {
+                    key: 'nome_parlamentar',
+                    label: 'Deputado',
+                    format: (value, row) => (
+                      `${String(value)} (${String(row.sigla_partido)}-${String(row.sigla_uf)})`
+                    ),
+                  },
+                  { key: 'valor_total', label: 'Valor total', format: formatCurrency },
+                  { key: 'qtd_despesas', label: 'Despesas' },
+                  { key: 'ticket_medio', label: 'Ticket medio', format: formatCurrency },
+                  { key: 'categoria_principal', label: 'Categoria principal' },
+                ]}
+              />
+            </>
+          )}
+        </section>
+      )}
+
+      {/* 4. Fornecedores Tab */}
+      {activeTab === 'fornecedores' && (
+        <section className="gastos-tab-panel">
+          <header className="gastos-tab-heading">
+            <h2>Fornecedores e Alcance Parlamentar</h2>
+            <p>Quem foram os principais fornecedores e qual seu alcance?</p>
+          </header>
+          
+          <div className="gastos-filter-row" style={{ marginBottom: '16px' }}>
+            <label>
+              Filtrar por Categoria
+              <input value={categoriaFiltro} onChange={(event) => setCategoriaFiltro(event.target.value)} placeholder="Ex.: passagem" />
+            </label>
+            {selectedDeputy && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <span style={{ fontSize: '0.8rem', color: 'var(--muted)', fontWeight: 'bold' }}>Filtro de Deputado Ativo</span>
+                <button type="button" className="gastos-clear-button" onClick={() => setSelectedDeputy(null)}>
+                  Limpar ({selectedDeputy.nome_parlamentar})
+                </button>
+              </div>
+            )}
+          </div>
+
+          {loadingFornecedores || !suppliers ? (
+            <>
+              <KpisSkeleton />
+              <InsightsSkeleton />
+              <CardsSkeleton />
+              <TableSkeleton />
+            </>
+          ) : (
+            <>
+              <div className="gastos-kpi-grid">
+                <article className="gastos-kpi-card">
+                  <span>Fornecedor Principal</span>
+                  <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSupplier?.fornecedor}>{topSupplier?.fornecedor ?? '-'}</strong>
+                  <small>{formatCurrency(topSupplier?.valor_total ?? 0)}</small>
+                </article>
+                <article className="gastos-kpi-card">
+                  <span>Fornecedores no Recorte</span>
+                  <strong>{formatCellValue(suppliers.summary.qtd_fornecedores)}</strong>
+                </article>
+                <article className="gastos-kpi-card">
+                  <span>Maior Alcance</span>
+                  <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSupplier?.fornecedor}>{topSupplier?.fornecedor ?? '-'}</strong>
+                  <small>atende {formatCellValue(topSupplier?.qtd_deputados ?? 0)} deputados</small>
+                </article>
+              </div>
+
+              <InsightGrid insights={supplierInsights} />
+
+              <div className="gastos-chart-grid">
+                <ChartPanel spec={barChart('Top fornecedores por valor', 'Fornecedores com maior valor recebido.', asRecords(topSuppliers.slice(0, 5)), 'fornecedor', 'valor_total')} />
+                <ChartPanel spec={barChart('Alcance por deputados atendidos', 'Quantidade de deputados atendidos por fornecedor.', asRecords(topSuppliers.slice(0, 5)), 'fornecedor', 'qtd_deputados')} />
+              </div>
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Ranking de Fornecedores (Clique para Analisar)</h3>
+              <div className="gastos-deputy-card-grid">
+                {topSuppliers.slice(0, 8).map((supplier, idx) => (
+                  <button
+                    type="button"
+                    key={`${supplier.fornecedor}-${idx}`}
+                    className={`gastos-deputy-rank-card${selectedSupplier?.fornecedor === supplier.fornecedor ? ' selected' : ''}`}
+                    onClick={() => setSelectedSupplier(supplier)}
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px' }}
+                  >
+                    <span className="rank-number" style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>#{idx + 1}</span>
+                    <span className="rank-name" style={{ fontWeight: 'bold', fontSize: '0.95rem', height: '2.4em', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', textAlign: 'left' }} title={supplier.fornecedor}>
+                      {supplier.fornecedor}
+                    </span>
+                    <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+                      <span style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 'bold' }}>Valor total</span>
+                      <strong style={{ fontSize: '1.1rem' }}>{formatCurrency(supplier.valor_total)}</strong>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
+                        <span>{formatCellValue(supplier.qtd_deputados)} deps</span>
+                        <span>{formatCellValue(supplier.qtd_despesas)} despesas</span>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {selectedSupplier && (
+                <aside className="gastos-drilldown stagger-item" style={{ marginTop: '20px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--primary)' }}>Fornecedor: {selectedSupplier.fornecedor}</h3>
+                    <button type="button" className="gastos-clear-button" onClick={() => setSelectedSupplier(null)}>Limpar Detalhes</button>
+                  </div>
+                  
+                  <div className="gastos-drilldown-grid" style={{ marginTop: '12px' }}>
+                    <span>Valor recebido: <strong>{formatCurrency(selectedSupplier.valor_total)}</strong></span>
+                    <span>Deputados atendidos: <strong>{formatCellValue(selectedSupplier.qtd_deputados)}</strong></span>
+                    <span>Qtd despesas: <strong>{formatCellValue(selectedSupplier.qtd_despesas)}</strong></span>
+                    <span>Ticket medio: <strong>{formatCurrency(selectedSupplier.ticket_medio)}</strong></span>
+                    <span>% do total: <strong>{formatPercent(selectedSupplier.pct_total)}</strong></span>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '16px' }}>
+                    <div>
+                      <span style={{ fontSize: '0.82rem', color: 'var(--muted)', fontWeight: 'bold' }}>Categorias relacionadas:</span>
+                      <div className="gastos-chip-container">
+                        {splitList(selectedSupplier.categorias).map((cat) => (
+                          <span key={cat} className="gastos-chip gastos-chip-categoria">{cat}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <span style={{ fontSize: '0.82rem', color: 'var(--muted)', fontWeight: 'bold' }}>Partidos relacionados:</span>
+                      <div className="gastos-chip-container">
+                        {splitList(selectedSupplier.partidos).map((partido) => (
+                          <span key={partido} className="gastos-chip gastos-chip-partido">{partido}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <span style={{ fontSize: '0.82rem', color: 'var(--muted)', fontWeight: 'bold' }}>Estados (UFs) relacionados:</span>
+                      <div className="gastos-chip-container">
+                        {splitList(selectedSupplier.ufs).map((uf) => (
+                          <span key={uf} className="gastos-chip gastos-chip-uf">{uf}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+              )}
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabela Detalhada (Secundária)</h3>
+              <CompactTable
+                rows={asRecords(suppliers.items)}
+                selectedKey={selectedSupplier?.fornecedor}
+                onRowClick={(row) => setSelectedSupplier(row as unknown as GastoFornecedorItem)}
+                columns={[
+                  { key: 'fornecedor', label: 'Fornecedor' },
+                  { key: 'valor_total', label: 'Valor received', format: formatCurrency },
+                  { key: 'qtd_despesas', label: 'Despesas' },
+                  { key: 'qtd_deputados', label: 'Deputados atendidos' },
+                  { key: 'ticket_medio', label: 'Ticket medio', format: formatCurrency },
+                ]}
+              />
+            </>
+          )}
+        </section>
+      )}
+
+      {/* 5. Contexto Tab */}
+      {activeTab === 'contexto' && (
+        <section className="gastos-tab-panel">
+          <header className="gastos-tab-heading">
+            <h2>Distribuição Política e Regional</h2>
+            <p>Como os gastos variam por partido politico e unidade da federacao?</p>
+          </header>
+          {loadingContexto || !contexto ? (
+            <>
+              <KpisSkeleton />
+              <InsightsSkeleton />
+              <ChartsSkeleton count={3} />
+              <TableSkeleton />
+            </>
+          ) : (
+            <>
+              <div className="gastos-kpi-grid">
+                <article className="gastos-kpi-card">
+                  <span>Partido Volume</span>
+                  <strong>{String(topPartyByTotal?.sigla_partido ?? '-')}</strong>
+                  <small>{formatCurrency(topPartyByTotal?.valor_total ?? 0)}</small>
+                </article>
+                <article className="gastos-kpi-card">
+                  <span>Estado Volume</span>
+                  <strong>{String(topUfs[0]?.sigla_uf ?? '-')}</strong>
+                  <small>{formatCurrency(topUfs[0]?.valor_total ?? 0)}</small>
+                </article>
+                <article className="gastos-kpi-card">
+                  <span>Partido Média</span>
+                  <strong>{String(topPartyByAverage?.sigla_partido ?? '-')}</strong>
+                  <small>{formatCurrency(topPartyByAverage?.valor_medio_por_deputado ?? 0)}/dep</small>
+                </article>
+              </div>
+
+              <InsightGrid insights={contextInsights} />
+
+              <div className="gastos-chart-grid three">
+                <ChartPanel spec={barChart('Partidos por valor total', 'Volume de recursos.', topParties, 'sigla_partido', 'valor_total')} />
+                <ChartPanel spec={barChart('Partidos por media/deputado', 'Intensidade por deputado.', topPartiesByAverage, 'sigla_partido', 'valor_medio_por_deputado')} />
+                <ChartPanel spec={barChart('UFs por valor total', 'Volume por estado.', topUfs, 'sigla_uf', 'valor_total')} />
+              </div>
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Rankings de Contexto</h3>
+              <div className="gastos-two-columns" style={{ marginBottom: '24px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', background: 'var(--bg)', padding: '16px', borderRadius: '12px', border: '1px solid var(--border)' }}>
+                  <h4 style={{ color: 'var(--primary)', marginBottom: '8px', fontWeight: 'bold' }}>Top Partidos (Volume de Gastos)</h4>
+                  {topParties.slice(0, 5).map((party, idx) => (
+                    <div key={String(party.sigla_partido)} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 12px', background: 'var(--surface)', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '0.9rem' }}>
+                      <span>#{idx + 1} {String(party.sigla_partido)} ({formatCellValue(party.qtd_deputados)} deps)</span>
+                      <strong>{formatCurrency(party.valor_total)}</strong>
+                    </div>
+                  ))}
                 </div>
-                <div className="insight-column">
-                  <h4>Pior Custo-Benefício</h4>
-                  <VisualRanking
-                    rows={costBenefitRankings.worst}
-                    idField="id_deputado"
-                    labelField="nome"
-                    valueField="custo_beneficio"
-                    subtitleField="gasto_total"
-                    isCurrency={false}
-                    formatSubtitle={formatCurrency}
-                    highlightValue={selectedDeputy?.id}
-                    limit={3}
-                  />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', background: 'var(--bg)', padding: '16px', borderRadius: '12px', border: '1px solid var(--border)' }}>
+                  <h4 style={{ color: 'var(--primary)', marginBottom: '8px', fontWeight: 'bold' }}>Top UFs (Volume de Gastos)</h4>
+                  {topUfs.slice(0, 5).map((uf, idx) => (
+                    <div key={String(uf.sigla_uf)} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 12px', background: 'var(--surface)', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '0.9rem' }}>
+                      <span>#{idx + 1} {String(uf.sigla_uf)} ({formatCellValue(uf.qtd_deputados)} deps)</span>
+                      <strong>{formatCurrency(uf.valor_total)}</strong>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-          ) : (
-            <NoDataState message="Nenhum dado disponível." />
-          )}
-        </section>
 
-        {/* Bloco 5: Relação Deputado x Fornecedor (Q12) */}
-        <section className="premium-panel stagger-item">
-          <h2>Relação Deputado x Fornecedor (Q12)</h2>
-          {loading.q12 && !q12Data ? (
-            <p className="loading">Carregando relação...</p>
-          ) : errors.q12 ? (
-            <p className="error">Erro: {errors.q12}</p>
-          ) : q12Data ? (
-            <div className="premium-panel-content">
-              <ChartPanel spec={q12Data.chart_spec} />
-              <VisualRanking
-                rows={q12Data.table_spec.rows}
-                idField="id_deputado"
-                labelField="nome"
-                valueField="total_pago"
-                subtitleField="fornecedor"
-                highlightValue={selectedDeputy?.id}
-                limit={10}
-              />
-            </div>
-          ) : (
-            <NoDataState message="Nenhum dado disponível." />
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabelas Detalhadas</h3>
+              <div className="gastos-two-columns">
+                <CompactTable
+                  rows={asRecords(contexto.partidos)}
+                  columns={[
+                    { key: 'sigla_partido', label: 'Partido' },
+                    { key: 'qtd_deputados', label: 'Deputados' },
+                    { key: 'valor_total', label: 'Valor total', format: formatCurrency },
+                    { key: 'valor_medio_por_deputado', label: 'Media/deputado', format: formatCurrency },
+                  ]}
+                />
+                <CompactTable
+                  rows={asRecords(contexto.ufs)}
+                  columns={[
+                    { key: 'sigla_uf', label: 'UF' },
+                    { key: 'qtd_deputados', label: 'Deputados' },
+                    { key: 'valor_total', label: 'Valor total', format: formatCurrency },
+                    { key: 'valor_medio_por_deputado', label: 'Media/deputado', format: formatCurrency },
+                  ]}
+                />
+              </div>
+            </>
           )}
         </section>
+      )}
 
-        {/* Bloco 6: Categorias de gasto por deputado (Q13) */}
-        <section className="premium-panel stagger-item">
-          <h2>Categorias de Gasto (Q13)</h2>
-          {loading.q13 && !q13Data ? (
-            <p className="loading">Carregando categorias...</p>
-          ) : errors.q13 ? (
-            <p className="error">Erro: {errors.q13}</p>
-          ) : q13Data ? (
-            <div className="premium-panel-content">
-              <ChartPanel spec={q13Data.chart_spec} />
-              <VisualRanking
-                rows={q13Data.table_spec.rows}
-                labelField="descricao_despesa"
-                valueField="gasto_total"
-                subtitleField="nome"
-                extraLabelField="pct_total"
-                highlightValue={selectedDeputy?.id}
-                limit={10}
-              />
-            </div>
+      {/* 6. Anomalias Tab */}
+      {activeTab === 'anomalias' && (
+        <section className="gastos-tab-panel">
+          <header className="gastos-tab-heading">
+            <h2>Detecção de Gastos Atípicos</h2>
+            <p>Quais despesas apresentam comportamento estatístico incomum?</p>
+          </header>
+          
+          {loadingAnomalias || !anomalias ? (
+            <>
+              <KpisSkeleton />
+              <InsightsSkeleton />
+              <ChartsSkeleton />
+              <TableSkeleton />
+            </>
           ) : (
-            <NoDataState message="Nenhum dado disponível." />
+            <>
+              <div className="gastos-kpi-grid">
+                <article className="gastos-kpi-card"><span>Despesas analisadas</span><strong>{formatCellValue(anomalyTotal)}</strong></article>
+                <article className="gastos-kpi-card"><span>Despesas atipicas</span><strong>{formatCellValue(anomalyCount)}</strong></article>
+                <article className="gastos-kpi-card"><span>Percentual</span><strong>{anomalyPct.toLocaleString('pt-BR', { maximumFractionDigits: 2 })}%</strong></article>
+                <article className="gastos-kpi-card"><span>Destaque de Anomalias</span><strong>{topAnomalyDeputy?.nome_parlamentar ?? '-'}</strong></article>
+              </div>
+
+              <InsightGrid insights={anomalyInsights} />
+
+              <div className="gastos-chart-grid">
+                <ChartPanel spec={barChart('Deputados por despesas atipicas', 'Ranking por quantidade de despesas fora do padrao estatistico.', asRecords(anomalyRanking.slice(0, 5)), 'nome_parlamentar', 'qtd_despesas_atipicas')} />
+                
+                <section className="gastos-interpretation-panel" style={{ borderLeft: '4px solid var(--danger)' }}>
+                  <h3>Como interpretar gastos atipicos</h3>
+                  <p>
+                    A classificacao aponta despesas fora do padrao estatistico com o modelo Isolation Forest. Ela nao representa
+                    conclusao juridica, etica ou administrativa. Os motivos explicam quais caracteristicas apoiaram a classificacao.
+                  </p>
+                  <div className="gastos-motive-badges" style={{ marginTop: '8px' }}>
+                    <span className="gastos-badge gastos-badge-atipico">Atípico</span>
+                    <span className="gastos-badge gastos-badge-p95">Percentil 95</span>
+                    <span className="gastos-badge gastos-badge-p99">Percentil 99</span>
+                    <span className="gastos-badge gastos-badge-raro">Fornecedor Raro</span>
+                    <span className="gastos-badge gastos-badge-concentrado">Fornecedor Concentrado</span>
+                  </div>
+                </section>
+              </div>
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Destaques no Ranking de Anomalias (Cards Visuais)</h3>
+              <div className="gastos-deputy-card-grid anomaly" style={{ marginBottom: '24px' }}>
+                {anomalyRanking.slice(0, 8).map((row, index) => (
+                  <article className="gastos-deputy-rank-card" key={`${row.id_deputado}-${index}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                      <span className="rank-number">#{index + 1}</span>
+                      <DeputyAvatar id={row.id_deputado} nome={row.nome_parlamentar} size={48} />
+                    </div>
+                    
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'left' }}>
+                      <span className="rank-name" style={{ fontWeight: 'bold', fontSize: '0.95rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={row.nome_parlamentar}>
+                        {row.nome_parlamentar}
+                      </span>
+                      <span className="rank-meta" style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+                        {row.sigla_partido}-{row.sigla_uf}
+                      </span>
+                    </div>
+
+                    <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+                      <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--danger)', fontWeight: 'bold' }}>Despesas atípicas</span>
+                      <strong style={{ fontSize: '1.25rem', color: 'var(--danger)' }}>{formatCellValue(row.qtd_despesas_atipicas)}</strong>
+                      <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{formatCurrency(row.valor_atipico)} associados</span>
+                      <span style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>Score médio: {formatCellValue(row.score_atipicidade_medio)}</span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Detalhamento Paginado</h3>
+              <div className="gastos-detail-filter">
+                <p style={{ margin: 0 }}>Por seguranca operacional, a base detalhada so e carregada com filtros.</p>
+                
+                <div className="gastos-filter-row" style={{ marginTop: '12px', marginBottom: '12px' }}>
+                  <label>Deputado<input value={anomaliaFilters.deputado} onChange={(event) => setAnomaliaFilters((prev) => ({ ...prev, deputado: event.target.value }))} /></label>
+                  <label>Partido<input value={anomaliaFilters.partido} onChange={(event) => setAnomaliaFilters((prev) => ({ ...prev, partido: event.target.value }))} /></label>
+                  <label>UF<input value={anomaliaFilters.uf} onChange={(event) => setAnomaliaFilters((prev) => ({ ...prev, uf: event.target.value }))} /></label>
+                  <label>Categoria<input value={anomaliaFilters.categoria} onChange={(event) => setAnomaliaFilters((prev) => ({ ...prev, categoria: event.target.value }))} /></label>
+                  <button type="button" className="gastos-clear-button" onClick={() => { setAnomaliaPage(1); loadAnomalyDetails() }}>Carregar detalhes</button>
+                </div>
+
+                {anomaliaError && <p className="error">{anomaliaError}</p>}
+                
+                {anomaliaDetails && (
+                  <div className="stagger-item" style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' }}>
+                    <ChartPanel spec={scatterChart(asRecords(anomaliaDetails.items))} />
+                    
+                    <h4 style={{ color: 'var(--primary)', margin: 0, fontWeight: 'bold' }}>Explicação das Despesas Classificadas</h4>
+                    <div className="gastos-explanation-cards">
+                      {anomaliaDetails.items.slice(0, 6).map((item, index) => {
+                        const motivos = parseMotivos(item.motivos ?? item.motivos_json)
+                        return (
+                          <article className="gastos-explanation-card" key={`${item.id_gasto ?? index}`} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                              <span style={{ fontWeight: 'bold', fontSize: '0.95rem' }}>{item.nome_parlamentar}</span>
+                              <strong style={{ color: 'var(--danger)' }}>{formatCurrency(item.valor_liquido)}</strong>
+                            </header>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0 }}>{item.descricao_despesa}</p>
+                            
+                            <div style={{ marginTop: '4px', marginBottom: '4px' }}>
+                              <MotiveBadges motivos={motivos} />
+                            </div>
+                            
+                            <MotiveDetails motivos={motivos} />
+                          </article>
+                        )
+                      })}
+                    </div>
+
+                    <div className="gastos-pagination">
+                      <button type="button" disabled={anomaliaPage <= 1} onClick={() => setAnomaliaPage((prev) => Math.max(1, prev - 1))}>Anterior</button>
+                      <span>Pagina {anomaliaDetails.summary.page} de {Math.max(1, Math.ceil(anomaliaDetails.summary.total / anomaliaDetails.summary.page_size))}</span>
+                      <button
+                        type="button"
+                        disabled={anomaliaDetails.summary.page * anomaliaDetails.summary.page_size >= anomaliaDetails.summary.total}
+                        onClick={() => setAnomaliaPage((prev) => prev + 1)}
+                      >
+                        Proxima
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabela Completa (Auditoria de Anomalias)</h3>
+              <CompactTable
+                rows={asRecords(anomalyRanking)}
+                columns={[
+                  { key: 'nome_parlamentar', label: 'Deputado' },
+                  { key: 'qtd_despesas_atipicas', label: 'Anomalias' },
+                  { key: 'valor_atipico', label: 'Valor associado', format: formatCurrency },
+                  { key: 'score_atipicidade_medio', label: 'Score medio' },
+                  { key: 'pct_despesas_atipicas', label: '% atipicas', format: (value) => `${formatCellValue(value)}%` },
+                ]}
+              />
+            </>
           )}
         </section>
-      </div>
+      )}
     </main>
   )
 }

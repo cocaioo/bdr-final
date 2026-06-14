@@ -62,6 +62,24 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
     } as EChartsOption
   }
 
+  if (spec.type === 'line') {
+    return {
+      tooltip: { trigger: 'axis' },
+      legend: {},
+      grid: { left: 60, right: 20, top: 50, bottom: 50, containLabel: true },
+      xAxis: { type: 'category', data: spec.categories },
+      yAxis: { type: 'value' },
+      series: series.map((entry) => ({
+        type: 'line',
+        name: String(entry.name ?? ''),
+        data: (entry.data as unknown[]) ?? [],
+        smooth: true,
+        symbolSize: 8,
+        areaStyle: { opacity: 0.12 },
+      })),
+    } as EChartsOption
+  }
+
   if (spec.type === 'stacked_bar') {
     const hasPartidoFilter = Boolean(activeFilters?.partidos && activeFilters.partidos.length > 0)
     return {
@@ -244,25 +262,36 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
 }
 
 function applyTheme(option: any): EChartsOption {
-  const textInk = '#e2e8f0'
-  const textMuted = '#8a9ba8'
-  const borderLight = 'rgba(255, 255, 255, 0.08)'
-  const tooltipBg = 'rgba(22, 28, 38, 0.95)'
-  const tooltipBorder = 'rgba(255, 255, 255, 0.12)'
+  const isLightTheme = typeof document !== 'undefined' && document.body.classList.contains('gastos-light-theme')
+
+  const textInk = isLightTheme ? '#17202A' : '#e2e8f0'
+  const textMuted = isLightTheme ? '#5D6B7A' : '#8a9ba8'
+  const borderLight = isLightTheme ? '#D8E1EA' : 'rgba(255, 255, 255, 0.08)'
+  const tooltipBg = isLightTheme ? 'rgba(255, 255, 255, 0.95)' : 'rgba(22, 28, 38, 0.95)'
+  const tooltipBorder = isLightTheme ? '#D8E1EA' : 'rgba(255, 255, 255, 0.12)'
 
   if (!option) return {} as EChartsOption
 
-  // Custom premium color palette matching our CSS variables
-  option.color = [
-    '#5b84a2', // primary: soft slate blue
-    '#b39ddb', // accent: soft lavender
-    '#66bb6a', // ok: soft sage green
-    '#ffb74d', // warn: soft orange/gold
-    '#ef9a9a', // danger: soft rose/coral
-    '#80deea', // light cyan
-    '#ffcc80', // light orange
-    '#c5e1a5', // light sage
-  ]
+  if (isLightTheme) {
+    option.color = [
+      '#2563EB', // Série 1
+      '#0F766E', // Série 2
+      '#7C3AED', // Série 3
+      '#64748B', // Série 4
+    ]
+  } else {
+    // Custom premium color palette matching our CSS variables
+    option.color = [
+      '#5b84a2', // primary: soft slate blue
+      '#b39ddb', // accent: soft lavender
+      '#66bb6a', // ok: soft sage green
+      '#ffb74d', // warn: soft orange/gold
+      '#ef9a9a', // danger: soft rose/coral
+      '#80deea', // light cyan
+      '#ffcc80', // light orange
+      '#c5e1a5', // light sage
+    ]
+  }
 
   if (!option.textStyle) {
     option.textStyle = {}
@@ -294,7 +323,9 @@ function applyTheme(option: any): EChartsOption {
 
     if (!axis.splitLine) axis.splitLine = {}
     if (!axis.splitLine.lineStyle) axis.splitLine.lineStyle = {}
-    if (axis.splitLine.lineStyle.color === undefined) axis.splitLine.lineStyle.color = 'rgba(255, 255, 255, 0.04)'
+    if (axis.splitLine.lineStyle.color === undefined) {
+      axis.splitLine.lineStyle.color = isLightTheme ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.04)'
+    }
   }
 
   if (Array.isArray(option.xAxis)) {
@@ -320,4 +351,3 @@ function applyTheme(option: any): EChartsOption {
 
   return option as EChartsOption
 }
-
