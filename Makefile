@@ -1,7 +1,7 @@
 PYTHON ?= venv/Scripts/python
 COMPOSE ?= docker compose
 
-.PHONY: venv install up down db-reset etl validate export-respostas clean-outputs all dashboard-install dashboard-api dashboard-web dashboard-dev dashboard-test
+.PHONY: venv install up down db-reset etl validate export-respostas gastos-analytics gastos-audit-api clean-outputs all dashboard-install dashboard-api dashboard-web dashboard-dev dashboard-test
 
 venv:
 	python -m venv venv
@@ -28,6 +28,12 @@ validate:
 export-respostas:
 	powershell -NoProfile -Command "New-Item -ItemType Directory -Force respostas | Out-Null; Remove-Item -Path respostas/*.txt -Force -ErrorAction SilentlyContinue"
 	$(PYTHON) -m src.export_respostas
+
+gastos-analytics:
+	$(PYTHON) dashboard/scripts/generate_gastos_analytics.py
+
+gastos-audit-api:
+	$(PYTHON) dashboard/scripts/audit_gastos_api.py
 
 clean-outputs:
 	powershell -NoProfile -Command "Remove-Item -Path dados_padronizados -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path respostas/*.txt -Force -ErrorAction SilentlyContinue"
