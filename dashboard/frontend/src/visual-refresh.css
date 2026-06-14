@@ -1,0 +1,165 @@
+/* Fase 2: visual refresh layer. Loaded after index.css to keep the base CSS intact. */
+:root {
+  --bg: #F4F6F3;
+  --surface: #FAFBF8;
+  --surface-soft: #EEF2EF;
+  --ink: #25312D;
+  --muted: #66736D;
+  --primary: #3F7D72;
+  --accent: #6B7FD7;
+  --ok: #3F7D72;
+  --warn: #B45309;
+  --danger: #B91C1C;
+  --border: #D9E1DC;
+  --shadow: 0 1px 2px rgba(37, 49, 45, 0.04);
+  --shadow-soft: 0 10px 24px rgba(37, 49, 45, 0.06);
+}
+
+body,
+body.gastos-light-theme {
+  --bg: #F4F6F3;
+  --surface: #FAFBF8;
+  --surface-soft: #EEF2EF;
+  --ink: #25312D;
+  --muted: #66736D;
+  --primary: #3F7D72;
+  --accent: #6B7FD7;
+  --ok: #3F7D72;
+  --warn: #B45309;
+  --danger: #B91C1C;
+  --border: #D9E1DC;
+  --shadow: 0 1px 2px rgba(37, 49, 45, 0.04);
+}
+
+body,
+body.gastos-light-theme {
+  background: var(--bg) !important;
+  color: var(--ink) !important;
+}
+
+.app-shell {
+  gap: 24px;
+  padding: 20px;
+}
+
+.hero-card,
+.question-intro,
+.filter-panel,
+.table-section,
+.chart-section,
+.warning-banner,
+.query-drawer,
+.complement-section,
+.wordcloud-section,
+.dashboard-section,
+.dashboard-block,
+.gastos-tab-panel,
+body.gastos-light-theme .gastos-tab-panel,
+body.gastos-light-theme .premium-hero {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+.summary-card,
+.question-card,
+.wordcloud-card,
+.q3-methodology,
+.loading,
+.no-data,
+.gastos-story-dashboard .gastos-kpi-card,
+.gastos-insight-card,
+.gastos-drilldown,
+.gastos-detail-filter,
+.gastos-interpretation-panel,
+.gastos-explanation-card,
+body.gastos-light-theme .gastos-kpi-card,
+body.gastos-light-theme .gastos-story-dashboard .gastos-kpi-card,
+body.gastos-light-theme .gastos-insight-card,
+body.gastos-light-theme .gastos-drilldown,
+body.gastos-light-theme .gastos-detail-filter,
+body.gastos-light-theme .gastos-interpretation-panel,
+body.gastos-light-theme .gastos-explanation-card {
+  background: var(--surface-soft) !important;
+  border-color: var(--border) !important;
+  box-shadow: none !important;
+}
+
+.filter-item select,
+.autocomplete-filter input,
+.filter-search input,
+.table-footer select,
+.gastos-filter-row input,
+.gastos-filter-row select,
+body.gastos-light-theme .gastos-filter-row input,
+body.gastos-light-theme .gastos-filter-row select {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--ink) !important;
+}
+
+.filter-item select:focus,
+.autocomplete-filter input:focus,
+.filter-search input:focus,
+.table-footer select:focus,
+.gastos-filter-row input:focus,
+.gastos-filter-row select:focus,
+body.gastos-light-theme .gastos-filter-row input:focus,
+body.gastos-light-theme .gastos-filter-row select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(63, 125, 114, 0.14) !important;
+  outline: none;
+}
+
+.autocomplete-options {
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.autocomplete-option:hover,
+.autocomplete-option:focus {
+  background: rgba(63, 125, 114, 0.1);
+}
+
+.filter-tag,
+.question-id-badge,
+.tab-badge {
+  background: rgba(63, 125, 114, 0.1);
+  color: var(--primary);
+  border-color: rgba(63, 125, 114, 0.18);
+}
+
+.table-wrapper,
+.gastos-table-wrap,
+body.gastos-light-theme .gastos-table-wrap {
+  border-color: var(--border) !important;
+}
+
+th,
+td,
+body.gastos-light-theme .gastos-compact-table td {
+  border-bottom-color: var(--border) !important;
+}
+
+th,
+th button,
+.gastos-compact-table th,
+body.gastos-light-theme .gastos-compact-table th {
+  background: var(--surface-soft) !important;
+  color: var(--primary) !important;
+}
+
+.query-drawer pre {
+  background: #25312D;
+  color: #F4F6F3;
+}
+
+.warning-banner {
+  background: rgba(180, 83, 9, 0.08) !important;
+  border-color: rgba(180, 83, 9, 0.25) !important;
+}
+
+.app-footer,
+body.gastos-light-theme .app-footer {
+  color: var(--muted) !important;
+}
