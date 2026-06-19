@@ -57,9 +57,9 @@ def _build_registry(root: Path) -> Path:
         "questions": [
             {
                 "id": "q1",
-                "title": "Legacy response",
-                "description": "Question that still uses the legacy respostas/ folder.",
-                "response_files": ["legacy_q1.txt"],
+                "title": "Canonical response",
+                "description": "Question that points to an explicit canonical folder.",
+                "response_files": ["Caio/gastos-fornecedores/q1/legacy_q1.txt"],
                 "sql_file": "q1.sql",
                 "chart_type": "bar_horizontal",
                 "supported_filters": ["anos", "eixos", "partidos", "ufs", "deputados"],
@@ -73,7 +73,7 @@ def _build_registry(root: Path) -> Path:
                 "id": "q2",
                 "title": "New response path",
                 "description": "Question that already points to a member/question path.",
-                "response_files": ["Caio/q2/q2_new.txt"],
+                "response_files": ["JF/producao-legislativa-temas/q2/q2_new.txt"],
                 "sql_file": "q2.sql",
                 "chart_type": "bar_horizontal",
                 "supported_filters": ["anos"],
@@ -85,9 +85,9 @@ def _build_registry(root: Path) -> Path:
             },
             {
                 "id": "q3",
-                "title": "Member fallback",
-                "description": "Question that still uses a legacy filename but lives under Caio/q3.",
-                "response_files": ["q3_member_fallback.txt"],
+                "title": "Explicit canonical path",
+                "description": "Question that points directly to its canonical path.",
+                "response_files": ["JF/producao-legislativa-temas/q3/q3_member_fallback.txt"],
                 "sql_file": "q3.sql",
                 "chart_type": "bar_horizontal",
                 "supported_filters": ["deputados"],
@@ -105,12 +105,12 @@ def _build_registry(root: Path) -> Path:
 
 
 def _build_service(root: Path) -> DashboardService:
-    responses_dir = root / "respostas"
+    responses_dir = root / "scratch" / "query-staging"
     sql_dir = root / "sql"
 
-    _write_response_file(responses_dir / "legacy_q1.txt", TABLE_TEXT_Q1)
-    _write_response_file(root / "Caio" / "q2" / "q2_new.txt", TABLE_TEXT_Q2)
-    _write_response_file(root / "Caio" / "q3" / "q3_member_fallback.txt", TABLE_TEXT_Q3)
+    _write_response_file(root / "Caio" / "gastos-fornecedores" / "q1" / "legacy_q1.txt", TABLE_TEXT_Q1)
+    _write_response_file(root / "JF" / "producao-legislativa-temas" / "q2" / "q2_new.txt", TABLE_TEXT_Q2)
+    _write_response_file(root / "JF" / "producao-legislativa-temas" / "q3" / "q3_member_fallback.txt", TABLE_TEXT_Q3)
     _write_sql_file(sql_dir / "q1.sql")
     _write_sql_file(sql_dir / "q2.sql")
     _write_sql_file(sql_dir / "q3.sql")
@@ -130,7 +130,7 @@ def _client_for(service: DashboardService) -> TestClient:
     return TestClient(main_module.app)
 
 
-def test_meta_endpoint_collects_filters_from_new_and_legacy_paths(tmp_path: Path) -> None:
+def test_meta_endpoint_collects_filters_from_explicit_canonical_paths(tmp_path: Path) -> None:
     client = _client_for(_build_service(tmp_path))
 
     response = client.get("/api/meta")
@@ -208,7 +208,7 @@ def test_question_endpoint_applies_filters_sorting_and_pagination(tmp_path: Path
 def test_question_endpoint_normalizes_party_filter_aliases(tmp_path: Path) -> None:
     service = _build_service(tmp_path)
     _write_response_file(
-        tmp_path / "respostas" / "legacy_q1.txt",
+        tmp_path / "Caio" / "gastos-fornecedores" / "q1" / "legacy_q1.txt",
         """Tabela principal
 ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_total
 ----------+------------+---------------+----------+-------------+-----------+------------
@@ -226,16 +226,16 @@ ano_dados | eixo_maior | sigla_partido | sigla_uf | id_deputado | nome | valor_t
     assert payload["table_spec"]["rows"][0]["sigla_partido"] == "REPUBLICANOS"
 
 
-def test_question_endpoint_uses_new_paths_and_member_fallback(tmp_path: Path) -> None:
+def test_question_endpoint_uses_explicit_canonical_paths(tmp_path: Path) -> None:
     client = _client_for(_build_service(tmp_path))
 
     new_path_response = client.get("/api/questions/q2?page=1&page_size=10")
     assert new_path_response.status_code == 200
     assert new_path_response.json()["table_spec"]["rows"][0]["nome"] == "Cid Nascimento"
 
-    member_fallback_response = client.get("/api/questions/q3?page=1&page_size=10")
-    assert member_fallback_response.status_code == 200
-    assert member_fallback_response.json()["table_spec"]["rows"][0]["nome"] == "Dora Mendes"
+    canonical_path_response = client.get("/api/questions/q3?page=1&page_size=10")
+    assert canonical_path_response.status_code == 200
+    assert canonical_path_response.json()["table_spec"]["rows"][0]["nome"] == "Dora Mendes"
 
 
 def test_question_endpoint_ignores_unsupported_filters(tmp_path: Path) -> None:
@@ -279,7 +279,7 @@ def test_missing_response_file_returns_clear_error(tmp_path: Path) -> None:
     client = _client_for(
         DashboardService(
             registry_path=registry_path,
-            responses_dir=root / "respostas",
+            responses_dir=root / "scratch" / "query-staging",
             sql_dir=sql_dir,
             repo_root=root,
         )
@@ -292,7 +292,7 @@ def test_missing_response_file_returns_clear_error(tmp_path: Path) -> None:
 
 def test_question_endpoint_applies_escolaridade_filter(tmp_path: Path) -> None:
     root = tmp_path
-    responses_dir = root / "respostas"
+    responses_dir = root / "scratch" / "query-staging"
     sql_dir = root / "sql"
     
     main_content = """Tabela principal
@@ -309,8 +309,8 @@ escolaridade | id_deputado | nome
  Mestrado    | 2           | Bruno Lima
 (2 rows)
 """
-    _write_response_file(root / "Caio" / "q4" / "q4_escolaridade.txt", main_content)
-    _write_response_file(root / "Caio" / "q4" / "q4_escolaridade_complementar.txt", comp_content)
+    _write_response_file(root / "Caio" / "escolaridade-perfil" / "q4" / "q4_escolaridade.txt", main_content)
+    _write_response_file(root / "Caio" / "escolaridade-perfil" / "q4" / "q4_escolaridade_complementar.txt", comp_content)
     _write_sql_file(sql_dir / "q4.sql")
     
     registry = {
@@ -320,7 +320,7 @@ escolaridade | id_deputado | nome
                 "id": "q4",
                 "title": "Escolaridade",
                 "description": "Escolaridade da 57 legislatura",
-                "response_files": ["Caio/q4/q4_escolaridade.txt", "Caio/q4/q4_escolaridade_complementar.txt"],
+                "response_files": ["Caio/escolaridade-perfil/q4/q4_escolaridade.txt", "Caio/escolaridade-perfil/q4/q4_escolaridade_complementar.txt"],
                 "sql_file": "q4.sql",
                 "chart_type": "bar_vertical",
                 "supported_filters": ["deputados", "escolaridade"],
@@ -365,7 +365,7 @@ escolaridade | id_deputado | nome
 
 def test_q4_charts_and_party_filtering(tmp_path: Path) -> None:
     root = tmp_path
-    responses_dir = root / "respostas"
+    responses_dir = root / "scratch" / "query-staging"
     sql_dir = root / "sql"
     
     # 1. Mock q1_gastos_deputados.txt to contain party mappings for our test deputies
@@ -376,7 +376,7 @@ def test_q4_charts_and_party_filtering(tmp_path: Path) -> None:
  2           | Bruno Lima | RJ       | PL            | 20
 (2 rows)
 """
-    _write_response_file(responses_dir / "q1_gastos_deputados.txt", q1_content)
+    _write_response_file(root / "Caio" / "gastos-fornecedores" / "q1" / "q1_gastos_deputados.txt", q1_content)
     
     main_content = """Tabela principal
 escolaridade | qtd_deputados
@@ -392,8 +392,8 @@ escolaridade | id_deputado | nome
  Mestrado    | 2           | Bruno Lima
 (2 rows)
 """
-    _write_response_file(root / "Caio" / "q4" / "q4_escolaridade.txt", main_content)
-    _write_response_file(root / "Caio" / "q4" / "q4_escolaridade_complementar.txt", comp_content)
+    _write_response_file(root / "Caio" / "escolaridade-perfil" / "q4" / "q4_escolaridade.txt", main_content)
+    _write_response_file(root / "Caio" / "escolaridade-perfil" / "q4" / "q4_escolaridade_complementar.txt", comp_content)
     _write_sql_file(sql_dir / "q4.sql")
     
     registry = {
@@ -403,7 +403,7 @@ escolaridade | id_deputado | nome
                 "id": "q4",
                 "title": "Escolaridade",
                 "description": "Escolaridade da 57 legislatura",
-                "response_files": ["Caio/q4/q4_escolaridade.txt", "Caio/q4/q4_escolaridade_complementar.txt"],
+                "response_files": ["Caio/escolaridade-perfil/q4/q4_escolaridade.txt", "Caio/escolaridade-perfil/q4/q4_escolaridade_complementar.txt"],
                 "sql_file": "q4.sql",
                 "chart_type": "bar_vertical",
                 "supported_filters": ["partidos", "escolaridade"],

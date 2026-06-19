@@ -15,7 +15,7 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_INPUT = REPO_ROOT / "dados_padronizados" / "gastos.csv"
-DEFAULT_OUTPUT_DIR = REPO_ROOT / "artifacts" / "gastos"
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "Caio" / "gastos-fornecedores" / "analytics"
 
 LEGAL_SUFFIX_PATTERN = re.compile(
     r"\b("

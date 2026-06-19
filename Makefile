@@ -26,7 +26,7 @@ validate:
 	$(COMPOSE) exec -T postgres psql -U admin -d dossie_grupo4 -f /sql/validation_queries.sql
 
 export-respostas:
-	powershell -NoProfile -Command "New-Item -ItemType Directory -Force respostas | Out-Null; Remove-Item -Path respostas/*.txt -Force -ErrorAction SilentlyContinue"
+	powershell -NoProfile -Command "New-Item -ItemType Directory -Force scratch/query-staging | Out-Null; Remove-Item -Path scratch/query-staging/*.txt,scratch/query-staging/*.csv -Force -ErrorAction SilentlyContinue"
 	$(PYTHON) -m src.export_respostas
 
 gastos-analytics:
@@ -36,7 +36,7 @@ gastos-audit-api:
 	$(PYTHON) dashboard/scripts/audit_gastos_api.py
 
 clean-outputs:
-	powershell -NoProfile -Command "Remove-Item -Path dados_padronizados -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path respostas/*.txt -Force -ErrorAction SilentlyContinue"
+	powershell -NoProfile -Command "Remove-Item -Path dados_padronizados -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path scratch/query-staging -Recurse -Force -ErrorAction SilentlyContinue"
 
 all: up etl validate export-respostas
 

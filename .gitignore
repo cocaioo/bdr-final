@@ -4,9 +4,9 @@ venv/
 __pycache__/
 *.pyc
 logs/
-scratch
+scratch/
 *q9_vies_deputado_detalhe.csv
-artifacts/q3/q3_votos_analitico.csv
-artifacts/gastos/*.csv
-artifacts/gastos/gastos_metadata.json
-artifacts/gastos/auditoria_*.json
+JF/producao-legislativa-temas/q3/q3_votos_analitico.csv
+Caio/gastos-fornecedores/analytics/*.csv
+Caio/gastos-fornecedores/analytics/gastos_metadata.json
+Caio/gastos-fornecedores/analytics/auditoria_*.json

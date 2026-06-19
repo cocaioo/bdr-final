@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 import hashlib
 import json
-import os
 from pathlib import Path
 import time
 from typing import Any
@@ -28,12 +27,6 @@ class DataBundle:
     documents: list[ParsedDocument]
     sql_text: str
     sql_path: str
-
-
-_EXCLUDED_DIRS = frozenset({
-    "venv", ".venv", ".git", "node_modules", "__pycache__",
-    ".pytest_cache", "dist", ".tox", ".mypy_cache",
-})
 
 
 class DashboardService:
@@ -168,10 +161,6 @@ class DashboardService:
             docs.append(self._parse_document(file_path))
 
         sql_path = self.sql_dir / question.sql_file
-        if not sql_path.exists():
-            candidates = self._search_repo_for_filename(question.sql_file)
-            if candidates:
-                sql_path = candidates[0]
         sql_text = read_text_with_fallback(sql_path) if sql_path.exists() else "-- SQL nao encontrado"
 
         bundle = DataBundle(
@@ -353,12 +342,7 @@ class DashboardService:
             candidates.append(requested)
         else:
             candidates.append((self.repo_root / requested).resolve())
-            candidates.append((self.responses_dir / requested).resolve())
-            if requested.name != response_ref:
-                candidates.append((self.responses_dir / requested.name).resolve())
-                candidates.append((self.repo_root / requested.name).resolve())
 
-        # Try direct candidates first (fast — no directory traversal)
         seen: set[str] = set()
         for candidate in candidates:
             key = str(candidate)
@@ -368,12 +352,6 @@ class DashboardService:
             if candidate.exists():
                 return candidate
 
-        # Only fall back to rglob if no direct candidate was found
-        if not requested.is_absolute() and requested.name:
-            for candidate in self._search_repo_for_filename(requested.name):
-                if candidate.exists():
-                    return candidate
-
         if allow_missing:
             return None
 
@@ -382,21 +360,6 @@ class DashboardService:
         raise FileNotFoundError(
             f"Arquivo de resposta nao encontrado para '{response_ref}'. Caminhos tentados: {attempted}"
         )
-
-    def _search_repo_for_filename(self, filename: str) -> list[Path]:
-        matches: list[Path] = []
-        for root, dirs, files in os.walk(self.repo_root):
-            # Prune excluded directories in-place to avoid entering them
-            dirs[:] = [d for d in dirs if d not in _EXCLUDED_DIRS]
-            if filename in files:
-                matches.append((Path(root) / filename).resolve())
-
-        def sort_key(path: Path) -> tuple[int, int, str]:
-            parts = path.parts
-            legacy_penalty = 1 if self.responses_dir.name in parts else 0
-            return (legacy_penalty, len(parts), str(path).lower())
-
-        return sorted(matches, key=sort_key)
 
     @staticmethod
     def _state_cache_key(state: FilterState) -> str:

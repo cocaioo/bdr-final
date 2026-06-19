@@ -29,7 +29,7 @@ class Page:
 class GastosAnalyticsService:
     def __init__(self, repo_root: Path) -> None:
         self.repo_root = repo_root
-        self.artifacts_dir = repo_root / "artifacts" / "gastos"
+        self.artifacts_dir = repo_root / "Caio" / "gastos-fornecedores" / "analytics"
         self._cache: dict[str, tuple[int, int, list[dict[str, Any]]]] = {}
         self._explanations_cache: tuple[int, int, list[dict[str, Any]], dict[int, dict[str, Any]]] | None = None
 
@@ -336,7 +336,7 @@ class GastosAnalyticsService:
         path = self.artifacts_dir / filename
         if not path.exists():
             raise FileNotFoundError(
-                f"Artefato de gastos nao encontrado: {path}. Rode `make gastos-analytics`."
+                f"Arquivo analitico de gastos nao encontrado: {path}. Rode `make gastos-analytics`."
             )
         return path
 

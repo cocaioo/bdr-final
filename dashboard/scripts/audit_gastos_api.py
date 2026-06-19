@@ -32,7 +32,7 @@ from dashboard.scripts.generate_gastos_analytics import normalize_supplier
 
 DEFAULT_LOCAL_PATH = REPO_ROOT / "dados_padronizados" / "gastos.csv"
 DEFAULT_RAW_DIR = REPO_ROOT / "tabelas"
-DEFAULT_OUTPUT_DIR = REPO_ROOT / "artifacts" / "gastos"
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "Caio" / "gastos-fornecedores" / "analytics"
 API_BASE = "https://dadosabertos.camara.leg.br/api/v2/deputados"
 USER_AGENT = "BDR-Gastos-Audit/1.0"
 

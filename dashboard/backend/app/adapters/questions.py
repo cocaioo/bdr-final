@@ -262,9 +262,13 @@ class Q4Adapter(QuestionAdapter):
         deputy_to_party = {}
         deputy_to_uf = {}
         
-        q1_file = self.context.repo_root / "respostas" / "q1_gastos_deputados.txt"
-        if not q1_file.exists():
-            q1_file = self.context.repo_root / "Caio" / "q1" / "q1_gastos_deputados.txt"
+        q1_file = (
+            self.context.repo_root
+            / "Caio"
+            / "gastos-fornecedores"
+            / "q1"
+            / "q1_gastos_deputados.txt"
+        )
             
         if q1_file.exists():
             try:

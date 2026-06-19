@@ -28,7 +28,7 @@ def _build_minimal_service(root: Path) -> DashboardService:
     registry_path.write_text(json.dumps({"legend": {}, "questions": []}), encoding="utf-8")
     return DashboardService(
         registry_path=registry_path,
-        responses_dir=root / "respostas",
+        responses_dir=root / "scratch" / "query-staging",
         sql_dir=root,
         repo_root=root,
     )
@@ -40,7 +40,7 @@ def _client(root: Path) -> TestClient:
 
 
 def _write_gastos_artifacts(root: Path) -> None:
-    base = root / "artifacts" / "gastos"
+    base = root / "Caio" / "gastos-fornecedores" / "analytics"
     _write_csv(
         base / "gastos_resumo.csv",
         [

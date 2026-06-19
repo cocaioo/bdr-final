@@ -19,8 +19,8 @@ else:
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = REPO_ROOT / "dados_padronizados"
-RESPONSES_DIR = REPO_ROOT / "respostas"
-ARTIFACTS_DIR = REPO_ROOT / "artifacts" / "q2"
+QUESTION_DIR = REPO_ROOT / "JF" / "producao-legislativa-temas" / "q2"
+ARTIFACTS_DIR = QUESTION_DIR
 WORDCLOUD_DIR = REPO_ROOT / "dashboard" / "frontend" / "public" / "wordclouds"
 
 YEARS = (2023, 2024, 2025, 2026)
@@ -82,7 +82,7 @@ def main() -> None:
 
     ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
     WORDCLOUD_DIR.mkdir(parents=True, exist_ok=True)
-    RESPONSES_DIR.mkdir(parents=True, exist_ok=True)
+    QUESTION_DIR.mkdir(parents=True, exist_ok=True)
 
     proposicoes, autores, deputados, temas = load_dataframes()
 
@@ -482,11 +482,7 @@ def write_q2_response_files(
             "",
         ]
     )
-    (RESPONSES_DIR / "q2_eixos_nuvem_palavras.txt").write_text(main_text, encoding="utf-8")
-
-    caio_q2_dir = REPO_ROOT / "Caio" / "q2"
-    caio_q2_dir.mkdir(parents=True, exist_ok=True)
-    (caio_q2_dir / "q2_eixos_nuvem_palavras.txt").write_text(main_text, encoding="utf-8")
+    (QUESTION_DIR / "q2_eixos_nuvem_palavras.txt").write_text(main_text, encoding="utf-8")
 
     top_rows = [
         {
@@ -516,10 +512,7 @@ def write_q2_response_files(
             "",
         ]
     )
-    (RESPONSES_DIR / "q2_eixo_nuvens_complemento.txt").write_text(
-        complement_text, encoding="utf-8"
-    )
-    (caio_q2_dir / "caio_q2_dir" / "q2_eixo_nuvens_complemento.txt" if False else caio_q2_dir / "q2_eixo_nuvens_complemento.txt").write_text(
+    (QUESTION_DIR / "q2_eixo_nuvens_complemento.txt").write_text(
         complement_text, encoding="utf-8"
     )
 

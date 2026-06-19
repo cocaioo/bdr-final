@@ -91,7 +91,7 @@ function App() {
         <Route path="/grupos/gastos" element={<GastosDashboardPage meta={meta} />} />
       </Routes>
       <footer className="app-footer">
-        Fonte: schema grupo4 + arquivos respostas/*.txt | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}
+        Fonte: schema grupo4 + arquivos canonicos das questoes | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}
       </footer>
     </div>
   )
