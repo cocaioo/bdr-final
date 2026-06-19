@@ -30,12 +30,21 @@ export interface QuestionMeta {
   tags?: string[]
 }
 
-export interface DeputyCatalogItem {
-  id_deputado: string
+export interface DeputyOption {
+  id: string
+  uriDeputado?: string
   nome: string
-  nome_civil?: string
+  nomeCivil?: string
+  cpf?: string
+  partido?: string
+  uf?: string
   escolaridade?: string
+  legislaturaInicial?: string
+  legislaturaFinal?: string
+  fotoUrl?: string
 }
+
+export type DeputyCatalogItem = DeputyOption
 
 export interface MetaResponse {
   dataset_version: string
@@ -265,5 +274,27 @@ export interface GastoAnomaliaDetalhesPayload {
   }
   items: GastoAnomaliaDetalheItem[]
   metadata: GastosMetadata
+}
+
+export interface DeputyGastosCategory {
+  categoria: string
+  valor_total: number
+  qtd_despesas: number
+}
+
+export interface DeputyGastosAnnual {
+  ano: string
+  valor_total: number
+  qtd_despesas: number
+}
+
+export interface DeputyGastosProfile {
+  summary: GastosSummary | null
+  categories: DeputyGastosCategory[]
+  suppliers: GastoFornecedorItem[]
+  evolution: DeputyGastosAnnual[]
+  anomalies: GastoAnomaliaDetalheItem[]
+  hasData: boolean
+  partialErrors: string[]
 }
 

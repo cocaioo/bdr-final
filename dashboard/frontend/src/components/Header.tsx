@@ -29,6 +29,12 @@ export function Header({ questions, datasetVersion }: HeaderProps) {
         >
           Painel de Gastos
         </NavLink>
+        <NavLink
+          to="/grupos/perfil"
+          className={({ isActive }) => `question-link nav-link${isActive ? ' active' : ''}`}
+        >
+          Escolaridade e Perfil
+        </NavLink>
         <details className="questions-menu">
           <summary>Questões Q1-Q13</summary>
           <div className="questions-menu-list" aria-label="Lista de questoes">

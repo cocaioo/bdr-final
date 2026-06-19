@@ -1,5 +1,7 @@
 import type {
-  DeputyCatalogItem,
+  DeputyOption,
+  DeputyGastosCategory,
+  DeputyGastosProfile,
   FilterState,
   GastoAnomaliaDetalhesPayload,
   GastoAnomaliasPayload,
@@ -46,7 +48,10 @@ export function fetchMeta(): Promise<MetaResponse> {
 function parseSemicolonCsv(text: string): Array<Record<string, string>> {
   const lines = text.split(/\r?\n/).filter((line) => line.trim().length > 0)
   if (lines.length === 0) return []
-  const headers = lines[0].split(';').map((item) => item.trim())
+  const headers = lines[0]
+    .replace(/^\uFEFF/, '')
+    .split(';')
+    .map((item) => item.trim())
   return lines.slice(1).map((line) => {
     const values = line.split(';')
     return headers.reduce<Record<string, string>>((row, header, index) => {
@@ -56,20 +61,58 @@ function parseSemicolonCsv(text: string): Array<Record<string, string>> {
   })
 }
 
-export async function fetchDeputiesCatalog(): Promise<DeputyCatalogItem[]> {
+export async function fetchDeputiesCatalog(): Promise<DeputyOption[]> {
+  return fetchDeputies()
+}
+
+function buildDeputyPhotoUrl(id: string): string {
+  return `https://www.camara.leg.br/internet/deputado/bandep/${id}.jpg`
+}
+
+function readValue(row: Record<string, string>, keys: string[]): string {
+  for (const key of keys) {
+    const value = row[key]
+    if (value && value.trim()) return value.trim()
+  }
+  return ''
+}
+
+export async function fetchDeputies(): Promise<DeputyOption[]> {
   const response = await fetch('/deputados.csv')
   if (!response.ok) {
     throw new Error(`Erro ao carregar catalogo de deputados (${response.status})`)
   }
+
   const rows = parseSemicolonCsv(await response.text())
   return rows
-    .map((row) => ({
-      id_deputado: row.id_deputado,
-      nome: row.nome,
-      nome_civil: row.nome_civil,
-      escolaridade: row.escolaridade,
-    }))
-    .filter((row) => row.id_deputado && row.nome)
+    .map((row) => {
+      const id = readValue(row, ['id_deputado', 'id'])
+      const uriDeputado = readValue(row, ['uri_deputado', 'uriDeputado']) || undefined
+      const nome = readValue(row, ['nome'])
+      const nomeCivil = readValue(row, ['nome_civil', 'nomeCivil']) || undefined
+      const cpf = readValue(row, ['cpf']) || undefined
+      const escolaridade = readValue(row, ['escolaridade']) || undefined
+      const legislaturaInicial = readValue(row, ['id_legislatura_inicial', 'idLegislaturaInicial']) || undefined
+      const legislaturaFinal = readValue(row, ['id_legislatura_final', 'idLegislaturaFinal']) || undefined
+      const partido = readValue(row, ['sigla_partido', 'partido', 'siglaPartido']) || undefined
+      const uf = readValue(row, ['sigla_uf', 'uf', 'siglaUf']) || undefined
+
+      return {
+        id,
+        uriDeputado,
+        nome,
+        nomeCivil,
+        cpf,
+        partido,
+        uf,
+        escolaridade,
+        legislaturaInicial,
+        legislaturaFinal,
+        fotoUrl: id ? buildDeputyPhotoUrl(id) : undefined,
+      }
+    })
+    .filter((row) => row.id && row.nome)
+    .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR', { sensitivity: 'base' }))
 }
 
 export function fetchQuestion(
@@ -100,6 +143,28 @@ export function fetchQuestion(
 
   const query = buildQuery(queryParams)
   return fetchJson<QuestionPayload>(`${API_BASE}/api/questions/${questionId}?${query}`)
+}
+
+export function fetchQuestionForDeputy(
+  questionId: string,
+  deputyId: string,
+  page = 1,
+  pageSize = 100,
+): Promise<QuestionPayload> {
+  return fetchQuestion(
+    questionId,
+    {
+      anos: [],
+      eixos: [],
+      partidos: [],
+      ufs: [],
+      deputados: [deputyId],
+      escolaridade: [],
+      search: '',
+    },
+    { page, pageSize, sortDir: 'desc' },
+    ['deputados'],
+  )
 }
 
 export function fetchGastosResumo(): Promise<GastosSummary> {
@@ -190,5 +255,98 @@ export function fetchGastosAnomaliaDetalhes(params: {
     page_size: params.pageSize ?? 50,
   })
   return fetchJson<GastoAnomaliaDetalhesPayload>(`${API_BASE}/api/gastos/anomalias/detalhes?${query}`)
+}
+
+function numericValue(value: unknown): number {
+  const parsed = Number(value)
+  return Number.isFinite(parsed) ? parsed : 0
+}
+
+function extractDeputyCategories(payload: QuestionPayload): DeputyGastosCategory[] {
+  const tables = [payload.table_spec, ...payload.complement_tables]
+  const globalRows = tables.flatMap((table) =>
+    table.rows.filter((row) => String(row.ano_dados ?? '').toUpperCase() === 'GLOBAL'),
+  )
+  const rows = globalRows.length ? globalRows : payload.table_spec.rows
+
+  return rows
+    .filter((row) => row.descricao_despesa)
+    .map((row) => ({
+      categoria: String(row.descricao_despesa),
+      valor_total: numericValue(row.gasto_total),
+      qtd_despesas: numericValue(row.qtd_lancamentos),
+    }))
+    .sort((a, b) => b.valor_total - a.valor_total)
+    .slice(0, 6)
+}
+
+/** Consolida somente dados existentes nos contratos atuais de gastos e perguntas. */
+export async function fetchDeputyGastosSummary(deputyId: string): Promise<DeputyGastosProfile> {
+  const [deputiesResult, suppliersResult, categoriesResult, anomaliesResult, metaResult] = await Promise.allSettled([
+    fetchGastosDeputados({ busca: deputyId, pageSize: 10 }),
+    fetchGastosFornecedores({ deputado: deputyId, pageSize: 6 }),
+    fetchQuestionForDeputy('q13', deputyId, 1, 100),
+    fetchGastosAnomaliaDetalhes({ deputado: deputyId, pageSize: 5 }),
+    fetchMeta(),
+  ])
+
+  const errors: string[] = []
+  const recordFailure = (label: string, result: PromiseSettledResult<unknown>) => {
+    if (result.status === 'rejected') errors.push(label)
+  }
+  recordFailure('resumo', deputiesResult)
+  recordFailure('fornecedores', suppliersResult)
+  recordFailure('categorias', categoriesResult)
+  recordFailure('despesas atípicas', anomaliesResult)
+
+  const deputyRows = deputiesResult.status === 'fulfilled' ? deputiesResult.value.items : []
+  const deputyRow = deputyRows.find((item) => String(item.id_deputado) === deputyId) ?? deputyRows[0]
+  const summary = deputyRow
+    ? {
+        valor_total: numericValue(deputyRow.valor_total),
+        qtd_despesas: numericValue(deputyRow.qtd_despesas),
+        ticket_medio: numericValue(deputyRow.ticket_medio),
+        qtd_deputados: 1,
+        qtd_fornecedores: numericValue(deputyRow.qtd_fornecedores),
+      }
+    : null
+
+  const years =
+    metaResult.status === 'fulfilled'
+      ? metaResult.value.available_filters.anos
+          .map((item) => item.value)
+          .filter((year) => /^\d{4}$/.test(year) && Number(year) >= 2023)
+      : []
+  if (metaResult.status === 'rejected') errors.push('evolução anual')
+
+  const annualResults = await Promise.allSettled(
+    years.map((year) => fetchGastosDeputados({ ano: year, busca: deputyId, pageSize: 10 })),
+  )
+  const evolution = annualResults
+    .flatMap((result, index) => {
+      if (result.status === 'rejected') return []
+      const item = result.value.items.find((row) => String(row.id_deputado) === deputyId) ?? result.value.items[0]
+      return item
+        ? [{ ano: years[index], valor_total: numericValue(item.valor_total), qtd_despesas: numericValue(item.qtd_despesas) }]
+        : []
+    })
+    .sort((a, b) => a.ano.localeCompare(b.ano))
+  if (annualResults.some((result) => result.status === 'rejected') && !errors.includes('evolução anual')) {
+    errors.push('evolução anual')
+  }
+
+  const categories = categoriesResult.status === 'fulfilled' ? extractDeputyCategories(categoriesResult.value) : []
+  const suppliers = suppliersResult.status === 'fulfilled' ? suppliersResult.value.items : []
+  const anomalies = anomaliesResult.status === 'fulfilled' ? anomaliesResult.value.items : []
+
+  return {
+    summary,
+    categories,
+    suppliers,
+    evolution,
+    anomalies,
+    hasData: Boolean(summary || categories.length || suppliers.length || evolution.length || anomalies.length),
+    partialErrors: errors,
+  }
 }
 

@@ -8,6 +8,12 @@ function toNumber(value: unknown): number {
   return Number.isNaN(parsed) ? 0 : parsed
 }
 
+function readThemeToken(name: string, fallback: string): string {
+  if (typeof document === 'undefined') return fallback
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  return value || fallback
+}
+
 export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): EChartsOption {
   return applyTheme(buildChartOptionInternal(spec, activeFilters))
 }
@@ -51,8 +57,8 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
               itemStyle: {
                 opacity: isSelected ? 1.0 : 0.35,
                 borderWidth: isSelected ? 2 : 0,
-                borderColor: isSelected ? '#1E293B' : 'transparent',
-              }
+                borderColor: isSelected ? readThemeToken('--color-bg-soft', '#0b1220') : 'transparent',
+              },
             }
           }
           return val
@@ -101,8 +107,8 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
               itemStyle: {
                 opacity: isSelected ? 1.0 : 0.35,
                 borderWidth: isSelected ? 2 : 0,
-                borderColor: isSelected ? '#1E293B' : 'transparent',
-              }
+                borderColor: isSelected ? readThemeToken('--color-bg-soft', '#0b1220') : 'transparent',
+              },
             }
           }
           return val
@@ -236,7 +242,12 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
           name: 'Atuacao',
           type: 'heatmap',
           data: heatmapData,
-          emphasis: { itemStyle: { shadowBlur: 8, shadowColor: 'rgba(0,0,0,0.35)' } },
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 8,
+              shadowColor: readThemeToken('--color-bg', '#070b13'),
+            },
+          },
         },
         {
           name: 'Tokens',
@@ -262,36 +273,25 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
 }
 
 function applyTheme(option: any): EChartsOption {
-  const isLightTheme = typeof document !== 'undefined' && document.body.classList.contains('gastos-light-theme')
-
-  const textInk = isLightTheme ? '#17202A' : '#e2e8f0'
-  const textMuted = isLightTheme ? '#5D6B7A' : '#8a9ba8'
-  const borderLight = isLightTheme ? '#D8E1EA' : 'rgba(255, 255, 255, 0.08)'
-  const tooltipBg = isLightTheme ? 'rgba(255, 255, 255, 0.95)' : 'rgba(22, 28, 38, 0.95)'
-  const tooltipBorder = isLightTheme ? '#D8E1EA' : 'rgba(255, 255, 255, 0.12)'
+  const textInk = readThemeToken('--color-text', '#f8fafc')
+  const textMuted = readThemeToken('--color-text-subtle', '#94a3b8')
+  const borderLight = readThemeToken('--color-border', 'rgba(148, 163, 184, 0.16)')
+  const tooltipBg = readThemeToken('--color-surface-glass', 'rgba(16, 24, 39, 0.92)')
+  const tooltipBorder = readThemeToken('--color-border-strong', 'rgba(148, 163, 184, 0.28)')
+  const gridColor = readThemeToken('--color-chart-grid', '#334155')
 
   if (!option) return {} as EChartsOption
 
-  if (isLightTheme) {
-    option.color = [
-      '#2563EB', // Série 1
-      '#0F766E', // Série 2
-      '#7C3AED', // Série 3
-      '#64748B', // Série 4
-    ]
-  } else {
-    // Custom premium color palette matching our CSS variables
-    option.color = [
-      '#5b84a2', // primary: soft slate blue
-      '#b39ddb', // accent: soft lavender
-      '#66bb6a', // ok: soft sage green
-      '#ffb74d', // warn: soft orange/gold
-      '#ef9a9a', // danger: soft rose/coral
-      '#80deea', // light cyan
-      '#ffcc80', // light orange
-      '#c5e1a5', // light sage
-    ]
-  }
+  option.color = [
+    readThemeToken('--color-primary', '#38bdf8'),
+    readThemeToken('--color-secondary', '#a78bfa'),
+    readThemeToken('--color-accent', '#34d399'),
+    readThemeToken('--color-warning', '#f59e0b'),
+    readThemeToken('--color-danger', '#fb7185'),
+    readThemeToken('--avatar-gradient-4a', '#60a5fa'),
+    readThemeToken('--avatar-gradient-1a', '#2dd4bf'),
+    readThemeToken('--avatar-gradient-7a', '#c084fc'),
+  ]
 
   if (!option.textStyle) {
     option.textStyle = {}
@@ -324,7 +324,7 @@ function applyTheme(option: any): EChartsOption {
     if (!axis.splitLine) axis.splitLine = {}
     if (!axis.splitLine.lineStyle) axis.splitLine.lineStyle = {}
     if (axis.splitLine.lineStyle.color === undefined) {
-      axis.splitLine.lineStyle.color = isLightTheme ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.04)'
+      axis.splitLine.lineStyle.color = gridColor
     }
   }
 

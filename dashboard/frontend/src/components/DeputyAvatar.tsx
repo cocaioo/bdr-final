@@ -15,13 +15,13 @@ export function getInitials(name: string): string {
 
 function getDeterministicGradient(name: string): string {
   const colors = [
-    ['#2A9D8F', '#264653'],
-    ['#E76F51', '#F4A261'],
-    ['#E9C46A', '#F4A261'],
-    ['#1D3557', '#457B9D'],
-    ['#E63946', '#1D3557'],
-    ['#8D99AE', '#2B2D42'],
-    ['#6C5B7B', '#355C7D'],
+    ['var(--avatar-gradient-1a)', 'var(--avatar-gradient-1b)'],
+    ['var(--avatar-gradient-2a)', 'var(--avatar-gradient-2b)'],
+    ['var(--avatar-gradient-3a)', 'var(--avatar-gradient-3b)'],
+    ['var(--avatar-gradient-4a)', 'var(--avatar-gradient-4b)'],
+    ['var(--avatar-gradient-5a)', 'var(--avatar-gradient-5b)'],
+    ['var(--avatar-gradient-6a)', 'var(--avatar-gradient-6b)'],
+    ['var(--avatar-gradient-7a)', 'var(--avatar-gradient-7b)'],
   ]
   let hash = 0
   for (let i = 0; i < name.length; i++) {
@@ -60,7 +60,7 @@ export function DeputyAvatar({ id, nome, size = 40 }: DeputyAvatarProps) {
         style={{
           ...containerStyle,
           background: bgGradient,
-          color: '#ffffff',
+          color: 'var(--color-text)',
           fontWeight: 600,
           fontSize: `${Math.max(10, size * 0.38)}px`,
           userSelect: 'none',

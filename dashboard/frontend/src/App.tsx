@@ -5,8 +5,10 @@ import { fetchMeta } from './api'
 import { GlobalFilters } from './components/GlobalFilters'
 import { Header } from './components/Header'
 import { HomePage } from './pages/HomePage'
+import { DeputyProfilePage } from './pages/DeputyProfilePage'
 import { QuestionPage } from './pages/QuestionPage'
 import { GastosDashboardPage } from './pages/GastosDashboardPage'
+import { PerfilDashboardPage } from './pages/PerfilDashboardPage'
 import type { FilterState, MetaResponse } from './types'
 import { isQuestionHidden } from './utils/questionAvailability'
 
@@ -87,8 +89,10 @@ function App() {
       ) : null}
       <Routes>
         <Route path="/" element={<HomePage meta={meta} />} />
+        <Route path="/deputados/:id" element={<DeputyProfilePage />} />
         <Route path="/q/:questionId" element={<QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />} />
         <Route path="/grupos/gastos" element={<GastosDashboardPage meta={meta} />} />
+        <Route path="/grupos/perfil" element={<PerfilDashboardPage meta={meta} />} />
       </Routes>
       <footer className="app-footer">
         Fonte: schema grupo4 + arquivos canonicos das questoes | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}

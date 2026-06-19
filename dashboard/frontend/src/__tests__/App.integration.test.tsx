@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { vi } from 'vitest'
+import { afterEach, beforeEach, vi } from 'vitest'
 
 import App from '../App'
 
@@ -28,15 +28,43 @@ const metaMock = {
 }
 
 describe('App integration', () => {
-  it('loads meta and renders home links', async () => {
+  beforeEach(() => {
     vi.stubGlobal(
       'fetch',
-      vi.fn(async () => ({
-        ok: true,
-        json: async () => metaMock,
-      })),
-    )
+      vi.fn(async (input: RequestInfo | URL) => {
+        const url = String(input)
 
+        if (url.endsWith('/api/meta')) {
+          return {
+            ok: true,
+            json: async () => metaMock,
+          } as Response
+        }
+
+        if (url.endsWith('/deputados.csv')) {
+          return {
+            ok: true,
+            text: async () =>
+              'id_deputado;nome;nome_civil;escolaridade;id_legislatura_inicial;id_legislatura_final\n' +
+              '220593;Abilio Brunini;ABILIO JACQUES BRUNINI MOUMER;Superior;57;57',
+          } as Response
+        }
+
+        return {
+          ok: false,
+          status: 404,
+          json: async () => ({}),
+          text: async () => '',
+        } as Response
+      }),
+    )
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('loads meta and renders home links', async () => {
     render(
       <MemoryRouter>
         <App />
@@ -48,5 +76,16 @@ describe('App integration', () => {
     })
     expect(screen.getAllByText('Q1').length).toBeGreaterThan(0)
     expect(screen.getByText('Painel de Analise Parlamentar')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('Pesquisar deputado...')).toBeInTheDocument()
+  })
+
+  it('navigates to the deputy profile route', async () => {
+    render(
+      <MemoryRouter initialEntries={['/deputados/220593']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    expect(await screen.findByRole('heading', { name: 'Abilio Brunini' })).toBeInTheDocument()
   })
 })

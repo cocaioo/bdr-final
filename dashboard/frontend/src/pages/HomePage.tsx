@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { DeputySearch } from '../components/DeputySearch'
 import type { MetaResponse } from '../types'
 import { isQuestionEnabled, isQuestionHidden } from '../utils/questionAvailability'
 
@@ -27,12 +28,30 @@ export function HomePage({ meta }: HomePageProps) {
       </section>
 
       {/* Primary CTA — Painel de Gastos */}
+      <section className="deputy-search-hero stagger-item">
+        <div className="deputy-search-hero__copy">
+          <h2>Pesquisar deputado</h2>
+          <p>Encontre um parlamentar e veja seu perfil individual.</p>
+        </div>
+        <DeputySearch placeholder="Pesquisar deputado..." />
+      </section>
+
       <section className="home-primary-cta stagger-item">
         <div className="home-cta-content">
           <h2>Painel Consolidado de Gastos</h2>
           <p>Analise detalhada de despesas parlamentares com rankings, anomalias e filtros interativos.</p>
         </div>
         <Link to="/grupos/gastos" className="home-cta-btn">
+          Acessar Painel →
+        </Link>
+      </section>
+
+      <section className="home-primary-cta home-profile-cta stagger-item">
+        <div className="home-cta-content">
+          <h2>Escolaridade e Perfil</h2>
+          <p>Explore a formação dos deputados e sua associação com indicadores de atividade parlamentar.</p>
+        </div>
+        <Link to="/grupos/perfil" className="home-cta-btn">
           Acessar Painel →
         </Link>
       </section>
