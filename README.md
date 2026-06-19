@@ -75,7 +75,7 @@ http://localhost:8000/api/health
 Na raiz do projeto:
 
 ```powershell
-cd dashboard\frontend
+cd dashboard/frontend
 npm run dev -- --host 0.0.0.0 --port 5173
 ```
 
