@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { fetchDeputies, fetchDeputyGastosSummary } from '../api'
+import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos } from '../api'
 import { DeputyAvatar } from '../components/DeputyAvatar'
 import { DeputySearch } from '../components/DeputySearch'
-import type { DeputyGastosProfile, DeputyOption } from '../types'
+import type { DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption } from '../types'
 import { formatCurrency } from '../utils/format'
 
 function optionalLabel(value?: string): string {
@@ -191,6 +191,7 @@ export function DeputyProfilePage() {
     data: DeputyGastosProfile | null
     error: string | null
   }>({ data: null, error: null })
+  const [identityEnrichment, setIdentityEnrichment] = useState<DeputyIdentityEnrichment>({})
 
   useEffect(() => {
     let active = true
@@ -206,11 +207,19 @@ export function DeputyProfilePage() {
   useEffect(() => {
     if (!deputy) return
     let active = true
+    setIdentityEnrichment({})
+    fetchDeputyIdentityFromGastos(deputy.id)
+      .then((enrichment) => { if (active) setIdentityEnrichment(enrichment) })
+      .catch(() => { /* silently ignore; fallback to CSV values */ })
     fetchDeputyGastosSummary(deputy.id)
       .then((payload) => { if (active) setGastosState({ deputyId: deputy.id, data: payload, error: null }) })
       .catch((cause: Error) => { if (active) setGastosState({ deputyId: deputy.id, data: null, error: cause.message }) })
     return () => { active = false }
   }, [deputy])
+
+  // Merge: API values take priority over CSV catalog values
+  const partido = identityEnrichment.partido ?? deputy?.partido
+  const uf = identityEnrichment.uf ?? deputy?.uf
 
   if (loading && !catalog.length) return <LoadingSkeleton />
 
@@ -239,8 +248,8 @@ export function DeputyProfilePage() {
             <h1>{deputy.nome}</h1>
             <p className="deputy-profile__civil-name">{optionalLabel(deputy.nomeCivil)}</p>
             <div className="deputy-profile__chips" aria-label="Identificação parlamentar">
-              <span className="deputy-profile__chip"><strong>{optionalLabel(deputy.partido)}</strong></span>
-              <span className="deputy-profile__chip">UF <strong>{optionalLabel(deputy.uf)}</strong></span>
+              <span className="deputy-profile__chip"><strong>{optionalLabel(partido)}</strong></span>
+              <span className="deputy-profile__chip">UF <strong>{optionalLabel(uf)}</strong></span>
               <span className="deputy-profile__chip">ID {deputy.id}</span>
             </div>
           </div>
@@ -248,8 +257,8 @@ export function DeputyProfilePage() {
         <div className="deputy-profile__hero-aside">
           <ProfileField label="Escolaridade" value={optionalLabel(deputy.escolaridade)} />
           <ProfileField label="Legislaturas" value={formatLegislatura(deputy)} />
-          <ProfileField label="Partido" value={optionalLabel(deputy.partido)} />
-          <ProfileField label="Unidade federativa" value={optionalLabel(deputy.uf)} />
+          <ProfileField label="Partido" value={optionalLabel(partido)} />
+          <ProfileField label="Unidade federativa" value={optionalLabel(uf)} />
         </div>
       </section>
 

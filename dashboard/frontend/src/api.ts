@@ -2,6 +2,7 @@ import type {
   DeputyOption,
   DeputyGastosCategory,
   DeputyGastosProfile,
+  DeputyIdentityEnrichment,
   FilterState,
   GastoAnomaliaDetalhesPayload,
   GastoAnomaliasPayload,
@@ -255,6 +256,22 @@ export function fetchGastosAnomaliaDetalhes(params: {
     page_size: params.pageSize ?? 50,
   })
   return fetchJson<GastoAnomaliaDetalhesPayload>(`${API_BASE}/api/gastos/anomalias/detalhes?${query}`)
+}
+
+/** Busca partido e UF do deputado a partir do endpoint de gastos por deputado. */
+export async function fetchDeputyIdentityFromGastos(deputyId: string): Promise<DeputyIdentityEnrichment> {
+  try {
+    const payload = await fetchGastosDeputados({ busca: deputyId, pageSize: 10 })
+    const row =
+      payload.items.find((item) => String(item.id_deputado) === deputyId) ?? payload.items[0]
+    if (!row) return {}
+    return {
+      partido: row.sigla_partido || undefined,
+      uf: row.sigla_uf || undefined,
+    }
+  } catch {
+    return {}
+  }
 }
 
 function numericValue(value: unknown): number {

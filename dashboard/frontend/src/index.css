@@ -3460,18 +3460,20 @@ body.gastos-light-theme .skeleton-text {
 
 .deputy-profile__avatar,
 .deputy-profile__avatar-frame {
-  width: 104px;
-  height: 104px;
-  border-radius: 24px;
-  padding: 4px;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  overflow: hidden;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
   flex: 0 0 auto;
+  display: grid;
+  place-items: center;
 }
 
 .deputy-profile__avatar-frame {
-  width: 128px;
-  height: 128px;
+  width: 152px;
+  height: 152px;
 }
 
 .deputy-profile__avatar img,

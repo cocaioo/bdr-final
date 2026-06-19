@@ -46,6 +46,11 @@ export interface DeputyOption {
 
 export type DeputyCatalogItem = DeputyOption
 
+export interface DeputyIdentityEnrichment {
+  partido?: string
+  uf?: string
+}
+
 export interface MetaResponse {
   dataset_version: string
   last_updated: string

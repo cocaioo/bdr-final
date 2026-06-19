@@ -42,47 +42,47 @@ export function DeputyAvatar({ id, nome, size = 40 }: DeputyAvatarProps) {
   const initials = getInitials(nome)
   const bgGradient = getDeterministicGradient(nome)
 
-  const containerStyle = {
+  const containerStyle: React.CSSProperties = {
     width: `${size}px`,
     height: `${size}px`,
     borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     overflow: 'hidden',
     flexShrink: 0,
+    flex: '0 0 auto',
+    display: 'grid',
+    placeItems: 'center',
   }
 
-  if (hasError || !id || String(id).trim() === '') {
-    return (
-      <div
-        className="deputy-avatar-fallback"
-        style={{
-          ...containerStyle,
-          background: bgGradient,
-          color: 'var(--color-text)',
-          fontWeight: 600,
-          fontSize: `${Math.max(10, size * 0.38)}px`,
-          userSelect: 'none',
-        }}
-      >
-        {initials}
-      </div>
-    )
-  }
-
-  const imageUrl = `https://www.camara.leg.br/internet/deputado/bandep/${id}.jpg`
+  const showFallback = hasError || !id || String(id).trim() === ''
 
   return (
-    <img
-      className="deputy-avatar-img"
-      src={imageUrl}
-      alt={nome}
+    <div
+      className={showFallback ? 'deputy-avatar-fallback' : 'deputy-avatar-img'}
       style={{
         ...containerStyle,
-        objectFit: 'cover',
+        background: showFallback ? bgGradient : 'var(--color-surface-elevated, #1a1a2e)',
+        color: 'var(--color-text)',
+        fontWeight: showFallback ? 700 : undefined,
+        fontSize: showFallback ? `${Math.max(10, size * 0.38)}px` : undefined,
+        userSelect: showFallback ? 'none' : undefined,
       }}
-      onError={() => setHasError(true)}
-    />
+    >
+      {showFallback ? (
+        <span style={{ lineHeight: 1 }}>{initials}</span>
+      ) : (
+        <img
+          src={`https://www.camara.leg.br/internet/deputado/bandep/${id}.jpg`}
+          alt={nome}
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'block',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+          }}
+          onError={() => setHasError(true)}
+        />
+      )}
+    </div>
   )
 }
