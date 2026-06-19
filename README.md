@@ -4,11 +4,14 @@ Projeto local para padronizar dados da Camara dos Deputados, carregar o PostgreS
 
 ## Estrutura
 
-- `src/`: ETL em Python para ler os CSVs, padronizar os dados e gerar as respostas.
+- `src/`: ETL em Python para ler os CSVs, padronizar os dados e gerar os arquivos das questoes.
 - `Banco/`: banco PostgreSQL, `docker-compose.yml` e schema inicial.
 - `dashboard/backend`: API FastAPI usada pelo dashboard.
 - `dashboard/frontend`: interface React/Vite.
-- `respostas/`: arquivos consumidos pelo backend quando disponiveis.
+- `Caio/gastos-fornecedores/`: Q1, Q5, Q7, Q12, Q13 e analytics do bloco de gastos.
+- `Caio/escolaridade-perfil/`: Q4 e Q6.
+- `JF/producao-legislativa-temas/`: Q2, Q3 e Q8.
+- `JF/partidos-ideologia-votacao/`: Q9, Q10 e Q11.
 
 ## Requisitos
 
@@ -126,4 +129,4 @@ make dashboard-dev
 ## Observacoes
 
 - O dashboard le os arquivos exportados via API, sem consultar o banco direto.
-- O backend aceita caminhos por membro/pergunta e mantem fallback para `respostas/` quando necessario.
+- O `dashboard/backend/app/question_registry.json` e a fonte unica da verdade para os caminhos das questoes.

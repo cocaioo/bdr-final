@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 import hashlib
 import json
-import os
 from pathlib import Path
 import time
 from typing import Any
@@ -15,7 +14,8 @@ from .adapters.base import AdapterContext
 from .cache import MemoryCache
 from .config import REPO_ROOT, REGISTRY_PATH, RESPONSES_DIR, SQL_DIR
 from .filter_engine import FilterState
-from .models import FilterCatalog, FilterChoice, MetaResponse, QuestionMeta, QuestionPayload
+from .gastos_service import GastosAnalyticsService
+from .models import FilterCatalog, FilterChoice, MetaResponse, QuestionGroup, QuestionMeta, QuestionPayload
 from .party_catalog import active_party_entries, normalize_party, PARTY_CATALOG_RELATIVE_PATH
 from .parser import ParsedDocument, parse_data_file, read_text_with_fallback
 from .registry import QuestionDefinition, QuestionRegistry, load_registry
@@ -27,12 +27,6 @@ class DataBundle:
     documents: list[ParsedDocument]
     sql_text: str
     sql_path: str
-
-
-_EXCLUDED_DIRS = frozenset({
-    "venv", ".venv", ".git", "node_modules", "__pycache__",
-    ".pytest_cache", "dist", ".tox", ".mypy_cache",
-})
 
 
 class DashboardService:
@@ -49,6 +43,7 @@ class DashboardService:
         self.repo_root = repo_root
         self.registry: QuestionRegistry = load_registry(self.registry_path)
         self.cache = MemoryCache(ttl_seconds=300)
+        self.gastos = GastosAnalyticsService(repo_root=self.repo_root)
         self._version_cache: tuple[float, str] | None = None
         self._version_cache_ttl = 60.0
         self._document_cache: dict[tuple[str, int, int], ParsedDocument] = {}
@@ -69,8 +64,19 @@ class DashboardService:
                 description=question.description,
                 chart_type=question.chart_type,
                 supported_filters=question.supported_filters,
+                group_id=question.group_id,
+                tags=question.tags,
             )
             for question in self.registry.questions
+        ]
+
+        groups = [
+            QuestionGroup(
+                id=group.id,
+                label=group.label,
+                description=group.description,
+            )
+            for group in self.registry.groups
         ]
 
         available = self._collect_global_filters()
@@ -81,6 +87,7 @@ class DashboardService:
             legend=self.registry.legend,
             available_filters=available,
             question_filters=self._collect_question_filters(),
+            groups=groups,
         )
         self.cache.set(cache_key, response)
         return response
@@ -120,6 +127,7 @@ class DashboardService:
                 return cached_version
 
         hash_builder = hashlib.sha256()
+        _update_hash_with_file(hash_builder, self.registry_path)
         for question in self.registry.questions:
             for response_name in question.response_files:
                 response_path = self._resolve_response_path(response_name, allow_missing=True)
@@ -153,10 +161,6 @@ class DashboardService:
             docs.append(self._parse_document(file_path))
 
         sql_path = self.sql_dir / question.sql_file
-        if not sql_path.exists():
-            candidates = self._search_repo_for_filename(question.sql_file)
-            if candidates:
-                sql_path = candidates[0]
         sql_text = read_text_with_fallback(sql_path) if sql_path.exists() else "-- SQL nao encontrado"
 
         bundle = DataBundle(
@@ -338,12 +342,7 @@ class DashboardService:
             candidates.append(requested)
         else:
             candidates.append((self.repo_root / requested).resolve())
-            candidates.append((self.responses_dir / requested).resolve())
-            if requested.name != response_ref:
-                candidates.append((self.responses_dir / requested.name).resolve())
-                candidates.append((self.repo_root / requested.name).resolve())
 
-        # Try direct candidates first (fast — no directory traversal)
         seen: set[str] = set()
         for candidate in candidates:
             key = str(candidate)
@@ -353,12 +352,6 @@ class DashboardService:
             if candidate.exists():
                 return candidate
 
-        # Only fall back to rglob if no direct candidate was found
-        if not requested.is_absolute() and requested.name:
-            for candidate in self._search_repo_for_filename(requested.name):
-                if candidate.exists():
-                    return candidate
-
         if allow_missing:
             return None
 
@@ -367,21 +360,6 @@ class DashboardService:
         raise FileNotFoundError(
             f"Arquivo de resposta nao encontrado para '{response_ref}'. Caminhos tentados: {attempted}"
         )
-
-    def _search_repo_for_filename(self, filename: str) -> list[Path]:
-        matches: list[Path] = []
-        for root, dirs, files in os.walk(self.repo_root):
-            # Prune excluded directories in-place to avoid entering them
-            dirs[:] = [d for d in dirs if d not in _EXCLUDED_DIRS]
-            if filename in files:
-                matches.append((Path(root) / filename).resolve())
-
-        def sort_key(path: Path) -> tuple[int, int, str]:
-            parts = path.parts
-            legacy_penalty = 1 if self.responses_dir.name in parts else 0
-            return (legacy_penalty, len(parts), str(path).lower())
-
-        return sorted(matches, key=sort_key)
 
     @staticmethod
     def _state_cache_key(state: FilterState) -> str:

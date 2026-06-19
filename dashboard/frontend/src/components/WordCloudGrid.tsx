@@ -29,7 +29,7 @@ function getImages(spec: ChartSpec): WordCloudImage[] {
     .sort((a, b) => Number(a.year) - Number(b.year))
 }
 
-export function WordCloudCard({ year, src, selectedTheme, onWordClick }: WordCloudCardProps) {
+export function WordCloudCard({ year, src, selectedTheme: _selectedTheme, onWordClick: _onWordClick }: WordCloudCardProps) {
   const [svgContent, setSvgContent] = useState<string | null>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
@@ -67,7 +67,7 @@ export function WordCloudCard({ year, src, selectedTheme, onWordClick }: WordClo
     })
   }, [svgContent])
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = (_e: React.MouseEvent<HTMLDivElement>) => {
     // Clicabilidade temporariamente desativada
   }
 

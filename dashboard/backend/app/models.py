@@ -20,6 +20,12 @@ class FilterCatalog(BaseModel):
     escolaridade: list[FilterChoice] = Field(default_factory=list)
 
 
+class QuestionGroup(BaseModel):
+    id: str
+    label: str
+    description: str | None = None
+
+
 class QuestionMeta(BaseModel):
     id: str
     title: str
@@ -27,6 +33,8 @@ class QuestionMeta(BaseModel):
     description: str
     chart_type: str
     supported_filters: list[str]
+    group_id: str | None = None
+    tags: list[str] = Field(default_factory=list)
 
 
 class MetaResponse(BaseModel):
@@ -36,6 +44,7 @@ class MetaResponse(BaseModel):
     legend: dict[str, Any]
     available_filters: FilterCatalog
     question_filters: dict[str, FilterCatalog] = Field(default_factory=dict)
+    groups: list[QuestionGroup] = Field(default_factory=list)
 
 
 class SummaryCard(BaseModel):

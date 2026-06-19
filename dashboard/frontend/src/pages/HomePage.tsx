@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import type { MetaResponse } from '../types'
@@ -8,43 +9,72 @@ interface HomePageProps {
 }
 
 export function HomePage({ meta }: HomePageProps) {
+  const [questionsOpen, setQuestionsOpen] = useState(false)
+
+  const questions = meta.questions || []
+
+  // Filter questions that are not hidden
+  const visibleQuestions = questions.filter((question) => !isQuestionHidden(question.id))
+
   return (
     <main className="home-page">
-      <section className="hero-card stagger-item">
+      {/* Hero — compact intro */}
+      <section className="hero-card home-hero stagger-item">
         <h1>Painel de Analise Parlamentar</h1>
-        <p>
-          Explore as perguntas Q1 a Q13 com visualizacoes, ranking paginado e transparencia da
-          query SQL usada.
+        <p className="home-hero-subtitle">
+          Visualize dados legislativos, gastos parlamentares e indicadores de desempenho.
         </p>
       </section>
 
-      <section className="question-grid">
-        {meta.questions
-          .filter((question) => !isQuestionHidden(question.id))
-          .map((question, index) => {
-          const isEnabled = isQuestionEnabled(question.id)
-          return (
-            <article
-              key={question.id}
-              className={`question-card stagger-item${isEnabled ? '' : ' question-card-disabled'}`}
-              style={{ animationDelay: `${index * 40}ms` }}
-            >
-              <h2>{question.id.toUpperCase()}</h2>
-              <h3>{question.title}</h3>
-              <p>{question.description}</p>
-              {isEnabled ? (
-                <Link to={`/q/${question.id}`}>Abrir painel</Link>
-              ) : (
-                <div className="question-maintenance">
-                  <span className="question-maintenance-mark">X</span>
-                  <span>Em desenvolvimento</span>
-                </div>
-              )}
-            </article>
-          )
-          })}
+      {/* Primary CTA — Painel de Gastos */}
+      <section className="home-primary-cta stagger-item">
+        <div className="home-cta-content">
+          <h2>Painel Consolidado de Gastos</h2>
+          <p>Analise detalhada de despesas parlamentares com rankings, anomalias e filtros interativos.</p>
+        </div>
+        <Link to="/grupos/gastos" className="home-cta-btn">
+          Acessar Painel →
+        </Link>
+      </section>
+
+      {/* Secondary — Questions Q1-Q13 */}
+      <section className="home-questions-section stagger-item">
+        <button
+          type="button"
+          className="home-questions-toggle"
+          onClick={() => setQuestionsOpen(!questionsOpen)}
+          aria-expanded={questionsOpen}
+        >
+          <span className="home-questions-toggle-label">
+            Questoes individuais
+            <span className="home-questions-count">{visibleQuestions.length}</span>
+          </span>
+          <span className={`home-questions-chevron${questionsOpen ? ' open' : ''}`}>▾</span>
+        </button>
+
+        {questionsOpen && (
+          <ul className="home-questions-list">
+            {visibleQuestions.map((question) => {
+              const enabled = isQuestionEnabled(question.id)
+              return (
+                <li key={question.id} className="home-question-item">
+                  <span className="home-question-id">{question.id.toUpperCase()}</span>
+                  <div className="home-question-info">
+                    <span className="home-question-title">{question.title}</span>
+                  </div>
+                  {enabled ? (
+                    <Link to={`/q/${question.id}`} className="home-question-link">
+                      Abrir
+                    </Link>
+                  ) : (
+                    <span className="home-question-disabled">Em desenvolvimento</span>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        )}
       </section>
     </main>
   )
 }
-
