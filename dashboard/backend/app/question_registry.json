@@ -141,7 +141,7 @@
       ],
       "sql_file": "Caio/escolaridade-perfil/q6/q6.sql",
       "chart_type": "bar_vertical",
-      "supported_filters": ["anos"],
+      "supported_filters": ["anos", "escolaridade"],
       "expected_columns": ["escolaridade", "qtd_deputados", "media_gasto", "media_fidelidade", "media_proposicoes", "media_presenca_eventos", "media_presenca_plenario"],
       "main_table_contains": "Tabela principal",
       "summary_table_contains": "Resumo executivo",

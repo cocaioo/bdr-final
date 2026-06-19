@@ -30,3 +30,20 @@ def test_api_meta_contract_contains_groups_and_question_metadata() -> None:
         assert question["group_id"] is not None
         assert "tags" in question
         assert isinstance(question["tags"], list)
+
+    q6 = next(question for question in payload["questions"] if question["id"] == "q6")
+    assert {"anos", "escolaridade"}.issubset(q6["supported_filters"])
+
+
+def test_q6_accepts_escolaridade_filter() -> None:
+    main_module.service = DashboardService()
+    client = TestClient(main_module.app)
+
+    response = client.get("/api/questions/q6?escolaridade=Mestrado&page_size=200")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["table_spec"]["total"] > 0
+    assert {
+        row["escolaridade"] for row in payload["table_spec"]["rows"]
+    } == {"Mestrado"}
