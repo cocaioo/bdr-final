@@ -72,10 +72,14 @@ describe('App integration', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText('BDR Painel Q1-Q13')).toBeInTheDocument()
+      expect(screen.getByText('BDR Painéis Parlamentares')).toBeInTheDocument()
     })
-    expect(screen.getAllByText('Q1').length).toBeGreaterThan(0)
-    expect(screen.getByText('Painel de Analise Parlamentar')).toBeInTheDocument()
+    expect(screen.getByText('Painéis de análise parlamentar')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Gastos parlamentares' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Escolaridade e perfil dos deputados' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Produção legislativa' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Partidos e votações' })).toBeInTheDocument()
+    expect(screen.queryByText(/Q1|Q13|quest[aã]o/i)).not.toBeInTheDocument()
     expect(screen.getByPlaceholderText('Pesquisar deputado...')).toBeInTheDocument()
   })
 

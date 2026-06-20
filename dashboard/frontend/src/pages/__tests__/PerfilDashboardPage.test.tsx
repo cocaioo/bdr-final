@@ -12,15 +12,10 @@ vi.mock('../../api', () => ({
 }))
 
 vi.mock('../../components/ChartPanel', () => ({
-  ChartPanel: ({ spec }: { spec: { title: string } }) => (
-    <div data-testid="perfil-chart">{spec.title}</div>
-  ),
-}))
-
-vi.mock('../../components/ExecutiveCards', () => ({
-  ExecutiveCards: ({ cards }: { cards: Array<{ label: string; value: string }> }) => (
-    <div data-testid="perfil-cards">
-      {cards.map((card) => <span key={card.label}>{card.label}: {card.value}</span>)}
+  ChartPanel: ({ spec }: { spec: { title: string; description: string; options: Record<string, unknown> } }) => (
+    <div data-testid="perfil-chart" data-options={JSON.stringify(spec.options)}>
+      <span>{spec.title}</span>
+      <small>{spec.description}</small>
     </div>
   ),
 }))
@@ -194,7 +189,7 @@ describe('PerfilDashboardPage', () => {
     )
   })
 
-  it('combina Q4 e Q6 em gráficos com escalas separadas', async () => {
+  it('apresenta uma análise integrada sem referências internas ou cards removidos', async () => {
     render(
       <MemoryRouter>
         <PerfilDashboardPage meta={meta} />
@@ -202,18 +197,35 @@ describe('PerfilDashboardPage', () => {
     )
 
     expect(await screen.findByRole('heading', { name: 'Escolaridade e Perfil' })).toBeInTheDocument()
-    expect(screen.getByText('Distribuição de escolaridade')).toBeInTheDocument()
-    expect(screen.getByText('Gasto médio por escolaridade')).toBeInTheDocument()
-    expect(screen.getByText('Fidelidade partidária média')).toBeInTheDocument()
-    expect(screen.getByText('Média de proposições')).toBeInTheDocument()
-    expect(screen.getByText('Média de presenças')).toBeInTheDocument()
-    expect(screen.getByText(/associação, não causalidade/i)).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Abrir Q4' })).toHaveAttribute('href', '/q/q4')
-    expect(screen.getByRole('link', { name: 'Abrir Q6' })).toHaveAttribute('href', '/q/q6')
+    expect(screen.getByText('Escolaridade dos deputados')).toBeInTheDocument()
+    expect(screen.getByText('Gasto médio anual por escolaridade')).toBeInTheDocument()
+    expect(screen.getByText('Coincidência com a orientação partidária')).toBeInTheDocument()
+    expect(screen.getByText('Produção legislativa média por escolaridade')).toBeInTheDocument()
+    expect(screen.getByText('Presença média por escolaridade')).toBeInTheDocument()
+    expect(screen.getByText(/não provam que a escolaridade causou/i)).toBeInTheDocument()
+    expect(screen.queryByText('Deputados no recorte', { exact: true })).not.toBeInTheDocument()
+    expect(screen.queryByText('Níveis de escolaridade', { exact: true })).not.toBeInTheDocument()
+    expect(screen.queryByText('Período da atividade', { exact: true })).not.toBeInTheDocument()
+    expect(screen.queryByText(/Maior associação \(η²\)/i)).not.toBeInTheDocument()
+    expect(document.body.textContent).not.toMatch(/\bQ[46]\b|quest[aã]o|pergunta/i)
     expect(fetchQuestionMock).toHaveBeenCalledTimes(2)
   })
 
-  it('envia ano e escolaridade para o recarregamento do recorte', async () => {
+  it('formata o gráfico de gastos como valor monetário', async () => {
+    render(
+      <MemoryRouter>
+        <PerfilDashboardPage meta={meta} />
+      </MemoryRouter>,
+    )
+
+    const title = await screen.findByText('Gasto médio anual por escolaridade')
+    expect(title.closest('[data-testid="perfil-chart"]')).toHaveAttribute(
+      'data-options',
+      expect.stringContaining('"currency":true'),
+    )
+  })
+
+  it('mantem o q6 sem filtro anual e recarrega apenas com filtros confiaveis', async () => {
     const user = userEvent.setup()
     render(
       <MemoryRouter>
@@ -222,16 +234,24 @@ describe('PerfilDashboardPage', () => {
     )
 
     await screen.findByRole('heading', { name: 'Escolaridade e Perfil' })
-    await user.selectOptions(screen.getByLabelText('Ano da atividade (Q6)'), '2024')
     await user.selectOptions(screen.getByLabelText('Escolaridade'), 'Mestrado')
+    await user.selectOptions(screen.getByLabelText('Partido'), 'PT')
 
     await waitFor(() => {
       expect(fetchQuestionMock).toHaveBeenCalledWith(
         'q6',
-        expect.objectContaining({ anos: ['2024'], escolaridade: ['Mestrado'] }),
+        expect.objectContaining({ anos: [], escolaridade: ['Mestrado'], partidos: [] }),
         expect.objectContaining({ pageSize: 200 }),
-        ['anos', 'escolaridade'],
+        ['escolaridade'],
+      )
+      expect(fetchQuestionMock).toHaveBeenCalledWith(
+        'q4',
+        expect.objectContaining({ anos: [], partidos: ['PT'], escolaridade: ['Mestrado'] }),
+        expect.objectContaining({ pageSize: 200 }),
+        ['partidos', 'escolaridade'],
       )
     })
+    expect(screen.queryByLabelText('Ano da atividade')).not.toBeInTheDocument()
+    expect(screen.getByText(/filtro de ano foi removido desta subseção/i)).toBeInTheDocument()
   })
 })
