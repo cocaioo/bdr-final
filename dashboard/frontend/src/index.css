@@ -2236,6 +2236,12 @@ td {
   gap: 12px;
 }
 
+.gastos-category-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
 .gastos-deputy-rank-card {
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -2322,6 +2328,41 @@ td {
   grid-area: small;
   color: var(--muted);
   line-height: 1.35;
+}
+
+.gastos-category-rank-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--ink);
+  min-width: 0;
+  padding: 16px;
+}
+
+.gastos-category-rank-card__title {
+  color: var(--ink);
+  display: -webkit-box;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.35;
+  margin-top: 6px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  text-align: left;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.gastos-category-rank-card strong {
+  color: var(--ink);
+  font-size: 1.12rem;
+  line-height: 1.2;
+}
+
+.gastos-category-rank-card small {
+  color: var(--muted);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .gastos-filter-row {
@@ -2447,6 +2488,46 @@ td {
 
 .gastos-drilldown-grid strong {
   color: var(--ink);
+}
+
+.gastos-selection-skeleton {
+  margin-top: 16px;
+}
+
+.gastos-selection-skeleton__header {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+}
+
+.gastos-selection-skeleton__avatar {
+  border-radius: 999px;
+  flex: 0 0 auto;
+  height: 64px;
+  width: 64px;
+}
+
+.gastos-selection-skeleton__title {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gastos-selection-skeleton__title span,
+.gastos-selection-skeleton__copy {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.gastos-selection-skeleton__grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 14px;
+}
+
+.gastos-selection-skeleton__copy {
+  margin-top: 10px;
 }
 
 .gastos-two-columns {
@@ -2843,6 +2924,7 @@ body.gastos-light-theme .gastos-drilldown-grid strong {
   font-size: 0.75rem;
   font-weight: 600;
   border: 1px solid var(--border);
+  overflow-wrap: anywhere;
   transition: all 0.15s ease;
 }
 
@@ -2880,6 +2962,52 @@ body.gastos-light-theme .gastos-chip-categoria {
   background: rgba(124, 58, 237, 0.08);
   color: #7C3AED;
   border-color: rgba(124, 58, 237, 0.2);
+}
+
+.gastos-supplier-rank-name {
+  display: -webkit-box;
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1.38;
+  min-height: 3.9em;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  text-align: left;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.gastos-supplier-profile {
+  background: rgba(10, 18, 30, 0.74);
+}
+
+.gastos-supplier-profile__header {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.gastos-supplier-profile__title {
+  color: var(--ink) !important;
+  line-height: 1.3;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.gastos-supplier-profile__groups {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.gastos-supplier-profile__label {
+  color: var(--muted);
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-bottom: 8px;
 }
 
 /* Standardized Badges */
@@ -3106,6 +3234,53 @@ body.gastos-light-theme .skeleton-text {
   padding: 18px;
 }
 
+.perfil-section-toolbar {
+  align-items: end;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding: 16px 18px;
+}
+
+.perfil-section-toolbar > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.perfil-section-toolbar p {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.perfil-section-toolbar label {
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.86rem;
+  font-weight: 700;
+  gap: 6px;
+  min-width: 220px;
+}
+
+.perfil-section-toolbar select {
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--ink);
+  padding: 8px 10px;
+}
+
+.perfil-section-toolbar-warning {
+  border-left: 4px solid var(--accent);
+}
+
 .perfil-filter-heading {
   display: flex;
   align-items: flex-start;
@@ -3139,6 +3314,38 @@ body.gastos-light-theme .skeleton-text {
   display: grid;
   grid-template-columns: repeat(3, minmax(180px, 1fr));
   gap: 12px;
+}
+
+.perfil-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--color-border, var(--border));
+  border-radius: 12px;
+  background: var(--color-bg-soft, var(--surface-soft));
+}
+
+.perfil-filter-group-shared {
+  border-color: var(--color-primary, var(--primary));
+  background: var(--color-primary-soft, rgba(91, 132, 162, 0.12));
+}
+
+.perfil-filter-scope {
+  color: var(--color-primary, var(--primary));
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.perfil-filter-group p {
+  min-height: 2.8em;
+  margin: 0;
+  color: var(--color-text-muted, var(--muted));
+  font-size: 0.82rem;
+  line-height: 1.4;
 }
 
 .perfil-filter-grid label {
@@ -3965,6 +4172,19 @@ body.gastos-light-theme .skeleton-text {
     grid-template-columns: 1fr;
   }
 
+  .perfil-section-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .perfil-section-toolbar label {
+    min-width: 0;
+  }
+
+  .gastos-category-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .perfil-hero,
   .perfil-source-note,
   .home-primary-cta,
@@ -4008,7 +4228,8 @@ body.gastos-light-theme .skeleton-text {
   }
 
   .perfil-filter-heading,
-  .perfil-methodology {
+  .perfil-methodology,
+  .perfil-section-toolbar {
     flex-direction: column;
   }
 
@@ -4037,6 +4258,10 @@ body.gastos-light-theme .skeleton-text {
   .deputy-profile__future-grid,
   .deputy-profile__details-grid,
   .deputy-profile__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .gastos-category-card-grid {
     grid-template-columns: 1fr;
   }
 

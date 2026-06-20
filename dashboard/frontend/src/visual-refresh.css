@@ -1171,6 +1171,15 @@ body.gastos-light-theme .gastos-tabs button.active small {
   color: var(--color-text) !important;
 }
 
+.gastos-category-rank-card,
+.gastos-supplier-profile,
+body.gastos-light-theme .gastos-category-rank-card,
+body.gastos-light-theme .gastos-supplier-profile {
+  background: var(--color-surface-elevated) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
 body.gastos-light-theme .gastos-deputy-rank-card {
   background: var(--color-surface-elevated) !important;
   border-color: var(--color-border) !important;
@@ -1194,6 +1203,13 @@ body.gastos-light-theme .gastos-deputy-rank-card.selected {
   color: var(--color-text) !important;
 }
 
+.gastos-category-rank-card__title,
+.gastos-category-rank-card strong,
+.gastos-supplier-profile__title,
+.gastos-supplier-profile strong {
+  color: var(--color-text) !important;
+}
+
 body.gastos-light-theme .gastos-story-dashboard .gastos-kpi-card strong,
 body.gastos-light-theme .gastos-auto-insight p,
 body.gastos-light-theme .gastos-drilldown-grid strong,
@@ -1212,6 +1228,7 @@ body.gastos-light-theme .gastos-auto-insight {
 }
 
 .perfil-filter-grid select,
+.perfil-section-toolbar select,
 .perfil-filter-heading button,
 textarea {
   background: var(--color-input-bg) !important;
@@ -1220,6 +1237,7 @@ textarea {
 }
 
 .perfil-filter-grid select:focus,
+.perfil-section-toolbar select:focus,
 .perfil-filter-heading button:focus-visible,
 textarea:focus {
   border-color: var(--color-input-focus) !important;
@@ -1233,6 +1251,13 @@ textarea:focus {
 .gastos-drilldown-title p,
 .gastos-drilldown > p,
 .gastos-explanation-card p {
+  color: var(--color-text-muted) !important;
+}
+
+.gastos-category-rank-card__metrics span,
+.gastos-selection-skeleton__title span,
+.gastos-selection-skeleton__copy,
+.gastos-supplier-profile__label {
   color: var(--color-text-muted) !important;
 }
 
@@ -1363,4 +1388,232 @@ body.gastos-light-theme .gastos-chip-categoria {
 .query-drawer pre {
   background: var(--color-bg-soft);
   border: 1px solid var(--color-border);
+}
+
+/* Contraste do perfil aberto em Gastos > Deputados. */
+.gastos-dashboard-premium .gastos-deputy-profile,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile {
+  background: var(--color-surface-elevated) !important;
+  border-color: var(--color-border-strong) !important;
+  color: var(--color-text) !important;
+}
+
+.gastos-dashboard-premium .gastos-deputy-profile h3,
+.gastos-dashboard-premium .gastos-deputy-profile strong,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile h3,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile strong {
+  color: var(--color-text) !important;
+}
+
+.gastos-dashboard-premium .gastos-deputy-profile p,
+.gastos-dashboard-premium .gastos-deputy-profile small,
+.gastos-dashboard-premium .gastos-deputy-profile .gastos-drilldown-grid span,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile p,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile small,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile .gastos-drilldown-grid span {
+  color: var(--color-text-muted) !important;
+}
+
+.gastos-dashboard-premium .gastos-deputy-profile .gastos-drilldown-grid span,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile .gastos-drilldown-grid span {
+  background: var(--color-bg-soft) !important;
+  border-color: var(--color-border-strong) !important;
+}
+
+/* Navegação principal orientada a painéis. */
+.home-hero-eyebrow,
+.home-panel-heading span,
+.home-panel-status,
+.panel-overview-hero > span,
+.panel-overview-card > div > span {
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-panel-section,
+.panel-overview-hero,
+.panel-overview-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-glass);
+  box-shadow: var(--shadow-card);
+}
+
+.home-panel-section {
+  padding: 22px;
+}
+
+.home-panel-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.home-panel-heading h2,
+.home-panel-card h3,
+.panel-overview-page h1,
+.panel-overview-page h2 {
+  color: var(--color-text);
+}
+
+.home-panel-heading h2 {
+  margin-top: 4px;
+  font-size: 1.5rem;
+}
+
+.home-panel-heading p,
+.home-panel-card p,
+.panel-overview-page p,
+.panel-overview-card li {
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.home-panel-heading > p {
+  max-width: 470px;
+  text-align: right;
+}
+
+.home-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.home-panel-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 210px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-elevated);
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.home-panel-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-strong);
+  box-shadow: 0 16px 36px rgba(2, 6, 23, 0.28);
+}
+
+.home-panel-status {
+  padding: 4px 8px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  color: var(--color-text-subtle);
+  background: var(--color-overlay-subtle);
+}
+
+.home-panel-status.available {
+  color: var(--color-success-text);
+  border-color: var(--color-accent-strong);
+  background: var(--color-success-soft);
+}
+
+.home-panel-card h3 {
+  margin-top: 16px;
+  font-size: 1.2rem;
+}
+
+.home-panel-card p {
+  margin: 8px 0 18px;
+}
+
+.home-panel-card a,
+.panel-overview-card a {
+  margin-top: auto;
+  color: var(--color-primary);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-panel-card a:hover,
+.panel-overview-card a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.panel-overview-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panel-overview-hero,
+.panel-overview-card {
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.panel-overview-hero h1 {
+  margin: 8px 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.panel-overview-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 1fr);
+  gap: 26px;
+}
+
+.panel-overview-card h2 {
+  margin: 6px 0 10px;
+}
+
+.panel-overview-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding-left: 22px;
+}
+
+.panel-overview-card a {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  .home-panel-grid,
+  .panel-overview-card {
+    grid-template-columns: 1fr;
+  }
+
+  .home-panel-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .home-panel-heading > p {
+    text-align: left;
+  }
+}
+
+/* Fix deputy and supplier drilldown contrast issues in light theme and dark override */
+body.gastos-light-theme .gastos-drilldown {
+  background: var(--surface-soft) !important;
+  border: 1px solid var(--border) !important;
+}
+
+body.gastos-light-theme .gastos-drilldown-grid span {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--muted) !important;
+}
+
+body.gastos-light-theme .gastos-drilldown-grid strong {
+  color: var(--ink) !important;
+}
+
+body.gastos-light-theme .gastos-drilldown h3 {
+  color: var(--ink) !important;
+}
+
+body.gastos-light-theme .gastos-drilldown p {
+  color: var(--muted) !important;
 }
