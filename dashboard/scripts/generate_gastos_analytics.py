@@ -63,8 +63,9 @@ class MetricConfig:
     deputy: str = "id_deputado"
     supplier: str = "fornecedor_normalizado"
 
-
-
+def write_csv(frame: pd.DataFrame, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    frame.to_csv(path, sep=";", index=False, encoding="utf-8")
 
 def remove_accents(value: object) -> str:
     text = "" if value is None else str(value)
@@ -98,10 +99,12 @@ def join_top_values(values: Iterable[object], limit: int = 5) -> str:
 
 
 def summarize_metrics(df: pd.DataFrame, cfg: MetricConfig = MetricConfig()) -> dict[str, float | int]:
+    valor_total = float(df[cfg.value].sum())
+    qtd_despesas = int(len(df))
     return {
-        "valor_total": round(float(df[cfg.value].sum()), 2),
-        "qtd_despesas": int(len(df)),
-        "ticket_medio": round(float(df[cfg.value].mean()), 2) if len(df) else 0.0,
+        "valor_total": round(valor_total, 2),
+        "qtd_despesas": qtd_despesas,
+        "ticket_medio": round(valor_total / qtd_despesas, 2) if qtd_despesas else 0.0,
         "qtd_deputados": int(df[cfg.deputy].nunique()),
         "qtd_fornecedores": int(df[cfg.supplier].nunique()),
     }
@@ -119,14 +122,17 @@ def aggregate_base(df: pd.DataFrame, group_cols: list[str]) -> pd.DataFrame:
         .agg(
             valor_total=("valor_liquido", "sum"),
             qtd_despesas=("valor_liquido", "size"),
-            ticket_medio=("valor_liquido", "mean"),
             qtd_deputados=("id_deputado", "nunique"),
             qtd_fornecedores=("fornecedor_normalizado", "nunique"),
         )
         .reset_index()
     )
     grouped["valor_total"] = grouped["valor_total"].round(2)
-    grouped["ticket_medio"] = grouped["ticket_medio"].round(2)
+    grouped["ticket_medio"] = np.where(
+        grouped["qtd_despesas"] > 0,
+        (grouped["valor_total"] / grouped["qtd_despesas"]).round(2),
+        0,
+    )
     return grouped.sort_values(["valor_total", "qtd_despesas"], ascending=[False, False])
 
 
@@ -138,6 +144,93 @@ def category_top_by(df: pd.DataFrame, group_col: str) -> pd.DataFrame:
         .sort_values([group_col, "valor_categoria"], ascending=[True, False])
     )
     return ranked.drop_duplicates(group_col).rename(columns={"descricao_despesa": "categoria_principal"})
+
+
+def category_top_by_scope(df: pd.DataFrame, group_cols: list[str]) -> pd.DataFrame:
+    ranked = (
+        df.groupby([*group_cols, "descricao_despesa"], dropna=False)["valor_liquido"]
+        .sum()
+        .reset_index(name="valor_categoria")
+        .sort_values(
+            [*group_cols, "valor_categoria", "descricao_despesa"],
+            ascending=[True] * len(group_cols) + [False, True],
+        )
+    )
+    return ranked.drop_duplicates(group_cols).rename(columns={"descricao_despesa": "categoria_principal"})
+
+
+def _dominant_by_value(
+    df: pd.DataFrame,
+    group_cols: list[str],
+    value_col: str,
+    alias: str,
+) -> pd.DataFrame:
+    ranked = (
+        df.groupby([*group_cols, value_col], dropna=False)["valor_liquido"]
+        .sum()
+        .reset_index(name="valor_total")
+        .sort_values(
+            [*group_cols, "valor_total", value_col],
+            ascending=[True] * len(group_cols) + [False, True],
+        )
+    )
+    return ranked.drop_duplicates(group_cols)[[*group_cols, value_col]].rename(columns={value_col: alias})
+
+
+def _dominant_name(df: pd.DataFrame, group_cols: list[str]) -> pd.DataFrame:
+    ranked = (
+        df.groupby([*group_cols, "nome_parlamentar"], dropna=False)
+        .agg(
+            ocorrencias=("nome_parlamentar", "size"),
+            valor_total=("valor_liquido", "sum"),
+        )
+        .reset_index()
+        .sort_values(
+            [*group_cols, "ocorrencias", "valor_total", "nome_parlamentar"],
+            ascending=[True] * len(group_cols) + [False, False, True],
+        )
+    )
+    return ranked.drop_duplicates(group_cols)[[*group_cols, "nome_parlamentar"]]
+
+
+def _deputy_scope_frame(df: pd.DataFrame, group_cols: list[str], ano_label: str | None) -> pd.DataFrame:
+    aggregated = aggregate_base(df, group_cols)
+    profile = _dominant_name(df, group_cols)
+    profile = profile.merge(
+        _dominant_by_value(df, group_cols, "sigla_partido", "sigla_partido"),
+        on=group_cols,
+        how="left",
+    )
+    profile = profile.merge(
+        _dominant_by_value(df, group_cols, "sigla_uf", "sigla_uf"),
+        on=group_cols,
+        how="left",
+    )
+    profile = profile.merge(
+        category_top_by_scope(df, group_cols)[[*group_cols, "categoria_principal"]],
+        on=group_cols,
+        how="left",
+    )
+    frame = aggregated.merge(profile, on=group_cols, how="left")
+    if ano_label is not None:
+        frame.insert(0, "ano_dados", ano_label)
+    else:
+        frame["ano_dados"] = frame["ano_dados"].astype(str)
+    column_order = [
+        "ano_dados",
+        "id_deputado",
+        "nome_parlamentar",
+        "sigla_partido",
+        "sigla_uf",
+        "valor_total",
+        "qtd_despesas",
+        "ticket_medio",
+        "qtd_deputados",
+        "qtd_fornecedores",
+        "pct_total",
+        "categoria_principal",
+    ]
+    return frame
 
 
 def read_gastos(path: Path) -> pd.DataFrame:
@@ -198,10 +291,8 @@ def build_category(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def build_deputy(df: pd.DataFrame) -> pd.DataFrame:
-    all_years = aggregate_base(df, ["id_deputado", "nome_parlamentar", "sigla_partido", "sigla_uf"])
-    all_years.insert(0, "ano_dados", "Todos")
-    yearly = aggregate_base(df, ["ano_dados", "id_deputado", "nome_parlamentar", "sigla_partido", "sigla_uf"])
-    yearly["ano_dados"] = yearly["ano_dados"].astype(str)
+    all_years = _deputy_scope_frame(df, ["id_deputado"], "Todos")
+    yearly = _deputy_scope_frame(df, ["ano_dados", "id_deputado"], None)
     frame = pd.concat([all_years, yearly], ignore_index=True)
 
     totals_by_scope = {
@@ -220,9 +311,22 @@ def build_deputy(df: pd.DataFrame) -> pd.DataFrame:
         else 0,
         axis=1,
     )
-
-    top_categories = category_top_by(df, "id_deputado")[["id_deputado", "categoria_principal"]]
-    return frame.merge(top_categories, on="id_deputado", how="left")
+    return frame[
+        [
+            "ano_dados",
+            "id_deputado",
+            "nome_parlamentar",
+            "sigla_partido",
+            "sigla_uf",
+            "valor_total",
+            "qtd_despesas",
+            "ticket_medio",
+            "qtd_deputados",
+            "qtd_fornecedores",
+            "pct_total",
+            "categoria_principal",
+        ]
+    ]
 
 
 def build_supplier(df: pd.DataFrame) -> pd.DataFrame:
@@ -285,6 +389,7 @@ def encode_category(series: pd.Series) -> pd.Series:
 
 def generate(input_path: Path, output_dir: Path) -> dict[str, object]:
     df = read_gastos(input_path)
+    df = df[df["valor_liquido"] > 0].copy()
     output_dir.mkdir(parents=True, exist_ok=True)
 
     outputs: dict[str, pd.DataFrame] = {
