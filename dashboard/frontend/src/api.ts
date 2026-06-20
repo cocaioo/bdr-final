@@ -297,13 +297,46 @@ function extractDeputyCategories(payload: QuestionPayload): DeputyGastosCategory
     .slice(0, 6)
 }
 
+function extractDeputySuppliers(payload: QuestionPayload, deputyId: string): GastoFornecedorItem[] {
+  const tables = [payload.table_spec, ...payload.complement_tables]
+  const allRows = tables.flatMap((table) => table.rows)
+  const deputyRows = allRows.filter((row) => String(row.id_deputado ?? '') === deputyId)
+  
+  const globalRows = deputyRows.filter((row) => String(row.ano_dados ?? '').toUpperCase() === 'GLOBAL')
+  const rowsToUse = globalRows.length ? globalRows : deputyRows
+
+  const grouped: Record<string, { valor_total: number; qtd_despesas: number }> = {}
+  
+  rowsToUse.forEach((row) => {
+    const name = String(row.fornecedor || '').trim()
+    if (!name) return
+    const valor = numericValue(row.total_pago ?? row.valor_total ?? 0)
+    const count = numericValue(row.qtd_lancamentos ?? row.qtd_despesas ?? 0)
+    if (!grouped[name]) {
+      grouped[name] = { valor_total: 0, qtd_despesas: 0 }
+    }
+    grouped[name].valor_total += valor
+    grouped[name].qtd_despesas += count
+  })
+
+  return Object.entries(grouped)
+    .map(([fornecedor, data]) => ({
+      fornecedor,
+      valor_total: data.valor_total,
+      qtd_despesas: data.qtd_despesas,
+      qtd_deputados: 1,
+      ticket_medio: data.qtd_despesas > 0 ? Number((data.valor_total / data.qtd_despesas).toFixed(2)) : 0,
+    }))
+    .sort((a, b) => b.valor_total - a.valor_total)
+    .slice(0, 6)
+}
+
 /** Consolida somente dados existentes nos contratos atuais de gastos e perguntas. */
 export async function fetchDeputyGastosSummary(deputyId: string): Promise<DeputyGastosProfile> {
-  const [deputiesResult, suppliersResult, categoriesResult, anomaliesResult, metaResult] = await Promise.allSettled([
+  const [deputiesResult, suppliersResult, categoriesResult, metaResult] = await Promise.allSettled([
     fetchGastosDeputados({ busca: deputyId, pageSize: 10 }),
-    fetchGastosFornecedores({ deputado: deputyId, pageSize: 6 }),
+    fetchQuestionForDeputy('q12', deputyId, 1, 100),
     fetchQuestionForDeputy('q13', deputyId, 1, 100),
-    fetchGastosAnomaliaDetalhes({ deputado: deputyId, pageSize: 5 }),
     fetchMeta(),
   ])
 
@@ -314,7 +347,6 @@ export async function fetchDeputyGastosSummary(deputyId: string): Promise<Deputy
   recordFailure('resumo', deputiesResult)
   recordFailure('fornecedores', suppliersResult)
   recordFailure('categorias', categoriesResult)
-  recordFailure('despesas atípicas', anomaliesResult)
 
   const deputyRows = deputiesResult.status === 'fulfilled' ? deputiesResult.value.items : []
   const deputyRow = deputyRows.find((item) => String(item.id_deputado) === deputyId) ?? deputyRows[0]
@@ -353,8 +385,8 @@ export async function fetchDeputyGastosSummary(deputyId: string): Promise<Deputy
   }
 
   const categories = categoriesResult.status === 'fulfilled' ? extractDeputyCategories(categoriesResult.value) : []
-  const suppliers = suppliersResult.status === 'fulfilled' ? suppliersResult.value.items : []
-  const anomalies = anomaliesResult.status === 'fulfilled' ? anomaliesResult.value.items : []
+  const suppliers = suppliersResult.status === 'fulfilled' ? extractDeputySuppliers(suppliersResult.value, deputyId) : []
+  const anomalies: any[] = []
 
   return {
     summary,

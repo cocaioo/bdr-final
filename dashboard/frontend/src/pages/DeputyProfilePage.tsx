@@ -152,27 +152,6 @@ function GastosSection({ data, loading, error }: { data: DeputyGastosProfile | n
         </article>
       ) : null}
 
-      <article className="deputy-profile__data-card">
-        <h3>Despesas atípicas</h3>
-        {data.anomalies.length ? (
-          <div className="deputy-profile__table-wrap">
-            <table>
-              <thead><tr><th>Ano</th><th>Categoria</th><th>Fornecedor</th><th>Valor líquido</th><th>Contexto</th></tr></thead>
-              <tbody>
-                {data.anomalies.map((item, index) => (
-                  <tr key={item.id_gasto ?? `${item.fornecedor}-${index}`}>
-                    <td>{item.ano_dados}</td>
-                    <td>{item.descricao_despesa}</td>
-                    <td>{item.fornecedor}</td>
-                    <td>{formatCurrency(item.valor_liquido)}</td>
-                    <td>{item.nota_linguagem || 'Sinalizada pelo modelo analítico.'}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : <p className="deputy-profile__inline-empty">Nenhuma despesa atípica retornada para este deputado.</p>}
-      </article>
 
       {data.partialErrors.length ? (
         <p className="deputy-profile__partial-note">Alguns recortes não puderam ser carregados: {data.partialErrors.join(', ')}.</p>
@@ -280,7 +259,7 @@ export function DeputyProfilePage() {
       </section>
 
       <section className="deputy-profile__section" aria-labelledby="gastos-heading">
-        <SectionHeading eyebrow="Despesas" title="Gastos parlamentares" description="Valores consolidados a partir dos endpoints analíticos e da questão Q13." />
+        <SectionHeading eyebrow="Despesas" title="Gastos parlamentares" description="Valores consolidados a partir das fontes analíticas disponíveis." />
         <div id="gastos-heading">
           <GastosSection
             data={gastosState.deputyId === deputy.id ? gastosState.data : null}
@@ -306,7 +285,7 @@ export function DeputyProfilePage() {
         <div className="deputy-profile__actions">
           <Link to="/grupos/gastos" className="deputy-profile__action-link deputy-profile__action-link--primary">Abrir Painel de Gastos</Link>
           <Link to="/grupos/perfil" className="deputy-profile__action-link">Abrir Escolaridade e Perfil</Link>
-          <Link to="/" className="deputy-profile__action-link">Ver Questões e Home</Link>
+          <Link to="/" className="deputy-profile__action-link">Voltar à página inicial</Link>
         </div>
       </section>
     </main>
