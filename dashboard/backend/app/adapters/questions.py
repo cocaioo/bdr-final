@@ -370,7 +370,10 @@ class Q4Adapter(QuestionAdapter):
         )
 
         # Tabela complementar para compatibilidade com a API
-        complement_specs = self._build_complements(state)
+        # Nota: usa _build_complements_q4 em vez do método base para não aplicar
+        # o cap de 100 linhas — o catálogo de deputados deve ser entregue completo
+        # conforme o page_size solicitado pelo caller (contrato da API).
+        complement_specs = self._build_complements_q4(state)
 
         has_data = table_spec.total > 0
         empty = EmptyState(
@@ -494,6 +497,49 @@ class Q4Adapter(QuestionAdapter):
         main_chart.options["second_chart"] = second_chart
 
         return main_chart
+
+    def _build_complements_q4(self, state: FilterState) -> list[TableSpec]:
+        """Variante de _build_complements sem o cap de 100 linhas.
+
+        O catálogo de deputados de Q4 é um conjunto finito e já filtrado que
+        deve ser entregue completo quando page_size >= len(filtered).  O cap
+        de 100 do método base é adequado para resultados de query grandes, mas
+        inapropriado aqui — truncaria silenciosamente a lista e quebraria a
+        invariante len(rows) == total para callers com page_size alto.
+        """
+        specs: list[TableSpec] = []
+        for table in self.complement_tables:
+            filtered = FilterEngine.apply_filters(
+                table.rows,
+                state,
+                self.context.question.supported_filters,
+            )
+            sorted_rows = FilterEngine.apply_sort(filtered, state.sort_by, state.sort_dir)
+            # Usa page_size do estado sem impor um limite artificial.
+            page_size = max(state.page_size, 1)
+            paged = FilterEngine.apply_pagination(sorted_rows, state.page, page_size)
+            specs.append(
+                self._build_table_spec(
+                    title=table.title,
+                    columns=table.columns,
+                    rows=paged,
+                    total=len(sorted_rows),
+                    state=FilterState(
+                        anos=state.anos,
+                        eixos=state.eixos,
+                        partidos=state.partidos,
+                        ufs=state.ufs,
+                        deputados=state.deputados,
+                        escolaridade=state.escolaridade,
+                        search=state.search,
+                        sort_by=state.sort_by,
+                        sort_dir=state.sort_dir,
+                        page=state.page,
+                        page_size=page_size,
+                    ),
+                )
+            )
+        return specs
 
 
 class Q5Adapter(QuestionAdapter):
