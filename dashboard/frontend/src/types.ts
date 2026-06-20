@@ -218,68 +218,6 @@ export interface GastoContextoPayload {
   metadata: GastosMetadata
 }
 
-export interface GastoAnomaliaRankingItem {
-  id_deputado: number
-  nome_parlamentar: string
-  sigla_partido: string
-  sigla_uf: string
-  total_despesas: number
-  qtd_despesas_atipicas: number
-  valor_atipico: number
-  score_atipicidade_medio: number
-  score_atipicidade_max: number
-  pct_despesas_atipicas: number
-}
-
-export interface GastoAnomaliasPayload {
-  summary: Record<string, number>
-  ranking: GastoAnomaliaRankingItem[]
-  metadata: GastosMetadata
-}
-
-export interface GastoAnomaliaMotivo {
-  tipo: string
-  peso: number
-  descricao: string
-  regra?: string
-  formula?: string
-  limiar?: string
-  detalhes?: Record<string, unknown>
-}
-
-export interface GastoAnomaliaDetalheItem {
-  id_gasto?: number
-  ano_dados: number
-  id_deputado: number
-  nome_parlamentar: string
-  sigla_partido: string
-  sigla_uf: string
-  descricao_despesa: string
-  fornecedor: string
-  fornecedor_normalizado: string
-  valor_documento: number
-  valor_glosa: number
-  valor_liquido: number
-  gasto_atipico: boolean
-  score_atipicidade: number
-  nota_linguagem: string
-  motivo_principal?: string
-  motivos?: GastoAnomaliaMotivo[]
-  motivos_json?: string
-  qtd_motivos?: number
-  maior_peso_motivo?: number
-}
-
-export interface GastoAnomaliaDetalhesPayload {
-  summary: {
-    total: number
-    page: number
-    page_size: number
-    returned: number
-  }
-  items: GastoAnomaliaDetalheItem[]
-  metadata: GastosMetadata
-}
 
 export interface DeputyGastosCategory {
   categoria: string
@@ -298,7 +236,6 @@ export interface DeputyGastosProfile {
   categories: DeputyGastosCategory[]
   suppliers: GastoFornecedorItem[]
   evolution: DeputyGastosAnnual[]
-  anomalies: GastoAnomaliaDetalheItem[]
   hasData: boolean
   partialErrors: string[]
 }

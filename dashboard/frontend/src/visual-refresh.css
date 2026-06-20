@@ -1040,26 +1040,7 @@ body.gastos-light-theme .gastos-compact-table td {
   border-color: rgba(167, 139, 250, 0.24);
 }
 
-.gastos-badge-atipico {
-  background: rgba(251, 113, 133, 0.14);
-  color: #fecdd3;
-  border-color: rgba(251, 113, 133, 0.26);
-}
-
-.gastos-badge-p95 {
-  background: rgba(245, 158, 11, 0.14);
-  color: #fcd34d;
-  border-color: rgba(245, 158, 11, 0.25);
-}
-
-.gastos-badge-raro {
-  background: rgba(52, 211, 153, 0.14);
-  color: #a7f3d0;
-  border-color: rgba(52, 211, 153, 0.25);
-}
-
-.gastos-badge-concentrado,
-.gastos-badge-p99 {
+.gastos-badge-concentrado {
   background: rgba(167, 139, 250, 0.14);
   color: #ddd6fe;
   border-color: rgba(167, 139, 250, 0.25);
@@ -1339,27 +1320,7 @@ body.gastos-light-theme .gastos-compact-table td {
   color: var(--color-warning-text) !important;
 }
 
-.gastos-badge-atipico,
-.gastos-badge-p99,
-.gastos-motive-badge.motive-valor_extremo_categoria,
-.gastos-motive-badge.motive-valor_acima_percentil_99 {
-  background: var(--color-danger-soft) !important;
-  border-color: var(--color-danger) !important;
-  color: var(--color-danger-text) !important;
-}
 
-.gastos-badge-p95,
-.gastos-motive-badge.motive-valor_acima_percentil_95 {
-  background: var(--color-warning-soft) !important;
-  border-color: var(--color-warning) !important;
-  color: var(--color-warning-text) !important;
-}
-
-.gastos-badge-raro {
-  background: var(--color-success-soft) !important;
-  border-color: var(--color-accent) !important;
-  color: var(--color-success-text) !important;
-}
 
 .gastos-badge-concentrado {
   background: var(--color-secondary-soft) !important;

@@ -123,8 +123,7 @@ Dependências declaradas na raiz:
 
 - `pandas>=2.0`: leitura, limpeza, junção, agregação e escrita de CSVs;
 - `psycopg2-binary>=2.9`: conexão e `COPY` no PostgreSQL;
-- `python-dotenv>=1.0`: leitura do `.env`;
-- `scikit-learn>=1.4`: `IsolationForest` para detecção de gastos atípicos.
+- `python-dotenv>=1.0`: leitura do `.env`.
 
 Dependências declaradas no backend:
 
@@ -140,7 +139,6 @@ Versões instaladas verificadas:
 - pandas 2.2.3;
 - psycopg2-binary 2.9.12;
 - python-dotenv 1.0.1;
-- scikit-learn 1.9.0;
 - FastAPI 0.136.3;
 - Uvicorn 0.48.0;
 - Pydantic 2.13.4;
@@ -537,9 +535,6 @@ O `dashboard/backend/app/question_registry.json` é a fonte única de metadados:
 - gastos por fornecedor normalizado;
 - gastos por partido;
 - gastos por UF/região;
-- despesas classificadas como atípicas;
-- explicações das anomalias;
-- ranking de deputados por anomalias;
 - metadados da geração.
 
 Os artefatos locais foram gerados em 13/06/2026 a partir de 720.937 linhas e 41.128 fornecedores normalizados. O total registrado é R$ 809.448.893,50, com 639 deputados e ticket médio de R$ 1.122,77.
@@ -554,46 +549,7 @@ Os artefatos locais foram gerados em 13/06/2026 a partir de 720.937 linhas e 41.
 
 Limitação: o CSV padronizado não preserva uma coluna própria de CNPJ/CPF do fornecedor; portanto a preferência por CNPJ só funciona quando o documento está embutido no nome.
 
-### 11.3 Detecção de anomalias
 
-O método principal é `IsolationForest` com:
-
-- 100 árvores;
-- contaminação padrão de 1%;
-- amostra máxima de 10.000 linhas por árvore;
-- todos os núcleos;
-- random state configurável.
-
-Features:
-
-- log de valor líquido, valor do documento e glosa;
-- razão para a mediana da categoria;
-- razão para a mediana do deputado;
-- razão para a mediana do fornecedor;
-- códigos categóricos de categoria, partido e UF.
-
-Se o scikit-learn falhar, há fallback por score robusto baseado em mediana/MAD.
-
-Uma anomalia é apenas um comportamento estatisticamente incomum. O próprio artefato declara que isso não representa conclusão jurídica ou ética.
-
-### 11.4 Explicações defensáveis
-
-Para despesas já marcadas pelo modelo, são avaliadas regras descritivas:
-
-- valor ≥ 3× a mediana da categoria;
-- valor acima do percentil 95 da categoria;
-- valor acima do percentil 99;
-- fornecedor com até três despesas;
-- fornecedor usado por até dois deputados;
-- ticket ≥ 3× a mediana do deputado.
-
-As explicações não substituem o modelo; elas tornam os casos marcados mais interpretáveis.
-
-### 11.5 Limitação de identidade
-
-`gastos.csv` não possui `id_gasto`. O gerador cria um ID pela ordem das linhas. O CSV detalhado remove esse ID, enquanto o CSV de explicações o preserva. O serviço tenta associar por ID quando disponível e usa a ordem das anomalias como fallback.
-
-Isso funciona com artefatos gerados juntos, mas é frágil se arquivos de execuções diferentes forem misturados. A correção estrutural é persistir uma chave estável do documento/despesa desde o ETL ou manter `id_gasto` em todos os artefatos.
 
 ## 12. Backend FastAPI
 
@@ -609,10 +565,8 @@ Isso funciona com artefatos gerados juntos, mas é frágil se arquivos de execu�
 | `GET /api/gastos/deputados` | Deputados com filtros de ano/partido/UF/busca. |
 | `GET /api/gastos/fornecedores` | Fornecedores com filtros. |
 | `GET /api/gastos/contexto` | Partidos e UFs. |
-| `GET /api/gastos/anomalias` | Ranking de anomalias. |
-| `GET /api/gastos/anomalias/detalhes` | Detalhe paginado; exige ao menos um filtro. |
 
-A paginação genérica limita `page_size` a 200. O serviço de gastos permite até 500, ou 200 no detalhe de anomalias.
+A paginação genérica limita `page_size` a 200. O serviço de gastos permite até 500.
 
 ### 12.2 Contrato Pydantic das questões
 
@@ -663,8 +617,7 @@ Se um filtro suportado não encontra nenhuma das colunas esperadas na tabela, a 
 - documentos parseados são cacheados por caminho, `mtime_ns` e tamanho;
 - bundles são cacheados por questão, variante e versão;
 - `/api/meta` é aquecido em thread de background no startup;
-- Q3 usa bundle leve sem os votos quando não há deputado;
-- detalhes de anomalias são percorridos em streaming, sem carregar o CSV de 166 MB inteiro na memória.
+- Q3 usa bundle leve sem os votos quando não há deputado.
 
 O hash baseado em metadados é rápido, mas não é um hash criptográfico do conteúdo. Uma alteração que preserve exatamente tamanho e timestamp poderia não invalidar o cache, embora seja improvável no uso normal.
 
@@ -729,14 +682,13 @@ O heatmap calcula `min` e `max` reais para o `visualMap`, corrigindo requisito d
 
 ### 13.5 Painel consolidado de gastos
 
-`GastosDashboardPage.tsx` é atualmente o maior componente do frontend, com aproximadamente 1.419 linhas. Possui seis abas carregadas sob demanda:
+`GastosDashboardPage.tsx` é atualmente o maior componente do frontend, com aproximadamente 1.243 linhas. Possui cinco abas carregadas sob demanda:
 
 1. **Resumo** — KPIs, evolução anual e categorias de maior valor.
 2. **Categorias** — rankings por valor, quantidade e ticket, cards e tabela detalhada.
-3. **Deputados** — filtros, ranking com foto, perfil selecionado, fornecedores/categoria e anomalias do deputado.
+3. **Deputados** — filtros, ranking com foto, perfil selecionado, fornecedores/categoria do deputado.
 4. **Fornecedores** — filtros, alcance, cards, perfil selecionado e tabela.
 5. **Partidos e UFs** — distribuição política e regional.
-6. **Gastos atípicos** — ranking, explicação metodológica, badges de motivos e detalhe paginado.
 
 Há skeleton loaders por aba, insights derivados, gráficos ECharts, rankings clicáveis e avatares. As fotos usam o endpoint público da Câmara, com fallback de iniciais. `public/deputados.csv` fornece catálogo estático de 640 deputados para recursos do frontend.
 
@@ -784,7 +736,6 @@ Os testes cobrem:
 - joins da Q3 sem duplicação;
 - limite de 100 MB por arquivo rastreado;
 - normalização de fornecedores;
-- agregações e explicações de anomalias;
 - reconciliação local × API com duplicidades;
 - parser psql e fallback Latin-1;
 - contrato `/api/meta` com grupos;

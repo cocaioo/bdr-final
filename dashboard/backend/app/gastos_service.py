@@ -16,7 +16,6 @@ AGGREGATE_FILES = {
     "fornecedores": "gastos_por_fornecedor.csv",
     "partidos": "gastos_por_partido.csv",
     "ufs": "gastos_por_uf.csv",
-    "anomalias": "gastos_atipicos_ranking_deputados.csv",
 }
 
 
@@ -31,7 +30,6 @@ class GastosAnalyticsService:
         self.repo_root = repo_root
         self.artifacts_dir = repo_root / "Caio" / "gastos-fornecedores" / "analytics"
         self._cache: dict[str, tuple[int, int, list[dict[str, Any]]]] = {}
-        self._explanations_cache: tuple[int, int, list[dict[str, Any]], dict[int, dict[str, Any]]] | None = None
 
     def resumo(self) -> dict[str, Any]:
         row = self._first_row("resumo", lambda item: str(item.get("escopo")) == "Todos")
@@ -121,132 +119,6 @@ class GastosAnalyticsService:
             "metadata": self._metadata({"fonte": ["gastos_por_partido.csv", "gastos_por_uf.csv"]}),
         }
 
-    def anomalias(
-        self,
-        partido: str | None = None,
-        uf: str | None = None,
-        busca: str | None = None,
-        page: int = 1,
-        page_size: int = 100,
-    ) -> dict[str, Any]:
-        rows = self._read_aggregate("anomalias")
-        if partido:
-            rows = [row for row in rows if _same(row.get("sigla_partido"), partido)]
-        if uf:
-            rows = [row for row in rows if _same(row.get("sigla_uf"), uf)]
-        if busca:
-            rows = [
-                row
-                for row in rows
-                if _contains(row.get("nome_parlamentar"), busca) or _same(row.get("id_deputado"), busca)
-            ]
-        rows = sorted(
-            rows,
-            key=lambda row: (
-                float(row.get("qtd_despesas_atipicas") or 0),
-                float(row.get("score_atipicidade_medio") or 0),
-                float(row.get("valor_atipico") or 0),
-            ),
-            reverse=True,
-        )
-        page_state = _page(page, page_size)
-        summary = {
-            "qtd_deputados": len(rows),
-            "total_despesas": int(sum(float(row.get("total_despesas") or 0) for row in rows)),
-            "qtd_despesas_atipicas": int(sum(float(row.get("qtd_despesas_atipicas") or 0) for row in rows)),
-            "valor_atipico": round(sum(float(row.get("valor_atipico") or 0) for row in rows), 2),
-        }
-        return {
-            "summary": summary,
-            "ranking": self._paginate(rows, page_state),
-            "metadata": self._metadata(
-                {
-                    "page": page_state.number,
-                    "page_size": page_state.size,
-                    "total": len(rows),
-                    "filters_applied": {"partido": partido, "uf": uf, "busca": busca},
-                }
-            ),
-        }
-
-    def detalhes_anomalias(
-        self,
-        deputado: str | None,
-        partido: str | None,
-        uf: str | None,
-        categoria: str | None,
-        page: int,
-        page_size: int,
-    ) -> dict[str, Any]:
-        if not any([deputado, partido, uf, categoria]):
-            raise ValueError("Informe ao menos um filtro: deputado, partido, uf ou categoria.")
-
-        source = self._path("gastos_atipicos_detalhado.csv")
-        explanations_by_order, explanations_by_id = self._read_explanations()
-        page_state = _page(page, page_size, max_size=200)
-        start = (page_state.number - 1) * page_state.size
-        end = start + page_state.size
-        total = 0
-        anomaly_index = 0
-        items: list[dict[str, Any]] = []
-
-        with source.open("r", encoding="utf-8", newline="") as handle:
-            reader = csv.DictReader(handle, delimiter=";")
-            for raw in reader:
-                row = _coerce_row(raw)
-                if not bool(row.get("gasto_atipico")):
-                    continue
-                explanation = explanations_by_id.get(int(row["id_gasto"])) if row.get("id_gasto") else None
-                if explanation is None and anomaly_index < len(explanations_by_order):
-                    explanation = explanations_by_order[anomaly_index]
-                anomaly_index += 1
-                if deputado and not (
-                    _same(row.get("id_deputado"), deputado) or _contains(row.get("nome_parlamentar"), deputado)
-                ):
-                    continue
-                if partido and not _same(row.get("sigla_partido"), partido):
-                    continue
-                if uf and not _same(row.get("sigla_uf"), uf):
-                    continue
-                if categoria and not _contains(row.get("descricao_despesa"), categoria):
-                    continue
-
-                if start <= total < end:
-                    if explanation:
-                        row.update(
-                            {
-                                "id_gasto": explanation.get("id_gasto"),
-                                "motivo_principal": explanation.get("motivo_principal"),
-                                "motivos": explanation.get("motivos", []),
-                                "motivos_json": explanation.get("motivos_json", "[]"),
-                                "qtd_motivos": explanation.get("qtd_motivos", 0),
-                                "maior_peso_motivo": explanation.get("maior_peso_motivo", 0),
-                            }
-                        )
-                    items.append(row)
-                total += 1
-
-        return {
-            "summary": {
-                "total": total,
-                "page": page_state.number,
-                "page_size": page_state.size,
-                "returned": len(items),
-            },
-            "items": items,
-            "metadata": self._metadata(
-                {
-                    "filters_applied": {
-                        "deputado": deputado,
-                        "partido": partido,
-                        "uf": uf,
-                        "categoria": categoria,
-                    },
-                    "source": "gastos_atipicos_detalhado.csv",
-                    "explanations_source": "gastos_atipicos_explicacoes.csv",
-                }
-            ),
-        }
 
     def _collection_payload(
         self,
@@ -306,31 +178,6 @@ class GastosAnalyticsService:
         self._cache[filename] = (stat.st_mtime_ns, stat.st_size, rows)
         return rows
 
-    def _read_explanations(self) -> tuple[list[dict[str, Any]], dict[int, dict[str, Any]]]:
-        path = self._path("gastos_atipicos_explicacoes.csv")
-        stat = path.stat()
-        cached = self._explanations_cache
-        if cached and cached[0] == stat.st_mtime_ns and cached[1] == stat.st_size:
-            return cached[2], cached[3]
-
-        rows: list[dict[str, Any]] = []
-        by_id: dict[int, dict[str, Any]] = {}
-        with path.open("r", encoding="utf-8", newline="") as handle:
-            reader = csv.DictReader(handle, delimiter=";")
-            for raw in reader:
-                row = _coerce_row(raw)
-                motivos_raw = str(row.get("motivos_json") or "[]")
-                try:
-                    motivos = json.loads(motivos_raw)
-                except json.JSONDecodeError:
-                    motivos = []
-                row["motivos"] = motivos if isinstance(motivos, list) else []
-                rows.append(row)
-                if row.get("id_gasto") not in (None, ""):
-                    by_id[int(row["id_gasto"])] = row
-
-        self._explanations_cache = (stat.st_mtime_ns, stat.st_size, rows, by_id)
-        return rows, by_id
 
     def _path(self, filename: str) -> Path:
         path = self.artifacts_dir / filename

@@ -2815,7 +2815,7 @@ body.gastos-light-theme .gastos-auto-insight p {
   color: #17202A !important;
 }
 
-/* Cards (Deputados & Fornecedores & Anomalias) */
+/* Cards (Deputados & Fornecedores) */
 body.gastos-light-theme .gastos-deputy-rank-card {
   background: #FFFFFF !important;
   border-color: #D8E1EA !important;
@@ -3021,25 +3021,6 @@ body.gastos-light-theme .gastos-chip-categoria {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1;
-}
-
-.gastos-badge-atipico {
-  background: rgba(220, 38, 38, 0.12);
-  color: #DC2626;
-  border: 1px solid rgba(220, 38, 38, 0.25);
-}
-
-.gastos-badge-p95 {
-  background: rgba(217, 119, 6, 0.12);
-  color: #D97706;
-  border: 1px solid rgba(217, 119, 6, 0.25);
-}
-
-.gastos-badge-p99 {
-  background: rgba(220, 38, 38, 0.18);
-  color: #DC2626;
-  border: 1px solid rgba(220, 38, 38, 0.35);
-  box-shadow: 0 0 6px rgba(220, 38, 38, 0.08);
 }
 
 .gastos-badge-raro {

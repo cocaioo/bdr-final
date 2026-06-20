@@ -4,8 +4,6 @@ import type {
   DeputyGastosProfile,
   DeputyIdentityEnrichment,
   FilterState,
-  GastoAnomaliaDetalhesPayload,
-  GastoAnomaliasPayload,
   GastoCategoriaItem,
   GastoContextoPayload,
   GastoDeputadoItem,
@@ -222,41 +220,6 @@ export function fetchGastosContexto(): Promise<GastoContextoPayload> {
   return fetchJson<GastoContextoPayload>(`${API_BASE}/api/gastos/contexto`)
 }
 
-export function fetchGastosAnomalias(params: {
-  partido?: string
-  uf?: string
-  busca?: string
-  page?: number
-  pageSize?: number
-} = {}): Promise<GastoAnomaliasPayload> {
-  const query = buildQuery({
-    partido: params.partido,
-    uf: params.uf,
-    busca: params.busca,
-    page: params.page ?? 1,
-    page_size: params.pageSize ?? 100,
-  })
-  return fetchJson<GastoAnomaliasPayload>(`${API_BASE}/api/gastos/anomalias?${query}`)
-}
-
-export function fetchGastosAnomaliaDetalhes(params: {
-  deputado?: string
-  partido?: string
-  uf?: string
-  categoria?: string
-  page?: number
-  pageSize?: number
-}): Promise<GastoAnomaliaDetalhesPayload> {
-  const query = buildQuery({
-    deputado: params.deputado,
-    partido: params.partido,
-    uf: params.uf,
-    categoria: params.categoria,
-    page: params.page ?? 1,
-    page_size: params.pageSize ?? 50,
-  })
-  return fetchJson<GastoAnomaliaDetalhesPayload>(`${API_BASE}/api/gastos/anomalias/detalhes?${query}`)
-}
 
 /** Busca partido e UF do deputado a partir do endpoint de gastos por deputado. */
 export async function fetchDeputyIdentityFromGastos(deputyId: string): Promise<DeputyIdentityEnrichment> {
@@ -386,15 +349,13 @@ export async function fetchDeputyGastosSummary(deputyId: string): Promise<Deputy
 
   const categories = categoriesResult.status === 'fulfilled' ? extractDeputyCategories(categoriesResult.value) : []
   const suppliers = suppliersResult.status === 'fulfilled' ? extractDeputySuppliers(suppliersResult.value, deputyId) : []
-  const anomalies: any[] = []
 
   return {
     summary,
     categories,
     suppliers,
     evolution,
-    anomalies,
-    hasData: Boolean(summary || categories.length || suppliers.length || evolution.length || anomalies.length),
+    hasData: Boolean(summary || categories.length || suppliers.length || evolution.length),
     partialErrors: errors,
   }
 }

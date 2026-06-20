@@ -36,7 +36,6 @@ const gastos = {
   categories: [{ categoria: 'LOCAÇÃO DE VEÍCULOS', valor_total: 218915.86, qtd_despesas: 52 }],
   suppliers: [{ fornecedor: 'PANTANAL VEÍCULOS LTDA', valor_total: 146600, qtd_despesas: 34, qtd_deputados: 1, ticket_medio: 4311.76 }],
   evolution: [{ ano: '2023', valor_total: 300000, qtd_despesas: 300 }],
-  anomalies: [],
   hasData: true,
   partialErrors: [],
 }
@@ -144,7 +143,7 @@ describe('DeputyProfilePage', () => {
   })
 
   it('mostra estado vazio de gastos sem quebrar o cadastro', async () => {
-    fetchGastosMock.mockResolvedValue({ summary: null, categories: [], suppliers: [], evolution: [], anomalies: [], hasData: false, partialErrors: [] })
+    fetchGastosMock.mockResolvedValue({ summary: null, categories: [], suppliers: [], evolution: [], hasData: false, partialErrors: [] })
     renderProfile('204379')
 
     expect(await screen.findByRole('heading', { name: 'Acacio Favacho' })).toBeInTheDocument()

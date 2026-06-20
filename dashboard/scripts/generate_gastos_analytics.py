@@ -64,66 +64,6 @@ class MetricConfig:
     supplier: str = "fornecedor_normalizado"
 
 
-@dataclass(frozen=True)
-class ExplanationRule:
-    tipo: str
-    peso: float
-    descricao_base: str
-    regra: str
-    formula: str
-    limiar: str
-
-
-EXPLANATION_RULES = {
-    "valor_extremo_categoria": ExplanationRule(
-        tipo="valor_extremo_categoria",
-        peso=0.85,
-        descricao_base="Valor significativamente acima da mediana da categoria.",
-        regra="Compara o valor liquido com a mediana da mesma categoria de despesa.",
-        formula="valor_liquido / mediana_categoria",
-        limiar=">= 3 vezes a mediana da categoria",
-    ),
-    "valor_acima_percentil_95": ExplanationRule(
-        tipo="valor_acima_percentil_95",
-        peso=0.75,
-        descricao_base="Valor acima do percentil 95 da categoria.",
-        regra="Compara o valor liquido com o percentil 95 da mesma categoria.",
-        formula="valor_liquido > p95_categoria",
-        limiar="valor maior que p95_categoria",
-    ),
-    "valor_acima_percentil_99": ExplanationRule(
-        tipo="valor_acima_percentil_99",
-        peso=0.9,
-        descricao_base="Valor acima do percentil 99 da categoria.",
-        regra="Compara o valor liquido com o percentil 99 da mesma categoria.",
-        formula="valor_liquido > p99_categoria",
-        limiar="valor maior que p99_categoria",
-    ),
-    "fornecedor_pouco_frequente": ExplanationRule(
-        tipo="fornecedor_pouco_frequente",
-        peso=0.6,
-        descricao_base="Fornecedor com baixa frequencia de registros na base.",
-        regra="Conta quantas despesas aparecem para o fornecedor normalizado.",
-        formula="qtd_despesas_fornecedor",
-        limiar="<= 3 despesas",
-    ),
-    "fornecedor_baixa_dispersao": ExplanationRule(
-        tipo="fornecedor_baixa_dispersao",
-        peso=0.65,
-        descricao_base="Fornecedor utilizado por poucos deputados distintos.",
-        regra="Conta quantos deputados distintos usaram o fornecedor normalizado.",
-        formula="qtd_deputados_fornecedor",
-        limiar="<= 2 deputados",
-    ),
-    "ticket_acima_padrao_deputado": ExplanationRule(
-        tipo="ticket_acima_padrao_deputado",
-        peso=0.7,
-        descricao_base="Valor acima do padrao historico do proprio deputado.",
-        regra="Compara o valor liquido com a mediana de despesas do deputado.",
-        formula="valor_liquido / mediana_deputado",
-        limiar=">= 3 vezes a mediana do deputado",
-    ),
-}
 
 
 def remove_accents(value: object) -> str:
@@ -343,253 +283,7 @@ def encode_category(series: pd.Series) -> pd.Series:
     return series.astype("category").cat.codes.astype(float)
 
 
-def build_anomaly_features(df: pd.DataFrame) -> pd.DataFrame:
-    features = pd.DataFrame(index=df.index)
-    features["valor_liquido_log"] = np.log1p(df["valor_liquido"].clip(lower=0))
-    features["valor_documento_log"] = np.log1p(df["valor_documento"].clip(lower=0))
-    features["valor_glosa_log"] = np.log1p(df["valor_glosa"].clip(lower=0))
-
-    category_median = df.groupby("descricao_despesa")["valor_liquido"].transform("median").replace(0, np.nan)
-    deputy_median = df.groupby("id_deputado")["valor_liquido"].transform("median").replace(0, np.nan)
-    supplier_median = df.groupby("fornecedor_normalizado")["valor_liquido"].transform("median").replace(0, np.nan)
-
-    features["rel_categoria"] = (df["valor_liquido"] / category_median).replace([np.inf, -np.inf], np.nan).fillna(0)
-    features["rel_deputado"] = (df["valor_liquido"] / deputy_median).replace([np.inf, -np.inf], np.nan).fillna(0)
-    features["rel_fornecedor"] = (df["valor_liquido"] / supplier_median).replace([np.inf, -np.inf], np.nan).fillna(0)
-    features["categoria_code"] = encode_category(df["descricao_despesa"])
-    features["partido_code"] = encode_category(df["sigla_partido"])
-    features["uf_code"] = encode_category(df["sigla_uf"])
-    return features.replace([np.inf, -np.inf], np.nan).fillna(0)
-
-
-def robust_anomaly_fallback(features: pd.DataFrame, contamination: float) -> tuple[np.ndarray, np.ndarray, str]:
-    median = features.median(axis=0)
-    mad = (features - median).abs().median(axis=0).replace(0, 1)
-    robust_z = ((features - median).abs() / mad).mean(axis=1).to_numpy()
-    threshold = np.quantile(robust_z, 1 - contamination)
-    labels = np.where(robust_z >= threshold, -1, 1)
-    return labels, robust_z, "robust_score_fallback"
-
-
-def detect_anomalies(
-    df: pd.DataFrame,
-    contamination: float,
-    random_state: int,
-) -> tuple[pd.DataFrame, str]:
-    features = build_anomaly_features(df)
-    try:
-        from sklearn.ensemble import IsolationForest
-
-        model = IsolationForest(
-            n_estimators=100,
-            contamination=contamination,
-            max_samples=min(10000, len(features)),
-            n_jobs=-1,
-            random_state=random_state,
-        )
-        labels = model.fit_predict(features)
-        scores = -model.decision_function(features)
-        method = "isolation_forest"
-    except Exception:
-        labels, scores, method = robust_anomaly_fallback(features, contamination)
-
-    out = df.copy()
-    out["gasto_atipico"] = labels == -1
-    out["score_atipicidade"] = np.round(scores.astype(float), 6)
-    out["nota_linguagem"] = (
-        "Despesa fora do padrao estatistico; nao representa conclusao juridica ou etica."
-    )
-    cols = [
-        "id_gasto",
-        "ano_dados",
-        "id_deputado",
-        "nome_parlamentar",
-        "sigla_partido",
-        "sigla_uf",
-        "descricao_despesa",
-        "fornecedor",
-        "fornecedor_normalizado",
-        "valor_documento",
-        "valor_glosa",
-        "valor_liquido",
-        "gasto_atipico",
-        "score_atipicidade",
-        "nota_linguagem",
-    ]
-    return out[cols].sort_values("score_atipicidade", ascending=False), method
-
-
-def _safe_ratio(numerator: float, denominator: float) -> float:
-    if denominator <= 0 or np.isnan(denominator):
-        return 0.0
-    return float(numerator) / float(denominator)
-
-
-def _reason(tipo: str, descricao: str, detalhes: dict[str, object]) -> dict[str, object]:
-    rule = EXPLANATION_RULES[tipo]
-    return {
-        "tipo": rule.tipo,
-        "peso": rule.peso,
-        "descricao": descricao,
-        "regra": rule.regra,
-        "formula": rule.formula,
-        "limiar": rule.limiar,
-        "detalhes": detalhes,
-    }
-
-
-def build_anomaly_explanations(df: pd.DataFrame, anomalies: pd.DataFrame) -> pd.DataFrame:
-    """Gera motivos defensaveis para despesas classificadas como atipicas.
-
-    A deteccao continua sendo feita pelo Isolation Forest. Esta funcao apenas
-    compara cada despesa atipica com estatisticas descritivas da propria base.
-    """
-    category_stats = df.groupby("descricao_despesa")["valor_liquido"].agg(
-        mediana_categoria="median",
-        media_categoria="mean",
-        p95_categoria=lambda s: s.quantile(0.95),
-        p99_categoria=lambda s: s.quantile(0.99),
-        qtd_despesas_categoria="size",
-    )
-    deputy_median = df.groupby("id_deputado")["valor_liquido"].median().rename("mediana_deputado")
-    supplier_stats = df.groupby("fornecedor_normalizado").agg(
-        qtd_despesas_fornecedor=("valor_liquido", "size"),
-        qtd_deputados_fornecedor=("id_deputado", "nunique"),
-    )
-
-    atipicas = anomalies[anomalies["gasto_atipico"]].copy()
-    atipicas = atipicas.merge(category_stats, left_on="descricao_despesa", right_index=True, how="left")
-    atipicas = atipicas.merge(deputy_median, left_on="id_deputado", right_index=True, how="left")
-    atipicas = atipicas.merge(supplier_stats, left_on="fornecedor_normalizado", right_index=True, how="left")
-
-    rows: list[dict[str, object]] = []
-    for row in atipicas.to_dict("records"):
-        valor = float(row.get("valor_liquido") or 0)
-        mediana_categoria = float(row.get("mediana_categoria") or 0)
-        p95_categoria = float(row.get("p95_categoria") or 0)
-        p99_categoria = float(row.get("p99_categoria") or 0)
-        mediana_deputado = float(row.get("mediana_deputado") or 0)
-        qtd_fornecedor = int(row.get("qtd_despesas_fornecedor") or 0)
-        qtd_deputados_fornecedor = int(row.get("qtd_deputados_fornecedor") or 0)
-
-        motivos: list[dict[str, object]] = []
-        ratio_categoria = _safe_ratio(valor, mediana_categoria)
-        ratio_deputado = _safe_ratio(valor, mediana_deputado)
-
-        if ratio_categoria >= 3:
-            motivos.append(
-                _reason(
-                    "valor_extremo_categoria",
-                    f"Valor {ratio_categoria:.1f} vezes acima da mediana da categoria.",
-                    {
-                        "valor_liquido": round(valor, 2),
-                        "mediana_categoria": round(mediana_categoria, 2),
-                        "razao": round(ratio_categoria, 4),
-                    },
-                )
-            )
-        if p95_categoria > 0 and valor > p95_categoria:
-            motivos.append(
-                _reason(
-                    "valor_acima_percentil_95",
-                    "Valor acima do percentil 95 da categoria.",
-                    {
-                        "valor_liquido": round(valor, 2),
-                        "p95_categoria": round(p95_categoria, 2),
-                    },
-                )
-            )
-        if p99_categoria > 0 and valor > p99_categoria:
-            motivos.append(
-                _reason(
-                    "valor_acima_percentil_99",
-                    "Valor acima do percentil 99 da categoria.",
-                    {
-                        "valor_liquido": round(valor, 2),
-                        "p99_categoria": round(p99_categoria, 2),
-                    },
-                )
-            )
-        if qtd_fornecedor <= 3:
-            motivos.append(
-                _reason(
-                    "fornecedor_pouco_frequente",
-                    f"Fornecedor aparece em {qtd_fornecedor} despesa(s) na base analisada.",
-                    {"qtd_despesas_fornecedor": qtd_fornecedor},
-                )
-            )
-        if qtd_deputados_fornecedor <= 2:
-            motivos.append(
-                _reason(
-                    "fornecedor_baixa_dispersao",
-                    f"Fornecedor utilizado por {qtd_deputados_fornecedor} deputado(s) distinto(s).",
-                    {"qtd_deputados_fornecedor": qtd_deputados_fornecedor},
-                )
-            )
-        if ratio_deputado >= 3:
-            motivos.append(
-                _reason(
-                    "ticket_acima_padrao_deputado",
-                    f"Valor {ratio_deputado:.1f} vezes acima da mediana de despesas do deputado.",
-                    {
-                        "valor_liquido": round(valor, 2),
-                        "mediana_deputado": round(mediana_deputado, 2),
-                        "razao": round(ratio_deputado, 4),
-                    },
-                )
-            )
-
-        motivos.sort(key=lambda item: float(item["peso"]), reverse=True)
-        motivo_principal = str(motivos[0]["tipo"]) if motivos else ""
-        maior_peso = round(float(motivos[0]["peso"]), 4) if motivos else 0.0
-        rows.append(
-            {
-                "id_gasto": int(row["id_gasto"]),
-                "motivo_principal": motivo_principal,
-                "motivos_json": json.dumps(motivos, ensure_ascii=False, separators=(",", ":")),
-                "qtd_motivos": len(motivos),
-                "maior_peso_motivo": maior_peso,
-            }
-        )
-
-    return pd.DataFrame(
-        rows,
-        columns=["id_gasto", "motivo_principal", "motivos_json", "qtd_motivos", "maior_peso_motivo"],
-    )
-
-
-def build_anomaly_deputy_ranking(anomalies: pd.DataFrame) -> pd.DataFrame:
-    base = (
-        anomalies.groupby(["id_deputado", "nome_parlamentar", "sigla_partido", "sigla_uf"], dropna=False)
-        .agg(
-            total_despesas=("valor_liquido", "size"),
-            qtd_despesas_atipicas=("gasto_atipico", "sum"),
-            valor_atipico=("valor_liquido", lambda s: s[anomalies.loc[s.index, "gasto_atipico"]].sum()),
-            score_atipicidade_medio=("score_atipicidade", "mean"),
-            score_atipicidade_max=("score_atipicidade", "max"),
-        )
-        .reset_index()
-    )
-    base["valor_atipico"] = base["valor_atipico"].round(2)
-    base["score_atipicidade_medio"] = base["score_atipicidade_medio"].round(6)
-    base["score_atipicidade_max"] = base["score_atipicidade_max"].round(6)
-    base["pct_despesas_atipicas"] = np.where(
-        base["total_despesas"] > 0,
-        (base["qtd_despesas_atipicas"] / base["total_despesas"] * 100).round(4),
-        0,
-    )
-    return base.sort_values(
-        ["qtd_despesas_atipicas", "score_atipicidade_medio", "valor_atipico"],
-        ascending=[False, False, False],
-    )
-
-
-def write_csv(frame: pd.DataFrame, path: Path) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    frame.to_csv(path, sep=";", index=False, encoding="utf-8")
-
-
-def generate(input_path: Path, output_dir: Path, contamination: float, random_state: int) -> dict[str, object]:
+def generate(input_path: Path, output_dir: Path) -> dict[str, object]:
     df = read_gastos(input_path)
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -602,11 +296,6 @@ def generate(input_path: Path, output_dir: Path, contamination: float, random_st
         "gastos_por_uf.csv": build_uf(df),
     }
 
-    anomalies, anomaly_method = detect_anomalies(df, contamination, random_state)
-    outputs["gastos_atipicos_detalhado.csv"] = anomalies.drop(columns=["id_gasto"])
-    outputs["gastos_atipicos_ranking_deputados.csv"] = build_anomaly_deputy_ranking(anomalies)
-    outputs["gastos_atipicos_explicacoes.csv"] = build_anomaly_explanations(df, anomalies)
-
     for filename, frame in outputs.items():
         write_csv(frame, output_dir / filename)
 
@@ -616,8 +305,6 @@ def generate(input_path: Path, output_dir: Path, contamination: float, random_st
         "rows": int(len(df)),
         "fornecedores_normalizados": int(df["fornecedor_normalizado"].nunique()),
         "metrics": list(summarize_metrics(df).keys()),
-        "anomaly_method": anomaly_method,
-        "contamination": contamination,
         "outputs": sorted(outputs),
         "api_contract": {
             "summary": summarize_metrics(df),
@@ -640,17 +327,15 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Gera artefatos analiticos do bloco de gastos.")
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
-    parser.add_argument("--contamination", type=float, default=0.01)
-    parser.add_argument("--random-state", type=int, default=42)
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    metadata = generate(args.input, args.output_dir, args.contamination, args.random_state)
+    metadata = generate(args.input, args.output_dir)
     print(
         "Artefatos de gastos gerados em "
-        f"{args.output_dir} ({metadata['rows']} despesas; método: {metadata['anomaly_method']})."
+        f"{args.output_dir} ({metadata['rows']} despesas)."
     )
 
 
