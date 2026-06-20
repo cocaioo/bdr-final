@@ -8,6 +8,56 @@ function toNumber(value: unknown): number {
   return Number.isNaN(parsed) ? 0 : parsed
 }
 
+function formatBRLCurrency(value: unknown): string {
+  return toNumber(value).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+}
+
+function formatCompactBRL(value: unknown): string {
+  const amount = toNumber(value)
+  const absolute = Math.abs(amount)
+  if (absolute >= 1_000_000_000) return `R$ ${(amount / 1_000_000_000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} bi`
+  if (absolute >= 1_000_000) return `R$ ${(amount / 1_000_000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} mi`
+  if (absolute >= 1_000) return `R$ ${(amount / 1_000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} mil`
+  return formatBRLCurrency(amount)
+}
+
+function truncateLabel(value: unknown, maxChars: number): string {
+  const label = String(value ?? '').trim()
+  if (!label || label.length <= maxChars) return label
+  return `${label.slice(0, Math.max(0, maxChars - 1)).trimEnd()}…`
+}
+
+function clampPosition(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
+
+function safeTooltipPosition(
+  point: number[],
+  _params: unknown,
+  _dom: unknown,
+  _rect: unknown,
+  size: { contentSize: number[]; viewSize: number[] },
+): [number, number] {
+  if (!size || !size.contentSize) return [point[0], point[1]]
+  const [mouseX, mouseY] = point
+  const [tooltipWidth, tooltipHeight] = size.contentSize
+  const [viewWidth, viewHeight] = size.viewSize
+  const preferredX = mouseX + 18 + tooltipWidth <= viewWidth
+    ? mouseX + 18
+    : mouseX - tooltipWidth - 18
+  const preferredY = mouseY - tooltipHeight / 2
+
+  return [
+    clampPosition(preferredX, 12, Math.max(12, viewWidth - tooltipWidth - 12)),
+    clampPosition(preferredY, 12, Math.max(12, viewHeight - tooltipHeight - 12)),
+  ]
+}
+
 function readThemeToken(name: string, fallback: string): string {
   if (typeof document === 'undefined') return fallback
   const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
@@ -20,19 +70,66 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
 
 function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState): EChartsOption {
   const series = spec.series as Array<Record<string, unknown>>
+  const isCurrency = spec.options.currency === true
+  const showLegend = spec.options.show_legend !== false
+  const valueFormatter = isCurrency
+    ? (value: unknown) => (
+      spec.options.compact_tooltip === true ? formatCompactBRL(value) : formatBRLCurrency(value)
+    )
+    : undefined
+  const axisFormatter = isCurrency && spec.options.compact_axis === true
+    ? (value: unknown) => formatCompactBRL(value)
+    : undefined
 
   if (spec.type === 'bar_horizontal') {
+    const labelWidth = Number(spec.options.label_width ?? 190)
+    const labelMaxChars = Number(spec.options.label_max_chars ?? 20)
+    const gridLeft = Number(spec.options.grid_left ?? 100)
+    const gridRight = Number(spec.options.grid_right ?? 24)
+    const gridBottom = Number(spec.options.grid_bottom ?? 40)
+    const gridTop = Number(spec.options.grid_top ?? (showLegend ? 60 : 24))
+    const barMaxWidth = Number(spec.options.bar_max_width ?? 24)
+    const barCategoryGap = String(spec.options.bar_category_gap ?? '42%')
+
     return {
-      tooltip: { trigger: 'axis' },
-      legend: {},
-      grid: { left: 80, right: 20, top: 60, bottom: 40, containLabel: true },
-      xAxis: { type: 'value' },
-      yAxis: { type: 'category', data: spec.categories },
+      tooltip: {
+        trigger: 'axis',
+        confine: true,
+        valueFormatter,
+        position: safeTooltipPosition,
+      },
+      legend: { show: showLegend },
+      grid: {
+        left: gridLeft,
+        right: gridRight,
+        top: gridTop,
+        bottom: gridBottom,
+        containLabel: true,
+      },
+      xAxis: {
+        type: 'value',
+        splitNumber: 3,
+        axisLabel: {
+          formatter: axisFormatter,
+          hideOverlap: true,
+        },
+      },
+      yAxis: {
+        type: 'category',
+        data: spec.categories,
+        axisLabel: {
+          width: labelWidth,
+          overflow: 'truncate',
+          formatter: (value: unknown) => truncateLabel(value, labelMaxChars),
+        },
+      },
       series: series.map((entry) => ({
         type: 'bar',
         name: String(entry.name ?? ''),
         data: (entry.data as unknown[]) ?? [],
-        barMaxWidth: 24,
+        label: { show: false },
+        barMaxWidth,
+        barCategoryGap,
       })),
     } as EChartsOption
   }
@@ -40,11 +137,18 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
   if (spec.type === 'bar_vertical' || spec.type === 'composite') {
     const hasEscolaridadeFilter = Boolean(activeFilters?.escolaridade && activeFilters.escolaridade.length > 0)
     return {
-      tooltip: { trigger: 'axis' },
-      legend: {},
-      grid: { left: 45, right: 20, top: 60, bottom: 80, containLabel: true },
+      tooltip: { trigger: 'axis', valueFormatter },
+      legend: { show: showLegend },
+      grid: { left: 45, right: 20, top: showLegend ? 60 : 24, bottom: 80, containLabel: true },
       xAxis: { type: 'category', data: spec.categories, axisLabel: { rotate: 25 } },
-      yAxis: { type: 'value' },
+      yAxis: {
+        type: 'value',
+        splitNumber: 4,
+        axisLabel: {
+          formatter: axisFormatter,
+          hideOverlap: true,
+        },
+      },
       series: series.map((entry) => ({
         type: 'bar',
         name: String(entry.name ?? ''),
@@ -63,18 +167,27 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
           }
           return val
         }),
+        label: { show: false },
         barMaxWidth: 28,
       })),
     } as EChartsOption
   }
 
   if (spec.type === 'line') {
+    const displayLegend = showLegend && series.length > 1
     return {
-      tooltip: { trigger: 'axis' },
-      legend: {},
-      grid: { left: 60, right: 20, top: 50, bottom: 50, containLabel: true },
+      tooltip: { trigger: 'axis', valueFormatter },
+      legend: { show: displayLegend },
+      grid: { left: 60, right: 20, top: displayLegend ? 50 : 24, bottom: 50, containLabel: true },
       xAxis: { type: 'category', data: spec.categories },
-      yAxis: { type: 'value' },
+      yAxis: {
+        type: 'value',
+        splitNumber: 4,
+        axisLabel: {
+          formatter: axisFormatter,
+          hideOverlap: true,
+        },
+      },
       series: series.map((entry) => ({
         type: 'line',
         name: String(entry.name ?? ''),
@@ -82,6 +195,7 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
         smooth: true,
         symbolSize: 8,
         areaStyle: { opacity: 0.12 },
+        label: { show: false },
       })),
     } as EChartsOption
   }
@@ -89,11 +203,18 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
   if (spec.type === 'stacked_bar') {
     const hasPartidoFilter = Boolean(activeFilters?.partidos && activeFilters.partidos.length > 0)
     return {
-      tooltip: { trigger: 'axis' },
-      legend: {},
-      grid: { left: 45, right: 20, top: 60, bottom: 80, containLabel: true },
+      tooltip: { trigger: 'axis', valueFormatter },
+      legend: { show: showLegend },
+      grid: { left: 45, right: 20, top: showLegend ? 60 : 24, bottom: 80, containLabel: true },
       xAxis: { type: 'category', data: spec.categories, axisLabel: { rotate: 25 } },
-      yAxis: { type: 'value' },
+      yAxis: {
+        type: 'value',
+        splitNumber: 4,
+        axisLabel: {
+          formatter: axisFormatter,
+          hideOverlap: true,
+        },
+      },
       series: series.map((entry) => ({
         type: 'bar',
         stack: 'total',
@@ -113,6 +234,7 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
           }
           return val
         }),
+        label: { show: false },
       })),
     } as EChartsOption
   }
@@ -122,8 +244,18 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
     return {
       tooltip: { trigger: 'item' },
       grid: { left: 60, right: 20, top: 40, bottom: 50 },
-      xAxis: { type: 'value', name: String(spec.options.x_name ?? 'X') },
-      yAxis: { type: 'value', name: String(spec.options.y_name ?? 'Y') },
+      xAxis: {
+        type: 'value',
+        name: String(spec.options.x_name ?? 'X'),
+        splitNumber: 4,
+        axisLabel: { hideOverlap: true },
+      },
+      yAxis: {
+        type: 'value',
+        name: String(spec.options.y_name ?? 'Y'),
+        splitNumber: 4,
+        axisLabel: { hideOverlap: true },
+      },
       series: [
         {
           type: 'scatter',
@@ -223,6 +355,8 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
         {
           gridIndex: 1,
           type: 'value',
+          splitNumber: 4,
+          axisLabel: { hideOverlap: true },
         },
       ],
       yAxis: [
@@ -264,7 +398,11 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
   return {
     legend: {},
     xAxis: { type: 'category', data: spec.categories },
-    yAxis: { type: 'value' },
+    yAxis: {
+      type: 'value',
+      splitNumber: 4,
+      axisLabel: { hideOverlap: true },
+    },
     series: series.map((entry) => ({
       type: 'bar',
       data: (entry.data as unknown[]) ?? [],
