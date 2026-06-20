@@ -1,3 +1,4 @@
+import csv
 from datetime import datetime, timezone
 from typing import Any
 
@@ -286,6 +287,50 @@ class Q4Adapter(QuestionAdapter):
                             deputy_to_uf[dep_id_int] = str(uf).strip()
             except Exception:
                 pass
+
+        # Fallback: alguns deputados da 57a legislatura nao aparecem na Q1 porque
+        # ainda nao possuem recorte de gastos consolidado. Nesses casos, usamos a
+        # base de votos agregados (Q3), que carrega partido e UF por deputado.
+        missing_identity_ids = {
+            int(dep_id)
+            for row in comp_rows
+            if (dep_id := row.get("id_deputado")) not in (None, "")
+            and (
+                int(dep_id) not in deputy_to_party
+                or int(dep_id) not in deputy_to_uf
+            )
+        }
+        if missing_identity_ids:
+            q3_file = (
+                self.context.repo_root
+                / "JF"
+                / "producao-legislativa-temas"
+                / "q3"
+                / "q3_resumos_agregados.csv"
+            )
+            if q3_file.exists():
+                try:
+                    with q3_file.open("r", encoding="utf-8-sig", newline="") as handle:
+                        reader = csv.DictReader(handle, delimiter=";")
+                        for row in reader:
+                            dep_id_raw = str(row.get("id_deputado") or "").strip()
+                            if not dep_id_raw.isdigit():
+                                continue
+                            dep_id_int = int(dep_id_raw)
+                            if dep_id_int not in missing_identity_ids:
+                                continue
+                            party = str(row.get("sigla_partido") or "").strip()
+                            uf = str(row.get("sigla_uf") or "").strip()
+                            if party and dep_id_int not in deputy_to_party:
+                                deputy_to_party[dep_id_int] = party
+                            if uf and dep_id_int not in deputy_to_uf:
+                                deputy_to_uf[dep_id_int] = uf
+                            if dep_id_int in deputy_to_party and dep_id_int in deputy_to_uf:
+                                missing_identity_ids.discard(dep_id_int)
+                            if not missing_identity_ids:
+                                break
+                except Exception:
+                    pass
 
         # Enrich comp_rows in place so that _build_complements and FilterEngine can find the attributes
         from ..party_catalog import normalize_party

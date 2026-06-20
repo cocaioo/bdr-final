@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { fetchDeputies, fetchDeputyExpenseBreakdown } from '../api'
+import { fetchDeputies, fetchDeputyExpenseBreakdown, fetchDeputyIdentityFromGastos } from '../api'
 
 describe('fetchDeputies', () => {
   beforeEach(() => {
@@ -90,5 +90,46 @@ describe('fetchDeputies', () => {
       valor_total: 70_000,
       pct_total: 70,
     })
+  })
+
+  it('usa Q2 como fallback de identidade quando gastos nao retorna o deputado', async () => {
+    vi.mocked(fetch).mockImplementation(async (input) => {
+      const url = String(input)
+
+      if (url.includes('/api/gastos/deputados?')) {
+        return {
+          ok: true,
+          json: async () => ({
+            summary: {},
+            items: [],
+            metadata: {},
+          }),
+        } as Response
+      }
+
+      if (url.includes('/api/questions/q2?')) {
+        expect(url).toContain('deputados=235869')
+        return {
+          ok: true,
+          json: async () => ({
+            table_spec: {
+              rows: [
+                {
+                  id_deputado: 235869,
+                  sigla_partido: 'REPUBLICANOS',
+                  sigla_uf: 'AM',
+                },
+              ],
+            },
+          }),
+        } as Response
+      }
+
+      throw new Error(`URL inesperada: ${url}`)
+    })
+
+    const identity = await fetchDeputyIdentityFromGastos('235869')
+
+    expect(identity).toEqual({ partido: 'REPUBLICANOS', uf: 'AM' })
   })
 })

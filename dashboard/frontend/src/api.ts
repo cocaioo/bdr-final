@@ -232,10 +232,40 @@ export async function fetchDeputyIdentityFromGastos(deputyId: string): Promise<D
     const payload = await fetchGastosDeputados({ busca: deputyId, pageSize: 10 })
     const row =
       payload.items.find((item) => String(item.id_deputado) === deputyId) ?? payload.items[0]
+    if (row) {
+      return {
+        partido: row.sigla_partido || undefined,
+        uf: row.sigla_uf || undefined,
+      }
+    }
+  } catch {
+    // Continua para o fallback abaixo.
+  }
+
+  try {
+    const payload = await fetchQuestion(
+      'q2',
+      {
+        anos: [],
+        eixos: [],
+        partidos: [],
+        ufs: [],
+        deputados: [deputyId],
+        escolaridade: [],
+        search: '',
+      },
+      { page: 1, pageSize: 5, sortDir: 'desc' },
+      ['deputados'],
+    )
+    const row =
+      payload.table_spec.rows.find((item) => String(item.id_deputado ?? '') === deputyId) ??
+      payload.table_spec.rows[0]
     if (!row) return {}
+    const partido = typeof row.sigla_partido === 'string' ? row.sigla_partido : undefined
+    const uf = typeof row.sigla_uf === 'string' ? row.sigla_uf : undefined
     return {
-      partido: row.sigla_partido || undefined,
-      uf: row.sigla_uf || undefined,
+      partido: partido || undefined,
+      uf: uf || undefined,
     }
   } catch {
     return {}
