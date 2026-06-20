@@ -1,6 +1,7 @@
 import { startTransition, useDeferredValue, useEffect, useMemo, useState } from 'react'
 
 import {
+  fetchDeputyExpenseBreakdown,
   fetchGastosCategorias,
   fetchGastosContexto,
   fetchGastosDeputados,
@@ -21,6 +22,7 @@ import type {
   GastosSummary,
   MetaResponse,
 } from '../types'
+import type { DeputyExpenseBreakdown } from '../api'
 
 type GastosTab = 'resumo' | 'categorias' | 'deputados' | 'fornecedores' | 'contexto'
 
@@ -39,6 +41,7 @@ const TABS: Array<{ id: GastosTab; label: string; question: string }> = [
 const TOP_LIMIT = 10
 const CATEGORY_CHART_LIMIT = 8
 const SUPPLIER_CHART_LIMIT = 6
+const DEPUTY_BREAKDOWN_LIMIT = 6
 const CATEGORY_CHART_OPTIONS = {
   bar_category_gap: '34%',
   bar_max_width: 18,
@@ -406,9 +409,15 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [categoriaFiltro, setCategoriaFiltro] = useState('')
   const [selectedDeputy, setSelectedDeputy] = useState<GastoDeputadoItem | null>(null)
   const [selectedSupplier, setSelectedSupplier] = useState<GastoFornecedorItem | null>(null)
+  const [selectedDeputyBreakdown, setSelectedDeputyBreakdown] = useState<{
+    deputyId?: number
+    data: DeputyExpenseBreakdown | null
+    error: string | null
+  }>({ data: null, error: null })
   const deferredBuscaDeputado = useDeferredValue(buscaDeputado)
   const deferredSelectedDeputy = useDeferredValue(selectedDeputy)
   const deferredSelectedSupplier = useDeferredValue(selectedSupplier)
+  const [loadingSelectedDeputyBreakdown, setLoadingSelectedDeputyBreakdown] = useState(false)
 
   const changeTab = (tab: GastosTab) => {
     if (tab === activeTab) return
@@ -503,6 +512,53 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       })
   }, [visitedTabs.deputados, ano, deferredBuscaDeputado, partido, uf])
 
+  useEffect(() => {
+    if (!selectedDeputy) {
+      setSelectedDeputyBreakdown({ data: null, error: null })
+      setLoadingSelectedDeputyBreakdown(false)
+      return
+    }
+
+    let active = true
+    setLoadingSelectedDeputyBreakdown(true)
+    setSelectedDeputyBreakdown((current) => (
+      current.deputyId === selectedDeputy.id_deputado
+        ? { ...current, error: null }
+        : { deputyId: selectedDeputy.id_deputado, data: null, error: null }
+    ))
+
+    fetchDeputyExpenseBreakdown(String(selectedDeputy.id_deputado), {
+      ano: ano || undefined,
+      partido: partido || undefined,
+      uf: uf || undefined,
+    })
+      .then((data) => {
+        if (active) {
+          setSelectedDeputyBreakdown({
+            deputyId: selectedDeputy.id_deputado,
+            data,
+            error: null,
+          })
+        }
+      })
+      .catch((err: Error) => {
+        if (active) {
+          setSelectedDeputyBreakdown({
+            deputyId: selectedDeputy.id_deputado,
+            data: null,
+            error: err.message,
+          })
+        }
+      })
+      .finally(() => {
+        if (active) setLoadingSelectedDeputyBreakdown(false)
+      })
+
+    return () => {
+      active = false
+    }
+  }, [selectedDeputy, ano, partido, uf])
+
   // 4. Fornecedores Tab Loader
   useEffect(() => {
     if (!visitedTabs.fornecedores) return
@@ -512,7 +568,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       categoria: categoriaFiltro || undefined,
       partido: partido || undefined,
       uf: uf || undefined,
-      deputado: selectedDeputy ? String(selectedDeputy.id_deputado) : undefined,
       pageSize: 100,
     })
       .then((payload) => {
@@ -529,7 +584,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       .finally(() => {
         setLoadingFornecedores(false)
       })
-  }, [visitedTabs.fornecedores, categoriaFiltro, partido, uf, selectedDeputy])
+  }, [visitedTabs.fornecedores, categoriaFiltro, partido, uf])
 
   // 5. Contexto Tab Loader
   useEffect(() => {
@@ -572,6 +627,30 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   )
   const topDeputies = useMemo(() => topRows(deputies?.items ?? []), [deputies])
   const topSuppliers = useMemo(() => topRows(suppliers?.items ?? [], SUPPLIER_CHART_LIMIT), [suppliers])
+  const selectedDeputyExpenseBreakdown = useMemo(
+    () => (
+      deferredSelectedDeputy && selectedDeputyBreakdown.deputyId === deferredSelectedDeputy.id_deputado
+        ? selectedDeputyBreakdown.data
+        : null
+    ),
+    [deferredSelectedDeputy, selectedDeputyBreakdown],
+  )
+  const selectedDeputyBreakdownError = useMemo(
+    () => (
+      deferredSelectedDeputy && selectedDeputyBreakdown.deputyId === deferredSelectedDeputy.id_deputado
+        ? selectedDeputyBreakdown.error
+        : null
+    ),
+    [deferredSelectedDeputy, selectedDeputyBreakdown],
+  )
+  const topSelectedDeputySuppliers = useMemo(
+    () => topRows(selectedDeputyExpenseBreakdown?.suppliers ?? [], DEPUTY_BREAKDOWN_LIMIT),
+    [selectedDeputyExpenseBreakdown],
+  )
+  const topSelectedDeputyCategories = useMemo(
+    () => topRows(selectedDeputyExpenseBreakdown?.categories ?? [], DEPUTY_BREAKDOWN_LIMIT),
+    [selectedDeputyExpenseBreakdown],
+  )
   const topParties = useMemo(
     () => topRows(sortByNumber(asRecords(contexto?.partidos ?? []), 'valor_total')),
     [contexto],
@@ -593,7 +672,15 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const selectedDeputyRank = selectedDeputy && deputies
     ? rankInRows(deputies.items, (item) => item.id_deputado === selectedDeputy.id_deputado)
     : null
-  const isDeputyProfileUpdating = selectedDeputy !== deferredSelectedDeputy
+  const selectedDeputyShare = deferredSelectedDeputy && deputies?.summary.valor_total
+    ? (deferredSelectedDeputy.valor_total / deputies.summary.valor_total) * 100
+    : 0
+  const isDeputyProfileUpdating =
+    selectedDeputy !== deferredSelectedDeputy ||
+    (Boolean(deferredSelectedDeputy) && (
+      loadingSelectedDeputyBreakdown ||
+      selectedDeputyBreakdown.deputyId !== deferredSelectedDeputy?.id_deputado
+    ))
   const isSupplierProfileUpdating = selectedSupplier !== deferredSelectedSupplier
   
   const topPartyByTotal = topParties[0]
@@ -908,8 +995,8 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
 
               {selectedDeputy && isDeputyProfileUpdating ? (
                 <SelectionSkeleton
-                  subtitle="Carregando perfil"
-                  title="Atualizando o resumo do deputado sem bloquear o restante da tela."
+                  subtitle="Carregando detalhe"
+                  title="Preparando o drilldown do deputado a partir das fontes canônicas Q12 e Q13."
                 />
               ) : null}
 
@@ -933,10 +1020,87 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                     <span>Valor total: <strong>{formatCurrency(deferredSelectedDeputy.valor_total)}</strong></span>
                     <span>Posicao no ranking: <strong>{selectedDeputyRank ? `#${selectedDeputyRank}` : '-'}</strong></span>
                     <span>Ticket medio: <strong>{formatCurrency(deferredSelectedDeputy.ticket_medio)}</strong></span>
-                    <span>% do grupo filtrado: <strong>{formatPercent(deferredSelectedDeputy.pct_total)}</strong></span>
+                    <span>% do grupo filtrado: <strong>{formatPercent(selectedDeputyShare)}</strong></span>
                     <span>Categoria dominante: <strong>{deferredSelectedDeputy.categoria_principal ?? '-'}</strong></span>
                     <span>Fornecedores unicos: <strong>{formatCellValue(deferredSelectedDeputy.qtd_fornecedores)}</strong></span>
                   </div>
+
+                  <div style={{ marginTop: '16px' }}>
+                    <small style={{ color: 'var(--muted)' }}>
+                      Detalhamento do deputado selecionado. Fonte canônica: Q12 e Q13, com percentuais calculados sobre o total do próprio deputado.
+                    </small>
+                  </div>
+
+                  {selectedDeputyBreakdownError ? (
+                    <p style={{ marginTop: '12px' }}>Não foi possível carregar o drilldown do deputado agora.</p>
+                  ) : null}
+
+                  {selectedDeputyExpenseBreakdown ? (
+                    <>
+                      <div className="gastos-kpi-grid" style={{ marginTop: '16px' }}>
+                        <article className="gastos-kpi-card">
+                          <span>Fonte do drilldown</span>
+                          <strong>{selectedDeputyExpenseBreakdown.source.toUpperCase()}</strong>
+                          <small>{formatCurrency(selectedDeputyExpenseBreakdown.total)} no recorte do deputado</small>
+                        </article>
+                        <article className="gastos-kpi-card">
+                          <span>Top fornecedor do deputado</span>
+                          <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSelectedDeputySuppliers[0]?.fornecedor}>
+                            {topSelectedDeputySuppliers[0]?.fornecedor ?? '-'}
+                          </strong>
+                          <small>
+                            {topSelectedDeputySuppliers[0]
+                              ? `${formatCurrency(topSelectedDeputySuppliers[0].valor_total)} (${formatPercent(topSelectedDeputySuppliers[0].pct_total)})`
+                              : ''}
+                          </small>
+                        </article>
+                        <article className="gastos-kpi-card">
+                          <span>Top categoria do deputado</span>
+                          <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSelectedDeputyCategories[0]?.categoria}>
+                            {topSelectedDeputyCategories[0]?.categoria ?? '-'}
+                          </strong>
+                          <small>
+                            {topSelectedDeputyCategories[0]
+                              ? `${formatCurrency(topSelectedDeputyCategories[0].valor_total)} (${formatPercent(topSelectedDeputyCategories[0].pct_total)})`
+                              : ''}
+                          </small>
+                        </article>
+                      </div>
+
+                      <div className="gastos-two-columns" style={{ marginTop: '20px' }}>
+                        <div>
+                          <h4 style={{ marginBottom: '12px' }}>Top fornecedores do deputado (Q12)</h4>
+                          <CompactTable
+                            rows={asRecords(topSelectedDeputySuppliers)}
+                            columns={[
+                              { key: 'fornecedor', label: 'Fornecedor' },
+                              { key: 'valor_total', label: 'Valor do deputado', format: formatCurrency },
+                              { key: 'pct_total', label: '% do deputado', format: (value) => formatPercent(value) },
+                              { key: 'qtd_despesas', label: 'Despesas' },
+                            ]}
+                          />
+                        </div>
+                        <div>
+                          <h4 style={{ marginBottom: '12px' }}>Top categorias do deputado (Q13)</h4>
+                          <CompactTable
+                            rows={asRecords(topSelectedDeputyCategories)}
+                            columns={[
+                              { key: 'categoria', label: 'Categoria' },
+                              { key: 'valor_total', label: 'Valor do deputado', format: formatCurrency },
+                              { key: 'pct_total', label: '% do deputado', format: (value) => formatPercent(value) },
+                              { key: 'qtd_despesas', label: 'Despesas' },
+                            ]}
+                          />
+                        </div>
+                      </div>
+
+                      {selectedDeputyExpenseBreakdown.partialErrors.length ? (
+                        <p style={{ marginTop: '12px' }}>
+                          Alguns recortes do drilldown não puderam ser carregados: {selectedDeputyExpenseBreakdown.partialErrors.join(', ')}.
+                        </p>
+                      ) : null}
+                    </>
+                  ) : null}
                 </aside>
               )}
 
@@ -981,14 +1145,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               Filtrar por Categoria
               <input value={categoriaFiltro} onChange={(event) => setCategoriaFiltro(event.target.value)} placeholder="Ex.: passagem" />
             </label>
-            {selectedDeputy && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)', fontWeight: 'bold' }}>Filtro de Deputado Ativo</span>
-                <button type="button" className="gastos-clear-button" onClick={() => setSelectedDeputy(null)}>
-                  Limpar ({selectedDeputy.nome_parlamentar})
-                </button>
-              </div>
-            )}
           </div>
 
           {loadingFornecedores || !suppliers ? (

@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { fetchDeputies } from '../api'
+import { fetchDeputies, fetchDeputyExpenseBreakdown } from '../api'
 
 describe('fetchDeputies', () => {
   beforeEach(() => {
@@ -28,6 +28,67 @@ describe('fetchDeputies', () => {
       partido: undefined,
       uf: undefined,
       escolaridade: 'Superior',
+    })
+  })
+
+  it('monta o drilldown do deputado a partir de Q12 e Q13 com percentual no total do proprio deputado', async () => {
+    vi.mocked(fetch).mockImplementation(async (input) => {
+      const url = String(input)
+
+      if (url.includes('/api/questions/q12?')) {
+        expect(url).toContain('anos=2024')
+        expect(url).toContain('partidos=PT')
+        expect(url).toContain('ufs=CE')
+        expect(url).toContain('deputados=123')
+        return {
+          ok: true,
+          json: async () => ({
+            table_spec: { rows: [] },
+            complement_tables: [
+              {
+                rows: [
+                  { ano_dados: 'GLOBAL', id_deputado: 123, fornecedor: 'Fornecedor A', qtd_lancamentos: 3, total_pago: 60_000 },
+                  { ano_dados: 'GLOBAL', id_deputado: 123, fornecedor: 'Fornecedor B', qtd_lancamentos: 2, total_pago: 40_000 },
+                ],
+              },
+            ],
+          }),
+        } as Response
+      }
+
+      if (url.includes('/api/questions/q13?')) {
+        return {
+          ok: true,
+          json: async () => ({
+            table_spec: { rows: [] },
+            complement_tables: [
+              {
+                rows: [
+                  { ano_dados: 'GLOBAL', id_deputado: 123, descricao_despesa: 'Categoria A', qtd_lancamentos: 7, gasto_total: 70_000 },
+                  { ano_dados: 'GLOBAL', id_deputado: 123, descricao_despesa: 'Categoria B', qtd_lancamentos: 3, gasto_total: 30_000 },
+                ],
+              },
+            ],
+          }),
+        } as Response
+      }
+
+      throw new Error(`URL inesperada: ${url}`)
+    })
+
+    const breakdown = await fetchDeputyExpenseBreakdown('123', { ano: '2024', partido: 'PT', uf: 'CE' })
+
+    expect(breakdown.source).toBe('q12_q13')
+    expect(breakdown.total).toBe(100_000)
+    expect(breakdown.suppliers[0]).toMatchObject({
+      fornecedor: 'Fornecedor A',
+      valor_total: 60_000,
+      pct_total: 60,
+    })
+    expect(breakdown.categories[0]).toMatchObject({
+      categoria: 'Categoria A',
+      valor_total: 70_000,
+      pct_total: 70,
     })
   })
 })

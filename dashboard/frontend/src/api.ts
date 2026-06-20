@@ -149,20 +149,25 @@ export function fetchQuestionForDeputy(
   deputyId: string,
   page = 1,
   pageSize = 100,
+  filters: {
+    ano?: string
+    partido?: string
+    uf?: string
+  } = {},
 ): Promise<QuestionPayload> {
   return fetchQuestion(
     questionId,
     {
-      anos: [],
+      anos: filters.ano ? [filters.ano] : [],
       eixos: [],
-      partidos: [],
-      ufs: [],
+      partidos: filters.partido ? [filters.partido] : [],
+      ufs: filters.uf ? [filters.uf] : [],
       deputados: [deputyId],
       escolaridade: [],
       search: '',
     },
     { page, pageSize, sortDir: 'desc' },
-    ['deputados'],
+    ['anos', 'partidos', 'ufs', 'deputados'],
   )
 }
 
@@ -242,12 +247,31 @@ function numericValue(value: unknown): number {
   return Number.isFinite(parsed) ? parsed : 0
 }
 
-function extractDeputyCategories(payload: QuestionPayload): DeputyGastosCategory[] {
+export interface DeputyExpenseBreakdown {
+  total: number
+  suppliers: GastoFornecedorItem[]
+  categories: GastoCategoriaItem[]
+  source: 'q12_q13'
+  partialErrors: string[]
+}
+
+function deputyBreakdownRows(payload: QuestionPayload) {
   const tables = [payload.table_spec, ...payload.complement_tables]
   const globalRows = tables.flatMap((table) =>
     table.rows.filter((row) => String(row.ano_dados ?? '').toUpperCase() === 'GLOBAL'),
   )
-  const rows = globalRows.length ? globalRows : payload.table_spec.rows
+  return globalRows.length ? globalRows : tables.flatMap((table) => table.rows)
+}
+
+function addDeputyPercent<T extends { valor_total: number }>(rows: T[], total: number): Array<T & { pct_total: number }> {
+  return rows.map((row) => ({
+    ...row,
+    pct_total: total > 0 ? Number(((row.valor_total / total) * 100).toFixed(2)) : 0,
+  }))
+}
+
+function collectDeputyCategories(payload: QuestionPayload): GastoCategoriaItem[] {
+  const rows = deputyBreakdownRows(payload)
 
   return rows
     .filter((row) => row.descricao_despesa)
@@ -255,21 +279,34 @@ function extractDeputyCategories(payload: QuestionPayload): DeputyGastosCategory
       categoria: String(row.descricao_despesa),
       valor_total: numericValue(row.gasto_total),
       qtd_despesas: numericValue(row.qtd_lancamentos),
+      ticket_medio:
+        numericValue(row.qtd_lancamentos) > 0
+          ? Number((numericValue(row.gasto_total) / numericValue(row.qtd_lancamentos)).toFixed(2))
+          : 0,
+      qtd_deputados: 1,
     }))
     .sort((a, b) => b.valor_total - a.valor_total)
-    .slice(0, 6)
 }
 
-function extractDeputySuppliers(payload: QuestionPayload, deputyId: string): GastoFornecedorItem[] {
-  const tables = [payload.table_spec, ...payload.complement_tables]
-  const allRows = tables.flatMap((table) => table.rows)
+function extractDeputyCategories(payload: QuestionPayload): DeputyGastosCategory[] {
+  return collectDeputyCategories(payload)
+    .slice(0, 6)
+    .map((row) => ({
+      categoria: row.categoria,
+      valor_total: row.valor_total,
+      qtd_despesas: row.qtd_despesas,
+    }))
+}
+
+function collectDeputySuppliers(payload: QuestionPayload, deputyId: string): GastoFornecedorItem[] {
+  const allRows = deputyBreakdownRows(payload)
   const deputyRows = allRows.filter((row) => String(row.id_deputado ?? '') === deputyId)
-  
+
   const globalRows = deputyRows.filter((row) => String(row.ano_dados ?? '').toUpperCase() === 'GLOBAL')
   const rowsToUse = globalRows.length ? globalRows : deputyRows
 
   const grouped: Record<string, { valor_total: number; qtd_despesas: number }> = {}
-  
+
   rowsToUse.forEach((row) => {
     const name = String(row.fornecedor || '').trim()
     if (!name) return
@@ -291,7 +328,50 @@ function extractDeputySuppliers(payload: QuestionPayload, deputyId: string): Gas
       ticket_medio: data.qtd_despesas > 0 ? Number((data.valor_total / data.qtd_despesas).toFixed(2)) : 0,
     }))
     .sort((a, b) => b.valor_total - a.valor_total)
+}
+
+function extractDeputySuppliers(payload: QuestionPayload, deputyId: string): GastoFornecedorItem[] {
+  return collectDeputySuppliers(payload, deputyId)
     .slice(0, 6)
+}
+
+export async function fetchDeputyExpenseBreakdown(
+  deputyId: string,
+  filters: {
+    ano?: string
+    partido?: string
+    uf?: string
+  } = {},
+): Promise<DeputyExpenseBreakdown> {
+  const [suppliersResult, categoriesResult] = await Promise.allSettled([
+    fetchQuestionForDeputy('q12', deputyId, 1, 100, filters),
+    fetchQuestionForDeputy('q13', deputyId, 1, 100, filters),
+  ])
+
+  if (suppliersResult.status === 'rejected' && categoriesResult.status === 'rejected') {
+    throw new Error('Não foi possível carregar o detalhamento do deputado.')
+  }
+
+  const partialErrors: string[] = []
+  if (suppliersResult.status === 'rejected') partialErrors.push('fornecedores')
+  if (categoriesResult.status === 'rejected') partialErrors.push('categorias')
+
+  const suppliers =
+    suppliersResult.status === 'fulfilled' ? collectDeputySuppliers(suppliersResult.value, deputyId) : []
+  const categories =
+    categoriesResult.status === 'fulfilled' ? collectDeputyCategories(categoriesResult.value) : []
+
+  const supplierTotal = suppliers.reduce((sum, item) => sum + item.valor_total, 0)
+  const categoryTotal = categories.reduce((sum, item) => sum + item.valor_total, 0)
+  const total = Number(Math.max(supplierTotal, categoryTotal).toFixed(2))
+
+  return {
+    total,
+    suppliers: addDeputyPercent(suppliers, total),
+    categories: addDeputyPercent(categories, total),
+    source: 'q12_q13',
+    partialErrors,
+  }
 }
 
 /** Consolida somente dados existentes nos contratos atuais de gastos e perguntas. */
