@@ -1,104 +1,104 @@
 Tabela complementar - gastos consolidados por categoria
  ano_dados |                     descricao_despesa                     | total_gasto  | qtd_lancamentos | pct_total 
 -----------+-----------------------------------------------------------+--------------+-----------------+-----------
-      2023 | DIVULGA«√O DA ATIVIDADE PARLAMENTAR.                      |  91345041.51 |           15203 |     37.24
-      2023 | PASSAGEM A…REA - SIGEPA                                   |  55369766.43 |           48540 |     22.57
-      2023 | LOCA«√O OU FRETAMENTO DE VEÕCULOS AUTOMOTORES             |  36821767.00 |            7008 |     15.01
-      2023 | MANUTEN«√O DE ESCRIT”RIO DE APOIO ¿ ATIVIDADE PARLAMENTAR |  28192339.42 |           18700 |     11.49
-      2023 | COMBUSTÕVEIS E LUBRIFICANTES.                             |  19483929.16 |           65950 |      7.94
+      2023 | DIVULGA√á√ÉO DA ATIVIDADE PARLAMENTAR.                      |  91345041.51 |           15203 |     37.24
+      2023 | PASSAGEM A√âREA - SIGEPA                                   |  55369766.43 |           48540 |     22.57
+      2023 | LOCA√á√ÉO OU FRETAMENTO DE VE√çCULOS AUTOMOTORES             |  36821767.00 |            7008 |     15.01
+      2023 | MANUTEN√á√ÉO DE ESCRIT√ìRIO DE APOIO √Ä ATIVIDADE PARLAMENTAR |  28192339.42 |           18700 |     11.49
+      2023 | COMBUST√çVEIS E LUBRIFICANTES.                             |  19483929.16 |           65950 |      7.94
       2023 | TELEFONIA                                                 |   2781031.47 |           14849 |      1.13
       2023 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |   2689035.03 |            5846 |      1.10
-      2023 | PASSAGEM A…REA - RPA                                      |   1914631.49 |            1512 |      0.78
-      2023 | LOCA«√O OU FRETAMENTO DE AERONAVES                        |   1797722.00 |              74 |      0.73
-      2023 | SERVI«O DE SEGURAN«A PRESTADO POR EMPRESA ESPECIALIZADA.  |   1403736.91 |             426 |      0.57
-      2023 | PASSAGEM A…REA - REEMBOLSO                                |   1236787.00 |             466 |      0.50
-      2023 | SERVI«O DE T¡XI, PED¡GIO E ESTACIONAMENTO                 |    981853.87 |           21303 |      0.40
-      2023 | FORNECIMENTO DE ALIMENTA«√O DO PARLAMENTAR                |    794755.15 |           12316 |      0.32
-      2023 | LOCA«√O OU FRETAMENTO DE EMBARCA«’ES                      |    230190.00 |              41 |      0.09
-      2023 | PASSAGENS TERRESTRES, MARÕTIMAS OU FLUVIAIS               |    114941.61 |             736 |      0.05
-      2023 | ASSINATURA DE PUBLICA«’ES                                 |     69931.39 |             244 |      0.03
-      2023 | PARTICIPA«√O EM CURSO, PALESTRA OU EVENTO SIMILAR         |     47951.61 |               8 |      0.02
-      2023 | AQUISI«√O DE TOKENS E CERTIFICADOS DIGITAIS               |      4623.35 |              18 |      0.00
-      2024 | DIVULGA«√O DA ATIVIDADE PARLAMENTAR.                      |  99972855.26 |           16367 |     37.97
-      2024 | PASSAGEM A…REA - SIGEPA                                   |  51934444.78 |           46652 |     19.72
-      2024 | LOCA«√O OU FRETAMENTO DE VEÕCULOS AUTOMOTORES             |  42133141.99 |            7469 |     16.00
-      2024 | MANUTEN«√O DE ESCRIT”RIO DE APOIO ¿ ATIVIDADE PARLAMENTAR |  32408907.27 |           20494 |     12.31
-      2024 | COMBUSTÕVEIS E LUBRIFICANTES.                             |  22162387.51 |           72411 |      8.42
+      2023 | PASSAGEM A√âREA - RPA                                      |   1914631.49 |            1512 |      0.78
+      2023 | LOCA√á√ÉO OU FRETAMENTO DE AERONAVES                        |   1797722.00 |              74 |      0.73
+      2023 | SERVI√áO DE SEGURAN√áA PRESTADO POR EMPRESA ESPECIALIZADA.  |   1403736.91 |             426 |      0.57
+      2023 | PASSAGEM A√âREA - REEMBOLSO                                |   1236787.00 |             466 |      0.50
+      2023 | SERVI√áO DE T√ÅXI, PED√ÅGIO E ESTACIONAMENTO                 |    981853.87 |           21303 |      0.40
+      2023 | FORNECIMENTO DE ALIMENTA√á√ÉO DO PARLAMENTAR                |    794755.15 |           12316 |      0.32
+      2023 | LOCA√á√ÉO OU FRETAMENTO DE EMBARCA√á√ïES                      |    230190.00 |              41 |      0.09
+      2023 | PASSAGENS TERRESTRES, MAR√çTIMAS OU FLUVIAIS               |    114941.61 |             736 |      0.05
+      2023 | ASSINATURA DE PUBLICA√á√ïES                                 |     69931.39 |             244 |      0.03
+      2023 | PARTICIPA√á√ÉO EM CURSO, PALESTRA OU EVENTO SIMILAR         |     47951.61 |               8 |      0.02
+      2023 | AQUISI√á√ÉO DE TOKENS E CERTIFICADOS DIGITAIS               |      4623.35 |              18 |      0.00
+      2024 | DIVULGA√á√ÉO DA ATIVIDADE PARLAMENTAR.                      |  99972855.26 |           16367 |     37.97
+      2024 | PASSAGEM A√âREA - SIGEPA                                   |  51934444.78 |           46652 |     19.72
+      2024 | LOCA√á√ÉO OU FRETAMENTO DE VE√çCULOS AUTOMOTORES             |  42133141.99 |            7469 |     16.00
+      2024 | MANUTEN√á√ÉO DE ESCRIT√ìRIO DE APOIO √Ä ATIVIDADE PARLAMENTAR |  32408907.27 |           20494 |     12.31
+      2024 | COMBUST√çVEIS E LUBRIFICANTES.                             |  22162387.51 |           72411 |      8.42
       2024 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |   3549710.35 |            7484 |      1.35
       2024 | TELEFONIA                                                 |   2984157.50 |           15600 |      1.13
-      2024 | LOCA«√O OU FRETAMENTO DE AERONAVES                        |   2122079.31 |              98 |      0.81
-      2024 | SERVI«O DE SEGURAN«A PRESTADO POR EMPRESA ESPECIALIZADA.  |   1574893.39 |             499 |      0.60
-      2024 | SERVI«O DE T¡XI, PED¡GIO E ESTACIONAMENTO                 |   1122232.83 |           21424 |      0.43
-      2024 | PASSAGEM A…REA - RPA                                      |   1081951.72 |             789 |      0.41
-      2024 | PASSAGEM A…REA - REEMBOLSO                                |   1072828.32 |             303 |      0.41
-      2024 | FORNECIMENTO DE ALIMENTA«√O DO PARLAMENTAR                |    671246.60 |            9740 |      0.25
-      2024 | LOCA«√O OU FRETAMENTO DE EMBARCA«’ES                      |    237650.00 |              44 |      0.09
-      2024 | PASSAGENS TERRESTRES, MARÕTIMAS OU FLUVIAIS               |    122434.63 |             737 |      0.05
-      2024 | ASSINATURA DE PUBLICA«’ES                                 |     70785.13 |             263 |      0.03
-      2024 | PARTICIPA«√O EM CURSO, PALESTRA OU EVENTO SIMILAR         |     66294.97 |               9 |      0.03
-      2024 | AQUISI«√O DE TOKENS E CERTIFICADOS DIGITAIS               |     14698.51 |              18 |      0.01
-      2025 | DIVULGA«√O DA ATIVIDADE PARLAMENTAR.                      | 101865228.10 |           18240 |     40.87
-      2025 | LOCA«√O OU FRETAMENTO DE VEÕCULOS AUTOMOTORES             |  41792381.67 |            7099 |     16.77
-      2025 | PASSAGEM A…REA - SIGEPA                                   |  35266085.72 |           30051 |     14.15
-      2025 | MANUTEN«√O DE ESCRIT”RIO DE APOIO ¿ ATIVIDADE PARLAMENTAR |  33379652.63 |           20180 |     13.39
-      2025 | COMBUSTÕVEIS E LUBRIFICANTES.                             |  22389505.21 |           71144 |      8.98
+      2024 | LOCA√á√ÉO OU FRETAMENTO DE AERONAVES                        |   2122079.31 |              98 |      0.81
+      2024 | SERVI√áO DE SEGURAN√áA PRESTADO POR EMPRESA ESPECIALIZADA.  |   1574893.39 |             499 |      0.60
+      2024 | SERVI√áO DE T√ÅXI, PED√ÅGIO E ESTACIONAMENTO                 |   1122232.83 |           21424 |      0.43
+      2024 | PASSAGEM A√âREA - RPA                                      |   1081951.72 |             789 |      0.41
+      2024 | PASSAGEM A√âREA - REEMBOLSO                                |   1072828.32 |             303 |      0.41
+      2024 | FORNECIMENTO DE ALIMENTA√á√ÉO DO PARLAMENTAR                |    671246.60 |            9740 |      0.25
+      2024 | LOCA√á√ÉO OU FRETAMENTO DE EMBARCA√á√ïES                      |    237650.00 |              44 |      0.09
+      2024 | PASSAGENS TERRESTRES, MAR√çTIMAS OU FLUVIAIS               |    122434.63 |             737 |      0.05
+      2024 | ASSINATURA DE PUBLICA√á√ïES                                 |     70785.13 |             263 |      0.03
+      2024 | PARTICIPA√á√ÉO EM CURSO, PALESTRA OU EVENTO SIMILAR         |     66294.97 |               9 |      0.03
+      2024 | AQUISI√á√ÉO DE TOKENS E CERTIFICADOS DIGITAIS               |     14698.51 |              18 |      0.01
+      2025 | DIVULGA√á√ÉO DA ATIVIDADE PARLAMENTAR.                      | 101865228.10 |           18240 |     40.87
+      2025 | LOCA√á√ÉO OU FRETAMENTO DE VE√çCULOS AUTOMOTORES             |  41792381.67 |            7099 |     16.77
+      2025 | PASSAGEM A√âREA - SIGEPA                                   |  35266085.72 |           30051 |     14.15
+      2025 | MANUTEN√á√ÉO DE ESCRIT√ìRIO DE APOIO √Ä ATIVIDADE PARLAMENTAR |  33379652.63 |           20180 |     13.39
+      2025 | COMBUST√çVEIS E LUBRIFICANTES.                             |  22389505.21 |           71144 |      8.98
       2025 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |   3886788.16 |            8126 |      1.56
       2025 | TELEFONIA                                                 |   2881262.77 |           13199 |      1.16
-      2025 | LOCA«√O OU FRETAMENTO DE AERONAVES                        |   2126395.00 |              89 |      0.85
-      2025 | SERVI«O DE SEGURAN«A PRESTADO POR EMPRESA ESPECIALIZADA.  |   1336182.02 |             491 |      0.54
-      2025 | SERVI«O DE T¡XI, PED¡GIO E ESTACIONAMENTO                 |   1155388.95 |           19865 |      0.46
-      2025 | PASSAGEM A…REA - REEMBOLSO                                |   1135592.43 |             327 |      0.46
-      2025 | PASSAGEM A…REA - RPA                                      |    751819.54 |             519 |      0.30
-      2025 | FORNECIMENTO DE ALIMENTA«√O DO PARLAMENTAR                |    683787.51 |            9466 |      0.27
-      2025 | LOCA«√O OU FRETAMENTO DE EMBARCA«’ES                      |    235868.00 |              44 |      0.09
-      2025 | PASSAGENS TERRESTRES, MARÕTIMAS OU FLUVIAIS               |    158318.50 |             859 |      0.06
-      2025 | SERVI«OS POSTAIS                                          |     95979.06 |             167 |      0.04
-      2025 | ASSINATURA DE PUBLICA«’ES                                 |     80158.05 |             265 |      0.03
-      2025 | PARTICIPA«√O EM CURSO, PALESTRA OU EVENTO SIMILAR         |     30376.69 |               8 |      0.01
-      2025 | AQUISI«√O DE TOKENS E CERTIFICADOS DIGITAIS               |      3619.29 |              18 |      0.00
-      2026 | DIVULGA«√O DA ATIVIDADE PARLAMENTAR.                      |  39295086.85 |            6884 |     48.71
-      2026 | LOCA«√O OU FRETAMENTO DE VEÕCULOS AUTOMOTORES             |  14915772.23 |            2295 |     18.49
-      2026 | MANUTEN«√O DE ESCRIT”RIO DE APOIO ¿ ATIVIDADE PARLAMENTAR |  11930411.15 |            6682 |     14.79
-      2026 | COMBUSTÕVEIS E LUBRIFICANTES.                             |   8970670.88 |           28258 |     11.12
+      2025 | LOCA√á√ÉO OU FRETAMENTO DE AERONAVES                        |   2126395.00 |              89 |      0.85
+      2025 | SERVI√áO DE SEGURAN√áA PRESTADO POR EMPRESA ESPECIALIZADA.  |   1336182.02 |             491 |      0.54
+      2025 | SERVI√áO DE T√ÅXI, PED√ÅGIO E ESTACIONAMENTO                 |   1155388.95 |           19865 |      0.46
+      2025 | PASSAGEM A√âREA - REEMBOLSO                                |   1135592.43 |             327 |      0.46
+      2025 | PASSAGEM A√âREA - RPA                                      |    751819.54 |             519 |      0.30
+      2025 | FORNECIMENTO DE ALIMENTA√á√ÉO DO PARLAMENTAR                |    683787.51 |            9466 |      0.27
+      2025 | LOCA√á√ÉO OU FRETAMENTO DE EMBARCA√á√ïES                      |    235868.00 |              44 |      0.09
+      2025 | PASSAGENS TERRESTRES, MAR√çTIMAS OU FLUVIAIS               |    158318.50 |             859 |      0.06
+      2025 | SERVI√áOS POSTAIS                                          |     95979.06 |             167 |      0.04
+      2025 | ASSINATURA DE PUBLICA√á√ïES                                 |     80158.05 |             265 |      0.03
+      2025 | PARTICIPA√á√ÉO EM CURSO, PALESTRA OU EVENTO SIMILAR         |     30376.69 |               8 |      0.01
+      2025 | AQUISI√á√ÉO DE TOKENS E CERTIFICADOS DIGITAIS               |      3619.29 |              18 |      0.00
+      2026 | DIVULGA√á√ÉO DA ATIVIDADE PARLAMENTAR.                      |  39295086.85 |            6884 |     48.71
+      2026 | LOCA√á√ÉO OU FRETAMENTO DE VE√çCULOS AUTOMOTORES             |  14915772.23 |            2295 |     18.49
+      2026 | MANUTEN√á√ÉO DE ESCRIT√ìRIO DE APOIO √Ä ATIVIDADE PARLAMENTAR |  11930411.15 |            6682 |     14.79
+      2026 | COMBUST√çVEIS E LUBRIFICANTES.                             |   8970670.88 |           28258 |     11.12
       2026 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |   1624201.46 |            3497 |      2.01
-      2026 | LOCA«√O OU FRETAMENTO DE AERONAVES                        |   1369358.00 |              50 |      1.70
+      2026 | LOCA√á√ÉO OU FRETAMENTO DE AERONAVES                        |   1369358.00 |              50 |      1.70
       2026 | TELEFONIA                                                 |    778675.34 |            2106 |      0.97
-      2026 | SERVI«O DE SEGURAN«A PRESTADO POR EMPRESA ESPECIALIZADA.  |    434216.42 |             156 |      0.54
-      2026 | SERVI«O DE T¡XI, PED¡GIO E ESTACIONAMENTO                 |    393890.35 |            5894 |      0.49
-      2026 | PASSAGEM A…REA - REEMBOLSO                                |    340942.58 |             116 |      0.42
-      2026 | FORNECIMENTO DE ALIMENTA«√O DO PARLAMENTAR                |    232639.79 |            3032 |      0.29
-      2026 | PASSAGEM A…REA - RPA                                      |    135047.62 |              97 |      0.17
-      2026 | LOCA«√O OU FRETAMENTO DE EMBARCA«’ES                      |     81600.00 |              15 |      0.10
-      2026 | SERVI«OS POSTAIS                                          |     68209.59 |             121 |      0.08
-      2026 | PASSAGENS TERRESTRES, MARÕTIMAS OU FLUVIAIS               |     62599.53 |             276 |      0.08
-      2026 | ASSINATURA DE PUBLICA«’ES                                 |     30427.11 |              97 |      0.04
-      2026 | CONSULTORIAS, PESQUISAS E TRABALHOS T…CNICOS.             |      7000.00 |               1 |      0.01
-      2026 | AQUISI«√O DE TOKENS E CERTIFICADOS DIGITAIS               |       925.80 |               4 |      0.00
+      2026 | SERVI√áO DE SEGURAN√áA PRESTADO POR EMPRESA ESPECIALIZADA.  |    434216.42 |             156 |      0.54
+      2026 | SERVI√áO DE T√ÅXI, PED√ÅGIO E ESTACIONAMENTO                 |    393890.35 |            5894 |      0.49
+      2026 | PASSAGEM A√âREA - REEMBOLSO                                |    340942.58 |             116 |      0.42
+      2026 | FORNECIMENTO DE ALIMENTA√á√ÉO DO PARLAMENTAR                |    232639.79 |            3032 |      0.29
+      2026 | PASSAGEM A√âREA - RPA                                      |    135047.62 |              97 |      0.17
+      2026 | LOCA√á√ÉO OU FRETAMENTO DE EMBARCA√á√ïES                      |     81600.00 |              15 |      0.10
+      2026 | SERVI√áOS POSTAIS                                          |     68209.59 |             121 |      0.08
+      2026 | PASSAGENS TERRESTRES, MAR√çTIMAS OU FLUVIAIS               |     62599.53 |             276 |      0.08
+      2026 | ASSINATURA DE PUBLICA√á√ïES                                 |     30427.11 |              97 |      0.04
+      2026 | CONSULTORIAS, PESQUISAS E TRABALHOS T√âCNICOS.             |      7000.00 |               1 |      0.01
+      2026 | AQUISI√á√ÉO DE TOKENS E CERTIFICADOS DIGITAIS               |       925.80 |               4 |      0.00
 (73 rows)
 
 
 Tabela complementar global - gastos consolidados por categoria global
  ano_dados |                     descricao_despesa                     | total_gasto  | qtd_lancamentos | pct_total 
 -----------+-----------------------------------------------------------+--------------+-----------------+-----------
- GLOBAL    | DIVULGA«√O DA ATIVIDADE PARLAMENTAR.                      | 332478211.72 |           56694 |     39.65
- GLOBAL    | PASSAGEM A…REA - SIGEPA                                   | 142570296.93 |          125243 |     17.00
- GLOBAL    | LOCA«√O OU FRETAMENTO DE VEÕCULOS AUTOMOTORES             | 135663062.89 |           23871 |     16.18
- GLOBAL    | MANUTEN«√O DE ESCRIT”RIO DE APOIO ¿ ATIVIDADE PARLAMENTAR | 105911310.47 |           66056 |     12.63
- GLOBAL    | COMBUSTÕVEIS E LUBRIFICANTES.                             |  73006492.76 |          237763 |      8.71
+ GLOBAL    | DIVULGA√á√ÉO DA ATIVIDADE PARLAMENTAR.                      | 332478211.72 |           56694 |     39.65
+ GLOBAL    | PASSAGEM A√âREA - SIGEPA                                   | 142570296.93 |          125243 |     17.00
+ GLOBAL    | LOCA√á√ÉO OU FRETAMENTO DE VE√çCULOS AUTOMOTORES             | 135663062.89 |           23871 |     16.18
+ GLOBAL    | MANUTEN√á√ÉO DE ESCRIT√ìRIO DE APOIO √Ä ATIVIDADE PARLAMENTAR | 105911310.47 |           66056 |     12.63
+ GLOBAL    | COMBUST√çVEIS E LUBRIFICANTES.                             |  73006492.76 |          237763 |      8.71
  GLOBAL    | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |  11749735.00 |           24953 |      1.40
  GLOBAL    | TELEFONIA                                                 |   9425127.08 |           45754 |      1.12
- GLOBAL    | LOCA«√O OU FRETAMENTO DE AERONAVES                        |   7415554.31 |             311 |      0.88
- GLOBAL    | SERVI«O DE SEGURAN«A PRESTADO POR EMPRESA ESPECIALIZADA.  |   4749028.74 |            1572 |      0.57
- GLOBAL    | PASSAGEM A…REA - RPA                                      |   3883450.37 |            2917 |      0.46
- GLOBAL    | PASSAGEM A…REA - REEMBOLSO                                |   3786150.33 |            1212 |      0.45
- GLOBAL    | SERVI«O DE T¡XI, PED¡GIO E ESTACIONAMENTO                 |   3653366.00 |           68486 |      0.44
- GLOBAL    | FORNECIMENTO DE ALIMENTA«√O DO PARLAMENTAR                |   2382429.05 |           34554 |      0.28
- GLOBAL    | LOCA«√O OU FRETAMENTO DE EMBARCA«’ES                      |    785308.00 |             144 |      0.09
- GLOBAL    | PASSAGENS TERRESTRES, MARÕTIMAS OU FLUVIAIS               |    458294.27 |            2608 |      0.05
- GLOBAL    | ASSINATURA DE PUBLICA«’ES                                 |    251301.68 |             869 |      0.03
- GLOBAL    | SERVI«OS POSTAIS                                          |    164188.65 |             288 |      0.02
- GLOBAL    | PARTICIPA«√O EM CURSO, PALESTRA OU EVENTO SIMILAR         |    144623.27 |              25 |      0.02
- GLOBAL    | AQUISI«√O DE TOKENS E CERTIFICADOS DIGITAIS               |     23866.95 |              58 |      0.00
- GLOBAL    | CONSULTORIAS, PESQUISAS E TRABALHOS T…CNICOS.             |      7000.00 |               1 |      0.00
+ GLOBAL    | LOCA√á√ÉO OU FRETAMENTO DE AERONAVES                        |   7415554.31 |             311 |      0.88
+ GLOBAL    | SERVI√áO DE SEGURAN√áA PRESTADO POR EMPRESA ESPECIALIZADA.  |   4749028.74 |            1572 |      0.57
+ GLOBAL    | PASSAGEM A√âREA - RPA                                      |   3883450.37 |            2917 |      0.46
+ GLOBAL    | PASSAGEM A√âREA - REEMBOLSO                                |   3786150.33 |            1212 |      0.45
+ GLOBAL    | SERVI√áO DE T√ÅXI, PED√ÅGIO E ESTACIONAMENTO                 |   3653366.00 |           68486 |      0.44
+ GLOBAL    | FORNECIMENTO DE ALIMENTA√á√ÉO DO PARLAMENTAR                |   2382429.05 |           34554 |      0.28
+ GLOBAL    | LOCA√á√ÉO OU FRETAMENTO DE EMBARCA√á√ïES                      |    785308.00 |             144 |      0.09
+ GLOBAL    | PASSAGENS TERRESTRES, MAR√çTIMAS OU FLUVIAIS               |    458294.27 |            2608 |      0.05
+ GLOBAL    | ASSINATURA DE PUBLICA√á√ïES                                 |    251301.68 |             869 |      0.03
+ GLOBAL    | SERVI√áOS POSTAIS                                          |    164188.65 |             288 |      0.02
+ GLOBAL    | PARTICIPA√á√ÉO EM CURSO, PALESTRA OU EVENTO SIMILAR         |    144623.27 |              25 |      0.02
+ GLOBAL    | AQUISI√á√ÉO DE TOKENS E CERTIFICADOS DIGITAIS               |     23866.95 |              58 |      0.00
+ GLOBAL    | CONSULTORIAS, PESQUISAS E TRABALHOS T√âCNICOS.             |      7000.00 |               1 |      0.00
 (20 rows)
 
