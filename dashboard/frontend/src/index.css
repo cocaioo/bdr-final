@@ -3152,6 +3152,7 @@ body.gastos-light-theme .skeleton-text {
 
 .perfil-hero,
 .perfil-filter-panel,
+.perfil-deputy-list,
 .perfil-methodology,
 .perfil-source-note,
 .perfil-section-heading {
@@ -3415,6 +3416,55 @@ body.gastos-light-theme .skeleton-text {
 
 .perfil-chart-grid-q4 .chart-surface {
   min-height: 420px;
+}
+
+.perfil-deputy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 18px;
+}
+
+.perfil-deputy-list__header {
+  align-items: flex-start;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.perfil-deputy-list__header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.perfil-deputy-list__header p,
+.perfil-deputy-list__empty,
+.perfil-deputy-list__item span {
+  color: var(--muted);
+}
+
+.perfil-deputy-list__header strong {
+  color: var(--accent);
+  flex: 0 0 auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.86rem;
+}
+
+.perfil-deputy-list__grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.perfil-deputy-list__item {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
 }
 
 .perfil-methodology {

@@ -14,6 +14,7 @@ const metaMock = {
     partidos: [],
     ufs: [],
     deputados: [],
+    escolaridade: [],
   },
   questions: [
     {
@@ -81,6 +82,19 @@ describe('App integration', () => {
     expect(screen.getByRole('heading', { name: 'Partidos e votações' })).toBeInTheDocument()
     expect(screen.queryByText(/Q1|Q13|quest[aã]o/i)).not.toBeInTheDocument()
     expect(screen.getByPlaceholderText('Pesquisar deputado...')).toBeInTheDocument()
+  })
+
+  it('destaca a pesquisa por deputado acima dos modulos analiticos na home', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    )
+
+    const searchHeading = await screen.findByRole('heading', { name: 'Pesquisar deputado' })
+    const panelsHeading = screen.getByRole('heading', { name: /Explore os pain/i })
+
+    expect(searchHeading.compareDocumentPosition(panelsHeading)).toBe(Node.DOCUMENT_POSITION_FOLLOWING)
   })
 
   it('navigates to the deputy profile route', async () => {

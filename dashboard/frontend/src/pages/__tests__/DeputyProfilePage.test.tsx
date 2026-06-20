@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -125,7 +125,7 @@ describe('DeputyProfilePage', () => {
 
     const img = document.querySelector('.deputy-avatar-img img') as HTMLImageElement | null
     if (img) {
-      img.dispatchEvent(new Event('error'))
+      fireEvent.error(img)
     }
 
     await waitFor(() => {

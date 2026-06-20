@@ -40,6 +40,14 @@ export function HomePage() {
         </p>
       </section>
 
+      <section className="deputy-search-hero stagger-item">
+        <div className="deputy-search-hero__copy">
+          <h2>Pesquisar deputado</h2>
+          <p>Encontre um parlamentar e consulte seu perfil individual.</p>
+        </div>
+        <DeputySearch placeholder="Pesquisar deputado..." />
+      </section>
+
       <section className="home-panel-section stagger-item" aria-labelledby="home-panels-title">
         <header className="home-panel-heading">
           <div>
@@ -61,14 +69,6 @@ export function HomePage() {
             </article>
           ))}
         </div>
-      </section>
-
-      <section className="deputy-search-hero stagger-item">
-        <div className="deputy-search-hero__copy">
-          <h2>Pesquisar deputado</h2>
-          <p>Encontre um parlamentar e consulte seu perfil individual.</p>
-        </div>
-        <DeputySearch placeholder="Pesquisar deputado..." />
       </section>
     </main>
   )

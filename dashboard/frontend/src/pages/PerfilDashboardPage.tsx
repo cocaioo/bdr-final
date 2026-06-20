@@ -150,6 +150,30 @@ function buildEducationChart(payload: QuestionPayload, selectedEducation: string
   }
 }
 
+function deputyListRows(
+  payload: QuestionPayload,
+  selectedEducation: string,
+  selectedParty: string,
+): DataRow[] {
+  const deputyTable = payload.complement_tables.find((table) => {
+    const columns = new Set(table.columns.map((column) => column.key))
+    return columns.has('id_deputado') && columns.has('nome')
+  })
+
+  if (!deputyTable) return []
+
+  return deputyTable.rows
+    .filter((row) => {
+      const matchesEducation = !selectedEducation || rowLabel(row) === selectedEducation
+      const partyValue = String(row.sigla_partido ?? '').trim()
+      const matchesParty = !selectedParty || !partyValue || partyValue === selectedParty
+      return matchesEducation && matchesParty
+    })
+    .sort((a, b) =>
+      String(a.nome ?? '').localeCompare(String(b.nome ?? ''), 'pt-BR', { sensitivity: 'base' }),
+    )
+}
+
 export function PerfilDashboardPage({ meta }: PerfilDashboardPageProps) {
   const q4Meta = meta.questions.find((question) => question.id === 'q4')
   const q6Meta = meta.questions.find((question) => question.id === 'q6')
@@ -248,6 +272,11 @@ export function PerfilDashboardPage({ meta }: PerfilDashboardPageProps) {
       presence: buildPresenceChart(q6Payload),
     }
   }, [q4Payload, q6Payload, selectedEducation])
+
+  const filteredDeputies = useMemo(() => {
+    if (!q4Payload) return []
+    return deputyListRows(q4Payload, selectedEducation, selectedParty)
+  }, [q4Payload, selectedEducation, selectedParty])
 
   if (!q4Meta || !q6Meta) {
     return (
@@ -381,6 +410,41 @@ export function PerfilDashboardPage({ meta }: PerfilDashboardPageProps) {
         <ChartPanel spec={charts.education} activeFilters={activeFilters} />
         {charts.party ? <ChartPanel spec={charts.party} activeFilters={activeFilters} /> : null}
       </div>
+
+      {selectedEducation || selectedParty ? (
+        <section className="perfil-deputy-list stagger-item" aria-label="Deputados filtrados">
+          <div className="perfil-deputy-list__header">
+            <div>
+              <h2>Deputados no recorte</h2>
+              <p>
+                Parlamentares identificados no recorte atual de escolaridade e partido.
+              </p>
+            </div>
+            <strong>{filteredDeputies.length} nomes</strong>
+          </div>
+          {filteredDeputies.length ? (
+            <div className="perfil-deputy-list__grid">
+              {filteredDeputies.map((deputy) => (
+                <article
+                  key={String(deputy.id_deputado ?? deputy.nome)}
+                  className="perfil-deputy-list__item"
+                >
+                  <strong>{String(deputy.nome ?? 'Nao informado')}</strong>
+                  <span>
+                    {rowLabel(deputy)}
+                    {deputy.sigla_partido ? ` | ${String(deputy.sigla_partido)}` : ''}
+                    {deputy.sigla_uf ? ` | ${String(deputy.sigla_uf)}` : ''}
+                  </span>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="perfil-deputy-list__empty">
+              Nenhum deputado foi encontrado para os filtros selecionados.
+            </p>
+          )}
+        </section>
+      ) : null}
 
       <section className="perfil-methodology stagger-item">
         <strong>Como interpretar</strong>

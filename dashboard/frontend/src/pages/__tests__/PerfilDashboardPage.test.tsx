@@ -123,6 +123,42 @@ const q4Payload: QuestionPayload = {
   },
 }
 
+const q4DeputyRows = [
+  { id_deputado: '101', nome: 'Ana Maria', escolaridade: 'Mestrado', sigla_partido: 'PT', sigla_uf: 'SP' },
+  { id_deputado: '102', nome: 'Bruno Lima', escolaridade: 'Mestrado', sigla_partido: 'PT', sigla_uf: 'BA' },
+  { id_deputado: '103', nome: 'Carla Souza', escolaridade: 'Mestrado', sigla_partido: 'PSB', sigla_uf: 'PE' },
+  { id_deputado: '104', nome: 'Diego Alves', escolaridade: 'Superior', sigla_partido: 'PT', sigla_uf: 'RJ' },
+]
+
+function buildQ4Payload(filters: { partidos?: string[]; escolaridade?: string[] } = {}): QuestionPayload {
+  const filteredRows = q4DeputyRows.filter((row) => {
+    const matchesParty = !filters.partidos?.length || filters.partidos.includes(String(row.sigla_partido))
+    const matchesEducation =
+      !filters.escolaridade?.length || filters.escolaridade.includes(String(row.escolaridade))
+    return matchesParty && matchesEducation
+  })
+
+  return {
+    ...q4Payload,
+    summary_cards: [{ id: 'total_deputados', label: 'Total', value: String(filteredRows.length), unit: 'deputados' }],
+    complement_tables: [
+      {
+        ...basePayload.table_spec,
+        title: 'Lista nominal',
+        columns: [
+          { key: 'escolaridade', label: 'Escolaridade', numeric: false },
+          { key: 'id_deputado', label: 'Deputado ID', numeric: false },
+          { key: 'nome', label: 'Nome', numeric: false },
+          { key: 'sigla_partido', label: 'Partido', numeric: false },
+          { key: 'sigla_uf', label: 'UF', numeric: false },
+        ],
+        rows: filteredRows,
+        total: filteredRows.length,
+      },
+    ],
+  }
+}
+
 function complement(metric: string, rows: Array<Record<string, unknown>>) {
   return {
     ...basePayload.table_spec,
@@ -184,9 +220,15 @@ const q6Payload: QuestionPayload = {
 describe('PerfilDashboardPage', () => {
   beforeEach(() => {
     fetchQuestionMock.mockReset()
-    fetchQuestionMock.mockImplementation(async (questionId) =>
-      questionId === 'q4' ? q4Payload : q6Payload,
-    )
+    fetchQuestionMock.mockImplementation(async (questionId, filters) => {
+      if (questionId === 'q4') {
+        return buildQ4Payload({
+          partidos: filters.partidos,
+          escolaridade: filters.escolaridade,
+        })
+      }
+      return q6Payload
+    })
   })
 
   it('apresenta uma análise integrada sem referências internas ou cards removidos', async () => {
@@ -253,5 +295,25 @@ describe('PerfilDashboardPage', () => {
     })
     expect(screen.queryByLabelText('Ano da atividade')).not.toBeInTheDocument()
     expect(screen.getByText(/filtro de ano foi removido desta subseção/i)).toBeInTheDocument()
+  })
+  it('lista abaixo dos graficos os deputados do recorte filtrado por escolaridade e partido', async () => {
+    const user = userEvent.setup()
+    render(
+      <MemoryRouter>
+        <PerfilDashboardPage meta={meta} />
+      </MemoryRouter>,
+    )
+
+    await screen.findByRole('heading', { name: 'Escolaridade e Perfil' })
+    expect(screen.queryByRole('heading', { name: 'Deputados no recorte' })).not.toBeInTheDocument()
+
+    await user.selectOptions(screen.getByLabelText('Escolaridade'), 'Mestrado')
+    await user.selectOptions(screen.getByLabelText('Partido'), 'PT')
+
+    expect(await screen.findByRole('heading', { name: 'Deputados no recorte' })).toBeInTheDocument()
+    expect(screen.getByText('Ana Maria')).toBeInTheDocument()
+    expect(screen.getByText('Bruno Lima')).toBeInTheDocument()
+    expect(screen.queryByText('Carla Souza')).not.toBeInTheDocument()
+    expect(screen.queryByText('Diego Alves')).not.toBeInTheDocument()
   })
 })

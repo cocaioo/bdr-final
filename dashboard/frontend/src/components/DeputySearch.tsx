@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { fetchDeputies } from '../api'
+import { fetchDeputies, fetchDeputyIdentityFromGastos } from '../api'
 import { DeputyAvatar } from './DeputyAvatar'
-import type { DeputyOption } from '../types'
+import type { DeputyIdentityEnrichment, DeputyOption } from '../types'
 
 interface DeputySearchProps {
   placeholder?: string
@@ -47,7 +47,9 @@ function buildSecondaryLine(deputy: DeputyOption): string {
 export function DeputySearch({ placeholder = 'Pesquisar deputado...', compact = false, className = '' }: DeputySearchProps) {
   const navigate = useNavigate()
   const blurTimerRef = useRef<number | null>(null)
+  const pendingIdentityIdsRef = useRef(new Set<string>())
   const [catalog, setCatalog] = useState<DeputyOption[]>([])
+  const [identityById, setIdentityById] = useState<Record<string, DeputyIdentityEnrichment>>({})
   const [value, setValue] = useState('')
   const [open, setOpen] = useState(false)
   const [hasInteracted, setHasInteracted] = useState(false)
@@ -72,6 +74,7 @@ export function DeputySearch({ placeholder = 'Pesquisar deputado...', compact = 
 
     return () => {
       active = false
+      pendingIdentityIdsRef.current.clear()
       if (blurTimerRef.current) {
         window.clearTimeout(blurTimerRef.current)
       }
@@ -112,6 +115,47 @@ export function DeputySearch({ placeholder = 'Pesquisar deputado...', compact = 
 
   const visibleResults = normalizedQuery ? results : !hasInteracted ? results : []
   const showResults = open && visibleResults.length > 0
+
+  useEffect(() => {
+    if (!showResults) return undefined
+
+    const missingIdentity = visibleResults.filter((deputy) => {
+      if (!deputy.id) return false
+      if (deputy.partido && deputy.uf) return false
+      if (identityById[deputy.id]) return false
+      if (pendingIdentityIdsRef.current.has(deputy.id)) return false
+      return true
+    })
+
+    if (!missingIdentity.length) return undefined
+
+    let active = true
+    missingIdentity.forEach((deputy) => pendingIdentityIdsRef.current.add(deputy.id))
+
+    Promise.all(
+      missingIdentity.map(async (deputy) => ({
+        deputyId: deputy.id,
+        identity: await fetchDeputyIdentityFromGastos(deputy.id),
+      })),
+    )
+      .then((items) => {
+        if (!active) return
+        setIdentityById((current) => {
+          const next = { ...current }
+          items.forEach(({ deputyId, identity }) => {
+            next[deputyId] = identity
+          })
+          return next
+        })
+      })
+      .finally(() => {
+        missingIdentity.forEach((deputy) => pendingIdentityIdsRef.current.delete(deputy.id))
+      })
+
+    return () => {
+      active = false
+    }
+  }, [identityById, showResults, visibleResults])
 
   return (
     <section
@@ -177,25 +221,31 @@ export function DeputySearch({ placeholder = 'Pesquisar deputado...', compact = 
       {showResults ? (
         <div id="deputy-search-results" className="deputy-search__results" role="listbox">
           {visibleResults.length > 0 ? (
-            visibleResults.map((deputy) => (
-              <button
-                key={deputy.id}
-                type="button"
-                className="deputy-search__option"
-                role="option"
-                onMouseDown={(event) => event.preventDefault()}
-                onClick={() => selectDeputy(deputy)}
-              >
-                <DeputyAvatar id={deputy.id} nome={deputy.nome} size={compact ? 32 : 40} />
-                <span className="deputy-search__option-body">
-                  <strong className="deputy-search__option-name">{deputy.nome}</strong>
-                  <span className="deputy-search__option-meta">
-                    {optionalLabel(deputy.partido)} | {optionalLabel(deputy.uf)}
+            visibleResults.map((deputy) => {
+              const identity = identityById[deputy.id] ?? {}
+              const partido = identity.partido ?? deputy.partido
+              const uf = identity.uf ?? deputy.uf
+
+              return (
+                <button
+                  key={deputy.id}
+                  type="button"
+                  className="deputy-search__option"
+                  role="option"
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => selectDeputy(deputy)}
+                >
+                  <DeputyAvatar id={deputy.id} nome={deputy.nome} size={compact ? 32 : 40} />
+                  <span className="deputy-search__option-body">
+                    <strong className="deputy-search__option-name">{deputy.nome}</strong>
+                    <span className="deputy-search__option-meta">
+                      {optionalLabel(partido)} | {optionalLabel(uf)}
+                    </span>
+                    <span className="deputy-search__option-submeta">{buildSecondaryLine(deputy)}</span>
                   </span>
-                  <span className="deputy-search__option-submeta">{buildSecondaryLine(deputy)}</span>
-                </span>
-              </button>
-            ))
+                </button>
+              )
+            })
           ) : (
             <span className="deputy-search__empty">Nenhum deputado encontrado.</span>
           )}
