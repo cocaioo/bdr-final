@@ -47,3 +47,24 @@ def test_q6_accepts_escolaridade_filter() -> None:
     assert {
         row["escolaridade"] for row in payload["table_spec"]["rows"]
     } == {"Mestrado"}
+
+
+def test_q12_deputy_filter_populates_main_table_and_keeps_complements() -> None:
+    main_module.service = DashboardService()
+    client = TestClient(main_module.app)
+
+    response_all = client.get("/api/questions/q12?page_size=5")
+    assert response_all.status_code == 200
+    payload_all = response_all.json()
+    assert payload_all["table_spec"]["total"] > 0
+
+    response_filtered = client.get("/api/questions/q12?deputados=220593&page_size=5")
+    assert response_filtered.status_code == 200
+    payload_filtered = response_filtered.json()
+    assert payload_filtered["table_spec"]["total"] > 0
+    assert len(payload_filtered["table_spec"]["rows"]) > 0
+    assert {
+        str(row["id_deputado"]) for row in payload_filtered["table_spec"]["rows"]
+    } == {"220593"}
+    assert payload_filtered["complement_tables"]
+    assert all(table["total"] > 0 for table in payload_filtered["complement_tables"])

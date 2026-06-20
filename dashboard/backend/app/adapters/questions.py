@@ -1028,6 +1028,44 @@ class Q11Adapter(QuestionAdapter):
 class Q12Adapter(QuestionAdapter):
     """Deputado x fornecedor."""
 
+    def build_payload(self, state: FilterState) -> QuestionPayload:
+        payload = super().build_payload(state)
+
+        if not state.deputados or payload.table_spec.total > 0:
+            return payload
+
+        fallback_table = next(
+            (
+                table
+                for table in self.complement_tables
+                if {"id_deputado", "fornecedor", "qtd_lancamentos", "total_pago"}.issubset(set(table.columns))
+            ),
+            None,
+        )
+        if fallback_table is None:
+            return payload
+
+        filtered_rows = FilterEngine.apply_filters(
+            fallback_table.rows,
+            state,
+            self.context.question.supported_filters,
+        )
+        if not filtered_rows:
+            return payload
+
+        sorted_rows = FilterEngine.apply_sort(filtered_rows, state.sort_by, state.sort_dir)
+        paged_rows = FilterEngine.apply_pagination(sorted_rows, state.page, state.page_size)
+        payload.chart_spec = self.build_chart_spec(filtered_rows)
+        payload.table_spec = self._build_table_spec(
+            title=fallback_table.title,
+            columns=fallback_table.columns,
+            rows=paged_rows,
+            total=len(sorted_rows),
+            state=state,
+        )
+        payload.empty_state = EmptyState(is_empty=False, message="")
+        return payload
+
 
 class Q13Adapter(QuestionAdapter):
     """Categorias de gasto por deputado."""
