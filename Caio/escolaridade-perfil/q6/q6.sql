@@ -1,4 +1,6 @@
-﻿\o
+\o
+
+CREATE EXTENSION IF NOT EXISTS unaccent;
 
 CREATE OR REPLACE TEMP VIEW resposta_deputados_ativos AS
 SELECT DISTINCT ano_dados, id_deputado
@@ -58,9 +60,9 @@ SELECT
     pr.id_deputado,
     COUNT(*) AS presenca_eventos,
     COUNT(*) FILTER (
-        WHERE COALESCE(e.descricao_tipo, '') ILIKE '%plenario%'
-           OR COALESCE(e.descricao, '') ILIKE '%plenario%'
-           OR COALESCE(e.local_camara, '') ILIKE '%plenario%'
+        WHERE public.unaccent(COALESCE(e.descricao_tipo, '')) ILIKE '%plenario%'
+           OR public.unaccent(COALESCE(e.descricao, '')) ILIKE '%plenario%'
+           OR public.unaccent(COALESCE(e.local_camara, '')) ILIKE '%plenario%'
     ) AS presenca_plenario
 FROM eventos_presenca_deputados pr
 LEFT JOIN eventos e
