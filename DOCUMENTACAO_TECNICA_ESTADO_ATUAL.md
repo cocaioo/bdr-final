@@ -537,7 +537,7 @@ O `dashboard/backend/app/question_registry.json` é a fonte única de metadados:
 - gastos por UF/região;
 - metadados da geração.
 
-Os artefatos locais foram gerados em 13/06/2026 a partir de 720.937 linhas e 41.128 fornecedores normalizados. O total registrado é R$ 809.448.893,50, com 639 deputados e ticket médio de R$ 1.122,77.
+Os artefatos locais foram gerados em 13/06/2026 a partir de 720.937 linhas e 41.128 fornecedores normalizados. O total registrado é R$ 809.448.893,50, com 639 deputados e despesa média de R$ 1.122,77.
 
 ### 11.2 Normalização de fornecedor
 
@@ -685,7 +685,7 @@ O heatmap calcula `min` e `max` reais para o `visualMap`, corrigindo requisito d
 `GastosDashboardPage.tsx` é atualmente o maior componente do frontend, com aproximadamente 1.243 linhas. Possui cinco abas carregadas sob demanda:
 
 1. **Resumo** — KPIs, evolução anual e categorias de maior valor.
-2. **Categorias** — rankings por valor, quantidade e ticket, cards e tabela detalhada.
+2. **Categorias** — rankings por valor, quantidade e despesa média, cards e tabela detalhada.
 3. **Deputados** — filtros, ranking com foto, perfil selecionado, fornecedores/categoria do deputado.
 4. **Fornecedores** — filtros, alcance, cards, perfil selecionado e tabela.
 5. **Partidos e UFs** — distribuição política e regional.

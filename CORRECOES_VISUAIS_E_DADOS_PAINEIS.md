@@ -37,7 +37,7 @@ Sintomas observados:
 
 - nomes longos escapavam visualmente do bloco;
 - cards ficavam com alturas inconsistentes;
-- a leitura de valor, quantidade e ticket médio perdia alinhamento.
+- a leitura de valor, quantidade e despesa média perdia alinhamento.
 
 Causa provável:
 

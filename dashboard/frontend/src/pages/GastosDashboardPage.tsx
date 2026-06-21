@@ -231,7 +231,7 @@ function KpiGrid({ summary }: { summary: GastosSummary }) {
   const cards = [
     ['Valor total gasto', formatCurrency(summary.valor_total)],
     ['Quantidade de despesas', formatCellValue(summary.qtd_despesas)],
-    ['Ticket medio', formatCurrency(summary.ticket_medio)],
+    ['Despesa média', formatCurrency(summary.ticket_medio)],
     ['Deputados', formatCellValue(summary.qtd_deputados)],
     ['Fornecedores', formatCellValue(summary.qtd_fornecedores)],
   ]
@@ -304,7 +304,7 @@ function DeputyRankingCards({
             <strong style={{ fontSize: '1.15rem' }}>{formatCurrency(row.valor_total)}</strong>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
               <span>{formatCellValue(row.qtd_despesas)} despesas</span>
-              <span>méd. {formatCurrency(row.ticket_medio)}</span>
+              <span>média {formatCurrency(row.ticket_medio)}</span>
             </div>
           </div>
         </button>
@@ -705,8 +705,8 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       : null,
     highestTicketCategory
       ? {
-          title: 'Maior ticket medio',
-          body: `${highestTicketCategory.categoria} tem ticket medio de ${formatCurrency(highestTicketCategory.ticket_medio)}, sinalizando despesas individuais mais altas.`,
+          title: 'Maior valor médio por despesa',
+          body: `${highestTicketCategory.categoria} tem valor médio por despesa de ${formatCurrency(highestTicketCategory.ticket_medio)}, sinalizando despesas individuais mais altas.`,
         }
       : null,
   ].filter(Boolean) as Array<{ title: string; body: string }>
@@ -858,9 +858,9 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   <small>{formatCellValue(mostFrequentCategory?.qtd_despesas ?? 0)} despesas</small>
                 </article>
                 <article className="gastos-kpi-card">
-                  <span>Maior Ticket Médio</span>
+                  <span>Maior valor médio por despesa</span>
                   <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={highestTicketCategory?.categoria}>{highestTicketCategory?.categoria ?? '-'}</strong>
-                  <small>{formatCurrency(highestTicketCategory?.ticket_medio ?? 0)}/ticket</small>
+                  <small>{formatCurrency(highestTicketCategory?.ticket_medio ?? 0)}/despesa</small>
                 </article>
               </div>
               <InsightGrid insights={categoryInsights} />
@@ -878,7 +878,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 />
                 <ChartPanel
                   spec={barChart(
-                    'Ticket medio por categoria',
+                    'Valor médio por despesa por categoria',
                     'Categorias com despesas individuais mais altas no Top 8.',
                     asRecords(topCategoriesByTicket),
                     'categoria',
@@ -897,7 +897,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                     <span className="gastos-category-rank-card__title" title={cat.categoria}>{cat.categoria}</span>
                     <span className="rank-label">Valor total</span>
                     <strong>{formatCurrency(cat.valor_total)}</strong>
-                    <small>{formatCellValue(cat.qtd_despesas)} despesas | ticket médio {formatCurrency(cat.ticket_medio)}</small>
+                    <small>{formatCellValue(cat.qtd_despesas)} despesas | valor médio por despesa {formatCurrency(cat.ticket_medio)}</small>
                   </div>
                 ))}
               </div>
@@ -909,7 +909,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   { key: 'categoria', label: 'Categoria' },
                   { key: 'valor_total', label: 'Valor total', format: formatCurrency },
                   { key: 'qtd_despesas', label: 'Despesas' },
-                  { key: 'ticket_medio', label: 'Ticket medio', format: formatCurrency },
+                  { key: 'ticket_medio', label: 'Valor médio por despesa', format: formatCurrency },
                   { key: 'qtd_deputados', label: 'Deputados' },
                 ]}
               />
@@ -1019,7 +1019,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   <div className="gastos-drilldown-grid" style={{ marginTop: '12px' }}>
                     <span>Valor total: <strong>{formatCurrency(deferredSelectedDeputy.valor_total)}</strong></span>
                     <span>Posicao no ranking: <strong>{selectedDeputyRank ? `#${selectedDeputyRank}` : '-'}</strong></span>
-                    <span>Ticket medio: <strong>{formatCurrency(deferredSelectedDeputy.ticket_medio)}</strong></span>
+                    <span>Valor médio por despesa: <strong>{formatCurrency(deferredSelectedDeputy.ticket_medio)}</strong></span>
                     <span>% do grupo filtrado: <strong>{formatPercent(selectedDeputyShare)}</strong></span>
                     <span>Categoria dominante: <strong>{deferredSelectedDeputy.categoria_principal ?? '-'}</strong></span>
                     <span>Fornecedores unicos: <strong>{formatCellValue(deferredSelectedDeputy.qtd_fornecedores)}</strong></span>
@@ -1123,7 +1123,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   },
                   { key: 'valor_total', label: 'Valor total', format: formatCurrency },
                   { key: 'qtd_despesas', label: 'Despesas' },
-                  { key: 'ticket_medio', label: 'Ticket medio', format: formatCurrency },
+                  { key: 'ticket_medio', label: 'Valor médio por despesa', format: formatCurrency },
                   { key: 'categoria_principal', label: 'Categoria principal' },
                 ]}
               />
@@ -1248,7 +1248,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                     <span>Valor recebido: <strong>{formatCurrency(deferredSelectedSupplier.valor_total)}</strong></span>
                     <span>Deputados atendidos: <strong>{formatCellValue(deferredSelectedSupplier.qtd_deputados)}</strong></span>
                     <span>Qtd despesas: <strong>{formatCellValue(deferredSelectedSupplier.qtd_despesas)}</strong></span>
-                    <span>Ticket medio: <strong>{formatCurrency(deferredSelectedSupplier.ticket_medio)}</strong></span>
+                    <span>Valor médio por despesa: <strong>{formatCurrency(deferredSelectedSupplier.ticket_medio)}</strong></span>
                     <span>% do total: <strong>{formatPercent(deferredSelectedSupplier.pct_total)}</strong></span>
                   </div>
 
@@ -1295,7 +1295,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   { key: 'valor_total', label: 'Valor received', format: formatCurrency },
                   { key: 'qtd_despesas', label: 'Despesas' },
                   { key: 'qtd_deputados', label: 'Deputados atendidos' },
-                  { key: 'ticket_medio', label: 'Ticket medio', format: formatCurrency },
+                  { key: 'ticket_medio', label: 'Valor médio por despesa', format: formatCurrency },
                 ]}
               />
             </>

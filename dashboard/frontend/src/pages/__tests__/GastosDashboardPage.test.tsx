@@ -137,8 +137,10 @@ it('remove gastos atipicos and configures financial charts without a clickable l
 
   expect(evolution).toHaveAttribute('data-options', expect.stringContaining('"show_legend":false'))
   expect(category).toHaveAttribute('data-options', expect.stringContaining('"currency":true'))
+  expect(screen.getAllByText('Despesa média').length).toBeGreaterThan(0)
   expect(screen.queryByText(/gastos at[ií]picos/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/anomalia/i)).not.toBeInTheDocument()
+  expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
 })
 
 it('clears section-specific filters and selections when changing tabs', async () => {
@@ -196,6 +198,7 @@ it('renders the selected deputy drilldown from Q12 and Q13 with deputy-based per
   expect(screen.getAllByText('Fornecedor do Deputado').length).toBeGreaterThan(0)
   expect(screen.getAllByText('Categoria do Deputado').length).toBeGreaterThan(0)
   expect(screen.getByText('Q12_Q13')).toBeInTheDocument()
+  expect(screen.getAllByText(/Valor médio por despesa/i).length).toBeGreaterThan(0)
   expect(screen.getAllByText('60%').length).toBeGreaterThan(0)
   expect(screen.getAllByText('70%').length).toBeGreaterThan(0)
   expect(vi.mocked(fetchDeputyExpenseBreakdown)).toHaveBeenCalledWith('123', {

@@ -251,7 +251,7 @@ export function PerfilDashboardPage({ meta }: PerfilDashboardPageProps) {
         q6Payload,
         'media_gasto',
         'Gasto médio anual por escolaridade',
-        'Média anual de gastos parlamentares por deputado, agrupada por nível de escolaridade.',
+        'Para cada deputado, calcula-se a média anual dos anos com gasto positivo; depois essas médias individuais são agrupadas por escolaridade.',
         'Gasto médio (R$)',
         true,
       ),

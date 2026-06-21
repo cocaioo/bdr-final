@@ -95,7 +95,7 @@ function GastosSection({ data, loading, error }: { data: DeputyGastosProfile | n
         <div className="deputy-profile__metrics" aria-label="Resumo de gastos">
           <ProfileField label="Total gasto" value={formatCurrency(data.summary.valor_total)} />
           <ProfileField label="Quantidade de despesas" value={formatNumber(data.summary.qtd_despesas)} />
-          <ProfileField label="Ticket médio" value={formatCurrency(data.summary.ticket_medio)} />
+          <ProfileField label="Despesa média" value={formatCurrency(data.summary.ticket_medio)} />
           <ProfileField label="Fornecedores" value={formatNumber(data.summary.qtd_fornecedores)} />
         </div>
       ) : null}

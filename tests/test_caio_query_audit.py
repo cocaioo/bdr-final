@@ -126,6 +126,18 @@ def _presencas_df() -> pd.DataFrame:
 
 
 @lru_cache(maxsize=1)
+def _votacoes_votos_df() -> pd.DataFrame:
+    frame = pd.read_csv(
+        _question_path("dados_padronizados", "votacoes_votos.csv"),
+        sep=";",
+        low_memory=False,
+    )
+    frame["ano_dados"] = pd.to_numeric(frame["ano_dados"], errors="coerce").astype("Int64")
+    frame["id_deputado"] = pd.to_numeric(frame["id_deputado"], errors="coerce").astype("Int64")
+    return frame
+
+
+@lru_cache(maxsize=1)
 def _dashboard_service() -> DashboardService:
     return DashboardService(repo_root=REPO_ROOT)
 
@@ -215,6 +227,123 @@ def _current_plenario_matches() -> int:
         | _unaccent_col(merged["local_camara"]).str.contains("plenario", case=False, regex=True)
     )
     return int(matches.sum())
+
+
+def _q6_consolidated_media_from_rows(rows: list[dict[str, object]]) -> dict[str, dict[str, float | int]]:
+    frame = pd.DataFrame(rows)
+    if frame.empty:
+        return {}
+
+    frame["ano_dados"] = pd.to_numeric(frame["ano_dados"], errors="coerce").astype("Int64")
+    frame["id_deputado"] = pd.to_numeric(frame["id_deputado"], errors="coerce").astype("Int64")
+    frame["valor_liquido"] = pd.to_numeric(frame["valor_liquido"], errors="coerce").fillna(0.0)
+    frame["escolaridade"] = frame["escolaridade"].fillna("Nao informado").astype(str)
+
+    gastos_anuais = (
+        frame.groupby(["id_deputado", "ano_dados", "escolaridade"], dropna=False, as_index=False)["valor_liquido"]
+        .sum()
+        .rename(columns={"valor_liquido": "gasto_anual_deputado"})
+    )
+    anos_com_gasto_positivo = (
+        frame[frame["valor_liquido"] > 0][["id_deputado", "ano_dados"]]
+        .drop_duplicates()
+    )
+    medias_deputado = (
+        gastos_anuais.merge(anos_com_gasto_positivo, on=["id_deputado", "ano_dados"], how="inner")
+        .groupby(["id_deputado", "escolaridade"], dropna=False, as_index=False)
+        .agg(
+            qtd_anos_com_gasto_positivo=("ano_dados", "nunique"),
+            media_gasto_anual_deputado=("gasto_anual_deputado", "mean"),
+        )
+    )
+
+    resultados: dict[str, dict[str, float | int]] = {}
+    for escolaridade, grupo in medias_deputado.groupby("escolaridade", dropna=False):
+        resultados[str(escolaridade)] = {
+            "qtd_deputados": int(grupo["id_deputado"].nunique()),
+            "qtd_registros_deputado_ano": int(grupo["qtd_anos_com_gasto_positivo"].sum()),
+            "soma_medias_deputados": round(float(grupo["media_gasto_anual_deputado"].sum()), 2),
+            "media_gasto": round(float(grupo["media_gasto_anual_deputado"].mean()), 2),
+        }
+    return resultados
+
+
+def _current_q6_gasto_metrics_anual(ano: int, escolaridade: str) -> dict[str, float | int]:
+    deputados = _deputados_df()[["id_deputado", "escolaridade"]].copy()
+    deputados["id_deputado"] = pd.to_numeric(deputados["id_deputado"], errors="coerce").astype("Int64")
+    deputados["escolaridade"] = deputados["escolaridade"].fillna("Nao informado")
+
+    ativos = pd.concat(
+        [
+            _gastos_df()[["ano_dados", "id_deputado"]],
+            _votacoes_votos_df()[["ano_dados", "id_deputado"]],
+            _proposicoes_autores_df()[["ano_dados", "id_deputado"]],
+            _presencas_df()[["ano_dados", "id_deputado"]],
+        ],
+        ignore_index=True,
+    ).dropna(subset=["ano_dados", "id_deputado"]).drop_duplicates()
+
+    gastos_anuais = (
+        _gastos_df()
+        .groupby(["ano_dados", "id_deputado"], dropna=False, as_index=False)["valor_liquido"]
+        .sum()
+        .rename(columns={"valor_liquido": "gasto_total"})
+    )
+
+    indicadores = ativos.merge(deputados, on="id_deputado", how="inner").merge(
+        gastos_anuais,
+        on=["ano_dados", "id_deputado"],
+        how="left",
+    )
+    indicadores["gasto_total"] = indicadores["gasto_total"].fillna(0.0)
+
+    grupo = indicadores[
+        (indicadores["ano_dados"] == ano) & (indicadores["escolaridade"] == escolaridade)
+    ].copy()
+    assert not grupo.empty, f"Grupo Q6 vazio para ano={ano} e escolaridade={escolaridade!r}"
+
+    gastos_com_escolaridade = _gastos_df().merge(
+        deputados,
+        on="id_deputado",
+        how="left",
+    )
+    gastos_com_escolaridade["escolaridade"] = gastos_com_escolaridade["escolaridade"].fillna("Nao informado")
+    despesas_grupo = gastos_com_escolaridade[
+        (gastos_com_escolaridade["ano_dados"] == ano)
+        & (gastos_com_escolaridade["escolaridade"] == escolaridade)
+    ].copy()
+
+    qtd_deputados = int(grupo["id_deputado"].nunique())
+    gasto_total_grupo = round(float(grupo["gasto_total"].sum()), 2)
+    media_gasto = round(float(grupo["gasto_total"].mean()), 2)
+    media_por_despesa = round(float(despesas_grupo["valor_liquido"].mean()), 2)
+
+    return {
+        "qtd_deputados": qtd_deputados,
+        "qtd_despesas": int(len(despesas_grupo)),
+        "gasto_total_grupo": gasto_total_grupo,
+        "media_gasto": media_gasto,
+        "media_por_despesa": media_por_despesa,
+    }
+
+
+def _current_q6_gasto_metrics_consolidado(escolaridade: str) -> dict[str, float | int]:
+    deputados = _deputados_df()[["id_deputado", "escolaridade"]].copy()
+    deputados["id_deputado"] = pd.to_numeric(deputados["id_deputado"], errors="coerce").astype("Int64")
+    deputados["escolaridade"] = deputados["escolaridade"].fillna("Nao informado")
+
+    gastos = _gastos_df().merge(deputados, on="id_deputado", how="left")
+    gastos["escolaridade"] = gastos["escolaridade"].fillna("Nao informado")
+
+    resultados = _q6_consolidated_media_from_rows(
+        gastos[["ano_dados", "id_deputado", "escolaridade", "valor_liquido"]].to_dict("records")
+    )
+    grupo = resultados[escolaridade]
+
+    despesas_grupo = gastos[gastos["escolaridade"] == escolaridade].copy()
+    grupo["qtd_despesas"] = int(len(despesas_grupo))
+    grupo["media_por_despesa"] = round(float(despesas_grupo["valor_liquido"].mean()), 2)
+    return grupo
 
 
 def _q4_state() -> FilterState:
@@ -359,6 +488,97 @@ def test_q6_plenario_export_matches_current_event_labels() -> None:
     # Every row was kept by HAVING AVG(presenca_plenario) > 0, so none can be zero.
     assert all(float(row["media_presenca_plenario"]) > 0 for row in rows), (
         "Todas as linhas do artefato Q6E devem ter media_presenca_plenario > 0 (filtro HAVING do SQL)"
+    )
+
+
+def test_q6_gasto_anual_export_uses_media_por_deputado_no_ano() -> None:
+    ano = 2024
+    escolaridade = "Mestrado"
+    esperado = _current_q6_gasto_metrics_anual(ano, escolaridade)
+
+    rows = _rows_from_psql(
+        _question_path("Caio", "escolaridade-perfil", "q6", "q6_escolaridade_correlacoes.txt"),
+        0,
+    )
+    export_row = next(
+        row
+        for row in rows
+        if int(row["ano_dados"]) == ano and row["escolaridade"] == escolaridade
+    )
+
+    assert int(export_row["qtd_deputados"]) == esperado["qtd_deputados"]
+    assert float(export_row["media_gasto"]) == pytest.approx(esperado["media_gasto"], abs=0.01)
+    assert esperado["media_gasto"] == pytest.approx(
+        esperado["gasto_total_grupo"] / esperado["qtd_deputados"],
+        abs=0.01,
+    )
+    assert esperado["media_gasto"] != pytest.approx(esperado["media_por_despesa"], abs=0.01), (
+        "Q6 nao pode usar AVG(valor_liquido) por despesa para media_gasto"
+    )
+    assert esperado["qtd_deputados"] != esperado["qtd_despesas"], (
+        "O denominador de Q6 deve ser deputados do grupo, nao quantidade de despesas"
+    )
+
+
+def test_q6_gasto_consolidado_usa_media_das_medias_anuais_individuais() -> None:
+    rows = [
+        {"ano_dados": 2023, "id_deputado": 1, "escolaridade": "Mestrado", "valor_liquido": 100.0},
+        {"ano_dados": 2024, "id_deputado": 1, "escolaridade": "Mestrado", "valor_liquido": 100.0},
+        {"ano_dados": 2025, "id_deputado": 1, "escolaridade": "Mestrado", "valor_liquido": 100.0},
+        {"ano_dados": 2023, "id_deputado": 2, "escolaridade": "Mestrado", "valor_liquido": 1000.0},
+    ]
+
+    resultado = _q6_consolidated_media_from_rows(rows)["Mestrado"]
+    media_por_deputado_ano = round((100.0 + 100.0 + 100.0 + 1000.0) / 4, 2)
+
+    assert resultado["qtd_deputados"] == 2
+    assert resultado["qtd_registros_deputado_ano"] == 4
+    assert resultado["soma_medias_deputados"] == pytest.approx(1100.0, abs=0.01)
+    assert resultado["media_gasto"] == pytest.approx(550.0, abs=0.01)
+    assert resultado["media_gasto"] != pytest.approx(media_por_deputado_ano, abs=0.01), (
+        "Q6 consolidada nao pode usar deputado-ano como unidade final"
+    )
+
+
+def test_q6_gasto_consolidado_ignora_anos_sem_gasto_positivo_no_denominador() -> None:
+    rows = [
+        {"ano_dados": 2023, "id_deputado": 1, "escolaridade": "Mestrado", "valor_liquido": 200.0},
+        {"ano_dados": 2024, "id_deputado": 1, "escolaridade": "Mestrado", "valor_liquido": 0.0},
+        {"ano_dados": 2025, "id_deputado": 1, "escolaridade": "Mestrado", "valor_liquido": -50.0},
+        {"ano_dados": 2023, "id_deputado": 2, "escolaridade": "Mestrado", "valor_liquido": 100.0},
+    ]
+
+    resultado = _q6_consolidated_media_from_rows(rows)["Mestrado"]
+
+    assert resultado["qtd_registros_deputado_ano"] == 2, (
+        "Apenas anos com algum gasto positivo devem entrar no denominador individual"
+    )
+    assert resultado["soma_medias_deputados"] == pytest.approx(300.0, abs=0.01)
+    assert resultado["media_gasto"] == pytest.approx(150.0, abs=0.01)
+
+
+def test_q6_gasto_consolidado_export_usa_media_das_medias_individuais() -> None:
+    escolaridade = "Secundário"
+    esperado = _current_q6_gasto_metrics_consolidado(escolaridade)
+
+    rows = _rows_from_psql(
+        _question_path("Caio", "escolaridade-perfil", "q6", "q6a_escolaridade_gastos.txt"),
+        0,
+    )
+    export_row = next(row for row in rows if row["escolaridade"] == escolaridade)
+
+    assert int(export_row["qtd_deputados"]) == esperado["qtd_deputados"]
+    assert int(export_row["qtd_registros_deputado_ano"]) == esperado["qtd_registros_deputado_ano"]
+    assert float(export_row["media_gasto"]) == pytest.approx(esperado["media_gasto"], abs=0.01)
+    assert esperado["media_gasto"] == pytest.approx(
+        esperado["soma_medias_deputados"] / esperado["qtd_deputados"],
+        abs=0.01,
+    )
+    assert esperado["media_gasto"] != pytest.approx(esperado["media_por_despesa"], abs=0.01), (
+        "Q6 consolidada nao pode usar media por despesa"
+    )
+    assert esperado["qtd_deputados"] != esperado["qtd_registros_deputado_ano"], (
+        "No consolidado, cada deputado deve pesar uma vez, mesmo com varios anos de gasto"
     )
 
 
@@ -1075,4 +1295,3 @@ class TestArtifactConsistency:
             f"Arquivos com final de linha corrompido (\\r\\r\\n): {corrupted_files}. "
             "Normalizar para \\n ou \\r\\n para corrigir."
         )
-

@@ -1,5 +1,5 @@
-Q6 - escolaridade e indicadores medios
-Tabela principal - medias por escolaridade
+Q6 - escolaridade e indicadores medios anuais
+Tabela principal - medias anuais por escolaridade
  ano_dados |      escolaridade       | qtd_deputados | media_gasto | media_fidelidade | media_proposicoes | media_presenca_eventos | media_presenca_plenario 
 -----------+-------------------------+---------------+-------------+------------------+-------------------+------------------------+-------------------------
       2023 | Doutorado               |            16 |   380547.33 |            97.16 |            397.13 |                 190.44 |                  187.50
