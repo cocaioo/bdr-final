@@ -617,6 +617,11 @@ def _without_year_filter(state: FilterState) -> FilterState:
 
 
 def _humanize_label(key: str) -> str:
+    aliases = {
+        "ticket_medio": "Valor medio por despesa",
+    }
+    if key in aliases:
+        return aliases[key]
     return key.replace("_", " ").strip().capitalize()
 
 

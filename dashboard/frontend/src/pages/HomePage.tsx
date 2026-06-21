@@ -1,79 +1,74 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import type { MetaResponse } from '../types'
-import { isQuestionEnabled, isQuestionHidden } from '../utils/questionAvailability'
+import { DeputySearch } from '../components/DeputySearch'
 
-interface HomePageProps {
-  meta: MetaResponse
-}
+const PANELS = [
+  {
+    title: 'Gastos parlamentares',
+    description: 'Acompanhe valores, categorias, deputados, fornecedores e diferenças entre partidos e estados.',
+    route: '/grupos/gastos',
+    status: 'Disponível',
+  },
+  {
+    title: 'Escolaridade e perfil dos deputados',
+    description: 'Explore a formação da legislatura e compare indicadores de atividade entre níveis de escolaridade.',
+    route: '/grupos/perfil',
+    status: 'Disponível',
+  },
+  {
+    title: 'Produção legislativa',
+    description: 'Módulo destinado a temas, proposições, autoria e indicadores de atuação parlamentar.',
+    route: '/grupos/producao-legislativa',
+    status: 'Em consolidação',
+  },
+  {
+    title: 'Partidos e votações',
+    description: 'Módulo destinado a alinhamento partidário, orientações, votos e comparações entre bancadas.',
+    route: '/grupos/partidos-votacoes',
+    status: 'Em consolidação',
+  },
+]
 
-export function HomePage({ meta }: HomePageProps) {
-  const [questionsOpen, setQuestionsOpen] = useState(false)
-
-  const questions = meta.questions || []
-
-  // Filter questions that are not hidden
-  const visibleQuestions = questions.filter((question) => !isQuestionHidden(question.id))
-
+export function HomePage() {
   return (
     <main className="home-page">
-      {/* Hero — compact intro */}
       <section className="hero-card home-hero stagger-item">
-        <h1>Painel de Analise Parlamentar</h1>
+        <span className="home-hero-eyebrow">Inteligência parlamentar</span>
+        <h1>Painéis de análise parlamentar</h1>
         <p className="home-hero-subtitle">
-          Visualize dados legislativos, gastos parlamentares e indicadores de desempenho.
+          Escolha um módulo para explorar informações públicas da Câmara de forma integrada.
         </p>
       </section>
 
-      {/* Primary CTA — Painel de Gastos */}
-      <section className="home-primary-cta stagger-item">
-        <div className="home-cta-content">
-          <h2>Painel Consolidado de Gastos</h2>
-          <p>Analise detalhada de despesas parlamentares com rankings, anomalias e filtros interativos.</p>
+      <section className="deputy-search-hero stagger-item">
+        <div className="deputy-search-hero__copy">
+          <h2>Pesquisar deputado</h2>
+          <p>Encontre um parlamentar e consulte seu perfil individual.</p>
         </div>
-        <Link to="/grupos/gastos" className="home-cta-btn">
-          Acessar Painel →
-        </Link>
+        <DeputySearch placeholder="Pesquisar deputado..." />
       </section>
 
-      {/* Secondary — Questions Q1-Q13 */}
-      <section className="home-questions-section stagger-item">
-        <button
-          type="button"
-          className="home-questions-toggle"
-          onClick={() => setQuestionsOpen(!questionsOpen)}
-          aria-expanded={questionsOpen}
-        >
-          <span className="home-questions-toggle-label">
-            Questoes individuais
-            <span className="home-questions-count">{visibleQuestions.length}</span>
-          </span>
-          <span className={`home-questions-chevron${questionsOpen ? ' open' : ''}`}>▾</span>
-        </button>
+      <section className="home-panel-section stagger-item" aria-labelledby="home-panels-title">
+        <header className="home-panel-heading">
+          <div>
+            <span>Módulos analíticos</span>
+            <h2 id="home-panels-title">Explore os painéis</h2>
+          </div>
+          <p>Cada painel reúne indicadores relacionados em uma única experiência.</p>
+        </header>
 
-        {questionsOpen && (
-          <ul className="home-questions-list">
-            {visibleQuestions.map((question) => {
-              const enabled = isQuestionEnabled(question.id)
-              return (
-                <li key={question.id} className="home-question-item">
-                  <span className="home-question-id">{question.id.toUpperCase()}</span>
-                  <div className="home-question-info">
-                    <span className="home-question-title">{question.title}</span>
-                  </div>
-                  {enabled ? (
-                    <Link to={`/q/${question.id}`} className="home-question-link">
-                      Abrir
-                    </Link>
-                  ) : (
-                    <span className="home-question-disabled">Em desenvolvimento</span>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        )}
+        <div className="home-panel-grid">
+          {PANELS.map((panel) => (
+            <article className="home-panel-card" key={panel.route}>
+              <span className={`home-panel-status${panel.status === 'Disponível' ? ' available' : ''}`}>
+                {panel.status}
+              </span>
+              <h3>{panel.title}</h3>
+              <p>{panel.description}</p>
+              <Link to={panel.route} aria-label={`Abrir painel: ${panel.title}`}>Abrir painel</Link>
+            </article>
+          ))}
+        </div>
       </section>
     </main>
   )

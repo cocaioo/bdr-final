@@ -1,4 +1,6 @@
-﻿\o
+\o
+
+CREATE EXTENSION IF NOT EXISTS unaccent;
 
 CREATE OR REPLACE TEMP VIEW resposta_gastos_deputado AS
 SELECT
@@ -14,10 +16,10 @@ SELECT
     pa.id_deputado,
     COUNT(DISTINCT pa.id_proposicao) AS qtd_proposicoes,
     COUNT(DISTINCT pa.id_proposicao) FILTER (
-        WHERE COALESCE(p.descricao_situacao, '') ILIKE '%aprov%'
-           OR COALESCE(p.descricao_situacao, '') ILIKE '%sancao%'
-           OR COALESCE(p.descricao_situacao, '') ILIKE '%norma juridica%'
-           OR COALESCE(p.descricao_situacao, '') ILIKE '%promulg%'
+        WHERE public.unaccent(COALESCE(p.descricao_situacao, '')) ILIKE '%aprov%'
+           OR public.unaccent(COALESCE(p.descricao_situacao, '')) ILIKE '%sancao%'
+           OR public.unaccent(COALESCE(p.descricao_situacao, '')) ILIKE '%norma juridica%'
+           OR public.unaccent(COALESCE(p.descricao_situacao, '')) ILIKE '%promulg%'
     ) AS proposicoes_aprovadas
 FROM proposicoes_autores pa
 LEFT JOIN proposicoes p
@@ -123,7 +125,7 @@ LEFT JOIN resposta_presenca_deputado pr
 WHERE g.gasto_total > 0;
 
 \o /query-staging/q7_custo_beneficio.txt
-\qecho Q7 - ranking de beneficio por deputado
+\qecho Q7 - ranking de custo-beneficio por deputado
 \qecho Resumo executivo
 SELECT
     ano_dados,
@@ -135,13 +137,13 @@ GROUP BY ano_dados
 ORDER BY ano_dados;
 
 \qecho
-\qecho Tabela principal - top 30 por beneficio
+\qecho Tabela principal - top 30 por custo-beneficio
 WITH ranked AS (
     SELECT
         *,
         RANK() OVER (
             PARTITION BY ano_dados
-            ORDER BY beneficio DESC NULLS LAST
+            ORDER BY custo_beneficio DESC NULLS LAST
         ) AS posicao
     FROM resposta_custo_beneficio
 )
@@ -159,7 +161,7 @@ SELECT
     custo_beneficio
 FROM ranked
 WHERE posicao <= 30
-ORDER BY ano_dados, beneficio DESC NULLS LAST;
+ORDER BY ano_dados, custo_beneficio DESC NULLS LAST;
 
 \qecho
 \qecho Ranking global - todos os anos
@@ -234,13 +236,13 @@ SELECT
     beneficio,
     custo_beneficio
 FROM global_metricas
-ORDER BY beneficio DESC NULLS LAST;
+ORDER BY custo_beneficio DESC NULLS LAST;
 
 \qecho
-\qecho Complemento detalhado: q7_custo_beneficio_complemento.txt contem o ranking completo por beneficio.
+\qecho Complemento detalhado: q7_custo_beneficio_complemento.txt contem o ranking completo por custo-beneficio.
 
 \o /query-staging/q7_custo_beneficio_complemento.txt
-\qecho Q7 complemento - ranking completo por beneficio
+\qecho Q7 complemento - ranking completo por custo-beneficio
 SELECT
     ano_dados,
     id_deputado,
@@ -252,4 +254,4 @@ SELECT
     beneficio,
     custo_beneficio
 FROM resposta_custo_beneficio
-ORDER BY ano_dados, beneficio DESC NULLS LAST;
+ORDER BY ano_dados, custo_beneficio DESC NULLS LAST;

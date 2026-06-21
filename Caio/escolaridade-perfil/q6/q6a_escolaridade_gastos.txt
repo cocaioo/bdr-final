@@ -1,19 +1,20 @@
 Q6A - escolaridade x gastos
-Tabela principal - media geral de gastos por escolaridade
-           escolaridade | qtd_registros_deputado_ano | qtd_deputados | media_gasto
-------------------------+----------------------------+---------------+------------
-  Secundário Incompleto |                          1 |             1 |   511089.19
-             Secundário |                          7 |             2 |   427561.46
-   Doutorado Incompleto |                         25 |             7 |   378211.57
-    Primário Incompleto |                          4 |             1 |   376930.52
-               Superior |                       1273 |           352 |   362308.40
-          Pós-Graduação |                        318 |            83 |   361297.94
-     Ensino Fundamental |                         44 |            12 |   354316.95
-           Ensino Médio |                        104 |            28 |   344686.04
-    Superior Incompleto |                        163 |            44 |   344620.80
-Ensino Médio Incompleto |                          8 |             2 |   343966.86
-               Mestrado |                        164 |            45 |   341500.15
-              Doutorado |                         62 |            18 |   319252.73
-    Mestrado Incompleto |                         20 |             5 |   318514.63
-          Nao informado |                         74 |            40 |   211905.65
+Tabela principal - media das medias anuais individuais de gastos por deputado e escolaridade
+      escolaridade       | qtd_registros_deputado_ano | qtd_deputados | media_gasto 
+-------------------------+----------------------------+---------------+-------------
+ Secundário Incompleto   |                          1 |             1 |   511089.19
+ Secundário              |                          7 |             2 |   431159.70
+ Primário Incompleto     |                          4 |             1 |   380879.90
+ Doutorado Incompleto    |                         25 |             7 |   363100.74
+ Pós-Graduação           |                        318 |            83 |   362981.55
+ Ensino Fundamental      |                         44 |            12 |   353688.83
+ Superior                |                       1268 |           352 |   350329.55
+ Ensino Médio Incompleto |                          8 |             2 |   346805.32
+ Ensino Médio            |                        104 |            28 |   337758.51
+ Superior Incompleto     |                        162 |            44 |   337674.57
+ Mestrado                |                        161 |            45 |   332530.96
+ Mestrado Incompleto     |                         19 |             5 |   323643.35
+ Doutorado               |                         61 |            18 |   291778.59
+ Nao informado           |                         72 |            39 |   170210.89
 (14 rows)
+

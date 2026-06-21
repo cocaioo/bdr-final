@@ -1,17 +1,19 @@
 Q6B - escolaridade x fidelidade partidaria
 Tabela principal - media geral de fidelidade partidaria por escolaridade
-           escolaridade | qtd_registros_deputado_ano | qtd_registros_com_fidelidade | qtd_deputados | media_fidelidade
-------------------------+----------------------------+------------------------------+---------------+-----------------
-   Doutorado Incompleto |                         25 |                           10 |             7 |            95.28
-    Mestrado Incompleto |                         20 |                            4 |             5 |            95.00
-             Secundário |                          7 |                            3 |             2 |            94.61
-Ensino Médio Incompleto |                          8 |                            5 |             2 |            93.46
-          Nao informado |                         74 |                           22 |            40 |            93.26
-              Doutorado |                         62 |                           22 |            18 |            92.44
-               Superior |                       1273 |                          506 |           352 |            91.60
-               Mestrado |                        164 |                           57 |            45 |            90.71
-    Superior Incompleto |                        163 |                           59 |            44 |            90.32
-           Ensino Médio |                        104 |                           31 |            28 |            89.88
-          Pós-Graduação |                        318 |                          120 |            83 |            89.86
-     Ensino Fundamental |                         44 |                           15 |            12 |            83.74
-(12 rows)
+      escolaridade       | qtd_registros_deputado_ano | qtd_registros_com_fidelidade | qtd_deputados | media_fidelidade 
+-------------------------+----------------------------+------------------------------+---------------+------------------
+ Secundário Incompleto   |                          1 |                            1 |             1 |           100.00
+ Mestrado Incompleto     |                         20 |                            5 |             5 |            96.67
+ Secundário              |                          7 |                            4 |             2 |            95.96
+ Doutorado Incompleto    |                         25 |                           13 |             7 |            95.84
+ Ensino Médio Incompleto |                          8 |                            6 |             2 |            94.18
+ Nao informado           |                         74 |                           30 |            40 |            94.17
+ Doutorado               |                         62 |                           25 |            18 |            92.40
+ Superior                |                       1274 |                          624 |           352 |            92.08
+ Pós-Graduação           |                        318 |                          157 |            83 |            91.43
+ Ensino Médio            |                        104 |                           43 |            28 |            91.35
+ Superior Incompleto     |                        163 |                           76 |            44 |            91.27
+ Mestrado                |                        164 |                           72 |            45 |            91.00
+ Ensino Fundamental      |                         44 |                           18 |            12 |            88.46
+(13 rows)
+

@@ -15,6 +15,12 @@ export function ChartPanel({ spec, yearLabels, activeFilters, onBarClick }: Char
   const ref = useRef<HTMLDivElement | null>(null)
   const chartRef = useRef<echarts.ECharts | null>(null)
   const option = useMemo(() => buildChartOption(spec, activeFilters), [spec, activeFilters])
+  const surfaceStyle = useMemo(() => {
+    const configuredHeight = Number(spec.options.chart_height)
+    return Number.isFinite(configuredHeight) && configuredHeight > 0
+      ? { minHeight: `${configuredHeight}px` }
+      : undefined
+  }, [spec.options])
 
   const onBarClickRef = useRef(onBarClick)
   useEffect(() => {
@@ -65,7 +71,13 @@ export function ChartPanel({ spec, yearLabels, activeFilters, onBarClick }: Char
           ))}
         </div>
       ) : null}
-      <div ref={ref} className="chart-surface" role="img" aria-label={`Grafico ${spec.type}`} />
+      <div
+        ref={ref}
+        className="chart-surface"
+        style={surfaceStyle}
+        role="img"
+        aria-label={`Grafico ${spec.title}`}
+      />
     </section>
   )
 }

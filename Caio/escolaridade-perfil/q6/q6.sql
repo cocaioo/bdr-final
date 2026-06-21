@@ -1,4 +1,6 @@
-﻿\o
+\o
+
+CREATE EXTENSION IF NOT EXISTS unaccent;
 
 CREATE OR REPLACE TEMP VIEW resposta_deputados_ativos AS
 SELECT DISTINCT ano_dados, id_deputado
@@ -20,6 +22,25 @@ SELECT
     SUM(valor_liquido) AS gasto_total
 FROM gastos
 GROUP BY ano_dados, id_deputado;
+
+CREATE OR REPLACE TEMP VIEW resposta_anos_com_gasto_positivo AS
+SELECT DISTINCT
+    ano_dados,
+    id_deputado
+FROM gastos
+WHERE valor_liquido > 0;
+
+CREATE OR REPLACE TEMP VIEW resposta_media_anual_gastos_deputado AS
+SELECT
+    ap.id_deputado,
+    COUNT(*) AS qtd_anos_com_gasto_positivo,
+    SUM(g.gasto_total) AS gasto_total_periodo,
+    SUM(g.gasto_total) / COUNT(*)::numeric AS media_gasto_anual_deputado
+FROM resposta_anos_com_gasto_positivo ap
+JOIN resposta_gastos_deputado g
+    ON g.ano_dados = ap.ano_dados
+   AND g.id_deputado = ap.id_deputado
+GROUP BY ap.id_deputado;
 
 CREATE OR REPLACE TEMP VIEW resposta_fidelidade_deputado AS
 SELECT
@@ -58,9 +79,9 @@ SELECT
     pr.id_deputado,
     COUNT(*) AS presenca_eventos,
     COUNT(*) FILTER (
-        WHERE COALESCE(e.descricao_tipo, '') ILIKE '%plenario%'
-           OR COALESCE(e.descricao, '') ILIKE '%plenario%'
-           OR COALESCE(e.local_camara, '') ILIKE '%plenario%'
+        WHERE public.unaccent(COALESCE(e.descricao_tipo, '')) ILIKE '%plenario%'
+           OR public.unaccent(COALESCE(e.descricao, '')) ILIKE '%plenario%'
+           OR public.unaccent(COALESCE(e.local_camara, '')) ILIKE '%plenario%'
     ) AS presenca_plenario
 FROM eventos_presenca_deputados pr
 LEFT JOIN eventos e
@@ -94,8 +115,8 @@ LEFT JOIN resposta_presenca_deputado pr
  AND pr.id_deputado = d.id_deputado;
 
 \o /query-staging/q6_escolaridade_correlacoes.txt
-\qecho Q6 - escolaridade e indicadores medios
-\qecho Tabela principal - medias por escolaridade
+\qecho Q6 - escolaridade e indicadores medios anuais
+\qecho Tabela principal - medias anuais por escolaridade
 SELECT
     ano_dados,
     escolaridade,
@@ -111,15 +132,17 @@ ORDER BY ano_dados, escolaridade;
 
 \o /query-staging/q6a_escolaridade_gastos.txt
 \qecho Q6A - escolaridade x gastos
-\qecho Tabela principal - media geral de gastos por escolaridade
+\qecho Tabela principal - media das medias anuais individuais de gastos por deputado e escolaridade
 SELECT
-    escolaridade,
-    COUNT(*) AS qtd_registros_deputado_ano,
-    COUNT(DISTINCT id_deputado) AS qtd_deputados,
-    ROUND(AVG(gasto_total), 2) AS media_gasto
-FROM resposta_escolaridade_indicadores
-GROUP BY escolaridade
-HAVING AVG(gasto_total) > 0
+    COALESCE(d.escolaridade, 'Nao informado') AS escolaridade,
+    SUM(gd.qtd_anos_com_gasto_positivo) AS qtd_registros_deputado_ano,
+    COUNT(*) AS qtd_deputados,
+    ROUND(AVG(gd.media_gasto_anual_deputado), 2) AS media_gasto
+FROM resposta_media_anual_gastos_deputado gd
+JOIN deputados d
+    ON d.id_deputado = gd.id_deputado
+GROUP BY COALESCE(d.escolaridade, 'Nao informado')
+HAVING AVG(gd.media_gasto_anual_deputado) > 0
 ORDER BY media_gasto DESC NULLS LAST, escolaridade;
 
 \o /query-staging/q6b_escolaridade_fidelidade.txt

@@ -156,86 +156,7 @@ def _write_gastos_artifacts(root: Path) -> None:
             }
         ],
     )
-    _write_csv(
-        base / "gastos_atipicos_ranking_deputados.csv",
-        [
-            {
-                "id_deputado": 1,
-                "nome_parlamentar": "Ana Silva",
-                "sigla_partido": "PT",
-                "sigla_uf": "SP",
-                "total_despesas": 2,
-                "qtd_despesas_atipicas": 1,
-                "valor_atipico": 150,
-                "score_atipicidade_medio": 0.7,
-                "score_atipicidade_max": 1.2,
-                "pct_despesas_atipicas": 50,
-            }
-        ],
-    )
-    _write_csv(
-        base / "gastos_atipicos_detalhado.csv",
-        [
-            {
-                "ano_dados": 2024,
-                "id_deputado": 1,
-                "nome_parlamentar": "Ana Silva",
-                "sigla_partido": "PT",
-                "sigla_uf": "SP",
-                "descricao_despesa": "PASSAGENS",
-                "fornecedor": "CIA AEREA LTDA",
-                "fornecedor_normalizado": "CIA AEREA",
-                "valor_documento": 150,
-                "valor_glosa": 0,
-                "valor_liquido": 150,
-                "gasto_atipico": "True",
-                "score_atipicidade": 1.2,
-                "nota_linguagem": "Despesa fora do padrao estatistico.",
-            },
-            {
-                "ano_dados": 2024,
-                "id_deputado": 2,
-                "nome_parlamentar": "Bruno Lima",
-                "sigla_partido": "PL",
-                "sigla_uf": "RJ",
-                "descricao_despesa": "COMBUSTIVEIS",
-                "fornecedor": "POSTO CENTRAL",
-                "fornecedor_normalizado": "POSTO CENTRAL",
-                "valor_documento": 10,
-                "valor_glosa": 0,
-                "valor_liquido": 10,
-                "gasto_atipico": "False",
-                "score_atipicidade": 0.1,
-                "nota_linguagem": "Despesa fora do padrao estatistico.",
-            },
-        ],
-    )
-    _write_csv(
-        base / "gastos_atipicos_explicacoes.csv",
-        [
-            {
-                "id_gasto": 101,
-                "motivo_principal": "valor_acima_percentil_99",
-                "motivos_json": json.dumps(
-                    [
-                        {
-                            "tipo": "valor_acima_percentil_99",
-                            "peso": 0.9,
-                            "descricao": "Valor acima do percentil 99 da categoria.",
-                        },
-                        {
-                            "tipo": "ticket_acima_padrao_deputado",
-                            "peso": 0.7,
-                            "descricao": "Valor acima do padrao do deputado.",
-                        },
-                    ],
-                    ensure_ascii=False,
-                ),
-                "qtd_motivos": 2,
-                "maior_peso_motivo": 0.9,
-            }
-        ],
-    )
+
 
 
 def test_gastos_resumo_contract(tmp_path: Path) -> None:
@@ -273,25 +194,11 @@ def test_gastos_collection_endpoints_return_json_contracts(tmp_path: Path) -> No
     assert contexto.json()["partidos"][0]["sigla_partido"] == "PT"
     assert contexto.json()["ufs"][0]["sigla_uf"] == "SP"
 
-    anomalias = client.get("/api/gastos/anomalias?partido=PT")
-    assert anomalias.status_code == 200
-    assert anomalias.json()["ranking"][0]["nome_parlamentar"] == "Ana Silva"
+    anomalias = client.get("/api/gastos/anomalias")
+    assert anomalias.status_code == 404
+
+    detalhes_anomalias = client.get("/api/gastos/anomalias/detalhes")
+    assert detalhes_anomalias.status_code == 404
 
 
-def test_gastos_anomaly_details_requires_filter_and_streams_page(tmp_path: Path) -> None:
-    _write_gastos_artifacts(tmp_path)
-    client = _client(tmp_path)
 
-    missing_filter = client.get("/api/gastos/anomalias/detalhes")
-    assert missing_filter.status_code == 400
-
-    response = client.get("/api/gastos/anomalias/detalhes?partido=PT&page=1&page_size=10")
-    assert response.status_code == 200
-    payload = response.json()
-    assert payload["summary"]["total"] == 1
-    assert payload["items"][0]["nome_parlamentar"] == "Ana Silva"
-    assert payload["items"][0]["id_gasto"] == 101
-    assert payload["items"][0]["motivo_principal"] == "valor_acima_percentil_99"
-    assert payload["items"][0]["qtd_motivos"] == 2
-    assert payload["items"][0]["motivos"][0]["tipo"] == "valor_acima_percentil_99"
-    assert payload["metadata"]["explanations_source"] == "gastos_atipicos_explicacoes.csv"

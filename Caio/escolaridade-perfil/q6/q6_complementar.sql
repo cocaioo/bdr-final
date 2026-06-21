@@ -1,4 +1,6 @@
-﻿\o
+\o
+
+CREATE EXTENSION IF NOT EXISTS unaccent;
 
 CREATE OR REPLACE TEMP VIEW resposta_deputados_ativos AS
 SELECT DISTINCT ano_dados, id_deputado
@@ -20,6 +22,25 @@ SELECT
     SUM(valor_liquido) AS gasto_total
 FROM gastos
 GROUP BY ano_dados, id_deputado;
+
+CREATE OR REPLACE TEMP VIEW resposta_anos_com_gasto_positivo AS
+SELECT DISTINCT
+    ano_dados,
+    id_deputado
+FROM gastos
+WHERE valor_liquido > 0;
+
+CREATE OR REPLACE TEMP VIEW resposta_media_anual_gastos_deputado AS
+SELECT
+    ap.id_deputado,
+    COUNT(*) AS qtd_anos_com_gasto_positivo,
+    SUM(g.gasto_total) AS gasto_total_periodo,
+    SUM(g.gasto_total) / COUNT(*)::numeric AS media_gasto_anual_deputado
+FROM resposta_anos_com_gasto_positivo ap
+JOIN resposta_gastos_deputado g
+    ON g.ano_dados = ap.ano_dados
+   AND g.id_deputado = ap.id_deputado
+GROUP BY ap.id_deputado;
 
 CREATE OR REPLACE TEMP VIEW resposta_fidelidade_deputado AS
 SELECT
@@ -58,9 +79,9 @@ SELECT
     pr.id_deputado,
     COUNT(*) AS presenca_eventos,
     COUNT(*) FILTER (
-        WHERE COALESCE(e.descricao_tipo, '') ILIKE '%plenario%'
-           OR COALESCE(e.descricao, '') ILIKE '%plenario%'
-           OR COALESCE(e.local_camara, '') ILIKE '%plenario%'
+        WHERE public.unaccent(COALESCE(e.descricao_tipo, '')) ILIKE '%plenario%'
+           OR public.unaccent(COALESCE(e.descricao, '')) ILIKE '%plenario%'
+           OR public.unaccent(COALESCE(e.local_camara, '')) ILIKE '%plenario%'
     ) AS presenca_plenario
 FROM eventos_presenca_deputados pr
 LEFT JOIN eventos e
@@ -103,6 +124,22 @@ CREATE INDEX idx_tmp_q6_eta_ano_deputado
 
 ANALYZE tmp_q6_eta_escolaridade_indicadores;
 
+DROP TABLE IF EXISTS tmp_q6_eta_gastos_media_deputado;
+
+CREATE TEMP TABLE tmp_q6_eta_gastos_media_deputado AS
+SELECT
+    gd.id_deputado,
+    COALESCE(d.escolaridade, 'Nao informado') AS escolaridade,
+    gd.qtd_anos_com_gasto_positivo,
+    gd.media_gasto_anual_deputado
+FROM resposta_media_anual_gastos_deputado gd
+JOIN deputados d ON d.id_deputado = gd.id_deputado;
+
+CREATE INDEX idx_tmp_q6_eta_gastos_media_escolaridade
+    ON tmp_q6_eta_gastos_media_deputado (escolaridade);
+
+ANALYZE tmp_q6_eta_gastos_media_deputado;
+
 \o /query-staging/q6_eta_complementar.txt
 \qecho Q6 - analise complementar por eta quadrado
 \qecho eta quadrado foi usado porque escolaridade e uma variavel categorica e os indicadores sao numericos.
@@ -112,8 +149,8 @@ ANALYZE tmp_q6_eta_escolaridade_indicadores;
 \qecho
 \qecho Tabela principal - forca da associacao entre escolaridade e indicadores
 WITH valores AS (
-    SELECT 'gastos' AS indicador, escolaridade, gasto_total::numeric AS valor
-    FROM tmp_q6_eta_escolaridade_indicadores
+    SELECT 'gastos' AS indicador, escolaridade, media_gasto_anual_deputado::numeric AS valor
+    FROM tmp_q6_eta_gastos_media_deputado
     WHERE escolaridade <> 'Nao informado'
 
     UNION ALL

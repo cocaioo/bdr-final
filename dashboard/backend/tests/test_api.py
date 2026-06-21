@@ -465,3 +465,84 @@ escolaridade | id_deputado | nome
     assert table_rows_pt[0]["escolaridade"] == "Superior"
 
 
+def test_q4_falls_back_to_q3_identity_when_q1_is_missing(tmp_path: Path) -> None:
+    root = tmp_path
+    responses_dir = root / "scratch" / "query-staging"
+    sql_dir = root / "sql"
+
+    q1_content = """Tabela principal
+ id_deputado | nome | sigla_uf | sigla_partido | gasto_total
+-------------+------+----------+---------------+-------------
+ 1           | Ana Silva | SP | PT | 10
+(1 row)
+"""
+    q3_content = """ano_dados;eixo_principal;sigla_partido;sigla_uf;id_deputado;nome;voto_sim;voto_nao;voto_abstencao;voto_outro;votos_total;votos_classificados
+2026;Social;REPUBLICANOS;AM;2;JOAO CARLOS;1;0;0;0;1;1
+"""
+    main_content = """Tabela principal
+escolaridade | qtd_deputados
+-------------+--------------
+ Superior    | 1
+ Nao informado | 1
+(2 rows)
+"""
+    comp_content = """Tabela complementar
+escolaridade | id_deputado | nome
+-------------+-------------+-----
+ Superior    | 1           | Ana Silva
+ Nao informado | 2         | JOAO CARLOS
+(2 rows)
+"""
+
+    _write_response_file(root / "Caio" / "gastos-fornecedores" / "q1" / "q1_gastos_deputados.txt", q1_content)
+    _write_response_file(root / "Caio" / "escolaridade-perfil" / "q4" / "q4_escolaridade.txt", main_content)
+    _write_response_file(root / "Caio" / "escolaridade-perfil" / "q4" / "q4_escolaridade_complementar.txt", comp_content)
+    _write_response_file(root / "JF" / "producao-legislativa-temas" / "q3" / "q3_resumos_agregados.csv", q3_content)
+    _write_sql_file(sql_dir / "q4.sql")
+
+    registry = {
+        "legend": {},
+        "questions": [
+            {
+                "id": "q4",
+                "title": "Escolaridade",
+                "description": "Escolaridade da 57 legislatura",
+                "response_files": [
+                    "Caio/escolaridade-perfil/q4/q4_escolaridade.txt",
+                    "Caio/escolaridade-perfil/q4/q4_escolaridade_complementar.txt",
+                ],
+                "sql_file": "q4.sql",
+                "chart_type": "bar_vertical",
+                "supported_filters": ["partidos", "escolaridade"],
+                "expected_columns": ["escolaridade", "qtd_deputados"],
+                "main_table_contains": "",
+                "summary_table_contains": "",
+                "explanation": "Teste de Q4Adapter",
+                "chart": {"x_field": "escolaridade", "y_fields": ["qtd_deputados"]},
+            }
+        ]
+    }
+    registry_path = root / "question_registry.json"
+    registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    from app.adapters.questions import Q4Adapter
+    import app.adapters.factory as factory_module
+    factory_module.ADAPTERS_BY_ID["q4"] = Q4Adapter
+
+    service = DashboardService(
+        registry_path=registry_path,
+        responses_dir=responses_dir,
+        sql_dir=sql_dir,
+        repo_root=root,
+    )
+    client = _client_for(service)
+
+    response = client.get("/api/questions/q4?page_size=10")
+    assert response.status_code == 200
+    payload = response.json()
+    deputy_rows = payload["complement_tables"][0]["rows"]
+    joao = next(row for row in deputy_rows if row["id_deputado"] == 2)
+    assert joao["sigla_partido"] == "REPUBLICANOS"
+    assert joao["sigla_uf"] == "AM"
+
+

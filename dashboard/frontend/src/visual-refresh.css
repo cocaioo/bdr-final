@@ -241,6 +241,33 @@ body.gastos-light-theme .gastos-filter-row select:focus {
   box-shadow: var(--shadow-soft);
 }
 
+.deputy-search-hero {
+  position: relative;
+  z-index: 30;
+  overflow: visible;
+}
+
+.deputy-search {
+  position: relative;
+  z-index: 20;
+}
+
+.deputy-search:focus-within {
+  z-index: 1000;
+}
+
+.deputy-search__results {
+  z-index: 1001;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+}
+
+.deputy-search__option:hover,
+.deputy-search__option:focus {
+  background: rgba(63, 125, 114, 0.1);
+}
+
 .autocomplete-option:hover,
 .autocomplete-option:focus {
   background: rgba(63, 125, 114, 0.1);
@@ -545,6 +572,19 @@ body.gastos-light-theme .app-footer {
     padding: 20px;
   }
 
+  .deputy-search-hero {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .deputy-search {
+    width: 100%;
+  }
+
+  .deputy-search__results {
+    max-height: 280px;
+  }
+
   .home-cta-btn {
     text-align: center;
   }
@@ -552,4 +592,989 @@ body.gastos-light-theme .app-footer {
   .home-question-title {
     white-space: normal;
   }
+}
+
+/* ===== Civic Intelligence: Dark Premium Override ===== */
+:root,
+body,
+body.gastos-light-theme {
+  --color-bg: #070b13;
+  --color-bg-soft: #0b1220;
+  --color-surface: #101827;
+  --color-surface-elevated: #172033;
+  --color-surface-glass: rgba(16, 24, 39, 0.94);
+  --color-surface-hover: #1c2940;
+  --color-surface-active: #17334a;
+  --color-border: #334155;
+  --color-border-strong: #52647a;
+  --color-text: #f8fafc;
+  --color-text-muted: #cbd5e1;
+  --color-text-subtle: #a8b5c7;
+  --color-text-inverse: #06111f;
+  --color-text-disabled: #7f8da1;
+  --color-primary: #38bdf8;
+  --color-primary-hover: #67d3fa;
+  --color-primary-strong: #0284c7;
+  --color-secondary: #a78bfa;
+  --color-secondary-strong: #7c3aed;
+  --color-accent: #34d399;
+  --color-accent-strong: #059669;
+  --color-warning: #f59e0b;
+  --color-warning-text: #fde68a;
+  --color-danger: #fb7185;
+  --color-danger-text: #fecdd3;
+  --color-success-text: #a7f3d0;
+  --color-input-bg: #0b1220;
+  --color-input-border: #52647a;
+  --color-input-focus: #38bdf8;
+  --color-table-bg: #0b1220;
+  --color-table-hover: #1c2940;
+  --color-chart-grid: #334155;
+  --color-chart-text: #cbd5e1;
+  --color-overlay-subtle: rgba(255, 255, 255, 0.05);
+  --color-primary-soft: rgba(56, 189, 248, 0.14);
+  --color-secondary-soft: rgba(167, 139, 250, 0.14);
+  --color-success-soft: rgba(52, 211, 153, 0.14);
+  --color-warning-soft: rgba(245, 158, 11, 0.14);
+  --color-danger-soft: rgba(251, 113, 133, 0.14);
+  --avatar-gradient-1a: #2dd4bf;
+  --avatar-gradient-1b: #0f766e;
+  --avatar-gradient-2a: #fb7185;
+  --avatar-gradient-2b: #c2410c;
+  --avatar-gradient-3a: #fbbf24;
+  --avatar-gradient-3b: #b45309;
+  --avatar-gradient-4a: #60a5fa;
+  --avatar-gradient-4b: #1d4ed8;
+  --avatar-gradient-5a: #f472b6;
+  --avatar-gradient-5b: #9d174d;
+  --avatar-gradient-6a: #94a3b8;
+  --avatar-gradient-6b: #475569;
+  --avatar-gradient-7a: #c084fc;
+  --avatar-gradient-7b: #6d28d9;
+  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 12px 30px rgba(2, 6, 23, 0.28);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --surface-soft: var(--color-surface-elevated);
+  --ink: var(--color-text);
+  --muted: var(--color-text-muted);
+  --primary: var(--color-primary);
+  --accent: var(--color-secondary);
+  --ok: var(--color-accent);
+  --warn: var(--color-warning);
+  --danger: var(--color-danger);
+  --border: var(--color-border);
+  --shadow: var(--shadow-card);
+}
+
+body,
+body.gastos-light-theme {
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 24%),
+    radial-gradient(circle at right top, rgba(167, 139, 250, 0.09), transparent 26%),
+    linear-gradient(180deg, var(--color-bg-soft), var(--color-bg)) !important;
+  color: var(--color-text) !important;
+}
+
+.app-shell {
+  gap: 24px;
+  padding: 22px;
+}
+
+.app-header,
+body.gastos-light-theme .app-header {
+  background: var(--color-surface-glass) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-soft) !important;
+  backdrop-filter: blur(22px);
+}
+
+.brand,
+.home-hero h1,
+.home-cta-content h2,
+.home-question-title,
+.deputy-profile__heading h1,
+.perfil-hero h1,
+.perfil-section-heading h2,
+.gastos-tab-heading h2,
+h1,
+h2,
+h3 {
+  color: var(--color-text);
+}
+
+.dataset-version,
+.home-hero-subtitle,
+.home-cta-content p,
+.home-question-disabled,
+.question-menu-link,
+.question-link.nav-link,
+.filter-help,
+.deputy-search__status,
+.deputy-profile__context p,
+.deputy-profile__card p,
+.deputy-profile__heading p,
+.perfil-hero p,
+.perfil-source-note p,
+.perfil-methodology p,
+.warning-banner,
+.app-footer,
+body.gastos-light-theme .app-footer {
+  color: var(--color-text-subtle) !important;
+}
+
+.hero-card,
+.question-intro,
+.filter-panel,
+.table-section,
+.chart-section,
+.warning-banner,
+.query-drawer,
+.complement-section,
+.wordcloud-section,
+.dashboard-section,
+.dashboard-block,
+.gastos-tab-panel,
+body.gastos-light-theme .gastos-tab-panel,
+body.gastos-light-theme .premium-hero,
+.home-primary-cta,
+.home-questions-section,
+.deputy-search-hero,
+.deputy-profile__hero,
+.deputy-profile__cards,
+.deputy-profile__context,
+.deputy-profile__actions,
+.deputy-profile__section,
+.deputy-profile__placeholder,
+.deputy-profile__error-panel,
+.perfil-hero,
+.perfil-filter-panel,
+.perfil-methodology,
+.perfil-source-note,
+.perfil-section-heading {
+  background: linear-gradient(180deg, rgba(23, 32, 51, 0.96), rgba(16, 24, 39, 0.96)) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.summary-card,
+.question-card,
+.wordcloud-card,
+.q3-methodology,
+.loading,
+.no-data,
+.gastos-story-dashboard .gastos-kpi-card,
+.gastos-insight-card,
+.gastos-drilldown,
+.gastos-detail-filter,
+.gastos-interpretation-panel,
+.gastos-explanation-card,
+body.gastos-light-theme .gastos-kpi-card,
+body.gastos-light-theme .gastos-story-dashboard .gastos-kpi-card,
+body.gastos-light-theme .gastos-insight-card,
+body.gastos-light-theme .gastos-drilldown,
+body.gastos-light-theme .gastos-detail-filter,
+body.gastos-light-theme .gastos-interpretation-panel,
+body.gastos-light-theme .gastos-explanation-card,
+.deputy-profile__fact,
+.deputy-profile__card,
+.deputy-profile__data-card,
+.deputy-profile__hero-aside .deputy-profile__fact {
+  background: linear-gradient(180deg, rgba(24, 35, 56, 0.96), rgba(18, 27, 44, 0.96)) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+.question-link.nav-link,
+.questions-menu summary,
+.question-menu-link,
+.home-question-link,
+.deputy-profile__action-link,
+.perfil-question-links a,
+.perfil-source-note a {
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.question-link.nav-link:hover,
+.question-menu-link:hover,
+.home-question-link:hover,
+.deputy-profile__action-link:hover,
+.perfil-question-links a:hover,
+.perfil-source-note a:hover {
+  color: var(--color-text);
+  border-color: rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.question-link.nav-link.active,
+.question-menu-link.active,
+.home-cta-btn,
+.table-footer button,
+.query-toggle,
+.deputy-profile__action-link--primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-strong)) !important;
+  border-color: transparent !important;
+  color: #06111f !important;
+  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.28);
+}
+
+.home-cta-btn:hover,
+.table-footer button:hover,
+.query-toggle:hover {
+  background: linear-gradient(135deg, #4fd1ff, var(--color-primary)) !important;
+  color: #06111f !important;
+}
+
+.filter-item select,
+.autocomplete-filter input,
+.filter-search input,
+.filter-search-container input,
+.table-footer select,
+.gastos-filter-row input,
+.gastos-filter-row select,
+body.gastos-light-theme .gastos-filter-row input,
+body.gastos-light-theme .gastos-filter-row select,
+.deputy-search__input {
+  background: rgba(11, 18, 32, 0.86) !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
+.filter-item select:focus,
+.autocomplete-filter input:focus,
+.filter-search input:focus,
+.filter-search-container input:focus,
+.table-footer select:focus,
+.gastos-filter-row input:focus,
+.gastos-filter-row select:focus,
+body.gastos-light-theme .gastos-filter-row input:focus,
+body.gastos-light-theme .gastos-filter-row select:focus,
+.deputy-search__input:focus {
+  border-color: rgba(56, 189, 248, 0.65) !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.16) !important;
+  outline: none;
+}
+
+.deputy-search-hero {
+  background:
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.14), transparent 28%),
+    radial-gradient(circle at 18% 18%, rgba(167, 139, 250, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(23, 32, 51, 0.96), rgba(16, 24, 39, 0.96)) !important;
+}
+
+.deputy-search__results,
+.autocomplete-options,
+.questions-menu-list {
+  background: rgba(16, 24, 39, 0.98) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: var(--shadow-soft) !important;
+  backdrop-filter: blur(18px);
+}
+
+.deputy-search__option,
+.autocomplete-option {
+  color: var(--color-text) !important;
+}
+
+.deputy-search__option:hover,
+.deputy-search__option:focus,
+.autocomplete-option:hover,
+.autocomplete-option:focus {
+  background: rgba(56, 189, 248, 0.12) !important;
+  border-color: rgba(56, 189, 248, 0.25) !important;
+}
+
+.deputy-avatar-img,
+.deputy-search__option .deputy-avatar-img,
+.deputy-profile__avatar-frame .deputy-avatar-img,
+.gastos-deputy-rank-card .deputy-avatar-img {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.3);
+}
+
+.deputy-avatar-fallback {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)) !important;
+}
+
+.home-hero {
+  padding: 56px 28px 38px !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 32%),
+    radial-gradient(circle at 85% 15%, rgba(167, 139, 250, 0.1), transparent 26%),
+    transparent !important;
+}
+
+.home-hero-subtitle {
+  color: var(--color-text-muted);
+}
+
+.home-primary-cta:hover,
+.deputy-profile__card:hover,
+.question-card:hover,
+.summary-card:hover {
+  border-color: rgba(56, 189, 248, 0.22) !important;
+  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.34) !important;
+}
+
+.home-questions-section {
+  overflow: hidden;
+}
+
+.home-question-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.home-question-id,
+.home-questions-count,
+.filter-tag,
+.question-id-badge,
+.tab-badge,
+.deputy-profile__chip {
+  background: rgba(56, 189, 248, 0.12) !important;
+  color: var(--color-primary) !important;
+  border-color: rgba(56, 189, 248, 0.18) !important;
+}
+
+.deputy-profile__chip strong,
+.perfil-eyebrow,
+.deputy-profile__eyebrow,
+.perfil-question-links a,
+.perfil-source-note a,
+.perfil-updating {
+  color: var(--color-secondary);
+}
+
+.deputy-profile__hero,
+.perfil-hero {
+  background:
+    radial-gradient(circle at top right, rgba(167, 139, 250, 0.16), transparent 30%),
+    radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.12), transparent 25%),
+    linear-gradient(180deg, rgba(23, 32, 51, 0.98), rgba(16, 24, 39, 0.98)) !important;
+}
+
+.deputy-profile__avatar-frame,
+.deputy-profile__avatar,
+.deputy-profile__avatar-skeleton {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+.deputy-profile__context,
+.deputy-profile__actions,
+.deputy-profile__error-panel {
+  background: linear-gradient(180deg, rgba(18, 27, 44, 0.98), rgba(13, 20, 33, 0.98)) !important;
+}
+
+.warning-banner {
+  background: rgba(245, 158, 11, 0.12) !important;
+  border-color: rgba(245, 158, 11, 0.24) !important;
+  color: #fde68a !important;
+}
+
+.query-drawer pre {
+  background: #0b1220;
+  color: var(--color-text);
+}
+
+.table-wrapper,
+.gastos-table-wrap,
+body.gastos-light-theme .gastos-table-wrap {
+  background: rgba(11, 18, 32, 0.6);
+  border-color: var(--color-border) !important;
+}
+
+th,
+th button,
+.gastos-compact-table th,
+body.gastos-light-theme .gastos-compact-table th {
+  background: rgba(23, 32, 51, 0.92) !important;
+  color: var(--color-primary) !important;
+}
+
+td,
+body.gastos-light-theme .gastos-compact-table td {
+  color: var(--color-text-muted) !important;
+  border-bottom-color: rgba(148, 163, 184, 0.12) !important;
+}
+
+.gastos-filter-row label,
+.perfil-filter-grid label,
+.filter-item,
+.filter-panel-title,
+.summary-card h3,
+.metric-label,
+.specialization-label {
+  color: var(--color-text-subtle);
+}
+
+.summary-card p,
+.metric-value,
+.specialization-value,
+.gastos-kpi-card strong,
+.gastos-auto-insight span,
+.gastos-drilldown-grid strong {
+  color: var(--color-text) !important;
+}
+
+.gastos-chip-partido {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--color-primary);
+  border-color: rgba(56, 189, 248, 0.22);
+}
+
+.gastos-chip-uf {
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--color-text-muted);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.gastos-chip-categoria {
+  background: rgba(167, 139, 250, 0.12);
+  color: var(--color-secondary);
+  border-color: rgba(167, 139, 250, 0.24);
+}
+
+.gastos-badge-concentrado {
+  background: rgba(167, 139, 250, 0.14);
+  color: #ddd6fe;
+  border-color: rgba(167, 139, 250, 0.25);
+}
+
+.skeleton,
+body.gastos-light-theme .skeleton {
+  background: rgba(148, 163, 184, 0.14);
+}
+
+.skeleton-text,
+body.gastos-light-theme .skeleton-text {
+  background: rgba(203, 213, 225, 0.14);
+}
+
+/* Contrast contract: interactive, semantic and data-dense states. */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+a {
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+button,
+input,
+select,
+textarea {
+  color-scheme: dark;
+}
+
+input::placeholder,
+textarea::placeholder,
+.deputy-search__input::placeholder,
+.gastos-dashboard-premium .premium-search-input::placeholder {
+  color: var(--color-text-subtle) !important;
+  opacity: 1;
+}
+
+select option {
+  background: var(--color-surface-elevated);
+  color: var(--color-text);
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--color-input-focus);
+  outline-offset: 2px;
+}
+
+:where(button, input, select, textarea):disabled {
+  color: var(--color-text-disabled) !important;
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.gastos-tabs button,
+body.gastos-light-theme .gastos-tabs button {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-muted) !important;
+}
+
+.gastos-tabs button small,
+body.gastos-light-theme .gastos-tabs button small {
+  color: var(--color-text-subtle) !important;
+}
+
+.gastos-tabs button:hover:not(.active),
+body.gastos-light-theme .gastos-tabs button:hover:not(.active) {
+  background: var(--color-surface-hover) !important;
+  border-color: var(--color-border-strong) !important;
+  color: var(--color-text) !important;
+}
+
+.gastos-tabs button.active,
+body.gastos-light-theme .gastos-tabs button.active {
+  background: var(--color-surface-active) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-text) !important;
+  box-shadow: inset 0 3px 0 var(--color-primary);
+}
+
+.gastos-tabs button.active small,
+body.gastos-light-theme .gastos-tabs button.active small {
+  color: var(--color-text-muted) !important;
+}
+
+.gastos-clear-button,
+.gastos-pagination button {
+  background: var(--color-primary-soft) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-text) !important;
+}
+
+.gastos-clear-button:hover:not(:disabled),
+.gastos-pagination button:hover:not(:disabled) {
+  background: var(--color-primary) !important;
+  color: var(--color-text-inverse) !important;
+}
+
+.gastos-deputy-rank-card {
+  background: var(--color-surface-elevated) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
+.gastos-category-rank-card,
+.gastos-supplier-profile,
+body.gastos-light-theme .gastos-category-rank-card,
+body.gastos-light-theme .gastos-supplier-profile {
+  background: var(--color-surface-elevated) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
+body.gastos-light-theme .gastos-deputy-rank-card {
+  background: var(--color-surface-elevated) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
+.gastos-deputy-rank-card:hover,
+.gastos-deputy-rank-card.selected {
+  background: var(--color-surface-active) !important;
+  border-color: var(--color-primary) !important;
+}
+
+body.gastos-light-theme .gastos-deputy-rank-card:hover,
+body.gastos-light-theme .gastos-deputy-rank-card.selected {
+  background: var(--color-surface-active) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.gastos-deputy-rank-card .rank-name,
+.gastos-deputy-rank-card strong {
+  color: var(--color-text) !important;
+}
+
+.gastos-category-rank-card__title,
+.gastos-category-rank-card strong,
+.gastos-supplier-profile__title,
+.gastos-supplier-profile strong {
+  color: var(--color-text) !important;
+}
+
+body.gastos-light-theme .gastos-story-dashboard .gastos-kpi-card strong,
+body.gastos-light-theme .gastos-auto-insight p,
+body.gastos-light-theme .gastos-drilldown-grid strong,
+body.gastos-light-theme .gastos-deputy-rank-card strong {
+  color: var(--color-text) !important;
+}
+
+body.gastos-light-theme .gastos-auto-insight span,
+body.gastos-light-theme .gastos-deputy-rank-card .rank-label {
+  color: var(--color-primary) !important;
+}
+
+body.gastos-light-theme .gastos-auto-insight {
+  background: linear-gradient(165deg, var(--color-surface-active), var(--color-surface-elevated)) !important;
+  border-color: var(--color-border) !important;
+}
+
+.perfil-filter-grid select,
+.perfil-section-toolbar select,
+.perfil-filter-heading button,
+textarea {
+  background: var(--color-input-bg) !important;
+  border-color: var(--color-input-border) !important;
+  color: var(--color-text) !important;
+}
+
+.perfil-filter-grid select:focus,
+.perfil-section-toolbar select:focus,
+.perfil-filter-heading button:focus-visible,
+textarea:focus {
+  border-color: var(--color-input-focus) !important;
+  box-shadow: 0 0 0 3px var(--color-primary-soft) !important;
+}
+
+.gastos-deputy-rank-card .rank-number,
+.gastos-deputy-rank-card .rank-meta,
+.gastos-deputy-rank-card small,
+.gastos-auto-insight p,
+.gastos-drilldown-title p,
+.gastos-drilldown > p,
+.gastos-explanation-card p {
+  color: var(--color-text-muted) !important;
+}
+
+.gastos-category-rank-card__metrics span,
+.gastos-selection-skeleton__title span,
+.gastos-selection-skeleton__copy,
+.gastos-supplier-profile__label {
+  color: var(--color-text-muted) !important;
+}
+
+.deputy-search__label,
+.deputy-search__option-meta,
+.deputy-search__option-submeta,
+.deputy-search__empty,
+.table-header p,
+.chart-section header p,
+.chart-year-legend {
+  color: var(--color-text-muted) !important;
+}
+
+.deputy-search__status--error,
+.dashboard-block .error,
+.dashboard-section .error,
+.gastos-detail-filter .error {
+  color: var(--color-danger-text) !important;
+}
+
+.deputy-search__option[aria-selected='true'] {
+  background: var(--color-surface-active) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.table-wrapper,
+.gastos-table-wrap,
+body.gastos-light-theme .gastos-table-wrap {
+  background: var(--color-table-bg) !important;
+  border-color: var(--color-border) !important;
+}
+
+tbody tr:hover,
+.gastos-compact-table tbody tr:hover {
+  background: var(--color-table-hover) !important;
+}
+
+.gastos-compact-table tbody tr.selected {
+  background: var(--color-surface-active) !important;
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
+body.gastos-light-theme .gastos-compact-table tbody tr:hover {
+  background: var(--color-table-hover) !important;
+}
+
+body.gastos-light-theme .gastos-compact-table tbody tr.selected {
+  background: var(--color-surface-active) !important;
+}
+
+th,
+th button,
+.gastos-compact-table th,
+body.gastos-light-theme .gastos-compact-table th {
+  color: var(--color-text) !important;
+}
+
+th button:hover {
+  color: var(--color-primary-hover) !important;
+}
+
+td,
+body.gastos-light-theme .gastos-compact-table td {
+  color: var(--color-text-muted) !important;
+}
+
+.loading,
+.no-data,
+.autocomplete-empty,
+.q2-empty-selection,
+.profile-info-empty,
+.supplier-empty {
+  color: var(--color-text-muted) !important;
+}
+
+.warning-banner {
+  background: var(--color-warning-soft) !important;
+  border-color: var(--color-warning) !important;
+  color: var(--color-warning-text) !important;
+}
+
+
+
+.gastos-badge-concentrado {
+  background: var(--color-secondary-soft) !important;
+  border-color: var(--color-secondary) !important;
+  color: #ede9fe !important;
+}
+
+body.gastos-light-theme .gastos-chip-partido {
+  background: var(--color-primary-soft) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+
+body.gastos-light-theme .gastos-chip-uf {
+  background: var(--color-overlay-subtle) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-muted) !important;
+}
+
+body.gastos-light-theme .gastos-chip-categoria {
+  background: var(--color-secondary-soft) !important;
+  border-color: var(--color-secondary) !important;
+  color: #ddd6fe !important;
+}
+
+.query-drawer pre {
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+}
+
+/* Contraste do perfil aberto em Gastos > Deputados. */
+.gastos-dashboard-premium .gastos-deputy-profile,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile {
+  background: var(--color-surface-elevated) !important;
+  border-color: var(--color-border-strong) !important;
+  color: var(--color-text) !important;
+}
+
+.gastos-dashboard-premium .gastos-deputy-profile h3,
+.gastos-dashboard-premium .gastos-deputy-profile strong,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile h3,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile strong {
+  color: var(--color-text) !important;
+}
+
+.gastos-dashboard-premium .gastos-deputy-profile p,
+.gastos-dashboard-premium .gastos-deputy-profile small,
+.gastos-dashboard-premium .gastos-deputy-profile .gastos-drilldown-grid span,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile p,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile small,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile .gastos-drilldown-grid span {
+  color: var(--color-text-muted) !important;
+}
+
+.gastos-dashboard-premium .gastos-deputy-profile .gastos-drilldown-grid span,
+body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile .gastos-drilldown-grid span {
+  background: var(--color-bg-soft) !important;
+  border-color: var(--color-border-strong) !important;
+}
+
+/* Navegação principal orientada a painéis. */
+.home-hero-eyebrow,
+.home-panel-heading span,
+.home-panel-status,
+.panel-overview-hero > span,
+.panel-overview-card > div > span {
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-panel-section,
+.panel-overview-hero,
+.panel-overview-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-glass);
+  box-shadow: var(--shadow-card);
+}
+
+.home-panel-section {
+  padding: 22px;
+}
+
+.home-panel-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.home-panel-heading h2,
+.home-panel-card h3,
+.panel-overview-page h1,
+.panel-overview-page h2 {
+  color: var(--color-text);
+}
+
+.home-panel-heading h2 {
+  margin-top: 4px;
+  font-size: 1.5rem;
+}
+
+.home-panel-heading p,
+.home-panel-card p,
+.panel-overview-page p,
+.panel-overview-card li {
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.home-panel-heading > p {
+  max-width: 470px;
+  text-align: right;
+}
+
+.home-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.home-panel-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 210px;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-elevated);
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.home-panel-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-strong);
+  box-shadow: 0 16px 36px rgba(2, 6, 23, 0.28);
+}
+
+.home-panel-status {
+  padding: 4px 8px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  color: var(--color-text-subtle);
+  background: var(--color-overlay-subtle);
+}
+
+.home-panel-status.available {
+  color: var(--color-success-text);
+  border-color: var(--color-accent-strong);
+  background: var(--color-success-soft);
+}
+
+.home-panel-card h3 {
+  margin-top: 16px;
+  font-size: 1.2rem;
+}
+
+.home-panel-card p {
+  margin: 8px 0 18px;
+}
+
+.home-panel-card a,
+.panel-overview-card a {
+  margin-top: auto;
+  color: var(--color-primary);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-panel-card a:hover,
+.panel-overview-card a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.panel-overview-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panel-overview-hero,
+.panel-overview-card {
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.panel-overview-hero h1 {
+  margin: 8px 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.panel-overview-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 1fr);
+  gap: 26px;
+}
+
+.panel-overview-card h2 {
+  margin: 6px 0 10px;
+}
+
+.panel-overview-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding-left: 22px;
+}
+
+.panel-overview-card a {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 900px) {
+  .home-panel-grid,
+  .panel-overview-card {
+    grid-template-columns: 1fr;
+  }
+
+  .home-panel-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .home-panel-heading > p {
+    text-align: left;
+  }
+}
+
+/* Fix deputy and supplier drilldown contrast issues in light theme and dark override */
+body.gastos-light-theme .gastos-drilldown {
+  background: var(--surface-soft) !important;
+  border: 1px solid var(--border) !important;
+}
+
+body.gastos-light-theme .gastos-drilldown-grid span {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--muted) !important;
+}
+
+body.gastos-light-theme .gastos-drilldown-grid strong {
+  color: var(--ink) !important;
+}
+
+body.gastos-light-theme .gastos-drilldown h3 {
+  color: var(--ink) !important;
+}
+
+body.gastos-light-theme .gastos-drilldown p {
+  color: var(--muted) !important;
 }

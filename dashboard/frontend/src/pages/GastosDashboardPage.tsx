@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
+import { startTransition, useDeferredValue, useEffect, useMemo, useState } from 'react'
 
 import {
-  fetchGastosAnomaliaDetalhes,
-  fetchGastosAnomalias,
+  fetchDeputyExpenseBreakdown,
   fetchGastosCategorias,
   fetchGastosContexto,
   fetchGastosDeputados,
@@ -15,9 +14,6 @@ import { NoDataState } from '../components/NoDataState'
 import { formatCellValue, formatCurrency } from '../utils/format'
 import type {
   ChartSpec,
-  GastoAnomaliaDetalhesPayload,
-  GastoAnomaliaMotivo,
-  GastoAnomaliasPayload,
   GastoCategoriaItem,
   GastoContextoPayload,
   GastoDeputadoItem,
@@ -26,8 +22,9 @@ import type {
   GastosSummary,
   MetaResponse,
 } from '../types'
+import type { DeputyExpenseBreakdown } from '../api'
 
-type GastosTab = 'resumo' | 'categorias' | 'deputados' | 'fornecedores' | 'contexto' | 'anomalias'
+type GastosTab = 'resumo' | 'categorias' | 'deputados' | 'fornecedores' | 'contexto'
 
 interface GastosDashboardPageProps {
   meta: MetaResponse
@@ -39,18 +36,33 @@ const TABS: Array<{ id: GastosTab; label: string; question: string }> = [
   { id: 'deputados', label: 'Deputados', question: 'Quem gastou?' },
   { id: 'fornecedores', label: 'Fornecedores', question: 'Quem recebeu?' },
   { id: 'contexto', label: 'Partidos e UFs', question: 'Como os gastos variam?' },
-  { id: 'anomalias', label: 'Gastos Atipicos', question: 'O que foge do padrao?' },
 ]
 
 const TOP_LIMIT = 10
-
-const MOTIVE_LABELS: Record<string, string> = {
-  valor_extremo_categoria: 'valor extremo',
-  valor_acima_percentil_95: 'acima do percentil 95',
-  valor_acima_percentil_99: 'acima do percentil 99',
-  fornecedor_pouco_frequente: 'fornecedor pouco frequente',
-  fornecedor_baixa_dispersao: 'fornecedor com baixa dispersao',
-  ticket_acima_padrao_deputado: 'ticket acima do padrao',
+const CATEGORY_CHART_LIMIT = 8
+const SUPPLIER_CHART_LIMIT = 6
+const DEPUTY_BREAKDOWN_LIMIT = 6
+const CATEGORY_CHART_OPTIONS = {
+  bar_category_gap: '34%',
+  bar_max_width: 18,
+  chart_height: 460,
+  compact_tooltip: true,
+  grid_bottom: 56,
+  grid_left: 220,
+  grid_right: 32,
+  label_max_chars: 30,
+  label_width: 210,
+}
+const SUPPLIER_CHART_OPTIONS = {
+  bar_category_gap: '38%',
+  bar_max_width: 18,
+  chart_height: 420,
+  compact_tooltip: true,
+  grid_bottom: 52,
+  grid_left: 196,
+  grid_right: 28,
+  label_max_chars: 28,
+  label_width: 186,
 }
 
 function formatPercent(value: unknown, digits = 2): string {
@@ -93,6 +105,7 @@ function barChart(
   labelField: string,
   valueField: string,
   type: 'bar_horizontal' | 'bar_vertical' = 'bar_horizontal',
+  extraOptions: Record<string, unknown> = {},
 ): ChartSpec {
   const ordered = type === 'bar_horizontal' ? [...rows].reverse() : rows
   return {
@@ -103,7 +116,12 @@ function barChart(
     y_fields: [valueField],
     categories: ordered.map((row) => String(row[labelField] ?? '')),
     series: [{ name: title, data: ordered.map((row) => toNumber(row[valueField])) }],
-    options: {},
+    options: {
+      currency: valueField === 'valor_total' || valueField === 'ticket_medio' || valueField === 'valor_medio_por_deputado',
+      compact_axis: true,
+      show_legend: false,
+      ...extraOptions,
+    },
   }
 }
 
@@ -116,100 +134,8 @@ function lineChart(title: string, description: string, rows: Array<Record<string
     y_fields: ['valor_total'],
     categories: rows.map((row) => String(row.ano)),
     series: [{ name: 'Valor total', data: rows.map((row) => toNumber(row.valor_total)) }],
-    options: {},
+    options: { currency: true, compact_axis: true, show_legend: false },
   }
-}
-
-function scatterChart(rows: Array<Record<string, unknown>>): ChartSpec {
-  return {
-    type: 'scatter',
-    title: 'Despesas atipicas filtradas',
-    description: 'Amostra paginada: valor liquido no eixo X e score de atipicidade no eixo Y.',
-    x_field: 'valor_liquido',
-    y_fields: ['score_atipicidade'],
-    categories: [],
-    series: [
-      {
-        name: 'Despesas atipicas',
-        data: rows.map((row) => [toNumber(row.valor_liquido), toNumber(row.score_atipicidade)]),
-      },
-    ],
-    options: { x_name: 'Valor liquido', y_name: 'Score' },
-  }
-}
-
-function parseMotivos(value: unknown): GastoAnomaliaMotivo[] {
-  if (Array.isArray(value)) return value as GastoAnomaliaMotivo[]
-  if (typeof value !== 'string' || !value.trim()) return []
-  try {
-    const parsed = JSON.parse(value)
-    return Array.isArray(parsed) ? parsed : []
-  } catch {
-    return []
-  }
-}
-
-function motiveLabel(tipo: unknown): string {
-  const key = String(tipo ?? '')
-  return MOTIVE_LABELS[key] ?? key.replaceAll('_', ' ')
-}
-
-function MotiveBadges({ motivos }: { motivos: GastoAnomaliaMotivo[] }) {
-  if (!motivos.length) {
-    return <span className="gastos-badge gastos-badge-atipico">Atípico</span>
-  }
-
-  return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-      {motivos.map((motivo, index) => {
-        let badgeClass = 'gastos-badge-atipico'
-        let label = motiveLabel(motivo.tipo)
-        if (motivo.tipo === 'valor_acima_percentil_95') {
-          badgeClass = 'gastos-badge-p95'
-          label = 'Percentil 95'
-        } else if (motivo.tipo === 'valor_acima_percentil_99') {
-          badgeClass = 'gastos-badge-p99'
-          label = 'Percentil 99'
-        } else if (motivo.tipo === 'fornecedor_pouco_frequente') {
-          badgeClass = 'gastos-badge-raro'
-          label = 'Fornecedor Raro'
-        } else if (motivo.tipo === 'fornecedor_baixa_dispersao') {
-          badgeClass = 'gastos-badge-concentrado'
-          label = 'Fornecedor Concentrado'
-        } else if (motivo.tipo === 'valor_extremo_categoria') {
-          badgeClass = 'gastos-badge-atipico'
-          label = 'Atípico'
-        }
-        return (
-          <span className={`gastos-badge ${badgeClass}`} key={`${motivo.tipo}-${index}`}>
-            {label}
-          </span>
-        )
-      })}
-    </div>
-  )
-}
-
-function MotiveDetails({ motivos }: { motivos: GastoAnomaliaMotivo[] }) {
-  if (!motivos.length) {
-    return (
-      <p className="gastos-motive-note">
-        O modelo classificou a despesa como comportamento estatistico incomum, mas nenhum dos motivos explicativos
-        desta fase atingiu os limiares definidos.
-      </p>
-    )
-  }
-
-  return (
-    <ul className="gastos-motive-list">
-      {motivos.map((motivo, index) => (
-        <li key={`${motivo.tipo}-${index}`}>
-          <strong>{motiveLabel(motivo.tipo)}</strong>
-          <span>{motivo.descricao}</span>
-        </li>
-      ))}
-    </ul>
-  )
 }
 
 /* ==========================================
@@ -271,6 +197,33 @@ function TableSkeleton() {
   )
 }
 
+function SelectionSkeleton({
+  title,
+  subtitle,
+}: {
+  title: string
+  subtitle: string
+}) {
+  return (
+    <aside className="gastos-drilldown gastos-selection-skeleton" aria-live="polite">
+      <div className="gastos-selection-skeleton__header">
+        <div className="skeleton gastos-selection-skeleton__avatar" />
+        <div className="gastos-selection-skeleton__title">
+          <span>{subtitle}</span>
+          <div className="skeleton skeleton-text" style={{ width: '18rem', height: '1rem' }} />
+        </div>
+      </div>
+      <div className="gastos-selection-skeleton__grid">
+        <div className="skeleton skeleton-text" style={{ width: '100%', height: '2.9rem' }} />
+        <div className="skeleton skeleton-text" style={{ width: '100%', height: '2.9rem' }} />
+        <div className="skeleton skeleton-text" style={{ width: '100%', height: '2.9rem' }} />
+        <div className="skeleton skeleton-text" style={{ width: '100%', height: '2.9rem' }} />
+      </div>
+      <p className="gastos-selection-skeleton__copy">{title}</p>
+    </aside>
+  )
+}
+
 /* ==========================================
    Standardized KPI Grid Helper
    ========================================== */
@@ -278,7 +231,7 @@ function KpiGrid({ summary }: { summary: GastosSummary }) {
   const cards = [
     ['Valor total gasto', formatCurrency(summary.valor_total)],
     ['Quantidade de despesas', formatCellValue(summary.qtd_despesas)],
-    ['Ticket medio', formatCurrency(summary.ticket_medio)],
+    ['Despesa média', formatCurrency(summary.ticket_medio)],
     ['Deputados', formatCellValue(summary.qtd_deputados)],
     ['Fornecedores', formatCellValue(summary.qtd_fornecedores)],
   ]
@@ -351,7 +304,7 @@ function DeputyRankingCards({
             <strong style={{ fontSize: '1.15rem' }}>{formatCurrency(row.valor_total)}</strong>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
               <span>{formatCellValue(row.qtd_despesas)} despesas</span>
-              <span>méd. {formatCurrency(row.ticket_medio)}</span>
+              <span>média {formatCurrency(row.ticket_medio)}</span>
             </div>
           </div>
         </button>
@@ -426,7 +379,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     deputados: false,
     fornecedores: false,
     contexto: false,
-    anomalias: false,
   })
 
   // Set active tab as visited
@@ -440,8 +392,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [deputies, setDeputies] = useState<GastosCollectionPayload<GastoDeputadoItem> | null>(null)
   const [suppliers, setSuppliers] = useState<GastosCollectionPayload<GastoFornecedorItem> | null>(null)
   const [contexto, setContexto] = useState<GastoContextoPayload | null>(null)
-  const [anomalias, setAnomalias] = useState<GastoAnomaliasPayload | null>(null)
-  const [anomaliaDetails, setAnomaliaDetails] = useState<GastoAnomaliaDetalhesPayload | null>(null)
   const [yearSeries, setYearSeries] = useState<Array<{ ano: string; valor_total: number }>>([])
 
   // Loading states per tab
@@ -450,7 +400,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [loadingDeputados, setLoadingDeputados] = useState(false)
   const [loadingFornecedores, setLoadingFornecedores] = useState(false)
   const [loadingContexto, setLoadingContexto] = useState(false)
-  const [loadingAnomalias, setLoadingAnomalias] = useState(false)
 
   // Filter states
   const [ano, setAno] = useState('')
@@ -460,15 +409,31 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [categoriaFiltro, setCategoriaFiltro] = useState('')
   const [selectedDeputy, setSelectedDeputy] = useState<GastoDeputadoItem | null>(null)
   const [selectedSupplier, setSelectedSupplier] = useState<GastoFornecedorItem | null>(null)
-  
-  const [anomaliaFilters, setAnomaliaFilters] = useState({
-    deputado: '',
-    partido: '',
-    uf: '',
-    categoria: '',
-  })
-  const [anomaliaPage, setAnomaliaPage] = useState(1)
-  const [anomaliaError, setAnomaliaError] = useState<string | null>(null)
+  const [selectedDeputyBreakdown, setSelectedDeputyBreakdown] = useState<{
+    deputyId?: number
+    data: DeputyExpenseBreakdown | null
+    error: string | null
+  }>({ data: null, error: null })
+  const deferredBuscaDeputado = useDeferredValue(buscaDeputado)
+  const deferredSelectedDeputy = useDeferredValue(selectedDeputy)
+  const deferredSelectedSupplier = useDeferredValue(selectedSupplier)
+  const [loadingSelectedDeputyBreakdown, setLoadingSelectedDeputyBreakdown] = useState(false)
+
+  const changeTab = (tab: GastosTab) => {
+    if (tab === activeTab) return
+
+    // Clear tab-specific filters when leaving
+    if (activeTab === 'deputados') {
+      setBuscaDeputado('')
+    }
+    if (activeTab === 'fornecedores') {
+      setCategoriaFiltro('')
+      setSelectedSupplier(null)
+    }
+
+    setSelectedDeputy(null)
+    setActiveTab(tab)
+  }
 
   const availableYears = useMemo(
     () => (meta.available_filters.anos ?? []).map((choice) => choice.value).filter(Boolean).sort(),
@@ -524,22 +489,20 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     if (!visitedTabs.deputados) return
 
     setLoadingDeputados(true)
-    Promise.all([
-      fetchGastosDeputados({
-        ano: ano || undefined,
-        partido: partido || undefined,
-        uf: uf || undefined,
-        busca: buscaDeputado || undefined,
-        pageSize: 100,
-      }),
-      anomalias ? Promise.resolve(anomalias) : fetchGastosAnomalias({ pageSize: 100 })
-    ])
-      .then(([payload, anomalyData]) => {
+    fetchGastosDeputados({
+      ano: ano || undefined,
+      partido: partido || undefined,
+      uf: uf || undefined,
+      busca: deferredBuscaDeputado || undefined,
+      pageSize: 100,
+    })
+      .then((payload) => {
         setDeputies(payload)
-        setAnomalias(anomalyData)
-        if (selectedDeputy && !payload.items.some((item) => item.id_deputado === selectedDeputy.id_deputado)) {
-          setSelectedDeputy(null)
-        }
+        setSelectedDeputy((current) => (
+          current && !payload.items.some((item) => item.id_deputado === current.id_deputado)
+            ? null
+            : current
+        ))
       })
       .catch((err) => {
         console.error('Error fetching deputies:', err)
@@ -547,7 +510,54 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       .finally(() => {
         setLoadingDeputados(false)
       })
-  }, [visitedTabs.deputados, ano, partido, uf, buscaDeputado, selectedDeputy, anomalias])
+  }, [visitedTabs.deputados, ano, deferredBuscaDeputado, partido, uf])
+
+  useEffect(() => {
+    if (!selectedDeputy) {
+      setSelectedDeputyBreakdown({ data: null, error: null })
+      setLoadingSelectedDeputyBreakdown(false)
+      return
+    }
+
+    let active = true
+    setLoadingSelectedDeputyBreakdown(true)
+    setSelectedDeputyBreakdown((current) => (
+      current.deputyId === selectedDeputy.id_deputado
+        ? { ...current, error: null }
+        : { deputyId: selectedDeputy.id_deputado, data: null, error: null }
+    ))
+
+    fetchDeputyExpenseBreakdown(String(selectedDeputy.id_deputado), {
+      ano: ano || undefined,
+      partido: partido || undefined,
+      uf: uf || undefined,
+    })
+      .then((data) => {
+        if (active) {
+          setSelectedDeputyBreakdown({
+            deputyId: selectedDeputy.id_deputado,
+            data,
+            error: null,
+          })
+        }
+      })
+      .catch((err: Error) => {
+        if (active) {
+          setSelectedDeputyBreakdown({
+            deputyId: selectedDeputy.id_deputado,
+            data: null,
+            error: err.message,
+          })
+        }
+      })
+      .finally(() => {
+        if (active) setLoadingSelectedDeputyBreakdown(false)
+      })
+
+    return () => {
+      active = false
+    }
+  }, [selectedDeputy, ano, partido, uf])
 
   // 4. Fornecedores Tab Loader
   useEffect(() => {
@@ -558,14 +568,15 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       categoria: categoriaFiltro || undefined,
       partido: partido || undefined,
       uf: uf || undefined,
-      deputado: selectedDeputy ? String(selectedDeputy.id_deputado) : undefined,
       pageSize: 100,
     })
       .then((payload) => {
         setSuppliers(payload)
-        if (selectedSupplier && !payload.items.some((item) => item.fornecedor === selectedSupplier.fornecedor)) {
-          setSelectedSupplier(null)
-        }
+        setSelectedSupplier((current) => (
+          current && !payload.items.some((item) => item.fornecedor === current.fornecedor)
+            ? null
+            : current
+        ))
       })
       .catch((err) => {
         console.error('Error fetching suppliers:', err)
@@ -573,7 +584,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       .finally(() => {
         setLoadingFornecedores(false)
       })
-  }, [visitedTabs.fornecedores, categoriaFiltro, partido, uf, selectedDeputy, selectedSupplier])
+  }, [visitedTabs.fornecedores, categoriaFiltro, partido, uf])
 
   // 5. Contexto Tab Loader
   useEffect(() => {
@@ -593,39 +604,53 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       })
   }, [visitedTabs.contexto, contexto])
 
-  // 6. Anomalias Tab Loader
-  useEffect(() => {
-    if (!visitedTabs.anomalias) return
-    if (anomalias) return
-
-    setLoadingAnomalias(true)
-    fetchGastosAnomalias({ pageSize: 100 })
-      .then((data) => {
-        setAnomalias(data)
-      })
-      .catch((err) => {
-        console.error('Error fetching anomalies:', err)
-      })
-      .finally(() => {
-        setLoadingAnomalias(false)
-      })
-  }, [visitedTabs.anomalias, anomalias])
-
   // Memoized lists and fields
-  const topCategoriesByValue = useMemo(
-    () => topRows(sortByNumber(categories?.items ?? [], 'valor_total')),
+  const sortedCategoriesByValue = useMemo(
+    () => sortByNumber(categories?.items ?? [], 'valor_total'),
     [categories],
   )
+  const topCategoriesByValue = useMemo(
+    () => topRows(sortedCategoriesByValue, CATEGORY_CHART_LIMIT),
+    [sortedCategoriesByValue],
+  )
+  const categoryRankingRows = useMemo(
+    () => topRows(sortedCategoriesByValue, 6),
+    [sortedCategoriesByValue],
+  )
   const topCategoriesByCount = useMemo(
-    () => topRows(sortByNumber(categories?.items ?? [], 'qtd_despesas')),
+    () => topRows(sortByNumber(categories?.items ?? [], 'qtd_despesas'), CATEGORY_CHART_LIMIT),
     [categories],
   )
   const topCategoriesByTicket = useMemo(
-    () => topRows(sortByNumber(categories?.items ?? [], 'ticket_medio')),
+    () => topRows(sortByNumber(categories?.items ?? [], 'ticket_medio'), CATEGORY_CHART_LIMIT),
     [categories],
   )
   const topDeputies = useMemo(() => topRows(deputies?.items ?? []), [deputies])
-  const topSuppliers = useMemo(() => topRows(suppliers?.items ?? []), [suppliers])
+  const topSuppliers = useMemo(() => topRows(suppliers?.items ?? [], SUPPLIER_CHART_LIMIT), [suppliers])
+  const selectedDeputyExpenseBreakdown = useMemo(
+    () => (
+      deferredSelectedDeputy && selectedDeputyBreakdown.deputyId === deferredSelectedDeputy.id_deputado
+        ? selectedDeputyBreakdown.data
+        : null
+    ),
+    [deferredSelectedDeputy, selectedDeputyBreakdown],
+  )
+  const selectedDeputyBreakdownError = useMemo(
+    () => (
+      deferredSelectedDeputy && selectedDeputyBreakdown.deputyId === deferredSelectedDeputy.id_deputado
+        ? selectedDeputyBreakdown.error
+        : null
+    ),
+    [deferredSelectedDeputy, selectedDeputyBreakdown],
+  )
+  const topSelectedDeputySuppliers = useMemo(
+    () => topRows(selectedDeputyExpenseBreakdown?.suppliers ?? [], DEPUTY_BREAKDOWN_LIMIT),
+    [selectedDeputyExpenseBreakdown],
+  )
+  const topSelectedDeputyCategories = useMemo(
+    () => topRows(selectedDeputyExpenseBreakdown?.categories ?? [], DEPUTY_BREAKDOWN_LIMIT),
+    [selectedDeputyExpenseBreakdown],
+  )
   const topParties = useMemo(
     () => topRows(sortByNumber(asRecords(contexto?.partidos ?? []), 'valor_total')),
     [contexto],
@@ -639,40 +664,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     [contexto],
   )
   
-  const anomalyRanking = anomalias?.ranking ?? []
-  const hasAnomalyFilter = Object.values(anomaliaFilters).some((value) => value.trim())
-
-  const loadAnomalyDetails = () => {
-    setAnomaliaError(null)
-    if (!hasAnomalyFilter) {
-      setAnomaliaDetails(null)
-      setAnomaliaError('Informe ao menos um filtro antes de carregar o detalhamento.')
-      return
-    }
-    fetchGastosAnomaliaDetalhes({
-      ...anomaliaFilters,
-      page: anomaliaPage,
-      pageSize: 50,
-    })
-      .then(setAnomaliaDetails)
-      .catch((err) => {
-        setAnomaliaDetails(null)
-        setAnomaliaError(err instanceof Error ? err.message : 'Erro ao carregar detalhes.')
-      })
-  }
-
-  useEffect(() => {
-    if (activeTab === 'anomalias' && hasAnomalyFilter) {
-      loadAnomalyDetails()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [anomaliaPage])
-
-  const anomalySummary = anomalias?.summary ?? {}
-  const anomalyTotal = toNumber(anomalySummary.total_despesas)
-  const anomalyCount = toNumber(anomalySummary.qtd_despesas_atipicas)
-  const anomalyPct = anomalyTotal ? (anomalyCount / anomalyTotal) * 100 : 0
-  const topAnomalyDeputy = anomalyRanking[0]
   const topCategory = topCategoriesByValue[0]
   const mostFrequentCategory = topCategoriesByCount[0]
   const highestTicketCategory = topCategoriesByTicket[0]
@@ -681,12 +672,17 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const selectedDeputyRank = selectedDeputy && deputies
     ? rankInRows(deputies.items, (item) => item.id_deputado === selectedDeputy.id_deputado)
     : null
+  const selectedDeputyShare = deferredSelectedDeputy && deputies?.summary.valor_total
+    ? (deferredSelectedDeputy.valor_total / deputies.summary.valor_total) * 100
+    : 0
+  const isDeputyProfileUpdating =
+    selectedDeputy !== deferredSelectedDeputy ||
+    (Boolean(deferredSelectedDeputy) && (
+      loadingSelectedDeputyBreakdown ||
+      selectedDeputyBreakdown.deputyId !== deferredSelectedDeputy?.id_deputado
+    ))
+  const isSupplierProfileUpdating = selectedSupplier !== deferredSelectedSupplier
   
-  const selectedDeputyAnomaly = selectedDeputy
-    ? anomalyRanking.find((item) => item.id_deputado === selectedDeputy.id_deputado)
-    : undefined
-  
-  const topSupplierForSelectedDeputy = selectedDeputy ? topSupplier : undefined
   const topPartyByTotal = topParties[0]
   const topPartyByAverage = topPartiesByAverage[0]
   const totalPartyAverageRank = topPartyByTotal
@@ -709,8 +705,8 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       : null,
     highestTicketCategory
       ? {
-          title: 'Maior ticket medio',
-          body: `${highestTicketCategory.categoria} tem ticket medio de ${formatCurrency(highestTicketCategory.ticket_medio)}, sinalizando despesas individuais mais altas.`,
+          title: 'Maior valor médio por despesa',
+          body: `${highestTicketCategory.categoria} tem valor médio por despesa de ${formatCurrency(highestTicketCategory.ticket_medio)}, sinalizando despesas individuais mais altas.`,
         }
       : null,
   ].filter(Boolean) as Array<{ title: string; body: string }>
@@ -760,19 +756,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       : null,
   ].filter(Boolean) as Array<{ title: string; body: string }>
 
-  const anomalyInsights = [
-    {
-      title: 'Proporcao de atipicidade',
-      body: `${formatPercent(anomalyPct)} das despesas analisadas foram classificadas como comportamento estatistico incomum.`,
-    },
-    topAnomalyDeputy
-      ? {
-          title: 'Maior concentracao individual',
-          body: `${topAnomalyDeputy.nome_parlamentar} lidera o ranking com ${formatCellValue(topAnomalyDeputy.qtd_despesas_atipicas)} despesas atipicas.`,
-        }
-      : null,
-  ].filter(Boolean) as Array<{ title: string; body: string }>
-
   return (
     <main className="gastos-dashboard-premium gastos-story-dashboard">
       {/* Dynamic Header Section */}
@@ -781,7 +764,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
           <h1>Painel de Gastos Parlamentares</h1>
           <p>
             Uma jornada analitica: quanto foi gasto, em que categorias, por quais deputados, com quais fornecedores,
-            em quais contextos politicos e quais despesas apresentam comportamento estatistico incomum.
+            e em quais contextos politicos.
           </p>
         </div>
         {summary ? <KpiGrid summary={summary} /> : <KpisSkeleton />}
@@ -794,7 +777,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             type="button"
             key={tab.id}
             className={activeTab === tab.id ? 'active' : undefined}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => changeTab(tab.id)}
           >
             <span>{tab.label}</span>
             <small>{tab.question}</small>
@@ -833,10 +816,12 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 <ChartPanel
                   spec={barChart(
                     'Distribuicao por categoria',
-                    'Categorias com maior valor total gasto.',
+                    'Top 8 categorias com maior valor total gasto. Passe o cursor para ver o nome completo.',
                     asRecords(topCategoriesByValue),
                     'categoria',
                     'valor_total',
+                    'bar_horizontal',
+                    CATEGORY_CHART_OPTIONS,
                   )}
                 />
               </div>
@@ -873,26 +858,46 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   <small>{formatCellValue(mostFrequentCategory?.qtd_despesas ?? 0)} despesas</small>
                 </article>
                 <article className="gastos-kpi-card">
-                  <span>Maior Ticket Médio</span>
+                  <span>Maior valor médio por despesa</span>
                   <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={highestTicketCategory?.categoria}>{highestTicketCategory?.categoria ?? '-'}</strong>
-                  <small>{formatCurrency(highestTicketCategory?.ticket_medio ?? 0)}/ticket</small>
+                  <small>{formatCurrency(highestTicketCategory?.ticket_medio ?? 0)}/despesa</small>
                 </article>
               </div>
               <InsightGrid insights={categoryInsights} />
               <div className="gastos-chart-grid">
-                <ChartPanel spec={barChart('Top categorias por valor', 'Concentracao de recursos.', asRecords(topCategoriesByValue), 'categoria', 'valor_total')} />
-                <ChartPanel spec={barChart('Ticket medio por categoria', 'Categorias com despesas individuais mais altas.', asRecords(topCategoriesByTicket), 'categoria', 'ticket_medio')} />
+                <ChartPanel
+                  spec={barChart(
+                    'Top categorias por valor',
+                    'Concentracao de recursos nas categorias mais relevantes do recorte.',
+                    asRecords(topCategoriesByValue),
+                    'categoria',
+                    'valor_total',
+                    'bar_horizontal',
+                    CATEGORY_CHART_OPTIONS,
+                  )}
+                />
+                <ChartPanel
+                  spec={barChart(
+                    'Valor médio por despesa por categoria',
+                    'Categorias com despesas individuais mais altas no Top 8.',
+                    asRecords(topCategoriesByTicket),
+                    'categoria',
+                    'ticket_medio',
+                    'bar_horizontal',
+                    CATEGORY_CHART_OPTIONS,
+                  )}
+                />
               </div>
 
               <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Ranking de Categorias</h3>
-              <div className="gastos-deputy-card-grid" style={{ marginBottom: '24px' }}>
-                {topCategoriesByValue.slice(0, 4).map((cat, idx) => (
-                  <div key={`${cat.categoria}-${idx}`} className="gastos-deputy-rank-card" style={{ cursor: 'default', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div className="gastos-category-card-grid" style={{ marginBottom: '24px' }}>
+                {categoryRankingRows.map((cat, idx) => (
+                  <div key={`${cat.categoria}-${idx}`} className="gastos-category-rank-card" style={{ cursor: 'default', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     <span className="rank-number">#{idx + 1}</span>
-                    <span className="rank-name" style={{ fontWeight: 'bold' }}>{cat.categoria}</span>
+                    <span className="gastos-category-rank-card__title" title={cat.categoria}>{cat.categoria}</span>
                     <span className="rank-label">Valor total</span>
                     <strong>{formatCurrency(cat.valor_total)}</strong>
-                    <small>{formatCellValue(cat.qtd_despesas)} despesas | ticket médio {formatCurrency(cat.ticket_medio)}</small>
+                    <small>{formatCellValue(cat.qtd_despesas)} despesas | valor médio por despesa {formatCurrency(cat.ticket_medio)}</small>
                   </div>
                 ))}
               </div>
@@ -904,7 +909,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   { key: 'categoria', label: 'Categoria' },
                   { key: 'valor_total', label: 'Valor total', format: formatCurrency },
                   { key: 'qtd_despesas', label: 'Despesas' },
-                  { key: 'ticket_medio', label: 'Ticket medio', format: formatCurrency },
+                  { key: 'ticket_medio', label: 'Valor médio por despesa', format: formatCurrency },
                   { key: 'qtd_deputados', label: 'Deputados' },
                 ]}
               />
@@ -981,18 +986,29 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               <DeputyRankingCards
                 rows={topDeputies}
                 selectedId={selectedDeputy?.id_deputado}
-                onSelect={setSelectedDeputy}
+                onSelect={(row) => {
+                  startTransition(() => {
+                    setSelectedDeputy(row)
+                  })
+                }}
               />
 
-              {selectedDeputy && (
-                <aside className="gastos-drilldown stagger-item" style={{ marginTop: '16px' }}>
+              {selectedDeputy && isDeputyProfileUpdating ? (
+                <SelectionSkeleton
+                  subtitle="Carregando detalhe"
+                  title="Preparando o drilldown do deputado a partir das fontes canônicas Q12 e Q13."
+                />
+              ) : null}
+
+              {deferredSelectedDeputy && !isDeputyProfileUpdating && (
+                <aside className="gastos-drilldown gastos-deputy-profile stagger-item" style={{ marginTop: '16px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                      <DeputyAvatar id={selectedDeputy.id_deputado} nome={selectedDeputy.nome_parlamentar} size={64} />
+                      <DeputyAvatar id={deferredSelectedDeputy.id_deputado} nome={deferredSelectedDeputy.nome_parlamentar} size={64} />
                       <div>
                         <small style={{ color: 'var(--primary)', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '0.75rem' }}>Analisando deputado:</small>
-                        <h3 style={{ margin: '2px 0 0 0', fontSize: '1.4rem' }}>{selectedDeputy.nome_parlamentar}</h3>
-                        <p style={{ margin: '2px 0 0 0', color: 'var(--muted)' }}>{selectedDeputy.sigla_partido} - {selectedDeputy.sigla_uf}</p>
+                        <h3 style={{ margin: '2px 0 0 0', fontSize: '1.4rem' }}>{deferredSelectedDeputy.nome_parlamentar}</h3>
+                        <p style={{ margin: '2px 0 0 0', color: 'var(--muted)' }}>{deferredSelectedDeputy.sigla_partido} - {deferredSelectedDeputy.sigla_uf}</p>
                       </div>
                     </div>
                     <button type="button" className="gastos-clear-button" onClick={() => setSelectedDeputy(null)}>
@@ -1001,15 +1017,90 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   </div>
 
                   <div className="gastos-drilldown-grid" style={{ marginTop: '12px' }}>
-                    <span>Valor total: <strong>{formatCurrency(selectedDeputy.valor_total)}</strong></span>
+                    <span>Valor total: <strong>{formatCurrency(deferredSelectedDeputy.valor_total)}</strong></span>
                     <span>Posicao no ranking: <strong>{selectedDeputyRank ? `#${selectedDeputyRank}` : '-'}</strong></span>
-                    <span>Ticket medio: <strong>{formatCurrency(selectedDeputy.ticket_medio)}</strong></span>
-                    <span>% do grupo filtrado: <strong>{formatPercent(selectedDeputy.pct_total)}</strong></span>
-                    <span>Categoria dominante: <strong>{selectedDeputy.categoria_principal ?? '-'}</strong></span>
-                    <span>Fornecedor mais utilizado: <strong>{topSupplierForSelectedDeputy?.fornecedor ?? '-'}</strong></span>
-                    <span>Fornecedores unicos: <strong>{formatCellValue(selectedDeputy.qtd_fornecedores)}</strong></span>
-                    <span>Gastos atipicos: <strong>{formatCellValue(selectedDeputyAnomaly?.qtd_despesas_atipicas ?? 0)}</strong></span>
+                    <span>Valor médio por despesa: <strong>{formatCurrency(deferredSelectedDeputy.ticket_medio)}</strong></span>
+                    <span>% do grupo filtrado: <strong>{formatPercent(selectedDeputyShare)}</strong></span>
+                    <span>Categoria dominante: <strong>{deferredSelectedDeputy.categoria_principal ?? '-'}</strong></span>
+                    <span>Fornecedores unicos: <strong>{formatCellValue(deferredSelectedDeputy.qtd_fornecedores)}</strong></span>
                   </div>
+
+                  <div style={{ marginTop: '16px' }}>
+                    <small style={{ color: 'var(--muted)' }}>
+                      Detalhamento do deputado selecionado. Fonte canônica: Q12 e Q13, com percentuais calculados sobre o total do próprio deputado.
+                    </small>
+                  </div>
+
+                  {selectedDeputyBreakdownError ? (
+                    <p style={{ marginTop: '12px' }}>Não foi possível carregar o drilldown do deputado agora.</p>
+                  ) : null}
+
+                  {selectedDeputyExpenseBreakdown ? (
+                    <>
+                      <div className="gastos-kpi-grid" style={{ marginTop: '16px' }}>
+                        <article className="gastos-kpi-card">
+                          <span>Fonte do drilldown</span>
+                          <strong>{selectedDeputyExpenseBreakdown.source.toUpperCase()}</strong>
+                          <small>{formatCurrency(selectedDeputyExpenseBreakdown.total)} no recorte do deputado</small>
+                        </article>
+                        <article className="gastos-kpi-card">
+                          <span>Top fornecedor do deputado</span>
+                          <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSelectedDeputySuppliers[0]?.fornecedor}>
+                            {topSelectedDeputySuppliers[0]?.fornecedor ?? '-'}
+                          </strong>
+                          <small>
+                            {topSelectedDeputySuppliers[0]
+                              ? `${formatCurrency(topSelectedDeputySuppliers[0].valor_total)} (${formatPercent(topSelectedDeputySuppliers[0].pct_total)})`
+                              : ''}
+                          </small>
+                        </article>
+                        <article className="gastos-kpi-card">
+                          <span>Top categoria do deputado</span>
+                          <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSelectedDeputyCategories[0]?.categoria}>
+                            {topSelectedDeputyCategories[0]?.categoria ?? '-'}
+                          </strong>
+                          <small>
+                            {topSelectedDeputyCategories[0]
+                              ? `${formatCurrency(topSelectedDeputyCategories[0].valor_total)} (${formatPercent(topSelectedDeputyCategories[0].pct_total)})`
+                              : ''}
+                          </small>
+                        </article>
+                      </div>
+
+                      <div className="gastos-two-columns" style={{ marginTop: '20px' }}>
+                        <div>
+                          <h4 style={{ marginBottom: '12px' }}>Top fornecedores do deputado (Q12)</h4>
+                          <CompactTable
+                            rows={asRecords(topSelectedDeputySuppliers)}
+                            columns={[
+                              { key: 'fornecedor', label: 'Fornecedor' },
+                              { key: 'valor_total', label: 'Valor do deputado', format: formatCurrency },
+                              { key: 'pct_total', label: '% do deputado', format: (value) => formatPercent(value) },
+                              { key: 'qtd_despesas', label: 'Despesas' },
+                            ]}
+                          />
+                        </div>
+                        <div>
+                          <h4 style={{ marginBottom: '12px' }}>Top categorias do deputado (Q13)</h4>
+                          <CompactTable
+                            rows={asRecords(topSelectedDeputyCategories)}
+                            columns={[
+                              { key: 'categoria', label: 'Categoria' },
+                              { key: 'valor_total', label: 'Valor do deputado', format: formatCurrency },
+                              { key: 'pct_total', label: '% do deputado', format: (value) => formatPercent(value) },
+                              { key: 'qtd_despesas', label: 'Despesas' },
+                            ]}
+                          />
+                        </div>
+                      </div>
+
+                      {selectedDeputyExpenseBreakdown.partialErrors.length ? (
+                        <p style={{ marginTop: '12px' }}>
+                          Alguns recortes do drilldown não puderam ser carregados: {selectedDeputyExpenseBreakdown.partialErrors.join(', ')}.
+                        </p>
+                      ) : null}
+                    </>
+                  ) : null}
                 </aside>
               )}
 
@@ -1017,7 +1108,11 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               <CompactTable
                 rows={asRecords(deputies.items)}
                 selectedKey={selectedDeputy ? String(selectedDeputy.id_deputado) : undefined}
-                onRowClick={(row) => setSelectedDeputy(row as unknown as GastoDeputadoItem)}
+                onRowClick={(row) => {
+                  startTransition(() => {
+                    setSelectedDeputy(row as unknown as GastoDeputadoItem)
+                  })
+                }}
                 columns={[
                   {
                     key: 'nome_parlamentar',
@@ -1028,7 +1123,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   },
                   { key: 'valor_total', label: 'Valor total', format: formatCurrency },
                   { key: 'qtd_despesas', label: 'Despesas' },
-                  { key: 'ticket_medio', label: 'Ticket medio', format: formatCurrency },
+                  { key: 'ticket_medio', label: 'Valor médio por despesa', format: formatCurrency },
                   { key: 'categoria_principal', label: 'Categoria principal' },
                 ]}
               />
@@ -1050,14 +1145,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               Filtrar por Categoria
               <input value={categoriaFiltro} onChange={(event) => setCategoriaFiltro(event.target.value)} placeholder="Ex.: passagem" />
             </label>
-            {selectedDeputy && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <span style={{ fontSize: '0.8rem', color: 'var(--muted)', fontWeight: 'bold' }}>Filtro de Deputado Ativo</span>
-                <button type="button" className="gastos-clear-button" onClick={() => setSelectedDeputy(null)}>
-                  Limpar ({selectedDeputy.nome_parlamentar})
-                </button>
-              </div>
-            )}
           </div>
 
           {loadingFornecedores || !suppliers ? (
@@ -1089,22 +1176,46 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               <InsightGrid insights={supplierInsights} />
 
               <div className="gastos-chart-grid">
-                <ChartPanel spec={barChart('Top fornecedores por valor', 'Fornecedores com maior valor recebido.', asRecords(topSuppliers.slice(0, 5)), 'fornecedor', 'valor_total')} />
-                <ChartPanel spec={barChart('Alcance por deputados atendidos', 'Quantidade de deputados atendidos por fornecedor.', asRecords(topSuppliers.slice(0, 5)), 'fornecedor', 'qtd_deputados')} />
+                <ChartPanel
+                  spec={barChart(
+                    'Top fornecedores por valor',
+                    'Fornecedores com maior valor recebido no recorte.',
+                    asRecords(topSuppliers),
+                    'fornecedor',
+                    'valor_total',
+                    'bar_horizontal',
+                    SUPPLIER_CHART_OPTIONS,
+                  )}
+                />
+                <ChartPanel
+                  spec={barChart(
+                    'Alcance por deputados atendidos',
+                    'Quantidade de deputados atendidos por fornecedor.',
+                    asRecords(topSuppliers),
+                    'fornecedor',
+                    'qtd_deputados',
+                    'bar_horizontal',
+                    SUPPLIER_CHART_OPTIONS,
+                  )}
+                />
               </div>
 
               <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Ranking de Fornecedores (Clique para Analisar)</h3>
               <div className="gastos-deputy-card-grid">
-                {topSuppliers.slice(0, 8).map((supplier, idx) => (
+                {topSuppliers.map((supplier, idx) => (
                   <button
                     type="button"
                     key={`${supplier.fornecedor}-${idx}`}
                     className={`gastos-deputy-rank-card${selectedSupplier?.fornecedor === supplier.fornecedor ? ' selected' : ''}`}
-                    onClick={() => setSelectedSupplier(supplier)}
+                    onClick={() => {
+                      startTransition(() => {
+                        setSelectedSupplier(supplier)
+                      })
+                    }}
                     style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px' }}
                   >
                     <span className="rank-number" style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>#{idx + 1}</span>
-                    <span className="rank-name" style={{ fontWeight: 'bold', fontSize: '0.95rem', height: '2.4em', overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', textAlign: 'left' }} title={supplier.fornecedor}>
+                    <span className="rank-name gastos-supplier-rank-name" title={supplier.fornecedor}>
                       {supplier.fornecedor}
                     </span>
                     <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
@@ -1119,42 +1230,49 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 ))}
               </div>
 
-              {selectedSupplier && (
-                <aside className="gastos-drilldown stagger-item" style={{ marginTop: '20px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <h3 style={{ margin: 0, fontSize: '1.25rem', color: 'var(--primary)' }}>Fornecedor: {selectedSupplier.fornecedor}</h3>
+              {selectedSupplier && isSupplierProfileUpdating ? (
+                <SelectionSkeleton
+                  subtitle="Carregando fornecedor"
+                  title="Preparando o perfil do fornecedor com contraste e métricas legíveis."
+                />
+              ) : null}
+
+              {deferredSelectedSupplier && !isSupplierProfileUpdating && (
+                <aside className="gastos-drilldown gastos-supplier-profile stagger-item" style={{ marginTop: '20px' }}>
+                  <div className="gastos-supplier-profile__header">
+                    <h3 className="gastos-supplier-profile__title">Fornecedor: {deferredSelectedSupplier.fornecedor}</h3>
                     <button type="button" className="gastos-clear-button" onClick={() => setSelectedSupplier(null)}>Limpar Detalhes</button>
                   </div>
                   
                   <div className="gastos-drilldown-grid" style={{ marginTop: '12px' }}>
-                    <span>Valor recebido: <strong>{formatCurrency(selectedSupplier.valor_total)}</strong></span>
-                    <span>Deputados atendidos: <strong>{formatCellValue(selectedSupplier.qtd_deputados)}</strong></span>
-                    <span>Qtd despesas: <strong>{formatCellValue(selectedSupplier.qtd_despesas)}</strong></span>
-                    <span>Ticket medio: <strong>{formatCurrency(selectedSupplier.ticket_medio)}</strong></span>
-                    <span>% do total: <strong>{formatPercent(selectedSupplier.pct_total)}</strong></span>
+                    <span>Valor recebido: <strong>{formatCurrency(deferredSelectedSupplier.valor_total)}</strong></span>
+                    <span>Deputados atendidos: <strong>{formatCellValue(deferredSelectedSupplier.qtd_deputados)}</strong></span>
+                    <span>Qtd despesas: <strong>{formatCellValue(deferredSelectedSupplier.qtd_despesas)}</strong></span>
+                    <span>Valor médio por despesa: <strong>{formatCurrency(deferredSelectedSupplier.ticket_medio)}</strong></span>
+                    <span>% do total: <strong>{formatPercent(deferredSelectedSupplier.pct_total)}</strong></span>
                   </div>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '16px' }}>
+                  <div className="gastos-supplier-profile__groups">
                     <div>
-                      <span style={{ fontSize: '0.82rem', color: 'var(--muted)', fontWeight: 'bold' }}>Categorias relacionadas:</span>
+                      <span className="gastos-supplier-profile__label">Categorias relacionadas:</span>
                       <div className="gastos-chip-container">
-                        {splitList(selectedSupplier.categorias).map((cat) => (
+                        {splitList(deferredSelectedSupplier.categorias).map((cat) => (
                           <span key={cat} className="gastos-chip gastos-chip-categoria">{cat}</span>
                         ))}
                       </div>
                     </div>
                     <div>
-                      <span style={{ fontSize: '0.82rem', color: 'var(--muted)', fontWeight: 'bold' }}>Partidos relacionados:</span>
+                      <span className="gastos-supplier-profile__label">Partidos relacionados:</span>
                       <div className="gastos-chip-container">
-                        {splitList(selectedSupplier.partidos).map((partido) => (
+                        {splitList(deferredSelectedSupplier.partidos).map((partido) => (
                           <span key={partido} className="gastos-chip gastos-chip-partido">{partido}</span>
                         ))}
                       </div>
                     </div>
                     <div>
-                      <span style={{ fontSize: '0.82rem', color: 'var(--muted)', fontWeight: 'bold' }}>Estados (UFs) relacionados:</span>
+                      <span className="gastos-supplier-profile__label">Estados (UFs) relacionados:</span>
                       <div className="gastos-chip-container">
-                        {splitList(selectedSupplier.ufs).map((uf) => (
+                        {splitList(deferredSelectedSupplier.ufs).map((uf) => (
                           <span key={uf} className="gastos-chip gastos-chip-uf">{uf}</span>
                         ))}
                       </div>
@@ -1167,13 +1285,17 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               <CompactTable
                 rows={asRecords(suppliers.items)}
                 selectedKey={selectedSupplier?.fornecedor}
-                onRowClick={(row) => setSelectedSupplier(row as unknown as GastoFornecedorItem)}
+                onRowClick={(row) => {
+                  startTransition(() => {
+                    setSelectedSupplier(row as unknown as GastoFornecedorItem)
+                  })
+                }}
                 columns={[
                   { key: 'fornecedor', label: 'Fornecedor' },
                   { key: 'valor_total', label: 'Valor received', format: formatCurrency },
                   { key: 'qtd_despesas', label: 'Despesas' },
                   { key: 'qtd_deputados', label: 'Deputados atendidos' },
-                  { key: 'ticket_medio', label: 'Ticket medio', format: formatCurrency },
+                  { key: 'ticket_medio', label: 'Valor médio por despesa', format: formatCurrency },
                 ]}
               />
             </>
@@ -1271,149 +1393,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
         </section>
       )}
 
-      {/* 6. Anomalias Tab */}
-      {activeTab === 'anomalias' && (
-        <section className="gastos-tab-panel">
-          <header className="gastos-tab-heading">
-            <h2>Detecção de Gastos Atípicos</h2>
-            <p>Quais despesas apresentam comportamento estatístico incomum?</p>
-          </header>
-          
-          {loadingAnomalias || !anomalias ? (
-            <>
-              <KpisSkeleton />
-              <InsightsSkeleton />
-              <ChartsSkeleton />
-              <TableSkeleton />
-            </>
-          ) : (
-            <>
-              <div className="gastos-kpi-grid">
-                <article className="gastos-kpi-card"><span>Despesas analisadas</span><strong>{formatCellValue(anomalyTotal)}</strong></article>
-                <article className="gastos-kpi-card"><span>Despesas atipicas</span><strong>{formatCellValue(anomalyCount)}</strong></article>
-                <article className="gastos-kpi-card"><span>Percentual</span><strong>{anomalyPct.toLocaleString('pt-BR', { maximumFractionDigits: 2 })}%</strong></article>
-                <article className="gastos-kpi-card"><span>Destaque de Anomalias</span><strong>{topAnomalyDeputy?.nome_parlamentar ?? '-'}</strong></article>
-              </div>
-
-              <InsightGrid insights={anomalyInsights} />
-
-              <div className="gastos-chart-grid">
-                <ChartPanel spec={barChart('Deputados por despesas atipicas', 'Ranking por quantidade de despesas fora do padrao estatistico.', asRecords(anomalyRanking.slice(0, 5)), 'nome_parlamentar', 'qtd_despesas_atipicas')} />
-                
-                <section className="gastos-interpretation-panel" style={{ borderLeft: '4px solid var(--danger)' }}>
-                  <h3>Como interpretar gastos atipicos</h3>
-                  <p>
-                    A classificacao aponta despesas fora do padrao estatistico com o modelo Isolation Forest. Ela nao representa
-                    conclusao juridica, etica ou administrativa. Os motivos explicam quais caracteristicas apoiaram a classificacao.
-                  </p>
-                  <div className="gastos-motive-badges" style={{ marginTop: '8px' }}>
-                    <span className="gastos-badge gastos-badge-atipico">Atípico</span>
-                    <span className="gastos-badge gastos-badge-p95">Percentil 95</span>
-                    <span className="gastos-badge gastos-badge-p99">Percentil 99</span>
-                    <span className="gastos-badge gastos-badge-raro">Fornecedor Raro</span>
-                    <span className="gastos-badge gastos-badge-concentrado">Fornecedor Concentrado</span>
-                  </div>
-                </section>
-              </div>
-
-              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Destaques no Ranking de Anomalias (Cards Visuais)</h3>
-              <div className="gastos-deputy-card-grid anomaly" style={{ marginBottom: '24px' }}>
-                {anomalyRanking.slice(0, 8).map((row, index) => (
-                  <article className="gastos-deputy-rank-card" key={`${row.id_deputado}-${index}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                      <span className="rank-number">#{index + 1}</span>
-                      <DeputyAvatar id={row.id_deputado} nome={row.nome_parlamentar} size={48} />
-                    </div>
-                    
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'left' }}>
-                      <span className="rank-name" style={{ fontWeight: 'bold', fontSize: '0.95rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={row.nome_parlamentar}>
-                        {row.nome_parlamentar}
-                      </span>
-                      <span className="rank-meta" style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                        {row.sigla_partido}-{row.sigla_uf}
-                      </span>
-                    </div>
-
-                    <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
-                      <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--danger)', fontWeight: 'bold' }}>Despesas atípicas</span>
-                      <strong style={{ fontSize: '1.25rem', color: 'var(--danger)' }}>{formatCellValue(row.qtd_despesas_atipicas)}</strong>
-                      <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>{formatCurrency(row.valor_atipico)} associados</span>
-                      <span style={{ fontSize: '0.74rem', color: 'var(--muted)' }}>Score médio: {formatCellValue(row.score_atipicidade_medio)}</span>
-                    </div>
-                  </article>
-                ))}
-              </div>
-
-              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Detalhamento Paginado</h3>
-              <div className="gastos-detail-filter">
-                <p style={{ margin: 0 }}>Por seguranca operacional, a base detalhada so e carregada com filtros.</p>
-                
-                <div className="gastos-filter-row" style={{ marginTop: '12px', marginBottom: '12px' }}>
-                  <label>Deputado<input value={anomaliaFilters.deputado} onChange={(event) => setAnomaliaFilters((prev) => ({ ...prev, deputado: event.target.value }))} /></label>
-                  <label>Partido<input value={anomaliaFilters.partido} onChange={(event) => setAnomaliaFilters((prev) => ({ ...prev, partido: event.target.value }))} /></label>
-                  <label>UF<input value={anomaliaFilters.uf} onChange={(event) => setAnomaliaFilters((prev) => ({ ...prev, uf: event.target.value }))} /></label>
-                  <label>Categoria<input value={anomaliaFilters.categoria} onChange={(event) => setAnomaliaFilters((prev) => ({ ...prev, categoria: event.target.value }))} /></label>
-                  <button type="button" className="gastos-clear-button" onClick={() => { setAnomaliaPage(1); loadAnomalyDetails() }}>Carregar detalhes</button>
-                </div>
-
-                {anomaliaError && <p className="error">{anomaliaError}</p>}
-                
-                {anomaliaDetails && (
-                  <div className="stagger-item" style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' }}>
-                    <ChartPanel spec={scatterChart(asRecords(anomaliaDetails.items))} />
-                    
-                    <h4 style={{ color: 'var(--primary)', margin: 0, fontWeight: 'bold' }}>Explicação das Despesas Classificadas</h4>
-                    <div className="gastos-explanation-cards">
-                      {anomaliaDetails.items.slice(0, 6).map((item, index) => {
-                        const motivos = parseMotivos(item.motivos ?? item.motivos_json)
-                        return (
-                          <article className="gastos-explanation-card" key={`${item.id_gasto ?? index}`} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                            <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                              <span style={{ fontWeight: 'bold', fontSize: '0.95rem' }}>{item.nome_parlamentar}</span>
-                              <strong style={{ color: 'var(--danger)' }}>{formatCurrency(item.valor_liquido)}</strong>
-                            </header>
-                            <p style={{ fontSize: '0.85rem', color: 'var(--muted)', margin: 0 }}>{item.descricao_despesa}</p>
-                            
-                            <div style={{ marginTop: '4px', marginBottom: '4px' }}>
-                              <MotiveBadges motivos={motivos} />
-                            </div>
-                            
-                            <MotiveDetails motivos={motivos} />
-                          </article>
-                        )
-                      })}
-                    </div>
-
-                    <div className="gastos-pagination">
-                      <button type="button" disabled={anomaliaPage <= 1} onClick={() => setAnomaliaPage((prev) => Math.max(1, prev - 1))}>Anterior</button>
-                      <span>Pagina {anomaliaDetails.summary.page} de {Math.max(1, Math.ceil(anomaliaDetails.summary.total / anomaliaDetails.summary.page_size))}</span>
-                      <button
-                        type="button"
-                        disabled={anomaliaDetails.summary.page * anomaliaDetails.summary.page_size >= anomaliaDetails.summary.total}
-                        onClick={() => setAnomaliaPage((prev) => prev + 1)}
-                      >
-                        Proxima
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabela Completa (Auditoria de Anomalias)</h3>
-              <CompactTable
-                rows={asRecords(anomalyRanking)}
-                columns={[
-                  { key: 'nome_parlamentar', label: 'Deputado' },
-                  { key: 'qtd_despesas_atipicas', label: 'Anomalias' },
-                  { key: 'valor_atipico', label: 'Valor associado', format: formatCurrency },
-                  { key: 'score_atipicidade_medio', label: 'Score medio' },
-                  { key: 'pct_despesas_atipicas', label: '% atipicas', format: (value) => `${formatCellValue(value)}%` },
-                ]}
-              />
-            </>
-          )}
-        </section>
-      )}
     </main>
   )
 }

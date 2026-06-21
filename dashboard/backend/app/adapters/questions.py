@@ -1,3 +1,4 @@
+import csv
 from datetime import datetime, timezone
 from typing import Any
 
@@ -287,6 +288,50 @@ class Q4Adapter(QuestionAdapter):
             except Exception:
                 pass
 
+        # Fallback: alguns deputados da 57a legislatura nao aparecem na Q1 porque
+        # ainda nao possuem recorte de gastos consolidado. Nesses casos, usamos a
+        # base de votos agregados (Q3), que carrega partido e UF por deputado.
+        missing_identity_ids = {
+            int(dep_id)
+            for row in comp_rows
+            if (dep_id := row.get("id_deputado")) not in (None, "")
+            and (
+                int(dep_id) not in deputy_to_party
+                or int(dep_id) not in deputy_to_uf
+            )
+        }
+        if missing_identity_ids:
+            q3_file = (
+                self.context.repo_root
+                / "JF"
+                / "producao-legislativa-temas"
+                / "q3"
+                / "q3_resumos_agregados.csv"
+            )
+            if q3_file.exists():
+                try:
+                    with q3_file.open("r", encoding="utf-8-sig", newline="") as handle:
+                        reader = csv.DictReader(handle, delimiter=";")
+                        for row in reader:
+                            dep_id_raw = str(row.get("id_deputado") or "").strip()
+                            if not dep_id_raw.isdigit():
+                                continue
+                            dep_id_int = int(dep_id_raw)
+                            if dep_id_int not in missing_identity_ids:
+                                continue
+                            party = str(row.get("sigla_partido") or "").strip()
+                            uf = str(row.get("sigla_uf") or "").strip()
+                            if party and dep_id_int not in deputy_to_party:
+                                deputy_to_party[dep_id_int] = party
+                            if uf and dep_id_int not in deputy_to_uf:
+                                deputy_to_uf[dep_id_int] = uf
+                            if dep_id_int in deputy_to_party and dep_id_int in deputy_to_uf:
+                                missing_identity_ids.discard(dep_id_int)
+                            if not missing_identity_ids:
+                                break
+                except Exception:
+                    pass
+
         # Enrich comp_rows in place so that _build_complements and FilterEngine can find the attributes
         from ..party_catalog import normalize_party
         for r in comp_rows:
@@ -370,7 +415,10 @@ class Q4Adapter(QuestionAdapter):
         )
 
         # Tabela complementar para compatibilidade com a API
-        complement_specs = self._build_complements(state)
+        # Nota: usa _build_complements_q4 em vez do método base para não aplicar
+        # o cap de 100 linhas — o catálogo de deputados deve ser entregue completo
+        # conforme o page_size solicitado pelo caller (contrato da API).
+        complement_specs = self._build_complements_q4(state)
 
         has_data = table_spec.total > 0
         empty = EmptyState(
@@ -494,6 +542,49 @@ class Q4Adapter(QuestionAdapter):
         main_chart.options["second_chart"] = second_chart
 
         return main_chart
+
+    def _build_complements_q4(self, state: FilterState) -> list[TableSpec]:
+        """Variante de _build_complements sem o cap de 100 linhas.
+
+        O catálogo de deputados de Q4 é um conjunto finito e já filtrado que
+        deve ser entregue completo quando page_size >= len(filtered).  O cap
+        de 100 do método base é adequado para resultados de query grandes, mas
+        inapropriado aqui — truncaria silenciosamente a lista e quebraria a
+        invariante len(rows) == total para callers com page_size alto.
+        """
+        specs: list[TableSpec] = []
+        for table in self.complement_tables:
+            filtered = FilterEngine.apply_filters(
+                table.rows,
+                state,
+                self.context.question.supported_filters,
+            )
+            sorted_rows = FilterEngine.apply_sort(filtered, state.sort_by, state.sort_dir)
+            # Usa page_size do estado sem impor um limite artificial.
+            page_size = max(state.page_size, 1)
+            paged = FilterEngine.apply_pagination(sorted_rows, state.page, page_size)
+            specs.append(
+                self._build_table_spec(
+                    title=table.title,
+                    columns=table.columns,
+                    rows=paged,
+                    total=len(sorted_rows),
+                    state=FilterState(
+                        anos=state.anos,
+                        eixos=state.eixos,
+                        partidos=state.partidos,
+                        ufs=state.ufs,
+                        deputados=state.deputados,
+                        escolaridade=state.escolaridade,
+                        search=state.search,
+                        sort_by=state.sort_by,
+                        sort_dir=state.sort_dir,
+                        page=state.page,
+                        page_size=page_size,
+                    ),
+                )
+            )
+        return specs
 
 
 class Q5Adapter(QuestionAdapter):
@@ -936,6 +1027,44 @@ class Q11Adapter(QuestionAdapter):
 
 class Q12Adapter(QuestionAdapter):
     """Deputado x fornecedor."""
+
+    def build_payload(self, state: FilterState) -> QuestionPayload:
+        payload = super().build_payload(state)
+
+        if not state.deputados or payload.table_spec.total > 0:
+            return payload
+
+        fallback_table = next(
+            (
+                table
+                for table in self.complement_tables
+                if {"id_deputado", "fornecedor", "qtd_lancamentos", "total_pago"}.issubset(set(table.columns))
+            ),
+            None,
+        )
+        if fallback_table is None:
+            return payload
+
+        filtered_rows = FilterEngine.apply_filters(
+            fallback_table.rows,
+            state,
+            self.context.question.supported_filters,
+        )
+        if not filtered_rows:
+            return payload
+
+        sorted_rows = FilterEngine.apply_sort(filtered_rows, state.sort_by, state.sort_dir)
+        paged_rows = FilterEngine.apply_pagination(sorted_rows, state.page, state.page_size)
+        payload.chart_spec = self.build_chart_spec(filtered_rows)
+        payload.table_spec = self._build_table_spec(
+            title=fallback_table.title,
+            columns=fallback_table.columns,
+            rows=paged_rows,
+            total=len(sorted_rows),
+            state=state,
+        )
+        payload.empty_state = EmptyState(is_empty=False, message="")
+        return payload
 
 
 class Q13Adapter(QuestionAdapter):
