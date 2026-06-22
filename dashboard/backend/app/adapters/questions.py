@@ -1063,6 +1063,12 @@ class Q12Adapter(QuestionAdapter):
             total=len(sorted_rows),
             state=state,
         )
+        # Remove fallback_table from complement_tables since it is now used as table_spec
+        payload.complement_tables = [
+            spec
+            for spec in payload.complement_tables
+            if spec.title != fallback_table.title
+        ]
         payload.empty_state = EmptyState(is_empty=False, message="")
         return payload
 
