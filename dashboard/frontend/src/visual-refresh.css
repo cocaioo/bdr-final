@@ -594,65 +594,65 @@ body.gastos-light-theme .app-footer {
   }
 }
 
-/* ===== Civic Intelligence: Dark Premium Override ===== */
+/* ===== Civic Intelligence: Light Theme Contract ===== */
 :root,
 body,
 body.gastos-light-theme {
-  --color-bg: #070b13;
-  --color-bg-soft: #0b1220;
-  --color-surface: #101827;
-  --color-surface-elevated: #172033;
-  --color-surface-glass: rgba(16, 24, 39, 0.94);
-  --color-surface-hover: #1c2940;
-  --color-surface-active: #17334a;
-  --color-border: #334155;
-  --color-border-strong: #52647a;
-  --color-text: #f8fafc;
-  --color-text-muted: #cbd5e1;
-  --color-text-subtle: #a8b5c7;
-  --color-text-inverse: #06111f;
-  --color-text-disabled: #7f8da1;
-  --color-primary: #38bdf8;
-  --color-primary-hover: #67d3fa;
-  --color-primary-strong: #0284c7;
-  --color-secondary: #a78bfa;
-  --color-secondary-strong: #7c3aed;
-  --color-accent: #34d399;
-  --color-accent-strong: #059669;
-  --color-warning: #f59e0b;
-  --color-warning-text: #fde68a;
-  --color-danger: #fb7185;
-  --color-danger-text: #fecdd3;
-  --color-success-text: #a7f3d0;
-  --color-input-bg: #0b1220;
-  --color-input-border: #52647a;
-  --color-input-focus: #38bdf8;
-  --color-table-bg: #0b1220;
-  --color-table-hover: #1c2940;
-  --color-chart-grid: #334155;
-  --color-chart-text: #cbd5e1;
-  --color-overlay-subtle: rgba(255, 255, 255, 0.05);
-  --color-primary-soft: rgba(56, 189, 248, 0.14);
-  --color-secondary-soft: rgba(167, 139, 250, 0.14);
-  --color-success-soft: rgba(52, 211, 153, 0.14);
-  --color-warning-soft: rgba(245, 158, 11, 0.14);
-  --color-danger-soft: rgba(251, 113, 133, 0.14);
-  --avatar-gradient-1a: #2dd4bf;
-  --avatar-gradient-1b: #0f766e;
-  --avatar-gradient-2a: #fb7185;
+  --color-bg: #f4f7fb;
+  --color-bg-soft: #eaf0f7;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f8fbff;
+  --color-surface-glass: rgba(255, 255, 255, 0.92);
+  --color-surface-hover: #eef4fb;
+  --color-surface-active: #e3edf9;
+  --color-border: #d7e1ec;
+  --color-border-strong: #b7c6d8;
+  --color-text: #1f2937;
+  --color-text-muted: #475569;
+  --color-text-subtle: #64748b;
+  --color-text-inverse: #f8fafc;
+  --color-text-disabled: #94a3b8;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-strong: #1e40af;
+  --color-secondary: #7c3aed;
+  --color-secondary-strong: #6d28d9;
+  --color-accent: #0f766e;
+  --color-accent-strong: #115e59;
+  --color-warning: #b45309;
+  --color-warning-text: #7c2d12;
+  --color-danger: #dc2626;
+  --color-danger-text: #991b1b;
+  --color-success-text: #166534;
+  --color-input-bg: #ffffff;
+  --color-input-border: #cbd5e1;
+  --color-input-focus: #2563eb;
+  --color-table-bg: #ffffff;
+  --color-table-hover: #f5f9ff;
+  --color-chart-grid: #d7e1ec;
+  --color-chart-text: #475569;
+  --color-overlay-subtle: rgba(37, 99, 235, 0.06);
+  --color-primary-soft: rgba(37, 99, 235, 0.12);
+  --color-secondary-soft: rgba(124, 58, 237, 0.12);
+  --color-success-soft: rgba(15, 118, 110, 0.12);
+  --color-warning-soft: rgba(180, 83, 9, 0.12);
+  --color-danger-soft: rgba(220, 38, 38, 0.1);
+  --avatar-gradient-1a: #38bdf8;
+  --avatar-gradient-1b: #2563eb;
+  --avatar-gradient-2a: #f59e0b;
   --avatar-gradient-2b: #c2410c;
-  --avatar-gradient-3a: #fbbf24;
-  --avatar-gradient-3b: #b45309;
+  --avatar-gradient-3a: #10b981;
+  --avatar-gradient-3b: #0f766e;
   --avatar-gradient-4a: #60a5fa;
   --avatar-gradient-4b: #1d4ed8;
   --avatar-gradient-5a: #f472b6;
-  --avatar-gradient-5b: #9d174d;
+  --avatar-gradient-5b: #be185d;
   --avatar-gradient-6a: #94a3b8;
-  --avatar-gradient-6b: #475569;
-  --avatar-gradient-7a: #c084fc;
-  --avatar-gradient-7b: #6d28d9;
-  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.35);
-  --shadow-card: 0 12px 30px rgba(2, 6, 23, 0.28);
+  --avatar-gradient-6b: #64748b;
+  --avatar-gradient-7a: #a78bfa;
+  --avatar-gradient-7b: #7c3aed;
+  --shadow-soft: 0 18px 38px rgba(15, 23, 42, 0.08);
+  --shadow-card: 0 10px 24px rgba(15, 23, 42, 0.06);
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -673,8 +673,8 @@ body.gastos-light-theme {
 body,
 body.gastos-light-theme {
   background:
-    radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 24%),
-    radial-gradient(circle at right top, rgba(167, 139, 250, 0.09), transparent 26%),
+    radial-gradient(circle at top, rgba(37, 99, 235, 0.08), transparent 22%),
+    radial-gradient(circle at right top, rgba(124, 58, 237, 0.06), transparent 24%),
     linear-gradient(180deg, var(--color-bg-soft), var(--color-bg)) !important;
   color: var(--color-text) !important;
 }
@@ -689,7 +689,7 @@ body.gastos-light-theme .app-header {
   background: var(--color-surface-glass) !important;
   border: 1px solid var(--color-border) !important;
   border-radius: var(--radius-lg) !important;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: var(--shadow-card) !important;
   backdrop-filter: blur(22px);
 }
 
@@ -756,7 +756,7 @@ body.gastos-light-theme .premium-hero,
 .perfil-methodology,
 .perfil-source-note,
 .perfil-section-heading {
-  background: linear-gradient(180deg, rgba(23, 32, 51, 0.96), rgba(16, 24, 39, 0.96)) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 255, 0.98)) !important;
   border: 1px solid var(--color-border) !important;
   box-shadow: var(--shadow-card) !important;
 }
@@ -784,7 +784,7 @@ body.gastos-light-theme .gastos-explanation-card,
 .deputy-profile__card,
 .deputy-profile__data-card,
 .deputy-profile__hero-aside .deputy-profile__fact {
-  background: linear-gradient(180deg, rgba(24, 35, 56, 0.96), rgba(18, 27, 44, 0.96)) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 252, 0.96)) !important;
   border: 1px solid var(--color-border) !important;
   box-shadow: var(--shadow-card) !important;
 }
@@ -820,15 +820,15 @@ body.gastos-light-theme .gastos-explanation-card,
 .deputy-profile__action-link--primary {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-strong)) !important;
   border-color: transparent !important;
-  color: #06111f !important;
-  box-shadow: 0 10px 24px rgba(2, 132, 199, 0.28);
+  color: var(--color-text-inverse) !important;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
 }
 
 .home-cta-btn:hover,
 .table-footer button:hover,
 .query-toggle:hover {
-  background: linear-gradient(135deg, #4fd1ff, var(--color-primary)) !important;
-  color: #06111f !important;
+  background: linear-gradient(135deg, #4d7ff0, var(--color-primary)) !important;
+  color: var(--color-text-inverse) !important;
 }
 
 .filter-item select,
@@ -841,7 +841,7 @@ body.gastos-light-theme .gastos-explanation-card,
 body.gastos-light-theme .gastos-filter-row input,
 body.gastos-light-theme .gastos-filter-row select,
 .deputy-search__input {
-  background: rgba(11, 18, 32, 0.86) !important;
+  background: var(--color-input-bg) !important;
   border: 1px solid var(--color-border) !important;
   color: var(--color-text) !important;
 }
@@ -863,15 +863,15 @@ body.gastos-light-theme .gastos-filter-row select:focus,
 
 .deputy-search-hero {
   background:
-    radial-gradient(circle at top right, rgba(56, 189, 248, 0.14), transparent 28%),
-    radial-gradient(circle at 18% 18%, rgba(167, 139, 250, 0.12), transparent 24%),
-    linear-gradient(180deg, rgba(23, 32, 51, 0.96), rgba(16, 24, 39, 0.96)) !important;
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 28%),
+    radial-gradient(circle at 18% 18%, rgba(124, 58, 237, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 255, 0.98)) !important;
 }
 
 .deputy-search__results,
 .autocomplete-options,
 .questions-menu-list {
-  background: rgba(16, 24, 39, 0.98) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
   border: 1px solid var(--color-border) !important;
   box-shadow: var(--shadow-soft) !important;
   backdrop-filter: blur(18px);
@@ -895,7 +895,7 @@ body.gastos-light-theme .gastos-filter-row select:focus,
 .deputy-profile__avatar-frame .deputy-avatar-img,
 .gastos-deputy-rank-card .deputy-avatar-img {
   border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.3);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
 }
 
 .deputy-avatar-fallback {
@@ -919,7 +919,7 @@ body.gastos-light-theme .gastos-filter-row select:focus,
 .question-card:hover,
 .summary-card:hover {
   border-color: rgba(56, 189, 248, 0.22) !important;
-  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.34) !important;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08) !important;
 }
 
 .home-questions-section {
@@ -927,7 +927,7 @@ body.gastos-light-theme .gastos-filter-row select:focus,
 }
 
 .home-question-item:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--color-surface-hover);
 }
 
 .home-question-id,
@@ -953,39 +953,39 @@ body.gastos-light-theme .gastos-filter-row select:focus,
 .deputy-profile__hero,
 .perfil-hero {
   background:
-    radial-gradient(circle at top right, rgba(167, 139, 250, 0.16), transparent 30%),
-    radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.12), transparent 25%),
-    linear-gradient(180deg, rgba(23, 32, 51, 0.98), rgba(16, 24, 39, 0.98)) !important;
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 30%),
+    radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.1), transparent 25%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 249, 255, 0.98)) !important;
 }
 
 .deputy-profile__avatar-frame,
 .deputy-profile__avatar,
 .deputy-profile__avatar-skeleton {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.92);
   border-color: rgba(148, 163, 184, 0.18);
 }
 
 .deputy-profile__context,
 .deputy-profile__actions,
 .deputy-profile__error-panel {
-  background: linear-gradient(180deg, rgba(18, 27, 44, 0.98), rgba(13, 20, 33, 0.98)) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 255, 0.98)) !important;
 }
 
 .warning-banner {
-  background: rgba(245, 158, 11, 0.12) !important;
-  border-color: rgba(245, 158, 11, 0.24) !important;
-  color: #fde68a !important;
+  background: var(--color-warning-soft) !important;
+  border-color: rgba(180, 83, 9, 0.22) !important;
+  color: var(--color-warning-text) !important;
 }
 
 .query-drawer pre {
-  background: #0b1220;
+  background: var(--color-bg-soft);
   color: var(--color-text);
 }
 
 .table-wrapper,
 .gastos-table-wrap,
 body.gastos-light-theme .gastos-table-wrap {
-  background: rgba(11, 18, 32, 0.6);
+  background: var(--color-table-bg);
   border-color: var(--color-border) !important;
 }
 
@@ -993,7 +993,7 @@ th,
 th button,
 .gastos-compact-table th,
 body.gastos-light-theme .gastos-compact-table th {
-  background: rgba(23, 32, 51, 0.92) !important;
+  background: var(--color-surface-elevated) !important;
   color: var(--color-primary) !important;
 }
 
@@ -1041,9 +1041,9 @@ body.gastos-light-theme .gastos-compact-table td {
 }
 
 .gastos-badge-concentrado {
-  background: rgba(167, 139, 250, 0.14);
-  color: #ddd6fe;
-  border-color: rgba(167, 139, 250, 0.25);
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary-strong);
+  border-color: rgba(124, 58, 237, 0.24);
 }
 
 .skeleton,
@@ -1074,7 +1074,7 @@ button,
 input,
 select,
 textarea {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 input::placeholder,
@@ -1325,7 +1325,7 @@ body.gastos-light-theme .gastos-compact-table td {
 .gastos-badge-concentrado {
   background: var(--color-secondary-soft) !important;
   border-color: var(--color-secondary) !important;
-  color: #ede9fe !important;
+  color: var(--color-secondary-strong) !important;
 }
 
 body.gastos-light-theme .gastos-chip-partido {
@@ -1343,7 +1343,7 @@ body.gastos-light-theme .gastos-chip-uf {
 body.gastos-light-theme .gastos-chip-categoria {
   background: var(--color-secondary-soft) !important;
   border-color: var(--color-secondary) !important;
-  color: #ddd6fe !important;
+  color: var(--color-secondary-strong) !important;
 }
 
 .query-drawer pre {
@@ -1461,7 +1461,7 @@ body.gastos-light-theme .gastos-dashboard-premium .gastos-deputy-profile .gastos
 .home-panel-card:hover {
   transform: translateY(-2px);
   border-color: var(--color-border-strong);
-  box-shadow: 0 16px 36px rgba(2, 6, 23, 0.28);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
 }
 
 .home-panel-status {
