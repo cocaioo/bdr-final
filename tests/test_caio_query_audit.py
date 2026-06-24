@@ -33,8 +33,8 @@ from __future__ import annotations
 #     - test_q5_summary_matches_positive_gastos_universe_by_year
 #     - test_q12_summary_matches_positive_gastos_universe_by_year
 #     - test_q5_global_ranking_should_not_fragment_normalized_suppliers
-#     - test_q7_cost_benefit_question_should_rank_by_ratio
-#     - test_q7_exported_approved_counts_match_current_sql_patterns
+#     - test_q7_cost_benefit_question_should_rank_by_adjusted_index
+#     - test_q7_exported_weighted_scores_match_current_formula
 #     - test_q6_plenario_export_matches_current_event_labels
 #     - test_q4_payload_should_return_all_filtered_deputy_rows_to_frontend
 # =============================================================================
@@ -42,6 +42,7 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
+import re
 import sys
 import unicodedata
 
@@ -183,31 +184,166 @@ def _unaccent(text: str) -> str:
     return unicodedata.normalize("NFD", text).encode("ascii", "ignore").decode("ascii")
 
 
-def _current_q7_approved_by_year() -> dict[int, int]:
-    # Normaliza acentos para replicar o comportamento do SQL:
-    # ILIKE '%aprov%' | '%sancao%' | '%norma juridica%' | '%promulg%'
-    # O SQL rodou no PostgreSQL com unaccent, portanto 'Aprovação' -> 'aprov' e
-    # 'Sanção' -> 'sancao'. Sem normalização, o Python não encontraria matches.
-    autores = (
-        _proposicoes_autores_df()[["ano_dados", "id_deputado", "id_proposicao"]]
-        .drop_duplicates()
-        .copy()
+@lru_cache(maxsize=1)
+def _current_q7_weighted_metrics_by_year_deputy() -> dict[tuple[int, int], dict[str, float | int]]:
+    autores = _proposicoes_autores_df()[
+        ["ano_dados", "id_proposicao", "id_deputado", "ordem_assinatura"]
+    ].copy()
+    autores["ordem_assinatura"] = pd.to_numeric(autores["ordem_assinatura"], errors="coerce")
+    autorias_unicas = (
+        autores.groupby(["ano_dados", "id_proposicao", "id_deputado"], dropna=False, as_index=False)
+        .agg(ordem_assinatura=("ordem_assinatura", "min"))
     )
-    proposicoes = _proposicoes_df()[["ano_dados", "id_proposicao", "descricao_situacao"]].copy()
-    merged = autores.merge(proposicoes, on=["ano_dados", "id_proposicao"], how="left")
 
-    # Normaliza acentos na coluna antes de comparar (mesmo que unaccent no SQL)
-    desc_norm = merged["descricao_situacao"].apply(
-        lambda v: _unaccent(str(v)) if isinstance(v, str) else ""
+    proposicoes = _proposicoes_df()[["ano_dados", "id_proposicao", "sigla_tipo", "descricao_situacao"]].copy()
+    merged = autorias_unicas.merge(proposicoes, on=["ano_dados", "id_proposicao"], how="left")
+
+    def _type_weight(value: object) -> float:
+        sigla = str(value or "").strip().upper()
+        if sigla in {"PEC", "PLP", "MPV", "PLV"}:
+            return 10.0
+        if sigla in {"PL", "PDL", "PRC", "PLN"}:
+            return 6.0
+        if sigla in {"PFC", "MSC", "EMC", "SBT", "EMR", "PRL"}:
+            return 2.0
+        return 0.3
+
+    def _status_weight(value: object) -> float:
+        status = _unaccent(str(value or "")).lower().strip()
+        if not status:
+            return 0.8
+        if (
+            "aprovad" in status
+            or "transformad" in status
+            or "convertid" in status
+            or "norma" in status
+            or re.search(r"(^|[^a-z])lei([^a-z]|$)", status)
+        ):
+            return 1.3
+        if (
+            "tramitacao" in status
+            or "aguardando" in status
+            or "pronta" in status
+            or "sujeita" in status
+            or "apreciacao" in status
+        ):
+            return 1.0
+        if (
+            "arquivad" in status
+            or "rejeitad" in status
+            or "prejudicad" in status
+            or "retirad" in status
+            or "devolvid" in status
+        ):
+            return 0.4
+        return 0.8
+
+    def _author_weight(value: object) -> float:
+        if pd.isna(value):
+            return 0.7
+        ordem = float(value)
+        if ordem == 1:
+            return 1.0
+        if ordem > 1:
+            return 0.5
+        return 0.7
+
+    merged["peso_tipo"] = merged["sigla_tipo"].apply(_type_weight)
+    merged["peso_status"] = merged["descricao_situacao"].apply(_status_weight)
+    merged["peso_autoria"] = merged["ordem_assinatura"].apply(_author_weight)
+    merged["score_proposicao"] = merged["peso_tipo"] * merged["peso_status"] * merged["peso_autoria"]
+
+    proposicoes_ponderadas = (
+        merged.groupby(["ano_dados", "id_deputado"], dropna=False, as_index=False)
+        .agg(
+            total_proposicoes=("id_proposicao", "count"),
+            score_proposicoes_total=("score_proposicao", "sum"),
+        )
     )
-    approved = (
-        desc_norm.str.contains("aprov", case=False, regex=True)
-        | desc_norm.str.contains("sancao", case=False, regex=True)
-        | desc_norm.str.contains("norma juridica", case=False, regex=True)
-        | desc_norm.str.contains("promulg", case=False, regex=True)
+
+    gastos = (
+        _gastos_df()
+        .groupby(["ano_dados", "id_deputado"], dropna=False, as_index=False)["valor_liquido"]
+        .sum()
+        .rename(columns={"valor_liquido": "gasto_total"})
     )
-    grouped = approved.groupby(merged["ano_dados"]).sum()
-    return {int(year): int(value) for year, value in grouped.items()}
+
+    metricas = gastos.merge(proposicoes_ponderadas, on=["ano_dados", "id_deputado"], how="inner")
+    metricas = metricas[
+        (metricas["gasto_total"] > 0) & (metricas["score_proposicoes_total"] > 0)
+    ].copy()
+    metricas["score_proposicoes_ajustado"] = metricas["score_proposicoes_total"] ** 0.75
+    metricas["gasto_ajustado"] = (1 + metricas["gasto_total"] / 1000) ** 0.75
+    metricas["indice_custo_beneficio"] = (
+        metricas["score_proposicoes_ajustado"] / metricas["gasto_ajustado"]
+    )
+
+    output: dict[tuple[int, int], dict[str, float | int]] = {}
+    for row in metricas.to_dict("records"):
+        key = (int(row["ano_dados"]), int(row["id_deputado"]))
+        output[key] = {
+            "gasto_total": float(row["gasto_total"]),
+            "total_proposicoes": int(row["total_proposicoes"]),
+            "score_proposicoes_total": float(row["score_proposicoes_total"]),
+            "score_proposicoes_ajustado": float(row["score_proposicoes_ajustado"]),
+            "gasto_ajustado": float(row["gasto_ajustado"]),
+            "indice_custo_beneficio": float(row["indice_custo_beneficio"]),
+        }
+    return output
+
+
+@lru_cache(maxsize=1)
+def _current_q7_unified_metrics_by_scope() -> dict[tuple[str, int | None, int], dict[str, float | int | bool | str | None]]:
+    annual = _current_q7_weighted_metrics_by_year_deputy()
+    output: dict[tuple[str, int | None, int], dict[str, float | int | bool | str | None]] = {}
+
+    annual_rows: list[dict[str, float | int]] = []
+    for (year, dep_id), values in annual.items():
+        row = {"ano_dados": year, "id_deputado": dep_id, **values}
+        annual_rows.append(row)
+        output[("anual", year, dep_id)] = {
+            "escopo": "anual",
+            "ano_dados": year,
+            "periodo_label": str(year),
+            "ano_parcial": year == 2026,
+            **values,
+        }
+
+    frame = pd.DataFrame(annual_rows)
+    complete = frame[frame["ano_dados"] < 2026].copy()
+    global_metrics = (
+        complete.groupby("id_deputado", as_index=False)
+        .agg(
+            gasto_total=("gasto_total", "sum"),
+            total_proposicoes=("total_proposicoes", "sum"),
+            score_proposicoes_total=("score_proposicoes_total", "sum"),
+        )
+    )
+    global_metrics = global_metrics[
+        (global_metrics["gasto_total"] > 0) & (global_metrics["score_proposicoes_total"] > 0)
+    ].copy()
+    global_metrics["score_proposicoes_ajustado"] = global_metrics["score_proposicoes_total"] ** 0.75
+    global_metrics["gasto_ajustado"] = (1 + global_metrics["gasto_total"] / 1000) ** 0.75
+    global_metrics["indice_custo_beneficio"] = (
+        global_metrics["score_proposicoes_ajustado"] / global_metrics["gasto_ajustado"]
+    )
+
+    for row in global_metrics.to_dict("records"):
+        dep_id = int(row["id_deputado"])
+        output[("global", None, dep_id)] = {
+            "escopo": "global",
+            "ano_dados": None,
+            "periodo_label": "Global",
+            "ano_parcial": False,
+            "gasto_total": float(row["gasto_total"]),
+            "total_proposicoes": int(row["total_proposicoes"]),
+            "score_proposicoes_total": float(row["score_proposicoes_total"]),
+            "score_proposicoes_ajustado": float(row["score_proposicoes_ajustado"]),
+            "gasto_ajustado": float(row["gasto_ajustado"]),
+            "indice_custo_beneficio": float(row["indice_custo_beneficio"]),
+        }
+
+    return output
 
 
 def _current_plenario_matches() -> int:
@@ -442,34 +578,79 @@ def test_q5_global_ranking_should_not_fragment_normalized_suppliers() -> None:
     assert duplicates == {}
 
 
-def test_q7_cost_benefit_question_should_rank_by_ratio() -> None:
-    # The SQL (q7.sql) orders the top-30 table by `custo_beneficio DESC NULLS LAST`,
-    # where `custo_beneficio` is the ratio beneficio/gasto_total.
-    # This test audits that the artifact respects the declared ordering.
+def test_q7_cost_benefit_question_should_rank_by_adjusted_index() -> None:
+    # Q7 v1 orders each scope/year by the smoothed weighted index, not by raw
+    # proposition count. Global and each annual slice have independent positions.
     rows = _rows_from_psql(
         _question_path("Caio", "gastos-fornecedores", "q7", "q7_custo_beneficio.txt"),
         1,
     )
-    grouped: dict[int, list[float]] = defaultdict(list)
+    grouped: dict[tuple[str, int | None], list[float]] = defaultdict(list)
+    positions: dict[tuple[str, int | None], list[int]] = defaultdict(list)
     for row in rows:
-        grouped[int(row["ano_dados"])].append(float(row["custo_beneficio"]))
+        year = int(row["ano_dados"]) if row.get("ano_dados") is not None else None
+        key = (str(row["escopo"]), year)
+        grouped[key].append(float(row["indice_custo_beneficio"]))
+        positions[key].append(int(row["posicao"]))
 
-    for ratios in grouped.values():
-        assert ratios == sorted(ratios, reverse=True), (
-            "Tabela principal de Q7 deve estar ordenada por custo_beneficio DESC (contrato do SQL)"
+    for indices in grouped.values():
+        assert indices == sorted(indices, reverse=True), (
+            "Tabela principal de Q7 deve estar ordenada por indice_custo_beneficio DESC"
         )
+    for pos in positions.values():
+        assert pos[0] == 1
+        assert pos == list(range(1, len(pos) + 1))
 
 
-def test_q7_exported_approved_counts_match_current_sql_patterns() -> None:
+def test_q7_global_excludes_2026_and_annual_2026_is_partial() -> None:
+    rows = _rows_from_psql(
+        _question_path("Caio", "gastos-fornecedores", "q7", "q7_custo_beneficio.txt"),
+        1,
+    )
+    global_rows = [row for row in rows if row["escopo"] == "global"]
+    annual_2026 = [
+        row
+        for row in rows
+        if row["escopo"] == "anual" and int(row["ano_dados"]) == 2026
+    ]
+
+    assert global_rows
+    assert all(row["ano_dados"] is None for row in global_rows)
+    assert annual_2026
+    assert {str(row["ano_parcial"]).lower() for row in annual_2026} == {"true"}
+
+
+def test_q7_exported_weighted_scores_match_current_formula() -> None:
     rows = _rows_from_psql(
         _question_path("Caio", "gastos-fornecedores", "q7", "q7_custo_beneficio_complemento.txt"),
         0,
     )
-    export = defaultdict(int)
-    for row in rows:
-        export[int(row["ano_dados"])] += int(row["proposicoes_aprovadas"])
+    expected = _current_q7_unified_metrics_by_scope()
 
-    assert dict(export) == _current_q7_approved_by_year()
+    assert len(rows) == len(expected)
+    for row in rows:
+        year = int(row["ano_dados"]) if row.get("ano_dados") is not None else None
+        key = (str(row["escopo"]), year, int(row["id_deputado"]))
+        assert key in expected
+        ref = expected[key]
+
+        assert str(row["periodo_label"]) == str(ref["periodo_label"])
+        assert (str(row["ano_parcial"]).lower() == "true") is ref["ano_parcial"]
+        assert int(row["total_proposicoes"]) == ref["total_proposicoes"]
+        assert float(row["gasto_total"]) == pytest.approx(ref["gasto_total"], abs=0.01)
+        assert float(row["score_proposicoes_total"]) == pytest.approx(
+            ref["score_proposicoes_total"],
+            abs=0.0001,
+        )
+        assert float(row["score_proposicoes_ajustado"]) == pytest.approx(
+            ref["score_proposicoes_ajustado"],
+            abs=0.000001,
+        )
+        assert float(row["gasto_ajustado"]) == pytest.approx(ref["gasto_ajustado"], abs=0.000001)
+        assert float(row["indice_custo_beneficio"]) == pytest.approx(
+            ref["indice_custo_beneficio"],
+            abs=0.000001,
+        )
 
 
 def test_q6_plenario_export_matches_current_event_labels() -> None:

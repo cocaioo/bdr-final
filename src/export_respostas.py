@@ -120,7 +120,7 @@ def copy_staged_outputs() -> None:
 
 def run_command(command: list[str], label: str, input_text: str | None = None) -> None:
     try:
-        subprocess.run(command, input=input_text, text=True, check=True)
+        subprocess.run(command, input=input_text, text=True, encoding="utf-8", check=True)
     except subprocess.CalledProcessError as exc:
         print(f"Error running {label}: {exc}")
         sys.exit(1)
@@ -129,10 +129,16 @@ def run_command(command: list[str], label: str, input_text: str | None = None) -
 def read_text_with_fallback(path: Path) -> str:
     for encoding in ("utf-8", "latin-1"):
         try:
-            return path.read_text(encoding=encoding)
+            content = path.read_text(encoding=encoding)
+            if content.startswith("\ufeff"):
+                content = content[1:]
+            return content
         except UnicodeDecodeError:
             continue
-    return path.read_text(encoding="utf-8", errors="ignore")
+    content = path.read_text(encoding="utf-8", errors="ignore")
+    if content.startswith("\ufeff"):
+        content = content[1:]
+    return content
 
 
 if __name__ == "__main__":
