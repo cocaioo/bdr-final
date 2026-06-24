@@ -153,16 +153,16 @@
       "title": "Indice de custo-beneficio",
       "group_id": "gastos",
       "tags": ["custo-benefício", "deputados", "desempenho"],
-      "description": "Compara beneficio estimado com gasto total por deputado.",
+      "description": "Ranking global ou anual de custo-beneficio que pondera proposicoes por tipo, status e autoria antes de dividir pelo gasto ajustado.",
       "response_files": ["Caio/gastos-fornecedores/q7/q7_custo_beneficio.txt", "Caio/gastos-fornecedores/q7/q7_custo_beneficio_complemento.txt"],
       "sql_file": "Caio/gastos-fornecedores/q7/q7.sql",
       "chart_type": "scatter",
       "supported_filters": ["anos", "partidos", "ufs", "deputados"],
-      "expected_columns": ["id_deputado", "nome", "gasto_total", "qtd_proposicoes", "proposicoes_aprovadas", "presenca_total", "beneficio", "custo_beneficio"],
+      "expected_columns": ["posicao", "escopo", "ano_dados", "periodo_label", "ano_parcial", "id_deputado", "nome_parlamentar", "sigla_partido", "sigla_uf", "gasto_total", "total_proposicoes", "total_proposicoes_validas", "total_proposicoes_substantivas", "total_proposicoes_aprovadas", "total_proposicoes_em_tramitacao", "total_proposicoes_baixo_impacto", "score_proposicoes_total", "score_proposicoes_ajustado", "gasto_ajustado", "indice_custo_beneficio", "elegivel_ranking", "motivo_inelegibilidade"],
       "main_table_contains": "Tabela principal",
       "summary_table_contains": "Resumo executivo",
-      "explanation": "Combina autoria, aprovacao e presenca para estimar beneficio dividido pelo gasto.",
-      "chart": { "x_field": "gasto_total", "y_fields": ["beneficio"], "label_field": "nome" }
+      "explanation": "A Q7 nao usa apenas a quantidade total de proposicoes, pois isso inflaria artificialmente deputados com muitas proposicoes simples ou procedimentais. Cada proposicao recebe uma pontuacao baseada no tipo da proposicao, no status da proposicao e na posicao de autoria do deputado. Depois, o score total e suavizado com potencia 0.75, reduzindo o dominio de deputados com volume extremo de proposicoes. O gasto tambem e suavizado por (1 + gasto_total / 1000) ^ 0.75. O ranking global considera apenas anos completos para evitar distorcoes causadas por periodos parciais. Como os dados de 2026 ainda estao incompletos, esse ano fica disponivel apenas na analise anual, sinalizado como periodo parcial. Esta v1 nao mede impacto legislativo absoluto, mas cria um indice comparativo simples e defensavel de custo x beneficio parlamentar.",
+      "chart": { "x_field": "gasto_total", "y_fields": ["indice_custo_beneficio"], "label_field": "nome_parlamentar" }
     },
     {
       "id": "q8",

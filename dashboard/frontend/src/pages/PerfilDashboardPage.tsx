@@ -29,6 +29,10 @@ function numberValue(value: unknown): number {
   return Number.isFinite(parsed) ? parsed : 0
 }
 
+function roundedNumberValue(value: unknown): number {
+  return Math.round(numberValue(value))
+}
+
 function rowLabel(row: DataRow): string {
   return String(row.escolaridade ?? 'Nao informado')
 }
@@ -64,7 +68,12 @@ function buildMetricChart(
     x_field: metric,
     y_fields: [metric],
     categories: rows.map(rowLabel),
-    series: [{ name: seriesName, data: rows.map((row) => numberValue(row[metric])) }],
+    series: [
+      {
+        name: seriesName,
+        data: rows.map((row) => (currency ? numberValue(row[metric]) : roundedNumberValue(row[metric]))),
+      },
+    ],
     options: {
       bar_category_gap: '34%',
       bar_max_width: 18,
@@ -86,7 +95,7 @@ function buildPresenceChart(payload: QuestionPayload): ChartSpec | null {
   const eventRows = tableWithMetric(payload, 'media_presenca_eventos')?.rows ?? []
   const plenaryRows = tableWithMetric(payload, 'media_presenca_plenario')?.rows ?? []
   const plenaryByEducation = new Map(
-    plenaryRows.map((row) => [rowLabel(row), numberValue(row.media_presenca_plenario)]),
+    plenaryRows.map((row) => [rowLabel(row), roundedNumberValue(row.media_presenca_plenario)]),
   )
   const rows: DataRow[] = eventRows.map((row) => ({
     ...row,
@@ -103,18 +112,18 @@ function buildPresenceChart(payload: QuestionPayload): ChartSpec | null {
     type: 'bar_horizontal',
     title: 'Presença média por escolaridade',
     description:
-      'Média anual de registros de presença por deputado, comparando todos os eventos com atividades identificadas como plenário.',
+      'Média anual de registros de presença. "Todos os eventos" inclui reuniões de comissão e demais sessões oficiais, enquanto "Atividades de plenário" restringe-se estritamente às votações no Plenário Principal da Câmara.',
     x_field: 'escolaridade',
     y_fields: ['media_presenca_eventos', 'media_presenca_plenario'],
     categories: sortedRows.map(rowLabel),
     series: [
       {
         name: 'Todos os eventos',
-        data: sortedRows.map((row) => numberValue(row.media_presenca_eventos)),
+        data: sortedRows.map((row) => roundedNumberValue(row.media_presenca_eventos)),
       },
       {
         name: 'Atividades de plenário',
-        data: sortedRows.map((row) => numberValue(row.media_presenca_plenario)),
+        data: sortedRows.map((row) => roundedNumberValue(row.media_presenca_plenario)),
       },
     ],
     options: {

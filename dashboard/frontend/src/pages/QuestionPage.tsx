@@ -160,6 +160,7 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
   const isQ2 = questionMeta.id.toLowerCase() === 'q2'
   const isQ11 = questionMeta.id.toLowerCase() === 'q11'
   const isQ3 = questionMeta.id.toLowerCase() === 'q3'
+  const isQ7 = questionMeta.id.toLowerCase() === 'q7'
   const hasWordClouds = isQ2 || isQ11
   const shouldShowChart = !hasWordClouds
   const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
@@ -230,6 +231,30 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
         </>
       ) : (
         <>
+          {isQ7 ? (
+            <section className="q3-methodology stagger-item">
+              <p>
+                {filters.anos.length > 0
+                  ? `Ranking anual selecionado: ${filters.anos.map((year) => year === '2026' ? '2026 parcial' : year).join(', ')}.`
+                  : 'Ranking global: considera apenas anos completos; 2026 fica fora do global e aparece apenas na analise anual como periodo parcial.'}
+              </p>
+              <div style={{ marginTop: '12px', padding: '12px 16px', backgroundColor: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                <strong>Metodologia e Fórmula de Custo-Benefício:</strong>
+                <p style={{ marginTop: '6px' }}>
+                  O índice é calculado pela razão entre a produção legislativa e os gastos declarados, ambos atenuados por uma curva de saturação exponencial (potência 0.75) para evitar distorções de valores extremos:
+                </p>
+                <div style={{ margin: '12px 0', textAlign: 'center', fontFamily: 'monospace', fontSize: '1rem', fontWeight: 'bold' }}>
+                  Índice = Score Ajustado / Gasto Ajustado
+                </div>
+                <ul style={{ paddingLeft: '20px', marginTop: '6px', listStyleType: 'disc' }}>
+                  <li><strong>Score Ajustado:</strong> (Score total de proposições)<sup>0.75</sup>, onde cada proposição é ponderada por tipo, status de tramitação e autoria (excluindo requerimentos simples e procedimentais).</li>
+                  <li><strong>Gasto Ajustado:</strong> (1 + Gasto Total / 1000)<sup>0.75</sup>.</li>
+                  <li><strong>Elegibilidade:</strong> O ranking principal inclui apenas deputados com pelo menos R$ 10.000 em gastos e atividade parlamentar mínima (Score total &ge; 5, &ge; 2 proposições válidas e &ge; 1 proposição substantiva).</li>
+                  <li><strong>Valores de Referência no Ranking:</strong> O índice mínimo registrado entre os elegíveis é de <strong>0,04</strong> e o máximo obtido é de <strong>22,71</strong>.</li>
+                </ul>
+              </div>
+            </section>
+          ) : null}
           {isQ2 ? (
             <WordCloudGrid 
               spec={payload.chart_spec} 

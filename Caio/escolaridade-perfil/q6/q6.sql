@@ -79,9 +79,7 @@ SELECT
     pr.id_deputado,
     COUNT(*) AS presenca_eventos,
     COUNT(*) FILTER (
-        WHERE public.unaccent(COALESCE(e.descricao_tipo, '')) ILIKE '%plenario%'
-           OR public.unaccent(COALESCE(e.descricao, '')) ILIKE '%plenario%'
-           OR public.unaccent(COALESCE(e.local_camara, '')) ILIKE '%plenario%'
+        WHERE e.local_camara = 'Plenário da Câmara dos Deputados'
     ) AS presenca_plenario
 FROM eventos_presenca_deputados pr
 LEFT JOIN eventos e

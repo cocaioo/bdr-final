@@ -118,12 +118,12 @@ Q10 - Alinhamento interno por ano
 Q10 - Disciplina individual dos deputados
  sigla_partido |    ideologia     | id_deputado |            nome_deputado            | total_votos_com_diretriz | votos_alinhados | pct_disciplina_individual 
 ---------------+------------------+-------------+-------------------------------------+--------------------------+-----------------+---------------------------
- AVANTE        | centro           |      204515 | AndrÈ Janones                       |                       12 |              12 |                    100.00
+ AVANTE        | centro           |      204515 | Andr√© Janones                       |                       12 |              12 |                    100.00
  AVANTE        | centro           |      210989 | Bruno Farias                        |                        1 |               1 |                    100.00
- AVANTE        | centro           |      160510 | Luis TibÈ                           |                        1 |               1 |                    100.00
+ AVANTE        | centro           |      160510 | Luis Tib√©                           |                        1 |               1 |                    100.00
  AVANTE        | centro           |      220703 | Neto Carletto                       |                        6 |               6 |                    100.00
- AVANTE        | centro           |      204553 | Pastor Sargento IsidÛrio            |                       11 |              11 |                    100.00
- AVANTE        | centro           |      235712 | Vav·                                |                        6 |               6 |                    100.00
+ AVANTE        | centro           |      204553 | Pastor Sargento Isid√≥rio            |                       11 |              11 |                    100.00
+ AVANTE        | centro           |      235712 | Vav√°                                |                        6 |               6 |                    100.00
  AVANTE        | centro           |       91228 | Waldemar Oliveira                   |                       38 |              36 |                     94.74
  AVANTE        | centro           |      220686 | Duarte Jr.                          |                        6 |               5 |                     83.33
  AVANTE        | centro           |      220625 | Delegada Ione                       |                        4 |               3 |                     75.00
@@ -133,12 +133,12 @@ Q10 - Disciplina individual dos deputados
  CIDADANIA     | centro           |      141391 | Arnaldo Jardim                      |                        9 |               7 |                     77.78
  CIDADANIA     | centro           |      220549 | Any Ortiz                           |                        7 |               5 |                     71.43
  MDB           | centro           |      178975 | Baleia Rossi                        |                      269 |             269 |                    100.00
- MDB           | centro           |      230957 | Jo„o Cury                           |                        4 |               4 |                    100.00
+ MDB           | centro           |      230957 | Jo√£o Cury                           |                        4 |               4 |                    100.00
  MDB           | centro           |      233218 | Nelinho Freitas                     |                        1 |               1 |                    100.00
  MDB           | centro           |      220713 | Saullo Vianna                       |                        1 |               1 |                    100.00
- MDB           | centro           |      220660 | Yury do Pared„o                     |                      194 |             194 |                    100.00
- MDB           | centro           |      220675 | AntÙnio Doido                       |                      342 |             341 |                     99.71
- MDB           | centro           |       74079 | JosÈ Priante                        |                      260 |             259 |                     99.62
+ MDB           | centro           |      220660 | Yury do Pared√£o                     |                      194 |             194 |                    100.00
+ MDB           | centro           |      220675 | Ant√¥nio Doido                       |                      342 |             341 |                     99.71
+ MDB           | centro           |       74079 | Jos√© Priante                        |                      260 |             259 |                     99.62
  MDB           | centro           |      220672 | Henderson Pinto                     |                      375 |             373 |                     99.47
  MDB           | centro           |      220577 | Augusto Puppio                      |                      417 |             414 |                     99.28
  MDB           | centro           |      141408 | Cleber Verde                        |                      367 |             364 |                     99.18
@@ -148,41 +148,41 @@ Q10 - Disciplina individual dos deputados
  MDB           | centro           |      220540 | Duda Ramos                          |                      325 |             319 |                     98.15
  MDB           | centro           |      220676 | Andreia Siqueira                    |                      317 |             310 |                     97.79
  MDB           | centro           |      220670 | Iza Arruda                          |                      372 |             363 |                     97.58
- MDB           | centro           |      204436 | Isnaldo Bulhıes Jr.                 |                      179 |             174 |                     97.21
+ MDB           | centro           |      204436 | Isnaldo Bulh√µes Jr.                 |                      179 |             174 |                     97.21
  MDB           | centro           |      153423 | Renilce Nicodemos                   |                      355 |             345 |                     97.18
- MDB           | centro           |      179001 | M·rcio Biolchi                      |                      351 |             341 |                     97.15
+ MDB           | centro           |      179001 | M√°rcio Biolchi                      |                      351 |             341 |                     97.15
  MDB           | centro           |      198783 | Emanuel Pinheiro Neto               |                      339 |             329 |                     97.05
  MDB           | centro           |      204456 | Gutemberg Reis                      |                      397 |             385 |                     96.98
  MDB           | centro           |      204474 | Juarez Costa                        |                      294 |             285 |                     96.94
- MDB           | centro           |      220542 | Alexandre Guimar„es                 |                      132 |             127 |                     96.21
+ MDB           | centro           |      220542 | Alexandre Guimar√£es                 |                      132 |             127 |                     96.21
  MDB           | centro           |      178884 | Hildo Rocha                         |                       74 |              71 |                     95.95
  MDB           | centro           |      220532 | Rafael Prudente                     |                      326 |             311 |                     95.40
  MDB           | centro           |      204498 | Olival Marques                      |                      363 |             346 |                     95.32
- MDB           | centro           |      204379 | Ac·cio Favacho                      |                      350 |             333 |                     95.14
- MDB           | centro           |       74696 | Alberto Mour„o                      |                      246 |             234 |                     95.12
- MDB           | centro           |      204539 | HercÌlio Coelho Diniz               |                      287 |             273 |                     95.12
+ MDB           | centro           |      204379 | Ac√°cio Favacho                      |                      350 |             333 |                     95.14
+ MDB           | centro           |       74696 | Alberto Mour√£o                      |                      246 |             234 |                     95.12
+ MDB           | centro           |      204539 | Herc√≠lio Coelho Diniz               |                      287 |             273 |                     95.12
  MDB           | centro           |      220586 | Rafael Brito                        |                      409 |             389 |                     95.11
  MDB           | centro           |      220537 | Helena Lima                         |                      289 |             274 |                     94.81
  MDB           | centro           |      178933 | Sergio Souza                        |                      411 |             387 |                     94.16
  MDB           | centro           |      204361 | Carlos Chiodini                     |                      254 |             239 |                     94.09
  MDB           | centro           |      220674 | Dra. Alessandra Haber               |                      283 |             266 |                     93.99
- MDB           | centro           |       74454 | EunÌcio Oliveira                    |                      330 |             309 |                     93.64
+ MDB           | centro           |       74454 | Eun√≠cio Oliveira                    |                      330 |             309 |                     93.64
  MDB           | centro           |       74075 | Elcione Barbalho                    |                      278 |             257 |                     92.45
  MDB           | centro           |      220572 | Marussa Boldrin                     |                      309 |             285 |                     92.23
- MDB           | centro           |      178876 | CÈlio Silveira                      |                      282 |             260 |                     92.20
+ MDB           | centro           |      178876 | C√©lio Silveira                      |                      282 |             260 |                     92.20
  MDB           | centro           |      178896 | Newton Cardoso Jr                   |                      240 |             218 |                     90.83
  MDB           | centro           |       98148 | Cobalchini                          |                      459 |             414 |                     90.20
  MDB           | centro           |      220651 | Simone Marquetto                    |                      344 |             309 |                     89.83
- MDB           | centro           |      223398 | Ulisses Guimar„es                   |                       53 |              46 |                     86.79
+ MDB           | centro           |      223398 | Ulisses Guimar√£es                   |                       53 |              46 |                     86.79
  MDB           | centro           |      178954 | Lucio Mosquini                      |                      273 |             236 |                     86.45
  MDB           | centro           |      160559 | Alceu Moreira                       |                      361 |             307 |                     85.04
  MDB           | centro           |      225727 | Flavinha                            |                       92 |              76 |                     82.61
  MDB           | centro           |      204441 | Otoni de Paula                      |                      301 |             245 |                     81.40
  MDB           | centro           |      228837 | Juliana Kolankiewicz                |                       60 |              48 |                     80.00
- MDB           | centro           |      220653 | F·bio Teruel                        |                      406 |             310 |                     76.35
+ MDB           | centro           |      220653 | F√°bio Teruel                        |                      406 |             310 |                     76.35
  MDB           | centro           |      220597 | Thiago Flores                       |                      267 |             198 |                     74.16
  MDB           | centro           |      229432 | Luiz Fernando Vampiro               |                       31 |              22 |                     70.97
- MDB           | centro           |      226410 | M·rcio Correa                       |                       89 |              48 |                     53.93
+ MDB           | centro           |      226410 | M√°rcio Correa                       |                       89 |              48 |                     53.93
  MDB           | centro           |      161440 | Pezenti                             |                      399 |             186 |                     46.62
  MDB           | centro           |       73692 | Osmar Terra                         |                      328 |             147 |                     44.82
  MDB           | centro           |      220652 | Delegado Palumbo                    |                      450 |             173 |                     38.44
@@ -195,37 +195,37 @@ Q10 - Disciplina individual dos deputados
  PATRIOTA      | nao classificado |      204518 | Dr. Frederico                       |                        1 |               1 |                    100.00
  PATRIOTA      | nao classificado |      220630 | Pedro Aihara                        |                        1 |               1 |                    100.00
  PATRIOTA      | nao classificado |      204566 | Marreca Filho                       |                        2 |               1 |                     50.00
- PCDOB         | esquerda         |       81055 | M·rcio Jerry                        |                      784 |             777 |                     99.11
+ PCDOB         | esquerda         |       81055 | M√°rcio Jerry                        |                      784 |             777 |                     99.11
  PCDOB         | esquerda         |       74848 | Jandira Feghali                     |                      817 |             804 |                     98.41
  PCDOB         | esquerda         |       74060 | Daniel Almeida                      |                      726 |             713 |                     98.21
  PCDOB         | esquerda         |       74057 | Alice Portugal                      |                      846 |             829 |                     97.99
  PCDOB         | esquerda         |      230765 | Enfermeira Rejane                   |                      241 |             236 |                     97.93
  PCDOB         | esquerda         |       73801 | Renildo Calheiros                   |                      871 |             851 |                     97.70
- PCDOB         | esquerda         |       74295 | In·cio Arruda                       |                       32 |              31 |                     96.88
+ PCDOB         | esquerda         |       74295 | In√°cio Arruda                       |                       32 |              31 |                     96.88
  PCDOB         | esquerda         |      220555 | Daiana Santos                       |                      760 |             734 |                     96.58
  PCDOB         | esquerda         |      178987 | Orlando Silva                       |                      728 |             701 |                     96.29
  PCDOB         | esquerda         |      160641 | Professora Marcivania               |                      277 |             263 |                     94.95
- PCDOB         | esquerda         |      204394 | Gerv·sio Maia                       |                       38 |              35 |                     92.11
- PDT           | esquerda         |      133439 | AndrÈ Figueiredo                    |                      135 |             135 |                    100.00
+ PCDOB         | esquerda         |      204394 | Gerv√°sio Maia                       |                       38 |              35 |                     92.11
+ PDT           | esquerda         |      133439 | Andr√© Figueiredo                    |                      135 |             135 |                    100.00
  PDT           | esquerda         |      204496 | Celso Sabino                        |                        4 |               4 |                    100.00
  PDT           | esquerda         |      220580 | Professora Goreth                   |                       14 |              14 |                    100.00
  PDT           | esquerda         |      220578 | Josenildo                           |                      152 |             151 |                     99.34
- PDT           | esquerda         |       74299 | LeÙnidas Cristino                   |                      146 |             145 |                     99.32
+ PDT           | esquerda         |       74299 | Le√¥nidas Cristino                   |                      146 |             145 |                     99.32
  PDT           | esquerda         |      220607 | Max Lemos                           |                      133 |             132 |                     99.25
  PDT           | esquerda         |      220604 | Marcos Tavares                      |                      138 |             136 |                     98.55
  PDT           | esquerda         |      204486 | Mauro Benevides Filho               |                      129 |             127 |                     98.45
- PDT           | esquerda         |      204489 | RobÈrio Monteiro                    |                      119 |             117 |                     98.32
+ PDT           | esquerda         |      204489 | Rob√©rio Monteiro                    |                      119 |             117 |                     98.32
  PDT           | esquerda         |       80815 | Leo Prates                          |                      116 |             114 |                     98.28
- PDT           | esquerda         |      160666 | FÈlix MendonÁa J˙nior               |                      148 |             145 |                     97.97
- PDT           | esquerda         |       74158 | M·rio Heringer                      |                      118 |             115 |                     97.46
+ PDT           | esquerda         |      160666 | F√©lix Mendon√ßa J√∫nior               |                      148 |             145 |                     97.97
+ PDT           | esquerda         |       74158 | M√°rio Heringer                      |                      118 |             115 |                     97.46
  PDT           | esquerda         |      220573 | Dorinaldo Malafaia                  |                      128 |             123 |                     96.09
  PDT           | esquerda         |      204533 | Idilvan Alencar                     |                       23 |              22 |                     95.65
- PDT           | esquerda         |      160598 | Fl·via Morais                       |                      121 |             115 |                     95.04
+ PDT           | esquerda         |      160598 | Fl√°via Morais                       |                      121 |             115 |                     95.04
  PDT           | esquerda         |      204541 | Eduardo Bismarck                    |                       43 |              40 |                     93.02
  PDT           | esquerda         |      220623 | Duda Salabert                       |                      152 |             141 |                     92.76
  PDT           | esquerda         |       73486 | Pompeo de Mattos                    |                      165 |             153 |                     92.73
  PDT           | esquerda         |      178835 | Afonso Motta                        |                      178 |             165 |                     92.70
- PDT           | esquerda         |      220687 | M·rcio Honaiser                     |                      123 |             112 |                     91.06
+ PDT           | esquerda         |      220687 | M√°rcio Honaiser                     |                      123 |             112 |                     91.06
  PL            | direita          |      204376 | Coronel Armando                     |                        3 |               3 |                    100.00
  PL            | direita          |      220625 | Delegada Ione                       |                       20 |              20 |                    100.00
  PL            | direita          |      204518 | Dr. Frederico                       |                       18 |              18 |                    100.00
@@ -237,44 +237,44 @@ Q10 - Disciplina individual dos deputados
  PL            | direita          |      220706 | Padovani                            |                        4 |               4 |                    100.00
  PL            | direita          |      165470 | Rodrigo Valadares                   |                       33 |              33 |                    100.00
  PL            | direita          |      141555 | Vinicius Carvalho                   |                       35 |              35 |                    100.00
- PL            | direita          |      178937 | Altineu CÙrtes                      |                      274 |             271 |                     98.91
+ PL            | direita          |      178937 | Altineu C√¥rtes                      |                      274 |             271 |                     98.91
  PL            | direita          |      160558 | Paulo Freire Costa                  |                      590 |             582 |                     98.64
  PL            | direita          |      229112 | Pedro Jr                            |                       57 |              56 |                     98.25
- PL            | direita          |      227991 | Dr Fl·vio                           |                      170 |             167 |                     98.24
- PL            | direita          |      160758 | Domingos S·vio                      |                      609 |             598 |                     98.19
+ PL            | direita          |      227991 | Dr Fl√°vio                           |                      170 |             167 |                     98.24
+ PL            | direita          |      160758 | Domingos S√°vio                      |                      609 |             598 |                     98.19
  PL            | direita          |      227310 | Silvio Antonio                      |                      161 |             158 |                     98.14
  PL            | direita          |      220611 | General Pazuello                    |                      638 |             626 |                     98.12
  PL            | direita          |      204449 | Nelson Barbudo                      |                      146 |             143 |                     97.95
  PL            | direita          |      220594 | Coronel Assis                       |                       46 |              45 |                     97.83
- PL            | direita          |      220596 | Am·lia Barros                       |                      268 |             262 |                     97.76
+ PL            | direita          |      220596 | Am√°lia Barros                       |                      268 |             262 |                     97.76
  PL            | direita          |      220595 | Coronel Fernanda                    |                      738 |             721 |                     97.70
  PL            | direita          |      220613 | Roberto Monteiro Pai                |                      624 |             609 |                     97.60
  PL            | direita          |      161550 | Emidinho Madeira                    |                      482 |             470 |                     97.51
  PL            | direita          |      220693 | Roberta Roma                        |                      517 |             504 |                     97.49
  PL            | direita          |      221328 | Adilson Barroso                     |                      569 |             554 |                     97.36
  PL            | direita          |      220603 | Dani Cunha                          |                       37 |              36 |                     97.30
- PL            | direita          |       74428 | MendonÁa Filho                      |                       34 |              33 |                     97.06
+ PL            | direita          |       74428 | Mendon√ßa Filho                      |                       34 |              33 |                     97.06
  PL            | direita          |      160640 | Eros Biondini                       |                      606 |             588 |                     97.03
  PL            | direita          |      204444 | Helio Lopes                         |                      539 |             522 |                     96.85
  PL            | direita          |      178985 | Miguel Lombardi                     |                      625 |             605 |                     96.80
  PL            | direita          |      204390 | Professor Alcides                   |                      561 |             543 |                     96.79
  PL            | direita          |       74585 | Lincoln Portela                     |                      593 |             573 |                     96.63
- PL            | direita          |      229333 | Gl·ucia Santiago                    |                       59 |              57 |                     96.61
- PL            | direita          |      178908 | Delegado …der Mauro                 |                      617 |             596 |                     96.60
+ PL            | direita          |      229333 | Gl√°ucia Santiago                    |                       59 |              57 |                     96.61
+ PL            | direita          |      178908 | Delegado √âder Mauro                 |                      617 |             596 |                     96.60
  PL            | direita          |      178946 | Soraya Santos                       |                      595 |             574 |                     96.47
  PL            | direita          |       74273 | Jefferson Campos                    |                      621 |             599 |                     96.46
  PL            | direita          |       98057 | Lafayette de Andrada                |                       28 |              27 |                     96.43
  PL            | direita          |      204388 | Bibo Nunes                          |                      655 |             631 |                     96.34
- PL            | direita          |      220610 | Dr. Fernando M·ximo                 |                       27 |              26 |                     96.30
- PL            | direita          |      178947 | SÛstenes Cavalcante                 |                      339 |             326 |                     96.17
+ PL            | direita          |      220610 | Dr. Fernando M√°ximo                 |                       27 |              26 |                     96.30
+ PL            | direita          |      178947 | S√≥stenes Cavalcante                 |                      339 |             326 |                     96.17
  PL            | direita          |      166402 | Magda Mofatto                       |                      154 |             148 |                     96.10
  PL            | direita          |      230767 | Rodrigo da Zaeli                    |                      200 |             192 |                     96.00
- PL            | direita          |      204423 | AndrÈ Ferreira                      |                      396 |             380 |                     95.96
+ PL            | direita          |      204423 | Andr√© Ferreira                      |                      396 |             380 |                     95.96
  PL            | direita          |      160642 | Pastor Eurico                       |                      610 |             584 |                     95.74
  PL            | direita          |      226075 | Priscila Costa                      |                      109 |             104 |                     95.41
- PL            | direita          |      220628 | Mauricio do VÙlei                   |                      583 |             556 |                     95.37
+ PL            | direita          |      220628 | Mauricio do V√¥lei                   |                      583 |             556 |                     95.37
  PL            | direita          |       74383 | Giacobo                             |                      344 |             328 |                     95.35
- PL            | direita          |      204472 | JosÈ Medeiros                       |                      634 |             604 |                     95.27
+ PL            | direita          |      204472 | Jos√© Medeiros                       |                      634 |             604 |                     95.27
  PL            | direita          |      160601 | Pr. Marco Feliciano                 |                      710 |             676 |                     95.21
  PL            | direita          |      220545 | Filipe Martins                      |                      645 |             614 |                     95.19
  PL            | direita          |      220666 | Coronel Meira                       |                      720 |             685 |                     95.14
@@ -283,17 +283,17 @@ Q10 - Disciplina individual dos deputados
  PL            | direita          |      213762 | Carla Dickson                       |                       20 |              19 |                     95.00
  PL            | direita          |      160673 | Giovani Cherini                     |                      620 |             588 |                     94.84
  PL            | direita          |      178910 | Joaquim Passarinho                  |                      635 |             602 |                     94.80
- PL            | direita          |      204378 | Coronel ChrisÛstomo                 |                      612 |             579 |                     94.61
- PL            | direita          |      220579 | Silvia Wai„pi                       |                      364 |             344 |                     94.51
+ PL            | direita          |      204378 | Coronel Chris√≥stomo                 |                      612 |             579 |                     94.61
+ PL            | direita          |      220579 | Silvia Wai√£pi                       |                      364 |             344 |                     94.51
  PL            | direita          |      220575 | Sonize Barbosa                      |                      290 |             274 |                     94.48
  PL            | direita          |      204411 | Filipe Barros                       |                      434 |             410 |                     94.47
- PL            | direita          |      178829 | Capit„o Augusto                     |                      648 |             612 |                     94.44
- PL            | direita          |      204572 | Capit„o Alberto Neto                |                      692 |             651 |                     94.08
- PL            | direita          |      179000 | Marcelo ¡lvaro AntÙnio              |                      523 |             492 |                     94.07
+ PL            | direita          |      178829 | Capit√£o Augusto                     |                      648 |             612 |                     94.44
+ PL            | direita          |      204572 | Capit√£o Alberto Neto                |                      692 |             651 |                     94.08
+ PL            | direita          |      179000 | Marcelo √Ålvaro Ant√¥nio              |                      523 |             492 |                     94.07
  PL            | direita          |      220619 | Delegado Ramagem                    |                      657 |             618 |                     94.06
  PL            | direita          |      204481 | Dr. Jaziel                          |                      635 |             595 |                     93.70
  PL            | direita          |      204364 | Eli Borges                          |                      533 |             499 |                     93.62
- PL            | direita          |      220657 | AndrÈ Fernandes                     |                      525 |             491 |                     93.52
+ PL            | direita          |      220657 | Andr√© Fernandes                     |                      525 |             491 |                     93.52
  PL            | direita          |       92346 | Eduardo Bolsonaro                   |                      353 |             330 |                     93.48
  PL            | direita          |      204455 | Luiz Lima                           |                      455 |             425 |                     93.41
  PL            | direita          |      204462 | Chris Tonietto                      |                      710 |             662 |                     93.24
@@ -302,16 +302,16 @@ Q10 - Disciplina individual dos deputados
  PL            | direita          |      204374 | Bia Kicis                           |                      735 |             681 |                     92.65
  PL            | direita          |      204507 | Carla Zambelli                      |                      409 |             378 |                     92.42
  PL            | direita          |      220655 | Mario Frias                         |                      507 |             468 |                     92.31
- PL            | direita          |      220621 | Sargento GonÁalves                  |                      678 |             625 |                     92.18
+ PL            | direita          |      220621 | Sargento Gon√ßalves                  |                      678 |             625 |                     92.18
  PL            | direita          |      220673 | Delegado Caveira                    |                      621 |             572 |                     92.11
  PL            | direita          |      220552 | Zucco                               |                      506 |             466 |                     92.09
  PL            | direita          |      220557 | Daniela Reinehr                     |                      613 |             564 |                     92.01
  PL            | direita          |      230088 | Dra. Mayra Pinheiro                 |                       75 |              69 |                     92.00
- PL            | direita          |      204473 | General Gir„o                       |                      632 |             581 |                     91.93
+ PL            | direita          |      204473 | General Gir√£o                       |                      632 |             581 |                     91.93
  PL            | direita          |      204360 | Silvia Cristina                     |                      270 |             248 |                     91.85
  PL            | direita          |      220526 | Gilvan da Federal                   |                      632 |             580 |                     91.77
  PL            | direita          |      220593 | Abilio Brunini                      |                      325 |             298 |                     91.69
- PL            | direita          |      220690 | Capit„o Alden                       |                      696 |             638 |                     91.67
+ PL            | direita          |      220690 | Capit√£o Alden                       |                      696 |             638 |                     91.67
  PL            | direita          |      220547 | Marcos Pollon                       |                      814 |             746 |                     91.65
  PL            | direita          |      133810 | Marcelo Moraes                      |                      537 |             492 |                     91.62
  PL            | direita          |      220546 | Rodolfo Nogueira                    |                      692 |             634 |                     91.62
@@ -331,27 +331,27 @@ Q10 - Disciplina individual dos deputados
  PL            | direita          |      227323 | Luciano Galego                      |                       58 |              52 |                     89.66
  PL            | direita          |      204396 | Vermelho                            |                      307 |             275 |                     89.58
  PL            | direita          |      204525 | Rosana Valle                        |                      620 |             555 |                     89.52
- PL            | direita          |      220558 | ZÈ Trov„o                           |                      658 |             589 |                     89.51
+ PL            | direita          |      220558 | Z√© Trov√£o                           |                      658 |             589 |                     89.51
  PL            | direita          |      220633 | Ricardo Salles                      |                      272 |             243 |                     89.34
- PL            | direita          |      160561 | Mission·rio JosÈ Olimpio            |                      107 |              95 |                     88.79
+ PL            | direita          |      160561 | Mission√°rio Jos√© Olimpio            |                      107 |              95 |                     88.79
  PL            | direita          |      204367 | Daniel Freitas                      |                      621 |             551 |                     88.73
  PL            | direita          |      220644 | Rosangela Moro                      |                       35 |              31 |                     88.57
  PL            | direita          |      128760 | Paulo Marinho Jr                    |                      122 |             108 |                     88.52
- PL            | direita          |      220620 | Ros‚ngela Reis                      |                      654 |             576 |                     88.07
+ PL            | direita          |      220620 | Ros√¢ngela Reis                      |                      654 |             576 |                     88.07
  PL            | direita          |      204520 | Junio Amaral                        |                      513 |             451 |                     87.91
  PL            | direita          |      204369 | Caroline de Toni                    |                      709 |             620 |                     87.45
  PL            | direita          |      160591 | Vinicius Gurgel                     |                      506 |             439 |                     86.76
  PL            | direita          |      220661 | Matheus Noronha                     |                      524 |             453 |                     86.45
- PL            | direita          |      204526 | Luiz Philippe de Orleans e BraganÁa |                      619 |             535 |                     86.43
+ PL            | direita          |      204526 | Luiz Philippe de Orleans e Bragan√ßa |                      619 |             535 |                     86.43
  PL            | direita          |      204504 | Cezinha de Madureira                |                       43 |              37 |                     86.05
  PL            | direita          |      220576 | Alfredo Gaspar                      |                       21 |              18 |                     85.71
- PL            | direita          |      204517 | ZÈ Vitor                            |                      316 |             269 |                     85.13
+ PL            | direita          |      204517 | Z√© Vitor                            |                      316 |             269 |                     85.13
  PL            | direita          |      204479 | Nicoletti                           |                       59 |              50 |                     84.75
  PL            | direita          |      220571 | Daniel Agrobom                      |                      649 |             545 |                     83.98
- PL            | direita          |      204563 | Josimar Maranh„ozinho               |                      320 |             260 |                     81.25
+ PL            | direita          |      204563 | Josimar Maranh√£ozinho               |                      320 |             260 |                     81.25
  PL            | direita          |      220689 | Detinha                             |                      329 |             267 |                     81.16
  PL            | direita          |      204387 | Sargento Fahur                      |                       63 |              51 |                     80.95
- PL            | direita          |      220660 | Yury do Pared„o                     |                       65 |              52 |                     80.00
+ PL            | direita          |      220660 | Yury do Pared√£o                     |                       65 |              52 |                     80.00
  PL            | direita          |      230177 | Tadeu Oliveira                      |                       75 |              56 |                     74.67
  PL            | direita          |      220631 | Samuel Viana                        |                      180 |             134 |                     74.44
  PL            | direita          |      220638 | Antonio Carlos Rodrigues            |                      621 |             454 |                     73.11
@@ -359,19 +359,19 @@ Q10 - Disciplina individual dos deputados
  PL            | direita          |       74052 | Bosco Costa                         |                       54 |              37 |                     68.52
  PL            | direita          |      220563 | Icaro de Valmir                     |                      522 |             354 |                     67.82
  PL            | direita          |      220624 | Robinson Faria                      |                      518 |             350 |                     67.57
- PL            | direita          |      141459 | Jo„o Maia                           |                      141 |              95 |                     67.38
- PL            | direita          |      204550 | J˙nior Mano                         |                      161 |             102 |                     63.35
+ PL            | direita          |      141459 | Jo√£o Maia                           |                      141 |              95 |                     67.38
+ PL            | direita          |      204550 | J√∫nior Mano                         |                      161 |             102 |                     63.35
  PL            | direita          |      160976 | Tiririca                            |                      394 |             232 |                     58.88
- PL            | direita          |      204574 | Junior LourenÁo                     |                      328 |             187 |                     57.01
+ PL            | direita          |      204574 | Junior Louren√ßo                     |                      328 |             187 |                     57.01
  PL            | direita          |      204514 | Coronel Tadeu                       |                        4 |               2 |                     50.00
- PL            | direita          |      141458 | Jo„o Carlos Bacelar                 |                      407 |             186 |                     45.70
- PL            | direita          |      227324 | Henrique J˙nior                     |                       59 |              26 |                     44.07
- PODE          | centro           |      227800 | Duarte GonÁalves Jr                 |                        3 |               3 |                    100.00
+ PL            | direita          |      141458 | Jo√£o Carlos Bacelar                 |                      407 |             186 |                     45.70
+ PL            | direita          |      227324 | Henrique J√∫nior                     |                       59 |              26 |                     44.07
+ PODE          | centro           |      227800 | Duarte Gon√ßalves Jr                 |                        3 |               3 |                    100.00
  PODE          | centro           |      233594 | Rafael Fera                         |                        1 |               1 |                    100.00
  PODE          | centro           |      233598 | Samuel Santos                       |                        1 |               1 |                    100.00
  PODE          | centro           |      143084 | Tiago Dimas                         |                        1 |               1 |                    100.00
- PODE          | centro           |      212625 | Dr. GonÁalo                         |                       50 |              49 |                     98.00
- PODE          | centro           |      220681 | F·bio Macedo                        |                      249 |             243 |                     97.59
+ PODE          | centro           |      212625 | Dr. Gon√ßalo                         |                       50 |              49 |                     98.00
+ PODE          | centro           |      220681 | F√°bio Macedo                        |                      249 |             243 |                     97.59
  PODE          | centro           |      160629 | Romero Rodrigues                    |                      358 |             348 |                     97.21
  PODE          | centro           |      220528 | Dr. Victor Linhalis                 |                      417 |             402 |                     96.40
  PODE          | centro           |      204508 | Igor Timo                           |                      319 |             306 |                     95.92
@@ -386,23 +386,23 @@ Q10 - Disciplina individual dos deputados
  PODE          | centro           |      160635 | Ruy Carneiro                        |                      234 |             210 |                     89.74
  PODE          | centro           |      204419 | Glaustin da Fokus                   |                      287 |             257 |                     89.55
  PODE          | centro           |      220618 | Sargento Portugal                   |                      394 |             309 |                     78.43
- PODE          | centro           |      228941 | Daniel JosÈ                         |                       54 |              29 |                     53.70
+ PODE          | centro           |      228941 | Daniel Jos√©                         |                       54 |              29 |                     53.70
  PODE          | centro           |      220705 | Deltan Dallagnol                    |                       47 |              21 |                     44.68
  PODE          | centro           |      220550 | Mauricio Marcon                     |                      452 |             193 |                     42.70
  PP            | direita          |      204356 | Amaro Neto                          |                       39 |              39 |                    100.00
- PP            | direita          |      178831 | AndrÈ Abdon                         |                      167 |             167 |                    100.00
- PP            | direita          |      234406 | Elmano FÈrrer                       |                       64 |              64 |                    100.00
+ PP            | direita          |      178831 | Andr√© Abdon                         |                      167 |             167 |                    100.00
+ PP            | direita          |      234406 | Elmano F√©rrer                       |                       64 |              64 |                    100.00
  PP            | direita          |      204408 | Gustinho Ribeiro                    |                       31 |              31 |                    100.00
- PP            | direita          |      235800 | Jorge Ara˙jo                        |                       26 |              26 |                    100.00
- PP            | direita          |      228797 | J˙lio Oliveira                      |                      127 |             127 |                    100.00
- PP            | direita          |      230768 | ZÈ Adriano                          |                      184 |             182 |                     98.91
+ PP            | direita          |      235800 | Jorge Ara√∫jo                        |                       26 |              26 |                    100.00
+ PP            | direita          |      228797 | J√∫lio Oliveira                      |                      127 |             127 |                    100.00
+ PP            | direita          |      230768 | Z√© Adriano                          |                      184 |             182 |                     98.91
  PP            | direita          |       73788 | Ricardo Barros                      |                      140 |             138 |                     98.57
  PP            | direita          |       74253 | Julio Lopes                         |                      765 |             751 |                     98.17
  PP            | direita          |      204549 | AJ Albuquerque                      |                      805 |             790 |                     98.14
- PP            | direita          |      141480 | L·zaro Botelho                      |                      916 |             899 |                     98.14
+ PP            | direita          |      141480 | L√°zaro Botelho                      |                      916 |             899 |                     98.14
  PP            | direita          |      160541 | Arthur Lira                         |                      105 |             103 |                     98.10
  PP            | direita          |      204450 | Doutor Luizinho                     |                      365 |             358 |                     98.08
- PP            | direita          |      141459 | Jo„o Maia                           |                      675 |             662 |                     98.07
+ PP            | direita          |      141459 | Jo√£o Maia                           |                      675 |             662 |                     98.07
  PP            | direita          |      220585 | Mersinho Lucena                     |                      761 |             746 |                     98.03
  PP            | direita          |      220624 | Robinson Faria                      |                      184 |             180 |                     97.83
  PP            | direita          |      160527 | Aguinaldo Ribeiro                   |                      663 |             647 |                     97.59
@@ -412,13 +412,13 @@ Q10 - Disciplina individual dos deputados
  PP            | direita          |      228616 | Dr. Remy Soares                     |                      115 |             112 |                     97.39
  PP            | direita          |      160161 | Marcelo Queiroz                     |                      872 |             848 |                     97.25
  PP            | direita          |      220612 | Bebeto                              |                     1154 |            1122 |                     97.23
- PP            | direita          |      204448 | Luiz AntÙnio CorrÍa                 |                      278 |             270 |                     97.12
+ PP            | direita          |      204448 | Luiz Ant√¥nio Corr√™a                 |                      278 |             270 |                     97.12
  PP            | direita          |      121948 | Adriano do Baldy                    |                     1062 |            1031 |                     97.08
  PP            | direita          |      220707 | Amanda Gentil                       |                      809 |             785 |                     97.03
- PP            | direita          |      178882 | AndrÈ Fufuca                        |                      133 |             129 |                     96.99
+ PP            | direita          |      178882 | Andr√© Fufuca                        |                      133 |             129 |                     96.99
  PP            | direita          |       66385 | Julio Arcoverde                     |                      886 |             859 |                     96.95
- PP            | direita          |       74550 | Jo„o Le„o                           |                      870 |             843 |                     96.90
- PP            | direita          |      123086 | ¡tila Lira                          |                     1120 |            1085 |                     96.88
+ PP            | direita          |       74550 | Jo√£o Le√£o                           |                      870 |             843 |                     96.90
+ PP            | direita          |      123086 | √Åtila Lira                          |                     1120 |            1085 |                     96.88
  PP            | direita          |       74537 | Claudio Cajado                      |                      986 |             954 |                     96.75
  PP            | direita          |      220592 | Zezinho Barbary                     |                      917 |             883 |                     96.29
  PP            | direita          |       66828 | Fausto Pinato                       |                      897 |             857 |                     95.54
@@ -427,17 +427,17 @@ Q10 - Disciplina individual dos deputados
  PP            | direita          |      160599 | Dimas Fabiano                       |                      977 |             931 |                     95.29
  PP            | direita          |      220669 | Lula da Fonte                       |                      946 |             901 |                     95.24
  PP            | direita          |      141421 | Eduardo da Fonte                    |                      952 |             905 |                     95.06
- PP            | direita          |      137070 | Vicentinho J˙nior                   |                      784 |             744 |                     94.90
+ PP            | direita          |      137070 | Vicentinho J√∫nior                   |                      784 |             744 |                     94.90
  PP            | direita          |      204524 | Pinheirinho                         |                      559 |             530 |                     94.81
  PP            | direita          |      219585 | Marco Brasil                        |                      857 |             812 |                     94.75
- PP            | direita          |      178843 | Marx Beltr„o                        |                      898 |             849 |                     94.54
+ PP            | direita          |      178843 | Marx Beltr√£o                        |                      898 |             849 |                     94.54
  PP            | direita          |      220630 | Pedro Aihara                        |                       36 |              34 |                     94.44
- PP            | direita          |      178858 | M·rio Negromonte Jr.                |                      897 |             844 |                     94.09
+ PP            | direita          |      178858 | M√°rio Negromonte Jr.                |                      897 |             844 |                     94.09
  PP            | direita          |      220642 | Delegado Bruno Lima                 |                      360 |             338 |                     93.89
- PP            | direita          |      204391 | JosÈ Nelto                          |                      500 |             469 |                     93.80
+ PP            | direita          |      204391 | Jos√© Nelto                          |                      500 |             469 |                     93.80
  PP            | direita          |      220560 | Thiago de Joaldo                    |                      863 |             801 |                     92.82
  PP            | direita          |      220649 | Delegado da Cunha                   |                      807 |             742 |                     91.95
- PP            | direita          |      220684 | Ti„o Medeiros                       |                      854 |             782 |                     91.57
+ PP            | direita          |      220684 | Ti√£o Medeiros                       |                      854 |             782 |                     91.57
  PP            | direita          |      204376 | Coronel Armando                     |                       11 |              10 |                     90.91
  PP            | direita          |      220582 | Daniel Barbosa                      |                      936 |             849 |                     90.71
  PP            | direita          |      220651 | Simone Marquetto                    |                       20 |              18 |                     90.00
@@ -446,24 +446,24 @@ Q10 - Disciplina individual dos deputados
  PP            | direita          |      220549 | Any Ortiz                           |                       21 |              18 |                     85.71
  PP            | direita          |      104552 | Socorro Neri                        |                      918 |             766 |                     83.44
  PP            | direita          |       62881 | Danilo Forte                        |                       28 |              23 |                     82.14
- PP            | direita          |      226708 | Allan GarcÍs                        |                      714 |             571 |                     79.97
- PP            | direita          |      229069 | Capit„o Samuel                      |                       84 |              67 |                     79.76
+ PP            | direita          |      226708 | Allan Garc√™s                        |                      714 |             571 |                     79.97
+ PP            | direita          |      229069 | Capit√£o Samuel                      |                       84 |              67 |                     79.76
  PP            | direita          |      204351 | Dr. Luiz Ovando                     |                     1073 |             806 |                     75.12
  PP            | direita          |      220706 | Padovani                            |                       12 |               9 |                     75.00
- PP            | direita          |      220008 | Eliza VirgÌnia                      |                      102 |              75 |                     73.53
+ PP            | direita          |      220008 | Eliza Virg√≠nia                      |                      102 |              75 |                     73.53
  PP            | direita          |      204360 | Silvia Cristina                     |                      432 |             314 |                     72.69
  PP            | direita          |      141411 | Dagoberto Nogueira                  |                       32 |              23 |                     71.88
- PP            | direita          |      107970 | Ana Paula Le„o                      |                     1064 |             754 |                     70.86
+ PP            | direita          |      107970 | Ana Paula Le√£o                      |                     1064 |             754 |                     70.86
  PP            | direita          |      204395 | Pedro Lupion                        |                      599 |             423 |                     70.62
  PP            | direita          |      204406 | Pedro Westphalen                    |                      956 |             652 |                     68.20
  PP            | direita          |      136811 | Afonso Hamm                         |                      857 |             579 |                     67.56
  PP            | direita          |      229225 | Michele Collins                     |                      110 |              74 |                     67.27
  PP            | direita          |      220587 | Gerlen Diniz                        |                      917 |             604 |                     65.87
  PP            | direita          |      220583 | Delegado Fabio Costa                |                     1145 |             753 |                     65.76
- PP            | direita          |      235776 | SÈrgio Turra                        |                       43 |              28 |                     65.12
+ PP            | direita          |      235776 | S√©rgio Turra                        |                       43 |              28 |                     65.12
  PP            | direita          |      178963 | Covatti Filho                       |                      903 |             525 |                     58.14
  PP            | direita          |      204531 | Guilherme Derrite                   |                       72 |              41 |                     56.94
- PP            | direita          |      220665 | Clarissa TÈrcio                     |                      859 |             431 |                     50.17
+ PP            | direita          |      220665 | Clarissa T√©rcio                     |                      859 |             431 |                     50.17
  PP            | direita          |      222142 | Coronel Telhada                     |                      635 |             291 |                     45.83
  PP            | direita          |      178871 | Evair Vieira de Melo                |                      947 |             388 |                     40.97
  PRD           | centro           |      204427 | Fernando Rodolfo                    |                        8 |               8 |                    100.00
@@ -476,13 +476,13 @@ Q10 - Disciplina individual dos deputados
  PRD           | centro           |      204518 | Dr. Frederico                       |                      103 |              55 |                     53.40
  PSB           | esquerda         |      220676 | Andreia Siqueira                    |                        9 |               9 |                    100.00
  PSB           | esquerda         |      204533 | Idilvan Alencar                     |                       11 |              11 |                    100.00
- PSB           | esquerda         |      204489 | RobÈrio Monteiro                    |                       13 |              13 |                    100.00
- PSB           | esquerda         |      139285 | LÌdice da Mata                      |                      368 |             364 |                     98.91
+ PSB           | esquerda         |      204489 | Rob√©rio Monteiro                    |                       13 |              13 |                    100.00
+ PSB           | esquerda         |      139285 | L√≠dice da Mata                      |                      368 |             364 |                     98.91
  PSB           | esquerda         |      141533 | Rodrigo Rollemberg                  |                      129 |             127 |                     98.45
  PSB           | esquerda         |      178931 | Luciano Ducci                       |                      307 |             302 |                     98.37
  PSB           | esquerda         |      220662 | Lucas Ramos                         |                      334 |             328 |                     98.20
  PSB           | esquerda         |      220605 | Bandeira de Mello                   |                      317 |             310 |                     97.79
- PSB           | esquerda         |      204394 | Gerv·sio Maia                       |                      359 |             351 |                     97.77
+ PSB           | esquerda         |      204394 | Gerv√°sio Maia                       |                      359 |             351 |                     97.77
  PSB           | esquerda         |      220663 | Eriberto Medeiros                   |                      298 |             291 |                     97.65
  PSB           | esquerda         |      160517 | Paulo Folletto                      |                      234 |             227 |                     97.01
  PSB           | esquerda         |      160548 | Jonas Donizette                     |                      338 |             327 |                     96.75
@@ -491,8 +491,8 @@ Q10 - Disciplina individual dos deputados
  PSB           | esquerda         |       72442 | Felipe Carreras                     |                      275 |             261 |                     94.91
  PSB           | esquerda         |      220664 | Guilherme Uchoa                     |                      307 |             285 |                     92.83
  PSB           | esquerda         |      220668 | Maria Arraes                        |                       13 |              12 |                     92.31
- PSB           | esquerda         |      178858 | M·rio Negromonte Jr.                |                       13 |              12 |                     92.31
- PSB           | esquerda         |      204550 | J˙nior Mano                         |                       68 |              60 |                     88.24
+ PSB           | esquerda         |      178858 | M√°rio Negromonte Jr.                |                       13 |              12 |                     92.31
+ PSB           | esquerda         |      204550 | J√∫nior Mano                         |                       68 |              60 |                     88.24
  PSB           | esquerda         |      204534 | Tabata Amaral                       |                      336 |             292 |                     86.90
  PSB           | esquerda         |      220686 | Duarte Jr.                          |                      339 |             293 |                     86.43
  PSB           | esquerda         |      220528 | Dr. Victor Linhalis                 |                        5 |               4 |                     80.00
@@ -514,18 +514,18 @@ Q10 - Disciplina individual dos deputados
  PSD           | centro           |      226553 | Eliane Braz                         |                      149 |             145 |                     97.32
  PSD           | centro           |      217480 | Jones Moura                         |                      260 |             253 |                     97.31
  PSD           | centro           |      225386 | Renan Ferreirinha                   |                      147 |             143 |                     97.28
- PSD           | centro           |      204431 | Marcos AurÈlio Sampaio              |                      915 |             889 |                     97.16
+ PSD           | centro           |      204431 | Marcos Aur√©lio Sampaio              |                      915 |             889 |                     97.16
  PSD           | centro           |      160553 | Antonio Brito                       |                      533 |             516 |                     96.81
  PSD           | centro           |      171623 | Fabio Reis                          |                      515 |             498 |                     96.70
  PSD           | centro           |      204508 | Igor Timo                           |                      286 |             276 |                     96.50
  PSD           | centro           |      141487 | Luiz Fernando Faria                 |                      874 |             841 |                     96.22
  PSD           | centro           |      220664 | Guilherme Uchoa                     |                       25 |              24 |                     96.00
- PSD           | centro           |       74574 | Paulo Magalh„es                     |                     1054 |            1009 |                     95.73
+ PSD           | centro           |       74574 | Paulo Magalh√£es                     |                     1054 |            1009 |                     95.73
  PSD           | centro           |      143632 | Domingos Neto                       |                      589 |             563 |                     95.59
- PSD           | centro           |       74317 | J˙lio Cesar                         |                      808 |             770 |                     95.30
+ PSD           | centro           |       74317 | J√∫lio Cesar                         |                      808 |             770 |                     95.30
  PSD           | centro           |      220699 | Castro Neto                         |                      930 |             885 |                     95.16
  PSD           | centro           |       74043 | Wellington Roberto                  |                       20 |              19 |                     95.00
- PSD           | centro           |      220658 | Luiz Gast„o                         |                      918 |             872 |                     94.99
+ PSD           | centro           |      220658 | Luiz Gast√£o                         |                      918 |             872 |                     94.99
  PSD           | centro           |      160588 | Diego Andrade                       |                      749 |             711 |                     94.93
  PSD           | centro           |      143942 | Caio Vianna                         |                      549 |             521 |                     94.90
  PSD           | centro           |      220691 | Diego Coronel                       |                     1088 |            1032 |                     94.85
@@ -541,11 +541,11 @@ Q10 - Disciplina individual dos deputados
  PSD           | centro           |      162332 | Luiz Nishimori                      |                      849 |             788 |                     92.82
  PSD           | centro           |      138286 | Luciano Alves                       |                      676 |             627 |                     92.75
  PSD           | centro           |      220698 | Beto Preto                          |                      189 |             175 |                     92.59
- PSD           | centro           |      220536 | ZÈ Haroldo Cathedral                |                     1075 |             994 |                     92.47
+ PSD           | centro           |      220536 | Z√© Haroldo Cathedral                |                     1075 |             994 |                     92.47
  PSD           | centro           |       92776 | Stefano Aguiar                      |                      747 |             690 |                     92.37
  PSD           | centro           |      226837 | Saulo Pedroso                       |                      685 |             630 |                     91.97
- PSD           | centro           |       74090 | ¡tila Lins                          |                      847 |             778 |                     91.85
- PSD           | centro           |      204497 | J˙nior Ferrari                      |                      957 |             879 |                     91.85
+ PSD           | centro           |       74090 | √Åtila Lins                          |                      847 |             778 |                     91.85
+ PSD           | centro           |      204497 | J√∫nior Ferrari                      |                      957 |             879 |                     91.85
  PSD           | centro           |      178992 | Vitor Lippi                         |                       46 |              42 |                     91.30
  PSD           | centro           |      220685 | Paulo Litro                         |                     1007 |             919 |                     91.26
  PSD           | centro           |      198783 | Emanuel Pinheiro Neto               |                       33 |              30 |                     90.91
@@ -553,7 +553,7 @@ Q10 - Disciplina individual dos deputados
  PSD           | centro           |       74856 | Laura Carneiro                      |                     1063 |             959 |                     90.22
  PSD           | centro           |      122158 | Pedro Paulo                         |                      671 |             605 |                     90.16
  PSD           | centro           |      103758 | Luciano Azevedo                     |                      619 |             556 |                     89.82
- PSD           | centro           |       73808 | SÈrgio Brito                        |                      123 |             110 |                     89.43
+ PSD           | centro           |       73808 | S√©rgio Brito                        |                      123 |             110 |                     89.43
  PSD           | centro           |      215043 | Josivaldo JP                        |                      832 |             742 |                     89.18
  PSD           | centro           |      220570 | Dr. Ismael Alexandrino              |                      914 |             813 |                     88.95
  PSD           | centro           |      204522 | Marco Bertaiolli                    |                      171 |             152 |                     88.89
@@ -568,12 +568,12 @@ Q10 - Disciplina individual dos deputados
  PSD           | centro           |       74084 | Raimundo Santos                     |                     1080 |             917 |                     84.91
  PSD           | centro           |      204557 | Sidney Leite                        |                      907 |             755 |                     83.24
  PSD           | centro           |      220614 | Dr. Daniel Soranz                   |                      290 |             240 |                     82.76
- PSD           | centro           |      204488 | CÈlio Studart                       |                      657 |             539 |                     82.04
+ PSD           | centro           |      204488 | C√©lio Studart                       |                      657 |             539 |                     82.04
  PSD           | centro           |      223128 | Rodrigo Estacho                     |                      922 |             745 |                     80.80
  PSD           | centro           |       98615 | Ismael                              |                      922 |             737 |                     79.93
  PSD           | centro           |      160552 | Danrlei de Deus Hinterholz          |                      252 |             180 |                     71.43
  PSD           | centro           |       74262 | Carlos Sampaio                      |                      531 |             372 |                     70.06
- PSD           | centro           |      157130 | T˙lio GadÍlha                       |                       35 |              24 |                     68.57
+ PSD           | centro           |      157130 | T√∫lio Gad√™lha                       |                       35 |              24 |                     68.57
  PSD           | centro           |      205865 | Reinhold Stephanes                  |                      824 |             559 |                     67.84
  PSD           | centro           |      204404 | Lucas Redecker                      |                       33 |              22 |                     66.67
  PSD           | centro           |      204362 | Ricardo Guidi                       |                      146 |              74 |                     50.68
@@ -583,8 +583,8 @@ Q10 - Disciplina individual dos deputados
  PSDB          | centro           |       74374 | Geraldo Resende                     |                      453 |             414 |                     91.39
  PSDB          | centro           |      141516 | Paulo Abi-Ackel                     |                      374 |             338 |                     90.37
  PSDB          | centro           |      178992 | Vitor Lippi                         |                      380 |             342 |                     90.00
- PSDB          | centro           |       74646 | AÈcio Neves                         |                      279 |             248 |                     88.89
- PSDB          | centro           |      220566 | LÍda Borges                         |                      379 |             335 |                     88.39
+ PSDB          | centro           |       74646 | A√©cio Neves                         |                      279 |             248 |                     88.89
+ PSDB          | centro           |      220566 | L√™da Borges                         |                      379 |             335 |                     88.39
  PSDB          | centro           |      220683 | Beto Richa                          |                      494 |             435 |                     88.06
  PSDB          | centro           |      141411 | Dagoberto Nogueira                  |                      468 |             412 |                     88.03
  PSDB          | centro           |      220650 | Paulo Alexandre Barbosa             |                      404 |             335 |                     82.92
@@ -592,43 +592,43 @@ Q10 - Disciplina individual dos deputados
  PSDB          | centro           |       74262 | Carlos Sampaio                      |                      237 |             190 |                     80.17
  PSDB          | centro           |      204409 | Daniel Trzeciak                     |                      426 |             256 |                     60.09
  PSDB          | centro           |      204404 | Lucas Redecker                      |                      526 |             308 |                     58.56
- PSDB          | centro           |      178966 | Geovania de S·                      |                      300 |             174 |                     58.00
- PSOL          | esquerda         |      220643 | SÙnia Guajajara                     |                       35 |              35 |                    100.00
+ PSDB          | centro           |      178966 | Geovania de S√°                      |                      300 |             174 |                     58.00
+ PSOL          | esquerda         |      220643 | S√¥nia Guajajara                     |                       35 |              35 |                    100.00
  PSOL          | esquerda         |      220615 | Pastor Henrique Vieira              |                      907 |             904 |                     99.67
  PSOL          | esquerda         |      221338 | Professora Luciene Cavalcante       |                      877 |             872 |                     99.43
  PSOL          | esquerda         |      220639 | Guilherme Boulos                    |                      619 |             615 |                     99.35
- PSOL          | esquerda         |      206018 | CÈlia Xakriab·                      |                      753 |             747 |                     99.20
+ PSOL          | esquerda         |      206018 | C√©lia Xakriab√°                      |                      753 |             747 |                     99.20
  PSOL          | esquerda         |       74171 | Chico Alencar                       |                      973 |             965 |                     99.18
  PSOL          | esquerda         |      233592 | Paulo Lemos                         |                      121 |             120 |                     99.17
  PSOL          | esquerda         |      220645 | Erika Hilton                        |                      694 |             688 |                     99.14
  PSOL          | esquerda         |       74784 | Luiza Erundina                      |                      742 |             735 |                     99.06
  PSOL          | esquerda         |       73531 | Ivan Valente                        |                      783 |             774 |                     98.85
- PSOL          | esquerda         |      220598 | TarcÌsio Motta                      |                      929 |             917 |                     98.71
- PSOL          | esquerda         |      204464 | TalÌria Petrone                     |                      646 |             635 |                     98.30
+ PSOL          | esquerda         |      220598 | Tarc√≠sio Motta                      |                      929 |             917 |                     98.71
+ PSOL          | esquerda         |      204464 | Tal√≠ria Petrone                     |                      646 |             635 |                     98.30
  PSOL          | esquerda         |      204407 | Fernanda Melchionna                 |                      790 |             776 |                     98.23
  PSOL          | esquerda         |      152605 | Glauber Braga                       |                      666 |             650 |                     97.60
- PSOL          | esquerda         |      204535 | S‚mia Bomfim                        |                      798 |             773 |                     96.87
+ PSOL          | esquerda         |      204535 | S√¢mia Bomfim                        |                      798 |             773 |                     96.87
  PSOL          | esquerda         |      220623 | Duda Salabert                       |                       28 |              27 |                     96.43
  PT            | esquerda         |      160508 | Afonso Florence                     |                       38 |              38 |                    100.00
  PT            | esquerda         |      233592 | Paulo Lemos                         |                       33 |              33 |                    100.00
  PT            | esquerda         |      141488 | Paulo Teixeira                      |                       37 |              37 |                    100.00
  PT            | esquerda         |      229259 | Pedro Tourinho                      |                       80 |              80 |                    100.00
- PT            | esquerda         |      171617 | Paul„o                              |                      788 |             786 |                     99.75
+ PT            | esquerda         |      171617 | Paul√£o                              |                      788 |             786 |                     99.75
  PT            | esquerda         |      224333 | Welter                              |                      759 |             757 |                     99.74
  PT            | esquerda         |      220565 | Delegada Adriana Accorsi            |                      653 |             650 |                     99.54
  PT            | esquerda         |      220527 | Jack Rocha                          |                      839 |             835 |                     99.52
- PT            | esquerda         |      160556 | Padre Jo„o                          |                      816 |             812 |                     99.51
+ PT            | esquerda         |      160556 | Padre Jo√£o                          |                      816 |             812 |                     99.51
  PT            | esquerda         |       74283 | Vicentinho                          |                      735 |             731 |                     99.46
  PT            | esquerda         |       73701 | Benedita da Silva                   |                      718 |             714 |                     99.44
  PT            | esquerda         |       74371 | Rubens Otoni                        |                      654 |             650 |                     99.39
  PT            | esquerda         |       73433 | Arlindo Chinaglia                   |                      792 |             787 |                     99.37
- PT            | esquerda         |      204480 | RogÈrio Correia                     |                      789 |             784 |                     99.37
+ PT            | esquerda         |      204480 | Rog√©rio Correia                     |                      789 |             784 |                     99.37
  PT            | esquerda         |      220556 | Ana Paula Lima                      |                      778 |             773 |                     99.36
  PT            | esquerda         |      220696 | Ivoneide Caetano                    |                      773 |             768 |                     99.35
- PT            | esquerda         |      220601 | Washington Quaqu·                   |                      308 |             306 |                     99.35
+ PT            | esquerda         |      220601 | Washington Quaqu√°                   |                      308 |             306 |                     99.35
  PT            | esquerda         |       74161 | Reginaldo Lopes                     |                      569 |             565 |                     99.30
  PT            | esquerda         |      204495 | Airton Faleiro                      |                      732 |             726 |                     99.18
- PT            | esquerda         |      160610 | Valmir AssunÁ„o                     |                      707 |             701 |                     99.15
+ PT            | esquerda         |      160610 | Valmir Assun√ß√£o                     |                      707 |             701 |                     99.15
  PT            | esquerda         |       74376 | Vander Loubet                       |                      706 |             700 |                     99.15
  PT            | esquerda         |      160538 | Bohn Gass                           |                      814 |             807 |                     99.14
  PT            | esquerda         |      220602 | Dimas Gadelha                       |                      741 |             734 |                     99.06
@@ -638,13 +638,13 @@ Q10 - Disciplina individual dos deputados
  PT            | esquerda         |      221148 | Alfredinho                          |                      836 |             827 |                     98.92
  PT            | esquerda         |      204426 | Carlos Veras                        |                      868 |             858 |                     98.85
  PT            | esquerda         |      220606 | Reimont                             |                      781 |             772 |                     98.85
- PT            | esquerda         |      204559 | ZÈ Neto                             |                      600 |             593 |                     98.83
+ PT            | esquerda         |      204559 | Z√© Neto                             |                      600 |             593 |                     98.83
  PT            | esquerda         |      141398 | Carlos Zarattini                    |                      765 |             756 |                     98.82
- PT            | esquerda         |      141464 | JosÈ Airton FÈlix Cirilo            |                      587 |             580 |                     98.81
+ PT            | esquerda         |      141464 | Jos√© Airton F√©lix Cirilo            |                      587 |             580 |                     98.81
  PT            | esquerda         |      220700 | Florentino Neto                     |                      749 |             740 |                     98.80
  PT            | esquerda         |      178857 | Jorge Solla                         |                      720 |             711 |                     98.75
  PT            | esquerda         |      204492 | Paulo Guedes                        |                      791 |             781 |                     98.74
- PT            | esquerda         |      171786 | Miguel ¬ngelo                       |                      711 |             702 |                     98.73
+ PT            | esquerda         |      171786 | Miguel √Çngelo                       |                      711 |             702 |                     98.73
  PT            | esquerda         |      231911 | Lenir de Assis                      |                      228 |             225 |                     98.68
  PT            | esquerda         |      229106 | Carla Ayres                         |                       75 |              74 |                     98.67
  PT            | esquerda         |      220671 | Dilvanda Faro                       |                      803 |             792 |                     98.63
@@ -655,55 +655,55 @@ Q10 - Disciplina individual dos deputados
  PT            | esquerda         |      220632 | Ana Pimentel                        |                      807 |             795 |                     98.51
  PT            | esquerda         |      220688 | Dr. Francisco                       |                      804 |             792 |                     98.51
  PT            | esquerda         |      209189 | Joseildo Ramos                      |                      718 |             707 |                     98.47
- PT            | esquerda         |      178887 | Rubens Pereira J˙nior               |                      939 |             924 |                     98.40
+ PT            | esquerda         |      178887 | Rubens Pereira J√∫nior               |                      939 |             924 |                     98.40
  PT            | esquerda         |      220629 | Dandara                             |                      673 |             662 |                     98.37
- PT            | esquerda         |      178970 | Jo„o Daniel                         |                      673 |             662 |                     98.37
+ PT            | esquerda         |      178970 | Jo√£o Daniel                         |                      673 |             662 |                     98.37
  PT            | esquerda         |      178866 | Luizianne Lins                      |                      667 |             656 |                     98.35
  PT            | esquerda         |      160569 | Waldenor Pereira                    |                      666 |             655 |                     98.35
  PT            | esquerda         |       74159 | Odair Cunha                         |                      783 |             770 |                     98.34
  PT            | esquerda         |      178986 | Nilto Tatto                         |                      839 |             825 |                     98.33
  PT            | esquerda         |      221378 | Reginete Bispo                      |                      480 |             472 |                     98.33
  PT            | esquerda         |      107283 | Gleisi Hoffmann                     |                      417 |             410 |                     98.32
- PT            | esquerda         |      178873 | Helder Salom„o                      |                      992 |             975 |                     98.29
+ PT            | esquerda         |      178873 | Helder Salom√£o                      |                      992 |             975 |                     98.29
  PT            | esquerda         |      160592 | Zeca Dirceu                         |                      697 |             685 |                     98.28
- PT            | esquerda         |      141470 | JosÈ Guimar„es                      |                      829 |             814 |                     98.19
+ PT            | esquerda         |      141470 | Jos√© Guimar√£es                      |                      829 |             814 |                     98.19
  PT            | esquerda         |      220554 | Alexandre Lindenmeyer               |                      699 |             686 |                     98.14
  PT            | esquerda         |       74858 | Lindbergh Farias                    |                      824 |             808 |                     98.06
  PT            | esquerda         |       74156 | Leonardo Monteiro                   |                      745 |             730 |                     97.99
  PT            | esquerda         |      160604 | Pedro Uczai                         |                      737 |             722 |                     97.96
- PT            | esquerda         |      220553 | Denise PessÙa                       |                      788 |             771 |                     97.84
+ PT            | esquerda         |      220553 | Denise Pess√¥a                       |                      788 |             771 |                     97.84
  PT            | esquerda         |      220682 | Tadeu Veneri                        |                      800 |             782 |                     97.75
- PT            | esquerda         |       73604 | Rui Falc„o                          |                      797 |             778 |                     97.62
+ PT            | esquerda         |       73604 | Rui Falc√£o                          |                      797 |             778 |                     97.62
  PT            | esquerda         |      141456 | Jilmar Tatto                        |                      708 |             691 |                     97.60
  PT            | esquerda         |       74160 | Patrus Ananias                      |                      912 |             890 |                     97.59
- PT            | esquerda         |       74398 | Maria do Ros·rio                    |                      648 |             632 |                     97.53
+ PT            | esquerda         |       74398 | Maria do Ros√°rio                    |                      648 |             632 |                     97.53
  PT            | esquerda         |      220640 | Juliana Cardoso                     |                      718 |             700 |                     97.49
  PT            | esquerda         |      162067 | Kiko Celeguim                       |                      754 |             735 |                     97.48
  PT            | esquerda         |      160535 | Marcon                              |                      756 |             736 |                     97.35
- PT            | esquerda         |      191923 | Fl·vio Nogueira                     |                      959 |             933 |                     97.29
+ PT            | esquerda         |      191923 | Fl√°vio Nogueira                     |                      959 |             933 |                     97.29
  PT            | esquerda         |      204501 | Alencar Santana                     |                      911 |             884 |                     97.04
- PT            | esquerda         |      204453 | Nat·lia Bonavides                   |                      708 |             686 |                     96.89
+ PT            | esquerda         |      204453 | Nat√°lia Bonavides                   |                      708 |             686 |                     96.89
  PT            | esquerda         |      220548 | Camila Jara                         |                      743 |             719 |                     96.77
  PT            | esquerda         |      160575 | Erika Kokay                         |                      946 |             913 |                     96.51
  PV            | esquerda         |      220605 | Bandeira de Mello                   |                       42 |              42 |                    100.00
- PV            | esquerda         |       88256 | Clodoaldo Magalh„es                 |                      689 |             679 |                     98.55
+ PV            | esquerda         |       88256 | Clodoaldo Magalh√£es                 |                      689 |             679 |                     98.55
  PV            | esquerda         |       69871 | Bacelar                             |                      883 |             867 |                     98.19
  PV            | esquerda         |      204541 | Eduardo Bismarck                    |                       37 |              36 |                     97.30
  PV            | esquerda         |      220697 | Jadyel Alencar                      |                      221 |             215 |                     97.29
  PV            | esquerda         |      220581 | Luciano Amaral                      |                      532 |             511 |                     96.05
  PV            | esquerda         |      220533 | Prof. Reginaldo Veras               |                      773 |             741 |                     95.86
  PV            | esquerda         |      178927 | Aliel Machado                       |                      456 |             420 |                     92.11
- REDE          | esquerda         |      204515 | AndrÈ Janones                       |                       35 |              35 |                    100.00
+ REDE          | esquerda         |      204515 | Andr√© Janones                       |                       35 |              35 |                    100.00
  REDE          | esquerda         |      178866 | Luizianne Lins                      |                       31 |              31 |                    100.00
  REDE          | esquerda         |      220637 | Marina Silva                        |                       32 |              32 |                    100.00
- REDE          | esquerda         |      234788 | HeloÌsa Helena                      |                       86 |              85 |                     98.84
- REDE          | esquerda         |      157130 | T˙lio GadÍlha                       |                      727 |             699 |                     96.15
+ REDE          | esquerda         |      234788 | Helo√≠sa Helena                      |                       86 |              85 |                     98.84
+ REDE          | esquerda         |      157130 | T√∫lio Gad√™lha                       |                      727 |             699 |                     96.15
  REDE          | esquerda         |      234840 | Cristiano Furlan                    |                       21 |              20 |                     95.24
  REDE          | esquerda         |      234253 | Lucas Abrahao                       |                       77 |              72 |                     93.51
- REDE          | esquerda         |      234310 | Ricardo Galv„o                      |                      123 |             109 |                     88.62
+ REDE          | esquerda         |      234310 | Ricardo Galv√£o                      |                      123 |             109 |                     88.62
  REPUBLICANOS  | direita          |      220538 | Albuquerque                         |                        1 |               1 |                    100.00
- REPUBLICANOS  | direita          |      220542 | Alexandre Guimar„es                 |                        1 |               1 |                    100.00
- REPUBLICANOS  | direita          |      123756 | AntÙnia L˙cia                       |                        1 |               1 |                    100.00
+ REPUBLICANOS  | direita          |      220542 | Alexandre Guimar√£es                 |                        1 |               1 |                    100.00
+ REPUBLICANOS  | direita          |      123756 | Ant√¥nia L√∫cia                       |                        1 |               1 |                    100.00
  REPUBLICANOS  | direita          |       73441 | Celso Russomanno                    |                        4 |               4 |                    100.00
  REPUBLICANOS  | direita          |      218086 | Ely Santos                          |                        1 |               1 |                    100.00
  REPUBLICANOS  | direita          |      224117 | Gabriel Mota                        |                        1 |               1 |                    100.00
@@ -714,7 +714,7 @@ Q10 - Disciplina individual dos deputados
  REPUBLICANOS  | direita          |      204372 | Julio Cesar Ribeiro                 |                        4 |               4 |                    100.00
  REPUBLICANOS  | direita          |       98057 | Lafayette de Andrada                |                       63 |              63 |                    100.00
  REPUBLICANOS  | direita          |       80815 | Leo Prates                          |                        1 |               1 |                    100.00
- REPUBLICANOS  | direita          |      150418 | M·rcio Marinho                      |                        3 |               3 |                    100.00
+ REPUBLICANOS  | direita          |      150418 | M√°rcio Marinho                      |                        3 |               3 |                    100.00
  REPUBLICANOS  | direita          |      220530 | Messias Donato                      |                        9 |               9 |                    100.00
  REPUBLICANOS  | direita          |      154178 | Milton Vieira                       |                        1 |               1 |                    100.00
  REPUBLICANOS  | direita          |      220584 | Murilo Galdino                      |                       27 |              27 |                    100.00
@@ -728,19 +728,19 @@ Q10 - Disciplina individual dos deputados
  REPUBLICANOS  | direita          |      204540 | Maria Rosas                         |                       12 |              11 |                     91.67
  REPUBLICANOS  | direita          |      220588 | Roberto Duarte                      |                      113 |             102 |                     90.27
  REPUBLICANOS  | direita          |      220599 | Marcelo Crivella                    |                       36 |              31 |                     86.11
- REPUBLICANOS  | direita          |      220695 | RogÈria Santos                      |                        5 |               4 |                     80.00
+ REPUBLICANOS  | direita          |      220695 | Rog√©ria Santos                      |                        5 |               4 |                     80.00
  REPUBLICANOS  | direita          |      178929 | Diego Garcia                        |                       58 |              46 |                     79.31
- REPUBLICANOS  | direita          |      220539 | Defensor StÈlio Dener               |                       40 |              30 |                     75.00
+ REPUBLICANOS  | direita          |      220539 | Defensor St√©lio Dener               |                       40 |              30 |                     75.00
  REPUBLICANOS  | direita          |      141555 | Vinicius Carvalho                   |                        4 |               3 |                     75.00
  REPUBLICANOS  | direita          |       74044 | Wilson Santiago                     |                        4 |               3 |                     75.00
- REPUBLICANOS  | direita          |       74356 | Silas C‚mara                        |                        2 |               1 |                     50.00
+ REPUBLICANOS  | direita          |       74356 | Silas C√¢mara                        |                        2 |               1 |                     50.00
  REPUBLICANOS  | direita          |      220552 | Zucco                               |                       19 |               7 |                     36.84
  SOLIDARIEDADE | centro           |      220668 | Maria Arraes                        |                       22 |              22 |                    100.00
- SOLIDARIEDADE | centro           |      160632 | ZÈ Silva                            |                        2 |               2 |                    100.00
+ SOLIDARIEDADE | centro           |      160632 | Z√© Silva                            |                        2 |               2 |                    100.00
  SOLIDARIEDADE | centro           |      160512 | Aureo Ribeiro                       |                        4 |               3 |                     75.00
  UNIAO         | centro           |      160545 | Alexandre Leite                     |                        8 |               8 |                    100.00
  UNIAO         | centro           |      204496 | Celso Sabino                        |                        3 |               3 |                    100.00
- UNIAO         | centro           |      204476 | Chiquinho Braz„o                    |                       13 |              13 |                    100.00
+ UNIAO         | centro           |      204476 | Chiquinho Braz√£o                    |                       13 |              13 |                    100.00
  UNIAO         | centro           |      220608 | Cristiane Lopes                     |                       11 |              11 |                    100.00
  UNIAO         | centro           |      220692 | Dal Barreto                         |                        9 |               9 |                    100.00
  UNIAO         | centro           |      220603 | Dani Cunha                          |                       24 |              24 |                    100.00
@@ -750,10 +750,10 @@ Q10 - Disciplina individual dos deputados
  UNIAO         | centro           |      141431 | Fernando Coelho Filho               |                        7 |               7 |                    100.00
  UNIAO         | centro           |       74374 | Geraldo Resende                     |                        1 |               1 |                    100.00
  UNIAO         | centro           |      178886 | Juscelino Filho                     |                        1 |               1 |                    100.00
- UNIAO         | centro           |      220600 | Lebr„o                              |                        4 |               4 |                    100.00
+ UNIAO         | centro           |      220600 | Lebr√£o                              |                        4 |               4 |                    100.00
  UNIAO         | centro           |       74478 | Luciano Bivar                       |                        2 |               2 |                    100.00
  UNIAO         | centro           |      141485 | Luiz Carlos Busato                  |                       14 |              14 |                    100.00
- UNIAO         | centro           |      220609 | MaurÌcio Carvalho                   |                       18 |              18 |                    100.00
+ UNIAO         | centro           |      220609 | Maur√≠cio Carvalho                   |                       18 |              18 |                    100.00
  UNIAO         | centro           |      204486 | Mauro Benevides Filho               |                        1 |               1 |                    100.00
  UNIAO         | centro           |      220607 | Max Lemos                           |                        1 |               1 |                    100.00
  UNIAO         | centro           |      220591 | Meire Serafim                       |                       14 |              14 |                    100.00
@@ -762,7 +762,7 @@ Q10 - Disciplina individual dos deputados
  UNIAO         | centro           |      230762 | Pastor Claudio Mariano              |                        1 |               1 |                    100.00
  UNIAO         | centro           |       74095 | Pauderney Avelino                   |                        6 |               6 |                    100.00
  UNIAO         | centro           |      122974 | Pedro Lucas Fernandes               |                       16 |              16 |                    100.00
- UNIAO         | centro           |      221329 | Ricardo Abr„o                       |                       11 |              11 |                    100.00
+ UNIAO         | centro           |      221329 | Ricardo Abr√£o                       |                       11 |              11 |                    100.00
  UNIAO         | centro           |      220713 | Saullo Vianna                       |                       11 |              11 |                    100.00
  UNIAO         | centro           |      220569 | Silvye Alves                        |                       12 |              12 |                    100.00
  UNIAO         | centro           |      234673 | Vanderlan Alves                     |                        5 |               5 |                    100.00
@@ -770,12 +770,12 @@ Q10 - Disciplina individual dos deputados
  UNIAO         | centro           |      220648 | Marangoni                           |                       35 |              34 |                     97.14
  UNIAO         | centro           |      160600 | Arthur Oliveira Maia                |                       33 |              32 |                     96.97
  UNIAO         | centro           |      220564 | Yandra Moura                        |                       32 |              31 |                     96.88
- UNIAO         | centro           |       74428 | MendonÁa Filho                      |                       60 |              58 |                     96.67
+ UNIAO         | centro           |       74428 | Mendon√ßa Filho                      |                       60 |              58 |                     96.67
  UNIAO         | centro           |      220590 | Coronel Ulysses                     |                       20 |              19 |                     95.00
- UNIAO         | centro           |       74554 | JosÈ Rocha                          |                       38 |              36 |                     94.74
- UNIAO         | centro           |      109429 | Benes Leoc·dio                      |                       36 |              34 |                     94.44
+ UNIAO         | centro           |       74554 | Jos√© Rocha                          |                       38 |              36 |                     94.74
+ UNIAO         | centro           |      109429 | Benes Leoc√°dio                      |                       36 |              34 |                     94.44
  UNIAO         | centro           |      178993 | Carlos Henrique Gaguim              |                       14 |              13 |                     92.86
- UNIAO         | centro           |       92102 | Leur Lomanto J˙nior                 |                       14 |              13 |                     92.86
+ UNIAO         | centro           |       92102 | Leur Lomanto J√∫nior                 |                       14 |              13 |                     92.86
  UNIAO         | centro           |      220656 | Fernanda Pessoa                     |                       97 |              90 |                     92.78
  UNIAO         | centro           |      178860 | Paulo Azi                           |                       25 |              23 |                     92.00
  UNIAO         | centro           |      220627 | Paulinho Freire                     |                       11 |              10 |                     90.91
@@ -788,7 +788,7 @@ Q10 - Disciplina individual dos deputados
  UNIAO         | centro           |      220702 | Geraldo Mendes                      |                        9 |               8 |                     88.89
  UNIAO         | centro           |      220644 | Rosangela Moro                      |                       80 |              71 |                     88.75
  UNIAO         | centro           |      220576 | Alfredo Gaspar                      |                      105 |              93 |                     88.57
- UNIAO         | centro           |      220610 | Dr. Fernando M·ximo                 |                       17 |              15 |                     88.24
+ UNIAO         | centro           |      220610 | Dr. Fernando M√°ximo                 |                       17 |              15 |                     88.24
  UNIAO         | centro           |      220712 | Fausto Jr.                          |                       25 |              22 |                     88.00
  UNIAO         | centro           |       62881 | Danilo Forte                        |                       23 |              20 |                     86.96
  UNIAO         | centro           |      178905 | Fabio Garcia                        |                       14 |              12 |                     85.71
@@ -801,7 +801,7 @@ Q10 - Disciplina individual dos deputados
  UNIAO         | centro           |      220589 | Eduardo Velloso                     |                       12 |              10 |                     83.33
  UNIAO         | centro           |      178943 | Marcos Soares                       |                       18 |              15 |                     83.33
  UNIAO         | centro           |      141531 | Rodrigo de Castro                   |                       12 |              10 |                     83.33
- UNIAO         | centro           |       74467 | Dami„o Feliciano                    |                       11 |               9 |                     81.82
+ UNIAO         | centro           |       74467 | Dami√£o Feliciano                    |                       11 |               9 |                     81.82
  UNIAO         | centro           |      204368 | Fabio Schiochet                     |                       11 |               9 |                     81.82
  UNIAO         | centro           |      204536 | Kim Kataguiri                       |                       79 |              64 |                     81.01
  UNIAO         | centro           |      220594 | Coronel Assis                       |                       71 |              57 |                     80.28

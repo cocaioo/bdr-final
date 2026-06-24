@@ -7,6 +7,7 @@ import {
   fetchGastosDeputados,
   fetchGastosFornecedores,
   fetchGastosResumo,
+  fetchQuestion,
 } from '../api'
 import { ChartPanel } from '../components/ChartPanel'
 import { DeputyAvatar } from '../components/DeputyAvatar'
@@ -21,6 +22,7 @@ import type {
   GastosCollectionPayload,
   GastosSummary,
   MetaResponse,
+  QuestionPayload,
 } from '../types'
 import type { DeputyExpenseBreakdown } from '../api'
 
@@ -319,7 +321,7 @@ function CompactTable({
   onRowClick,
   selectedKey,
 }: {
-  columns: Array<{ key: string; label: string; format?: (value: unknown, row: Record<string, unknown>) => string }>
+  columns: Array<{ key: string; label: string; format?: (value: unknown, row: Record<string, unknown>) => React.ReactNode }>
   rows: Array<Record<string, unknown>>
   onRowClick?: (row: Record<string, unknown>) => void
   selectedKey?: string
@@ -418,6 +420,29 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const deferredSelectedDeputy = useDeferredValue(selectedDeputy)
   const deferredSelectedSupplier = useDeferredValue(selectedSupplier)
   const [loadingSelectedDeputyBreakdown, setLoadingSelectedDeputyBreakdown] = useState(false)
+
+  // Q7 - Custo-beneficio states
+  const [q7Expanded, setQ7Expanded] = useState(false)
+  const [q7Data, setQ7Data] = useState<QuestionPayload | null>(null)
+  const [q7Loading, setQ7Loading] = useState(false)
+  const [q7Error, setQ7Error] = useState<string | null>(null)
+
+  const [q7Escopo, setQ7Escopo] = useState<'global' | 'anual'>('global')
+  const [q7Ano, setQ7Ano] = useState('2023')
+  const [q7Uf, setQ7Uf] = useState('')
+  const [q7Partido, setQ7Partido] = useState('')
+  const [q7Search, setQ7Search] = useState('')
+  const [q7Page, setQ7Page] = useState(1)
+  const q7PageSize = 10
+
+  // Manual debounce for Q7 search — useDeferredValue was not reliably
+  // triggering the effect in React 19, so we use an explicit timer.
+  const [debouncedQ7Search, setDebouncedQ7Search] = useState('')
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQ7Search(q7Search), 300)
+    return () => clearTimeout(timer)
+  }, [q7Search])
+
 
   const changeTab = (tab: GastosTab) => {
     if (tab === activeTab) return
@@ -603,6 +628,62 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
         setLoadingContexto(false)
       })
   }, [visitedTabs.contexto, contexto])
+
+  // Q7 - Custo-beneficio Loader
+  useEffect(() => {
+    let active = true
+    setQ7Loading(true)
+    setQ7Error(null)
+
+    const anos = q7Expanded ? (q7Escopo === 'anual' ? [q7Ano] : []) : []
+    const ufs = q7Expanded && q7Uf ? [q7Uf] : []
+    const partidos = q7Expanded && q7Partido ? [q7Partido] : []
+    const search = q7Expanded ? debouncedQ7Search : ''
+    const page = q7Expanded ? q7Page : 1
+    const pageSize = q7Expanded ? q7PageSize : 5
+
+    fetchQuestion(
+      'q7',
+      {
+        anos,
+        eixos: [],
+        partidos,
+        ufs,
+        deputados: [],
+        escolaridade: [],
+        search,
+      },
+      {
+        page,
+        pageSize,
+        sortBy: 'indice_custo_beneficio',
+        sortDir: 'desc',
+      },
+      ['anos', 'partidos', 'ufs', 'deputados']
+    )
+      .then((data) => {
+        if (active) {
+          setQ7Data(data)
+          setQ7Loading(false)
+        }
+      })
+      .catch((err) => {
+        if (active) {
+          setQ7Error(err.message || 'Erro ao carregar ranking de custo-benefício')
+          setQ7Loading(false)
+        }
+      })
+
+    return () => {
+      active = false
+    }
+  }, [q7Expanded, q7Escopo, q7Ano, q7Uf, q7Partido, debouncedQ7Search, q7Page, q7PageSize])
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setQ7Page(1)
+  }, [q7Escopo, q7Ano, q7Uf, q7Partido, debouncedQ7Search])
+
 
   // Memoized lists and fields
   const sortedCategoriesByValue = useMemo(
@@ -825,6 +906,220 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   )}
                 />
               </div>
+
+              {/* Seção Custo-benefício parlamentar (Q7) */}
+              <section className="gastos-q7-section premium-card" style={{ marginTop: '32px', padding: '24px' }}>
+                <header className="gastos-tab-heading" style={{ marginBottom: '20px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div>
+                      <h3 style={{ margin: 0, fontSize: '1.4rem', color: 'var(--primary)', fontWeight: 'bold' }}>
+                        Custo-beneficio parlamentar (Q7)
+                      </h3>
+                      <p style={{ margin: '4px 0 0 0', color: 'var(--muted)', fontSize: '0.9rem' }}>
+                        Indice comparativo que pondera a producao legislativa e o gasto total do deputado.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      className="gastos-clear-button"
+                      style={{ padding: '8px 16px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}
+                      onClick={() => {
+                        setQ7Expanded(!q7Expanded)
+                        // Reset Q7 filters when collapsing/expanding
+                        setQ7Escopo('global')
+                        setQ7Ano('2023')
+                        setQ7Uf('')
+                        setQ7Partido('')
+                        setQ7Search('')
+                      }}
+                    >
+                      {q7Expanded ? 'Recolher analise' : 'Ver analise completa'}
+                    </button>
+                  </div>
+                  <p style={{ marginTop: '12px', fontSize: '0.85rem', color: 'var(--muted)', lineHeight: '1.4' }}>
+                    <strong>Metodologia curta:</strong> Pondera proposicoes por tipo (ex: PEC tem peso 10, PL tem peso 6), status de tramitacao e autoria (peso maior para autor principal), aplicando suavizacao de potencia 0.75 nos gastos e score para evitar distorcoes de valores extremos. Apenas deputados elegiveis aparecem no ranking principal (gasto &gt;= R$ 10.000, score proposicoes &gt;= 5, total proposicoes &gt;= 2, sendo pelo menos 1 substantiva).
+                  </p>
+                </header>
+
+                {q7Loading && !q7Data ? (
+                  <TableSkeleton />
+                ) : q7Error ? (
+                  <p style={{ color: 'var(--danger)' }}>{q7Error}</p>
+                ) : q7Data ? (
+                  <>
+                    {q7Expanded && (
+                      <div className="gastos-filter-row" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '20px', background: 'var(--surface)', padding: '16px', borderRadius: '12px', border: '1px solid var(--border)' }}>
+                        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 120px' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Escopo</span>
+                          <select
+                            aria-label="Escopo"
+                            value={q7Escopo}
+                            onChange={(e) => setQ7Escopo(e.target.value as 'global' | 'anual')}
+                            style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}
+                          >
+                            <option value="global">Global</option>
+                            <option value="anual">Anual</option>
+                          </select>
+                        </label>
+
+                        {q7Escopo === 'anual' && (
+                          <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 100px' }}>
+                            <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Ano</span>
+                            <select
+                              aria-label="Ano"
+                              value={q7Ano}
+                              onChange={(e) => setQ7Ano(e.target.value)}
+                              style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}
+                            >
+                              <option value="2023">2023</option>
+                              <option value="2024">2024</option>
+                              <option value="2025">2025</option>
+                              <option value="2026">2026</option>
+                            </select>
+                          </label>
+                        )}
+
+                        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 150px' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Partido</span>
+                          <select value={q7Partido} onChange={(e) => setQ7Partido(e.target.value)} style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}>
+                            <option value="">Todos</option>
+                            {(meta.available_filters.partidos ?? []).map((choice) => (
+                              <option key={choice.value} value={choice.value}>{choice.label}</option>
+                            ))}
+                          </select>
+                        </label>
+                        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 150px' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>UF</span>
+                          <select value={q7Uf} onChange={(e) => setQ7Uf(e.target.value)} style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}>
+                            <option value="">Todas</option>
+                            {(meta.available_filters.ufs ?? []).map((choice) => (
+                              <option key={choice.value} value={choice.value}>{choice.label}</option>
+                            ))}
+                          </select>
+                        </label>
+                        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 200px' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Busca por Nome</span>
+                          <input
+                            type="text"
+                            value={q7Search}
+                            onChange={(e) => setQ7Search(e.target.value)}
+                            placeholder="Digite o nome do deputado..."
+                            style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}
+                          />
+                        </label>
+                      </div>
+                    )}
+
+                    <CompactTable
+                      rows={asRecords(q7Data.table_spec.rows)}
+                      columns={[
+                        {
+                          key: 'posicao',
+                          label: 'Posição',
+                          format: (val, row) => {
+                            const hasGeoPartyFilter = !!(q7Uf || q7Partido)
+                            const posFiltro = row.posicao_no_filtro !== undefined && row.posicao_no_filtro !== null ? String(row.posicao_no_filtro) : ''
+                            const posGeral = String(row.posicao_geral ?? val ?? '')
+
+                            if (hasGeoPartyFilter && posFiltro) {
+                              return (
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                                  <span style={{ fontWeight: 'bold', color: 'var(--primary)' }}>#{posFiltro} no filtro</span>
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>#{posGeral} geral</span>
+                                </div>
+                              )
+                            }
+                            return <strong style={{ fontSize: '1.1rem' }}>#{posGeral}</strong>
+                          }
+                        },
+                        {
+                          key: 'nome_parlamentar',
+                          label: 'Deputado',
+                          format: (val, row) => {
+                            const nameStr = String(val || '')
+                            const partidoStr = String(row.sigla_partido || '')
+                            const ufStr = String(row.sigla_uf || '')
+                            const isPartial = !!row.ano_parcial
+                            const idDep = String(row.id_deputado || '')
+
+                            return (
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                <DeputyAvatar id={Number(idDep)} nome={nameStr} size={40} />
+                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                  <span style={{ fontWeight: 'bold' }}>{nameStr}</span>
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
+                                    {partidoStr} - {ufStr}
+                                    {isPartial && (
+                                      <span className="badge-2026-parcial" style={{ marginLeft: '6px', background: 'var(--primary-light, #e0f2fe)', color: 'var(--primary, #0284c7)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>
+                                        2026 parcial
+                                      </span>
+                                    )}
+                                  </span>
+                                </div>
+                              </div>
+                            )
+                          }
+                        },
+                        {
+                          key: 'indice_custo_beneficio',
+                          label: 'Índice custo-benefício',
+                          format: (val) => {
+                            const numVal = Number(val || 0)
+                            return <strong style={{ color: 'var(--primary)' }}>{numVal.toLocaleString('pt-BR', { minimumFractionDigits: 5, maximumFractionDigits: 5 })}</strong>
+                          }
+                        },
+                        {
+                          key: 'gasto_total',
+                          label: 'Gasto total',
+                          format: (val) => formatCurrency(val)
+                        },
+                        {
+                          key: 'total_proposicoes',
+                          label: 'Proposições',
+                          format: (val, row) => {
+                            const total = Number(val || 0)
+                            const substantivas = Number(row.total_proposicoes_substantivas || 0)
+                            const aprovadas = Number(row.total_proposicoes_aprovadas || 0)
+                            return (
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '0.85rem' }}>
+                                <span>Total: {total}</span>
+                                <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Substantivas: {substantivas}</span>
+                                <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Aprovadas: {aprovadas}</span>
+                              </div>
+                            )
+                          }
+                        }
+                      ]}
+                    />
+
+                    {q7Expanded && q7Data.table_spec.total > q7PageSize && (
+                      <div className="gastos-pagination-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', padding: '12px', background: 'var(--surface)', borderRadius: '8px', border: '1px solid var(--border)' }}>
+                        <span style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>
+                          Mostrando {((q7Page - 1) * q7PageSize) + 1} - {Math.min(q7Page * q7PageSize, q7Data.table_spec.total)} de {q7Data.table_spec.total} deputados
+                        </span>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                          <button
+                            type="button"
+                            disabled={q7Page <= 1}
+                            onClick={() => setQ7Page(q7Page - 1)}
+                            style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', cursor: q7Page <= 1 ? 'not-allowed' : 'pointer', opacity: q7Page <= 1 ? 0.5 : 1 }}
+                          >
+                            Anterior
+                          </button>
+                          <button
+                            type="button"
+                            disabled={q7Page * q7PageSize >= q7Data.table_spec.total}
+                            onClick={() => setQ7Page(q7Page + 1)}
+                            style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', cursor: q7Page * q7PageSize >= q7Data.table_spec.total ? 'not-allowed' : 'pointer', opacity: q7Page * q7PageSize >= q7Data.table_spec.total ? 0.5 : 1 }}
+                          >
+                            Próxima
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : null}
+              </section>
             </>
           )}
         </section>

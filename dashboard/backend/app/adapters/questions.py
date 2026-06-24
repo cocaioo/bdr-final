@@ -1,6 +1,7 @@
 import csv
 from datetime import datetime, timezone
 from typing import Any
+import unicodedata
 
 from .base import QuestionAdapter
 from ..filter_engine import FilterEngine, FilterState
@@ -627,6 +628,330 @@ class Q6Adapter(QuestionAdapter):
 
 class Q7Adapter(QuestionAdapter):
     """Indice custo-beneficio."""
+
+    def build_payload(self, state: FilterState) -> QuestionPayload:
+        scoped_rows = self._rows_for_scope(self.main_table.rows if self.main_table else [], state)
+        
+        if state.deputados:
+            ranking_rows = scoped_rows
+        else:
+            ranking_rows = [
+                r for r in scoped_rows
+                if r.get("elegivel_ranking") is True
+            ]
+
+        # Filter by years first if any selected
+        if state.anos:
+            ranking_rows = FilterEngine.apply_filters(
+                ranking_rows,
+                state,
+                ["anos"]
+            )
+
+        # Also filter by deputados if any selected
+        if state.deputados:
+            ranking_rows = FilterEngine.apply_filters(
+                ranking_rows,
+                state,
+                ["deputados"]
+            )
+
+
+        # 1. Apply ufs (state) and partidos (party) filters first
+        geo_party_filters = FilterState(
+            anos=[], eixos=[],
+            partidos=state.partidos,
+            ufs=state.ufs,
+            deputados=[], escolaridade=[],
+            search=None, sort_by=None, sort_dir="desc",
+            page=1, page_size=1000
+        )
+        geo_party_filtered = FilterEngine.apply_filters(
+            ranking_rows,
+            geo_party_filters,
+            ["partidos", "ufs"]
+        )
+
+        # 2. Sort the geo_party_filtered list by index descending (ranking order)
+        def get_rank_key(row):
+            idx = row.get("indice_custo_beneficio")
+            idx_val = 0.0
+            if idx is not None:
+                try:
+                    idx_val = float(idx)
+                except (ValueError, TypeError):
+                    pass
+            dep_id = 0
+            try:
+                dep_id = int(row.get("id_deputado") or 0)
+            except (ValueError, TypeError):
+                pass
+            return (-idx_val, dep_id)
+
+        geo_party_sorted = sorted(geo_party_filtered, key=get_rank_key)
+
+        # 3. If ufs or partidos filter is active, assign posicao_no_filtro
+        has_geo_party_filter = bool(state.ufs or state.partidos)
+        for i, row in enumerate(geo_party_sorted):
+            if has_geo_party_filter:
+                row["posicao_no_filtro"] = i + 1
+            else:
+                row["posicao_no_filtro"] = None
+            
+            # Ensure general position values are copied correctly
+            pos_geral = row.get("posicao")
+            if pos_geral is not None:
+                try:
+                    row["posicao_geral"] = int(pos_geral)
+                    row["posicao"] = int(pos_geral)
+                except (ValueError, TypeError):
+                    row["posicao_geral"] = pos_geral
+            else:
+                row["posicao_geral"] = None
+
+        # 4. Now apply the name search (if any)
+        if state.search:
+            name_filtered_rows = self._apply_name_search(geo_party_sorted, state.search)
+        else:
+            name_filtered_rows = geo_party_sorted
+
+        # 5. Now apply sorting and pagination to the final result
+        sorted_rows = FilterEngine.apply_sort(name_filtered_rows, state.sort_by, state.sort_dir)
+        paged_rows = FilterEngine.apply_pagination(sorted_rows, state.page, state.page_size)
+
+        chart_spec = self.build_chart_spec(name_filtered_rows)
+        table_spec = self._build_table_spec(
+            title=self._table_title_for_scope(state),
+            columns=self.main_table.columns if self.main_table else [],
+            rows=paged_rows,
+            total=len(sorted_rows),
+            state=state,
+        )
+        complement_specs = self._build_complements(state)
+
+        has_data = table_spec.total > 0 or any(spec.total > 0 for spec in complement_specs)
+        empty = EmptyState(
+            is_empty=not has_data,
+            message="Sem dados para os filtros selecionados." if not has_data else "",
+        )
+        return QuestionPayload(
+            question_id=self.context.question.id,
+            title=self.context.question.title,
+            description=self.context.question.description,
+            filters_supported=self.context.question.supported_filters,
+            filters_applied={
+                "anos": state.anos,
+                "eixos": state.eixos,
+                "partidos": state.partidos,
+                "ufs": state.ufs,
+                "deputados": state.deputados,
+                "search": state.search,
+                "sort_by": state.sort_by,
+                "sort_dir": state.sort_dir,
+                "page": state.page,
+                "page_size": state.page_size,
+            },
+            summary_cards=self._build_q7_summary_cards(name_filtered_rows, state),
+            chart_spec=chart_spec,
+            table_spec=table_spec,
+            complement_tables=complement_specs,
+            query_panel=QueryPanel(
+                sql_path=self.context.sql_path,
+                sql_text=self.context.sql_text,
+                explanation=self.context.question.explanation,
+            ),
+            warnings=self.warnings,
+            empty_state=empty,
+            dataset_version=self.context.dataset_version,
+            generated_at=datetime.now(timezone.utc).isoformat(),
+        )
+
+    def _build_complements(self, state: FilterState) -> list[TableSpec]:
+        specs: list[TableSpec] = []
+        for table in self.complement_tables:
+            scoped_rows = self._rows_for_scope(table.rows, state)
+            filtered = FilterEngine.apply_filters(
+                scoped_rows,
+                self._state_without_search(state),
+                self.context.question.supported_filters,
+            )
+            name_filtered_rows = self._apply_name_search(filtered, state.search)
+            
+            # Map position keys on complement as well
+            for row in name_filtered_rows:
+                pos_geral = row.get("posicao")
+                if pos_geral is not None:
+                    try:
+                        row["posicao_geral"] = int(pos_geral)
+                        row["posicao"] = int(pos_geral)
+                    except (ValueError, TypeError):
+                        row["posicao_geral"] = pos_geral
+                else:
+                    row["posicao_geral"] = None
+                row["posicao_no_filtro"] = None
+
+            sorted_rows = FilterEngine.apply_sort(name_filtered_rows, state.sort_by, state.sort_dir)
+            page_size = min(state.page_size, 100)
+            paged = FilterEngine.apply_pagination(sorted_rows, 1, page_size)
+            specs.append(
+                self._build_table_spec(
+                    title=table.title,
+                    columns=table.columns,
+                    rows=paged,
+                    total=len(sorted_rows),
+                    state=FilterState(
+                        anos=state.anos,
+                        eixos=state.eixos,
+                        partidos=state.partidos,
+                        ufs=state.ufs,
+                        deputados=state.deputados,
+                        escolaridade=state.escolaridade,
+                        search=state.search,
+                        sort_by=state.sort_by,
+                        sort_dir=state.sort_dir,
+                        page=1,
+                        page_size=page_size,
+                    ),
+                )
+            )
+        return specs
+
+    def _rows_for_scope(self, rows: list[dict[str, Any]], state: FilterState) -> list[dict[str, Any]]:
+        target_scope = "anual" if state.anos else "global"
+        source_rows = rows
+        if state.deputados:
+            if self.complement_tables and self.complement_tables[0]:
+                source_rows = self.complement_tables[0].rows
+        return [
+            self._normalize_q7_row(row)
+            for row in source_rows
+            if str(row.get("escopo") or "").strip().lower() == target_scope
+        ]
+
+    def _state_without_search(self, state: FilterState) -> FilterState:
+        return FilterState(
+            anos=state.anos,
+            eixos=state.eixos,
+            partidos=state.partidos,
+            ufs=state.ufs,
+            deputados=state.deputados,
+            escolaridade=state.escolaridade,
+            search=None,
+            sort_by=state.sort_by,
+            sort_dir=state.sort_dir,
+            page=state.page,
+            page_size=state.page_size,
+        )
+
+    def _apply_name_search(
+        self,
+        rows: list[dict[str, Any]],
+        search: str | None,
+    ) -> list[dict[str, Any]]:
+        normalized_query = self._normalize_text(search)
+        if not normalized_query:
+            return rows
+
+        return [
+            row
+            for row in rows
+            if normalized_query in self._normalize_text(
+                row.get("nome_parlamentar") or row.get("deputado") or row.get("nome")
+            )
+        ]
+
+    def _normalize_q7_row(self, row: dict[str, Any]) -> dict[str, Any]:
+        normalized = dict(row)
+        raw_partial = normalized.get("ano_parcial")
+        if isinstance(raw_partial, str):
+            normalized["ano_parcial"] = raw_partial.strip().lower() in {"true", "t", "1", "sim"}
+        
+        raw_eligible = normalized.get("elegivel_ranking")
+        if isinstance(raw_eligible, str):
+            normalized["elegivel_ranking"] = raw_eligible.strip().lower() in {"true", "t", "1", "sim"}
+        elif raw_eligible is None:
+            # Fallback if column not populated
+            normalized["elegivel_ranking"] = True
+        else:
+            normalized["elegivel_ranking"] = bool(raw_eligible)
+
+        normalized.setdefault("deputado", normalized.get("nome_parlamentar"))
+        normalized.setdefault("partido", normalized.get("sigla_partido"))
+        normalized.setdefault("estado", normalized.get("sigla_uf"))
+
+        period_label = normalized.get("periodo_label")
+        if period_label in (None, ""):
+            if str(normalized.get("escopo") or "").strip().lower() == "global":
+                normalized["periodo_label"] = "Global"
+            elif normalized.get("ano_dados") not in (None, ""):
+                normalized["periodo_label"] = str(normalized.get("ano_dados"))
+        elif not isinstance(period_label, str):
+            normalized["periodo_label"] = str(period_label)
+        return normalized
+
+    @staticmethod
+    def _normalize_text(value: Any) -> str:
+        return (
+            unicodedata.normalize("NFD", str(value or ""))
+            .encode("ascii", "ignore")
+            .decode("ascii")
+            .lower()
+            .strip()
+        )
+
+    def _table_title_for_scope(self, state: FilterState) -> str:
+        if not state.anos:
+            return "Tabela principal - ranking global"
+        if len(state.anos) == 1:
+            year = state.anos[0]
+            suffix = " parcial" if str(year) == "2026" else ""
+            return f"Tabela principal - ranking anual {year}{suffix}"
+        return "Tabela principal - ranking anual"
+
+    def _build_q7_summary_cards(self, rows: list[dict[str, Any]], state: FilterState) -> list[SummaryCard]:
+        if not rows:
+            return []
+
+        def _to_float(value: Any) -> float:
+            if isinstance(value, (int, float)):
+                return float(value)
+            try:
+                return float(value)
+            except (TypeError, ValueError):
+                return 0.0
+
+        def _fmt(value: float, digits: int = 2) -> str:
+            return f"{value:,.{digits}f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+        periodo = "Global" if not state.anos else ", ".join(str(year) for year in state.anos)
+        if state.anos and "2026" in {str(year) for year in state.anos}:
+            periodo = f"{periodo} (parcial)"
+
+        total_gasto = sum(_to_float(row.get("gasto_total")) for row in rows)
+        total_proposicoes = sum(_to_float(row.get("total_proposicoes")) for row in rows)
+        maior_indice = max(_to_float(row.get("indice_custo_beneficio")) for row in rows)
+        return [
+            SummaryCard(id="periodo", label="Periodo", value=periodo, unit=None),
+            SummaryCard(
+                id="deputados_rankeados",
+                label="Deputados rankeados",
+                value=str(len(rows)),
+                unit="contagem",
+            ),
+            SummaryCard(id="gasto_total", label="Gasto total", value=_fmt(total_gasto), unit="R$"),
+            SummaryCard(
+                id="total_proposicoes",
+                label="Total proposicoes",
+                value=_fmt(total_proposicoes, 0),
+                unit="contagem",
+            ),
+            SummaryCard(
+                id="maior_indice_custo_beneficio",
+                label="Maior indice custo beneficio",
+                value=_fmt(maior_indice, 6),
+                unit="contagem",
+            ),
+        ]
 
 
 class Q8Adapter(QuestionAdapter):

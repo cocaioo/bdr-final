@@ -46,6 +46,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/api/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
@@ -59,10 +60,15 @@ def get_meta() -> MetaResponse:
 @app.get("/api/questions/{question_id}", response_model=QuestionPayload)
 def get_question(
     question_id: str,
+    ano: str | None = None,
     anos: list[str] | None = Query(default=None),
+    ano_dados: list[str] | None = Query(default=None),
+    nome: str | None = None,
     eixos: list[str] | None = Query(default=None),
     partidos: list[str] | None = Query(default=None),
+    partido: str | None = None,
     ufs: list[str] | None = Query(default=None),
+    estado: str | None = None,
     deputados: list[str] | None = Query(default=None),
     escolaridade: list[str] | None = Query(default=None),
     search: str | None = None,
@@ -74,15 +80,19 @@ def get_question(
     safe_page = max(page, 1)
     safe_page_size = min(max(page_size, 1), 200)
     safe_sort = "asc" if sort_dir.lower() == "asc" else "desc"
+    selected_years = (anos or []) + (ano_dados or []) + ([ano] if ano else [])
+    selected_ufs = (ufs or []) + ([estado] if estado else [])
+    selected_partidos = (partidos or []) + ([partido] if partido else [])
+    normalized_search = nome if nome is not None else search
 
     state = FilterState(
-        anos=anos or [],
+        anos=selected_years,
         eixos=eixos or [],
-        partidos=partidos or [],
-        ufs=ufs or [],
+        partidos=selected_partidos,
+        ufs=selected_ufs,
         deputados=deputados or [],
         escolaridade=escolaridade or [],
-        search=search,
+        search=normalized_search,
         sort_by=sort_by,
         sort_dir=safe_sort,
         page=safe_page,
@@ -162,5 +172,3 @@ def get_gastos_contexto() -> dict:
         return service.gastos.contexto()
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
-
-

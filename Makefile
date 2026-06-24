@@ -1,5 +1,6 @@
 PYTHON ?= venv/Scripts/python
 COMPOSE ?= docker compose
+BDR_PORT ?= 8001
 
 .PHONY: venv install up down db-reset etl validate export-respostas gastos-analytics gastos-audit-api clean-outputs all dashboard-install dashboard-api dashboard-web dashboard-dev dashboard-test
 
@@ -45,13 +46,13 @@ dashboard-install:
 	cd dashboard/frontend && npm.cmd install
 
 dashboard-api:
-	$(PYTHON) -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
+	$(PYTHON) -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port $(BDR_PORT)
 
 dashboard-web:
 	cd dashboard/frontend && npm.cmd run dev -- --host 0.0.0.0 --port 5173
 
 dashboard-dev:
-	powershell -NoProfile -Command "Start-Process -WindowStyle Hidden -WorkingDirectory '$(CURDIR)' -FilePath 'venv\\Scripts\\python.exe' -ArgumentList '-m','uvicorn','app.main:app','--app-dir','dashboard/backend','--reload','--host','0.0.0.0','--port','8000'; Start-Process -WindowStyle Hidden -WorkingDirectory '$(CURDIR)\\dashboard\\frontend' -FilePath 'npm.cmd' -ArgumentList 'run','dev','--','--host','0.0.0.0','--port','5173'"
+	powershell -NoProfile -Command "Start-Process -WindowStyle Hidden -WorkingDirectory '$(CURDIR)' -FilePath 'venv\\Scripts\\python.exe' -ArgumentList '-m','uvicorn','app.main:app','--app-dir','dashboard/backend','--reload','--host','0.0.0.0','--port','$(BDR_PORT)'; Start-Process -WindowStyle Hidden -WorkingDirectory '$(CURDIR)\\dashboard\\frontend' -FilePath 'npm.cmd' -ArgumentList 'run','dev','--','--host','0.0.0.0','--port','5173'"
 
 dashboard-test:
 	cd dashboard/backend && ..\\..\\venv\\Scripts\\python -m pytest

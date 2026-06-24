@@ -460,11 +460,19 @@ O `dashboard/backend/app/question_registry.json` é a fonte única de metadados:
 ### Q7 — Índice de custo-benefício
 
 - Grupo: gastos.
-- Combina gasto, autoria, aprovação e presença para estimar benefício e razão benefício/gasto.
+- Calcula `indice_custo_beneficio = score_proposicoes_ajustado / gasto_ajustado`.
+- Usa apenas gastos, proposições, tipo/status da proposição e posição de autoria.
+- Não usa presença, ausências, votações, relevância temática ou fator de atividade nesta v1.
+- Cada proposição recebe `peso_tipo * peso_status * peso_autoria`; tipos não mapeados caem no peso baixo `0.3`.
+- O score total de proposições é suavizado por potência `0.75`, reduzindo o domínio de deputados com volume extremo de proposições simples.
+- O gasto é suavizado por `(1 + gasto_total / 1000) ^ 0.75`, evitando distorções por pequenas diferenças de despesa.
+- O ranking global é o padrão da Q7 e recalcula o índice a partir dos totais agregados de anos completos; ele não é média dos rankings anuais.
+- O ranking global considera apenas anos completos para evitar distorções causadas por períodos parciais. Como os dados de 2026 ainda estão incompletos, esse ano fica disponível apenas na análise anual, sinalizado como período parcial.
+- Quando nenhum ano é filtrado, a API retorna `escopo = global`; quando há filtro de ano, retorna `escopo = anual` para o ano selecionado.
 - Filtros: ano, partido, UF e deputado.
-- Visual: scatterplot gasto × benefício.
+- Visual: scatterplot gasto × índice de custo-benefício.
 - Inclui resposta principal e complemento.
-- O índice é uma métrica construída pelo projeto, não uma avaliação oficial da Câmara.
+- O índice é uma métrica comparativa construída pelo projeto, não uma avaliação oficial da Câmara nem uma medida de impacto legislativo absoluto.
 
 ### Q8 — Influência legislativa
 
@@ -635,7 +643,7 @@ O hash baseado em metadados é rápido, mas não é um hash criptográfico do co
 ### 13.1 Rotas
 
 - `/`: home;
-- `/q/:questionId`: página individual Q1–Q13;
+- `/pergunta/:questionId`: página individual Q1–Q13 (com alias de compatibilidade em `/q/:questionId`);
 - `/grupos/gastos`: painel consolidado de gastos.
 
 Todas as questões estão habilitadas; as antigas whitelists de disponibilidade foram neutralizadas em `questionAvailability.ts`.
@@ -649,10 +657,10 @@ Todas as questões estão habilitadas; as antigas whitelists de disponibilidade 
 - limpa filtros ao mudar de questão;
 - escolhe catálogo específico da Q3 quando presente;
 - oculta busca textual da Q3 e oferece filtro de deputado pesquisável;
-- oculta filtro de deputado na Q2 e Q4;
+- oculta filtro de deputado na Q2, Q4 e Q7;
 - exibe header e rodapé com versão/data.
 
-O proxy do Vite envia `/api` para `http://127.0.0.1:8000`. Em produção pode-se definir `VITE_API_URL`.
+O proxy do Vite envia `/api` para `http://localhost:8001`. Em produção pode-se definir `VITE_API_URL`.
 
 ### 13.3 Página individual
 
@@ -1054,7 +1062,7 @@ make gastos-audit-api
 Backend:
 
 ```powershell
-.\venv\Scripts\python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
+.\venv\Scripts\python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8001
 ```
 
 Frontend:
@@ -1067,9 +1075,9 @@ npm run dev -- --host 0.0.0.0 --port 5173
 Endereços:
 
 - frontend: `http://localhost:5173`;
-- health: `http://localhost:8000/api/health`;
-- metadados: `http://localhost:8000/api/meta`;
-- docs automáticas FastAPI: `http://localhost:8000/docs`.
+- health: `http://localhost:8001/api/health`;
+- metadados: `http://localhost:8001/api/meta`;
+- docs automáticas FastAPI: `http://localhost:8001/docs`.
 
 ## 19. Reprodutibilidade e operação recomendada
 

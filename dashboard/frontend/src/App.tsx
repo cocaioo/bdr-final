@@ -23,15 +23,23 @@ const EMPTY_FILTER_STATE: FilterState = {
   search: '',
 }
 
+function extractQuestionId(pathname: string): string | null {
+  if (pathname.startsWith('/q/')) {
+    return pathname.split('/')[2]?.replace(/\/$/, '') || null
+  }
+  if (pathname.startsWith('/pergunta/')) {
+    return pathname.split('/')[2]?.replace(/\/$/, '') || null
+  }
+  return null
+}
+
 function App() {
   const [meta, setMeta] = useState<MetaResponse | null>(null)
   const [filters, setFilters] = useState<FilterState>(EMPTY_FILTER_STATE)
   const [error, setError] = useState<string | null>(null)
   const location = useLocation()
 
-  const activeQuestionId = location.pathname.startsWith('/q/')
-    ? location.pathname.split('/')[2]?.replace(/\/$/, '') || null
-    : null
+  const activeQuestionId = extractQuestionId(location.pathname)
   const activeQuestion = meta?.questions.find((question) => question.id === activeQuestionId)
   const hiddenQuestionRoute = Boolean(activeQuestionId && isQuestionHidden(activeQuestionId))
 
@@ -79,19 +87,30 @@ function App() {
           value={filters}
           onChange={setFilters}
           supportedFilters={
-            activeQuestionId?.toLowerCase() === 'q2' || activeQuestionId?.toLowerCase() === 'q4'
+            ['q2', 'q4', 'q7'].includes(activeQuestionId?.toLowerCase() ?? '')
               ? activeQuestion?.supported_filters?.filter((f) => f !== 'deputados')
               : activeQuestion?.supported_filters
           }
           hideSearch={activeQuestionId?.toLowerCase() === 'q3'}
           hideNumericDeputyChoices={activeQuestionId?.toLowerCase() === 'q3'}
           searchableDeputyFilter={activeQuestionId?.toLowerCase() === 'q3'}
+          searchLabel={
+            activeQuestionId?.toLowerCase() === 'q7'
+              ? 'Buscar deputado por nome'
+              : undefined
+          }
+          searchPlaceholder={
+            activeQuestionId?.toLowerCase() === 'q7'
+              ? 'Digite o nome parlamentar...'
+              : undefined
+          }
         />
       ) : null}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/deputados/:id" element={<DeputyProfilePage />} />
         <Route path="/q/:questionId" element={<QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />} />
+        <Route path="/pergunta/:questionId" element={<QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />} />
         <Route path="/grupos/gastos" element={<GastosDashboardPage meta={meta} />} />
         <Route path="/grupos/perfil" element={<PerfilDashboardPage meta={meta} />} />
         <Route

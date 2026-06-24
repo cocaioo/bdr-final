@@ -10,6 +10,8 @@ interface GlobalFiltersProps {
   hideSearch?: boolean
   hideNumericDeputyChoices?: boolean
   searchableDeputyFilter?: boolean
+  searchLabel?: string
+  searchPlaceholder?: string
 }
 
 function isEnabled(supportedFilters: string[] | undefined, filterId: string) {
@@ -56,6 +58,8 @@ export function GlobalFilters({
   hideSearch = false,
   hideNumericDeputyChoices = false,
   searchableDeputyFilter = false,
+  searchLabel = 'Busca textual no ranking',
+  searchPlaceholder = 'Digite para filtrar linhas...',
 }: GlobalFiltersProps) {
   const [searchValue, setSearchValue] = useState(value.search ?? '')
   const [deputySearchValue, setDeputySearchValue] = useState('')
@@ -460,7 +464,7 @@ export function GlobalFilters({
       {!hideSearch ? (
         <div className="filter-search-container">
           <div className="filter-item-header">
-            <label htmlFor="filter-search">Busca textual no ranking</label>
+            <label htmlFor="filter-search">{searchLabel}</label>
             {searchValue.length > 0 && (
               <button type="button" className="clear-btn" onClick={() => {
                 setSearchValue('')
@@ -474,7 +478,7 @@ export function GlobalFilters({
             id="filter-search"
             value={searchValue}
             onChange={(event) => setSearchValue(event.target.value)}
-            placeholder="Digite para filtrar linhas..."
+            placeholder={searchPlaceholder}
           />
         </div>
       ) : null}

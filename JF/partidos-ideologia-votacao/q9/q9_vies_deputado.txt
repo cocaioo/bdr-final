@@ -51,21 +51,21 @@ Q9.2 - Correlacao ideologia x proposicao (pct de Sim por campo)
       2023 | 1301241-77  | PRL 1 CCJC => PL 1761/2015                                       | centro    |         1 |         6 |      0 |           7 |    14.3
       2023 | 1301241-77  | PRL 1 CCJC => PL 1761/2015                                       | direita   |        14 |         6 |      0 |          20 |    70.0
       2023 | 1301241-77  | PRL 1 CCJC => PL 1761/2015                                       | esquerda  |         0 |        14 |      0 |          14 |     0.0
-      2023 | 1548579-109 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | centro    |        15 |       118 |      1 |         134 |    11.2
-      2023 | 1548579-109 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | direita   |        22 |        64 |     54 |         140 |    15.7
-      2023 | 1548579-109 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | esquerda  |        14 |        83 |      0 |          97 |    14.4
-      2023 | 1548579-114 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | centro    |        17 |       127 |      0 |         144 |    11.8
-      2023 | 1548579-114 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | direita   |        21 |        64 |     49 |         134 |    15.7
-      2023 | 1548579-114 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | esquerda  |        15 |        89 |      0 |         104 |    14.4
-      2023 | 1548579-122 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | centro    |        18 |       133 |      0 |         151 |    11.9
-      2023 | 1548579-122 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | direita   |        18 |        69 |     62 |         149 |    12.1
-      2023 | 1548579-122 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | esquerda  |        12 |        92 |      0 |         104 |    11.5
-      2023 | 1548579-126 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | centro    |       126 |        15 |      1 |         142 |    88.7
-      2023 | 1548579-126 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | direita   |        75 |        74 |      7 |         156 |    48.1
-      2023 | 1548579-126 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | esquerda  |        97 |        13 |      0 |         110 |    88.2
-      2023 | 1548579-144 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | centro    |       135 |         8 |      0 |         143 |    94.4
-      2023 | 1548579-144 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | direita   |       141 |         0 |     10 |         151 |    93.4
-      2023 | 1548579-144 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | esquerda  |        22 |        73 |      0 |          95 |    23.2
+      2023 | 1548579-109 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | centro    |        15 |       118 |      1 |         134 |    11.2
+      2023 | 1548579-109 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | direita   |        22 |        64 |     54 |         140 |    15.7
+      2023 | 1548579-109 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | esquerda  |        14 |        83 |      0 |          97 |    14.4
+      2023 | 1548579-114 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | centro    |        17 |       127 |      0 |         144 |    11.8
+      2023 | 1548579-114 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | direita   |        21 |        64 |     49 |         134 |    15.7
+      2023 | 1548579-114 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | esquerda  |        15 |        89 |      0 |         104 |    14.4
+      2023 | 1548579-122 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | centro    |        18 |       133 |      0 |         151 |    11.9
+      2023 | 1548579-122 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | direita   |        18 |        69 |     62 |         149 |    12.1
+      2023 | 1548579-122 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | esquerda  |        12 |        92 |      0 |         104 |    11.5
+      2023 | 1548579-126 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | centro    |       126 |        15 |      1 |         142 |    88.7
+      2023 | 1548579-126 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | direita   |        75 |        74 |      7 |         156 |    48.1
+      2023 | 1548579-126 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | esquerda  |        97 |        13 |      0 |         110 |    88.2
+      2023 | 1548579-144 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | centro    |       135 |         8 |      0 |         143 |    94.4
+      2023 | 1548579-144 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | direita   |       141 |         0 |     10 |         151 |    93.4
+      2023 | 1548579-144 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | esquerda  |        22 |        73 |      0 |          95 |    23.2
       2023 | 1555327-87  | PRL 1 CCJC => PL 2288/2015                                       | centro    |         1 |        12 |      0 |          13 |     7.7
       2023 | 1555327-87  | PRL 1 CCJC => PL 2288/2015                                       | direita   |         1 |         6 |      1 |           8 |    12.5
       2023 | 1555327-87  | PRL 1 CCJC => PL 2288/2015                                       | esquerda  |         0 |        15 |      0 |          15 |     0.0
@@ -372,18 +372,18 @@ Q9.2 - Correlacao ideologia x proposicao (pct de Sim por campo)
       2023 | 2271762-43  | VTS 2 CE => PL 663/2021                                          | centro    |         1 |         4 |      0 |           5 |    20.0
       2023 | 2271762-43  | VTS 2 CE => PL 663/2021                                          | direita   |        12 |         1 |      0 |          13 |    92.3
       2023 | 2271762-43  | VTS 2 CE => PL 663/2021                                          | esquerda  |         0 |        14 |      0 |          14 |     0.0
-      2023 | 2277279-40  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | centro    |         0 |        16 |      0 |          16 |     0.0
-      2023 | 2277279-40  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | direita   |        11 |         6 |      0 |          17 |    64.7
-      2023 | 2277279-40  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | esquerda  |         0 |        16 |      0 |          16 |     0.0
-      2023 | 2277279-53  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | centro    |         3 |         6 |      0 |           9 |    33.3
-      2023 | 2277279-53  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | direita   |        14 |         4 |      0 |          18 |    77.8
-      2023 | 2277279-53  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | esquerda  |         0 |        15 |      0 |          15 |     0.0
-      2023 | 2277279-64  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | centro    |         2 |        13 |      0 |          15 |    13.3
-      2023 | 2277279-64  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | direita   |         3 |         5 |      0 |           8 |    37.5
-      2023 | 2277279-64  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | esquerda  |         0 |        14 |      0 |          14 |     0.0
-      2023 | 2277279-68  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | centro    |        11 |         2 |      0 |          13 |    84.6
-      2023 | 2277279-68  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | direita   |         3 |         9 |      0 |          12 |    25.0
-      2023 | 2277279-68  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N∫ Anterior: PEC 4/2018) | esquerda  |        14 |         0 |      0 |          14 |   100.0
+      2023 | 2277279-40  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | centro    |         0 |        16 |      0 |          16 |     0.0
+      2023 | 2277279-40  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | direita   |        11 |         6 |      0 |          17 |    64.7
+      2023 | 2277279-40  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | esquerda  |         0 |        16 |      0 |          16 |     0.0
+      2023 | 2277279-53  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | centro    |         3 |         6 |      0 |           9 |    33.3
+      2023 | 2277279-53  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | direita   |        14 |         4 |      0 |          18 |    77.8
+      2023 | 2277279-53  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | esquerda  |         0 |        15 |      0 |          15 |     0.0
+      2023 | 2277279-64  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | centro    |         2 |        13 |      0 |          15 |    13.3
+      2023 | 2277279-64  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | direita   |         3 |         5 |      0 |           8 |    37.5
+      2023 | 2277279-64  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | esquerda  |         0 |        14 |      0 |          14 |     0.0
+      2023 | 2277279-68  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | centro    |        11 |         2 |      0 |          13 |    84.6
+      2023 | 2277279-68  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | direita   |         3 |         9 |      0 |          12 |    25.0
+      2023 | 2277279-68  | PRL 1 CCJC => PEC 6/2021 (Fase 1 - CD) (N¬∫ Anterior: PEC 4/2018) | esquerda  |        14 |         0 |      0 |          14 |   100.0
       2023 | 2277651-56  | PRL 1 CCJC => PL 2083/2020                                       | centro    |         0 |        12 |      0 |          12 |     0.0
       2023 | 2277651-56  | PRL 1 CCJC => PL 2083/2020                                       | direita   |         2 |        15 |      0 |          17 |    11.8
       2023 | 2277651-56  | PRL 1 CCJC => PL 2083/2020                                       | esquerda  |         9 |         6 |      0 |          15 |    60.0
@@ -1334,24 +1334,24 @@ Q9.2 - Correlacao ideologia x proposicao (pct de Sim por campo)
       2023 | 534947-76   | PRL 1 CPASF => PL 3253/2012                                      | centro    |         3 |         0 |      0 |           3 |   100.0
       2023 | 534947-76   | PRL 1 CPASF => PL 3253/2012                                      | direita   |         5 |         0 |      0 |           5 |   100.0
       2023 | 534947-76   | PRL 1 CPASF => PL 3253/2012                                      | esquerda  |         2 |         0 |      0 |           2 |   100.0
-      2023 | 559138-191  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | centro    |         6 |         9 |      0 |          15 |    40.0
-      2023 | 559138-191  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | direita   |        13 |         1 |      0 |          14 |    92.9
-      2023 | 559138-191  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | esquerda  |         0 |        14 |      0 |          14 |     0.0
-      2023 | 559138-201  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | centro    |         7 |         7 |      0 |          14 |    50.0
-      2023 | 559138-201  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | direita   |        11 |         5 |      0 |          16 |    68.8
-      2023 | 559138-201  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | esquerda  |         0 |        14 |      0 |          14 |     0.0
-      2023 | 559138-206  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | centro    |         5 |         9 |      0 |          14 |    35.7
-      2023 | 559138-206  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | direita   |        11 |         3 |      0 |          14 |    78.6
-      2023 | 559138-206  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | esquerda  |         0 |        14 |      0 |          14 |     0.0
-      2023 | 559138-221  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | centro    |         0 |        11 |      0 |          11 |     0.0
-      2023 | 559138-221  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | direita   |         1 |         6 |      0 |           7 |    14.3
-      2023 | 559138-221  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | esquerda  |         0 |        16 |      0 |          16 |     0.0
-      2023 | 559138-224  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | centro    |        10 |         8 |      0 |          18 |    55.6
-      2023 | 559138-224  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | direita   |         5 |        17 |      0 |          22 |    22.7
-      2023 | 559138-224  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | esquerda  |        16 |         0 |      0 |          16 |   100.0
-      2023 | 559138-225  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | centro    |        13 |         1 |      0 |          14 |    92.9
-      2023 | 559138-225  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | direita   |         4 |         0 |      0 |           4 |   100.0
-      2023 | 559138-225  | PRL 1 CCJC => PL 6606/2019 (N∫ Anterior: PL 4685/2012)           | esquerda  |        16 |         0 |      0 |          16 |   100.0
+      2023 | 559138-191  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | centro    |         6 |         9 |      0 |          15 |    40.0
+      2023 | 559138-191  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | direita   |        13 |         1 |      0 |          14 |    92.9
+      2023 | 559138-191  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | esquerda  |         0 |        14 |      0 |          14 |     0.0
+      2023 | 559138-201  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | centro    |         7 |         7 |      0 |          14 |    50.0
+      2023 | 559138-201  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | direita   |        11 |         5 |      0 |          16 |    68.8
+      2023 | 559138-201  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | esquerda  |         0 |        14 |      0 |          14 |     0.0
+      2023 | 559138-206  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | centro    |         5 |         9 |      0 |          14 |    35.7
+      2023 | 559138-206  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | direita   |        11 |         3 |      0 |          14 |    78.6
+      2023 | 559138-206  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | esquerda  |         0 |        14 |      0 |          14 |     0.0
+      2023 | 559138-221  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | centro    |         0 |        11 |      0 |          11 |     0.0
+      2023 | 559138-221  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | direita   |         1 |         6 |      0 |           7 |    14.3
+      2023 | 559138-221  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | esquerda  |         0 |        16 |      0 |          16 |     0.0
+      2023 | 559138-224  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | centro    |        10 |         8 |      0 |          18 |    55.6
+      2023 | 559138-224  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | direita   |         5 |        17 |      0 |          22 |    22.7
+      2023 | 559138-224  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | esquerda  |        16 |         0 |      0 |          16 |   100.0
+      2023 | 559138-225  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | centro    |        13 |         1 |      0 |          14 |    92.9
+      2023 | 559138-225  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | direita   |         4 |         0 |      0 |           4 |   100.0
+      2023 | 559138-225  | PRL 1 CCJC => PL 6606/2019 (N¬∫ Anterior: PL 4685/2012)           | esquerda  |        16 |         0 |      0 |          16 |   100.0
       2023 | 575585-69   | REQ 1145/2023                                                    | centro    |         2 |       135 |      0 |         137 |     1.5
       2023 | 575585-69   | REQ 1145/2023                                                    | direita   |         1 |       147 |      1 |         149 |     0.7
       2023 | 575585-69   | REQ 1145/2023                                                    | esquerda  |        50 |        45 |      0 |          95 |    52.6
@@ -1385,20 +1385,20 @@ Q9.2 - Correlacao ideologia x proposicao (pct de Sim por campo)
       2024 | 1301141-69  | PRL 1 CCJC => PL 1751/2015                                       | centro    |         0 |        14 |      0 |          14 |     0.0
       2024 | 1301141-69  | PRL 1 CCJC => PL 1751/2015                                       | direita   |         0 |        20 |      0 |          20 |     0.0
       2024 | 1301141-69  | PRL 1 CCJC => PL 1751/2015                                       | esquerda  |         3 |         4 |      0 |           7 |    42.9
-      2024 | 1548579-186 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | centro    |         6 |       126 |      0 |         132 |     4.5
-      2024 | 1548579-186 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | direita   |        23 |       121 |      1 |         145 |    15.9
-      2024 | 1548579-186 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | esquerda  |         7 |        85 |      0 |          92 |     7.6
-      2024 | 1548579-194 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | centro    |       126 |         9 |      0 |         135 |    93.3
-      2024 | 1548579-194 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | direita   |       115 |        29 |      2 |         146 |    78.8
-      2024 | 1548579-194 | PRLP 1 => PL 182/2024 (N∫ Anterior: PL 2148/2015)                | esquerda  |        95 |         0 |      1 |          96 |    99.0
+      2024 | 1548579-186 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | centro    |         6 |       126 |      0 |         132 |     4.5
+      2024 | 1548579-186 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | direita   |        23 |       121 |      1 |         145 |    15.9
+      2024 | 1548579-186 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | esquerda  |         7 |        85 |      0 |          92 |     7.6
+      2024 | 1548579-194 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | centro    |       126 |         9 |      0 |         135 |    93.3
+      2024 | 1548579-194 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | direita   |       115 |        29 |      2 |         146 |    78.8
+      2024 | 1548579-194 | PRLP 1 => PL 182/2024 (N¬∫ Anterior: PL 2148/2015)                | esquerda  |        95 |         0 |      1 |          96 |    99.0
       2024 | 1594768-93  | PRL 1 CCJC => PL 2478/2015                                       | centro    |         4 |         7 |      0 |          11 |    36.4
       2024 | 1594768-93  | PRL 1 CCJC => PL 2478/2015                                       | direita   |        12 |         1 |      0 |          13 |    92.3
       2024 | 1594768-93  | PRL 1 CCJC => PL 2478/2015                                       | esquerda  |         1 |        10 |      0 |          11 |     9.1
       2024 | 1672576-221 | REQ 6298/2017                                                    | centro    |         2 |       156 |      0 |         158 |     1.3
       2024 | 1672576-221 | REQ 6298/2017                                                    | direita   |        10 |       151 |      1 |         162 |     6.2
       2024 | 1672576-221 | REQ 6298/2017                                                    | esquerda  |        15 |        87 |      0 |         102 |    14.7
-      2024 | 2076875-108 | PRL 1 CDHMIR => PL 2098/2019 (N∫ Anterior: PL 4333/2016)         | direita   |         0 |         4 |      0 |           4 |     0.0
-      2024 | 2076875-108 | PRL 1 CDHMIR => PL 2098/2019 (N∫ Anterior: PL 4333/2016)         | esquerda  |        11 |         0 |      0 |          11 |   100.0
+      2024 | 2076875-108 | PRL 1 CDHMIR => PL 2098/2019 (N¬∫ Anterior: PL 4333/2016)         | direita   |         0 |         4 |      0 |           4 |     0.0
+      2024 | 2076875-108 | PRL 1 CDHMIR => PL 2098/2019 (N¬∫ Anterior: PL 4333/2016)         | esquerda  |        11 |         0 |      0 |          11 |   100.0
       2024 | 2079477-63  | PRL 1 CCJC => PL 4720/2016                                       | centro    |         0 |        15 |      0 |          15 |     0.0
       2024 | 2079477-63  | PRL 1 CCJC => PL 4720/2016                                       | direita   |         0 |        20 |      0 |          20 |     0.0
       2024 | 2079477-63  | PRL 1 CCJC => PL 4720/2016                                       | esquerda  |         0 |         2 |      0 |           2 |     0.0
@@ -1549,9 +1549,9 @@ Q9.2 - Correlacao ideologia x proposicao (pct de Sim por campo)
       2024 | 2210920-80  | PRL 1 CDC => PL 3894/2019                                        | centro    |         0 |         6 |      0 |           6 |     0.0
       2024 | 2210920-80  | PRL 1 CDC => PL 3894/2019                                        | direita   |         0 |         5 |      0 |           5 |     0.0
       2024 | 2210920-80  | PRL 1 CDC => PL 3894/2019                                        | esquerda  |         0 |         2 |      0 |           2 |     0.0
-      2024 | 2212908-90  | PRL 1 CCJC => PL 4154/2019 (N∫ Anterior: PLS 35/2018)            | centro    |         0 |        12 |      0 |          12 |     0.0
-      2024 | 2212908-90  | PRL 1 CCJC => PL 4154/2019 (N∫ Anterior: PLS 35/2018)            | direita   |         0 |        22 |      0 |          22 |     0.0
-      2024 | 2212908-90  | PRL 1 CCJC => PL 4154/2019 (N∫ Anterior: PLS 35/2018)            | esquerda  |         0 |         1 |      0 |           1 |     0.0
+      2024 | 2212908-90  | PRL 1 CCJC => PL 4154/2019 (N¬∫ Anterior: PLS 35/2018)            | centro    |         0 |        12 |      0 |          12 |     0.0
+      2024 | 2212908-90  | PRL 1 CCJC => PL 4154/2019 (N¬∫ Anterior: PLS 35/2018)            | direita   |         0 |        22 |      0 |          22 |     0.0
+      2024 | 2212908-90  | PRL 1 CCJC => PL 4154/2019 (N¬∫ Anterior: PLS 35/2018)            | esquerda  |         0 |         1 |      0 |           1 |     0.0
       2024 | 2219957-27  | PRL 1 CCJC => PLP 215/2019                                       | centro    |         8 |         9 |      0 |          17 |    47.1
       2024 | 2219957-27  | PRL 1 CCJC => PLP 215/2019                                       | direita   |         0 |        18 |      0 |          18 |     0.0
       2024 | 2219957-27  | PRL 1 CCJC => PLP 215/2019                                       | esquerda  |        10 |         0 |      0 |          10 |   100.0
@@ -1675,9 +1675,9 @@ Q9.2 - Correlacao ideologia x proposicao (pct de Sim por campo)
       2024 | 2296528-63  | PRL 1 CCJC => PL 2988/2021                                       | centro    |         2 |        10 |      0 |          12 |    16.7
       2024 | 2296528-63  | PRL 1 CCJC => PL 2988/2021                                       | direita   |         3 |        14 |      0 |          17 |    17.6
       2024 | 2296528-63  | PRL 1 CCJC => PL 2988/2021                                       | esquerda  |         7 |         0 |      0 |           7 |   100.0
-      2024 | 2301103-79  | PRL 1 CMADS => PL 3384/2021 (N∫ Anterior: PLS 201/2016)          | centro    |         4 |         1 |      0 |           5 |    80.0
-      2024 | 2301103-79  | PRL 1 CMADS => PL 3384/2021 (N∫ Anterior: PLS 201/2016)          | direita   |         1 |         2 |      0 |           3 |    33.3
-      2024 | 2301103-79  | PRL 1 CMADS => PL 3384/2021 (N∫ Anterior: PLS 201/2016)          | esquerda  |         6 |         0 |      0 |           6 |   100.0
+      2024 | 2301103-79  | PRL 1 CMADS => PL 3384/2021 (N¬∫ Anterior: PLS 201/2016)          | centro    |         4 |         1 |      0 |           5 |    80.0
+      2024 | 2301103-79  | PRL 1 CMADS => PL 3384/2021 (N¬∫ Anterior: PLS 201/2016)          | direita   |         1 |         2 |      0 |           3 |    33.3
+      2024 | 2301103-79  | PRL 1 CMADS => PL 3384/2021 (N¬∫ Anterior: PLS 201/2016)          | esquerda  |         6 |         0 |      0 |           6 |   100.0
       2024 | 2305375-57  | PRL 1 CSPCCO => PL 3871/2021                                     | centro    |         3 |         2 |      0 |           5 |    60.0
       2024 | 2305375-57  | PRL 1 CSPCCO => PL 3871/2021                                     | direita   |        13 |         1 |      0 |          14 |    92.9
       2024 | 2305375-57  | PRL 1 CSPCCO => PL 3871/2021                                     | esquerda  |         0 |         1 |      0 |           1 |     0.0
@@ -1742,12 +1742,12 @@ Q9.2 - Correlacao ideologia x proposicao (pct de Sim por campo)
       2024 | 2324243-8   | REQ 835/2022                                                     | centro    |       102 |        25 |      0 |         127 |    80.3
       2024 | 2324243-8   | REQ 835/2022                                                     | direita   |        63 |        85 |      0 |         148 |    42.6
       2024 | 2324243-8   | REQ 835/2022                                                     | esquerda  |        97 |         1 |      2 |         100 |    97.0
-      2024 | 2324721-73  | PRL 1 CCJC => PL 1366/2022 (N∫ Anterior: PLS 214/2015)           | centro    |         1 |        13 |      0 |          14 |     7.1
-      2024 | 2324721-73  | PRL 1 CCJC => PL 1366/2022 (N∫ Anterior: PLS 214/2015)           | direita   |         0 |        17 |      0 |          17 |     0.0
-      2024 | 2324721-73  | PRL 1 CCJC => PL 1366/2022 (N∫ Anterior: PLS 214/2015)           | esquerda  |         9 |         0 |      0 |           9 |   100.0
-      2024 | 2324721-79  | PRL 1 CCJC => PL 1366/2022 (N∫ Anterior: PLS 214/2015)           | centro    |        16 |         1 |      0 |          17 |    94.1
-      2024 | 2324721-79  | PRL 1 CCJC => PL 1366/2022 (N∫ Anterior: PLS 214/2015)           | direita   |        22 |         0 |      0 |          22 |   100.0
-      2024 | 2324721-79  | PRL 1 CCJC => PL 1366/2022 (N∫ Anterior: PLS 214/2015)           | esquerda  |         1 |        10 |      0 |          11 |     9.1
+      2024 | 2324721-73  | PRL 1 CCJC => PL 1366/2022 (N¬∫ Anterior: PLS 214/2015)           | centro    |         1 |        13 |      0 |          14 |     7.1
+      2024 | 2324721-73  | PRL 1 CCJC => PL 1366/2022 (N¬∫ Anterior: PLS 214/2015)           | direita   |         0 |        17 |      0 |          17 |     0.0
+      2024 | 2324721-73  | PRL 1 CCJC => PL 1366/2022 (N¬∫ Anterior: PLS 214/2015)           | esquerda  |         9 |         0 |      0 |           9 |   100.0
+      2024 | 2324721-79  | PRL 1 CCJC => PL 1366/2022 (N¬∫ Anterior: PLS 214/2015)           | centro    |        16 |         1 |      0 |          17 |    94.1
+      2024 | 2324721-79  | PRL 1 CCJC => PL 1366/2022 (N¬∫ Anterior: PLS 214/2015)           | direita   |        22 |         0 |      0 |          22 |   100.0
+      2024 | 2324721-79  | PRL 1 CCJC => PL 1366/2022 (N¬∫ Anterior: PLS 214/2015)           | esquerda  |         1 |        10 |      0 |          11 |     9.1
       2024 | 2324721-94  | REQ 1473/2024                                                    | centro    |       140 |        26 |      2 |         168 |    83.3
       2024 | 2324721-94  | REQ 1473/2024                                                    | direita   |       162 |         1 |      1 |         164 |    98.8
       2024 | 2324721-94  | REQ 1473/2024                                                    | esquerda  |         7 |       104 |      0 |         111 |     6.3
@@ -4702,34 +4702,34 @@ Q9.2 - Correlacao ideologia x proposicao (pct de Sim por campo)
 Q9.3 - Resumo consolidado de votos e aderencia por deputado
  sigla_partido | id_deputado |            nome_deputado            | ideologia | total_votos | votos_sim | votos_nao | outros_votos | seguiu_orientacao | contrariou_orientacao | pct_aderencia_partido 
 ---------------+-------------+-------------------------------------+-----------+-------------+-----------+-----------+--------------+-------------------+-----------------------+-----------------------
- AVANTE        |      204515 | AndrÈ Janones                       | centro    |         853 |       499 |       354 |            0 |                12 |                     0 |                 100.0
+ AVANTE        |      204515 | Andr√© Janones                       | centro    |         853 |       499 |       354 |            0 |                12 |                     0 |                 100.0
  AVANTE        |      210989 | Bruno Farias                        | centro    |         838 |       539 |       294 |            5 |                 1 |                     0 |                 100.0
  AVANTE        |      220625 | Delegada Ione                       | centro    |         845 |       498 |       346 |            1 |                 3 |                     1 |                  75.0
  AVANTE        |      220686 | Duarte Jr.                          | centro    |          40 |        29 |        11 |            0 |                 5 |                     1 |                  83.3
  AVANTE        |      198197 | Greyce Elias                        | centro    |         691 |       418 |       273 |            0 |                 3 |                     1 |                  75.0
- AVANTE        |      160510 | Luis TibÈ                           | centro    |         474 |       322 |       152 |            0 |                 1 |                     0 |                 100.0
+ AVANTE        |      160510 | Luis Tib√©                           | centro    |         474 |       322 |       152 |            0 |                 1 |                     0 |                 100.0
  AVANTE        |      220703 | Neto Carletto                       | centro    |         421 |       264 |       157 |            0 |                 6 |                     0 |                 100.0
- AVANTE        |      204553 | Pastor Sargento IsidÛrio            | centro    |        1040 |       617 |       416 |            7 |                11 |                     0 |                 100.0
- AVANTE        |      235712 | Vav·                                | centro    |          42 |        29 |        13 |            0 |                 6 |                     0 |                 100.0
+ AVANTE        |      204553 | Pastor Sargento Isid√≥rio            | centro    |        1040 |       617 |       416 |            7 |                11 |                     0 |                 100.0
+ AVANTE        |      235712 | Vav√°                                | centro    |          42 |        29 |        13 |            0 |                 6 |                     0 |                 100.0
  AVANTE        |       91228 | Waldemar Oliveira                   | centro    |        1198 |       731 |       465 |            2 |                36 |                     2 |                  94.7
  CIDADANIA     |      178972 | Alex Manente                        | centro    |         479 |       335 |       144 |            0 |                 0 |                     0 |                      
  CIDADANIA     |      220715 | Amom Mandel                         | centro    |         729 |       448 |       281 |            0 |                 0 |                     0 |                      
  CIDADANIA     |      220549 | Any Ortiz                           | centro    |         931 |       533 |       398 |            0 |                 0 |                     0 |                      
  CIDADANIA     |      141391 | Arnaldo Jardim                      | centro    |         754 |       462 |       291 |            1 |                 0 |                     0 |                      
  CIDADANIA     |      164360 | Carmen Zanotto                      | centro    |         117 |        67 |        49 |            1 |                 0 |                     0 |                      
- MDB           |      204379 | Ac·cio Favacho                      | centro    |         841 |       541 |       299 |            1 |                 2 |                     0 |                 100.0
+ MDB           |      204379 | Ac√°cio Favacho                      | centro    |         841 |       541 |       299 |            1 |                 2 |                     0 |                 100.0
  MDB           |      220714 | Adail Filho                         | centro    |          44 |        27 |        17 |            0 |                 0 |                     0 |                      
- MDB           |       74696 | Alberto Mour„o                      | centro    |         305 |       194 |       110 |            1 |                 1 |                     0 |                 100.0
+ MDB           |       74696 | Alberto Mour√£o                      | centro    |         305 |       194 |       110 |            1 |                 1 |                     0 |                 100.0
  MDB           |      160559 | Alceu Moreira                       | centro    |         933 |       546 |       387 |            0 |                 5 |                     0 |                 100.0
- MDB           |      220542 | Alexandre Guimar„es                 | centro    |         561 |       370 |       191 |            0 |                 1 |                     0 |                 100.0
+ MDB           |      220542 | Alexandre Guimar√£es                 | centro    |         561 |       370 |       191 |            0 |                 1 |                     0 |                 100.0
  MDB           |      220676 | Andreia Siqueira                    | centro    |         782 |       503 |       279 |            0 |                 1 |                     0 |                 100.0
- MDB           |      123756 | AntÙnia L˙cia                       | centro    |          33 |        19 |        14 |            0 |                 0 |                     0 |                      
- MDB           |      220675 | AntÙnio Doido                       | centro    |         933 |       589 |       344 |            0 |                 1 |                     0 |                 100.0
+ MDB           |      123756 | Ant√¥nia L√∫cia                       | centro    |          33 |        19 |        14 |            0 |                 0 |                     0 |                      
+ MDB           |      220675 | Ant√¥nio Doido                       | centro    |         933 |       589 |       344 |            0 |                 1 |                     0 |                 100.0
  MDB           |      220577 | Augusto Puppio                      | centro    |         669 |       410 |       259 |            0 |                 0 |                     0 |                      
  MDB           |      178975 | Baleia Rossi                        | centro    |         643 |       407 |       235 |            1 |                 1 |                     0 |                 100.0
  MDB           |      204361 | Carlos Chiodini                     | centro    |         392 |       270 |       122 |            0 |                 1 |                     0 |                 100.0
  MDB           |      220699 | Castro Neto                         | centro    |          29 |        16 |        13 |            0 |                 0 |                     0 |                      
- MDB           |      178876 | CÈlio Silveira                      | centro    |         739 |       479 |       259 |            1 |                 1 |                     0 |                 100.0
+ MDB           |      178876 | C√©lio Silveira                      | centro    |         739 |       479 |       259 |            1 |                 1 |                     0 |                 100.0
  MDB           |      141408 | Cleber Verde                        | centro    |         935 |       599 |       335 |            1 |                15 |                     0 |                 100.0
  MDB           |       98148 | Cobalchini                          | centro    |        1041 |       579 |       455 |            7 |                70 |                     5 |                  93.3
  MDB           |      220652 | Delegado Palumbo                    | centro    |        1064 |       558 |       505 |            1 |                 1 |                     2 |                  33.3
@@ -4738,30 +4738,30 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  MDB           |      220540 | Duda Ramos                          | centro    |         689 |       444 |       245 |            0 |                 1 |                     0 |                 100.0
  MDB           |       74075 | Elcione Barbalho                    | centro    |         529 |       338 |       190 |            1 |                 1 |                     2 |                  33.3
  MDB           |      198783 | Emanuel Pinheiro Neto               | centro    |         757 |       461 |       294 |            2 |                 2 |                     0 |                 100.0
- MDB           |       74454 | EunÌcio Oliveira                    | centro    |         666 |       390 |       202 |           74 |                 4 |                     3 |                  57.1
- MDB           |      220653 | F·bio Teruel                        | centro    |         988 |       546 |       440 |            2 |                 2 |                     0 |                 100.0
- MDB           |      160598 | Fl·via Morais                       | centro    |          20 |        16 |         4 |            0 |                 0 |                     0 |                      
+ MDB           |       74454 | Eun√≠cio Oliveira                    | centro    |         666 |       390 |       202 |           74 |                 4 |                     3 |                  57.1
+ MDB           |      220653 | F√°bio Teruel                        | centro    |         988 |       546 |       440 |            2 |                 2 |                     0 |                 100.0
+ MDB           |      160598 | Fl√°via Morais                       | centro    |          20 |        16 |         4 |            0 |                 0 |                     0 |                      
  MDB           |      225727 | Flavinha                            | centro    |         117 |        56 |        61 |            0 |                 8 |                     0 |                 100.0
  MDB           |      129618 | Gorete Pereira                      | centro    |          29 |        19 |        10 |            0 |                 0 |                     0 |                      
  MDB           |      204456 | Gutemberg Reis                      | centro    |         995 |       673 |       321 |            1 |                 1 |                     0 |                 100.0
  MDB           |      220537 | Helena Lima                         | centro    |         636 |       418 |       215 |            3 |                 1 |                     0 |                 100.0
  MDB           |      220672 | Henderson Pinto                     | centro    |         848 |       536 |       312 |            0 |                 3 |                     0 |                 100.0
- MDB           |      204539 | HercÌlio Coelho Diniz               | centro    |         747 |       471 |       276 |            0 |                 7 |                     0 |                 100.0
+ MDB           |      204539 | Herc√≠lio Coelho Diniz               | centro    |         747 |       471 |       276 |            0 |                 7 |                     0 |                 100.0
  MDB           |      178884 | Hildo Rocha                         | centro    |         564 |       338 |       220 |            6 |                10 |                     0 |                 100.0
- MDB           |      204436 | Isnaldo Bulhıes Jr.                 | centro    |         325 |       222 |       102 |            1 |                 1 |                     0 |                 100.0
+ MDB           |      204436 | Isnaldo Bulh√µes Jr.                 | centro    |         325 |       222 |       102 |            1 |                 1 |                     0 |                 100.0
  MDB           |      220670 | Iza Arruda                          | centro    |         854 |       545 |       309 |            0 |                 1 |                     0 |                 100.0
- MDB           |      230957 | Jo„o Cury                           | centro    |         378 |       241 |       137 |            0 |                 4 |                     0 |                 100.0
- MDB           |       74079 | JosÈ Priante                        | centro    |         558 |       359 |       199 |            0 |                 0 |                     0 |                      
+ MDB           |      230957 | Jo√£o Cury                           | centro    |         378 |       241 |       137 |            0 |                 4 |                     0 |                 100.0
+ MDB           |       74079 | Jos√© Priante                        | centro    |         558 |       359 |       199 |            0 |                 0 |                     0 |                      
  MDB           |      204474 | Juarez Costa                        | centro    |         742 |       398 |       344 |            0 |                46 |                     5 |                  90.2
  MDB           |      228837 | Juliana Kolankiewicz                | centro    |          90 |        47 |        43 |            0 |                 1 |                     0 |                 100.0
- MDB           |      204574 | Junior LourenÁo                     | centro    |          33 |        22 |        11 |            0 |                 0 |                     0 |                      
+ MDB           |      204574 | Junior Louren√ßo                     | centro    |          33 |        22 |        11 |            0 |                 0 |                     0 |                      
  MDB           |      220677 | Keniston Braga                      | centro    |         859 |       553 |       306 |            0 |                 1 |                     0 |                 100.0
  MDB           |       74478 | Luciano Bivar                       | centro    |          35 |        20 |        15 |            0 |                 0 |                     0 |                      
  MDB           |      178954 | Lucio Mosquini                      | centro    |         659 |       366 |       274 |           19 |                 1 |                     0 |                 100.0
  MDB           |      229432 | Luiz Fernando Vampiro               | centro    |         416 |       233 |       182 |            1 |                 1 |                     0 |                 100.0
- MDB           |      179001 | M·rcio Biolchi                      | centro    |         792 |       501 |       291 |            0 |                 1 |                     0 |                 100.0
- MDB           |      226410 | M·rcio Correa                       | centro    |         111 |        71 |        38 |            2 |                 0 |                     0 |                      
- MDB           |      204431 | Marcos AurÈlio Sampaio              | centro    |          35 |        21 |        14 |            0 |                 0 |                     0 |                      
+ MDB           |      179001 | M√°rcio Biolchi                      | centro    |         792 |       501 |       291 |            0 |                 1 |                     0 |                 100.0
+ MDB           |      226410 | M√°rcio Correa                       | centro    |         111 |        71 |        38 |            2 |                 0 |                     0 |                      
+ MDB           |      204431 | Marcos Aur√©lio Sampaio              | centro    |          35 |        21 |        14 |            0 |                 0 |                     0 |                      
  MDB           |      220572 | Marussa Boldrin                     | centro    |         610 |       408 |       202 |            0 |                 3 |                     0 |                 100.0
  MDB           |      233218 | Nelinho Freitas                     | centro    |         102 |        63 |        39 |            0 |                 1 |                     0 |                 100.0
  MDB           |      178896 | Newton Cardoso Jr                   | centro    |         527 |       344 |       172 |           11 |                 0 |                     0 |                      
@@ -4778,8 +4778,8 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  MDB           |      178933 | Sergio Souza                        | centro    |         855 |       537 |       317 |            1 |                11 |                     3 |                  78.6
  MDB           |      220651 | Simone Marquetto                    | centro    |         719 |       479 |       240 |            0 |                 0 |                     0 |                      
  MDB           |      220597 | Thiago Flores                       | centro    |         331 |       218 |       113 |            0 |                 0 |                     0 |                      
- MDB           |      223398 | Ulisses Guimar„es                   | centro    |          78 |        48 |        30 |            0 |                 0 |                     0 |                      
- MDB           |      220660 | Yury do Pared„o                     | centro    |         580 |       372 |       208 |            0 |                 1 |                     0 |                 100.0
+ MDB           |      223398 | Ulisses Guimar√£es                   | centro    |          78 |        48 |        30 |            0 |                 0 |                     0 |                      
+ MDB           |      220660 | Yury do Pared√£o                     | centro    |         580 |       372 |       208 |            0 |                 1 |                     0 |                 100.0
  MISSAO        |      204536 | Kim Kataguiri                       | centro    |          67 |        25 |        41 |            1 |                49 |                     0 |                 100.0
  NOVO          |      204528 | Adriana Ventura                     | direita   |        1033 |       453 |       474 |          106 |               873 |                     9 |                  99.0
  NOVO          |      204365 | Gilson Marques                      | direita   |        1193 |       548 |       539 |          106 |               997 |                     3 |                  99.7
@@ -4790,52 +4790,52 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PCDOB         |      220555 | Daiana Santos                       | esquerda  |         952 |       547 |       403 |            2 |                 0 |                     0 |                      
  PCDOB         |       74060 | Daniel Almeida                      | esquerda  |         952 |       567 |       383 |            2 |                 0 |                     0 |                      
  PCDOB         |      230765 | Enfermeira Rejane                   | esquerda  |         459 |       258 |       201 |            0 |                 0 |                     0 |                      
- PCDOB         |      204394 | Gerv·sio Maia                       | esquerda  |          39 |        24 |        15 |            0 |                 0 |                     0 |                      
- PCDOB         |       74295 | In·cio Arruda                       | esquerda  |          35 |        21 |        12 |            2 |                 0 |                     0 |                      
+ PCDOB         |      204394 | Gerv√°sio Maia                       | esquerda  |          39 |        24 |        15 |            0 |                 0 |                     0 |                      
+ PCDOB         |       74295 | In√°cio Arruda                       | esquerda  |          35 |        21 |        12 |            2 |                 0 |                     0 |                      
  PCDOB         |       74848 | Jandira Feghali                     | esquerda  |        1060 |       618 |       440 |            2 |                 0 |                     0 |                      
- PCDOB         |       81055 | M·rcio Jerry                        | esquerda  |        1012 |       602 |       410 |            0 |                 0 |                     0 |                      
+ PCDOB         |       81055 | M√°rcio Jerry                        | esquerda  |        1012 |       602 |       410 |            0 |                 0 |                     0 |                      
  PCDOB         |      178987 | Orlando Silva                       | esquerda  |         940 |       559 |       380 |            1 |                 0 |                     0 |                      
  PCDOB         |      160641 | Professora Marcivania               | esquerda  |         317 |       191 |       126 |            0 |                 0 |                     0 |                      
  PCDOB         |       73801 | Renildo Calheiros                   | esquerda  |        1101 |       647 |       453 |            1 |                 0 |                     0 |                      
  PDT           |      178835 | Afonso Motta                        | esquerda  |        1032 |       639 |       393 |            0 |               165 |                    13 |                  92.7
- PDT           |      133439 | AndrÈ Figueiredo                    | esquerda  |         945 |       574 |       371 |            0 |               135 |                     0 |                 100.0
+ PDT           |      133439 | Andr√© Figueiredo                    | esquerda  |         945 |       574 |       371 |            0 |               135 |                     0 |                 100.0
  PDT           |      204496 | Celso Sabino                        | esquerda  |          34 |        26 |         8 |            0 |                 4 |                     0 |                 100.0
- PDT           |      228272 | DÈlio Pinheiro                      | esquerda  |          57 |        41 |        16 |            0 |                 0 |                     0 |                      
+ PDT           |      228272 | D√©lio Pinheiro                      | esquerda  |          57 |        41 |        16 |            0 |                 0 |                     0 |                      
  PDT           |      220573 | Dorinaldo Malafaia                  | esquerda  |         843 |       493 |       347 |            3 |               123 |                     5 |                  96.1
  PDT           |      220623 | Duda Salabert                       | esquerda  |         893 |       486 |       398 |            9 |               141 |                    13 |                  91.6
  PDT           |      204541 | Eduardo Bismarck                    | esquerda  |         501 |       285 |       214 |            2 |                40 |                     3 |                  93.0
  PDT           |      225730 | Enfermeira Ana Paula                | esquerda  |         123 |        82 |        41 |            0 |                 0 |                     0 |                      
- PDT           |      160666 | FÈlix MendonÁa J˙nior               | esquerda  |         996 |       618 |       374 |            4 |               145 |                     3 |                  98.0
- PDT           |      160598 | Fl·via Morais                       | esquerda  |         795 |       501 |       293 |            1 |               115 |                     6 |                  95.0
+ PDT           |      160666 | F√©lix Mendon√ßa J√∫nior               | esquerda  |         996 |       618 |       374 |            4 |               145 |                     3 |                  98.0
+ PDT           |      160598 | Fl√°via Morais                       | esquerda  |         795 |       501 |       293 |            1 |               115 |                     6 |                  95.0
  PDT           |      204533 | Idilvan Alencar                     | esquerda  |         542 |       330 |       212 |            0 |                22 |                     1 |                  95.7
  PDT           |      220578 | Josenildo                           | esquerda  |        1083 |       655 |       426 |            2 |               151 |                     1 |                  99.3
- PDT           |       74299 | LeÙnidas Cristino                   | esquerda  |         749 |       452 |       295 |            2 |               145 |                     1 |                  99.3
+ PDT           |       74299 | Le√¥nidas Cristino                   | esquerda  |         749 |       452 |       295 |            2 |               145 |                     1 |                  99.3
  PDT           |       80815 | Leo Prates                          | esquerda  |         921 |       566 |       354 |            1 |               114 |                     2 |                  98.3
- PDT           |      229082 | Lucyana GenÈsio                     | esquerda  |          57 |        35 |        22 |            0 |                 0 |                     0 |                      
- PDT           |      220687 | M·rcio Honaiser                     | esquerda  |         810 |       495 |       297 |           18 |               112 |                    16 |                  87.5
+ PDT           |      229082 | Lucyana Gen√©sio                     | esquerda  |          57 |        35 |        22 |            0 |                 0 |                     0 |                      
+ PDT           |      220687 | M√°rcio Honaiser                     | esquerda  |         810 |       495 |       297 |           18 |               112 |                    16 |                  87.5
  PDT           |      220604 | Marcos Tavares                      | esquerda  |         898 |       547 |       351 |            0 |               136 |                     2 |                  98.6
- PDT           |       74158 | M·rio Heringer                      | esquerda  |         732 |       455 |       273 |            4 |               115 |                     3 |                  97.5
+ PDT           |       74158 | M√°rio Heringer                      | esquerda  |         732 |       455 |       273 |            4 |               115 |                     3 |                  97.5
  PDT           |      204486 | Mauro Benevides Filho               | esquerda  |         966 |       592 |       372 |            2 |               127 |                     2 |                  98.4
  PDT           |      220607 | Max Lemos                           | esquerda  |         987 |       611 |       376 |            0 |               132 |                     1 |                  99.2
  PDT           |       73486 | Pompeo de Mattos                    | esquerda  |         946 |       590 |       340 |           16 |               153 |                    12 |                  92.7
  PDT           |      220580 | Professora Goreth                   | esquerda  |         545 |       321 |       224 |            0 |                14 |                     0 |                 100.0
- PDT           |      204489 | RobÈrio Monteiro                    | esquerda  |         653 |       390 |       263 |            0 |               117 |                     2 |                  98.3
+ PDT           |      204489 | Rob√©rio Monteiro                    | esquerda  |         653 |       390 |       263 |            0 |               117 |                     2 |                  98.3
  PL            |      220593 | Abilio Brunini                      | direita   |         414 |       193 |       164 |           57 |               298 |                    37 |                  89.0
  PL            |      221328 | Adilson Barroso                     | direita   |         939 |       504 |       358 |           77 |               524 |                    18 |                  96.7
  PL            |       73579 | Alberto Fraga                       | direita   |        1055 |       573 |       429 |           53 |               593 |                    41 |                  93.5
  PL            |      220576 | Alfredo Gaspar                      | direita   |          23 |        14 |         9 |            0 |                18 |                     3 |                  85.7
- PL            |      178937 | Altineu CÙrtes                      | direita   |         429 |       211 |       139 |           79 |               262 |                    24 |                  91.6
- PL            |      220596 | Am·lia Barros                       | direita   |         339 |       165 |       134 |           40 |               262 |                     7 |                  97.4
- PL            |      220657 | AndrÈ Fernandes                     | direita   |         835 |       425 |       375 |           35 |               465 |                    30 |                  93.9
- PL            |      204423 | AndrÈ Ferreira                      | direita   |         674 |       399 |       258 |           17 |               350 |                    17 |                  95.4
+ PL            |      178937 | Altineu C√¥rtes                      | direita   |         429 |       211 |       139 |           79 |               262 |                    24 |                  91.6
+ PL            |      220596 | Am√°lia Barros                       | direita   |         339 |       165 |       134 |           40 |               262 |                     7 |                  97.4
+ PL            |      220657 | Andr√© Fernandes                     | direita   |         835 |       425 |       375 |           35 |               465 |                    30 |                  93.9
+ PL            |      204423 | Andr√© Ferreira                      | direita   |         674 |       399 |       258 |           17 |               350 |                    17 |                  95.4
  PL            |      220638 | Antonio Carlos Rodrigues            | direita   |        1008 |       582 |       370 |           56 |               422 |                   165 |                  71.9
  PL            |      204374 | Bia Kicis                           | direita   |        1093 |       544 |       487 |           62 |               654 |                    51 |                  92.8
  PL            |      204388 | Bibo Nunes                          | direita   |        1041 |       541 |       432 |           68 |               597 |                    23 |                  96.3
  PL            |       74052 | Bosco Costa                         | direita   |          79 |        48 |        31 |            0 |                37 |                    17 |                  68.5
  PL            |      220574 | Cabo Gilberto Silva                 | direita   |        1105 |       548 |       500 |           57 |               623 |                    68 |                  90.2
- PL            |      204572 | Capit„o Alberto Neto                | direita   |        1003 |       530 |       416 |           57 |               623 |                    42 |                  93.7
- PL            |      220690 | Capit„o Alden                       | direita   |        1090 |       536 |       485 |           69 |               607 |                    55 |                  91.7
- PL            |      178829 | Capit„o Augusto                     | direita   |        1016 |       530 |       419 |           67 |               586 |                    35 |                  94.4
+ PL            |      204572 | Capit√£o Alberto Neto                | direita   |        1003 |       530 |       416 |           57 |               623 |                    42 |                  93.7
+ PL            |      220690 | Capit√£o Alden                       | direita   |        1090 |       536 |       485 |           69 |               607 |                    55 |                  91.7
+ PL            |      178829 | Capit√£o Augusto                     | direita   |        1016 |       530 |       419 |           67 |               586 |                    35 |                  94.4
  PL            |      213762 | Carla Dickson                       | direita   |          23 |        16 |         7 |            0 |                19 |                     1 |                  95.0
  PL            |      204507 | Carla Zambelli                      | direita   |         563 |       258 |       245 |           60 |               371 |                    29 |                  92.8
  PL            |      204460 | Carlos Jordy                        | direita   |        1027 |       502 |       475 |           50 |               579 |                    55 |                  91.3
@@ -4844,7 +4844,7 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PL            |      204462 | Chris Tonietto                      | direita   |        1061 |       527 |       482 |           52 |               631 |                    47 |                  93.1
  PL            |      204376 | Coronel Armando                     | direita   |          95 |        47 |        48 |            0 |                 0 |                     0 |                      
  PL            |      220594 | Coronel Assis                       | direita   |          52 |        32 |        20 |            0 |                45 |                     1 |                  97.8
- PL            |      204378 | Coronel ChrisÛstomo                 | direita   |         971 |       507 |       391 |           73 |               555 |                    29 |                  95.0
+ PL            |      204378 | Coronel Chris√≥stomo                 | direita   |         971 |       507 |       391 |           73 |               555 |                    29 |                  95.0
  PL            |      220595 | Coronel Fernanda                    | direita   |        1103 |       579 |       450 |           74 |               692 |                    15 |                  97.9
  PL            |      220666 | Coronel Meira                       | direita   |        1130 |       588 |       474 |           68 |               652 |                    32 |                  95.3
  PL            |      204514 | Coronel Tadeu                       | direita   |          59 |        32 |        27 |            0 |                 0 |                     0 |                      
@@ -4854,14 +4854,14 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PL            |      204367 | Daniel Freitas                      | direita   |         953 |       465 |       433 |           55 |               522 |                    65 |                  88.9
  PL            |      220625 | Delegada Ione                       | direita   |          22 |        15 |         7 |            0 |                20 |                     0 |                 100.0
  PL            |      220673 | Delegado Caveira                    | direita   |         960 |       485 |       419 |           56 |               541 |                    46 |                  92.2
- PL            |      178908 | Delegado …der Mauro                 | direita   |         860 |       444 |       371 |           45 |               573 |                    20 |                  96.6
+ PL            |      178908 | Delegado √âder Mauro                 | direita   |         860 |       444 |       371 |           45 |               573 |                    20 |                  96.6
  PL            |      220654 | Delegado Paulo Bilynskyj            | direita   |        1242 |       605 |       563 |           74 |               696 |                    74 |                  90.4
  PL            |      220619 | Delegado Ramagem                    | direita   |        1043 |       501 |       476 |           66 |               587 |                    34 |                  94.5
  PL            |      220689 | Detinha                             | direita   |         545 |       338 |       195 |           12 |               242 |                    62 |                  79.6
- PL            |      160758 | Domingos S·vio                      | direita   |         928 |       525 |       357 |           46 |               571 |                     9 |                  98.4
+ PL            |      160758 | Domingos S√°vio                      | direita   |         928 |       525 |       357 |           46 |               571 |                     9 |                  98.4
  PL            |      230088 | Dra. Mayra Pinheiro                 | direita   |          83 |        33 |        47 |            3 |                69 |                     6 |                  92.0
- PL            |      220610 | Dr. Fernando M·ximo                 | direita   |          29 |        23 |         6 |            0 |                26 |                     1 |                  96.3
- PL            |      227991 | Dr Fl·vio                           | direita   |         186 |       113 |        73 |            0 |               167 |                     3 |                  98.2
+ PL            |      220610 | Dr. Fernando M√°ximo                 | direita   |          29 |        23 |         6 |            0 |                26 |                     1 |                  96.3
+ PL            |      227991 | Dr Fl√°vio                           | direita   |         186 |       113 |        73 |            0 |               167 |                     3 |                  98.2
  PL            |      204518 | Dr. Frederico                       | direita   |          20 |        15 |         5 |            0 |                18 |                     0 |                 100.0
  PL            |      204481 | Dr. Jaziel                          | direita   |         970 |       493 |       428 |           49 |               566 |                    38 |                  93.7
  PL            |       92346 | Eduardo Bolsonaro                   | direita   |         430 |       209 |       180 |           41 |               326 |                    24 |                  93.1
@@ -4871,31 +4871,31 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PL            |      204427 | Fernando Rodolfo                    | direita   |         829 |       467 |       306 |           56 |               451 |                    55 |                  89.1
  PL            |      204411 | Filipe Barros                       | direita   |         668 |       339 |       290 |           39 |               388 |                    26 |                  93.7
  PL            |      220545 | Filipe Martins                      | direita   |        1025 |       550 |       405 |           70 |               581 |                    35 |                  94.3
- PL            |      204473 | General Gir„o                       | direita   |         978 |       510 |       397 |           71 |               556 |                    49 |                  91.9
+ PL            |      204473 | General Gir√£o                       | direita   |         978 |       510 |       397 |           71 |               556 |                    49 |                  91.9
  PL            |      220611 | General Pazuello                    | direita   |        1035 |       545 |       415 |           75 |               593 |                    13 |                  97.9
  PL            |       74383 | Giacobo                             | direita   |         499 |       275 |       181 |           43 |               307 |                    17 |                  94.8
  PL            |      220526 | Gilvan da Federal                   | direita   |         884 |       423 |       385 |           76 |               552 |                    52 |                  91.4
  PL            |      160673 | Giovani Cherini                     | direita   |         975 |       512 |       401 |           62 |               559 |                    36 |                  93.9
- PL            |      229333 | Gl·ucia Santiago                    | direita   |          88 |        36 |        32 |           20 |                57 |                     2 |                  96.6
+ PL            |      229333 | Gl√°ucia Santiago                    | direita   |          88 |        36 |        32 |           20 |                57 |                     2 |                  96.6
  PL            |      198197 | Greyce Elias                        | direita   |          23 |        15 |         8 |            0 |                20 |                     0 |                 100.0
  PL            |      204531 | Guilherme Derrite                   | direita   |          10 |         7 |         3 |            0 |                 9 |                     0 |                 100.0
  PL            |      220568 | Gustavo Gayer                       | direita   |         985 |       471 |       453 |           61 |               527 |                    59 |                  89.9
  PL            |      204444 | Helio Lopes                         | direita   |         829 |       446 |       337 |           46 |               492 |                    15 |                  97.0
- PL            |      227324 | Henrique J˙nior                     | direita   |          92 |        64 |        24 |            4 |                26 |                    34 |                  43.3
+ PL            |      227324 | Henrique J√∫nior                     | direita   |          92 |        64 |        24 |            4 |                26 |                    34 |                  43.3
  PL            |      220563 | Icaro de Valmir                     | direita   |         828 |       532 |       290 |            6 |               328 |                   172 |                  65.6
  PL            |       98615 | Ismael                              | direita   |          39 |        25 |        13 |            1 |                33 |                     1 |                  97.1
  PL            |      225846 | Itamar Paim                         | direita   |          16 |        14 |         2 |            0 |                15 |                     0 |                 100.0
  PL            |       74273 | Jefferson Campos                    | direita   |         982 |       526 |       387 |           69 |               566 |                    20 |                  96.6
- PL            |      141458 | Jo„o Carlos Bacelar                 | direita   |         597 |       389 |       207 |            1 |               174 |                   221 |                  44.1
- PL            |      141459 | Jo„o Maia                           | direita   |         178 |       102 |        76 |            0 |                95 |                    46 |                  67.4
+ PL            |      141458 | Jo√£o Carlos Bacelar                 | direita   |         597 |       389 |       207 |            1 |               174 |                   221 |                  44.1
+ PL            |      141459 | Jo√£o Maia                           | direita   |         178 |       102 |        76 |            0 |                95 |                    46 |                  67.4
  PL            |      178910 | Joaquim Passarinho                  | direita   |        1036 |       561 |       401 |           74 |               569 |                    38 |                  93.7
  PL            |      214694 | Jorge Goetten                       | direita   |         444 |       253 |       166 |           25 |               333 |                    40 |                  89.3
- PL            |      204472 | JosÈ Medeiros                       | direita   |         947 |       495 |       403 |           49 |               574 |                    30 |                  95.0
- PL            |      204563 | Josimar Maranh„ozinho               | direita   |         528 |       323 |       193 |           12 |               237 |                    60 |                  79.8
+ PL            |      204472 | Jos√© Medeiros                       | direita   |         947 |       495 |       403 |           49 |               574 |                    30 |                  95.0
+ PL            |      204563 | Josimar Maranh√£ozinho               | direita   |         528 |       323 |       193 |           12 |               237 |                    60 |                  79.8
  PL            |      220559 | Julia Zanatta                       | direita   |        1056 |       503 |       497 |           56 |               719 |                    79 |                  90.1
  PL            |      204520 | Junio Amaral                        | direita   |         856 |       434 |       387 |           35 |               421 |                    55 |                  88.4
- PL            |      204574 | Junior LourenÁo                     | direita   |         559 |       354 |       205 |            0 |               165 |                   141 |                  53.9
- PL            |      204550 | J˙nior Mano                         | direita   |         212 |       147 |        60 |            5 |               102 |                    59 |                  63.4
+ PL            |      204574 | Junior Louren√ßo                     | direita   |         559 |       354 |       205 |            0 |               165 |                   141 |                  53.9
+ PL            |      204550 | J√∫nior Mano                         | direita   |         212 |       147 |        60 |            5 |               102 |                    59 |                  63.4
  PL            |       98057 | Lafayette de Andrada                | direita   |          30 |        19 |        11 |            0 |                27 |                     1 |                  96.4
  PL            |       74585 | Lincoln Portela                     | direita   |         912 |       481 |       352 |           79 |               544 |                    27 |                  95.3
  PL            |      227323 | Luciano Galego                      | direita   |          85 |        40 |        24 |           21 |                52 |                     7 |                  88.1
@@ -4903,19 +4903,19 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PL            |      178954 | Lucio Mosquini                      | direita   |          29 |        23 |         6 |            0 |                28 |                     0 |                 100.0
  PL            |      204485 | Luiz Carlos Motta                   | direita   |         922 |       542 |       348 |           32 |               502 |                    52 |                  90.6
  PL            |      204455 | Luiz Lima                           | direita   |         603 |       268 |       256 |           79 |               420 |                    27 |                  94.0
- PL            |      204526 | Luiz Philippe de Orleans e BraganÁa | direita   |         963 |       444 |       469 |           50 |               518 |                    77 |                  87.1
+ PL            |      204526 | Luiz Philippe de Orleans e Bragan√ßa | direita   |         963 |       444 |       469 |           50 |               518 |                    77 |                  87.1
  PL            |      166402 | Magda Mofatto                       | direita   |         175 |       102 |        70 |            3 |               148 |                     6 |                  96.1
- PL            |      179000 | Marcelo ¡lvaro AntÙnio              | direita   |         818 |       447 |       324 |           47 |               465 |                    30 |                  93.9
+ PL            |      179000 | Marcelo √Ålvaro Ant√¥nio              | direita   |         818 |       447 |       324 |           47 |               465 |                    30 |                  93.9
  PL            |      133810 | Marcelo Moraes                      | direita   |         872 |       428 |       383 |           61 |               468 |                    42 |                  91.8
  PL            |      178983 | Marcio Alvino                       | direita   |         984 |       478 |       433 |           73 |               532 |                    49 |                  91.6
  PL            |      220547 | Marcos Pollon                       | direita   |        1199 |       592 |       547 |           60 |               716 |                    62 |                  92.0
  PL            |      220655 | Mario Frias                         | direita   |         839 |       395 |       373 |           71 |               441 |                    35 |                  92.6
  PL            |      220661 | Matheus Noronha                     | direita   |         807 |       508 |       290 |            9 |               421 |                    70 |                  85.7
- PL            |      220628 | Mauricio do VÙlei                   | direita   |         955 |       494 |       397 |           64 |               527 |                    22 |                  96.0
+ PL            |      220628 | Mauricio do V√¥lei                   | direita   |         955 |       494 |       397 |           64 |               527 |                    22 |                  96.0
  PL            |      220550 | Mauricio Marcon                     | direita   |         118 |        69 |        49 |            0 |                95 |                     9 |                  91.3
- PL            |       74428 | MendonÁa Filho                      | direita   |          39 |        26 |        13 |            0 |                33 |                     1 |                  97.1
+ PL            |       74428 | Mendon√ßa Filho                      | direita   |          39 |        26 |        13 |            0 |                33 |                     1 |                  97.1
  PL            |      178985 | Miguel Lombardi                     | direita   |         983 |       540 |       377 |           66 |               575 |                    15 |                  97.5
- PL            |      160561 | Mission·rio JosÈ Olimpio            | direita   |         295 |       161 |       134 |            0 |                73 |                     9 |                  89.0
+ PL            |      160561 | Mission√°rio Jos√© Olimpio            | direita   |         295 |       161 |       134 |            0 |                73 |                     9 |                  89.0
  PL            |      204449 | Nelson Barbudo                      | direita   |         322 |       175 |       128 |           19 |               126 |                     1 |                  99.2
  PL            |      204479 | Nicoletti                           | direita   |          64 |        40 |        24 |            0 |                50 |                     9 |                  84.7
  PL            |      209787 | Nikolas Ferreira                    | direita   |        1072 |       522 |       487 |           63 |               598 |                    53 |                  91.9
@@ -4939,42 +4939,42 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PL            |      165470 | Rodrigo Valadares                   | direita   |          35 |        24 |        11 |            0 |                33 |                     0 |                 100.0
  PL            |      204525 | Rosana Valle                        | direita   |         969 |       530 |       381 |           58 |               524 |                    60 |                  89.7
  PL            |      220644 | Rosangela Moro                      | direita   |          40 |        28 |        12 |            0 |                31 |                     4 |                  88.6
- PL            |      220620 | Ros‚ngela Reis                      | direita   |        1031 |       604 |       390 |           37 |               544 |                    77 |                  87.6
+ PL            |      220620 | Ros√¢ngela Reis                      | direita   |        1031 |       604 |       390 |           37 |               544 |                    77 |                  87.6
  PL            |      220631 | Samuel Viana                        | direita   |         255 |       160 |        92 |            3 |               134 |                    46 |                  74.4
  PL            |      204416 | Sanderson                           | direita   |        1016 |       514 |       438 |           64 |               548 |                    56 |                  90.7
  PL            |      204387 | Sargento Fahur                      | direita   |          70 |        37 |        33 |            0 |                51 |                    12 |                  81.0
- PL            |      220621 | Sargento GonÁalves                  | direita   |        1093 |       532 |       470 |           91 |               594 |                    58 |                  91.1
+ PL            |      220621 | Sargento Gon√ßalves                  | direita   |        1093 |       532 |       470 |           91 |               594 |                    58 |                  91.1
  PL            |      204360 | Silvia Cristina                     | direita   |         345 |       192 |       111 |           42 |               248 |                    25 |                  90.8
- PL            |      220579 | Silvia Wai„pi                       | direita   |         556 |       256 |       247 |           53 |               337 |                    20 |                  94.4
+ PL            |      220579 | Silvia Wai√£pi                       | direita   |         556 |       256 |       247 |           53 |               337 |                    20 |                  94.4
  PL            |      227310 | Silvio Antonio                      | direita   |         208 |       113 |        67 |           28 |               158 |                     3 |                  98.1
  PL            |      220575 | Sonize Barbosa                      | direita   |         442 |       224 |       164 |           54 |               265 |                    17 |                  94.0
  PL            |      178946 | Soraya Santos                       | direita   |         894 |       478 |       356 |           60 |               542 |                    28 |                  95.1
- PL            |      178947 | SÛstenes Cavalcante                 | direita   |         564 |       277 |       201 |           86 |               304 |                    64 |                  82.6
+ PL            |      178947 | S√≥stenes Cavalcante                 | direita   |         564 |       277 |       201 |           86 |               304 |                    64 |                  82.6
  PL            |      230177 | Tadeu Oliveira                      | direita   |          83 |        49 |        32 |            2 |                56 |                    19 |                  74.7
  PL            |      160976 | Tiririca                            | direita   |         723 |       439 |       265 |           19 |               196 |                   162 |                  54.7
  PL            |      204396 | Vermelho                            | direita   |         389 |       231 |       129 |           29 |               271 |                    33 |                  89.1
  PL            |      141555 | Vinicius Carvalho                   | direita   |          38 |        30 |         8 |            0 |                35 |                     0 |                 100.0
  PL            |      160591 | Vinicius Gurgel                     | direita   |         782 |       470 |       273 |           39 |               415 |                    76 |                  84.5
  PL            |       74043 | Wellington Roberto                  | direita   |         636 |       348 |       233 |           55 |               358 |                    29 |                  92.5
- PL            |      220660 | Yury do Pared„o                     | direita   |          73 |        48 |        25 |            0 |                52 |                    13 |                  80.0
- PL            |      220558 | ZÈ Trov„o                           | direita   |        1011 |       485 |       460 |           66 |               561 |                    66 |                  89.5
- PL            |      204517 | ZÈ Vitor                            | direita   |         455 |       281 |       152 |           22 |               256 |                    48 |                  84.2
+ PL            |      220660 | Yury do Pared√£o                     | direita   |          73 |        48 |        25 |            0 |                52 |                    13 |                  80.0
+ PL            |      220558 | Z√© Trov√£o                           | direita   |        1011 |       485 |       460 |           66 |               561 |                    66 |                  89.5
+ PL            |      204517 | Z√© Vitor                            | direita   |         455 |       281 |       152 |           22 |               256 |                    48 |                  84.2
  PL            |      220552 | Zucco                               | direita   |         837 |       433 |       380 |           24 |               434 |                    34 |                  92.7
  PODE          |      220638 | Antonio Carlos Rodrigues            | centro    |          22 |        15 |         7 |            0 |                 0 |                     0 |                      
  PODE          |      220635 | Bruno Ganem                         | centro    |        1028 |       638 |       389 |            1 |                 1 |                     0 |                 100.0
  PODE          |      220608 | Cristiane Lopes                     | centro    |          34 |        21 |        13 |            0 |                 0 |                     0 |                      
- PODE          |      228941 | Daniel JosÈ                         | centro    |          70 |        40 |        29 |            1 |                 3 |                     0 |                 100.0
+ PODE          |      228941 | Daniel Jos√©                         | centro    |          70 |        40 |        29 |            1 |                 3 |                     0 |                 100.0
  PODE          |      204511 | David Soares                        | centro    |          27 |        19 |         7 |            1 |                 0 |                     0 |                      
  PODE          |      220642 | Delegado Bruno Lima                 | centro    |          42 |        29 |        13 |            0 |                 0 |                     0 |                      
  PODE          |      220652 | Delegado Palumbo                    | centro    |          50 |        33 |        17 |            0 |                 0 |                     0 |                      
  PODE          |      220705 | Deltan Dallagnol                    | centro    |          80 |        43 |        37 |            0 |                 2 |                     4 |                  33.3
  PODE          |      220674 | Dra. Alessandra Haber               | centro    |          29 |        20 |         9 |            0 |                 0 |                     0 |                      
- PODE          |      212625 | Dr. GonÁalo                         | centro    |          71 |        43 |        28 |            0 |                 0 |                     0 |                      
+ PODE          |      212625 | Dr. Gon√ßalo                         | centro    |          71 |        43 |        28 |            0 |                 0 |                     0 |                      
  PODE          |      220528 | Dr. Victor Linhalis                 | centro    |         895 |       539 |       356 |            0 |                41 |                     3 |                  93.2
- PODE          |      227800 | Duarte GonÁalves Jr                 | centro    |           5 |         5 |         0 |            0 |                 0 |                     0 |                      
+ PODE          |      227800 | Duarte Gon√ßalves Jr                 | centro    |           5 |         5 |         0 |            0 |                 0 |                     0 |                      
  PODE          |      220540 | Duda Ramos                          | centro    |          18 |        15 |         3 |            0 |                 0 |                     0 |                      
  PODE          |      225730 | Enfermeira Ana Paula                | centro    |         198 |       123 |        71 |            4 |                 0 |                     0 |                      
- PODE          |      220681 | F·bio Macedo                        | centro    |         736 |       474 |       257 |            5 |                 0 |                     0 |                      
+ PODE          |      220681 | F√°bio Macedo                        | centro    |         736 |       474 |       257 |            5 |                 0 |                     0 |                      
  PODE          |      220646 | Felipe Becari                       | centro    |          39 |        25 |        14 |            0 |                 0 |                     0 |                      
  PODE          |      204398 | Felipe Francischini                 | centro    |          44 |        30 |        13 |            1 |                 0 |                     0 |                      
  PODE          |       74270 | Gilberto Nascimento                 | centro    |          16 |         6 |         2 |            8 |                 0 |                     0 |                      
@@ -5004,18 +5004,18 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PP            |      136811 | Afonso Hamm                         | direita   |         831 |       475 |       356 |            0 |                 4 |                     0 |                 100.0
  PP            |      160527 | Aguinaldo Ribeiro                   | direita   |         631 |       419 |       209 |            3 |                 5 |                     2 |                  71.4
  PP            |      204549 | AJ Albuquerque                      | direita   |         781 |       497 |       281 |            3 |                 8 |                     0 |                 100.0
- PP            |      226708 | Allan GarcÍs                        | direita   |         757 |       427 |       330 |            0 |                15 |                     1 |                  93.8
+ PP            |      226708 | Allan Garc√™s                        | direita   |         757 |       427 |       330 |            0 |                15 |                     1 |                  93.8
  PP            |      220707 | Amanda Gentil                       | direita   |         685 |       426 |       257 |            2 |                10 |                     1 |                  90.9
  PP            |      204356 | Amaro Neto                          | direita   |          49 |        32 |        17 |            0 |                 0 |                     0 |                      
- PP            |      107970 | Ana Paula Le„o                      | direita   |         942 |       543 |       399 |            0 |                18 |                     2 |                  90.0
- PP            |      178831 | AndrÈ Abdon                         | direita   |         292 |       194 |        98 |            0 |                 0 |                     0 |                      
- PP            |      178882 | AndrÈ Fufuca                        | direita   |          92 |        66 |        26 |            0 |                 2 |                     0 |                 100.0
+ PP            |      107970 | Ana Paula Le√£o                      | direita   |         942 |       543 |       399 |            0 |                18 |                     2 |                  90.0
+ PP            |      178831 | Andr√© Abdon                         | direita   |         292 |       194 |        98 |            0 |                 0 |                     0 |                      
+ PP            |      178882 | Andr√© Fufuca                        | direita   |          92 |        66 |        26 |            0 |                 2 |                     0 |                 100.0
  PP            |      220549 | Any Ortiz                           | direita   |          24 |        15 |         9 |            0 |                 1 |                     0 |                 100.0
  PP            |      160541 | Arthur Lira                         | direita   |         419 |        80 |        21 |          318 |                 0 |                     5 |                   0.0
- PP            |      123086 | ¡tila Lira                          | direita   |        1083 |       624 |       459 |            0 |               101 |                     7 |                  93.5
+ PP            |      123086 | √Åtila Lira                          | direita   |        1083 |       624 |       459 |            0 |               101 |                     7 |                  93.5
  PP            |      220612 | Bebeto                              | direita   |        1099 |       684 |       413 |            2 |                 8 |                     0 |                 100.0
- PP            |      229069 | Capit„o Samuel                      | direita   |          58 |        34 |        14 |           10 |                 0 |                     0 |                      
- PP            |      220665 | Clarissa TÈrcio                     | direita   |         905 |       510 |       395 |            0 |                12 |                     1 |                  92.3
+ PP            |      229069 | Capit√£o Samuel                      | direita   |          58 |        34 |        14 |           10 |                 0 |                     0 |                      
+ PP            |      220665 | Clarissa T√©rcio                     | direita   |         905 |       510 |       395 |            0 |                12 |                     1 |                  92.3
  PP            |       74537 | Claudio Cajado                      | direita   |         939 |       569 |       368 |            2 |                25 |                     0 |                 100.0
  PP            |      204376 | Coronel Armando                     | direita   |          73 |        35 |        38 |            0 |                 5 |                     1 |                  83.3
  PP            |      222142 | Coronel Telhada                     | direita   |         377 |       202 |       175 |            0 |                 6 |                     0 |                 100.0
@@ -5033,28 +5033,28 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PP            |      204351 | Dr. Luiz Ovando                     | direita   |         984 |       545 |       439 |            0 |                12 |                     0 |                 100.0
  PP            |      228616 | Dr. Remy Soares                     | direita   |          67 |        41 |        26 |            0 |                 3 |                     0 |                 100.0
  PP            |      141421 | Eduardo da Fonte                    | direita   |         888 |       562 |       325 |            1 |                 6 |                     0 |                 100.0
- PP            |      220008 | Eliza VirgÌnia                      | direita   |          83 |        38 |        40 |            5 |                18 |                     1 |                  94.7
- PP            |      234406 | Elmano FÈrrer                       | direita   |          79 |        56 |        23 |            0 |                 0 |                     0 |                      
+ PP            |      220008 | Eliza Virg√≠nia                      | direita   |          83 |        38 |        40 |            5 |                18 |                     1 |                  94.7
+ PP            |      234406 | Elmano F√©rrer                       | direita   |          79 |        56 |        23 |            0 |                 0 |                     0 |                      
  PP            |      178871 | Evair Vieira de Melo                | direita   |         921 |       476 |       445 |            0 |                33 |                     4 |                  89.2
  PP            |       66828 | Fausto Pinato                       | direita   |         869 |       530 |       326 |           13 |                26 |                     4 |                  86.7
  PP            |       92699 | Fernando Monteiro                   | direita   |         505 |       317 |       187 |            1 |                 7 |                     0 |                 100.0
  PP            |      220587 | Gerlen Diniz                        | direita   |         589 |       323 |       266 |            0 |                57 |                    16 |                  78.1
  PP            |      204531 | Guilherme Derrite                   | direita   |          98 |        52 |        46 |            0 |                 0 |                     0 |                      
  PP            |      204408 | Gustinho Ribeiro                    | direita   |          35 |        26 |         9 |            0 |                 0 |                     0 |                      
- PP            |       74550 | Jo„o Le„o                           | direita   |         835 |       504 |       327 |            4 |                47 |                     1 |                  97.9
- PP            |      141459 | Jo„o Maia                           | direita   |         723 |       464 |       255 |            4 |                 1 |                     0 |                 100.0
- PP            |      235800 | Jorge Ara˙jo                        | direita   |          28 |        21 |         7 |            0 |                 0 |                     0 |                      
- PP            |      204391 | JosÈ Nelto                          | direita   |         318 |       185 |       131 |            2 |                40 |                     1 |                  97.6
+ PP            |       74550 | Jo√£o Le√£o                           | direita   |         835 |       504 |       327 |            4 |                47 |                     1 |                  97.9
+ PP            |      141459 | Jo√£o Maia                           | direita   |         723 |       464 |       255 |            4 |                 1 |                     0 |                 100.0
+ PP            |      235800 | Jorge Ara√∫jo                        | direita   |          28 |        21 |         7 |            0 |                 0 |                     0 |                      
+ PP            |      204391 | Jos√© Nelto                          | direita   |         318 |       185 |       131 |            2 |                40 |                     1 |                  97.6
  PP            |       66385 | Julio Arcoverde                     | direita   |         768 |       476 |       291 |            1 |                10 |                     1 |                  90.9
  PP            |       74253 | Julio Lopes                         | direita   |         760 |       486 |       273 |            1 |                 8 |                     0 |                 100.0
- PP            |      228797 | J˙lio Oliveira                      | direita   |          87 |        53 |        34 |            0 |                 0 |                     0 |                      
- PP            |      141480 | L·zaro Botelho                      | direita   |         747 |       453 |       293 |            1 |                23 |                     3 |                  88.5
- PP            |      204448 | Luiz AntÙnio CorrÍa                 | direita   |         292 |       202 |        90 |            0 |                 8 |                     0 |                 100.0
+ PP            |      228797 | J√∫lio Oliveira                      | direita   |          87 |        53 |        34 |            0 |                 0 |                     0 |                      
+ PP            |      141480 | L√°zaro Botelho                      | direita   |         747 |       453 |       293 |            1 |                23 |                     3 |                  88.5
+ PP            |      204448 | Luiz Ant√¥nio Corr√™a                 | direita   |         292 |       202 |        90 |            0 |                 8 |                     0 |                 100.0
  PP            |      220669 | Lula da Fonte                       | direita   |         893 |       538 |       326 |           29 |                 8 |                     0 |                 100.0
  PP            |      160161 | Marcelo Queiroz                     | direita   |         713 |       425 |       279 |            9 |                11 |                     0 |                 100.0
  PP            |      219585 | Marco Brasil                        | direita   |         520 |       312 |       207 |            1 |                10 |                     0 |                 100.0
- PP            |      178858 | M·rio Negromonte Jr.                | direita   |         833 |       522 |       311 |            0 |                 7 |                     2 |                  77.8
- PP            |      178843 | Marx Beltr„o                        | direita   |         825 |       499 |       326 |            0 |                 8 |                     0 |                 100.0
+ PP            |      178858 | M√°rio Negromonte Jr.                | direita   |         833 |       522 |       311 |            0 |                 7 |                     2 |                  77.8
+ PP            |      178843 | Marx Beltr√£o                        | direita   |         825 |       499 |       326 |            0 |                 8 |                     0 |                 100.0
  PP            |      220647 | Mauricio Neves                      | direita   |         634 |       391 |       243 |            0 |                 2 |                     0 |                 100.0
  PP            |      220585 | Mersinho Lucena                     | direita   |         723 |       461 |       262 |            0 |                34 |                     1 |                  97.1
  PP            |      229225 | Michele Collins                     | direita   |          72 |        37 |        35 |            0 |                 0 |                     0 |                      
@@ -5066,16 +5066,16 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PP            |      204524 | Pinheirinho                         | direita   |         427 |       284 |       142 |            1 |                 8 |                     1 |                  88.9
  PP            |       73788 | Ricardo Barros                      | direita   |         344 |       217 |       127 |            0 |                 0 |                     0 |                      
  PP            |      220624 | Robinson Faria                      | direita   |         368 |       248 |       120 |            0 |                 1 |                     0 |                 100.0
- PP            |      235776 | SÈrgio Turra                        | direita   |          49 |        28 |        21 |            0 |                 5 |                     0 |                 100.0
+ PP            |      235776 | S√©rgio Turra                        | direita   |          49 |        28 |        21 |            0 |                 5 |                     0 |                 100.0
  PP            |      204360 | Silvia Cristina                     | direita   |         614 |       325 |       289 |            0 |                12 |                     1 |                  92.3
  PP            |      220651 | Simone Marquetto                    | direita   |          22 |        19 |         3 |            0 |                 0 |                     0 |                      
  PP            |      104552 | Socorro Neri                        | direita   |         914 |       544 |       370 |            0 |                22 |                     3 |                  88.0
  PP            |      220560 | Thiago de Joaldo                    | direita   |         790 |       463 |       326 |            1 |                13 |                     2 |                  86.7
- PP            |      220684 | Ti„o Medeiros                       | direita   |         826 |       483 |       340 |            3 |                39 |                     2 |                  95.1
+ PP            |      220684 | Ti√£o Medeiros                       | direita   |         826 |       483 |       340 |            3 |                39 |                     2 |                  95.1
  PP            |      178934 | Toninho Wandscheer                  | direita   |        1036 |       632 |       404 |            0 |                42 |                     8 |                  84.0
  PP            |      204396 | Vermelho                            | direita   |         263 |       170 |        93 |            0 |                 1 |                     0 |                 100.0
- PP            |      137070 | Vicentinho J˙nior                   | direita   |         738 |       452 |       286 |            0 |                 7 |                     0 |                 100.0
- PP            |      230768 | ZÈ Adriano                          | direita   |         484 |       305 |       179 |            0 |                 1 |                     0 |                 100.0
+ PP            |      137070 | Vicentinho J√∫nior                   | direita   |         738 |       452 |       286 |            0 |                 7 |                     0 |                 100.0
+ PP            |      230768 | Z√© Adriano                          | direita   |         484 |       305 |       179 |            0 |                 1 |                     0 |                 100.0
  PP            |      220592 | Zezinho Barbary                     | direita   |         857 |       534 |       323 |            0 |                10 |                     1 |                  90.9
  PRD           |      204518 | Dr. Frederico                       | centro    |         573 |       324 |       249 |            0 |                 0 |                     0 |                      
  PRD           |      234388 | Fabiano Cazeca                      | centro    |          66 |        41 |        25 |            0 |                 0 |                     0 |                      
@@ -5092,30 +5092,30 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PSB           |      220686 | Duarte Jr.                          | esquerda  |        1004 |       587 |       413 |            4 |               293 |                    48 |                  85.9
  PSB           |      220663 | Eriberto Medeiros                   | esquerda  |         927 |       574 |       353 |            0 |               291 |                     7 |                  97.7
  PSB           |       72442 | Felipe Carreras                     | esquerda  |         837 |       514 |       322 |            1 |               261 |                    14 |                  94.9
- PSB           |      204394 | Gerv·sio Maia                       | esquerda  |        1078 |       624 |       452 |            2 |               351 |                     8 |                  97.8
+ PSB           |      204394 | Gerv√°sio Maia                       | esquerda  |        1078 |       624 |       452 |            2 |               351 |                     8 |                  97.8
  PSB           |      220664 | Guilherme Uchoa                     | esquerda  |         925 |       580 |       345 |            0 |               285 |                    22 |                  92.8
  PSB           |      178964 | Heitor Schuch                       | esquerda  |         621 |       364 |       241 |           16 |               202 |                    15 |                  93.1
  PSB           |      204533 | Idilvan Alencar                     | esquerda  |          35 |        25 |        10 |            0 |                11 |                     0 |                 100.0
  PSB           |      160548 | Jonas Donizette                     | esquerda  |        1001 |       624 |       375 |            2 |               327 |                    12 |                  96.5
- PSB           |      204550 | J˙nior Mano                         | esquerda  |         222 |       151 |        71 |            0 |                60 |                     8 |                  88.2
- PSB           |      139285 | LÌdice da Mata                      | esquerda  |         993 |       589 |       404 |            0 |               364 |                     4 |                  98.9
+ PSB           |      204550 | J√∫nior Mano                         | esquerda  |         222 |       151 |        71 |            0 |                60 |                     8 |                  88.2
+ PSB           |      139285 | L√≠dice da Mata                      | esquerda  |         993 |       589 |       404 |            0 |               364 |                     4 |                  98.9
  PSB           |      220662 | Lucas Ramos                         | esquerda  |        1015 |       610 |       405 |            0 |               328 |                     6 |                  98.2
  PSB           |      178931 | Luciano Ducci                       | esquerda  |         924 |       575 |       349 |            0 |               302 |                     5 |                  98.4
  PSB           |      220634 | Marcelo Lima                        | esquerda  |         179 |       106 |        72 |            1 |                 0 |                     0 |                      
  PSB           |      220668 | Maria Arraes                        | esquerda  |          44 |        26 |        18 |            0 |                12 |                     1 |                  92.3
- PSB           |      178858 | M·rio Negromonte Jr.                | esquerda  |          39 |        30 |         9 |            0 |                12 |                     1 |                  92.3
+ PSB           |      178858 | M√°rio Negromonte Jr.                | esquerda  |          39 |        30 |         9 |            0 |                12 |                     1 |                  92.3
  PSB           |      160517 | Paulo Folletto                      | esquerda  |         771 |       469 |       290 |           12 |               227 |                     7 |                  97.0
  PSB           |      220667 | Pedro Campos                        | esquerda  |        1036 |       621 |       412 |            3 |               333 |                    14 |                  96.0
- PSB           |      204489 | RobÈrio Monteiro                    | esquerda  |          38 |        27 |        11 |            0 |                13 |                     0 |                 100.0
+ PSB           |      204489 | Rob√©rio Monteiro                    | esquerda  |          38 |        27 |        11 |            0 |                13 |                     0 |                 100.0
  PSB           |      141533 | Rodrigo Rollemberg                  | esquerda  |         297 |       180 |       117 |            0 |               127 |                     2 |                  98.4
  PSB           |      204534 | Tabata Amaral                       | esquerda  |        1032 |       571 |       460 |            1 |               292 |                    44 |                  86.9
  PSD           |      160553 | Antonio Brito                       | centro    |         396 |       278 |       118 |            0 |                 0 |                     0 |                      
- PSD           |       74090 | ¡tila Lins                          | centro    |         762 |       485 |       276 |            1 |                 2 |                     0 |                 100.0
+ PSD           |       74090 | √Åtila Lins                          | centro    |         762 |       485 |       276 |            1 |                 2 |                     0 |                 100.0
  PSD           |      220698 | Beto Preto                          | centro    |         136 |        87 |        47 |            2 |                 0 |                     0 |                      
  PSD           |      143942 | Caio Vianna                         | centro    |         600 |       373 |       227 |            0 |                 1 |                     0 |                 100.0
  PSD           |       74262 | Carlos Sampaio                      | centro    |         649 |       383 |       263 |            3 |                 0 |                     0 |                      
  PSD           |      220699 | Castro Neto                         | centro    |         868 |       542 |       326 |            0 |                 4 |                     0 |                 100.0
- PSD           |      204488 | CÈlio Studart                       | centro    |         711 |       412 |       299 |            0 |                 1 |                     0 |                 100.0
+ PSD           |      204488 | C√©lio Studart                       | centro    |         711 |       412 |       299 |            0 |                 1 |                     0 |                 100.0
  PSD           |      204504 | Cezinha de Madureira                | centro    |         921 |       563 |       358 |            0 |                13 |                     7 |                  65.0
  PSD           |      205476 | Charles Fernandes                   | centro    |         904 |       550 |       347 |            7 |                 9 |                     0 |                 100.0
  PSD           |      220571 | Daniel Agrobom                      | centro    |          26 |        17 |         9 |            0 |                 0 |                     0 |                      
@@ -5143,8 +5143,8 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PSD           |      217480 | Jones Moura                         | centro    |         154 |        97 |        55 |            2 |                 0 |                     0 |                      
  PSD           |      215043 | Josivaldo Jp                        | centro    |           1 |         1 |         0 |            0 |                 0 |                     0 |                      
  PSD           |      215043 | Josivaldo JP                        | centro    |         815 |       503 |       309 |            3 |                 1 |                     0 |                 100.0
- PSD           |       74317 | J˙lio Cesar                         | centro    |         799 |       503 |       295 |            1 |                 2 |                     1 |                  66.7
- PSD           |      204497 | J˙nior Ferrari                      | centro    |         918 |       542 |       370 |            6 |                 1 |                     0 |                 100.0
+ PSD           |       74317 | J√∫lio Cesar                         | centro    |         799 |       503 |       295 |            1 |                 2 |                     1 |                  66.7
+ PSD           |      204497 | J√∫nior Ferrari                      | centro    |         918 |       542 |       370 |            6 |                 1 |                     0 |                 100.0
  PSD           |       74856 | Laura Carneiro                      | centro    |        1072 |       631 |       436 |            5 |                62 |                     6 |                  91.2
  PSD           |      178832 | Leandre                             | centro    |          42 |        30 |        12 |            0 |                 0 |                     0 |                      
  PSD           |      204404 | Lucas Redecker                      | centro    |          45 |        25 |        20 |            0 |                 0 |                     0 |                      
@@ -5153,11 +5153,11 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PSD           |      103758 | Luciano Azevedo                     | centro    |         376 |       230 |       146 |            0 |                 0 |                     0 |                      
  PSD           |      204410 | Luisa Canziani                      | centro    |         615 |       363 |       252 |            0 |                 4 |                     0 |                 100.0
  PSD           |      141487 | Luiz Fernando Faria                 | centro    |         831 |       533 |       297 |            1 |                 1 |                     0 |                 100.0
- PSD           |      220658 | Luiz Gast„o                         | centro    |         871 |       539 |       331 |            1 |                22 |                     2 |                  91.7
+ PSD           |      220658 | Luiz Gast√£o                         | centro    |         871 |       539 |       331 |            1 |                22 |                     2 |                  91.7
  PSD           |      162332 | Luiz Nishimori                      | centro    |         804 |       496 |       306 |            2 |                 2 |                     0 |                 100.0
  PSD           |      204433 | Marcelo Calero                      | centro    |          24 |        17 |         7 |            0 |                 0 |                     0 |                      
  PSD           |      204522 | Marco Bertaiolli                    | centro    |         107 |        78 |        29 |            0 |                 0 |                     0 |                      
- PSD           |      204431 | Marcos AurÈlio Sampaio              | centro    |         860 |       540 |       320 |            0 |                 1 |                     0 |                 100.0
+ PSD           |      204431 | Marcos Aur√©lio Sampaio              | centro    |         860 |       540 |       320 |            0 |                 1 |                     0 |                 100.0
  PSD           |      220585 | Mersinho Lucena                     | centro    |          31 |        22 |         9 |            0 |                 0 |                     0 |                      
  PSD           |      178895 | Misael Varella                      | centro    |         840 |       524 |       314 |            2 |                 1 |                     0 |                 100.0
  PSD           |      228042 | Naumi Amorim                        | centro    |          26 |        19 |         7 |            0 |                 0 |                     0 |                      
@@ -5166,7 +5166,7 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PSD           |      204573 | Otto Alencar Filho                  | centro    |         792 |       485 |       307 |            0 |                 1 |                     0 |                 100.0
  PSD           |      220650 | Paulo Alexandre Barbosa             | centro    |          21 |        14 |         7 |            0 |                 0 |                     0 |                      
  PSD           |      220685 | Paulo Litro                         | centro    |         931 |       574 |       357 |            0 |                 1 |                     0 |                 100.0
- PSD           |       74574 | Paulo Magalh„es                     | centro    |        1013 |       639 |       371 |            3 |                31 |                     7 |                  81.6
+ PSD           |       74574 | Paulo Magalh√£es                     | centro    |        1013 |       639 |       371 |            3 |                31 |                     7 |                  81.6
  PSD           |      122158 | Pedro Paulo                         | centro    |         585 |       387 |       198 |            0 |                 2 |                     0 |                 100.0
  PSD           |      204567 | Raimundo Costa                      | centro    |          30 |        22 |         8 |            0 |                 0 |                     0 |                      
  PSD           |       74084 | Raimundo Santos                     | centro    |        1050 |       648 |       401 |            1 |                 2 |                     0 |                 100.0
@@ -5179,29 +5179,29 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PSD           |      160621 | Sandro Alex                         | centro    |          57 |        40 |        17 |            0 |                 0 |                     0 |                      
  PSD           |      204387 | Sargento Fahur                      | centro    |        1047 |       535 |       511 |            1 |                 7 |                     2 |                  77.8
  PSD           |      226837 | Saulo Pedroso                       | centro    |         690 |       419 |       271 |            0 |                 1 |                     0 |                 100.0
- PSD           |       73808 | SÈrgio Brito                        | centro    |         147 |        98 |        48 |            1 |                 0 |                     0 |                      
+ PSD           |       73808 | S√©rgio Brito                        | centro    |         147 |        98 |        48 |            1 |                 0 |                     0 |                      
  PSD           |      204557 | Sidney Leite                        | centro    |         918 |       531 |       376 |           11 |                21 |                     4 |                  84.0
  PSD           |       92776 | Stefano Aguiar                      | centro    |         727 |       421 |       279 |           27 |                 1 |                     0 |                 100.0
  PSD           |      160976 | Tiririca                            | centro    |         151 |        99 |        52 |            0 |                 0 |                     0 |                      
- PSD           |      157130 | T˙lio GadÍlha                       | centro    |          44 |        28 |        16 |            0 |                 1 |                     0 |                 100.0
+ PSD           |      157130 | T√∫lio Gad√™lha                       | centro    |          44 |        28 |        16 |            0 |                 1 |                     0 |                 100.0
  PSD           |      178992 | Vitor Lippi                         | centro    |          57 |        38 |        19 |            0 |                 0 |                     0 |                      
  PSD           |      160518 | Weliton Prado                       | centro    |          11 |        10 |         1 |            0 |                 0 |                     0 |                      
  PSD           |       74043 | Wellington Roberto                  | centro    |          23 |        17 |         6 |            0 |                 0 |                     0 |                      
- PSD           |      220536 | ZÈ Haroldo Cathedral                | centro    |        1041 |       614 |       426 |            1 |                56 |                     3 |                  94.9
+ PSD           |      220536 | Z√© Haroldo Cathedral                | centro    |        1041 |       614 |       426 |            1 |                56 |                     3 |                  94.9
  PSDB          |      204560 | Adolfo Viana                        | centro    |         644 |       434 |       210 |            0 |                 0 |                     0 |                      
- PSDB          |       74646 | AÈcio Neves                         | centro    |         571 |       382 |       189 |            0 |                 0 |                     0 |                      
+ PSDB          |       74646 | A√©cio Neves                         | centro    |         571 |       382 |       189 |            0 |                 0 |                     0 |                      
  PSDB          |      220544 | Antonio Andrade                     | centro    |          26 |        20 |         6 |            0 |                 0 |                     0 |                      
  PSDB          |      204358 | Beto Pereira                        | centro    |         779 |       494 |       283 |            2 |                 0 |                     0 |                      
  PSDB          |      220683 | Beto Richa                          | centro    |        1048 |       665 |       382 |            1 |                 0 |                     0 |                      
  PSDB          |       74262 | Carlos Sampaio                      | centro    |         273 |       168 |       105 |            0 |                 0 |                     0 |                      
  PSDB          |      141411 | Dagoberto Nogueira                  | centro    |         965 |       574 |       387 |            4 |                 0 |                     0 |                      
  PSDB          |      204409 | Daniel Trzeciak                     | centro    |         924 |       544 |       379 |            1 |                 0 |                     0 |                      
- PSDB          |      178966 | Geovania de S·                      | centro    |         767 |       427 |       334 |            6 |                 0 |                     0 |                      
+ PSDB          |      178966 | Geovania de S√°                      | centro    |         767 |       427 |       334 |            6 |                 0 |                     0 |                      
  PSDB          |       74374 | Geraldo Resende                     | centro    |         945 |       580 |       365 |            0 |                 0 |                     0 |                      
  PSDB          |      220567 | Jeferson Rodrigues                  | centro    |          46 |        33 |        13 |            0 |                 0 |                     0 |                      
  PSDB          |      204457 | Juninho do Pneu                     | centro    |          39 |        28 |        11 |            0 |                 0 |                     0 |                      
  PSDB          |      178886 | Juscelino Filho                     | centro    |          30 |        23 |         7 |            0 |                 0 |                     0 |                      
- PSDB          |      220566 | LÍda Borges                         | centro    |         742 |       471 |       270 |            1 |                 0 |                     0 |                      
+ PSDB          |      220566 | L√™da Borges                         | centro    |         742 |       471 |       270 |            1 |                 0 |                     0 |                      
  PSDB          |      204404 | Lucas Redecker                      | centro    |        1150 |       609 |       541 |            0 |                 0 |                     0 |                      
  PSDB          |      220616 | Luciano Vieira                      | centro    |          75 |        51 |        24 |            0 |                 0 |                     0 |                      
  PSDB          |      160161 | Marcelo Queiroz                     | centro    |          98 |        55 |        39 |            4 |                 0 |                     0 |                      
@@ -5211,10 +5211,10 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PSDB          |      141516 | Paulo Abi-Ackel                     | centro    |         795 |       504 |       291 |            0 |                 0 |                     0 |                      
  PSDB          |      220650 | Paulo Alexandre Barbosa             | centro    |         934 |       547 |       386 |            1 |                 0 |                     0 |                      
  PSDB          |      204390 | Professor Alcides                   | centro    |          37 |        23 |        14 |            0 |                 0 |                     0 |                      
- PSDB          |      221329 | Ricardo Abr„o                       | centro    |          37 |        28 |         9 |            0 |                 0 |                     0 |                      
- PSDB          |      137070 | Vicentinho J˙nior                   | centro    |          47 |        34 |        13 |            0 |                 0 |                     0 |                      
+ PSDB          |      221329 | Ricardo Abr√£o                       | centro    |          37 |        28 |         9 |            0 |                 0 |                     0 |                      
+ PSDB          |      137070 | Vicentinho J√∫nior                   | centro    |          47 |        34 |        13 |            0 |                 0 |                     0 |                      
  PSDB          |      178992 | Vitor Lippi                         | centro    |         834 |       505 |       318 |           11 |                 0 |                     0 |                      
- PSOL          |      206018 | CÈlia Xakriab·                      | esquerda  |         871 |       477 |       390 |            4 |                 0 |                     0 |                      
+ PSOL          |      206018 | C√©lia Xakriab√°                      | esquerda  |         871 |       477 |       390 |            4 |                 0 |                     0 |                      
  PSOL          |       74171 | Chico Alencar                       | esquerda  |        1175 |       631 |       534 |           10 |                 0 |                     0 |                      
  PSOL          |      220623 | Duda Salabert                       | esquerda  |          36 |        20 |        16 |            0 |                 0 |                     0 |                      
  PSOL          |      220645 | Erika Hilton                        | esquerda  |         816 |       434 |       379 |            3 |                 0 |                     0 |                      
@@ -5226,10 +5226,10 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PSOL          |      220615 | Pastor Henrique Vieira              | esquerda  |        1106 |       581 |       513 |           12 |                 0 |                     0 |                      
  PSOL          |      233592 | Paulo Lemos                         | esquerda  |         144 |        86 |        58 |            0 |                 0 |                     0 |                      
  PSOL          |      221338 | Professora Luciene Cavalcante       | esquerda  |        1028 |       533 |       492 |            3 |                 0 |                     0 |                      
- PSOL          |      204535 | S‚mia Bomfim                        | esquerda  |        1007 |       499 |       475 |           33 |                 0 |                     0 |                      
- PSOL          |      220643 | SÙnia Guajajara                     | esquerda  |          42 |        26 |        16 |            0 |                 0 |                     0 |                      
- PSOL          |      204464 | TalÌria Petrone                     | esquerda  |         751 |       398 |       349 |            4 |                 0 |                     0 |                      
- PSOL          |      220598 | TarcÌsio Motta                      | esquerda  |        1134 |       578 |       547 |            9 |                 0 |                     0 |                      
+ PSOL          |      204535 | S√¢mia Bomfim                        | esquerda  |        1007 |       499 |       475 |           33 |                 0 |                     0 |                      
+ PSOL          |      220643 | S√¥nia Guajajara                     | esquerda  |          42 |        26 |        16 |            0 |                 0 |                     0 |                      
+ PSOL          |      204464 | Tal√≠ria Petrone                     | esquerda  |         751 |       398 |       349 |            4 |                 0 |                     0 |                      
+ PSOL          |      220598 | Tarc√≠sio Motta                      | esquerda  |        1134 |       578 |       547 |            9 |                 0 |                     0 |                      
  PT            |      160508 | Afonso Florence                     | esquerda  |          53 |        22 |        31 |            0 |                 0 |                     0 |                      
  PT            |      204495 | Airton Faleiro                      | esquerda  |         936 |       543 |       390 |            3 |                 0 |                     0 |                      
  PT            |      204501 | Alencar Santana                     | esquerda  |        1105 |       636 |       465 |            4 |                 0 |                     0 |                      
@@ -5247,24 +5247,24 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PT            |      220704 | Carol Dartora                       | esquerda  |         730 |       443 |       287 |            0 |                 0 |                     0 |                      
  PT            |      220629 | Dandara                             | esquerda  |         792 |       478 |       314 |            0 |                 0 |                     0 |                      
  PT            |      220565 | Delegada Adriana Accorsi            | esquerda  |         814 |       493 |       320 |            1 |                 0 |                     0 |                      
- PT            |      220553 | Denise PessÙa                       | esquerda  |         994 |       578 |       412 |            4 |                 0 |                     0 |                      
+ PT            |      220553 | Denise Pess√¥a                       | esquerda  |         994 |       578 |       412 |            4 |                 0 |                     0 |                      
  PT            |      220671 | Dilvanda Faro                       | esquerda  |        1019 |       605 |       409 |            5 |                 0 |                     0 |                      
  PT            |      220602 | Dimas Gadelha                       | esquerda  |         927 |       568 |       359 |            0 |                 0 |                     0 |                      
  PT            |      220688 | Dr. Francisco                       | esquerda  |        1007 |       599 |       406 |            2 |                 0 |                     0 |                      
  PT            |      229585 | Elisangela Araujo                   | esquerda  |         103 |        53 |        50 |            0 |                 0 |                     0 |                      
  PT            |      160575 | Erika Kokay                         | esquerda  |        1177 |       657 |       517 |            3 |                 0 |                     0 |                      
  PT            |      204445 | Fernando Mineiro                    | esquerda  |         927 |       534 |       389 |            4 |                 0 |                     0 |                      
- PT            |      191923 | Fl·vio Nogueira                     | esquerda  |        1173 |       676 |       494 |            3 |                 0 |                     0 |                      
+ PT            |      191923 | Fl√°vio Nogueira                     | esquerda  |        1173 |       676 |       494 |            3 |                 0 |                     0 |                      
  PT            |      220700 | Florentino Neto                     | esquerda  |         933 |       553 |       377 |            3 |                 0 |                     0 |                      
  PT            |      107283 | Gleisi Hoffmann                     | esquerda  |         427 |       269 |       157 |            1 |                 0 |                     0 |                      
- PT            |      178873 | Helder Salom„o                      | esquerda  |        1205 |       675 |       525 |            5 |                 0 |                     0 |                      
+ PT            |      178873 | Helder Salom√£o                      | esquerda  |        1205 |       675 |       525 |            5 |                 0 |                     0 |                      
  PT            |      220696 | Ivoneide Caetano                    | esquerda  |         987 |       584 |       401 |            2 |                 0 |                     0 |                      
  PT            |      220527 | Jack Rocha                          | esquerda  |        1063 |       626 |       432 |            5 |                 0 |                     0 |                      
  PT            |      141456 | Jilmar Tatto                        | esquerda  |         859 |       534 |       325 |            0 |                 0 |                     0 |                      
- PT            |      178970 | Jo„o Daniel                         | esquerda  |         868 |       511 |       352 |            5 |                 0 |                     0 |                      
+ PT            |      178970 | Jo√£o Daniel                         | esquerda  |         868 |       511 |       352 |            5 |                 0 |                     0 |                      
  PT            |      178857 | Jorge Solla                         | esquerda  |         894 |       527 |       362 |            5 |                 0 |                     0 |                      
- PT            |      141464 | JosÈ Airton FÈlix Cirilo            | esquerda  |         754 |       456 |       294 |            4 |                 0 |                     0 |                      
- PT            |      141470 | JosÈ Guimar„es                      | esquerda  |        1028 |       594 |       429 |            5 |                 0 |                     0 |                      
+ PT            |      141464 | Jos√© Airton F√©lix Cirilo            | esquerda  |         754 |       456 |       294 |            4 |                 0 |                     0 |                      
+ PT            |      141470 | Jos√© Guimar√£es                      | esquerda  |        1028 |       594 |       429 |            5 |                 0 |                     0 |                      
  PT            |      209189 | Joseildo Ramos                      | esquerda  |         912 |       539 |       369 |            4 |                 0 |                     0 |                      
  PT            |       74141 | Josias Gomes                        | esquerda  |         855 |       515 |       340 |            0 |                 0 |                     0 |                      
  PT            |      220640 | Juliana Cardoso                     | esquerda  |         898 |       545 |       351 |            2 |                 0 |                     0 |                      
@@ -5275,15 +5275,15 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PT            |       74041 | Luiz Couto                          | esquerda  |        1318 |       730 |       585 |            3 |                 0 |                     0 |                      
  PT            |      178866 | Luizianne Lins                      | esquerda  |         873 |       519 |       340 |           14 |                 0 |                     0 |                      
  PT            |      160535 | Marcon                              | esquerda  |         964 |       559 |       400 |            5 |                 0 |                     0 |                      
- PT            |       74398 | Maria do Ros·rio                    | esquerda  |         854 |       495 |       337 |           22 |                 0 |                     0 |                      
+ PT            |       74398 | Maria do Ros√°rio                    | esquerda  |         854 |       495 |       337 |           22 |                 0 |                     0 |                      
  PT            |      188097 | Merlong Solano                      | esquerda  |        1107 |       651 |       453 |            3 |                 0 |                     0 |                      
- PT            |      171786 | Miguel ¬ngelo                       | esquerda  |         875 |       513 |       361 |            1 |                 0 |                     0 |                      
- PT            |      204453 | Nat·lia Bonavides                   | esquerda  |         893 |       497 |       392 |            4 |                 0 |                     0 |                      
+ PT            |      171786 | Miguel √Çngelo                       | esquerda  |         875 |       513 |       361 |            1 |                 0 |                     0 |                      
+ PT            |      204453 | Nat√°lia Bonavides                   | esquerda  |         893 |       497 |       392 |            4 |                 0 |                     0 |                      
  PT            |      178986 | Nilto Tatto                         | esquerda  |        1067 |       613 |       450 |            4 |                 0 |                     0 |                      
  PT            |       74159 | Odair Cunha                         | esquerda  |         989 |       591 |       394 |            4 |                 0 |                     0 |                      
- PT            |      160556 | Padre Jo„o                          | esquerda  |        1030 |       604 |       424 |            2 |                 0 |                     0 |                      
+ PT            |      160556 | Padre Jo√£o                          | esquerda  |        1030 |       604 |       424 |            2 |                 0 |                     0 |                      
  PT            |       74160 | Patrus Ananias                      | esquerda  |        1108 |       635 |       471 |            2 |                 0 |                     0 |                      
- PT            |      171617 | Paul„o                              | esquerda  |         980 |       569 |       403 |            8 |                 0 |                     0 |                      
+ PT            |      171617 | Paul√£o                              | esquerda  |         980 |       569 |       403 |            8 |                 0 |                     0 |                      
  PT            |      204492 | Paulo Guedes                        | esquerda  |        1003 |       597 |       403 |            3 |                 0 |                     0 |                      
  PT            |      233592 | Paulo Lemos                         | esquerda  |          35 |        22 |        13 |            0 |                 0 |                     0 |                      
  PT            |       74400 | Paulo Pimenta                       | esquerda  |         477 |       275 |       199 |            3 |                 0 |                     0 |                      
@@ -5293,44 +5293,44 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  PT            |       74161 | Reginaldo Lopes                     | esquerda  |         684 |       416 |       265 |            3 |                 0 |                     0 |                      
  PT            |      221378 | Reginete Bispo                      | esquerda  |         491 |       301 |       190 |            0 |                 0 |                     0 |                      
  PT            |      220606 | Reimont                             | esquerda  |         986 |       587 |       397 |            2 |                 0 |                     0 |                      
- PT            |      204480 | RogÈrio Correia                     | esquerda  |         979 |       587 |       390 |            2 |                 0 |                     0 |                      
+ PT            |      204480 | Rog√©rio Correia                     | esquerda  |         979 |       587 |       390 |            2 |                 0 |                     0 |                      
  PT            |       74371 | Rubens Otoni                        | esquerda  |         793 |       453 |       338 |            2 |                 0 |                     0 |                      
- PT            |      178887 | Rubens Pereira J˙nior               | esquerda  |        1140 |       659 |       480 |            1 |                 0 |                     0 |                      
- PT            |       73604 | Rui Falc„o                          | esquerda  |        1008 |       558 |       441 |            9 |                 0 |                     0 |                      
+ PT            |      178887 | Rubens Pereira J√∫nior               | esquerda  |        1140 |       659 |       480 |            1 |                 0 |                     0 |                      
+ PT            |       73604 | Rui Falc√£o                          | esquerda  |        1008 |       558 |       441 |            9 |                 0 |                     0 |                      
  PT            |      220682 | Tadeu Veneri                        | esquerda  |         976 |       571 |       404 |            1 |                 0 |                     0 |                      
- PT            |      160610 | Valmir AssunÁ„o                     | esquerda  |         891 |       529 |       358 |            4 |                 0 |                     0 |                      
+ PT            |      160610 | Valmir Assun√ß√£o                     | esquerda  |         891 |       529 |       358 |            4 |                 0 |                     0 |                      
  PT            |       74376 | Vander Loubet                       | esquerda  |         910 |       542 |       364 |            4 |                 0 |                     0 |                      
  PT            |       74283 | Vicentinho                          | esquerda  |         927 |       533 |       391 |            3 |                 0 |                     0 |                      
  PT            |      160569 | Waldenor Pereira                    | esquerda  |         849 |       500 |       349 |            0 |                 0 |                     0 |                      
- PT            |      220601 | Washington Quaqu·                   | esquerda  |         313 |       200 |       113 |            0 |                 0 |                     0 |                      
+ PT            |      220601 | Washington Quaqu√°                   | esquerda  |         313 |       200 |       113 |            0 |                 0 |                     0 |                      
  PT            |      224333 | Welter                              | esquerda  |         956 |       560 |       394 |            2 |                 0 |                     0 |                      
  PT            |      160592 | Zeca Dirceu                         | esquerda  |         894 |       524 |       362 |            8 |                 0 |                     0 |                      
- PT            |      204559 | ZÈ Neto                             | esquerda  |         795 |       480 |       306 |            9 |                 0 |                     0 |                      
+ PT            |      204559 | Z√© Neto                             | esquerda  |         795 |       480 |       306 |            9 |                 0 |                     0 |                      
  PV            |      178927 | Aliel Machado                       | esquerda  |         588 |       359 |       228 |            1 |                 0 |                     0 |                      
  PV            |       69871 | Bacelar                             | esquerda  |        1127 |       657 |       468 |            2 |                 0 |                     0 |                      
  PV            |      220605 | Bandeira de Mello                   | esquerda  |          43 |        27 |        16 |            0 |                 0 |                     0 |                      
- PV            |       88256 | Clodoaldo Magalh„es                 | esquerda  |         926 |       545 |       379 |            2 |                 0 |                     0 |                      
+ PV            |       88256 | Clodoaldo Magalh√£es                 | esquerda  |         926 |       545 |       379 |            2 |                 0 |                     0 |                      
  PV            |      204541 | Eduardo Bismarck                    | esquerda  |          37 |        22 |        15 |            0 |                 0 |                     0 |                      
  PV            |      220697 | Jadyel Alencar                      | esquerda  |         226 |       142 |        83 |            1 |                 0 |                     0 |                      
  PV            |      220581 | Luciano Amaral                      | esquerda  |         593 |       361 |       232 |            0 |                 0 |                     0 |                      
  PV            |      220533 | Prof. Reginaldo Veras               | esquerda  |         994 |       580 |       414 |            0 |                 0 |                     0 |                      
- REDE          |      204515 | AndrÈ Janones                       | esquerda  |          43 |        26 |        17 |            0 |                 0 |                     0 |                      
+ REDE          |      204515 | Andr√© Janones                       | esquerda  |          43 |        26 |        17 |            0 |                 0 |                     0 |                      
  REDE          |      234840 | Cristiano Furlan                    | esquerda  |          22 |        10 |        12 |            0 |                 0 |                     0 |                      
- REDE          |      234788 | HeloÌsa Helena                      | esquerda  |          94 |        56 |        37 |            1 |                 0 |                     0 |                      
+ REDE          |      234788 | Helo√≠sa Helena                      | esquerda  |          94 |        56 |        37 |            1 |                 0 |                     0 |                      
  REDE          |      234253 | Lucas Abrahao                       | esquerda  |          87 |        48 |        36 |            3 |                 0 |                     0 |                      
  REDE          |      178866 | Luizianne Lins                      | esquerda  |          40 |        21 |        14 |            5 |                 0 |                     0 |                      
  REDE          |      220637 | Marina Silva                        | esquerda  |          43 |        27 |        11 |            5 |                 0 |                     0 |                      
- REDE          |      234310 | Ricardo Galv„o                      | esquerda  |         148 |        79 |        60 |            9 |                 0 |                     0 |                      
- REDE          |      157130 | T˙lio GadÍlha                       | esquerda  |         847 |       474 |       369 |            4 |                 0 |                     0 |                      
+ REDE          |      234310 | Ricardo Galv√£o                      | esquerda  |         148 |        79 |        60 |            9 |                 0 |                     0 |                      
+ REDE          |      157130 | T√∫lio Gad√™lha                       | esquerda  |         847 |       474 |       369 |            4 |                 0 |                     0 |                      
  REPUBLICANOS  |      220714 | Adail Filho                         | direita   |         983 |       619 |       364 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      220538 | Albuquerque                         | direita   |         921 |       594 |       327 |            0 |                 1 |                     0 |                 100.0
- REPUBLICANOS  |      220542 | Alexandre Guimar„es                 | direita   |         262 |       168 |        94 |            0 |                 1 |                     0 |                 100.0
+ REPUBLICANOS  |      220542 | Alexandre Guimar√£es                 | direita   |         262 |       168 |        94 |            0 |                 1 |                     0 |                 100.0
  REPUBLICANOS  |      204571 | Alex Santana                        | direita   |         663 |       449 |       210 |            4 |                 0 |                     0 |                      
  REPUBLICANOS  |      204353 | Aline Gurgel                        | direita   |          89 |        57 |        32 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      178881 | Aluisio Mendes                      | direita   |         930 |       557 |       373 |            0 |                41 |                     2 |                  95.3
  REPUBLICANOS  |      204356 | Amaro Neto                          | direita   |         999 |       632 |       367 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      220715 | Amom Mandel                         | direita   |          28 |        21 |         7 |            0 |                 0 |                     0 |                      
- REPUBLICANOS  |      123756 | AntÙnia L˙cia                       | direita   |         804 |       515 |       288 |            1 |                 1 |                     0 |                 100.0
+ REPUBLICANOS  |      123756 | Ant√¥nia L√∫cia                       | direita   |         804 |       515 |       288 |            1 |                 1 |                     0 |                 100.0
  REPUBLICANOS  |      220544 | Antonio Andrade                     | direita   |        1012 |       630 |       379 |            3 |                 0 |                     0 |                      
  REPUBLICANOS  |      160665 | Augusto Coutinho                    | direita   |         983 |       610 |       372 |            1 |                 0 |                     0 |                      
  REPUBLICANOS  |      204358 | Beto Pereira                        | direita   |          29 |        20 |         9 |            0 |                 0 |                     0 |                      
@@ -5339,10 +5339,10 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  REPUBLICANOS  |       73441 | Celso Russomanno                    | direita   |         841 |       539 |       292 |           10 |                 4 |                     0 |                 100.0
  REPUBLICANOS  |      141408 | Cleber Verde                        | direita   |          49 |        34 |        15 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      204459 | Daniela do Waguinho                 | direita   |          36 |        26 |        10 |            0 |                 0 |                     0 |                      
- REPUBLICANOS  |      220539 | Defensor StÈlio Dener               | direita   |        1062 |       668 |       394 |            0 |                30 |                    10 |                  75.0
+ REPUBLICANOS  |      220539 | Defensor St√©lio Dener               | direita   |        1062 |       668 |       394 |            0 |                30 |                    10 |                  75.0
  REPUBLICANOS  |      220691 | Diego Coronel                       | direita   |          48 |        32 |        16 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      178929 | Diego Garcia                        | direita   |         969 |       551 |       415 |            3 |                46 |                    12 |                  79.3
- REPUBLICANOS  |      227800 | Duarte GonÁalves Jr                 | direita   |          66 |        43 |        23 |            0 |                 0 |                     0 |                      
+ REPUBLICANOS  |      227800 | Duarte Gon√ßalves Jr                 | direita   |          66 |        43 |        23 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      204364 | Eli Borges                          | direita   |          33 |        23 |        10 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      218086 | Ely Santos                          | direita   |         919 |       587 |       330 |            2 |                 1 |                     0 |                 100.0
  REPUBLICANOS  |      204482 | Euclydes Pettersen                  | direita   |         505 |       333 |       172 |            0 |                 0 |                     0 |                      
@@ -5352,7 +5352,7 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  REPUBLICANOS  |      220551 | Franciane Bayer                     | direita   |        1007 |       588 |       419 |            0 |                13 |                     1 |                  92.9
  REPUBLICANOS  |      220534 | Fred Linhares                       | direita   |         967 |       610 |       357 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      224117 | Gabriel Mota                        | direita   |         987 |       621 |       366 |            0 |                 1 |                     0 |                 100.0
- REPUBLICANOS  |      178966 | Geovania de S·                      | direita   |          20 |        12 |         7 |            1 |                 0 |                     0 |                      
+ REPUBLICANOS  |      178966 | Geovania de S√°                      | direita   |          20 |        12 |         7 |            1 |                 0 |                     0 |                      
  REPUBLICANOS  |      204491 | Gilberto Abramo                     | direita   |         823 |       532 |       291 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      220531 | Gilvan Maximo                       | direita   |         623 |       380 |       243 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      204408 | Gustinho Ribeiro                    | direita   |         910 |       580 |       330 |            0 |                 1 |                     0 |                 100.0
@@ -5362,20 +5362,20 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  REPUBLICANOS  |      235620 | Ilacir Bicalho                      | direita   |          39 |        30 |         9 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      220697 | Jadyel Alencar                      | direita   |         549 |       363 |       186 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      220567 | Jeferson Rodrigues                  | direita   |         753 |       474 |       278 |            1 |                 1 |                     0 |                 100.0
- REPUBLICANOS  |      235869 | Jo„o Carlos                         | direita   |          37 |        27 |        10 |            0 |                 0 |                     0 |                      
+ REPUBLICANOS  |      235869 | Jo√£o Carlos                         | direita   |          37 |        27 |        10 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      205550 | Jorge Braz                          | direita   |        1023 |       643 |       380 |            0 |                 4 |                     0 |                 100.0
  REPUBLICANOS  |      214694 | Jorge Goetten                       | direita   |         497 |       324 |       172 |            1 |                 0 |                     0 |                      
  REPUBLICANOS  |      204474 | Juarez Costa                        | direita   |          44 |        26 |        18 |            0 |                 1 |                     0 |                 100.0
  REPUBLICANOS  |      204372 | Julio Cesar Ribeiro                 | direita   |         750 |       457 |       293 |            0 |                 4 |                     0 |                 100.0
  REPUBLICANOS  |      208297 | Katia Dias                          | direita   |         110 |        60 |        50 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |       98057 | Lafayette de Andrada                | direita   |         700 |       403 |       297 |            0 |                63 |                     0 |                 100.0
- REPUBLICANOS  |      220566 | LÍda Borges                         | direita   |          27 |        18 |         8 |            1 |                 0 |                     0 |                      
+ REPUBLICANOS  |      220566 | L√™da Borges                         | direita   |          27 |        18 |         8 |            1 |                 0 |                     0 |                      
  REPUBLICANOS  |       80815 | Leo Prates                          | direita   |          18 |        15 |         3 |            0 |                 1 |                     0 |                 100.0
  REPUBLICANOS  |      220616 | Luciano Vieira                      | direita   |         470 |       283 |       187 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      222429 | Luis Carlos Gomes                   | direita   |         907 |       576 |       330 |            1 |                 0 |                     0 |                      
  REPUBLICANOS  |      220599 | Marcelo Crivella                    | direita   |        1021 |       642 |       377 |            2 |                31 |                     5 |                  86.1
  REPUBLICANOS  |      204558 | Marcelo Nilo                        | direita   |          36 |        27 |         9 |            0 |                 0 |                     0 |                      
- REPUBLICANOS  |      150418 | M·rcio Marinho                      | direita   |         904 |       587 |       316 |            1 |                 3 |                     0 |                 100.0
+ REPUBLICANOS  |      150418 | M√°rcio Marinho                      | direita   |         904 |       587 |       316 |            1 |                 3 |                     0 |                 100.0
  REPUBLICANOS  |      204506 | Marcos Pereira                      | direita   |         673 |       413 |       213 |           47 |                 0 |                     0 |                      
  REPUBLICANOS  |      227275 | Mariana Carvalho                    | direita   |          87 |        59 |        28 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      204540 | Maria Rosas                         | direita   |         995 |       625 |       370 |            0 |                11 |                     1 |                  91.7
@@ -5390,11 +5390,11 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  REPUBLICANOS  |      115200 | Raniery Paulino                     | direita   |          73 |        47 |        25 |            1 |                 7 |                     0 |                 100.0
  REPUBLICANOS  |      220543 | Ricardo Ayres                       | direita   |        1255 |       726 |       529 |            0 |                93 |                     1 |                  98.9
  REPUBLICANOS  |      220588 | Roberto Duarte                      | direita   |        1317 |       706 |       611 |            0 |               102 |                    11 |                  90.3
- REPUBLICANOS  |      220695 | RogÈria Santos                      | direita   |         912 |       596 |       314 |            2 |                 4 |                     1 |                  80.0
+ REPUBLICANOS  |      220695 | Rog√©ria Santos                      | direita   |         912 |       596 |       314 |            2 |                 4 |                     1 |                  80.0
  REPUBLICANOS  |      163321 | Ronaldo Nogueira                    | direita   |         686 |       424 |       262 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      178945 | Rosangela Gomes                     | direita   |          86 |        58 |        28 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      220631 | Samuel Viana                        | direita   |         658 |       423 |       235 |            0 |                 0 |                     0 |                      
- REPUBLICANOS  |       74356 | Silas C‚mara                        | direita   |         635 |       427 |       208 |            0 |                 1 |                     1 |                  50.0
+ REPUBLICANOS  |       74356 | Silas C√¢mara                        | direita   |         635 |       427 |       208 |            0 |                 1 |                     1 |                  50.0
  REPUBLICANOS  |      204425 | Silvio Costa Filho                  | direita   |         136 |       102 |        34 |            0 |                 7 |                     0 |                 100.0
  REPUBLICANOS  |      220560 | Thiago de Joaldo                    | direita   |          32 |        24 |         8 |            0 |                 0 |                     0 |                      
  REPUBLICANOS  |      220597 | Thiago Flores                       | direita   |         561 |       311 |       250 |            0 |                 2 |                     0 |                 100.0
@@ -5405,35 +5405,35 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  SOLIDARIEDADE |      160512 | Aureo Ribeiro                       | centro    |         831 |       551 |       276 |            4 |                 3 |                     1 |                  75.0
  SOLIDARIEDADE |      220589 | Eduardo Velloso                     | centro    |          29 |        23 |         6 |            0 |                 0 |                     0 |                      
  SOLIDARIEDADE |      171139 | Loreny                              | centro    |          44 |        28 |        16 |            0 |                 0 |                     0 |                      
- SOLIDARIEDADE |      220687 | M·rcio Honaiser                     | centro    |          30 |        16 |        11 |            3 |                 0 |                     0 |                      
+ SOLIDARIEDADE |      220687 | M√°rcio Honaiser                     | centro    |          30 |        16 |        11 |            3 |                 0 |                     0 |                      
  SOLIDARIEDADE |      220668 | Maria Arraes                        | centro    |        1033 |       594 |       438 |            1 |                22 |                     1 |                  95.7
  SOLIDARIEDADE |      220607 | Max Lemos                           | centro    |           5 |         4 |         1 |            0 |                 0 |                     0 |                      
- SOLIDARIEDADE |      141518 | Paulinho da ForÁa                   | centro    |         396 |       262 |       134 |            0 |                 0 |                     0 |                      
+ SOLIDARIEDADE |      141518 | Paulinho da For√ßa                   | centro    |         396 |       262 |       134 |            0 |                 0 |                     0 |                      
  SOLIDARIEDADE |      235088 | Ribeiro Neto                        | centro    |          39 |        25 |        12 |            2 |                 0 |                     0 |                      
  SOLIDARIEDADE |      234673 | Vanderlan Alves                     | centro    |          44 |        26 |        18 |            0 |                 0 |                     0 |                      
  SOLIDARIEDADE |      160518 | Weliton Prado                       | centro    |         831 |       510 |       297 |           24 |                 0 |                     0 |                      
- SOLIDARIEDADE |      182146 | Wolmer Ara˙jo                       | centro    |          62 |        41 |        20 |            1 |                 0 |                     0 |                      
- SOLIDARIEDADE |      160632 | ZÈ Silva                            | centro    |         786 |       511 |       275 |            0 |                 2 |                     0 |                 100.0
+ SOLIDARIEDADE |      182146 | Wolmer Ara√∫jo                       | centro    |          62 |        41 |        20 |            1 |                 0 |                     0 |                      
+ SOLIDARIEDADE |      160632 | Z√© Silva                            | centro    |         786 |       511 |       275 |            0 |                 2 |                     0 |                 100.0
  UNIAO         |      160545 | Alexandre Leite                     | centro    |         454 |       286 |       166 |            2 |                 8 |                     0 |                 100.0
  UNIAO         |      220576 | Alfredo Gaspar                      | centro    |        1094 |       589 |       502 |            3 |                93 |                    12 |                  88.6
  UNIAO         |      204353 | Aline Gurgel                        | centro    |          25 |        20 |         5 |            0 |                 0 |                     0 |                      
  UNIAO         |      160600 | Arthur Oliveira Maia                | centro    |         692 |       427 |       261 |            4 |                32 |                     1 |                  97.0
- UNIAO         |      109429 | Benes Leoc·dio                      | centro    |        1080 |       681 |       397 |            2 |                34 |                     2 |                  94.4
+ UNIAO         |      109429 | Benes Leoc√°dio                      | centro    |        1080 |       681 |       397 |            2 |                34 |                     2 |                  94.4
  UNIAO         |      213762 | Carla Dickson                       | centro    |         464 |       281 |       183 |            0 |                 1 |                     1 |                  50.0
  UNIAO         |      178993 | Carlos Henrique Gaguim              | centro    |         976 |       629 |       346 |            1 |                13 |                     1 |                  92.9
  UNIAO         |      204496 | Celso Sabino                        | centro    |         122 |        82 |        40 |            0 |                 3 |                     0 |                 100.0
- UNIAO         |      204476 | Chiquinho Braz„o                    | centro    |         183 |       124 |        59 |            0 |                13 |                     0 |                 100.0
+ UNIAO         |      204476 | Chiquinho Braz√£o                    | centro    |         183 |       124 |        59 |            0 |                13 |                     0 |                 100.0
  UNIAO         |      220594 | Coronel Assis                       | centro    |        1016 |       532 |       482 |            2 |                57 |                    14 |                  80.3
  UNIAO         |      220590 | Coronel Ulysses                     | centro    |         994 |       554 |       440 |            0 |                19 |                     1 |                  95.0
  UNIAO         |      220608 | Cristiane Lopes                     | centro    |         970 |       558 |       412 |            0 |                11 |                     0 |                 100.0
  UNIAO         |      220692 | Dal Barreto                         | centro    |         838 |       528 |       302 |            8 |                 9 |                     0 |                 100.0
- UNIAO         |       74467 | Dami„o Feliciano                    | centro    |         839 |       531 |       308 |            0 |                 9 |                     2 |                  81.8
+ UNIAO         |       74467 | Dami√£o Feliciano                    | centro    |         839 |       531 |       308 |            0 |                 9 |                     2 |                  81.8
  UNIAO         |      220603 | Dani Cunha                          | centro    |         860 |       524 |       336 |            0 |                24 |                     0 |                 100.0
  UNIAO         |      204459 | Daniela do Waguinho                 | centro    |         802 |       465 |       337 |            0 |                 2 |                     8 |                  20.0
  UNIAO         |       62881 | Danilo Forte                        | centro    |         759 |       467 |       291 |            1 |                20 |                     3 |                  87.0
  UNIAO         |      204511 | David Soares                        | centro    |         597 |       328 |       253 |           16 |                 9 |                     1 |                  90.0
  UNIAO         |      220659 | Dayany Bittencourt                  | centro    |         927 |       507 |       420 |            0 |                17 |                     3 |                  85.0
- UNIAO         |      220539 | Defensor StÈlio Dener               | centro    |          38 |        24 |        14 |            0 |                 0 |                     0 |                      
+ UNIAO         |      220539 | Defensor St√©lio Dener               | centro    |          38 |        24 |        14 |            0 |                 0 |                     0 |                      
  UNIAO         |      220649 | Delegado da Cunha                   | centro    |          21 |        12 |         9 |            0 |                 0 |                     0 |                      
  UNIAO         |      204512 | Delegado Marcelo Freitas            | centro    |        1183 |       663 |       520 |            0 |               108 |                    12 |                  90.0
  UNIAO         |      220701 | Delegado Matheus Laiola             | centro    |        1066 |       649 |       417 |            0 |                11 |                     2 |                  84.6
@@ -5441,12 +5441,12 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  UNIAO         |      227433 | Douglas Viegas                      | centro    |         648 |       354 |       294 |            0 |                 2 |                     0 |                 100.0
  UNIAO         |      221339 | Dr. Benjamim                        | centro    |         451 |       289 |       162 |            0 |                 8 |                     1 |                  88.9
  UNIAO         |      227401 | Dr Fabio Rueda                      | centro    |          83 |        56 |        27 |            0 |                 0 |                     0 |                      
- UNIAO         |      220610 | Dr. Fernando M·ximo                 | centro    |         856 |       478 |       378 |            0 |                15 |                     2 |                  88.2
+ UNIAO         |      220610 | Dr. Fernando M√°ximo                 | centro    |         856 |       478 |       378 |            0 |                15 |                     2 |                  88.2
  UNIAO         |      204412 | Dr. Zacharias Calil                 | centro    |         938 |       539 |       397 |            2 |                 9 |                     1 |                  90.0
  UNIAO         |      220589 | Eduardo Velloso                     | centro    |         814 |       479 |       331 |            4 |                10 |                     2 |                  83.3
  UNIAO         |      178854 | Elmar Nascimento                    | centro    |         327 |       214 |       107 |            6 |                 4 |                     0 |                 100.0
  UNIAO         |      178905 | Fabio Garcia                        | centro    |         121 |        76 |        45 |            0 |                12 |                     2 |                  85.7
- UNIAO         |       68720 | F·bio Henrique                      | centro    |          72 |        40 |        32 |            0 |                 0 |                     0 |                      
+ UNIAO         |       68720 | F√°bio Henrique                      | centro    |          72 |        40 |        32 |            0 |                 0 |                     0 |                      
  UNIAO         |      204368 | Fabio Schiochet                     | centro    |         995 |       565 |       430 |            0 |                 9 |                     2 |                  81.8
  UNIAO         |      220712 | Fausto Jr.                          | centro    |         745 |       475 |       270 |            0 |                22 |                     3 |                  88.0
  UNIAO         |       66828 | Fausto Pinato                       | centro    |          23 |        13 |        10 |            0 |                 0 |                     0 |                      
@@ -5458,31 +5458,31 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  UNIAO         |      220702 | Geraldo Mendes                      | centro    |         696 |       444 |       251 |            1 |                 8 |                     1 |                  88.9
  UNIAO         |       74374 | Geraldo Resende                     | centro    |          25 |        19 |         6 |            0 |                 1 |                     0 |                 100.0
  UNIAO         |      226179 | Gisela Simona                       | centro    |        1146 |       609 |       535 |            2 |                93 |                    17 |                  84.5
- UNIAO         |      178909 | HÈlio Leite                         | centro    |         280 |       177 |       103 |            0 |                 0 |                     0 |                      
+ UNIAO         |      178909 | H√©lio Leite                         | centro    |         280 |       177 |       103 |            0 |                 0 |                     0 |                      
  UNIAO         |      220672 | Henderson Pinto                     | centro    |          33 |        25 |         8 |            0 |                 0 |                     0 |                      
  UNIAO         |      204508 | Igor Timo                           | centro    |          22 |        15 |         7 |            0 |                 0 |                     0 |                      
  UNIAO         |      230764 | Ivan Junior                         | centro    |           1 |         0 |         1 |            0 |                 0 |                     0 |                      
- UNIAO         |      230764 | Ivan J˙nior                         | centro    |          25 |        20 |         5 |            0 |                 0 |                     0 |                      
- UNIAO         |      204391 | JosÈ Nelto                          | centro    |         374 |       241 |       133 |            0 |                 0 |                     0 |                      
- UNIAO         |       74554 | JosÈ Rocha                          | centro    |         851 |       540 |       311 |            0 |                36 |                     2 |                  94.7
+ UNIAO         |      230764 | Ivan J√∫nior                         | centro    |          25 |        20 |         5 |            0 |                 0 |                     0 |                      
+ UNIAO         |      204391 | Jos√© Nelto                          | centro    |         374 |       241 |       133 |            0 |                 0 |                     0 |                      
+ UNIAO         |       74554 | Jos√© Rocha                          | centro    |         851 |       540 |       311 |            0 |                36 |                     2 |                  94.7
  UNIAO         |      215043 | Josivaldo JP                        | centro    |          23 |        18 |         5 |            0 |                 0 |                     0 |                      
  UNIAO         |      204457 | Juninho do Pneu                     | centro    |         932 |       590 |       342 |            0 |                 9 |                     1 |                  90.0
  UNIAO         |      178886 | Juscelino Filho                     | centro    |         337 |       217 |       120 |            0 |                 1 |                     0 |                 100.0
  UNIAO         |      204536 | Kim Kataguiri                       | centro    |         939 |       461 |       472 |            6 |                64 |                    16 |                  80.0
- UNIAO         |      220600 | Lebr„o                              | centro    |         555 |       344 |       209 |            2 |                 4 |                     0 |                 100.0
- UNIAO         |       92102 | Leur Lomanto J˙nior                 | centro    |         790 |       528 |       261 |            1 |                13 |                     1 |                  92.9
+ UNIAO         |      220600 | Lebr√£o                              | centro    |         555 |       344 |       209 |            2 |                 4 |                     0 |                 100.0
+ UNIAO         |       92102 | Leur Lomanto J√∫nior                 | centro    |         790 |       528 |       261 |            1 |                13 |                     1 |                  92.9
  UNIAO         |       74478 | Luciano Bivar                       | centro    |         310 |       201 |       107 |            2 |                 2 |                     0 |                 100.0
  UNIAO         |      204410 | Luisa Canziani                      | centro    |          19 |        16 |         3 |            0 |                 0 |                     0 |                      
  UNIAO         |      141485 | Luiz Carlos Busato                  | centro    |         969 |       597 |       372 |            0 |                14 |                     0 |                 100.0
  UNIAO         |      141487 | Luiz Fernando Faria                 | centro    |          36 |        25 |        11 |            0 |                 0 |                     0 |                      
  UNIAO         |      220648 | Marangoni                           | centro    |         797 |       467 |       330 |            0 |                34 |                     1 |                  97.1
  UNIAO         |      178943 | Marcos Soares                       | centro    |         500 |       276 |       221 |            3 |                15 |                     3 |                  83.3
- UNIAO         |      178843 | Marx Beltr„o                        | centro    |          20 |        14 |         6 |            0 |                 0 |                     0 |                      
- UNIAO         |      220609 | MaurÌcio Carvalho                   | centro    |         917 |       531 |       386 |            0 |                18 |                     0 |                 100.0
+ UNIAO         |      178843 | Marx Beltr√£o                        | centro    |          20 |        14 |         6 |            0 |                 0 |                     0 |                      
+ UNIAO         |      220609 | Maur√≠cio Carvalho                   | centro    |         917 |       531 |       386 |            0 |                18 |                     0 |                 100.0
  UNIAO         |      204486 | Mauro Benevides Filho               | centro    |          37 |        26 |        11 |            0 |                 1 |                     0 |                 100.0
  UNIAO         |      220607 | Max Lemos                           | centro    |          23 |        16 |         7 |            0 |                 1 |                     0 |                 100.0
  UNIAO         |      220591 | Meire Serafim                       | centro    |         917 |       587 |       329 |            1 |                14 |                     0 |                 100.0
- UNIAO         |       74428 | MendonÁa Filho                      | centro    |         953 |       593 |       334 |           26 |                58 |                     2 |                  96.7
+ UNIAO         |       74428 | Mendon√ßa Filho                      | centro    |         953 |       593 |       334 |           26 |                58 |                     2 |                  96.7
  UNIAO         |      220530 | Messias Donato                      | centro    |          41 |        30 |        11 |            0 |                 0 |                     0 |                      
  UNIAO         |      178997 | Moses Rodrigues                     | centro    |         871 |       574 |       297 |            0 |                11 |                     0 |                 100.0
  UNIAO         |      220617 | Murillo Gouvea                      | centro    |         946 |       598 |       347 |            1 |                 9 |                     0 |                 100.0
@@ -5497,7 +5497,7 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  UNIAO         |      220685 | Paulo Litro                         | centro    |          27 |        20 |         7 |            0 |                 0 |                     0 |                      
  UNIAO         |      122974 | Pedro Lucas Fernandes               | centro    |         780 |       510 |       269 |            1 |                16 |                     0 |                 100.0
  UNIAO         |      220626 | Rafael Simoes                       | centro    |         981 |       589 |       390 |            2 |                37 |                     1 |                  97.4
- UNIAO         |      221329 | Ricardo Abr„o                       | centro    |         440 |       288 |       152 |            0 |                11 |                     0 |                 100.0
+ UNIAO         |      221329 | Ricardo Abr√£o                       | centro    |         440 |       288 |       152 |            0 |                11 |                     0 |                 100.0
  UNIAO         |      141531 | Rodrigo de Castro                   | centro    |         910 |       580 |       328 |            2 |                10 |                     2 |                  83.3
  UNIAO         |      165470 | Rodrigo Valadares                   | centro    |         923 |       491 |       431 |            1 |                39 |                     4 |                  90.7
  UNIAO         |      220644 | Rosangela Moro                      | centro    |         986 |       513 |       471 |            2 |                71 |                     9 |                  88.8
@@ -5508,7 +5508,7 @@ Q9.3 - Resumo consolidado de votos e aderencia por deputado
  UNIAO         |      220597 | Thiago Flores                       | centro    |          26 |        18 |         8 |            0 |                 0 |                     0 |                      
  UNIAO         |      234673 | Vanderlan Alves                     | centro    |          57 |        37 |        20 |            0 |                 5 |                     0 |                 100.0
  UNIAO         |      220564 | Yandra Moura                        | centro    |         674 |       401 |       273 |            0 |                31 |                     1 |                  96.9
- UNIAO         |      220536 | ZÈ Haroldo Cathedral                | centro    |          32 |        25 |         7 |            0 |                 0 |                     0 |                      
- UNIAO         |      160632 | ZÈ Silva                            | centro    |          38 |        28 |        10 |            0 |                 0 |                     0 |                      
+ UNIAO         |      220536 | Z√© Haroldo Cathedral                | centro    |          32 |        25 |         7 |            0 |                 0 |                     0 |                      
+ UNIAO         |      160632 | Z√© Silva                            | centro    |          38 |        28 |        10 |            0 |                 0 |                     0 |                      
 (808 rows)
 

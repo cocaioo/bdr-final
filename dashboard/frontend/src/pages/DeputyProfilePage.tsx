@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos } from '../api'
+import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchQuestionForDeputy } from '../api'
 import { DeputyAvatar } from '../components/DeputyAvatar'
 import { DeputySearch } from '../components/DeputySearch'
 import type { DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption } from '../types'
@@ -24,6 +24,218 @@ function formatNumber(value: number): string {
   return value.toLocaleString('pt-BR')
 }
 
+function formatDecimal(value: number, digits = 2): string {
+  return value.toLocaleString('pt-BR', { maximumFractionDigits: digits })
+}
+
+function numericValue(value: unknown): number {
+  const parsed = Number(value)
+  return Number.isFinite(parsed) ? parsed : 0
+}
+
+interface RatingInfo {
+  label: string
+  color: string
+  bg: string
+  border: string
+  description: string
+}
+
+function getDeputyRating(posicao: number | null, elegivel: boolean): RatingInfo {
+  if (!elegivel || posicao === null) {
+    return {
+      label: 'Não classificado',
+      color: '#94a3b8',
+      bg: 'rgba(148, 163, 184, 0.1)',
+      border: '1px solid #94a3b8',
+      description: 'Este deputado não atende aos requisitos mínimos de atividade parlamentar para integrar o ranking principal da Q7.'
+    }
+  }
+  if (posicao <= 50) {
+    return {
+      label: 'Excelente custo-benefício',
+      color: '#10b981',
+      bg: 'rgba(16, 185, 129, 0.1)',
+      border: '1px solid #10b981',
+      description: 'Entre os 50 deputados mais eficientes (Top 10%). Excelente relação de produção legislativa ponderada por gasto.'
+    }
+  }
+  if (posicao <= 150) {
+    return {
+      label: 'Bom custo-benefício',
+      color: '#3b82f6',
+      bg: 'rgba(59, 130, 246, 0.1)',
+      border: '1px solid #3b82f6',
+      description: 'Desempenho acima da média nacional (Top 30%). Boa eficiência legislativa em relação às despesas do mandato.'
+    }
+  }
+  if (posicao <= 350) {
+    return {
+      label: 'Regular',
+      color: '#f59e0b',
+      bg: 'rgba(245, 158, 11, 0.1)',
+      border: '1px solid #f59e0b',
+      description: 'Atuação e despesas de mandato dentro da média esperada do parlamento brasileiro (Top 70%).'
+    }
+  }
+  return {
+    label: 'Abaixo da média',
+    color: '#ef4444',
+    bg: 'rgba(239, 68, 68, 0.1)',
+    border: '1px solid #ef4444',
+    description: 'Baixa eficiência legislativa ou gasto de mandato elevado em relação ao volume de proposições substantivas (Bottom 30%).'
+  }
+}
+
+interface DeputyGaugeProps {
+  posicao: number | null
+  elegivel: boolean
+}
+
+function DeputyGauge({ posicao, elegivel }: DeputyGaugeProps) {
+  const cx = 100
+  const cy = 90
+  const r = 70
+  const strokeWidth = 14
+
+  const polarToCartesian = (x: number, y: number, radius: number, angleInDegrees: number) => {
+    const angleInRadians = (angleInDegrees * Math.PI) / 180.0
+    return {
+      x: x + radius * Math.cos(angleInRadians),
+      y: y - radius * Math.sin(angleInRadians)
+    }
+  }
+
+  const describeArc = (x: number, y: number, radius: number, startAngle: number, endAngle: number) => {
+    const start = polarToCartesian(x, y, radius, startAngle)
+    const end = polarToCartesian(x, y, radius, endAngle)
+    const largeArcFlag = startAngle - endAngle <= 180 ? '0' : '1'
+    return [
+      'M', start.x, start.y,
+      'A', radius, radius, 0, largeArcFlag, 1, end.x, end.y
+    ].join(' ')
+  }
+
+  let rotation = 0
+  let hasNeedle = false
+
+  if (elegivel && posicao !== null) {
+    hasNeedle = true
+    let angle = 90
+
+    if (posicao <= 50) {
+      // Green zone: 43 to 3 degrees (with gaps)
+      // Map 1 to 10 deg, 50 to 40 deg
+      const pct = (posicao - 1) / 49
+      angle = 10 + pct * 30
+    } else if (posicao <= 150) {
+      // Blue zone: 87 to 47 degrees
+      // Map 51 to 50 deg, 150 to 85 deg
+      const pct = (posicao - 51) / 99
+      angle = 50 + pct * 35
+    } else if (posicao <= 350) {
+      // Yellow zone: 133 to 93 degrees
+      // Map 151 to 95 deg, 350 to 130 deg
+      const pct = (posicao - 151) / 199
+      angle = 95 + pct * 35
+    } else {
+      // Red zone: 177 to 137 degrees
+      // Map 351 to 140 deg, 500+ to 170 deg
+      const maxPos = Math.max(500, posicao)
+      const pct = (posicao - 351) / (maxPos - 351)
+      angle = 140 + pct * 30
+    }
+
+    rotation = 90 - angle
+  }
+
+  const redColor = elegivel ? '#ef4444' : '#cbd5e1'
+  const yellowColor = elegivel ? '#f59e0b' : '#e2e8f0'
+  const blueColor = elegivel ? '#3b82f6' : '#cbd5e1'
+  const greenColor = elegivel ? '#10b981' : '#e2e8f0'
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '200px', flexShrink: 0 }}>
+      <svg width="200" height="110" viewBox="0 0 200 110" style={{ overflow: 'visible' }}>
+        {/* Gray background track */}
+        <path
+          d={describeArc(cx, cy, r, 180, 0)}
+          fill="none"
+          stroke="var(--border)"
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+          style={{ opacity: 0.3 }}
+        />
+        {/* Red segment (left: 177 to 137 deg) */}
+        <path
+          d={describeArc(cx, cy, r, 177, 137)}
+          fill="none"
+          stroke={redColor}
+          strokeWidth={strokeWidth}
+          strokeLinecap="butt"
+        />
+        {/* Yellow segment (133 to 93 deg) */}
+        <path
+          d={describeArc(cx, cy, r, 133, 93)}
+          fill="none"
+          stroke={yellowColor}
+          strokeWidth={strokeWidth}
+          strokeLinecap="butt"
+        />
+        {/* Blue segment (87 to 47 deg) */}
+        <path
+          d={describeArc(cx, cy, r, 87, 47)}
+          fill="none"
+          stroke={blueColor}
+          strokeWidth={strokeWidth}
+          strokeLinecap="butt"
+        />
+        {/* Green segment (right: 43 to 3 deg) */}
+        <path
+          d={describeArc(cx, cy, r, 43, 3)}
+          fill="none"
+          stroke={greenColor}
+          strokeWidth={strokeWidth}
+          strokeLinecap="butt"
+        />
+
+        {/* Labels */}
+        <text x="18" y="105" fill="var(--muted)" fontSize="9" textAnchor="middle" fontWeight="600" style={{ opacity: 0.8 }}>Pior</text>
+        <text x="182" y="105" fill="var(--muted)" fontSize="9" textAnchor="middle" fontWeight="600" style={{ opacity: 0.8 }}>Melhor</text>
+
+        {/* Needle pointer */}
+        {hasNeedle && (
+          <g transform={`translate(${cx}, ${cy}) rotate(${rotation})`}>
+            <path d="M -4.5,0 L 0,-56 L 4.5,0 Z" fill="#334155" />
+            <circle cx="0" cy="0" r="7" fill="#1e293b" stroke="#ffffff" strokeWidth="2" />
+            <circle cx="0" cy="0" r="2.5" fill="#ffffff" />
+          </g>
+        )}
+      </svg>
+      {elegivel && posicao !== null && (
+        <span style={{ fontSize: '0.85rem', fontWeight: 'bold', marginTop: '-4px', color: 'var(--muted)' }}>
+          Posição: #{posicao}
+        </span>
+      )}
+    </div>
+  )
+}
+
+interface DeputyCostBenefitProfile {
+  posicao: number | null
+  indice: number
+  gastoTotal: number
+  totalProposicoes: number
+  scoreTotal: number
+  scoreAjustado: number
+  periodoLabel: string
+  anoParcial: boolean
+  totalProposicoesSubstantivas: number
+  totalProposicoesAprovadas: number
+  elegivel: boolean
+  motivoInelegibilidade: string | null
+}
+
 function LoadingSkeleton() {
   return (
     <main className="deputy-profile" aria-busy="true">
@@ -41,11 +253,24 @@ function LoadingSkeleton() {
   )
 }
 
-function ProfileField({ label, value }: { label: string; value: React.ReactNode }) {
+function ProfileField({ label, value, helpText }: { label: string; value: React.ReactNode; helpText?: string }) {
   return (
     <div className="deputy-profile__fact">
       <span>{label}</span>
       <strong>{value}</strong>
+      {helpText && (
+        <span
+          style={{
+            fontSize: '0.72rem',
+            color: 'var(--muted)',
+            fontWeight: 'normal',
+            marginTop: '4px',
+            lineHeight: '1.3'
+          }}
+        >
+          {helpText}
+        </span>
+      )}
     </div>
   )
 }
@@ -170,6 +395,11 @@ export function DeputyProfilePage() {
     data: DeputyGastosProfile | null
     error: string | null
   }>({ data: null, error: null })
+  const [q7State, setQ7State] = useState<{
+    deputyId?: string
+    data: DeputyCostBenefitProfile | null
+    error: string | null
+  }>({ data: null, error: null })
   const [identityEnrichment, setIdentityEnrichment] = useState<DeputyIdentityEnrichment>({})
 
   useEffect(() => {
@@ -187,12 +417,47 @@ export function DeputyProfilePage() {
     if (!deputy) return
     let active = true
     setIdentityEnrichment({})
+    setQ7State({ data: null, error: null })
     fetchDeputyIdentityFromGastos(deputy.id)
       .then((enrichment) => { if (active) setIdentityEnrichment(enrichment) })
       .catch(() => { /* silently ignore; fallback to CSV values */ })
     fetchDeputyGastosSummary(deputy.id)
       .then((payload) => { if (active) setGastosState({ deputyId: deputy.id, data: payload, error: null }) })
       .catch((cause: Error) => { if (active) setGastosState({ deputyId: deputy.id, data: null, error: cause.message }) })
+    fetchQuestionForDeputy('q7', deputy.id, 1, 5)
+      .then((payload) => {
+        if (!active) return
+        const row =
+          payload.table_spec.rows.find((item) => String(item.id_deputado ?? '') === deputy.id) ??
+          payload.table_spec.rows[0]
+        if (!row) {
+          setQ7State({ deputyId: deputy.id, data: null, error: null })
+          return
+        }
+        setQ7State({
+          deputyId: deputy.id,
+          data: {
+            posicao: row.posicao === undefined || row.posicao === null ? null : numericValue(row.posicao),
+            indice: numericValue(row.indice_custo_beneficio),
+            gastoTotal: numericValue(row.gasto_total),
+            totalProposicoes: numericValue(row.total_proposicoes),
+            scoreTotal: numericValue(row.score_proposicoes_total),
+            scoreAjustado: numericValue(row.score_proposicoes_ajustado),
+            periodoLabel: String(row.periodo_label ?? 'Global'),
+            anoParcial: Boolean(row.ano_parcial),
+            totalProposicoesSubstantivas: numericValue(row.total_proposicoes_substantivas),
+            totalProposicoesAprovadas: numericValue(row.total_proposicoes_aprovadas),
+            elegivel: row.elegivel_ranking !== undefined ? (String(row.elegivel_ranking).toLowerCase() === 'true' || row.elegivel_ranking === true) : true,
+            motivoInelegibilidade: row.motivo_inelegibilidade ? String(row.motivo_inelegibilidade) : null,
+          },
+          error: null,
+        })
+      })
+      .catch((cause: Error) => {
+        if (active) {
+          setQ7State({ deputyId: deputy.id, data: null, error: cause.message })
+        }
+      })
     return () => { active = false }
   }, [deputy])
 
@@ -278,6 +543,138 @@ export function DeputyProfilePage() {
           <span className="deputy-profile__eyebrow">Em preparação</span><h2>Votações</h2>
           <p>Esta área será enriquecida com histórico e posicionamentos do parlamentar, sem antecipar métricas ainda indisponíveis.</p>
         </article>
+      </section>
+
+      <section className="deputy-profile__section" aria-labelledby="custo-beneficio-heading">
+        <SectionHeading
+          eyebrow="Q7"
+          title="Indice de custo-beneficio parlamentar"
+          description="Producao legislativa ponderada por gasto, calculada segundo a metodologia atual da Q7."
+        />
+        <div id="custo-beneficio-heading">
+          {q7State.deputyId !== deputy.id ? (
+            <div className="deputy-profile__empty" role="status">Carregando indicador de custo-beneficio...</div>
+          ) : q7State.error ? (
+            <div className="deputy-profile__empty deputy-profile__empty--error" role="alert">
+              <strong>Nao foi possivel carregar o indicador de custo-beneficio agora.</strong>
+              <span>O restante do perfil continua disponivel.</span>
+            </div>
+          ) : q7State.data ? (
+            (() => {
+              const rating = getDeputyRating(q7State.data.posicao, q7State.data.elegivel);
+              return (
+                <>
+                  {!q7State.data.elegivel && (
+                    <div style={{
+                      padding: '12px 16px',
+                      backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                      borderLeft: '4px solid #ef4444',
+                      borderRadius: '6px',
+                      fontSize: '0.9rem',
+                      color: '#ef4444',
+                      marginBottom: '16px',
+                      lineHeight: '1.4'
+                    }}>
+                      <strong>Inelegível para o Ranking Principal:</strong>
+                      <div style={{ marginTop: '4px' }}>{q7State.data.motivoInelegibilidade}</div>
+                    </div>
+                  )}
+                  <div className="deputy-profile__metrics" aria-label="Indice de custo-beneficio">
+                    <ProfileField
+                      label="Posicao no ranking global"
+                      value={q7State.data.posicao ? `#${q7State.data.posicao}` : 'Nao disponivel'}
+                    />
+                    <ProfileField
+                      label="Indice"
+                      value={<span style={{ color: rating.color }}>{formatDecimal(q7State.data.indice, 5)}</span>}
+                      helpText="Relação de custo-benefício. Calculado dividindo o Score Ajustado pelo gasto de mandato ajustado. Valores maiores indicam melhor retorno."
+                    />
+                    <ProfileField label="Gasto total" value={formatCurrency(q7State.data.gastoTotal)} />
+                    <ProfileField
+                      label="Proposicoes consideradas"
+                      value={formatNumber(q7State.data.totalProposicoes)}
+                    />
+                  </div>
+
+                  <article className="deputy-profile__data-card">
+                    <h3 style={{ margin: '0 0 16px 0' }}>Leitura do indicador</h3>
+                    
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: '24px',
+                      flexWrap: 'wrap',
+                      justifyContent: 'center',
+                      padding: '12px 0',
+                      marginBottom: '16px'
+                    }}>
+                      <DeputyGauge posicao={q7State.data.posicao} elegivel={q7State.data.elegivel} />
+                      
+                      <div style={{ flex: '1', minWidth: '200px' }}>
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '8px' }}>
+                          <span
+                            className="deputy-rating-badge"
+                            style={{
+                              padding: '4px 10px',
+                              borderRadius: '12px',
+                              backgroundColor: rating.bg,
+                              color: rating.color,
+                              border: rating.border,
+                              fontSize: '0.82rem',
+                              fontWeight: 'bold',
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.5px'
+                            }}
+                          >
+                            {rating.label}
+                          </span>
+                        </div>
+                        {rating.description && (
+                          <p style={{ fontSize: '0.88rem', color: 'var(--muted)', margin: 0, lineHeight: '1.4' }}>
+                            {rating.description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="deputy-profile__details-grid">
+                      <ProfileField
+                        label="Score total"
+                        value={formatDecimal(q7State.data.scoreTotal, 2)}
+                        helpText="Soma de pontos das proposições de autoria do deputado, ponderados por tipo, status e posição de autoria."
+                      />
+                      <ProfileField
+                        label="Score ajustado"
+                        value={formatDecimal(q7State.data.scoreAjustado, 2)}
+                        helpText="Score total suavizado por potência (0.75) para evitar distorções de alto volume de projetos simples."
+                      />
+                      <ProfileField
+                        label="Periodo"
+                        value={`${q7State.data.periodoLabel}${q7State.data.anoParcial ? ' (parcial)' : ''}`}
+                      />
+                      <ProfileField
+                        label="Proposições substantivas"
+                        value={formatNumber(q7State.data.totalProposicoesSubstantivas)}
+                        helpText="Proposições com relevância ou impacto legislativo concreto (como PECs, PLs, e PLPs), conforme metodologia."
+                      />
+                      <ProfileField
+                        label="Proposições aprovadas"
+                        value={formatNumber(q7State.data.totalProposicoesAprovadas)}
+                        helpText="Proposições de autoria do deputado que foram aprovadas ou transformadas em lei no período."
+                      />
+                    </div>
+                  </article>
+                </>
+              );
+            })()
+          ) : (
+            <div className="deputy-profile__empty" role="status">
+              <strong>Nao ha dados suficientes para calcular o indice deste deputado no periodo selecionado.</strong>
+              <span>O card sera preenchido assim que a Q7 retornar esse parlamentar no recorte global.</span>
+            </div>
+          )}
+        </div>
       </section>
 
       <section className="deputy-profile__section">

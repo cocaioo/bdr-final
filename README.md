@@ -39,13 +39,13 @@ Na raiz do projeto:
 ```powershell
 
 
-.\venv\Scripts\python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
+.\venv\Scripts\python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8001
 ```
 
 Quando estiver rodando, teste no navegador:
 
 ```text
-http://localhost:8000/api/health
+http://localhost:8001/api/health
 ```
 
 ### Terminal 3: frontend

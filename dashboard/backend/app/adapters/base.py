@@ -427,6 +427,7 @@ class QuestionAdapter:
             )
 
         y_field = y_fields[0]
+        label_field = self.context.question.chart.get("label_field", "nome")
         points = []
         for row in rows[:500]:
             x_value = row.get(x_field)
@@ -434,7 +435,7 @@ class QuestionAdapter:
             if isinstance(x_value, (int, float)) and isinstance(y_value, (int, float)):
                 points.append(
                     {
-                        "name": str(row.get("nome", "")),
+                        "name": str(row.get(label_field) or row.get("nome") or ""),
                         "value": [x_value, y_value],
                     }
                 )

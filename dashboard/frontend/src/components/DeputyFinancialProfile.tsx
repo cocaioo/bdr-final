@@ -46,11 +46,15 @@ export function DeputyFinancialProfile({
     const row = rows.find((r) => String(r.id_deputado || '') === depIdStr)
     if (!row) return null
     return {
-      custoBeneficio: Number(row.custo_beneficio || 0),
-      beneficio: Number(row.beneficio || 0),
-      proposicoes: Number(row.qtd_proposicoes || 0),
-      aprovadas: Number(row.proposicoes_aprovadas || 0),
-      presenca: Number(row.presenca_total || 0),
+      indice: Number(row.indice_custo_beneficio ?? row.custo_beneficio ?? 0),
+      scoreAjustado: Number(row.score_proposicoes_ajustado ?? row.beneficio ?? 0),
+      scoreTotal: Number(row.score_proposicoes_total ?? 0),
+      proposicoes: Number(row.total_proposicoes ?? row.qtd_proposicoes ?? 0),
+      gastoAjustado: Number(row.gasto_ajustado ?? 0),
+      proposicoesSubstantivas: Number(row.total_proposicoes_substantivas ?? 0),
+      proposicoesAprovadas: Number(row.total_proposicoes_aprovadas ?? 0),
+      elegivel: row.elegivel_ranking !== undefined ? (String(row.elegivel_ranking).toLowerCase() === 'true' || row.elegivel_ranking === true) : true,
+      motivoInelegibilidade: row.motivo_inelegibilidade ? String(row.motivo_inelegibilidade) : null,
     }
   }, [q7Data, depIdStr])
 
@@ -116,28 +120,51 @@ export function DeputyFinancialProfile({
           <h3>Métricas de Custo-Benefício</h3>
           {q7Info ? (
             <div className="profile-cb-stats">
+              {!q7Info.elegivel && (
+                <div style={{
+                  padding: '10px 14px',
+                  backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                  borderLeft: '4px solid #ef4444',
+                  borderRadius: '6px',
+                  fontSize: '0.85rem',
+                  color: '#ef4444',
+                  marginBottom: '14px',
+                  lineHeight: '1.4'
+                }}>
+                  <strong>Inelegível para o Ranking Principal:</strong>
+                  <div style={{ marginTop: '4px' }}>{q7Info.motivoInelegibilidade}</div>
+                </div>
+              )}
               <div className="profile-stat-row">
-                <span>Score Custo-Benefício:</span>
+                <span>Indice Custo-Beneficio:</span>
                 <strong className="score-badge">
-                  {q7Info.custoBeneficio.toLocaleString('pt-BR', { maximumFractionDigits: 5 })}
+                  {q7Info.indice.toLocaleString('pt-BR', { maximumFractionDigits: 5 })}
                 </strong>
               </div>
               <div className="profile-stat-row">
-                <span>Benefício Estimado:</span>
-                <strong>{q7Info.beneficio.toLocaleString('pt-BR', { maximumFractionDigits: 2 })}</strong>
+                <span>Score Ajustado:</span>
+                <strong>{q7Info.scoreAjustado.toLocaleString('pt-BR', { maximumFractionDigits: 2 })}</strong>
               </div>
               <div className="profile-stat-grid">
                 <div className="profile-mini-stat">
-                  <span className="mini-label">Presença</span>
-                  <span className="mini-value">{q7Info.presenca}</span>
+                  <span className="mini-label">Score total</span>
+                  <span className="mini-value">{q7Info.scoreTotal.toLocaleString('pt-BR', { maximumFractionDigits: 1 })}</span>
                 </div>
                 <div className="profile-mini-stat">
                   <span className="mini-label">Proposições</span>
                   <span className="mini-value">{q7Info.proposicoes}</span>
                 </div>
                 <div className="profile-mini-stat">
+                  <span className="mini-label">Substantivas</span>
+                  <span className="mini-value">{q7Info.proposicoesSubstantivas}</span>
+                </div>
+                <div className="profile-mini-stat">
                   <span className="mini-label">Aprovadas</span>
-                  <span className="mini-value">{q7Info.aprovadas}</span>
+                  <span className="mini-value">{q7Info.proposicoesAprovadas}</span>
+                </div>
+                <div className="profile-mini-stat">
+                  <span className="mini-label">Gasto ajust.</span>
+                  <span className="mini-value">{q7Info.gastoAjustado.toLocaleString('pt-BR', { maximumFractionDigits: 2 })}</span>
                 </div>
               </div>
             </div>
