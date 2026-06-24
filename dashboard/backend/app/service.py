@@ -60,7 +60,7 @@ class DashboardService:
             QuestionMeta(
                 id=question.id,
                 title=question.title,
-                route=f"/q/{question.id}",
+                route=f"/pergunta/{question.id}",
                 description=question.description,
                 chart_type=question.chart_type,
                 supported_filters=question.supported_filters,
@@ -234,7 +234,7 @@ class DashboardService:
                         _maybe_add(eixos, row.get("eixo_principal"))
                         _maybe_add_party(partidos_observed, row.get("sigla_partido"))
                         _maybe_add(ufs, row.get("sigla_uf"))
-                        _maybe_add(deputados, row.get("nome") or row.get("id_deputado"))
+                        _maybe_add(deputados, row.get("nome") or row.get("nome_parlamentar") or row.get("id_deputado"))
                         _maybe_add(escolaridades, row.get("escolaridade"))
 
         active_parties = active_party_entries(self.repo_root)
@@ -261,47 +261,91 @@ class DashboardService:
         return catalog
 
     def _collect_question_filters(self) -> dict[str, FilterCatalog]:
+        catalogs: dict[str, FilterCatalog] = {}
         q3 = self.registry.by_id("q3")
-        if q3 is None:
-            return {}
+        if q3 is not None:
+            try:
+                docs = self._load_filter_documents(q3)
+            except FileNotFoundError:
+                docs = []
 
-        try:
-            docs = self._load_filter_documents(q3)
-        except FileNotFoundError:
-            return {}
+            rows = [
+                row
+                for doc in docs
+                for table in doc.tables
+                for row in table.rows
+                if "eixo_principal" in row and "id_deputado" in row and "nome" in row
+            ]
+            if rows:
+                deputy_names = self._load_deputy_public_names()
+                anos = {str(row.get("ano_dados")).strip() for row in rows if row.get("ano_dados") not in (None, "")}
+                eixos = {str(row.get("eixo_principal")).strip() for row in rows if row.get("eixo_principal")}
+                deputy_ids: dict[str, str] = {}
+                for row in rows:
+                    dep_id = str(row.get("id_deputado") or "").strip()
+                    name = str(row.get("nome") or "").strip()
+                    if dep_id and name:
+                        deputy_ids.setdefault(dep_id, deputy_names.get(dep_id, name))
 
-        rows = [
-            row
-            for doc in docs
-            for table in doc.tables
-            for row in table.rows
-            if "eixo_principal" in row and "id_deputado" in row and "nome" in row
-        ]
-        if not rows:
-            return {}
+                catalogs["q3"] = FilterCatalog(
+                    anos=[FilterChoice(value=item, label=item) for item in _sort_filter_values(anos)],
+                    eixos=[FilterChoice(value=item, label=item) for item in _sort_filter_values(eixos)],
+                    partidos=[],
+                    ufs=[],
+                    deputados=[
+                        FilterChoice(value=dep_id, label=label)
+                        for dep_id, label in sorted(deputy_ids.items(), key=lambda item: item[1].lower())
+                    ],
+                    escolaridade=[],
+                )
 
-        deputy_names = self._load_deputy_public_names()
-        anos = {str(row.get("ano_dados")).strip() for row in rows if row.get("ano_dados") not in (None, "")}
-        eixos = {str(row.get("eixo_principal")).strip() for row in rows if row.get("eixo_principal")}
-        deputy_ids: dict[str, str] = {}
-        for row in rows:
-            dep_id = str(row.get("id_deputado") or "").strip()
-            name = str(row.get("nome") or "").strip()
-            if dep_id and name:
-                deputy_ids.setdefault(dep_id, deputy_names.get(dep_id, name))
+        q7 = self.registry.by_id("q7")
+        if q7 is not None:
+            try:
+                docs = self._load_filter_documents(q7)
+            except FileNotFoundError:
+                docs = []
 
-        q3_catalog = FilterCatalog(
-            anos=[FilterChoice(value=item, label=item) for item in _sort_filter_values(anos)],
-            eixos=[FilterChoice(value=item, label=item) for item in _sort_filter_values(eixos)],
-            partidos=[],
-            ufs=[],
-            deputados=[
-                FilterChoice(value=dep_id, label=label)
-                for dep_id, label in sorted(deputy_ids.items(), key=lambda item: item[1].lower())
-            ],
-            escolaridade=[],
-        )
-        return {"q3": q3_catalog}
+            q7_years: set[str] = set()
+            q7_parties: set[str] = set()
+            q7_ufs: set[str] = set()
+            q7_deputies: set[str] = set()
+            for doc in docs:
+                for table in doc.tables:
+                    for row in table.rows:
+                        if str(row.get("escopo") or "").strip().lower() == "anual" and row.get("ano_dados") not in (None, ""):
+                            q7_years.add(str(row.get("ano_dados")).strip())
+                        _maybe_add_party(q7_parties, row.get("sigla_partido"))
+                        _maybe_add(q7_ufs, row.get("sigla_uf"))
+                        _maybe_add(q7_deputies, row.get("nome_parlamentar") or row.get("id_deputado"))
+            if q7_years:
+                active_parties = active_party_entries(self.repo_root)
+                if active_parties:
+                    party_choices = [
+                        FilterChoice(value=entry.sigla, label=entry.sigla, status=entry.status)
+                        for entry in active_parties
+                    ]
+                else:
+                    party_choices = [
+                        FilterChoice(value=item, label=item, status="sem_catalogo")
+                        for item in sorted(q7_parties)
+                    ]
+                catalogs["q7"] = FilterCatalog(
+                    anos=[
+                        FilterChoice(
+                            value=item,
+                            label=f"{item} parcial" if item == "2026" else item,
+                        )
+                        for item in sorted(q7_years, reverse=True)
+                    ],
+                    eixos=[],
+                    partidos=party_choices,
+                    ufs=[FilterChoice(value=item, label=item) for item in sorted(q7_ufs)],
+                    deputados=[FilterChoice(value=item, label=item) for item in sorted(q7_deputies)],
+                    escolaridade=[],
+                )
+
+        return catalogs
 
     def _load_deputy_public_names(self) -> dict[str, str]:
         path = self.repo_root / "dados_padronizados" / "deputados.csv"

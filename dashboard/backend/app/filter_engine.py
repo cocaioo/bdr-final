@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any
+import unicodedata
 
 from .party_catalog import normalize_party
 
@@ -27,7 +28,7 @@ class FilterEngine:
         "eixos": ["tema", "tema_mais_atuante", "eixo_maior", "eixo_mais_atuante", "eixo_principal"],
         "partidos": ["sigla_partido"],
         "ufs": ["sigla_uf"],
-        "deputados": ["id_deputado", "nome"],
+        "deputados": ["id_deputado", "nome", "nome_parlamentar"],
         "escolaridade": ["escolaridade"],
     }
 
@@ -130,33 +131,40 @@ class FilterEngine:
         normalized = {value.strip().lower() for value in allowed_values if value.strip()}
         if not normalized:
             return rows
-        if not any(("id_deputado" in row) or ("nome" in row) for row in rows):
+        if not any(("id_deputado" in row) or ("nome" in row) or ("nome_parlamentar" in row) for row in rows):
             return rows
         output: list[dict[str, Any]] = []
         for row in rows:
             dep_id = row.get("id_deputado")
             name = row.get("nome")
+            parliamentary_name = row.get("nome_parlamentar")
             candidates = {
                 str(dep_id).strip().lower() if dep_id is not None else "",
                 str(name).strip().lower() if name is not None else "",
+                str(parliamentary_name).strip().lower() if parliamentary_name is not None else "",
             }
             if candidates & normalized:
                 output.append(row)
         return output
 
     @staticmethod
-    def _search(rows: list[dict[str, Any]], search: str) -> list[dict[str, Any]]:
-        query = search.strip().lower()
+    def _normalize_text(value: str) -> str:
+        normalized = unicodedata.normalize("NFKD", value)
+        return "".join(ch for ch in normalized if not unicodedata.combining(ch)).lower()
+
+    @classmethod
+    def _search(cls, rows: list[dict[str, Any]], search: str) -> list[dict[str, Any]]:
+        query = cls._normalize_text(search.strip())
         if not query:
             return rows
         output: list[dict[str, Any]] = []
         for row in rows:
             haystack = " ".join(
-                str(value).lower()
+                str(value)
                 for value in row.values()
                 if value is not None and not isinstance(value, (dict, list))
             )
-            if query in haystack:
+            if query in cls._normalize_text(haystack):
                 output.append(row)
         return output
 
