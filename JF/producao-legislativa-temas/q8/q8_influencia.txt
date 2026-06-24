@@ -1,43 +1,45 @@
 Q8 - influencia legislativa por participacao no total aprovado
 Resumo executivo
-deputados_com_autoria | proposicoes_autoria | proposicoes_aprovadas_global | deputados_com_proposicoes_aprovadas
-----------------------+---------------------+------------------------------+------------------------------------
-                  600 |              183103 |                          402 |                                 304
-(1 rows)
+ deputados_com_autoria | proposicoes_autoria | proposicoes_aprovadas_global | deputados_com_proposicoes_aprovadas 
+-----------------------+---------------------+------------------------------+-------------------------------------
+                   635 |              411579 |                            0 |                                   0
+(1 row)
+
 
 Tabela principal - top 30 por participacao no total aprovado
-id_deputado |                  nome | proposicoes_autoria | proposicoes_aprovadas | pct_aprovadas
-------------+-----------------------+---------------------+-----------------------+--------------
-      74856 |        Laura Carneiro |                1934 |                    10 |          2.49
-     160598 |         Flávia Morais |                 887 |                     5 |          1.24
-     220648 |             Marangoni |                1373 |                     4 |          1.00
-      74057 |        Alice Portugal |                 340 |                     3 |          0.75
-      73701 |     Benedita da Silva |                 366 |                     3 |          0.75
-     220548 |           Camila Jara |                 586 |                     3 |          0.75
-     204572 |  Capitão Alberto Neto |                2047 |                     3 |          0.75
-     220539 | Defensor Stélio Dener |                 388 |                     3 |          0.75
-     220614 |     Dr. Daniel Soranz |                 201 |                     3 |          0.75
-     204412 |   Dr. Zacharias Calil |                 656 |                     3 |          0.75
-     220670 |            Iza Arruda |                 161 |                     3 |          0.75
-     204536 |         Kim Kataguiri |                 975 |                     3 |          0.75
-     220668 |          Maria Arraes |                 385 |                     3 |          0.75
-     220627 |       Paulinho Freire |                 164 |                     3 |          0.75
-      74084 |       Raimundo Santos |                1832 |                     3 |          0.75
-     220543 |         Ricardo Ayres |                 748 |                     3 |          0.75
-     220641 |       Rodrigo Gambale |                 395 |                     3 |          0.75
-     220695 |        Rogéria Santos |                 829 |                     3 |          0.75
-     220651 |      Simone Marquetto |                 154 |                     3 |          0.75
-     141555 |     Vinicius Carvalho |                 521 |                     3 |          0.75
-     204517 |              Zé Vitor |                 349 |                     3 |          0.75
-     178835 |          Afonso Motta |                 330 |                     2 |          0.50
-     204495 |        Airton Faleiro |                 313 |                     2 |          0.50
-     220542 |   Alexandre Guimarães |                 319 |                     2 |          0.50
-     178881 |        Aluisio Mendes |                 338 |                     2 |          0.50
-     220707 |         Amanda Gentil |                 419 |                     2 |          0.50
-     204356 |            Amaro Neto |                 209 |                     2 |          0.50
-     220556 |        Ana Paula Lima |                 511 |                     2 |          0.50
-     220632 |          Ana Pimentel |                 359 |                     2 |          0.50
-     220676 |      Andreia Siqueira |                 351 |                     2 |          0.50
+ id_deputado |         nome          | proposicoes_autoria | proposicoes_aprovadas | pct_aprovadas 
+-------------+-----------------------+---------------------+-----------------------+---------------
+      220593 | Abilio Brunini        |                 556 |                     0 |              
+      204379 | Acácio Favacho        |                 363 |                     0 |              
+      220714 | Adail Filho           |                 491 |                     0 |              
+      221328 | Adilson Barroso       |                 434 |                     0 |              
+      204560 | Adolfo Viana          |                 756 |                     0 |              
+      204528 | Adriana Ventura       |                2852 |                     0 |              
+      121948 | Adriano do Baldy      |                 589 |                     0 |              
+       74646 | Aécio Neves           |                  42 |                     0 |              
+      160508 | Afonso Florence       |                  10 |                     0 |              
+      136811 | Afonso Hamm           |                 615 |                     0 |              
+      178835 | Afonso Motta          |                 843 |                     0 |              
+      160527 | Aguinaldo Ribeiro     |                 113 |                     0 |              
+      204495 | Airton Faleiro        |                 613 |                     0 |              
+      204549 | AJ Albuquerque        |                  91 |                     0 |              
+       73579 | Alberto Fraga         |                1191 |                     0 |              
+       74696 | Alberto Mourão        |                 105 |                     0 |              
+      220538 | Albuquerque           |                1085 |                     0 |              
+      160559 | Alceu Moreira         |                 570 |                     0 |              
+      204501 | Alencar Santana       |                1220 |                     0 |              
+      220542 | Alexandre Guimarães   |                 608 |                     0 |              
+      160545 | Alexandre Leite       |                 134 |                     0 |              
+      220554 | Alexandre Lindenmeyer |                 874 |                     0 |              
+      204503 | Alexandre Padilha     |                   1 |                     0 |              
+      178972 | Alex Manente          |                 471 |                     0 |              
+      204571 | Alex Santana          |                 149 |                     0 |              
+      221148 | Alfredinho            |                 557 |                     0 |              
+      220576 | Alfredo Gaspar        |                 894 |                     0 |              
+       74057 | Alice Portugal        |                 782 |                     0 |              
+      178927 | Aliel Machado         |                 175 |                     0 |              
+      204353 | Aline Gurgel          |                  90 |                     0 |              
 (30 rows)
+
 
 Complemento detalhado: q8_influencia_complemento.txt contem o ranking completo.
