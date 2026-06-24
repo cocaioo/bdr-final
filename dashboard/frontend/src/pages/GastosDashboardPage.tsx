@@ -433,7 +433,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [q7Partido, setQ7Partido] = useState('')
   const [q7Search, setQ7Search] = useState('')
   const [q7Page, setQ7Page] = useState(1)
-  const [q7PageSize, setQ7PageSize] = useState(10)
+  const q7PageSize = 10
 
   // Manual debounce for Q7 search — useDeferredValue was not reliably
   // triggering the effect in React 19, so we use an explicit timer.
@@ -1018,10 +1018,10 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                           label: 'Posição',
                           format: (val, row) => {
                             const hasGeoPartyFilter = !!(q7Uf || q7Partido)
-                            const posFiltro = row.posicao_no_filtro
-                            const posGeral = row.posicao_geral ?? val
+                            const posFiltro = row.posicao_no_filtro !== undefined && row.posicao_no_filtro !== null ? String(row.posicao_no_filtro) : ''
+                            const posGeral = String(row.posicao_geral ?? val ?? '')
 
-                            if (hasGeoPartyFilter && posFiltro !== undefined && posFiltro !== null) {
+                            if (hasGeoPartyFilter && posFiltro) {
                               return (
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                                   <span style={{ fontWeight: 'bold', color: 'var(--primary)' }}>#{posFiltro} no filtro</span>
