@@ -4,6 +4,7 @@ import { vi } from 'vitest'
 
 import {
   fetchDeputyExpenseBreakdown,
+  fetchQuestion,
   fetchGastosCategorias,
   fetchGastosContexto,
   fetchGastosDeputados,
@@ -15,6 +16,7 @@ import { GastosDashboardPage } from '../GastosDashboardPage'
 
 vi.mock('../../api', () => ({
   fetchDeputyExpenseBreakdown: vi.fn(),
+  fetchQuestion: vi.fn(),
   fetchGastosCategorias: vi.fn(),
   fetchGastosContexto: vi.fn(),
   fetchGastosDeputados: vi.fn(),
@@ -50,6 +52,16 @@ const meta: MetaResponse = {
     ufs: [{ value: 'CE', label: 'CE' }],
     deputados: [],
     escolaridade: [],
+  },
+  question_filters: {
+    q7: {
+      anos: [{ value: '2026', label: '2026 parcial' }, { value: '2025', label: '2025' }],
+      eixos: [],
+      partidos: [],
+      ufs: [],
+      deputados: [],
+      escolaridade: [],
+    },
   },
 }
 
@@ -109,8 +121,84 @@ const deputyBreakdown = {
   ],
 }
 
+const q7GlobalPayload = {
+  question_id: 'q7',
+  title: 'Indice de custo-beneficio',
+  description: 'Ranking global',
+  filters_supported: ['anos'],
+  filters_applied: {},
+  summary_cards: [],
+  chart_spec: {
+    type: 'scatter',
+    title: 'Q7',
+    description: 'Q7',
+    categories: [],
+    series: [],
+    y_fields: [],
+    options: {},
+  },
+  table_spec: {
+    title: 'Tabela principal',
+    columns: [],
+    rows: [
+      {
+        posicao: 1,
+        periodo_label: 'Global',
+        ano_parcial: false,
+        nome_parlamentar: 'Amom Mandel',
+        sigla_partido: 'REPUBLICANOS',
+        sigla_uf: 'AM',
+        gasto_total: 89463.44,
+        score_proposicoes_ajustado: 596.4,
+        indice_custo_beneficio: 20.33197,
+      },
+    ],
+    total: 620,
+    page: 1,
+    page_size: 5,
+    sort_dir: 'desc' as const,
+  },
+  complement_tables: [],
+  query_panel: {
+    sql_path: 'q7.sql',
+    sql_text: 'select 1',
+    explanation: 'Q7',
+  },
+  warnings: [],
+  empty_state: {
+    is_empty: false,
+    message: '',
+  },
+  dataset_version: 'test',
+  generated_at: '2026-06-24T00:00:00Z',
+}
+
+const q7PartialPayload = {
+  ...q7GlobalPayload,
+  table_spec: {
+    ...q7GlobalPayload.table_spec,
+    rows: [
+      {
+        posicao: 1,
+        periodo_label: '2026',
+        ano_parcial: true,
+        nome_parlamentar: 'Altineu Cortes',
+        sigla_partido: 'PL',
+        sigla_uf: 'RJ',
+        gasto_total: 94200,
+        score_proposicoes_ajustado: 328.16,
+        indice_custo_beneficio: 10.76736,
+      },
+    ],
+    total: 541,
+  },
+}
+
 beforeEach(() => {
   vi.mocked(fetchDeputyExpenseBreakdown).mockResolvedValue(deputyBreakdown)
+  vi.mocked(fetchQuestion).mockImplementation(async (_questionId, filters) => (
+    filters.anos[0] === '2026' ? q7PartialPayload : q7GlobalPayload
+  ))
   vi.mocked(fetchGastosResumo).mockResolvedValue(summary)
   vi.mocked(fetchGastosCategorias).mockResolvedValue(collection([
     { categoria: 'Passagens', valor_total: 800_000, qtd_despesas: 12, ticket_medio: 66_666.67, qtd_deputados: 1, pct_total: 64.8 },
@@ -141,6 +229,27 @@ it('remove gastos atipicos and configures financial charts without a clickable l
   expect(screen.queryByText(/gastos at[ií]picos/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/anomalia/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
+})
+
+it('renders the Q7 preview in the gastos dashboard and supports the annual partial view', async () => {
+  const user = userEvent.setup()
+  render(<GastosDashboardPage meta={meta} />)
+
+  expect(await screen.findByRole('heading', { name: /Custo-beneficio parlamentar/i })).toBeInTheDocument()
+  expect(screen.getByText('Amom Mandel')).toBeInTheDocument()
+  expect(screen.queryByRole('link', { name: /Abrir pagina completa/i })).not.toBeInTheDocument()
+
+  // Click the button to expand the analysis inline and show filters
+  const expandBtn = screen.getByRole('button', { name: /Ver analise completa/i })
+  await user.click(expandBtn)
+
+  await user.selectOptions(screen.getByLabelText('Escopo'), 'anual')
+  await user.selectOptions(screen.getByLabelText('Ano'), '2026')
+
+  await waitFor(() => {
+    expect(screen.getAllByText('2026 parcial').length).toBeGreaterThan(0)
+  })
+  expect(screen.getByText('Altineu Cortes')).toBeInTheDocument()
 })
 
 it('clears section-specific filters and selections when changing tabs', async () => {
@@ -230,4 +339,33 @@ it('keeps the fornecedores tab global and does not pass deputy to the global end
   expect(vi.mocked(fetchGastosFornecedores)).not.toHaveBeenCalledWith(
     expect.objectContaining({ deputado: '123' }),
   )
+})
+
+it('typing in Q7 search triggers fetchQuestion with the search value', async () => {
+  const user = userEvent.setup()
+  const questionMock = vi.mocked(fetchQuestion)
+  render(<GastosDashboardPage meta={meta} />)
+
+  // Wait for Q7 section to appear in resumo tab
+  expect(await screen.findByRole('heading', { name: /Custo-beneficio parlamentar/i })).toBeInTheDocument()
+
+  // Expand Q7
+  await user.click(screen.getByRole('button', { name: /Ver analise completa/i }))
+
+  // Clear mock call history after expansion
+  questionMock.mockClear()
+  questionMock.mockResolvedValue(q7GlobalPayload)
+
+  // Type in the search input
+  const searchInput = screen.getByPlaceholderText('Digite o nome do deputado...')
+  await user.type(searchInput, 'amom')
+
+  // Wait for debounced fetch with the search value
+  await waitFor(() => {
+    const calls = questionMock.mock.calls
+    const hasSearchCall = calls.some(
+      ([qId, filters]) => qId === 'q7' && filters.search === 'amom'
+    )
+    expect(hasSearchCall).toBe(true)
+  }, { timeout: 2000 })
 })
