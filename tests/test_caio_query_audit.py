@@ -347,21 +347,12 @@ def _current_q7_unified_metrics_by_scope() -> dict[tuple[str, int | None, int], 
 
 
 def _current_plenario_matches() -> int:
-    # Normaliza acentos para replicar ILIKE '%plenario%' com unaccent:
-    # 'Plenário' -> 'Plenario' antes de comparar.
     merged = _presencas_df().merge(
-        _eventos_df()[["ano_dados", "id_evento", "descricao_tipo", "descricao", "local_camara"]],
+        _eventos_df()[["ano_dados", "id_evento", "local_camara"]],
         on=["ano_dados", "id_evento"],
         how="left",
     )
-    def _unaccent_col(col: pd.Series) -> pd.Series:
-        return col.apply(lambda v: _unaccent(str(v)) if isinstance(v, str) else "")
-
-    matches = (
-        _unaccent_col(merged["descricao_tipo"]).str.contains("plenario", case=False, regex=True)
-        | _unaccent_col(merged["descricao"]).str.contains("plenario", case=False, regex=True)
-        | _unaccent_col(merged["local_camara"]).str.contains("plenario", case=False, regex=True)
-    )
+    matches = merged["local_camara"] == "Plenário da Câmara dos Deputados"
     return int(matches.sum())
 
 

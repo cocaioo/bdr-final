@@ -33,17 +33,17 @@ A fonte é `eventos_presenca_deputados`. Cada linha associada a um deputado é c
 
 Um evento é uma atividade presente no catálogo `eventos` e vinculada aos registros de presença por ano e identificador do evento.
 
-Uma atividade é classificada como plenário quando pelo menos um destes campos contém a palavra “plenario”: tipo/descrição do evento, descrição geral ou local na Câmara. Portanto, “plenário” é uma classificação textual da base, não uma lista normativa de sessões plenárias.
+Uma atividade é classificada como plenário quando o local na Câmara é exatamente "Plenário da Câmara dos Deputados". Portanto, "plenário" refere-se especificamente às sessões no Plenário Principal, diferenciando-as de reuniões de comissões em salas de comissão (que ocorrem em locais como "Anexo II, Plenário 01", etc.).
 
 ## Limitações da presença
 
 - A base não fornece, nesta métrica, o total de sessões ou eventos em que cada deputado poderia comparecer. Por isso não é possível calcular taxa de presença.
 - Mais registros não significam necessariamente maior assiduidade relativa, pois a quantidade de eventos elegíveis pode variar.
-- A classificação de plenário depende dos textos disponíveis e pode omitir atividades descritas de outra forma ou incluir registros cujo texto apenas mencione o termo.
+- A classificação de plenário é restrita ao local principal de votações da Câmara; eventos em outros locais (como salas de comissão) não são contados nesta categoria.
 - Diferenças de cobertura entre anos e grupos afetam as médias.
 - A métrica não deve ser usada isoladamente para avaliar desempenho parlamentar.
 
 O texto recomendado para a UI é:
 
-> Média anual de registros de presença por deputado, comparando todos os eventos com atividades identificadas como plenário.
+> Média anual de registros de presença. "Todos os eventos" inclui reuniões de comissão e demais sessões oficiais, enquanto "Atividades de plenário" restringe-se estritamente às votações no Plenário Principal da Câmara.
 
