@@ -1707,7 +1707,7 @@ td {
 
 .gastos-dashboard-premium .profile-stat-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
   gap: 8px;
   margin-top: 8px;
   border-top: 1px solid var(--border);

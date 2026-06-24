@@ -2,18 +2,20 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos } from '../../api'
+import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchQuestionForDeputy } from '../../api'
 import { DeputyProfilePage } from '../DeputyProfilePage'
 
 vi.mock('../../api', () => ({
   fetchDeputies: vi.fn(),
   fetchDeputyGastosSummary: vi.fn(),
   fetchDeputyIdentityFromGastos: vi.fn(),
+  fetchQuestionForDeputy: vi.fn(),
 }))
 
 const fetchDeputiesMock = vi.mocked(fetchDeputies)
 const fetchGastosMock = vi.mocked(fetchDeputyGastosSummary)
 const fetchIdentityMock = vi.mocked(fetchDeputyIdentityFromGastos)
+const fetchQ7Mock = vi.mocked(fetchQuestionForDeputy)
 
 const deputies = [
   {
@@ -40,6 +42,24 @@ const gastos = {
   partialErrors: [],
 }
 
+const q7Payload = {
+  table_spec: {
+    rows: [
+      {
+        id_deputado: 220593,
+        posicao: 175,
+        periodo_label: 'Global',
+        ano_parcial: false,
+        gasto_total: 871819.53,
+        total_proposicoes: 556,
+        score_proposicoes_total: 357.38,
+        score_proposicoes_ajustado: 82.2,
+        indice_custo_beneficio: 0.511864,
+      },
+    ],
+  },
+}
+
 function renderProfile(id = '220593') {
   return render(
     <MemoryRouter initialEntries={[`/deputados/${id}`]}>
@@ -53,9 +73,11 @@ describe('DeputyProfilePage', () => {
     fetchDeputiesMock.mockReset()
     fetchGastosMock.mockReset()
     fetchIdentityMock.mockReset()
+    fetchQ7Mock.mockReset()
     fetchDeputiesMock.mockResolvedValue(deputies)
     fetchGastosMock.mockResolvedValue(gastos)
     fetchIdentityMock.mockResolvedValue({ partido: 'PL', uf: 'MT' })
+    fetchQ7Mock.mockResolvedValue(q7Payload as any)
   })
 
   it('carrega o deputado existente, seus dados cadastrais e gastos reais', async () => {
@@ -65,14 +87,18 @@ describe('DeputyProfilePage', () => {
     expect(screen.getAllByText('ABILIO JACQUES BRUNINI MOUMER').length).toBeGreaterThan(0)
     expect(screen.getByText('57ª Legislatura')).toBeInTheDocument()
     expect(screen.getByText('99770962104')).toBeInTheDocument()
-    expect(await screen.findByText('R$ 871.819,53')).toBeInTheDocument()
+    expect((await screen.findAllByText('R$ 871.819,53')).length).toBeGreaterThan(0)
     expect(screen.getByText('Despesa média')).toBeInTheDocument()
     expect(screen.getByText('LOCAÇÃO DE VEÍCULOS')).toBeInTheDocument()
     expect(screen.getByText('PANTANAL VEÍCULOS LTDA')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Indice de custo-beneficio parlamentar' })).toBeInTheDocument()
+    expect(screen.getByText('#175')).toBeInTheDocument()
+    expect(screen.getByText('0,51186')).toBeInTheDocument()
     expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Produção legislativa' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Votações' })).toBeInTheDocument()
     expect(fetchGastosMock).toHaveBeenCalledWith('220593')
+    expect(fetchQ7Mock).toHaveBeenCalledWith('q7', '220593', 1, 5)
   })
 
   it('exibe partido e UF vindos da API de gastos', async () => {
@@ -146,11 +172,13 @@ describe('DeputyProfilePage', () => {
 
   it('mostra estado vazio de gastos sem quebrar o cadastro', async () => {
     fetchGastosMock.mockResolvedValue({ summary: null, categories: [], suppliers: [], evolution: [], hasData: false, partialErrors: [] })
+    fetchQ7Mock.mockResolvedValue({ table_spec: { rows: [] } } as any)
     renderProfile('204379')
 
     expect(await screen.findByRole('heading', { name: 'Acacio Favacho' })).toBeInTheDocument()
     expect(screen.getAllByText('Não informado').length).toBeGreaterThan(0)
     expect(await screen.findByText(/Nenhum dado de gasto disponível/i)).toBeInTheDocument()
+    expect(await screen.findByText(/Nao ha dados suficientes para calcular o indice/i)).toBeInTheDocument()
   })
 
   it('preserva o perfil quando a consulta de gastos falha', async () => {

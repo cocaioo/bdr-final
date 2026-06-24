@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos } from '../api'
+import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchQuestionForDeputy } from '../api'
 import { DeputyAvatar } from '../components/DeputyAvatar'
 import { DeputySearch } from '../components/DeputySearch'
 import type { DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption } from '../types'
@@ -22,6 +22,26 @@ function formatLegislatura(deputy: DeputyOption): string {
 
 function formatNumber(value: number): string {
   return value.toLocaleString('pt-BR')
+}
+
+function formatDecimal(value: number, digits = 2): string {
+  return value.toLocaleString('pt-BR', { maximumFractionDigits: digits })
+}
+
+function numericValue(value: unknown): number {
+  const parsed = Number(value)
+  return Number.isFinite(parsed) ? parsed : 0
+}
+
+interface DeputyCostBenefitProfile {
+  posicao: number | null
+  indice: number
+  gastoTotal: number
+  totalProposicoes: number
+  scoreTotal: number
+  scoreAjustado: number
+  periodoLabel: string
+  anoParcial: boolean
 }
 
 function LoadingSkeleton() {
@@ -170,6 +190,11 @@ export function DeputyProfilePage() {
     data: DeputyGastosProfile | null
     error: string | null
   }>({ data: null, error: null })
+  const [q7State, setQ7State] = useState<{
+    deputyId?: string
+    data: DeputyCostBenefitProfile | null
+    error: string | null
+  }>({ data: null, error: null })
   const [identityEnrichment, setIdentityEnrichment] = useState<DeputyIdentityEnrichment>({})
 
   useEffect(() => {
@@ -187,12 +212,47 @@ export function DeputyProfilePage() {
     if (!deputy) return
     let active = true
     setIdentityEnrichment({})
+    setQ7State({ data: null, error: null })
     fetchDeputyIdentityFromGastos(deputy.id)
       .then((enrichment) => { if (active) setIdentityEnrichment(enrichment) })
       .catch(() => { /* silently ignore; fallback to CSV values */ })
     fetchDeputyGastosSummary(deputy.id)
       .then((payload) => { if (active) setGastosState({ deputyId: deputy.id, data: payload, error: null }) })
       .catch((cause: Error) => { if (active) setGastosState({ deputyId: deputy.id, data: null, error: cause.message }) })
+    fetchQuestionForDeputy('q7', deputy.id, 1, 5)
+      .then((payload) => {
+        if (!active) return
+        const row =
+          payload.table_spec.rows.find((item) => String(item.id_deputado ?? '') === deputy.id) ??
+          payload.table_spec.rows[0]
+        if (!row) {
+          setQ7State({ deputyId: deputy.id, data: null, error: null })
+          return
+        }
+        setQ7State({
+          deputyId: deputy.id,
+          data: {
+            posicao: row.posicao === undefined || row.posicao === null ? null : numericValue(row.posicao),
+            indice: numericValue(row.indice_custo_beneficio),
+            gastoTotal: numericValue(row.gasto_total),
+            totalProposicoes: numericValue(row.total_proposicoes),
+            scoreTotal: numericValue(row.score_proposicoes_total),
+            scoreAjustado: numericValue(row.score_proposicoes_ajustado),
+            periodoLabel: String(row.periodo_label ?? 'Global'),
+            anoParcial: Boolean(row.ano_parcial),
+            totalProposicoesSubstantivas: numericValue(row.total_proposicoes_substantivas),
+            totalProposicoesAprovadas: numericValue(row.total_proposicoes_aprovadas),
+            elegivel: row.elegivel_ranking !== undefined ? (String(row.elegivel_ranking).toLowerCase() === 'true' || row.elegivel_ranking === true) : true,
+            motivoInelegibilidade: row.motivo_inelegibilidade ? String(row.motivo_inelegibilidade) : null,
+          },
+          error: null,
+        })
+      })
+      .catch((cause: Error) => {
+        if (active) {
+          setQ7State({ deputyId: deputy.id, data: null, error: cause.message })
+        }
+      })
     return () => { active = false }
   }, [deputy])
 
@@ -278,6 +338,79 @@ export function DeputyProfilePage() {
           <span className="deputy-profile__eyebrow">Em preparação</span><h2>Votações</h2>
           <p>Esta área será enriquecida com histórico e posicionamentos do parlamentar, sem antecipar métricas ainda indisponíveis.</p>
         </article>
+      </section>
+
+      <section className="deputy-profile__section" aria-labelledby="custo-beneficio-heading">
+        <SectionHeading
+          eyebrow="Q7"
+          title="Indice de custo-beneficio parlamentar"
+          description="Producao legislativa ponderada por gasto, calculada segundo a metodologia atual da Q7."
+        />
+        <div id="custo-beneficio-heading">
+          {q7State.deputyId !== deputy.id ? (
+            <div className="deputy-profile__empty" role="status">Carregando indicador de custo-beneficio...</div>
+          ) : q7State.error ? (
+            <div className="deputy-profile__empty deputy-profile__empty--error" role="alert">
+              <strong>Nao foi possivel carregar o indicador de custo-beneficio agora.</strong>
+              <span>O restante do perfil continua disponivel.</span>
+            </div>
+          ) : q7State.data ? (
+            <>
+              {!q7State.data.elegivel && (
+                <div style={{
+                  padding: '12px 16px',
+                  backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                  borderLeft: '4px solid #ef4444',
+                  borderRadius: '6px',
+                  fontSize: '0.9rem',
+                  color: '#ef4444',
+                  marginBottom: '16px',
+                  lineHeight: '1.4'
+                }}>
+                  <strong>Inelegível para o Ranking Principal:</strong>
+                  <div style={{ marginTop: '4px' }}>{q7State.data.motivoInelegibilidade}</div>
+                </div>
+              )}
+              <div className="deputy-profile__metrics" aria-label="Indice de custo-beneficio">
+                <ProfileField
+                  label="Posicao no ranking global"
+                  value={q7State.data.posicao ? `#${q7State.data.posicao}` : 'Nao disponivel'}
+                />
+                <ProfileField label="Indice" value={formatDecimal(q7State.data.indice, 5)} />
+                <ProfileField label="Gasto total" value={formatCurrency(q7State.data.gastoTotal)} />
+                <ProfileField
+                  label="Proposicoes consideradas"
+                  value={formatNumber(q7State.data.totalProposicoes)}
+                />
+              </div>
+
+              <article className="deputy-profile__data-card">
+                <h3>Leitura do indicador</h3>
+                <div className="deputy-profile__details-grid">
+                  <ProfileField label="Score total" value={formatDecimal(q7State.data.scoreTotal, 2)} />
+                  <ProfileField label="Score ajustado" value={formatDecimal(q7State.data.scoreAjustado, 2)} />
+                  <ProfileField
+                    label="Periodo"
+                    value={`${q7State.data.periodoLabel}${q7State.data.anoParcial ? ' (parcial)' : ''}`}
+                  />
+                  <ProfileField
+                    label="Proposições substantivas"
+                    value={formatNumber(q7State.data.totalProposicoesSubstantivas)}
+                  />
+                  <ProfileField
+                    label="Proposições aprovadas"
+                    value={formatNumber(q7State.data.totalProposicoesAprovadas)}
+                  />
+                </div>
+              </article>
+            </>
+          ) : (
+            <div className="deputy-profile__empty" role="status">
+              <strong>Nao ha dados suficientes para calcular o indice deste deputado no periodo selecionado.</strong>
+              <span>O card sera preenchido assim que a Q7 retornar esse parlamentar no recorte global.</span>
+            </div>
+          )}
+        </div>
       </section>
 
       <section className="deputy-profile__section">

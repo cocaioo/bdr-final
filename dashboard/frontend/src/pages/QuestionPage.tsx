@@ -160,6 +160,7 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
   const isQ2 = questionMeta.id.toLowerCase() === 'q2'
   const isQ11 = questionMeta.id.toLowerCase() === 'q11'
   const isQ3 = questionMeta.id.toLowerCase() === 'q3'
+  const isQ7 = questionMeta.id.toLowerCase() === 'q7'
   const hasWordClouds = isQ2 || isQ11
   const shouldShowChart = !hasWordClouds
   const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
@@ -230,6 +231,18 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
         </>
       ) : (
         <>
+          {isQ7 ? (
+            <section className="q3-methodology stagger-item">
+              <p>
+                {filters.anos.length > 0
+                  ? `Ranking anual selecionado: ${filters.anos.map((year) => year === '2026' ? '2026 parcial' : year).join(', ')}.`
+                  : 'Ranking global: considera apenas anos completos; 2026 fica fora do global e aparece apenas na analise anual como periodo parcial.'}
+              </p>
+              <p style={{ marginTop: '8px', fontStyle: 'italic' }}>
+                Ranking calculado a partir da produção legislativa ponderada por tipo, status e autoria, em relação aos gastos declarados. Para evitar distorções, o ranking principal considera apenas deputados com pelo menos R$ 10.000 em gastos e atividade parlamentar mínima registrada. O ranking global considera apenas anos completos.
+              </p>
+            </section>
+          ) : null}
           {isQ2 ? (
             <WordCloudGrid 
               spec={payload.chart_spec} 

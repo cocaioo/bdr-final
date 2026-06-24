@@ -15,7 +15,7 @@ import type {
   TableState,
 } from './types'
 
-const API_BASE = import.meta.env.VITE_API_URL ?? ''
+const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8001'
 
 function buildQuery(params: Record<string, string | number | undefined | string[]>) {
   const query = new URLSearchParams()
@@ -121,12 +121,12 @@ export function fetchQuestion(
   supportedFilters?: string[],
 ): Promise<QuestionPayload> {
   const queryParams: Record<string, string | number | undefined | string[]> = {
-    search: filters.search,
     sort_by: table.sortBy,
     sort_dir: table.sortDir,
     page: table.page,
     page_size: table.pageSize,
   }
+  const normalizedSearch = filters.search.trim() ? filters.search : undefined
 
   const isEnabled = (filterName: string) => {
     if (!supportedFilters || supportedFilters.length === 0) return true
@@ -139,6 +139,11 @@ export function fetchQuestion(
   if (isEnabled('ufs')) queryParams.ufs = filters.ufs
   if (isEnabled('deputados')) queryParams.deputados = filters.deputados
   if (isEnabled('escolaridade')) queryParams.escolaridade = filters.escolaridade
+  if (questionId.toLowerCase() === 'q7') {
+    queryParams.nome = normalizedSearch
+  } else {
+    queryParams.search = normalizedSearch
+  }
 
   const query = buildQuery(queryParams)
   return fetchJson<QuestionPayload>(`${API_BASE}/api/questions/${questionId}?${query}`)
