@@ -40,7 +40,17 @@ WIDTH = 1280
 HEIGHT = 720
 
 # Cores por ideologia (mesmo padrão usado no restante do projeto)
-IDEOLOGY_COLORS = {
+IDEOLOGY_FAIXA_COLORS = {
+    "Extrema esquerda": "#1B7F79",
+    "Esquerda": "#2A9D8F",
+    "Centro-esquerda": "#74B49B",
+    "Centro": "#E9C46A",
+    "Centro-direita": "#F4A261",
+    "Direita": "#E76F51",
+    "Extrema direita": "#C0392B",
+}
+
+CAMPO_COLORS = {
     "esquerda": "#2A9D8F",
     "centro": "#E9C46A",
     "direita": "#E76F51",
@@ -157,7 +167,12 @@ def extract_freqs(table: dict, value_col: str) -> dict[str, float]:
     freqs = {}
     for row in table["rows"]:
         partido = row.get("sigla_partido", "").strip()
-        ideologia = row.get("ideologia", "nao classificado").strip()
+        ideologia = (
+            row.get("ideologia_faixa", "")
+            or row.get("campo_ideologico", "")
+            or row.get("ideologia", "")
+            or "nao classificado"
+        ).strip()
         raw_value = row.get(value_col, "0").strip().replace(",", "")
         if not partido:
             continue
@@ -209,7 +224,7 @@ def color_for_partido(
     **kwargs: object,
 ) -> str:
     ideologia = PARTIDO_IDEOLOGIA.get(word, "nao classificado")
-    return IDEOLOGY_COLORS.get(ideologia, "#8D99AE")
+    return IDEOLOGY_FAIXA_COLORS.get(ideologia) or CAMPO_COLORS.get(ideologia, "#8D99AE")
 
 
 def find_font_path() -> str | None:

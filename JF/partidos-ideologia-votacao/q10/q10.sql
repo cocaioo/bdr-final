@@ -1,4 +1,4 @@
-﻿\o /query-staging/q10_alinhamento_partidos.txt
+\o /query-staging/q10_alinhamento_partidos.txt
 \qecho Q10 - Alinhamento interno dos partidos
 \qecho (Qual partido convence mais seus deputados a seguir a orientacao partidaria)
 
@@ -6,10 +6,11 @@
 -- Metodologia:
 --   1. Considera apenas votacoes em que o partido emitiu orientacao
 --      explicita (exclui "Liberado", "Abstencao", "Obstrucao").
---   2. Para cada voto com diretriz, verifica se o deputado votou
---      igual a orientacao do partido.
---   3. Calcula o percentual de alinhamento por partido.
---   4. Ordena do mais disciplinado ao menos disciplinado.
+--   2. Compara somente orientacao de bancada partidaria exatamente igual
+--      a sigla do partido do deputado. Blocos e bancadas agregadas nao
+--      sao tratados como partidos.
+--   3. Ignora S.PART., codigo especial de sem partido.
+--   4. Preserva score, faixa e campo ideologico na saida.
 -- =======================================================================
 
 -- -----------------------------------------------------------------------
@@ -31,17 +32,12 @@ WITH votos_com_diretriz AS (
     JOIN votacoes_orientacoes vo
         ON vo.ano_dados  = vv.ano_dados
        AND vo.id_votacao = vv.id_votacao
-       AND (
-           -- caso 1: bancada individual (correspondencia exata)
-           vo.sigla_bancada = vv.sigla_partido
-           -- caso 2: federacao/bloco que contem o partido como componente
-           OR vo.sigla_bancada LIKE '%' || vv.sigla_partido || '%'
-       )
+       AND vo.sigla_bancada = vv.sigla_partido
     WHERE
-        -- exclui orientacoes sem diretriz clara
         vo.orientacao NOT IN ('Liberado', 'Abstencao', 'Obstrucao')
-        -- exclui votos tecnicos/ausencias
         AND vv.voto NOT IN ('Abstencao', 'Artigo 17', 'Obstrucao')
+        AND vv.sigla_partido IS NOT NULL
+        AND vv.sigla_partido <> 'S.PART.'
 ),
 alinhamento AS (
     SELECT
@@ -58,7 +54,9 @@ SELECT
         ROUND(a.votos_alinhados * 100.0 / NULLIF(a.total_votos_com_diretriz, 0), 2) DESC
     )                                                                  AS posicao,
     a.sigla_partido,
-    COALESCE(pi.ideologia, 'nao classificado')                         AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado')                   AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado')     AS campo_ideologico,
     a.qtd_deputados,
     a.total_votos_com_diretriz,
     a.votos_alinhados,
@@ -86,13 +84,12 @@ WITH votos_com_diretriz AS (
     JOIN votacoes_orientacoes vo
         ON vo.ano_dados  = vv.ano_dados
        AND vo.id_votacao = vv.id_votacao
-       AND (
-           vo.sigla_bancada = vv.sigla_partido
-           OR vo.sigla_bancada LIKE '%' || vv.sigla_partido || '%'
-       )
+       AND vo.sigla_bancada = vv.sigla_partido
     WHERE
         vo.orientacao NOT IN ('Liberado', 'Abstencao', 'Obstrucao')
         AND vv.voto NOT IN ('Abstencao', 'Artigo 17', 'Obstrucao')
+        AND vv.sigla_partido IS NOT NULL
+        AND vv.sigla_partido <> 'S.PART.'
 ),
 alinhamento_ano AS (
     SELECT
@@ -106,7 +103,9 @@ alinhamento_ano AS (
 SELECT
     aa.ano_dados,
     aa.sigla_partido,
-    COALESCE(pi.ideologia, 'nao classificado')               AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado')          AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado') AS campo_ideologico,
     aa.total_votos,
     aa.votos_alinhados,
     ROUND(aa.votos_alinhados * 100.0 / NULLIF(aa.total_votos, 0), 2) AS pct_alinhamento
@@ -116,7 +115,6 @@ ORDER BY aa.ano_dados, pct_alinhamento DESC, aa.sigla_partido;
 
 -- -----------------------------------------------------------------------
 -- Q10 - Detalhe por deputado: indice de disciplina individual
--- (Util para identificar deputados mais infieis ao partido)
 -- -----------------------------------------------------------------------
 \qecho
 \qecho Q10 - Disciplina individual dos deputados
@@ -134,13 +132,12 @@ WITH votos_com_diretriz AS (
     JOIN votacoes_orientacoes vo
         ON vo.ano_dados  = vv.ano_dados
        AND vo.id_votacao = vv.id_votacao
-       AND (
-           vo.sigla_bancada = vv.sigla_partido
-           OR vo.sigla_bancada LIKE '%' || vv.sigla_partido || '%'
-       )
+       AND vo.sigla_bancada = vv.sigla_partido
     WHERE
         vo.orientacao NOT IN ('Liberado', 'Abstencao', 'Obstrucao')
         AND vv.voto NOT IN ('Abstencao', 'Artigo 17', 'Obstrucao')
+        AND vv.sigla_partido IS NOT NULL
+        AND vv.sigla_partido <> 'S.PART.'
 ),
 disciplina_dep AS (
     SELECT
@@ -154,7 +151,9 @@ disciplina_dep AS (
 )
 SELECT
     dd.sigla_partido,
-    COALESCE(pi.ideologia, 'nao classificado')               AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado')          AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado') AS campo_ideologico,
     dd.id_deputado,
     dd.nome_deputado,
     dd.total_votos_com_diretriz,

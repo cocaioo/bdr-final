@@ -19,7 +19,9 @@ WITH freq_votacoes AS (
 SELECT
     RANK() OVER (ORDER BY fv.votacoes_participadas DESC)  AS posicao,
     fv.sigla_partido,
-    COALESCE(pi.ideologia, 'nao classificado')            AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado')      AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado') AS campo_ideologico,
     fv.votacoes_participadas,
     fv.total_votos_registrados
 FROM freq_votacoes fv
@@ -45,7 +47,9 @@ SELECT
     fa.ano_dados,
     RANK() OVER (PARTITION BY fa.ano_dados ORDER BY fa.votacoes_participadas DESC) AS posicao,
     fa.sigla_partido,
-    COALESCE(pi.ideologia, 'nao classificado')  AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado')  AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado') AS campo_ideologico,
     fa.votacoes_participadas,
     fa.total_votos_registrados
 FROM freq_ano fa
@@ -71,7 +75,9 @@ WITH prop_partido AS (
 SELECT
     RANK() OVER (ORDER BY pp.total_proposicoes DESC)  AS posicao,
     pp.sigla_partido,
-    COALESCE(pi.ideologia, 'nao classificado')        AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado')  AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado') AS campo_ideologico,
     pp.total_proposicoes
 FROM prop_partido pp
 LEFT JOIN partidos_ideologia pi ON pi.sigla_partido = pp.sigla_partido
@@ -97,7 +103,9 @@ SELECT
     pna.ano_dados,
     RANK() OVER (PARTITION BY pna.ano_dados ORDER BY pna.total_proposicoes DESC) AS posicao,
     pna.sigla_partido,
-    COALESCE(pi.ideologia, 'nao classificado')  AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado')  AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado') AS campo_ideologico,
     pna.total_proposicoes
 FROM prop_ano pna
 LEFT JOIN partidos_ideologia pi ON pi.sigla_partido = pna.sigla_partido
@@ -122,7 +130,9 @@ WITH gastos_partido AS (
 SELECT
     RANK() OVER (ORDER BY gp.gasto_total DESC)     AS posicao,
     gp.sigla_partido,
-    COALESCE(pi.ideologia, 'nao classificado')     AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado') AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado') AS campo_ideologico,
     gp.qtd_deputados,
     gp.qtd_despesas,
     gp.gasto_total,
@@ -151,7 +161,9 @@ SELECT
     ga.ano_dados,
     RANK() OVER (PARTITION BY ga.ano_dados ORDER BY ga.gasto_total DESC) AS posicao,
     ga.sigla_partido,
-    COALESCE(pi.ideologia, 'nao classificado')  AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado')  AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado') AS campo_ideologico,
     ga.qtd_deputados,
     ga.qtd_despesas,
     ga.gasto_total,
@@ -168,7 +180,7 @@ ORDER BY ga.ano_dados, ga.gasto_total DESC, ga.sigla_partido;
 -- =======================================================================
 \qecho
 \qecho Q11.d - Nuvem de palavras - score composto por partido (consolidado)
-\qecho Cada partido e um termo; a frequencia e um score normalizado combinando votacoes, proposicoes e gastos.
+\qecho Cada partido e um termo; a frequencia e um score normalizado combinando votacoes, proposicoes e gastos; score, faixa e campo ideologico sao preservados.
 
 WITH freq_votacoes AS (
     SELECT
@@ -249,8 +261,11 @@ SELECT
     RANK() OVER (
         ORDER BY (n.norm_votacoes + n.norm_proposicoes + n.norm_gastos) DESC
     )                                                              AS posicao,
+    n.sigla_partido                                                AS sigla_partido,
     n.sigla_partido                                                AS termo,
-    COALESCE(pi.ideologia, 'nao classificado')                     AS ideologia,
+    pi.ideologia_score,
+    COALESCE(pi.ideologia_faixa, 'nao classificado')               AS ideologia_faixa,
+    COALESCE(pi.campo_ideologico, pi.ideologia, 'nao classificado') AS campo_ideologico,
     n.votacoes                                                     AS votacoes_bruto,
     n.proposicoes                                                  AS proposicoes_bruto,
     n.gastos                                                       AS gastos_bruto,
