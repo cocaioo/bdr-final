@@ -4,6 +4,9 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Iterable
 
+from pathlib import Path
+
+from ..config import REPO_ROOT
 from ..filter_engine import FilterEngine, FilterState
 from ..models import (
     ChartSpec,
@@ -26,6 +29,7 @@ class AdapterContext:
     sql_text: str
     sql_path: str
     dataset_version: str
+    repo_root: Path = REPO_ROOT
 
 
 class QuestionAdapter:
@@ -423,6 +427,7 @@ class QuestionAdapter:
             )
 
         y_field = y_fields[0]
+        label_field = self.context.question.chart.get("label_field", "nome")
         points = []
         for row in rows[:500]:
             x_value = row.get(x_field)
@@ -430,7 +435,7 @@ class QuestionAdapter:
             if isinstance(x_value, (int, float)) and isinstance(y_value, (int, float)):
                 points.append(
                     {
-                        "name": str(row.get("nome", "")),
+                        "name": str(row.get(label_field) or row.get("nome") or ""),
                         "value": [x_value, y_value],
                     }
                 )
@@ -613,6 +618,11 @@ def _without_year_filter(state: FilterState) -> FilterState:
 
 
 def _humanize_label(key: str) -> str:
+    aliases = {
+        "ticket_medio": "Valor medio por despesa",
+    }
+    if key in aliases:
+        return aliases[key]
     return key.replace("_", " ").strip().capitalize()
 
 

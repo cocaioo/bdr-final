@@ -1,0 +1,15 @@
+sigla_original;sigla_normalizada;tipo_alias;acao;observacao
+DEM;UNIAO;partido_extinto_incorporado;normalizar;Democratas incorporado ao Uniao Brasil em 2022. Aparece em proposicoes_autores (2 registros).
+PSL;UNIAO;partido_extinto_fusao;normalizar;PSL fundiu-se ao DEM para formar Uniao Brasil em 2022. Aparece em proposicoes_autores (11 registros).
+PODEMOS;PODE;forma_extensa_da_sigla;normalizar;Forma extensa da sigla PODE usada pela API da Camara. Aparece em votacoes_orientacoes (1 registro) e proposicoes_autores (15 registros).
+REP;REPUBLICANOS;abreviacao_api;normalizar;Abreviacao de Republicanos usada pela API da Camara. Aparece em proposicoes_autores (1 registro).
+REPUB;REPUBLICANOS;abreviacao_api;normalizar;Abreviacao de Republicanos usada pela API da Camara. Aparece em proposicoes_autores (1 registro).
+REPUBLICA;REPUBLICANOS;abreviacao_api;normalizar;Abreviacao de Republicanos usada pela API da Camara. Aparece em proposicoes_autores (1 registro).
+REPUBLICAN;REPUBLICANOS;forma_truncada;normalizar;Forma truncada de Republicanos em votacoes_orientacoes (1 registro).
+SOLIDARIED;SOLIDARIEDADE;forma_truncada;normalizar;Forma truncada de Solidariedade em votacoes_orientacoes (121 registros).
+PATRIOTA;PRD;partido_extinto_incorporado;normalizar;Patriota incorporado ao PRD em 2023. Aparece em votacoes_votos, votacoes_orientacoes e proposicoes_autores (1415 registros em autores).
+PROS;SOLIDARIEDADE;partido_extinto_incorporado;normalizar;PROS incorporado ao Solidariedade em 2023. Aparece em votacoes_votos e proposicoes_autores (231 registros em autores).
+PSC;PODE;partido_extinto_incorporado;normalizar;PSC incorporado ao Podemos em 2023. Aparece em votacoes_votos e proposicoes_autores (568 registros em autores).
+PTB;PRD;partido_extinto_incorporado;normalizar;PTB incorporado ao PRD em 2022. Aparece em proposicoes_autores (1 registro).
+S.PART.;S.PART.;codigo_especial;codigo_especial_sem_partido;Codigo interno de ausencia de filiacao partidaria. Nao e partido. Nao normalizar. Tratar como sem_partido ou nao_classificado nas queries. Aparece em gastos (183), votos (77), proposicoes (85).
+ARENA;;partido_extinto_historico;historico_fora_do_escopo;Alianca Renovadora Nacional, extinta em 1979. Nao aparece nos dados da 57a Legislatura. Nao normalizar. Nao classificar. Removida do universo analitico.

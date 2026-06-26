@@ -50,9 +50,11 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
   const [payload, setPayload] = useState<QuestionPayload | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showDetailedData, setShowDetailedData] = useState(false)
 
   useEffect(() => {
     setTableState(DEFAULT_TABLE_STATE)
+    setShowDetailedData(false)
   }, [questionId])
 
   useEffect(() => {
@@ -156,10 +158,14 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
 
   const isQ8 = questionMeta.id.toLowerCase() === 'q8'
   const isQ2 = questionMeta.id.toLowerCase() === 'q2'
-  const shouldShowChart = questionMeta.id.toLowerCase() !== 'q1' && !isQ2
+  const isQ11 = questionMeta.id.toLowerCase() === 'q11'
+  const isQ3 = questionMeta.id.toLowerCase() === 'q3'
+  const isQ7 = questionMeta.id.toLowerCase() === 'q7'
+  const hasWordClouds = isQ2 || isQ11
+  const shouldShowChart = !hasWordClouds
   const tableStateView = isQ8 ? { ...tableState, pageSize: 50 } : tableState
   const mainTable = isQ8 ? { ...payload.table_spec, title: 'Tabela principal' } : payload.table_spec
-  const complementTables = isQ8 ? [] : payload.complement_tables
+  const complementTables = payload.complement_tables
   const handleTableChange = (next: TableState) => {
     if (isQ8) {
       setTableState({ ...next, pageSize: 50 })
@@ -177,7 +183,7 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
       </section>
 
       <WarningBanner warnings={payload.warnings} />
-      {!isQ2 ? (
+      {!hasWordClouds && !isQ3 ? (
         <ExecutiveCards
           cards={
             questionMeta.id.toLowerCase() === 'q4'
@@ -207,8 +213,48 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
 
       {payload.empty_state.is_empty ? (
         <NoDataState message={payload.empty_state.message} />
+      ) : isQ3 ? (
+        <>
+          <section className="q3-methodology stagger-item">
+            <p>
+              Os eixos tematicos sao inferidos a partir dos textos das proposicoes e objetos
+              associados a votacao. Cada voto nominal e contado uma unica vez.
+            </p>
+          </section>
+          {shouldShowChart ? (
+            <ChartPanel
+              spec={payload.chart_spec}
+              activeFilters={undefined}
+              onBarClick={undefined}
+            />
+          ) : null}
+        </>
       ) : (
         <>
+          {isQ7 ? (
+            <section className="q3-methodology stagger-item">
+              <p>
+                {filters.anos.length > 0
+                  ? `Ranking anual selecionado: ${filters.anos.map((year) => year === '2026' ? '2026 parcial' : year).join(', ')}.`
+                  : 'Ranking global: considera apenas anos completos; 2026 fica fora do global e aparece apenas na analise anual como periodo parcial.'}
+              </p>
+              <div style={{ marginTop: '12px', padding: '12px 16px', backgroundColor: 'rgba(255, 255, 255, 0.05)', borderRadius: '8px', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                <strong>Metodologia e Fórmula de Custo-Benefício:</strong>
+                <p style={{ marginTop: '6px' }}>
+                  O índice é calculado pela razão entre a produção legislativa e os gastos declarados, ambos atenuados por uma curva de saturação exponencial (potência 0.75) para evitar distorções de valores extremos:
+                </p>
+                <div style={{ margin: '12px 0', textAlign: 'center', fontFamily: 'monospace', fontSize: '1rem', fontWeight: 'bold' }}>
+                  Índice = Score Ajustado / Gasto Ajustado
+                </div>
+                <ul style={{ paddingLeft: '20px', marginTop: '6px', listStyleType: 'disc' }}>
+                  <li><strong>Score Ajustado:</strong> (Score total de proposições)<sup>0.75</sup>, onde cada proposição é ponderada por tipo, status de tramitação e autoria (excluindo requerimentos simples e procedimentais).</li>
+                  <li><strong>Gasto Ajustado:</strong> (1 + Gasto Total / 1000)<sup>0.75</sup>.</li>
+                  <li><strong>Elegibilidade:</strong> O ranking principal inclui apenas deputados com pelo menos R$ 10.000 em gastos e atividade parlamentar mínima (Score total &ge; 5, &ge; 2 proposições válidas e &ge; 1 proposição substantiva).</li>
+                  <li><strong>Valores de Referência no Ranking:</strong> O índice mínimo registrado entre os elegíveis é de <strong>0,04</strong> e o máximo obtido é de <strong>22,71</strong>.</li>
+                </ul>
+              </div>
+            </section>
+          ) : null}
           {isQ2 ? (
             <WordCloudGrid 
               spec={payload.chart_spec} 
@@ -221,70 +267,143 @@ export function QuestionPage({ meta, filters, onFiltersChange }: QuestionPagePro
             />
           ) : null}
           {shouldShowChart ? (
-            <ChartPanel
-              spec={payload.chart_spec}
-              yearLabels={yearLegend}
-              activeFilters={filters}
-              onBarClick={
-                questionMeta.id.toLowerCase() === 'q4'
-                  ? (category) => {
-                      if (!onFiltersChange) return
-                      const current = filters.escolaridade || []
-                      const next = current.includes(category)
-                        ? current.filter((item) => item !== category)
-                        : [...current, category]
-                      onFiltersChange({
-                        ...filters,
-                        escolaridade: next,
-                      })
-                    }
-                  : undefined
-              }
-            />
+            <>
+              <ChartPanel
+                spec={payload.chart_spec}
+                yearLabels={yearLegend}
+                activeFilters={undefined}
+                onBarClick={undefined}
+              />
+              {payload.chart_spec.options?.second_chart && (
+                <ChartPanel
+                  spec={payload.chart_spec.options.second_chart as any}
+                  yearLabels={yearLegend}
+                  activeFilters={filters}
+                  onBarClick={
+                    questionMeta.id.toLowerCase() === 'q4'
+                      ? (category) => {
+                          if (!onFiltersChange) return
+                          const current = filters.partidos || []
+                          const next = current.includes(category)
+                            ? current.filter((item) => item !== category)
+                            : [...current, category]
+                          onFiltersChange({
+                            ...filters,
+                            partidos: next,
+                          })
+                        }
+                      : undefined
+                  }
+                />
+              )}
+            </>
           ) : null}
-          <DataTablePanel
-            table={mainTable}
-            state={tableStateView}
-            onChange={handleTableChange}
-            lockPageSize={isQ8}
-          />
+          {isQ2 && (
+            filters.eixos.length > 0 ? (
+              <section className="deputies-grid-section stagger-item">
+                <h2>Atuação no Eixo: {filters.eixos[0]}</h2>
+                <div className="deputies-card-grid" data-testid="deputies-cards-grid">
+                  {payload.table_spec.rows.map((row: any) => (
+                    <article className="deputy-card" key={`${row.id_deputado}-${row.tema}-${row.sigla_partido}-${row.ano_dados || ''}`} data-testid="deputy-card">
+                      <div className="deputy-card-header">
+                        <h3>{row.nome}</h3>
+                        <p className="deputy-civil-name">{row.nome_civil}</p>
+                        <span className="deputy-badge">
+                          {row.sigla_partido} / {row.sigla_uf}
+                        </span>
+                      </div>
+                      <div className="deputy-card-body">
+                        <div className="deputy-metric">
+                          <span className="metric-label">Proposições:</span>
+                          <span className="metric-value">{row.qtd_proposicoes}</span>
+                        </div>
+                        <div className="deputy-specialization">
+                          <span className="specialization-label">Principal Eixo:</span>
+                          <span className="specialization-value">{row.tema_mais_atuante_deputado}</span>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <div className="q2-empty-selection stagger-item">
+                <p>Selecione um tema na nuvem de palavras ou no painel de filtros para visualizar a atuação dos deputados.</p>
+              </div>
+            )
+          )}
         </>
       )}
 
-      {complementTables.map((table) => (
-        table.title.toLowerCase().includes('ranking global') ? (
-          <DataTablePanel
-            key={table.title}
-            table={table}
-            state={tableStateView}
-            onChange={handleTableChange}
-          />
-        ) : (
-          <section key={table.title} className="complement-section stagger-item">
-            <h2>{table.title}</h2>
-            <div className="table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    {table.columns.map((column) => (
-                      <th key={column.key}>{column.label}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {table.rows.slice(0, 30).map((row, rowIndex) => (
-                    <tr key={`${table.title}-${rowIndex}`}>
-                      {table.columns.map((column) => (
-                        <td key={`${column.key}-${rowIndex}`}>{formatCellValue(row[column.key])}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+      {isQ11 ? (
+        <WordCloudGrid 
+          spec={payload.chart_spec} 
+          selectedTheme={null}
+          onWordClick={() => {}}
+        />
+      ) : null}
+
+      {/* Seção recolhível de Dados Detalhados */}
+      {!payload.empty_state.is_empty && ((!isQ2 && mainTable) || complementTables.length > 0) ? (
+        <section className="stagger-item detailed-data-section">
+          <button
+            type="button"
+            className="toggle-detailed-data-btn"
+            onClick={() => setShowDetailedData(!showDetailedData)}
+          >
+            {showDetailedData ? '▲ Ocultar Dados Detalhados' : '▼ Visualizar Dados Detalhados (Tabelas)'}
+          </button>
+          
+          <div className={`detailed-data-content stagger-item${showDetailedData ? '' : ' hidden'}`}>
+              {!isQ2 && (
+                <DataTablePanel
+                  table={mainTable}
+                  state={tableStateView}
+                  onChange={handleTableChange}
+                  lockPageSize={isQ8}
+                  compact={isQ3}
+                />
+              )}
+              
+              {complementTables
+                .filter((table) => !table.title.toLowerCase().includes('complementar'))
+                .map((table) => (
+                  table.title.toLowerCase().includes('ranking global') ? (
+                    <DataTablePanel
+                      key={table.title}
+                      table={table}
+                      state={tableStateView}
+                      onChange={handleTableChange}
+                    />
+                  ) : (
+                    <section key={table.title} className="complement-section">
+                      <h2>{table.title}</h2>
+                      <div className="table-wrapper">
+                        <table>
+                          <thead>
+                            <tr>
+                              {table.columns.map((column) => (
+                                <th key={column.key}>{column.label}</th>
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {table.rows.slice(0, 30).map((row, rowIndex) => (
+                              <tr key={`${table.title}-${rowIndex}`}>
+                                {table.columns.map((column) => (
+                                  <td key={`${column.key}-${rowIndex}`}>{formatCellValue(row[column.key])}</td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  )
+                ))}
             </div>
-          </section>
-        )
-      ))}
+        </section>
+      ) : null}
 
       <QueryDrawer panel={payload.query_panel} />
     </main>

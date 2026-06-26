@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('home route loads shell', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByText('BDR Painel Q1-Q13')).toBeVisible()
+  await expect(page.getByText('BDR Painéis Parlamentares')).toBeVisible()
 })
 
 test('critical question routes are reachable', async ({ page }) => {
@@ -10,8 +10,9 @@ test('critical question routes are reachable', async ({ page }) => {
   await expect(page.getByText('Q1 -')).toBeVisible()
 
   await page.goto('/q/q2')
-  await expect(page.getByRole('heading', { name: 'Nuvens de palavras por ano' })).toBeVisible()
-  await expect(page.getByRole('img', { name: /2023/ })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Nuvens de eixos por ano' })).toBeVisible()
+  await expect(page.getByRole('heading', { name: '2023' })).toBeVisible()
+  await expect(page.getByRole('img').first()).toBeVisible()
 
   await page.goto('/q/q7')
   await expect(page.getByText('Q7 -')).toBeVisible()

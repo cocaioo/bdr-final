@@ -1,74 +1,65 @@
-# BDR - Camara dos Deputados
+## Primeira vez no projeto
 
-Projeto local para padronizar dados da Camara dos Deputados, carregar o PostgreSQL via Docker e servir um dashboard com backend FastAPI e frontend React/Vite.
+Na raiz do projeto, crie o ambiente Python e instale as dependencias:
 
-## O que tem aqui
+```powershell
+python -m venv venv
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
+.\venv\Scripts\python.exe -m pip install -r dashboard/backend/requirements.txt
+```
 
-- `src/`: ETL em Python para ler os CSVs, padronizar os dados e gerar as respostas.
-- `Banco/` e `docker-compose.yml`: banco PostgreSQL e schema inicial.
-- `dashboard/backend`: API FastAPI que entrega os arquivos e metadados do dashboard.
-- `dashboard/frontend`: interface React/Vite.
+Instale tambem as dependencias do frontend:
 
-## Requisitos
+```powershell
+cd dashboard\frontend
+npm install
+cd ..\..
+```
 
-- Python 3.11+
-- Docker Desktop
-- Node.js 20+ e npm
+## Como subir o dashboard
 
-## Como rodar
+Use 3 terminais separados.
 
-1. Suba o banco, se ele ainda nao estiver no ar: `docker compose up -d`
-2. Instale as dependencias do frontend uma vez:
+### Terminal 1: banco de dados
 
-PowerShell:
+Na raiz do projeto:
+
+```powershell
+cd Banco
+docker compose up -d
+cd ..
+```
+
+O banco sobe pela configuracao em `Banco/docker-compose.yml`.
+
+### Terminal 2: backend
+
+Na raiz do projeto:
+
+```powershell
+
+
+.\venv\Scripts\python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8001
+```
+
+Quando estiver rodando, teste no navegador:
+
+```text
+http://localhost:8001/api/health
+```
+
+### Terminal 3: frontend
+
+Na raiz do projeto:
 
 ```powershell
 cd dashboard/frontend
-npm install
-```
-
-Git Bash:
-
-```bash
-cd dashboard/frontend
-npm install
-```
-
-3. Inicie a API em um terminal na raiz do projeto.
-
-PowerShell:
-
-```powershell
-.\venv\Scripts\python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
-```
-
-Git Bash:
-
-```bash
-./venv/Scripts/python.exe -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
-```
-
-4. Abra outro terminal em `dashboard/frontend` e inicie o front.
-
-PowerShell:
-
-```powershell
 npm run dev -- --host 0.0.0.0 --port 5173
 ```
 
-Git Bash:
+Acesse o dashboard em:
 
-```bash
-npm run dev -- --host 0.0.0.0 --port 5173
+```text
+http://localhost:5173
 ```
 
-## Acesso
-
-- Frontend: `http://localhost:5173`
-- API: `http://localhost:8000/api/health`
-- Metadados: `http://localhost:8000/api/meta`
-
-## Observacoes
-
-- O dashboard le os arquivos exportados via API, sem consultar o banco direto.
-- O backend aceita caminhos por membro/pergunta e mantem fallback para `respostas/` quando necessario.

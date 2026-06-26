@@ -1,7 +1,45 @@
+# Local configuration and secrets
 .env
+.env.*
+!.env.example
+# Python environments, caches and reports
 venv/
 .venv/
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+# JavaScript dependencies and generated output
+node_modules/
+dist/
+dist-ssr/
+.vite/
+coverage/
+test-results/
+playwright-report/
+/package-lock.json
+# Logs and temporary files
 logs/
-scratch
+scratch/
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+# Generated local visual artifacts
+artifacts/
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# Large generated analytical artifacts
+*q9_vies_deputado_detalhe.csv
+JF/producao-legislativa-temas/q3/q3_votos_analitico.csv
+Caio/gastos-fornecedores/analytics/*.csv
+Caio/gastos-fornecedores/analytics/gastos_metadata.json
+Caio/gastos-fornecedores/analytics/auditoria_*.json

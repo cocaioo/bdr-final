@@ -1,7 +1,8 @@
 PYTHON ?= venv/Scripts/python
 COMPOSE ?= docker compose
+BDR_PORT ?= 8001
 
-.PHONY: venv install up down db-reset etl validate export-respostas clean-outputs all dashboard-install dashboard-api dashboard-web dashboard-dev dashboard-test
+.PHONY: venv install up down db-reset etl validate export-respostas gastos-analytics gastos-audit-api clean-outputs all dashboard-install dashboard-api dashboard-web dashboard-dev dashboard-test
 
 venv:
 	python -m venv venv
@@ -26,11 +27,17 @@ validate:
 	$(COMPOSE) exec -T postgres psql -U admin -d dossie_grupo4 -f /sql/validation_queries.sql
 
 export-respostas:
-	powershell -NoProfile -Command "New-Item -ItemType Directory -Force respostas | Out-Null; Remove-Item -Path respostas/*.txt -Force -ErrorAction SilentlyContinue"
+	powershell -NoProfile -Command "New-Item -ItemType Directory -Force scratch/query-staging | Out-Null; Remove-Item -Path scratch/query-staging/*.txt,scratch/query-staging/*.csv -Force -ErrorAction SilentlyContinue"
 	$(PYTHON) -m src.export_respostas
 
+gastos-analytics:
+	$(PYTHON) dashboard/scripts/generate_gastos_analytics.py
+
+gastos-audit-api:
+	$(PYTHON) dashboard/scripts/audit_gastos_api.py
+
 clean-outputs:
-	powershell -NoProfile -Command "Remove-Item -Path dados_padronizados -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path respostas/*.txt -Force -ErrorAction SilentlyContinue"
+	powershell -NoProfile -Command "Remove-Item -Path dados_padronizados -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path scratch/query-staging -Recurse -Force -ErrorAction SilentlyContinue"
 
 all: up etl validate export-respostas
 
@@ -39,13 +46,13 @@ dashboard-install:
 	cd dashboard/frontend && npm.cmd install
 
 dashboard-api:
-	$(PYTHON) -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port 8000
+	$(PYTHON) -m uvicorn app.main:app --app-dir dashboard/backend --reload --host 0.0.0.0 --port $(BDR_PORT)
 
 dashboard-web:
 	cd dashboard/frontend && npm.cmd run dev -- --host 0.0.0.0 --port 5173
 
 dashboard-dev:
-	powershell -NoProfile -Command "Start-Process -WindowStyle Hidden -WorkingDirectory '$(CURDIR)' -FilePath 'venv\\Scripts\\python.exe' -ArgumentList '-m','uvicorn','app.main:app','--app-dir','dashboard/backend','--reload','--host','0.0.0.0','--port','8000'; Start-Process -WindowStyle Hidden -WorkingDirectory '$(CURDIR)\\dashboard\\frontend' -FilePath 'npm.cmd' -ArgumentList 'run','dev','--','--host','0.0.0.0','--port','5173'"
+	powershell -NoProfile -Command "Start-Process -WindowStyle Hidden -WorkingDirectory '$(CURDIR)' -FilePath 'venv\\Scripts\\python.exe' -ArgumentList '-m','uvicorn','app.main:app','--app-dir','dashboard/backend','--reload','--host','0.0.0.0','--port','$(BDR_PORT)'; Start-Process -WindowStyle Hidden -WorkingDirectory '$(CURDIR)\\dashboard\\frontend' -FilePath 'npm.cmd' -ArgumentList 'run','dev','--','--host','0.0.0.0','--port','5173'"
 
 dashboard-test:
 	cd dashboard/backend && ..\\..\\venv\\Scripts\\python -m pytest

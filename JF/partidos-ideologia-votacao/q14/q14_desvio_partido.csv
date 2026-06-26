@@ -1,0 +1,22 @@
+party;num_deputados;ideologia_score_partido;ideologia_faixa_partido;score_comportamental_medio;score_calibrado_medio;desvio_partido_medio;desvio_partido_medio_abs;direcao_desvio_medio
+PT;76;2.679;Esquerda;0.566;4.275;1.596;1.596;mais a direita
+PCDOB;11;1.778;Esquerda;0.671;4.353;2.575;2.575;mais a direita
+PV;6;4.123;Centro-esquerda;1.037;4.629;0.506;0.506;mais a direita
+PSOL;15;1.415;Extrema esquerda;1.295;4.823;3.408;3.408;mais a direita
+REDE;7;3.692;Centro-esquerda;1.395;4.897;1.205;1.205;mais a direita
+PSB;14;3.589;Centro-esquerda;1.653;5.091;1.502;1.502;mais a direita
+PDT;19;3.855;Centro-esquerda;2.054;5.393;1.538;1.538;mais a direita
+AVANTE;8;6.473;Centro-direita;3.124;6.196;-0.277;0.735;alinhado
+SOLIDARIEDADE;8;6.007;Centro-direita;3.363;6.376;0.369;0.452;alinhado
+PSD;65;6.937;Centro-direita;3.377;6.386;-0.551;0.746;mais a esquerda
+MDB;49;6.499;Centro-direita;3.721;6.644;0.145;0.651;alinhado
+REPUBLICANOS;59;8.333;Direita;3.731;6.652;-1.681;1.716;mais a esquerda
+PODE;29;7.437;Direita;3.749;6.655;-0.782;1.304;mais a esquerda
+PSDB;16;6.759;Centro-direita;3.814;6.714;-0.045;0.496;alinhado
+UNIAO;62;8.485;Direita;4.15;6.967;-1.518;1.616;mais a esquerda
+PP;63;8.153;Direita;4.218;7.013;-1.14;1.427;mais a esquerda
+PRD;6;8.161;Direita;4.658;7.348;-0.813;1.292;mais a esquerda
+CIDADANIA;5;6.17;Centro-direita;4.672;7.359;1.189;1.189;mais a direita
+PL;110;8.796;Extrema direita;7.079;9.089;0.293;0.79;alinhado
+MISSAO;1;7.75;Direita;7.378;9.391;1.641;1.641;mais a direita
+NOVO;5;8.666;Extrema direita;9.075;10.0;1.334;1.334;mais a direita

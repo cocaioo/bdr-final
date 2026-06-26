@@ -7,6 +7,11 @@ interface GlobalFiltersProps {
   value: FilterState
   onChange: (next: FilterState) => void
   supportedFilters?: string[]
+  hideSearch?: boolean
+  hideNumericDeputyChoices?: boolean
+  searchableDeputyFilter?: boolean
+  searchLabel?: string
+  searchPlaceholder?: string
 }
 
 function isEnabled(supportedFilters: string[] | undefined, filterId: string) {
@@ -28,6 +33,13 @@ function getChoiceLabel(choices: Array<{ value: string; label: string }>, val: s
   return choice ? choice.label : val
 }
 
+function normalizeSearchText(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+}
+
 const EMPTY_FILTER_STATE: FilterState = {
   anos: [],
   eixos: [],
@@ -43,18 +55,25 @@ export function GlobalFilters({
   value,
   onChange,
   supportedFilters,
+  hideSearch = false,
+  hideNumericDeputyChoices = false,
+  searchableDeputyFilter = false,
+  searchLabel = 'Busca textual no ranking',
+  searchPlaceholder = 'Digite para filtrar linhas...',
 }: GlobalFiltersProps) {
-  const [searchValue, setSearchValue] = useState(value.search)
+  const [searchValue, setSearchValue] = useState(value.search ?? '')
+  const [deputySearchValue, setDeputySearchValue] = useState('')
+  const [isDeputySearchOpen, setIsDeputySearchOpen] = useState(false)
 
   // Sync internal state with external value.search changes (e.g. clear filters)
   useEffect(() => {
-    setSearchValue(value.search)
+    setSearchValue(value.search ?? '')
   }, [value.search])
 
   // Debounce state propagation to parent
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchValue !== value.search) {
+      if (searchValue !== (value.search ?? '')) {
         onChange({ ...value, search: searchValue })
       }
     }, 300)
@@ -82,12 +101,56 @@ export function GlobalFilters({
       isFilterActive('ufs') ||
       isFilterActive('deputados') ||
       isFilterActive('escolaridade') ||
-      value.search.trim().length > 0
+      (!hideSearch && (value.search ?? '').trim().length > 0)
     )
   }
 
   const clearAllFilters = () => {
+    setDeputySearchValue('')
+    setIsDeputySearchOpen(false)
     onChange(EMPTY_FILTER_STATE)
+  }
+
+  const safeCatalog = {
+    anos: catalog.anos ?? [],
+    eixos: catalog.eixos ?? [],
+    partidos: catalog.partidos ?? [],
+    ufs: catalog.ufs ?? [],
+    deputados: catalog.deputados ?? [],
+    escolaridade: catalog.escolaridade ?? [],
+  }
+
+  const deputyChoices = hideNumericDeputyChoices
+    ? safeCatalog.deputados.filter((choice) => !/^\d+$/.test(choice.label))
+    : safeCatalog.deputados
+  const selectedDeputyLabel = value.deputados.length > 0
+    ? getChoiceLabel(deputyChoices, value.deputados[0])
+    : ''
+  const normalizedDeputySearch = normalizeSearchText(deputySearchValue.trim())
+  const filteredDeputyChoices = deputyChoices
+    .filter((choice) => {
+      if (!normalizedDeputySearch) return true
+      return normalizeSearchText(choice.label).includes(normalizedDeputySearch)
+    })
+    .slice(0, 20)
+
+  useEffect(() => {
+    if (!searchableDeputyFilter) return
+    if (value.deputados.length > 0) {
+      setDeputySearchValue(selectedDeputyLabel)
+    }
+  }, [searchableDeputyFilter, selectedDeputyLabel, value.deputados.length])
+
+  const selectDeputy = (deputyId: string) => {
+    setList('deputados', [deputyId])
+    setDeputySearchValue(getChoiceLabel(deputyChoices, deputyId))
+    setIsDeputySearchOpen(false)
+  }
+
+  const clearDeputy = () => {
+    setList('deputados', [])
+    setDeputySearchValue('')
+    setIsDeputySearchOpen(false)
   }
 
   return (
@@ -117,7 +180,7 @@ export function GlobalFilters({
               value={value.anos}
               onChange={(event) => setList('anos', readSelectedValues(event.target))}
             >
-              {catalog.anos.map((choice) => (
+              {safeCatalog.anos.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
@@ -127,7 +190,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.anos.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.anos, val)}
+                    {getChoiceLabel(safeCatalog.anos, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -158,7 +221,7 @@ export function GlobalFilters({
               value={value.eixos}
               onChange={(event) => setList('eixos', readSelectedValues(event.target))}
             >
-              {catalog.eixos.map((choice) => (
+              {safeCatalog.eixos.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
@@ -168,7 +231,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.eixos.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.eixos, val)}
+                    {getChoiceLabel(safeCatalog.eixos, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -199,7 +262,7 @@ export function GlobalFilters({
               value={value.partidos}
               onChange={(event) => setList('partidos', readSelectedValues(event.target))}
             >
-              {catalog.partidos.map((choice) => (
+              {safeCatalog.partidos.map((choice) => (
                 <option key={choice.value} value={choice.value} title={choice.status ?? undefined}>
                   {choiceLabel(choice)}
                 </option>
@@ -209,7 +272,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.partidos.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.partidos, val)}
+                    {getChoiceLabel(safeCatalog.partidos, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -240,7 +303,7 @@ export function GlobalFilters({
               value={value.ufs}
               onChange={(event) => setList('ufs', readSelectedValues(event.target))}
             >
-              {catalog.ufs.map((choice) => (
+              {safeCatalog.ufs.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
@@ -250,7 +313,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.ufs.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.ufs, val)}
+                    {getChoiceLabel(safeCatalog.ufs, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -270,28 +333,79 @@ export function GlobalFilters({
             <div className="filter-item-header">
               <label htmlFor="filter-deputados">Deputado</label>
               {value.deputados.length > 0 && (
-                <button type="button" className="clear-btn" onClick={() => setList('deputados', [])}>
+                <button type="button" className="clear-btn" onClick={searchableDeputyFilter ? clearDeputy : () => setList('deputados', [])}>
                   Limpar
                 </button>
               )}
             </div>
-            <select
-              id="filter-deputados"
-              multiple
-              value={value.deputados}
-              onChange={(event) => setList('deputados', readSelectedValues(event.target))}
-            >
-              {catalog.deputados.map((choice) => (
-                <option key={choice.value} value={choice.value}>
-                  {choice.label}
-                </option>
-              ))}
-            </select>
+            {searchableDeputyFilter ? (
+              <div className="autocomplete-filter">
+                <input
+                  id="filter-deputados"
+                  value={deputySearchValue}
+                  autoComplete="off"
+                  role="combobox"
+                  aria-expanded={isDeputySearchOpen}
+                  aria-controls="filter-deputados-options"
+                  placeholder="Digite o nome do deputado..."
+                  onFocus={() => setIsDeputySearchOpen(true)}
+                  onChange={(event) => {
+                    setDeputySearchValue(event.target.value)
+                    setIsDeputySearchOpen(true)
+                    if (value.deputados.length > 0) {
+                      setList('deputados', [])
+                    }
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' && filteredDeputyChoices.length > 0) {
+                      event.preventDefault()
+                      selectDeputy(filteredDeputyChoices[0].value)
+                    }
+                    if (event.key === 'Escape') {
+                      setIsDeputySearchOpen(false)
+                    }
+                  }}
+                />
+                {isDeputySearchOpen && deputySearchValue.trim().length > 0 && (
+                  <div id="filter-deputados-options" className="autocomplete-options" role="listbox">
+                    {filteredDeputyChoices.length > 0 ? (
+                      filteredDeputyChoices.map((choice) => (
+                        <button
+                          key={choice.value}
+                          type="button"
+                          role="option"
+                          className="autocomplete-option"
+                          onMouseDown={(event) => event.preventDefault()}
+                          onClick={() => selectDeputy(choice.value)}
+                        >
+                          {choice.label}
+                        </button>
+                      ))
+                    ) : (
+                      <span className="autocomplete-empty">Nenhum deputado encontrado</span>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <select
+                id="filter-deputados"
+                multiple
+                value={value.deputados}
+                onChange={(event) => setList('deputados', readSelectedValues(event.target))}
+              >
+                {deputyChoices.map((choice) => (
+                  <option key={choice.value} value={choice.value}>
+                    {choice.label}
+                  </option>
+                ))}
+              </select>
+            )}
             {value.deputados.length > 0 && (
               <div className="filter-tags">
                 {value.deputados.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.deputados, val)}
+                    {getChoiceLabel(safeCatalog.deputados, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -322,7 +436,7 @@ export function GlobalFilters({
               value={value.escolaridade}
               onChange={(event) => setList('escolaridade', readSelectedValues(event.target))}
             >
-              {(catalog.escolaridade || []).map((choice) => (
+              {safeCatalog.escolaridade.map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
@@ -332,7 +446,7 @@ export function GlobalFilters({
               <div className="filter-tags">
                 {value.escolaridade.map((val) => (
                   <span key={val} className="filter-tag">
-                    {getChoiceLabel(catalog.escolaridade || [], val)}
+                    {getChoiceLabel(safeCatalog.escolaridade, val)}
                     <button
                       type="button"
                       className="remove-tag-btn"
@@ -347,25 +461,27 @@ export function GlobalFilters({
           </div>
         )}
       </div>
-      <div className="filter-search-container">
-        <div className="filter-item-header">
-          <label htmlFor="filter-search">Busca textual no ranking</label>
-          {searchValue.length > 0 && (
-            <button type="button" className="clear-btn" onClick={() => {
-              setSearchValue('')
-              onChange({ ...value, search: '' })
-            }}>
-              Limpar
-            </button>
-          )}
+      {!hideSearch ? (
+        <div className="filter-search-container">
+          <div className="filter-item-header">
+            <label htmlFor="filter-search">{searchLabel}</label>
+            {searchValue.length > 0 && (
+              <button type="button" className="clear-btn" onClick={() => {
+                setSearchValue('')
+                onChange({ ...value, search: '' })
+              }}>
+                Limpar
+              </button>
+            )}
+          </div>
+          <input
+            id="filter-search"
+            value={searchValue}
+            onChange={(event) => setSearchValue(event.target.value)}
+            placeholder={searchPlaceholder}
+          />
         </div>
-        <input
-          id="filter-search"
-          value={searchValue}
-          onChange={(event) => setSearchValue(event.target.value)}
-          placeholder="Digite para filtrar linhas..."
-        />
-      </div>
+      ) : null}
       <p className="filter-help">Use Ctrl/Cmd para selecionar mais de um valor em cada filtro.</p>
     </section>
   )

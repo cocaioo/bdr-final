@@ -8,21 +8,128 @@ function toNumber(value: unknown): number {
   return Number.isNaN(parsed) ? 0 : parsed
 }
 
+function formatBRLCurrency(value: unknown): string {
+  return toNumber(value).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+}
+
+function formatCompactBRL(value: unknown): string {
+  const amount = toNumber(value)
+  const absolute = Math.abs(amount)
+  if (absolute >= 1_000_000_000) return `R$ ${(amount / 1_000_000_000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} bi`
+  if (absolute >= 1_000_000) return `R$ ${(amount / 1_000_000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} mi`
+  if (absolute >= 1_000) return `R$ ${(amount / 1_000).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} mil`
+  return formatBRLCurrency(amount)
+}
+
+function truncateLabel(value: unknown, maxChars: number): string {
+  const label = String(value ?? '').trim()
+  if (!label || label.length <= maxChars) return label
+  return `${label.slice(0, Math.max(0, maxChars - 1)).trimEnd()}…`
+}
+
+function clampPosition(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}
+
+function safeTooltipPosition(
+  point: number[],
+  _params: unknown,
+  _dom: unknown,
+  _rect: unknown,
+  size: { contentSize: number[]; viewSize: number[] },
+): [number, number] {
+  if (!size || !size.contentSize) return [point[0], point[1]]
+  const [mouseX, mouseY] = point
+  const [tooltipWidth, tooltipHeight] = size.contentSize
+  const [viewWidth, viewHeight] = size.viewSize
+  const preferredX = mouseX + 18 + tooltipWidth <= viewWidth
+    ? mouseX + 18
+    : mouseX - tooltipWidth - 18
+  const preferredY = mouseY - tooltipHeight / 2
+
+  return [
+    clampPosition(preferredX, 12, Math.max(12, viewWidth - tooltipWidth - 12)),
+    clampPosition(preferredY, 12, Math.max(12, viewHeight - tooltipHeight - 12)),
+  ]
+}
+
+function readThemeToken(name: string, fallback: string): string {
+  if (typeof document === 'undefined') return fallback
+  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  return value || fallback
+}
+
 export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): EChartsOption {
+  return applyTheme(buildChartOptionInternal(spec, activeFilters))
+}
+
+function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState): EChartsOption {
   const series = spec.series as Array<Record<string, unknown>>
+  const isCurrency = spec.options.currency === true
+  const showLegend = spec.options.show_legend !== false
+  const valueFormatter = isCurrency
+    ? (value: unknown) => (
+      spec.options.compact_tooltip === true ? formatCompactBRL(value) : formatBRLCurrency(value)
+    )
+    : undefined
+  const axisFormatter = isCurrency && spec.options.compact_axis === true
+    ? (value: unknown) => formatCompactBRL(value)
+    : undefined
 
   if (spec.type === 'bar_horizontal') {
+    const labelWidth = Number(spec.options.label_width ?? 190)
+    const labelMaxChars = Number(spec.options.label_max_chars ?? 20)
+    const gridLeft = Number(spec.options.grid_left ?? 100)
+    const gridRight = Number(spec.options.grid_right ?? 24)
+    const gridBottom = Number(spec.options.grid_bottom ?? 40)
+    const gridTop = Number(spec.options.grid_top ?? (showLegend ? 60 : 24))
+    const barMaxWidth = Number(spec.options.bar_max_width ?? 24)
+    const barCategoryGap = String(spec.options.bar_category_gap ?? '42%')
+
     return {
-      tooltip: { trigger: 'axis' },
-      legend: {},
-      grid: { left: 80, right: 20, top: 60, bottom: 40, containLabel: true },
-      xAxis: { type: 'value' },
-      yAxis: { type: 'category', data: spec.categories },
+      tooltip: {
+        trigger: 'axis',
+        confine: true,
+        valueFormatter,
+        position: safeTooltipPosition,
+      },
+      legend: { show: showLegend },
+      grid: {
+        left: gridLeft,
+        right: gridRight,
+        top: gridTop,
+        bottom: gridBottom,
+        containLabel: true,
+      },
+      xAxis: {
+        type: 'value',
+        splitNumber: 3,
+        axisLabel: {
+          formatter: axisFormatter,
+          hideOverlap: true,
+        },
+      },
+      yAxis: {
+        type: 'category',
+        data: spec.categories,
+        axisLabel: {
+          width: labelWidth,
+          overflow: 'truncate',
+          formatter: (value: unknown) => truncateLabel(value, labelMaxChars),
+        },
+      },
       series: series.map((entry) => ({
         type: 'bar',
         name: String(entry.name ?? ''),
         data: (entry.data as unknown[]) ?? [],
-        barMaxWidth: 24,
+        label: { show: false },
+        barMaxWidth,
+        barCategoryGap,
       })),
     } as EChartsOption
   }
@@ -30,11 +137,18 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
   if (spec.type === 'bar_vertical' || spec.type === 'composite') {
     const hasEscolaridadeFilter = Boolean(activeFilters?.escolaridade && activeFilters.escolaridade.length > 0)
     return {
-      tooltip: { trigger: 'axis' },
-      legend: {},
-      grid: { left: 45, right: 20, top: 60, bottom: 80, containLabel: true },
+      tooltip: { trigger: 'axis', valueFormatter },
+      legend: { show: showLegend },
+      grid: { left: 45, right: 20, top: showLegend ? 60 : 24, bottom: 80, containLabel: true },
       xAxis: { type: 'category', data: spec.categories, axisLabel: { rotate: 25 } },
-      yAxis: { type: 'value' },
+      yAxis: {
+        type: 'value',
+        splitNumber: 4,
+        axisLabel: {
+          formatter: axisFormatter,
+          hideOverlap: true,
+        },
+      },
       series: series.map((entry) => ({
         type: 'bar',
         name: String(entry.name ?? ''),
@@ -47,29 +161,80 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
               itemStyle: {
                 opacity: isSelected ? 1.0 : 0.35,
                 borderWidth: isSelected ? 2 : 0,
-                borderColor: isSelected ? '#1E293B' : 'transparent',
-              }
+                borderColor: isSelected ? readThemeToken('--color-bg-soft', '#0b1220') : 'transparent',
+              },
             }
           }
           return val
         }),
+        label: { show: false },
         barMaxWidth: 28,
       })),
     } as EChartsOption
   }
 
-  if (spec.type === 'stacked_bar') {
+  if (spec.type === 'line') {
+    const displayLegend = showLegend && series.length > 1
     return {
-      tooltip: { trigger: 'axis' },
-      legend: {},
-      grid: { left: 45, right: 20, top: 60, bottom: 80, containLabel: true },
+      tooltip: { trigger: 'axis', valueFormatter },
+      legend: { show: displayLegend },
+      grid: { left: 60, right: 20, top: displayLegend ? 50 : 24, bottom: 50, containLabel: true },
+      xAxis: { type: 'category', data: spec.categories },
+      yAxis: {
+        type: 'value',
+        splitNumber: 4,
+        axisLabel: {
+          formatter: axisFormatter,
+          hideOverlap: true,
+        },
+      },
+      series: series.map((entry) => ({
+        type: 'line',
+        name: String(entry.name ?? ''),
+        data: (entry.data as unknown[]) ?? [],
+        smooth: true,
+        symbolSize: 8,
+        areaStyle: { opacity: 0.12 },
+        label: { show: false },
+      })),
+    } as EChartsOption
+  }
+
+  if (spec.type === 'stacked_bar') {
+    const hasPartidoFilter = Boolean(activeFilters?.partidos && activeFilters.partidos.length > 0)
+    return {
+      tooltip: { trigger: 'axis', valueFormatter },
+      legend: { show: showLegend },
+      grid: { left: 45, right: 20, top: showLegend ? 60 : 24, bottom: 80, containLabel: true },
       xAxis: { type: 'category', data: spec.categories, axisLabel: { rotate: 25 } },
-      yAxis: { type: 'value' },
+      yAxis: {
+        type: 'value',
+        splitNumber: 4,
+        axisLabel: {
+          formatter: axisFormatter,
+          hideOverlap: true,
+        },
+      },
       series: series.map((entry) => ({
         type: 'bar',
         stack: 'total',
         name: String(entry.name ?? ''),
-        data: (entry.data as unknown[]) ?? [],
+        data: ((entry.data as unknown[]) ?? []).map((val, idx) => {
+          if (hasPartidoFilter) {
+            const category = spec.categories[idx]
+            const isSelected = activeFilters?.partidos?.includes(category)
+            return {
+              value: val,
+              itemStyle: {
+                opacity: isSelected ? 1.0 : 0.35,
+                borderWidth: isSelected ? 2 : 0,
+                borderColor: isSelected ? readThemeToken('--color-bg-soft', '#0b1220') : 'transparent',
+              },
+            }
+          }
+          return val
+        }),
+        label: { show: false },
       })),
     } as EChartsOption
   }
@@ -79,8 +244,18 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
     return {
       tooltip: { trigger: 'item' },
       grid: { left: 60, right: 20, top: 40, bottom: 50 },
-      xAxis: { type: 'value', name: String(spec.options.x_name ?? 'X') },
-      yAxis: { type: 'value', name: String(spec.options.y_name ?? 'Y') },
+      xAxis: {
+        type: 'value',
+        name: String(spec.options.x_name ?? 'X'),
+        splitNumber: 4,
+        axisLabel: { hideOverlap: true },
+      },
+      yAxis: {
+        type: 'value',
+        name: String(spec.options.y_name ?? 'Y'),
+        splitNumber: 4,
+        axisLabel: { hideOverlap: true },
+      },
       series: [
         {
           type: 'scatter',
@@ -180,6 +355,8 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
         {
           gridIndex: 1,
           type: 'value',
+          splitNumber: 4,
+          axisLabel: { hideOverlap: true },
         },
       ],
       yAxis: [
@@ -199,7 +376,12 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
           name: 'Atuacao',
           type: 'heatmap',
           data: heatmapData,
-          emphasis: { itemStyle: { shadowBlur: 8, shadowColor: 'rgba(0,0,0,0.35)' } },
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 8,
+              shadowColor: readThemeToken('--color-bg', '#070b13'),
+            },
+          },
         },
         {
           name: 'Tokens',
@@ -216,7 +398,11 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
   return {
     legend: {},
     xAxis: { type: 'category', data: spec.categories },
-    yAxis: { type: 'value' },
+    yAxis: {
+      type: 'value',
+      splitNumber: 4,
+      axisLabel: { hideOverlap: true },
+    },
     series: series.map((entry) => ({
       type: 'bar',
       data: (entry.data as unknown[]) ?? [],
@@ -224,3 +410,82 @@ export function buildChartOption(spec: ChartSpec, activeFilters?: FilterState): 
   } as EChartsOption
 }
 
+function applyTheme(option: any): EChartsOption {
+  const textInk = readThemeToken('--color-text', '#f8fafc')
+  const textMuted = readThemeToken('--color-text-subtle', '#94a3b8')
+  const borderLight = readThemeToken('--color-border', 'rgba(148, 163, 184, 0.16)')
+  const tooltipBg = readThemeToken('--color-surface-glass', 'rgba(16, 24, 39, 0.92)')
+  const tooltipBorder = readThemeToken('--color-border-strong', 'rgba(148, 163, 184, 0.28)')
+  const gridColor = readThemeToken('--color-chart-grid', '#334155')
+
+  if (!option) return {} as EChartsOption
+
+  option.color = [
+    readThemeToken('--color-primary', '#38bdf8'),
+    readThemeToken('--color-secondary', '#a78bfa'),
+    readThemeToken('--color-accent', '#34d399'),
+    readThemeToken('--color-warning', '#f59e0b'),
+    readThemeToken('--color-danger', '#fb7185'),
+    readThemeToken('--avatar-gradient-4a', '#60a5fa'),
+    readThemeToken('--avatar-gradient-1a', '#2dd4bf'),
+    readThemeToken('--avatar-gradient-7a', '#c084fc'),
+  ]
+
+  if (!option.textStyle) {
+    option.textStyle = {}
+  }
+  option.textStyle.color = textInk
+  option.textStyle.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+
+  if (option.legend) {
+    if (!option.legend.textStyle) option.legend.textStyle = {}
+    option.legend.textStyle.color = textInk
+  }
+
+  if (option.tooltip) {
+    option.tooltip.backgroundColor = tooltipBg
+    option.tooltip.borderColor = tooltipBorder
+    option.tooltip.borderWidth = 1
+    if (!option.tooltip.textStyle) option.tooltip.textStyle = {}
+    option.tooltip.textStyle.color = textInk
+  }
+
+  const configureAxis = (axis: any) => {
+    if (!axis) return
+    if (!axis.axisLabel) axis.axisLabel = {}
+    if (axis.axisLabel.color === undefined) axis.axisLabel.color = textMuted
+
+    if (!axis.axisLine) axis.axisLine = {}
+    if (!axis.axisLine.lineStyle) axis.axisLine.lineStyle = {}
+    if (axis.axisLine.lineStyle.color === undefined) axis.axisLine.lineStyle.color = borderLight
+
+    if (!axis.splitLine) axis.splitLine = {}
+    if (!axis.splitLine.lineStyle) axis.splitLine.lineStyle = {}
+    if (axis.splitLine.lineStyle.color === undefined) {
+      axis.splitLine.lineStyle.color = gridColor
+    }
+  }
+
+  if (Array.isArray(option.xAxis)) {
+    option.xAxis.forEach(configureAxis)
+  } else if (option.xAxis) {
+    configureAxis(option.xAxis)
+  }
+
+  if (Array.isArray(option.yAxis)) {
+    option.yAxis.forEach(configureAxis)
+  } else if (option.yAxis) {
+    configureAxis(option.yAxis)
+  }
+
+  if (option.visualMap) {
+    option.visualMap.textStyle = { color: textInk }
+  }
+
+  if (option.radar) {
+    if (!option.radar.axisName) option.radar.axisName = {}
+    option.radar.axisName.color = textInk
+  }
+
+  return option as EChartsOption
+}

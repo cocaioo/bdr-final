@@ -14,8 +14,28 @@ CREATE TABLE deputados (
 );
 
 CREATE TABLE partidos_ideologia (
-    sigla_partido    VARCHAR(20) PRIMARY KEY,
-    ideologia        VARCHAR(20) NOT NULL
+    sigla_partido             TEXT PRIMARY KEY,
+    ideologia                 TEXT,
+    ideologia_score           NUMERIC(5,3),
+    ideologia_faixa           TEXT,
+    campo_ideologico          TEXT,
+    fonte_ideologia           TEXT,
+    ano_base_ideologia        TEXT,
+    tipo_match_ideologia      TEXT,
+    observacao_ideologia      TEXT,
+    CONSTRAINT chk_partidos_ideologia_score
+        CHECK (ideologia_score IS NULL OR ideologia_score BETWEEN 0 AND 10),
+    CONSTRAINT chk_partidos_campo_ideologico
+        CHECK (
+            campo_ideologico IS NULL
+            OR campo_ideologico IN ('esquerda', 'centro', 'direita')
+        ),
+    CONSTRAINT chk_partidos_ideologia_legado
+        CHECK (
+            ideologia IS NULL
+            OR campo_ideologico IS NULL
+            OR ideologia = campo_ideologico
+        )
 );
 
 CREATE TABLE proposicoes (

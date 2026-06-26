@@ -1,0 +1,199 @@
+\o
+
+CREATE EXTENSION IF NOT EXISTS unaccent;
+
+CREATE OR REPLACE TEMP VIEW resposta_deputados_ativos AS
+SELECT DISTINCT ano_dados, id_deputado
+FROM (
+    SELECT ano_dados, id_deputado FROM gastos
+    UNION
+    SELECT ano_dados, id_deputado FROM votacoes_votos
+    UNION
+    SELECT ano_dados, id_deputado FROM proposicoes_autores WHERE id_deputado IS NOT NULL
+    UNION
+    SELECT ano_dados, id_deputado FROM eventos_presenca_deputados
+) ativos
+WHERE id_deputado IS NOT NULL;
+
+CREATE OR REPLACE TEMP VIEW resposta_gastos_deputado AS
+SELECT
+    ano_dados,
+    id_deputado,
+    SUM(valor_liquido) AS gasto_total
+FROM gastos
+GROUP BY ano_dados, id_deputado;
+
+CREATE OR REPLACE TEMP VIEW resposta_anos_com_gasto_positivo AS
+SELECT DISTINCT
+    ano_dados,
+    id_deputado
+FROM gastos
+WHERE valor_liquido > 0;
+
+CREATE OR REPLACE TEMP VIEW resposta_media_anual_gastos_deputado AS
+SELECT
+    ap.id_deputado,
+    COUNT(*) AS qtd_anos_com_gasto_positivo,
+    SUM(g.gasto_total) AS gasto_total_periodo,
+    SUM(g.gasto_total) / COUNT(*)::numeric AS media_gasto_anual_deputado
+FROM resposta_anos_com_gasto_positivo ap
+JOIN resposta_gastos_deputado g
+    ON g.ano_dados = ap.ano_dados
+   AND g.id_deputado = ap.id_deputado
+GROUP BY ap.id_deputado;
+
+CREATE OR REPLACE TEMP VIEW resposta_fidelidade_deputado AS
+SELECT
+    vv.ano_dados,
+    vv.id_deputado,
+    ROUND(
+        100.0 * AVG(
+            CASE
+                WHEN vv.voto = vo.orientacao THEN 1
+                ELSE 0
+            END
+        ),
+        2
+    ) AS fidelidade_partidaria
+FROM votacoes_votos vv
+JOIN votacoes_orientacoes vo
+    ON vo.ano_dados = vv.ano_dados
+   AND vo.id_votacao = vv.id_votacao
+   AND vo.sigla_bancada = vv.sigla_partido
+WHERE vv.voto IN ('Sim', 'Nao', 'Abstencao')
+  AND vo.orientacao IN ('Sim', 'Nao', 'Abstencao')
+GROUP BY vv.ano_dados, vv.id_deputado;
+
+CREATE OR REPLACE TEMP VIEW resposta_proposicoes_deputado AS
+SELECT
+    ano_dados,
+    id_deputado,
+    COUNT(DISTINCT id_proposicao) AS qtd_proposicoes
+FROM proposicoes_autores
+WHERE id_deputado IS NOT NULL
+GROUP BY ano_dados, id_deputado;
+
+CREATE OR REPLACE TEMP VIEW resposta_presenca_deputado AS
+SELECT
+    pr.ano_dados,
+    pr.id_deputado,
+    COUNT(*) AS presenca_eventos,
+    COUNT(*) FILTER (
+        WHERE e.local_camara = 'Plenário da Câmara dos Deputados'
+    ) AS presenca_plenario
+FROM eventos_presenca_deputados pr
+LEFT JOIN eventos e
+    ON e.ano_dados = pr.ano_dados
+   AND e.id_evento = pr.id_evento
+GROUP BY pr.ano_dados, pr.id_deputado;
+
+CREATE OR REPLACE TEMP VIEW resposta_escolaridade_indicadores AS
+SELECT
+    a.ano_dados,
+    d.id_deputado,
+    COALESCE(d.escolaridade, 'Nao informado') AS escolaridade,
+    COALESCE(g.gasto_total, 0) AS gasto_total,
+    f.fidelidade_partidaria,
+    COALESCE(p.qtd_proposicoes, 0) AS qtd_proposicoes,
+    COALESCE(pr.presenca_eventos, 0) AS presenca_eventos,
+    COALESCE(pr.presenca_plenario, 0) AS presenca_plenario
+FROM resposta_deputados_ativos a
+JOIN deputados d ON d.id_deputado = a.id_deputado
+LEFT JOIN resposta_gastos_deputado g
+    ON g.ano_dados = a.ano_dados
+ AND g.id_deputado = d.id_deputado
+LEFT JOIN resposta_fidelidade_deputado f
+    ON f.ano_dados = a.ano_dados
+ AND f.id_deputado = d.id_deputado
+LEFT JOIN resposta_proposicoes_deputado p
+    ON p.ano_dados = a.ano_dados
+ AND p.id_deputado = d.id_deputado
+LEFT JOIN resposta_presenca_deputado pr
+    ON pr.ano_dados = a.ano_dados
+ AND pr.id_deputado = d.id_deputado;
+
+\o /query-staging/q6_escolaridade_correlacoes.txt
+\qecho Q6 - escolaridade e indicadores medios anuais
+\qecho Tabela principal - medias anuais por escolaridade
+SELECT
+    ano_dados,
+    escolaridade,
+    COUNT(*) AS qtd_deputados,
+    ROUND(AVG(gasto_total), 2) AS media_gasto,
+    ROUND(AVG(fidelidade_partidaria), 2) AS media_fidelidade,
+    ROUND(AVG(qtd_proposicoes), 2) AS media_proposicoes,
+    ROUND(AVG(presenca_eventos), 2) AS media_presenca_eventos,
+    ROUND(AVG(presenca_plenario), 2) AS media_presenca_plenario
+FROM resposta_escolaridade_indicadores
+GROUP BY ano_dados, escolaridade
+ORDER BY ano_dados, escolaridade;
+
+\o /query-staging/q6a_escolaridade_gastos.txt
+\qecho Q6A - escolaridade x gastos
+\qecho Tabela principal - media das medias anuais individuais de gastos por deputado e escolaridade
+SELECT
+    COALESCE(d.escolaridade, 'Nao informado') AS escolaridade,
+    SUM(gd.qtd_anos_com_gasto_positivo) AS qtd_registros_deputado_ano,
+    COUNT(*) AS qtd_deputados,
+    ROUND(AVG(gd.media_gasto_anual_deputado), 2) AS media_gasto
+FROM resposta_media_anual_gastos_deputado gd
+JOIN deputados d
+    ON d.id_deputado = gd.id_deputado
+GROUP BY COALESCE(d.escolaridade, 'Nao informado')
+HAVING AVG(gd.media_gasto_anual_deputado) > 0
+ORDER BY media_gasto DESC NULLS LAST, escolaridade;
+
+\o /query-staging/q6b_escolaridade_fidelidade.txt
+\qecho Q6B - escolaridade x fidelidade partidaria
+\qecho Tabela principal - media geral de fidelidade partidaria por escolaridade
+SELECT
+    escolaridade,
+    COUNT(*) AS qtd_registros_deputado_ano,
+    COUNT(fidelidade_partidaria) AS qtd_registros_com_fidelidade,
+    COUNT(DISTINCT id_deputado) AS qtd_deputados,
+    ROUND(AVG(fidelidade_partidaria), 2) AS media_fidelidade
+FROM resposta_escolaridade_indicadores
+GROUP BY escolaridade
+HAVING AVG(fidelidade_partidaria) > 0
+ORDER BY media_fidelidade DESC NULLS LAST, escolaridade;
+
+\o /query-staging/q6c_escolaridade_proposicoes.txt
+\qecho Q6C - escolaridade x numero de proposicoes
+\qecho Tabela principal - media geral de proposicoes por escolaridade
+SELECT
+    escolaridade,
+    COUNT(*) AS qtd_registros_deputado_ano,
+    COUNT(DISTINCT id_deputado) AS qtd_deputados,
+    ROUND(AVG(qtd_proposicoes), 2) AS media_proposicoes
+FROM resposta_escolaridade_indicadores
+GROUP BY escolaridade
+HAVING AVG(qtd_proposicoes) > 0
+ORDER BY media_proposicoes DESC NULLS LAST, escolaridade;
+
+\o /query-staging/q6d_escolaridade_presenca_eventos.txt
+\qecho Q6D - escolaridade x presenca em eventos
+\qecho Tabela principal - media geral de presenca em eventos por escolaridade
+SELECT
+    escolaridade,
+    COUNT(*) AS qtd_registros_deputado_ano,
+    COUNT(DISTINCT id_deputado) AS qtd_deputados,
+    ROUND(AVG(presenca_eventos), 2) AS media_presenca_eventos
+FROM resposta_escolaridade_indicadores
+GROUP BY escolaridade
+HAVING AVG(presenca_eventos) > 0
+ORDER BY media_presenca_eventos DESC NULLS LAST, escolaridade;
+
+\o /query-staging/q6e_escolaridade_presenca_plenario.txt
+\qecho Q6E - escolaridade x presenca no plenario
+\qecho Tabela principal - media geral de presenca no plenario por escolaridade
+SELECT
+    escolaridade,
+    COUNT(*) AS qtd_registros_deputado_ano,
+    COUNT(DISTINCT id_deputado) AS qtd_deputados,
+    ROUND(AVG(presenca_plenario), 2) AS media_presenca_plenario
+FROM resposta_escolaridade_indicadores
+GROUP BY escolaridade
+HAVING AVG(presenca_plenario) > 0
+ORDER BY media_presenca_plenario DESC NULLS LAST, escolaridade;
+
+\o

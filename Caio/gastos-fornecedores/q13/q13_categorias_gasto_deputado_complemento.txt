@@ -1,0 +1,104 @@
+Tabela complementar - gastos consolidados por categoria
+ ano_dados |                     descricao_despesa                     | total_gasto  | qtd_lancamentos | pct_total 
+-----------+-----------------------------------------------------------+--------------+-----------------+-----------
+      2023 | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.                      |  91345041.51 |           15203 |     37.24
+      2023 | PASSAGEM AÉREA - SIGEPA                                   |  55369766.43 |           48540 |     22.57
+      2023 | LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES             |  36821767.00 |            7008 |     15.01
+      2023 | MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR |  28192339.42 |           18700 |     11.49
+      2023 | COMBUSTÍVEIS E LUBRIFICANTES.                             |  19483929.16 |           65950 |      7.94
+      2023 | TELEFONIA                                                 |   2781031.47 |           14849 |      1.13
+      2023 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |   2689035.03 |            5846 |      1.10
+      2023 | PASSAGEM AÉREA - RPA                                      |   1914631.49 |            1512 |      0.78
+      2023 | LOCAÇÃO OU FRETAMENTO DE AERONAVES                        |   1797722.00 |              74 |      0.73
+      2023 | SERVIÇO DE SEGURANÇA PRESTADO POR EMPRESA ESPECIALIZADA.  |   1403736.91 |             426 |      0.57
+      2023 | PASSAGEM AÉREA - REEMBOLSO                                |   1236787.00 |             466 |      0.50
+      2023 | SERVIÇO DE TÁXI, PEDÁGIO E ESTACIONAMENTO                 |    981853.87 |           21303 |      0.40
+      2023 | FORNECIMENTO DE ALIMENTAÇÃO DO PARLAMENTAR                |    794755.15 |           12316 |      0.32
+      2023 | LOCAÇÃO OU FRETAMENTO DE EMBARCAÇÕES                      |    230190.00 |              41 |      0.09
+      2023 | PASSAGENS TERRESTRES, MARÍTIMAS OU FLUVIAIS               |    114941.61 |             736 |      0.05
+      2023 | ASSINATURA DE PUBLICAÇÕES                                 |     69931.39 |             244 |      0.03
+      2023 | PARTICIPAÇÃO EM CURSO, PALESTRA OU EVENTO SIMILAR         |     47951.61 |               8 |      0.02
+      2023 | AQUISIÇÃO DE TOKENS E CERTIFICADOS DIGITAIS               |      4623.35 |              18 |      0.00
+      2024 | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.                      |  99972855.26 |           16367 |     37.97
+      2024 | PASSAGEM AÉREA - SIGEPA                                   |  51934444.78 |           46652 |     19.72
+      2024 | LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES             |  42133141.99 |            7469 |     16.00
+      2024 | MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR |  32408907.27 |           20494 |     12.31
+      2024 | COMBUSTÍVEIS E LUBRIFICANTES.                             |  22162387.51 |           72411 |      8.42
+      2024 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |   3549710.35 |            7484 |      1.35
+      2024 | TELEFONIA                                                 |   2984157.50 |           15600 |      1.13
+      2024 | LOCAÇÃO OU FRETAMENTO DE AERONAVES                        |   2122079.31 |              98 |      0.81
+      2024 | SERVIÇO DE SEGURANÇA PRESTADO POR EMPRESA ESPECIALIZADA.  |   1574893.39 |             499 |      0.60
+      2024 | SERVIÇO DE TÁXI, PEDÁGIO E ESTACIONAMENTO                 |   1122232.83 |           21424 |      0.43
+      2024 | PASSAGEM AÉREA - RPA                                      |   1081951.72 |             789 |      0.41
+      2024 | PASSAGEM AÉREA - REEMBOLSO                                |   1072828.32 |             303 |      0.41
+      2024 | FORNECIMENTO DE ALIMENTAÇÃO DO PARLAMENTAR                |    671246.60 |            9740 |      0.25
+      2024 | LOCAÇÃO OU FRETAMENTO DE EMBARCAÇÕES                      |    237650.00 |              44 |      0.09
+      2024 | PASSAGENS TERRESTRES, MARÍTIMAS OU FLUVIAIS               |    122434.63 |             737 |      0.05
+      2024 | ASSINATURA DE PUBLICAÇÕES                                 |     70785.13 |             263 |      0.03
+      2024 | PARTICIPAÇÃO EM CURSO, PALESTRA OU EVENTO SIMILAR         |     66294.97 |               9 |      0.03
+      2024 | AQUISIÇÃO DE TOKENS E CERTIFICADOS DIGITAIS               |     14698.51 |              18 |      0.01
+      2025 | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.                      | 101865228.10 |           18240 |     40.87
+      2025 | LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES             |  41792381.67 |            7099 |     16.77
+      2025 | PASSAGEM AÉREA - SIGEPA                                   |  35266085.72 |           30051 |     14.15
+      2025 | MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR |  33379652.63 |           20180 |     13.39
+      2025 | COMBUSTÍVEIS E LUBRIFICANTES.                             |  22389505.21 |           71144 |      8.98
+      2025 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |   3886788.16 |            8126 |      1.56
+      2025 | TELEFONIA                                                 |   2881262.77 |           13199 |      1.16
+      2025 | LOCAÇÃO OU FRETAMENTO DE AERONAVES                        |   2126395.00 |              89 |      0.85
+      2025 | SERVIÇO DE SEGURANÇA PRESTADO POR EMPRESA ESPECIALIZADA.  |   1336182.02 |             491 |      0.54
+      2025 | SERVIÇO DE TÁXI, PEDÁGIO E ESTACIONAMENTO                 |   1155388.95 |           19865 |      0.46
+      2025 | PASSAGEM AÉREA - REEMBOLSO                                |   1135592.43 |             327 |      0.46
+      2025 | PASSAGEM AÉREA - RPA                                      |    751819.54 |             519 |      0.30
+      2025 | FORNECIMENTO DE ALIMENTAÇÃO DO PARLAMENTAR                |    683787.51 |            9466 |      0.27
+      2025 | LOCAÇÃO OU FRETAMENTO DE EMBARCAÇÕES                      |    235868.00 |              44 |      0.09
+      2025 | PASSAGENS TERRESTRES, MARÍTIMAS OU FLUVIAIS               |    158318.50 |             859 |      0.06
+      2025 | SERVIÇOS POSTAIS                                          |     95979.06 |             167 |      0.04
+      2025 | ASSINATURA DE PUBLICAÇÕES                                 |     80158.05 |             265 |      0.03
+      2025 | PARTICIPAÇÃO EM CURSO, PALESTRA OU EVENTO SIMILAR         |     30376.69 |               8 |      0.01
+      2025 | AQUISIÇÃO DE TOKENS E CERTIFICADOS DIGITAIS               |      3619.29 |              18 |      0.00
+      2026 | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.                      |  39295086.85 |            6884 |     48.71
+      2026 | LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES             |  14915772.23 |            2295 |     18.49
+      2026 | MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR |  11930411.15 |            6682 |     14.79
+      2026 | COMBUSTÍVEIS E LUBRIFICANTES.                             |   8970670.88 |           28258 |     11.12
+      2026 | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |   1624201.46 |            3497 |      2.01
+      2026 | LOCAÇÃO OU FRETAMENTO DE AERONAVES                        |   1369358.00 |              50 |      1.70
+      2026 | TELEFONIA                                                 |    778675.34 |            2106 |      0.97
+      2026 | SERVIÇO DE SEGURANÇA PRESTADO POR EMPRESA ESPECIALIZADA.  |    434216.42 |             156 |      0.54
+      2026 | SERVIÇO DE TÁXI, PEDÁGIO E ESTACIONAMENTO                 |    393890.35 |            5894 |      0.49
+      2026 | PASSAGEM AÉREA - REEMBOLSO                                |    340942.58 |             116 |      0.42
+      2026 | FORNECIMENTO DE ALIMENTAÇÃO DO PARLAMENTAR                |    232639.79 |            3032 |      0.29
+      2026 | PASSAGEM AÉREA - RPA                                      |    135047.62 |              97 |      0.17
+      2026 | LOCAÇÃO OU FRETAMENTO DE EMBARCAÇÕES                      |     81600.00 |              15 |      0.10
+      2026 | SERVIÇOS POSTAIS                                          |     68209.59 |             121 |      0.08
+      2026 | PASSAGENS TERRESTRES, MARÍTIMAS OU FLUVIAIS               |     62599.53 |             276 |      0.08
+      2026 | ASSINATURA DE PUBLICAÇÕES                                 |     30427.11 |              97 |      0.04
+      2026 | CONSULTORIAS, PESQUISAS E TRABALHOS TÉCNICOS.             |      7000.00 |               1 |      0.01
+      2026 | AQUISIÇÃO DE TOKENS E CERTIFICADOS DIGITAIS               |       925.80 |               4 |      0.00
+(73 rows)
+
+
+Tabela complementar global - gastos consolidados por categoria global
+ ano_dados |                     descricao_despesa                     | total_gasto  | qtd_lancamentos | pct_total 
+-----------+-----------------------------------------------------------+--------------+-----------------+-----------
+ GLOBAL    | DIVULGAÇÃO DA ATIVIDADE PARLAMENTAR.                      | 332478211.72 |           56694 |     39.65
+ GLOBAL    | PASSAGEM AÉREA - SIGEPA                                   | 142570296.93 |          125243 |     17.00
+ GLOBAL    | LOCAÇÃO OU FRETAMENTO DE VEÍCULOS AUTOMOTORES             | 135663062.89 |           23871 |     16.18
+ GLOBAL    | MANUTENÇÃO DE ESCRITÓRIO DE APOIO À ATIVIDADE PARLAMENTAR | 105911310.47 |           66056 |     12.63
+ GLOBAL    | COMBUSTÍVEIS E LUBRIFICANTES.                             |  73006492.76 |          237763 |      8.71
+ GLOBAL    | HOSPEDAGEM ,EXCETO DO PARLAMENTAR NO DISTRITO FEDERAL.    |  11749735.00 |           24953 |      1.40
+ GLOBAL    | TELEFONIA                                                 |   9425127.08 |           45754 |      1.12
+ GLOBAL    | LOCAÇÃO OU FRETAMENTO DE AERONAVES                        |   7415554.31 |             311 |      0.88
+ GLOBAL    | SERVIÇO DE SEGURANÇA PRESTADO POR EMPRESA ESPECIALIZADA.  |   4749028.74 |            1572 |      0.57
+ GLOBAL    | PASSAGEM AÉREA - RPA                                      |   3883450.37 |            2917 |      0.46
+ GLOBAL    | PASSAGEM AÉREA - REEMBOLSO                                |   3786150.33 |            1212 |      0.45
+ GLOBAL    | SERVIÇO DE TÁXI, PEDÁGIO E ESTACIONAMENTO                 |   3653366.00 |           68486 |      0.44
+ GLOBAL    | FORNECIMENTO DE ALIMENTAÇÃO DO PARLAMENTAR                |   2382429.05 |           34554 |      0.28
+ GLOBAL    | LOCAÇÃO OU FRETAMENTO DE EMBARCAÇÕES                      |    785308.00 |             144 |      0.09
+ GLOBAL    | PASSAGENS TERRESTRES, MARÍTIMAS OU FLUVIAIS               |    458294.27 |            2608 |      0.05
+ GLOBAL    | ASSINATURA DE PUBLICAÇÕES                                 |    251301.68 |             869 |      0.03
+ GLOBAL    | SERVIÇOS POSTAIS                                          |    164188.65 |             288 |      0.02
+ GLOBAL    | PARTICIPAÇÃO EM CURSO, PALESTRA OU EVENTO SIMILAR         |    144623.27 |              25 |      0.02
+ GLOBAL    | AQUISIÇÃO DE TOKENS E CERTIFICADOS DIGITAIS               |     23866.95 |              58 |      0.00
+ GLOBAL    | CONSULTORIAS, PESQUISAS E TRABALHOS TÉCNICOS.             |      7000.00 |               1 |      0.00
+(20 rows)
+

@@ -1,27 +1,27 @@
-sigla_partido;status;ideologia
-AVANTE;ativo;centro
-CIDADANIA;ativo;centro
-MDB;ativo;centro
-MISSAO;ativo;centro
-NOVO;ativo;direita
-PCDOB;ativo;esquerda
-PDT;ativo;esquerda
-PL;ativo;direita
-PODE;ativo;centro
-PP;ativo;direita
-PRD;ativo;centro
-PSB;ativo;esquerda
-PSD;ativo;centro
-PSDB;ativo;centro
-PSOL;ativo;esquerda
-PT;ativo;esquerda
-PV;ativo;esquerda
-REDE;ativo;esquerda
-REPUBLICANOS;ativo;direita
-SOLIDARIEDADE;ativo;centro
-UNIAO;ativo;centro
-ARENA;historico;direita
-PATRIOTA;historico;direita
-PROS;historico;centro
-PSC;historico;direita
-PTB;historico;direita
+sigla_partido;status;ideologia_score;ideologia_faixa;campo_ideologico;fonte_ideologia;ano_base_ideologia;tipo_match_ideologia;observacao_ideologia;score_2018;score_2022;mediana_2022;n_respostas_2022;desvio_padrao_2022;entra_universo_analitico
+AVANTE;ativo;6.473;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo avante.;6.317;6.473;7.000;423;1.964;sim
+CIDADANIA;ativo;6.170;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;"Cidadania: PPS usado como historico de 2018; cdd usado como equivalencia de 2022.";4.926;6.170;6.000;412;1.877;sim
+MDB;ativo;6.499;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo mdb.;7.015;6.499;6.000;473;1.486;sim
+MISSAO;ativo;7.750;Direita;direita;classificacao_complementar_documentada;2025;classificacao_complementar;Partido posterior a rodada Bolognesi 2022. Fundado pelo MBL em 2024, registro TSE aprovado em 04/11/2025. Ausente na base Bolognesi (sem coluna ideol_18 ou ideol_22). Classificacao operacional complementar baseada em fontes oficiais para existencia/representacao (TSE, Camara) e fontes jornalisticas convergentes que posicionam o partido a direita (Gazeta do Povo, Poder360, CNN Brasil, Crusoe). O score 7.750 e ponto medio da faixa Direita (7.000-8.499), nao media de expert survey. Ver fontes_complementares_ideologia.csv.;;;;;;sim
+NOVO;ativo;8.666;Extrema direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo novo.;8.133;8.666;9.000;494;1.372;sim
+PCDOB;ativo;1.778;Esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto com normalizacao grafica de p_cdo_b para PCDOB.;1.920;1.778;2.000;508;1.253;sim
+PDT;ativo;3.855;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pdt.;3.925;3.855;4.000;463;1.429;sim
+PL;ativo;8.796;Extrema direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;"PL: PR usado apenas como historico de 2018; pl usado em 2022.";7.781;8.796;9.000;489;1.264;sim
+PODE;ativo;7.437;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia entre PODE e Podemos.;7.243;7.437;7.000;471;1.492;sim
+PP;ativo;8.153;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia entre PP, Progressistas e sufixo progre.;8.198;8.153;8.000;498;1.438;sim
+PRD;ativo;8.161;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;proxy_fusao;"Sem coluna propria para PRD; score_2022 e score_usado por media simples de PTB + Patriota; score_2018 mantido como historico pelos mesmos predecessores.";7.324;8.161;8.500;974;1.846;sim
+PSB;ativo;3.589;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psb.;4.047;3.589;4.000;465;1.346;sim
+PSD;ativo;6.937;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psd.;7.092;6.937;7.000;443;1.591;sim
+PSDB;ativo;6.759;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psdb.;7.115;6.759;7.000;453;1.427;sim
+PSOL;ativo;1.415;Extrema esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psol.;1.283;1.415;1.000;509;1.143;sim
+PT;ativo;2.679;Esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pt.;2.974;2.679;3.000;501;1.136;sim
+PV;ativo;4.123;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pv.;5.290;4.123;4.000;398;1.570;sim
+REDE;ativo;3.692;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo rede.;4.774;3.692;4.000;451;1.456;sim
+REPUBLICANOS;ativo;8.333;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;"Republicanos: PRB usado como historico de 2018; rep usado como equivalencia de 2022.";7.778;8.333;8.000;492;1.314;sim
+SOLIDARIEDADE;ativo;6.007;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia por sufixo sdd.;6.501;6.007;6.000;407;1.871;sim
+UNIAO;ativo;8.485;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;"Uniao Brasil: 2022 por coluna propria ideol_22_uniao; 2018 por proxy historico de media simples DEM + PSL.";8.341;8.485;8.000;507;1.368;sim
+ARENA;historico;;;;;;;Partido do periodo militar. Fora do universo analitico Bolognesi.;;;;;;nao
+PATRIOTA;historico_mapeavel_PRD;8.601;Extrema direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia por abreviacao patri. Partido incorporado ao PRD em 2023. Score mantido para registros historicos pre-incorporacao.;8.551;8.601;9.000;491;1.346;sim
+PROS;historico_mapeavel_SOLIDARIEDADE;7.445;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pros. Partido incorporado ao Solidariedade em 2023. Score mantido para registros historicos pre-incorporacao.;7.475;7.445;7.000;440;1.905;sim
+PSC;historico_mapeavel_PODE;8.410;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psc. Partido incorporado ao Podemos em 2023. Score mantido para registros historicos pre-incorporacao.;8.329;8.410;8.000;497;1.305;sim
+PTB;historico_mapeavel_PRD;7.720;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo ptb. Partido incorporado ao PRD em 2022. Score mantido para registros historicos pre-incorporacao.;6.098;7.720;8.000;483;2.346;sim

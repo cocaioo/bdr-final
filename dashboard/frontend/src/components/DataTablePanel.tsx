@@ -9,11 +9,18 @@ interface DataTablePanelProps {
   state: TableState
   onChange: (next: TableState) => void
   lockPageSize?: boolean
+  compact?: boolean
 }
 
 type DataRow = Record<string, unknown>
 
-export function DataTablePanel({ table, state, onChange, lockPageSize = false }: DataTablePanelProps) {
+export function DataTablePanel({
+  table,
+  state,
+  onChange,
+  lockPageSize = false,
+  compact = false,
+}: DataTablePanelProps) {
   const columns = useMemo<ColumnDef<DataRow>[]>(
     () =>
       table.columns.map((column) => ({
@@ -48,7 +55,7 @@ export function DataTablePanel({ table, state, onChange, lockPageSize = false }:
   }
 
   return (
-    <section className="table-section stagger-item">
+    <section className={`table-section stagger-item${compact ? ' compact-table' : ''}`}>
       <header className="table-header">
         <h2>{table.title}</h2>
         <p>

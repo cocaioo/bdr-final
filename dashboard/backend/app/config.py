@@ -10,9 +10,9 @@ DASHBOARD_DIR = BACKEND_DIR.parent
 REPO_ROOT = DASHBOARD_DIR.parent
 
 RESPONSES_DIR = Path(
-    os.getenv("DASHBOARD_RESPONSES_DIR", str(REPO_ROOT / "respostas"))
+    os.getenv("DASHBOARD_RESPONSES_DIR", str(REPO_ROOT / "scratch" / "query-staging"))
 ).resolve()
-SQL_DIR = Path(os.getenv("DASHBOARD_SQL_DIR", str(REPO_ROOT / "Caio" / "consultas"))).resolve()
+SQL_DIR = Path(os.getenv("DASHBOARD_SQL_DIR", str(REPO_ROOT))).resolve()
 REGISTRY_PATH = Path(
     os.getenv("DASHBOARD_REGISTRY_PATH", str(APP_DIR / "question_registry.json"))
 ).resolve()

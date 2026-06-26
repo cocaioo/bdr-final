@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { fetchMeta } from './api'
 import { GlobalFilters } from './components/GlobalFilters'
 import { Header } from './components/Header'
 import { HomePage } from './pages/HomePage'
+import { DeputyProfilePage } from './pages/DeputyProfilePage'
 import { QuestionPage } from './pages/QuestionPage'
+import { GastosDashboardPage } from './pages/GastosDashboardPage'
+import { PanelOverviewPage } from './pages/PanelOverviewPage'
+import { PerfilDashboardPage } from './pages/PerfilDashboardPage'
+import { PartiesDashboardPage } from './pages/PartiesDashboardPage'
 import type { FilterState, MetaResponse } from './types'
 import { isQuestionHidden } from './utils/questionAvailability'
+
+// Bloco consolidado de Partidos, Ideologia e Votacao. As perguntas q9/q10/q11
+// deixaram de ter paginas individuais: passaram a ser detalhes de implementacao
+// que alimentam este painel unico.
+const PARTIES_BLOCK_ROUTE = '/grupos/partidos-votacoes'
+const RETIRED_QUESTION_IDS = new Set(['q9', 'q10', 'q11', 'q14'])
 
 const EMPTY_FILTER_STATE: FilterState = {
   anos: [],
@@ -19,15 +30,24 @@ const EMPTY_FILTER_STATE: FilterState = {
   search: '',
 }
 
+function extractQuestionId(pathname: string): string | null {
+  if (pathname.startsWith('/q/')) {
+    return pathname.split('/')[2]?.replace(/\/$/, '') || null
+  }
+  if (pathname.startsWith('/pergunta/')) {
+    return pathname.split('/')[2]?.replace(/\/$/, '') || null
+  }
+  return null
+}
+
 function App() {
   const [meta, setMeta] = useState<MetaResponse | null>(null)
   const [filters, setFilters] = useState<FilterState>(EMPTY_FILTER_STATE)
   const [error, setError] = useState<string | null>(null)
   const location = useLocation()
 
-  const activeQuestionId = location.pathname.startsWith('/q/')
-    ? location.pathname.split('/')[2]?.replace(/\/$/, '') || null
-    : null
+  const activeQuestionId = extractQuestionId(location.pathname)
+  const isRetiredQuestion = Boolean(activeQuestionId && RETIRED_QUESTION_IDS.has(activeQuestionId.toLowerCase()))
   const activeQuestion = meta?.questions.find((question) => question.id === activeQuestionId)
   const hiddenQuestionRoute = Boolean(activeQuestionId && isQuestionHidden(activeQuestionId))
 
@@ -61,25 +81,74 @@ function App() {
     )
   }
 
-  console.log('App rendering main shell')
+  const activeQuestionCatalog =
+    activeQuestionId && meta.question_filters?.[activeQuestionId]
+      ? meta.question_filters[activeQuestionId]
+      : meta.available_filters
 
   return (
     <div className="app-shell">
-      <Header questions={meta.questions} datasetVersion={meta.dataset_version} />
-      {!hiddenQuestionRoute ? (
+      <Header datasetVersion={meta.dataset_version} />
+      {activeQuestionId && !hiddenQuestionRoute && !isRetiredQuestion ? (
         <GlobalFilters
-          catalog={meta.available_filters}
+          catalog={activeQuestionCatalog}
           value={filters}
           onChange={setFilters}
-          supportedFilters={activeQuestion?.supported_filters}
+          supportedFilters={
+            ['q2', 'q4', 'q7'].includes(activeQuestionId?.toLowerCase() ?? '')
+              ? activeQuestion?.supported_filters?.filter((f) => f !== 'deputados')
+              : activeQuestion?.supported_filters
+          }
+          hideSearch={activeQuestionId?.toLowerCase() === 'q3'}
+          hideNumericDeputyChoices={activeQuestionId?.toLowerCase() === 'q3'}
+          searchableDeputyFilter={activeQuestionId?.toLowerCase() === 'q3'}
+          searchLabel={
+            activeQuestionId?.toLowerCase() === 'q7'
+              ? 'Buscar deputado por nome'
+              : undefined
+          }
+          searchPlaceholder={
+            activeQuestionId?.toLowerCase() === 'q7'
+              ? 'Digite o nome parlamentar...'
+              : undefined
+          }
         />
       ) : null}
       <Routes>
-        <Route path="/" element={<HomePage meta={meta} />} />
-        <Route path="/q/:questionId" element={<QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/deputados/:id" element={<DeputyProfilePage />} />
+        <Route
+          path="/q/:questionId"
+          element={
+            isRetiredQuestion
+              ? <Navigate to={PARTIES_BLOCK_ROUTE} replace />
+              : <QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />
+          }
+        />
+        <Route
+          path="/pergunta/:questionId"
+          element={
+            isRetiredQuestion
+              ? <Navigate to={PARTIES_BLOCK_ROUTE} replace />
+              : <QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />
+          }
+        />
+        <Route path="/grupos/gastos" element={<GastosDashboardPage meta={meta} />} />
+        <Route path="/grupos/perfil" element={<PerfilDashboardPage meta={meta} />} />
+        <Route
+          path="/grupos/producao-legislativa"
+          element={(
+            <PanelOverviewPage
+              title="Produção legislativa"
+              description="Visão integrada sobre temas, proposições, autoria e indicadores de atuação parlamentar."
+              topics={['Temas de atuação', 'Proposições e autoria', 'Indicadores de influência legislativa']}
+            />
+          )}
+        />
+        <Route path="/grupos/partidos-votacoes" element={<PartiesDashboardPage meta={meta} />} />
       </Routes>
       <footer className="app-footer">
-        Fonte: schema grupo4 + arquivos respostas/*.txt | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}
+        Fonte: schema grupo4 + fontes analíticas consolidadas | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}
       </footer>
     </div>
   )

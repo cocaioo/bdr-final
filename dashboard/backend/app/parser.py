@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import csv
 from pathlib import Path
 import re
 from typing import Any
@@ -50,7 +51,9 @@ def parse_psql_output(raw_text: str) -> ParsedDocument:
 
         if _is_table_header(lines, i):
             header_line = lines[i]
-            header = _split_row(header_line)
+            has_leading_pipe = header_line.strip().startswith("|")
+            has_trailing_pipe = header_line.strip().endswith("|")
+            header = _split_row(header_line, has_leading_pipe, has_trailing_pipe)
             i += 2
             rows: list[dict[str, Any]] = []
 
@@ -62,7 +65,7 @@ def parse_psql_output(raw_text: str) -> ParsedDocument:
                 if "|" not in current or SEPARATOR_RE.match(candidate):
                     break
 
-                parts = _split_row(current)
+                parts = _split_row(current, has_leading_pipe, has_trailing_pipe)
                 if len(parts) < len(header):
                     parts.extend([""] * (len(header) - len(parts)))
                 if len(parts) > len(header):
@@ -88,6 +91,27 @@ def parse_psql_file(path: Path) -> ParsedDocument:
     return parse_psql_output(read_text_with_fallback(path))
 
 
+def parse_data_file(path: Path) -> ParsedDocument:
+    if path.suffix.lower() == ".csv":
+        return parse_csv_file(path)
+    return parse_psql_file(path)
+
+
+def parse_csv_file(path: Path) -> ParsedDocument:
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle, delimiter=";", quotechar='"', doublequote=True)
+        columns = list(reader.fieldnames or [])
+        rows = [
+            {column: _coerce_value(row.get(column, "")) for column in columns}
+            for row in reader
+        ]
+
+    return ParsedDocument(
+        title=path.stem,
+        tables=[ParsedTable(title="Tabela principal", columns=columns, rows=rows)],
+    )
+
+
 def _is_table_header(lines: list[str], index: int) -> bool:
     if index + 1 >= len(lines):
         return False
@@ -96,11 +120,11 @@ def _is_table_header(lines: list[str], index: int) -> bool:
     return "|" in header and bool(SEPARATOR_RE.match(separator))
 
 
-def _split_row(line: str) -> list[str]:
+def _split_row(line: str, has_leading_pipe: bool = False, has_trailing_pipe: bool = False) -> list[str]:
     parts = [part.strip() for part in line.split("|")]
-    if parts and parts[0] == "":
+    if parts and has_leading_pipe:
         parts = parts[1:]
-    if parts and parts[-1] == "":
+    if parts and has_trailing_pipe:
         parts = parts[:-1]
     return parts
 
