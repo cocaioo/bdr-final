@@ -1,22 +1,26 @@
-sigla_partido;ideologia
-AVANTE;centro
-CIDADANIA;centro
-MDB;centro
-MISSAO;centro
-NOVO;direita
-PCDOB;esquerda
-PDT;esquerda
-PL;direita
-PODE;centro
-PP;direita
-PRD;centro
-PSB;esquerda
-PSD;centro
-PSDB;centro
-PSOL;esquerda
-PT;esquerda
-PV;esquerda
-REDE;esquerda
-REPUBLICANOS;direita
-SOLIDARIEDADE;centro
-UNIAO;centro
+sigla_partido;ideologia;ideologia_score;ideologia_faixa;campo_ideologico;fonte_ideologia;ano_base_ideologia;tipo_match_ideologia;observacao_ideologia
+AVANTE;direita;6.473;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo avante.
+CIDADANIA;direita;6.170;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;"Cidadania: PPS usado como historico de 2018; cdd usado como equivalencia de 2022."
+MDB;direita;6.499;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo mdb.
+MISSAO;direita;7.750;Direita;direita;classificacao_complementar_documentada;2025;classificacao_complementar;Partido posterior a rodada Bolognesi 2022. Fundado pelo MBL em 2024, registro TSE aprovado em 04/11/2025. Ausente na base Bolognesi (sem coluna ideol_18 ou ideol_22). Classificacao operacional complementar baseada em fontes oficiais para existencia/representacao (TSE, Camara) e fontes jornalisticas convergentes que posicionam o partido a direita (Gazeta do Povo, Poder360, CNN Brasil, Crusoe). O score 7.750 e ponto medio da faixa Direita (7.000-8.499), nao media de expert survey. Ver fontes_complementares_ideologia.csv.
+NOVO;direita;8.666;Extrema direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo novo.
+PCDOB;esquerda;1.778;Esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto com normalizacao grafica de p_cdo_b para PCDOB.
+PDT;esquerda;3.855;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pdt.
+PL;direita;8.796;Extrema direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;"PL: PR usado apenas como historico de 2018; pl usado em 2022."
+PODE;direita;7.437;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia entre PODE e Podemos.
+PP;direita;8.153;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia entre PP, Progressistas e sufixo progre.
+PRD;direita;8.161;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;proxy_fusao;"Sem coluna propria para PRD; score_2022 e score_usado por media simples de PTB + Patriota; score_2018 mantido como historico pelos mesmos predecessores."
+PSB;esquerda;3.589;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psb.
+PSD;direita;6.937;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psd.
+PSDB;direita;6.759;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psdb.
+PSOL;esquerda;1.415;Extrema esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psol.
+PT;esquerda;2.679;Esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pt.
+PV;esquerda;4.123;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pv.
+REDE;esquerda;3.692;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo rede.
+REPUBLICANOS;direita;8.333;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;"Republicanos: PRB usado como historico de 2018; rep usado como equivalencia de 2022."
+SOLIDARIEDADE;direita;6.007;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia por sufixo sdd.
+UNIAO;direita;8.485;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;"Uniao Brasil: 2022 por coluna propria ideol_22_uniao; 2018 por proxy historico de media simples DEM + PSL."
+PATRIOTA;direita;8.601;Extrema direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia por abreviacao patri. Partido incorporado ao PRD em 2023. Score mantido para registros historicos pre-incorporacao.
+PROS;direita;7.445;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pros. Partido incorporado ao Solidariedade em 2023. Score mantido para registros historicos pre-incorporacao.
+PSC;direita;8.410;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psc. Partido incorporado ao Podemos em 2023. Score mantido para registros historicos pre-incorporacao.
+PTB;direita;7.720;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo ptb. Partido incorporado ao PRD em 2022. Score mantido para registros historicos pre-incorporacao.
