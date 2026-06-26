@@ -10,7 +10,7 @@ Tabela principal - forca da associacao entre escolaridade e indicadores
  numero_proposicoes    |              2194 |                  13 |       0.0197 | associacao fraca
  gastos                |               600 |                  13 |       0.0162 | associacao fraca
  presenca_eventos      |              2194 |                  13 |       0.0131 | associacao fraca
- fidelidade_partidaria |              1044 |                  12 |       0.0038 | associacao muito fraca
  presenca_plenario     |              2194 |                  13 |       0.0037 | associacao muito fraca
+ fidelidade_partidaria |              1087 |                  12 |       0.0035 | associacao muito fraca
 (5 rows)
 
