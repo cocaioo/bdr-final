@@ -35,6 +35,9 @@ class QuestionMeta(BaseModel):
     supported_filters: list[str]
     group_id: str | None = None
     tags: list[str] = Field(default_factory=list)
+    block_id: str | None = None
+    is_block_data_source: bool = False
+    frontend_standalone_page: bool = True
 
 
 class MetaResponse(BaseModel):

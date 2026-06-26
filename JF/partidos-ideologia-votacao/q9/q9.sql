@@ -1,49 +1,57 @@
-﻿\o /query-staging/q9_vies_deputado.txt
-\qecho Q9 - Vies ideologico dos deputados (direita / esquerda / centro)
+\o /query-staging/q9_vies_deputado.txt
+\qecho Q9 - Vies ideologico dos deputados por score, faixa e campo ideologico
 
 -- =======================================================================
--- Q9.1 - Classificacao dos partidos por ideologia
+-- Q9.1 - Classificacao completa dos partidos por ideologia
 -- =======================================================================
 \qecho
-\qecho Q9.1 - Catalogo de partidos por ideologia
+\qecho Q9.1 - Catalogo de partidos por faixa e campo ideologico
 
 SELECT
-    ideologia,
-    string_agg(sigla_partido, ', ' ORDER BY sigla_partido) AS partidos,
-    COUNT(*) AS qtd_partidos
+    ideologia_faixa,
+    campo_ideologico,
+    ROUND(AVG(ideologia_score), 3) AS ideologia_score_medio,
+    COUNT(*) AS qtd_partidos,
+    string_agg(sigla_partido, ', ' ORDER BY sigla_partido) AS partidos
 FROM partidos_ideologia
-GROUP BY ideologia
-ORDER BY ideologia;
+GROUP BY ideologia_faixa, campo_ideologico
+ORDER BY MIN(ideologia_score) NULLS LAST, ideologia_faixa, campo_ideologico;
 
 \qecho
 \qecho Q9.1 - Lista completa partidos x ideologia
 
 SELECT
     sigla_partido,
-    ideologia
+    ideologia_score,
+    ideologia_faixa,
+    campo_ideologico,
+    fonte_ideologia,
+    tipo_match_ideologia
 FROM partidos_ideologia
-ORDER BY ideologia, sigla_partido;
+ORDER BY ideologia_score NULLS LAST, sigla_partido;
 
 -- =======================================================================
--- Q9.2 - Correlacao Partido x Proposta
--- Para cada votacao, percentual de votos "Sim" por campo ideologico.
--- Revela qual orientacao ideologica favorece cada proposicao.
+-- Q9.2 - Correlacao ideologia x proposicao
+-- Para cada votacao, calcula o percentual de votos "Sim" por faixa
+-- ideologica e preserva tambem o campo macro.
 -- =======================================================================
 \qecho
-\qecho Q9.2 - Correlacao ideologia x proposicao (pct de Sim por campo)
+\qecho Q9.2 - Correlacao ideologia x proposicao (pct de Sim por faixa e campo)
 
 WITH votos_classif AS (
     SELECT
         vv.ano_dados,
         vv.id_votacao,
-        pi.ideologia,
+        pi.ideologia_faixa,
+        pi.campo_ideologico,
+        ROUND(AVG(pi.ideologia_score), 3) AS ideologia_score_medio,
         COUNT(*) FILTER (WHERE vv.voto = 'Sim') AS votos_sim,
         COUNT(*) FILTER (WHERE vv.voto = 'Nao') AS votos_nao,
         COUNT(*) FILTER (WHERE vv.voto NOT IN ('Sim', 'Nao')) AS outros,
         COUNT(*) AS total_votos
     FROM votacoes_votos vv
     JOIN partidos_ideologia pi ON pi.sigla_partido = vv.sigla_partido
-    GROUP BY vv.ano_dados, vv.id_votacao, pi.ideologia
+    GROUP BY vv.ano_dados, vv.id_votacao, pi.ideologia_faixa, pi.campo_ideologico
 ),
 objetos AS (
     SELECT DISTINCT ON (ano_dados, id_votacao)
@@ -58,7 +66,9 @@ SELECT
     vc.ano_dados,
     vc.id_votacao,
     COALESCE(ob.titulo_proposicao, '(sem proposicao vinculada)') AS titulo_proposicao,
-    vc.ideologia,
+    vc.ideologia_score_medio,
+    vc.ideologia_faixa,
+    vc.campo_ideologico,
     vc.votos_sim,
     vc.votos_nao,
     vc.outros,
@@ -68,7 +78,7 @@ FROM votos_classif vc
 LEFT JOIN objetos ob
     ON ob.ano_dados = vc.ano_dados
    AND ob.id_votacao = vc.id_votacao
-ORDER BY vc.ano_dados, vc.id_votacao, vc.ideologia;
+ORDER BY vc.ano_dados, vc.id_votacao, vc.ideologia_score_medio NULLS LAST, vc.ideologia_faixa;
 
 -- =======================================================================
 -- Q9.3 - Resumo consolidado de votos e aderencia por deputado
@@ -83,7 +93,9 @@ WITH voto_detalhado AS (
         vv.id_deputado,
         vv.nome_deputado,
         vv.sigla_partido,
-        pi.ideologia,
+        pi.ideologia_score,
+        pi.ideologia_faixa,
+        pi.campo_ideologico,
         vv.voto,
         vo.orientacao                                          AS orientacao_bancada,
         CASE
@@ -107,7 +119,9 @@ SELECT
     sigla_partido,
     id_deputado,
     nome_deputado,
-    ideologia,
+    ideologia_score,
+    ideologia_faixa,
+    campo_ideologico,
     COUNT(*) AS total_votos,
     COUNT(*) FILTER (WHERE voto = 'Sim') AS votos_sim,
     COUNT(*) FILTER (WHERE voto = 'Nao') AS votos_nao,
@@ -116,7 +130,7 @@ SELECT
     COUNT(*) FILTER (WHERE aderiu_orientacao = 'Contrariou') AS contrariou_orientacao,
     ROUND(COUNT(*) FILTER (WHERE aderiu_orientacao = 'Seguiu') * 100.0 / NULLIF(COUNT(*) FILTER (WHERE aderiu_orientacao IN ('Seguiu', 'Contrariou')), 0), 1) AS pct_aderencia_partido
 FROM voto_detalhado
-GROUP BY sigla_partido, id_deputado, nome_deputado, ideologia
+GROUP BY sigla_partido, id_deputado, nome_deputado, ideologia_score, ideologia_faixa, campo_ideologico
 ORDER BY sigla_partido, nome_deputado;
 
 -- =======================================================================
@@ -132,7 +146,9 @@ WITH voto_detalhado AS (
         vv.id_deputado,
         vv.nome_deputado,
         vv.sigla_partido,
-        pi.ideologia,
+        pi.ideologia_score,
+        pi.ideologia_faixa,
+        pi.campo_ideologico,
         vv.voto,
         vo.orientacao                                          AS orientacao_bancada,
         CASE
@@ -168,7 +184,9 @@ SELECT
     vd.id_deputado,
     vd.nome_deputado,
     vd.sigla_partido,
-    vd.ideologia,
+    vd.ideologia_score,
+    vd.ideologia_faixa,
+    vd.campo_ideologico,
     vd.voto,
     COALESCE(vd.orientacao_bancada, '-')                       AS orientacao_bancada,
     vd.aderiu_orientacao
@@ -179,6 +197,6 @@ LEFT JOIN objetos ob
 ORDER BY
     vd.ano_dados,
     vd.id_votacao,
-    vd.ideologia,
+    vd.ideologia_score NULLS LAST,
     vd.sigla_partido,
     vd.nome_deputado;

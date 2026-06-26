@@ -1,0 +1,8 @@
+-- Q14 - Posição ideológica revelada por votos (W-NOMINATE)
+-- Este bloco analítico não executa consultas SQL em tempo de requisição.
+-- Os dados são lidos diretamente dos artefatos versionados gerados pelo pipeline W-NOMINATE.
+-- Arquivos de origem:
+--   - JF/partidos-ideologia-votacao/q14/q14_ideal_points_deputados.csv
+--   - JF/partidos-ideologia-votacao/q14/q14_desvio_partido.csv
+--   - JF/partidos-ideologia-votacao/q14/q14_desvio_bancada.csv
+--   - JF/partidos-ideologia-votacao/q14/q14_metodologia.md

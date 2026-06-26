@@ -1,0 +1,635 @@
+deputy_id;name;party;ideologia_score_partido;ideologia_faixa_partido;campo_ideologico_partido;ideal_point_dim1;ideal_point_dim2;score_comportamental_0_10;score_calibrado_0_10;score_bancada_0_10;desvio_partido;direcao_desvio_partido;desvio_bancada;direcao_desvio_bancada;qtd_votos_validos;qtd_votacoes_usadas;confianca;confianca_faixa;score_comportamental_z
+141488;Paulo Teixeira;PT;2.679;Esquerda;esquerda;-0.9965;-0.0838;0.018;3.863;0.566;1.184;mais a direita;-0.549;mais a esquerda;33;33;1.0;alta;-1.636
+231911;Lenir de Assis;PT;2.679;Esquerda;esquerda;-0.9908;-0.1355;0.046;3.884;0.566;1.205;mais a direita;-0.52;mais a esquerda;380;380;0.9842;alta;-1.623
+74858;Lindbergh Farias;PT;2.679;Esquerda;esquerda;-0.9407;-0.1823;0.296;4.072;0.566;1.393;mais a direita;-0.27;alinhado;938;938;0.9776;alta;-1.514
+160575;Erika Kokay;PT;2.679;Esquerda;esquerda;-0.94;-0.3412;0.3;4.075;0.566;1.396;mais a direita;-0.266;alinhado;1026;1026;0.96;alta;-1.513
+178873;Helder Salomão;PT;2.679;Esquerda;esquerda;-0.9395;-0.1134;0.302;4.077;0.566;1.398;mais a direita;-0.264;alinhado;1091;1091;0.9844;alta;-1.512
+204453;Natália Bonavides;PT;2.679;Esquerda;esquerda;-0.932;-0.3579;0.34;4.105;0.566;1.426;mais a direita;-0.226;alinhado;801;801;0.9551;alta;-1.496
+74057;Alice Portugal;PCDOB;1.778;Esquerda;esquerda;-0.9291;-0.1406;0.355;4.116;0.671;2.338;mais a direita;-0.316;alinhado;980;980;0.9745;alta;-1.489
+74400;Paulo Pimenta;PT;2.679;Esquerda;esquerda;-0.9283;-0.1613;0.358;4.119;0.566;1.44;mais a direita;-0.208;alinhado;434;434;0.9816;alta;-1.488
+230764;Ivan Júnior;UNIAO;8.485;Direita;direita;-0.9263;0.3768;0.369;4.126;4.15;-4.359;mais a esquerda;-3.782;mais a esquerda;20;20;1.0;alta;-1.483
+220632;Ana Pimentel;PT;2.679;Esquerda;esquerda;-0.9208;-0.1243;0.396;4.147;0.566;1.468;mais a direita;-0.17;alinhado;899;899;0.9822;alta;-1.471
+160556;Padre João;PT;2.679;Esquerda;esquerda;-0.9195;0.0073;0.403;4.152;0.566;1.473;mais a direita;-0.164;alinhado;924;924;0.9924;alta;-1.468
+74060;Daniel Almeida;PCDOB;1.778;Esquerda;esquerda;-0.9193;-0.1637;0.403;4.153;0.671;2.375;mais a direita;-0.267;alinhado;853;853;0.9719;alta;-1.468
+160569;Waldenor Pereira;PT;2.679;Esquerda;esquerda;-0.9189;-0.1416;0.405;4.154;0.566;1.475;mais a direita;-0.161;alinhado;767;767;0.9831;alta;-1.467
+204495;Airton Faleiro;PT;2.679;Esquerda;esquerda;-0.916;0.0142;0.42;4.165;0.566;1.486;mais a direita;-0.146;alinhado;842;842;0.9881;alta;-1.461
+74848;Jandira Feghali;PCDOB;1.778;Esquerda;esquerda;-0.9157;-0.1525;0.421;4.166;0.671;2.388;mais a direita;-0.249;alinhado;951;951;0.9737;alta;-1.46
+81055;Márcio Jerry;PCDOB;1.778;Esquerda;esquerda;-0.9138;-0.1375;0.431;4.173;0.671;2.395;mais a direita;-0.24;alinhado;911;911;0.9791;alta;-1.456
+178986;Nilto Tatto;PT;2.679;Esquerda;esquerda;-0.9134;-0.1394;0.433;4.175;0.566;1.496;mais a direita;-0.134;alinhado;943;943;0.9809;alta;-1.455
+204426;Carlos Veras;PT;2.679;Esquerda;esquerda;-0.9124;-0.0027;0.438;4.179;0.566;1.5;mais a direita;-0.129;alinhado;957;957;0.9885;alta;-1.453
+220606;Reimont;PT;2.679;Esquerda;esquerda;-0.9113;-0.0543;0.443;4.183;0.566;1.504;mais a direita;-0.123;alinhado;893;893;0.9832;alta;-1.451
+74041;Luiz Couto;PT;2.679;Esquerda;esquerda;-0.9097;-0.0545;0.451;4.189;0.566;1.51;mais a direita;-0.115;alinhado;1166;1166;0.9889;alta;-1.447
+220527;Jack Rocha;PT;2.679;Esquerda;esquerda;-0.9077;-0.0308;0.462;4.196;0.566;1.517;mais a direita;-0.105;alinhado;937;937;0.9893;alta;-1.443
+88256;Clodoaldo Magalhães;PV;4.123;Centro-esquerda;esquerda;-0.9063;-0.1858;0.469;4.202;1.037;0.079;alinhado;-0.568;mais a esquerda;829;829;0.9795;alta;-1.44
+204445;Fernando Mineiro;PT;2.679;Esquerda;esquerda;-0.9059;-0.0817;0.471;4.203;0.566;1.524;mais a direita;-0.096;alinhado;835;835;0.9892;alta;-1.439
+171617;Paulão;PT;2.679;Esquerda;esquerda;-0.9054;-0.0155;0.473;4.205;0.566;1.526;mais a direita;-0.093;alinhado;871;871;0.992;alta;-1.438
+204480;Rogério Correia;PT;2.679;Esquerda;esquerda;-0.9051;-0.0616;0.474;4.206;0.566;1.527;mais a direita;-0.092;alinhado;882;882;0.9932;alta;-1.437
+229106;Carla Ayres;PT;2.679;Esquerda;esquerda;-0.9051;-0.2338;0.475;4.206;0.566;1.527;mais a direita;-0.092;alinhado;61;61;0.9836;alta;-1.437
+220682;Tadeu Veneri;PT;2.679;Esquerda;esquerda;-0.9046;-0.2508;0.477;4.208;0.566;1.529;mais a direita;-0.089;alinhado;844;844;0.9716;alta;-1.436
+178857;Jorge Solla;PT;2.679;Esquerda;esquerda;-0.9039;-0.0535;0.48;4.211;0.566;1.532;mais a direita;-0.086;alinhado;794;794;0.9849;alta;-1.435
+160604;Pedro Uczai;PT;2.679;Esquerda;esquerda;-0.9041;-0.1354;0.48;4.21;0.566;1.531;mais a direita;-0.087;alinhado;844;844;0.9775;alta;-1.435
+74283;Vicentinho;PT;2.679;Esquerda;esquerda;-0.9028;-0.0378;0.486;4.215;0.566;1.536;mais a direita;-0.08;alinhado;836;836;0.988;alta;-1.432
+160610;Valmir Assunção;PT;2.679;Esquerda;esquerda;-0.9018;-0.0303;0.491;4.218;0.566;1.539;mais a direita;-0.076;alinhado;803;803;0.9875;alta;-1.43
+220554;Alexandre Lindenmeyer;PT;2.679;Esquerda;esquerda;-0.9016;-0.1534;0.492;4.219;0.566;1.54;mais a direita;-0.074;alinhado;785;785;0.9732;alta;-1.429
+160508;Afonso Florence;PT;2.679;Esquerda;esquerda;-0.9012;0.0196;0.494;4.221;0.566;1.542;mais a direita;-0.072;alinhado;49;49;0.9796;alta;-1.429
+178887;Rubens Pereira Júnior;PT;2.679;Esquerda;esquerda;-0.9004;0.0337;0.498;4.224;0.566;1.545;mais a direita;-0.069;alinhado;1038;1038;0.9865;alta;-1.427
+73701;Benedita da Silva;PT;2.679;Esquerda;esquerda;-0.899;0.0058;0.505;4.229;0.566;1.55;mais a direita;-0.061;alinhado;811;811;0.9926;alta;-1.424
+220643;Sônia Guajajara;PSOL;1.415;Extrema esquerda;esquerda;-0.8991;-0.4378;0.505;4.229;1.295;2.814;mais a direita;-0.791;mais a esquerda;35;35;0.9714;alta;-1.424
+160538;Bohn Gass;PT;2.679;Esquerda;esquerda;-0.8971;-0.052;0.515;4.236;0.566;1.557;mais a direita;-0.052;alinhado;910;910;0.9868;alta;-1.42
+74160;Patrus Ananias;PT;2.679;Esquerda;esquerda;-0.8961;-0.145;0.519;4.24;0.566;1.561;mais a direita;-0.047;alinhado;1005;1005;0.9801;alta;-1.418
+178987;Orlando Silva;PCDOB;1.778;Esquerda;esquerda;-0.8948;-0.2692;0.526;4.245;0.671;2.467;mais a direita;-0.145;alinhado;853;853;0.9625;alta;-1.415
+220704;Carol Dartora;PT;2.679;Esquerda;esquerda;-0.8947;-0.0572;0.526;4.245;0.566;1.566;mais a direita;-0.04;alinhado;655;655;0.9893;alta;-1.415
+220602;Dimas Gadelha;PT;2.679;Esquerda;esquerda;-0.8945;0.0112;0.528;4.246;0.566;1.567;mais a direita;-0.039;alinhado;837;837;0.9869;alta;-1.414
+220696;Ivoneide Caetano;PT;2.679;Esquerda;esquerda;-0.8914;-0.0077;0.543;4.257;0.566;1.578;mais a direita;-0.024;alinhado;884;884;0.9898;alta;-1.407
+171786;Miguel Ângelo;PT;2.679;Esquerda;esquerda;-0.8903;-0.0078;0.549;4.262;0.566;1.583;mais a direita;-0.018;alinhado;764;764;0.9882;alta;-1.405
+141398;Carlos Zarattini;PT;2.679;Esquerda;esquerda;-0.8898;-0.0721;0.551;4.264;0.566;1.585;mais a direita;-0.015;alinhado;877;877;0.9829;alta;-1.404
+74161;Reginaldo Lopes;PT;2.679;Esquerda;esquerda;-0.8892;-0.0618;0.554;4.266;0.566;1.587;mais a direita;-0.012;alinhado;617;617;0.9854;alta;-1.403
+69871;Bacelar;PV;4.123;Centro-esquerda;esquerda;-0.8855;0.0386;0.572;4.28;1.037;0.157;alinhado;-0.465;alinhado;1020;1020;0.9775;alta;-1.395
+220556;Ana Paula Lima;PT;2.679;Esquerda;esquerda;-0.8846;-0.0337;0.577;4.283;0.566;1.604;mais a direita;0.011;alinhado;883;883;0.9887;alta;-1.393
+220548;Camila Jara;PT;2.679;Esquerda;esquerda;-0.8818;-0.2114;0.591;4.293;0.566;1.614;mais a direita;0.024;alinhado;844;844;0.9656;alta;-1.387
+220629;Dandara;PT;2.679;Esquerda;esquerda;-0.8813;-0.0498;0.593;4.295;0.566;1.616;mais a direita;0.027;alinhado;713;713;0.9776;alta;-1.385
+220553;Denise Pessôa;PT;2.679;Esquerda;esquerda;-0.8802;-0.1673;0.599;4.3;0.566;1.621;mais a direita;0.033;alinhado;887;887;0.9707;alta;-1.383
+188097;Merlong Solano;PT;2.679;Esquerda;esquerda;-0.8791;0.0388;0.604;4.304;0.566;1.625;mais a direita;0.038;alinhado;994;994;0.9829;alta;-1.381
+74371;Rubens Otoni;PT;2.679;Esquerda;esquerda;-0.8786;-0.0254;0.607;4.306;0.566;1.627;mais a direita;0.041;alinhado;712;712;0.9916;alta;-1.379
+73801;Renildo Calheiros;PCDOB;1.778;Esquerda;esquerda;-0.8786;-0.1578;0.607;4.306;0.671;2.528;mais a direita;-0.064;alinhado;998;998;0.9709;alta;-1.38
+209189;Joseildo Ramos;PT;2.679;Esquerda;esquerda;-0.8785;-0.0678;0.608;4.306;0.566;1.627;mais a direita;0.041;alinhado;816;816;0.9792;alta;-1.379
+73604;Rui Falcão;PT;2.679;Esquerda;esquerda;-0.8779;-0.1623;0.61;4.308;0.566;1.629;mais a direita;0.044;alinhado;912;912;0.9726;alta;-1.378
+221148;Alfredinho;PT;2.679;Esquerda;esquerda;-0.8773;0.1055;0.613;4.31;0.566;1.631;mais a direita;0.047;alinhado;948;948;0.9852;alta;-1.377
+230765;Enfermeira Rejane;PCDOB;1.778;Esquerda;esquerda;-0.8772;-0.3213;0.614;4.311;0.671;2.533;mais a direita;-0.057;alinhado;417;417;0.964;alta;-1.376
+220555;Daiana Santos;PCDOB;1.778;Esquerda;esquerda;-0.8766;-0.2689;0.617;4.313;0.671;2.535;mais a direita;-0.054;alinhado;828;828;0.9601;alta;-1.375
+160592;Zeca Dirceu;PT;2.679;Esquerda;esquerda;-0.8764;-0.0134;0.618;4.314;0.566;1.635;mais a direita;0.052;alinhado;809;809;0.9839;alta;-1.375
+74398;Maria do Rosário;PT;2.679;Esquerda;esquerda;-0.8762;-0.1589;0.619;4.315;0.566;1.636;mais a direita;0.053;alinhado;756;756;0.9696;alta;-1.374
+73433;Arlindo Chinaglia;PT;2.679;Esquerda;esquerda;-0.8746;0.0076;0.627;4.321;0.566;1.642;mais a direita;0.061;alinhado;881;881;0.9864;alta;-1.371
+220640;Juliana Cardoso;PT;2.679;Esquerda;esquerda;-0.8742;-0.1832;0.629;4.322;0.566;1.643;mais a direita;0.063;alinhado;806;806;0.9653;alta;-1.37
+162067;Kiko Celeguim;PT;2.679;Esquerda;esquerda;-0.8737;0.0571;0.631;4.324;0.566;1.645;mais a direita;0.065;alinhado;844;844;0.9751;alta;-1.369
+74376;Vander Loubet;PT;2.679;Esquerda;esquerda;-0.8725;-0.0423;0.637;4.328;0.566;1.649;mais a direita;0.071;alinhado;814;814;0.9816;alta;-1.366
+178866;Luizianne Lins;PT;2.679;Esquerda;esquerda;-0.8719;-0.1732;0.641;4.331;0.566;1.652;mais a direita;0.074;alinhado;807;807;0.9765;alta;-1.365
+220565;Delegada Adriana Accorsi;PT;2.679;Esquerda;esquerda;-0.8709;-0.0208;0.646;4.335;0.566;1.656;mais a direita;0.079;alinhado;729;729;0.9918;alta;-1.363
+204559;Zé Neto;PT;2.679;Esquerda;esquerda;-0.8698;-0.0313;0.651;4.339;0.566;1.66;mais a direita;0.085;alinhado;709;709;0.9873;alta;-1.36
+220700;Florentino Neto;PT;2.679;Esquerda;esquerda;-0.8691;0.1578;0.654;4.341;0.566;1.662;mais a direita;0.088;alinhado;830;830;0.9867;alta;-1.359
+224333;Welter;PT;2.679;Esquerda;esquerda;-0.8687;-0.0281;0.656;4.343;0.566;1.664;mais a direita;0.09;alinhado;868;868;0.9885;alta;-1.358
+204501;Alencar Santana;PT;2.679;Esquerda;esquerda;-0.8675;-0.0568;0.662;4.347;0.566;1.668;mais a direita;0.096;alinhado;1000;1000;0.974;alta;-1.355
+220688;Dr. Francisco;PT;2.679;Esquerda;esquerda;-0.8676;0.1286;0.662;4.347;0.566;1.668;mais a direita;0.096;alinhado;901;901;0.9811;alta;-1.356
+204492;Paulo Guedes;PT;2.679;Esquerda;esquerda;-0.8667;0.1568;0.666;4.35;0.566;1.671;mais a direita;0.1;alinhado;901;901;0.9845;alta;-1.354
+220671;Dilvanda Faro;PT;2.679;Esquerda;esquerda;-0.8655;0.153;0.672;4.355;0.566;1.676;mais a direita;0.106;alinhado;908;908;0.9813;alta;-1.351
+229585;Elisangela Araujo;PT;2.679;Esquerda;esquerda;-0.8635;0.0611;0.683;4.362;0.566;1.683;mais a direita;0.116;alinhado;89;89;1.0;alta;-1.347
+221378;Reginete Bispo;PT;2.679;Esquerda;esquerda;-0.8604;-0.1495;0.698;4.374;0.566;1.695;mais a direita;0.131;alinhado;414;414;0.9758;alta;-1.34
+178970;João Daniel;PT;2.679;Esquerda;esquerda;-0.8589;-0.0561;0.706;4.38;0.566;1.701;mais a direita;0.139;alinhado;787;787;0.9746;alta;-1.337
+191923;Flávio Nogueira;PT;2.679;Esquerda;esquerda;-0.8583;0.079;0.708;4.382;0.566;1.703;mais a direita;0.142;alinhado;1058;1058;0.9783;alta;-1.335
+141464;José Airton Félix Cirilo;PT;2.679;Esquerda;esquerda;-0.8568;0.0405;0.716;4.387;0.566;1.708;mais a direita;0.15;alinhado;676;676;0.9837;alta;-1.332
+229259;Pedro Tourinho;PT;2.679;Esquerda;esquerda;-0.8564;0.1509;0.718;4.389;0.566;1.71;mais a direita;0.151;alinhado;65;65;1.0;alta;-1.331
+220601;Washington Quaquá;PT;2.679;Esquerda;esquerda;-0.8557;0.1072;0.721;4.391;0.566;1.712;mais a direita;0.155;alinhado;283;283;0.9859;alta;-1.33
+74156;Leonardo Monteiro;PT;2.679;Esquerda;esquerda;-0.8557;-0.0585;0.722;4.392;0.566;1.713;mais a direita;0.155;alinhado;807;807;0.9715;alta;-1.33
+74159;Odair Cunha;PT;2.679;Esquerda;esquerda;-0.8485;0.0884;0.758;4.419;0.566;1.74;mais a direita;0.191;alinhado;885;885;0.9808;alta;-1.314
+141456;Jilmar Tatto;PT;2.679;Esquerda;esquerda;-0.8478;0.088;0.761;4.421;0.566;1.742;mais a direita;0.195;alinhado;768;768;0.9688;alta;-1.312
+74141;Josias Gomes;PT;2.679;Esquerda;esquerda;-0.8476;-0.0536;0.762;4.422;0.566;1.743;mais a direita;0.196;alinhado;772;772;0.9845;alta;-1.312
+107283;Gleisi Hoffmann;PT;2.679;Esquerda;esquerda;-0.8378;0.024;0.811;4.459;0.566;1.78;mais a direita;0.244;alinhado;375;375;0.9787;alta;-1.291
+141470;José Guimarães;PT;2.679;Esquerda;esquerda;-0.8322;0.0645;0.839;4.48;0.566;1.801;mais a direita;0.273;alinhado;932;932;0.9796;alta;-1.279
+139285;Lídice da Mata;PSB;3.589;Centro-esquerda;esquerda;-0.8165;-0.1813;0.917;4.539;1.653;0.95;mais a direita;-0.736;mais a esquerda;900;900;0.9578;alta;-1.245
+204515;André Janones;REDE;3.692;Centro-esquerda;esquerda;-0.8154;0.0267;0.923;4.543;1.394;0.851;mais a direita;-0.471;alinhado;802;802;0.9738;alta;-1.242
+74295;Inácio Arruda;PCDOB;1.778;Esquerda;esquerda;-0.8134;0.2536;0.933;4.551;0.671;2.773;mais a direita;0.262;alinhado;28;28;0.9643;alta;-1.238
+220533;Prof. Reginaldo Veras;PV;4.123;Centro-esquerda;esquerda;-0.8131;-0.3498;0.935;4.552;1.037;0.429;alinhado;-0.102;alinhado;895;895;0.9419;alta;-1.237
+160535;Marcon;PT;2.679;Esquerda;esquerda;-0.8106;-0.1908;0.947;4.561;0.566;1.882;mais a direita;0.381;alinhado;862;862;0.9594;alta;-1.232
+220668;Maria Arraes;PSB;3.589;Centro-esquerda;esquerda;-0.8057;-0.0532;0.971;4.579;1.653;0.99;mais a direita;-0.682;mais a esquerda;969;969;0.9649;alta;-1.221
+220605;Bandeira de Mello;PV;4.123;Centro-esquerda;esquerda;-0.8013;-0.3345;0.993;4.596;1.037;0.473;alinhado;-0.044;alinhado;925;925;0.9395;alta;-1.212
+74784;Luiza Erundina;PSOL;1.415;Extrema esquerda;esquerda;-0.7991;-0.6011;1.004;4.604;1.295;3.189;mais a direita;-0.291;alinhado;778;778;0.9332;alta;-1.207
+220667;Pedro Campos;PSB;3.589;Centro-esquerda;esquerda;-0.7875;-0.2106;1.062;4.648;1.653;1.059;mais a direita;-0.591;mais a esquerda;937;937;0.9498;alta;-1.182
+157130;Túlio Gadêlha;REDE;3.692;Centro-esquerda;esquerda;-0.7788;-0.6273;1.106;4.68;1.394;0.988;mais a direita;-0.288;alinhado;796;796;0.9246;alta;-1.163
+220637;Marina Silva;REDE;3.692;Centro-esquerda;esquerda;-0.7749;-0.6321;1.126;4.695;1.394;1.003;mais a direita;-0.269;alinhado;31;31;0.9677;alta;-1.154
+160641;Professora Marcivania;PCDOB;1.778;Esquerda;esquerda;-0.7728;-0.3008;1.136;4.703;0.671;2.925;mais a direita;0.466;alinhado;282;282;0.9539;alta;-1.15
+229082;Lucyana Genésio;PDT;3.855;Centro-esquerda;esquerda;-0.7707;0.149;1.147;4.711;2.054;0.856;mais a direita;-0.908;mais a esquerda;44;44;1.0;alta;-1.145
+220615;Pastor Henrique Vieira;PSOL;1.415;Extrema esquerda;esquerda;-0.7461;-0.6659;1.27;4.803;1.295;3.388;mais a direita;-0.025;alinhado;948;948;0.9441;alta;-1.091
+206018;Célia Xakriabá;PSOL;1.415;Extrema esquerda;esquerda;-0.7451;-0.667;1.275;4.807;1.295;3.392;mais a direita;-0.021;alinhado;780;780;0.9436;alta;-1.089
+234788;Heloísa Helena;REDE;3.692;Centro-esquerda;esquerda;-0.7416;-0.6708;1.292;4.82;1.394;1.128;mais a direita;-0.103;alinhado;82;82;0.9512;alta;-1.082
+74171;Chico Alencar;PSOL;1.415;Extrema esquerda;esquerda;-0.7377;-0.6751;1.311;4.835;1.295;3.42;mais a direita;0.016;alinhado;1054;1054;0.9336;alta;-1.073
+220623;Duda Salabert;PSOL;1.415;Extrema esquerda;esquerda;-0.7371;-0.6758;1.315;4.837;1.295;3.422;mais a direita;0.019;alinhado;823;823;0.9417;alta;-1.072
+220645;Erika Hilton;PSOL;1.415;Extrema esquerda;esquerda;-0.7353;-0.6777;1.324;4.844;1.295;3.429;mais a direita;0.028;alinhado;706;706;0.9363;alta;-1.068
+233592;Paulo Lemos;PT;2.679;Esquerda;esquerda;-0.734;-0.6791;1.33;4.849;0.566;2.17;mais a direita;0.763;mais a direita;160;160;0.9312;alta;-1.065
+204394;Gervásio Maia;PCDOB;1.778;Esquerda;esquerda;-0.7333;-0.0566;1.334;4.851;0.671;3.073;mais a direita;0.663;mais a direita;1006;1006;0.9423;alta;-1.064
+73531;Ivan Valente;PSOL;1.415;Extrema esquerda;esquerda;-0.729;-0.6845;1.355;4.867;1.295;3.452;mais a direita;0.06;alinhado;830;830;0.9422;alta;-1.054
+204533;Idilvan Alencar;PSB;3.589;Centro-esquerda;esquerda;-0.7291;-0.4788;1.355;4.867;1.653;1.278;mais a direita;-0.299;alinhado;512;512;0.9082;alta;-1.055
+178927;Aliel Machado;PV;4.123;Centro-esquerda;esquerda;-0.7278;-0.3102;1.361;4.872;1.037;0.749;mais a direita;0.324;alinhado;530;530;0.9208;alta;-1.052
+204464;Talíria Petrone;PSOL;1.415;Extrema esquerda;esquerda;-0.7238;-0.69;1.381;4.887;1.295;3.472;mais a direita;0.086;alinhado;650;650;0.9292;alta;-1.043
+204407;Fernanda Melchionna;PSOL;1.415;Extrema esquerda;esquerda;-0.7238;-0.69;1.381;4.887;1.295;3.472;mais a direita;0.086;alinhado;833;833;0.9172;alta;-1.043
+204535;Sâmia Bomfim;PSOL;1.415;Extrema esquerda;esquerda;-0.7222;-0.6917;1.389;4.893;1.295;3.478;mais a direita;0.094;alinhado;849;849;0.9246;alta;-1.04
+220639;Guilherme Boulos;PSOL;1.415;Extrema esquerda;esquerda;-0.7162;-0.6979;1.419;4.915;1.295;3.5;mais a direita;0.124;alinhado;647;647;0.9459;alta;-1.027
+141533;Rodrigo Rollemberg;PSB;3.589;Centro-esquerda;esquerda;-0.7115;-0.3476;1.442;4.933;1.653;1.344;mais a direita;-0.211;alinhado;264;264;0.9318;alta;-1.016
+221338;Professora Luciene Cavalcante;PSOL;1.415;Extrema esquerda;esquerda;-0.7103;-0.7039;1.448;4.938;1.295;3.523;mais a direita;0.153;alinhado;926;926;0.9384;alta;-1.014
+220573;Dorinaldo Malafaia;PDT;3.855;Centro-esquerda;esquerda;-0.7082;-0.3574;1.459;4.945;2.054;1.09;mais a direita;-0.595;mais a esquerda;759;759;0.9262;alta;-1.009
+220580;Professora Goreth;PDT;3.855;Centro-esquerda;esquerda;-0.7026;-0.1738;1.487;4.967;2.054;1.112;mais a direita;-0.567;mais a esquerda;486;486;0.9321;alta;-0.997
+220598;Tarcísio Motta;PSOL;1.415;Extrema esquerda;esquerda;-0.7023;-0.7119;1.488;4.968;1.295;3.553;mais a direita;0.193;alinhado;1009;1009;0.9346;alta;-0.996
+234253;Lucas Abrahao;REDE;3.692;Centro-esquerda;esquerda;-0.7017;-0.7125;1.492;4.97;1.394;1.278;mais a direita;0.097;alinhado;72;72;0.9722;alta;-0.995
+152605;Glauber Braga;PSOL;1.415;Extrema esquerda;esquerda;-0.6871;-0.7265;1.564;5.025;1.295;3.61;mais a direita;0.269;alinhado;712;712;0.9073;alta;-0.963
+220662;Lucas Ramos;PSB;3.589;Centro-esquerda;esquerda;-0.6799;-0.0758;1.6;5.052;1.653;1.463;mais a direita;-0.053;alinhado;912;912;0.9419;alta;-0.948
+74299;Leônidas Cristino;PDT;3.855;Centro-esquerda;esquerda;-0.6787;-0.1688;1.607;5.056;2.054;1.201;mais a direita;-0.448;alinhado;675;675;0.9215;alta;-0.945
+74075;Elcione Barbalho;MDB;6.499;Centro-direita;direita;-0.6777;0.2158;1.612;5.06;3.721;-1.439;mais a esquerda;-2.109;mais a esquerda;466;466;0.9421;alta;-0.943
+204459;Daniela do Waguinho;REPUBLICANOS;8.333;Direita;direita;-0.6716;0.0139;1.642;5.083;3.731;-3.25;mais a esquerda;-2.089;mais a esquerda;752;752;0.9375;alta;-0.93
+122195;Leonardo Gadelha;PODE;7.437;Direita;direita;-0.6651;0.0986;1.675;5.108;3.749;-2.329;mais a esquerda;-2.074;mais a esquerda;55;55;0.9818;alta;-0.915
+133439;André Figueiredo;PDT;3.855;Centro-esquerda;esquerda;-0.6497;-0.1311;1.751;5.165;2.054;1.31;mais a direita;-0.303;alinhado;844;844;0.9242;alta;-0.882
+141411;Dagoberto Nogueira;PP;8.153;Direita;direita;-0.6491;0.1625;1.754;5.167;4.218;-2.986;mais a esquerda;-2.464;mais a esquerda;903;903;0.9258;alta;-0.881
+204486;Mauro Benevides Filho;PDT;3.855;Centro-esquerda;esquerda;-0.6443;-0.0747;1.778;5.185;2.054;1.33;mais a direita;-0.276;alinhado;899;899;0.9188;alta;-0.87
+220663;Eriberto Medeiros;PSB;3.589;Centro-esquerda;esquerda;-0.6385;-0.0665;1.808;5.207;1.653;1.618;mais a direita;0.154;alinhado;834;834;0.94;alta;-0.858
+74478;Luciano Bivar;UNIAO;8.485;Direita;direita;-0.6372;0.0679;1.814;5.212;4.15;-3.273;mais a esquerda;-2.336;mais a esquerda;300;300;0.8833;alta;-0.855
+160517;Paulo Folletto;PSB;3.589;Centro-esquerda;esquerda;-0.6366;-0.2489;1.817;5.214;1.653;1.625;mais a direita;0.163;alinhado;687;687;0.901;alta;-0.854
+178931;Luciano Ducci;PSB;3.589;Centro-esquerda;esquerda;-0.6298;-0.1215;1.851;5.24;1.653;1.651;mais a direita;0.198;alinhado;827;827;0.9287;alta;-0.839
+160548;Jonas Donizette;PSB;3.589;Centro-esquerda;esquerda;-0.6292;-0.1237;1.854;5.242;1.653;1.653;mais a direita;0.2;alinhado;896;896;0.9118;alta;-0.838
+220634;Marcelo Lima;PSB;3.589;Centro-esquerda;esquerda;-0.6287;-0.1536;1.856;5.244;1.653;1.655;mais a direita;0.203;alinhado;186;186;0.8925;alta;-0.837
+234840;Cristiano Furlan;REDE;3.692;Centro-esquerda;esquerda;-0.624;-0.7814;1.88;5.262;1.394;1.57;mais a direita;0.486;alinhado;22;22;0.9545;alta;-0.826
+204541;Eduardo Bismarck;PV;4.123;Centro-esquerda;esquerda;-0.6215;0.123;1.893;5.271;1.037;1.148;mais a direita;0.856;mais a direita;480;480;0.9083;alta;-0.821
+220578;Josenildo;PDT;3.855;Centro-esquerda;esquerda;-0.6207;-0.1511;1.896;5.274;2.054;1.419;mais a direita;-0.158;alinhado;972;972;0.9053;alta;-0.819
+204553;Pastor Sargento Isidório;AVANTE;6.473;Centro-direita;direita;-0.6162;-0.0778;1.919;5.291;3.124;-1.182;mais a esquerda;-1.205;mais a esquerda;919;919;0.9151;alta;-0.809
+204489;Robério Monteiro;PDT;3.855;Centro-esquerda;esquerda;-0.6143;0.0468;1.928;5.298;2.054;1.443;mais a direita;-0.126;alinhado;625;625;0.9488;alta;-0.805
+72442;Felipe Carreras;PSB;3.589;Centro-esquerda;esquerda;-0.6132;0.0522;1.934;5.302;1.653;1.713;mais a direita;0.281;alinhado;748;748;0.9131;alta;-0.803
+234310;Ricardo Galvão;REDE;3.692;Centro-esquerda;esquerda;-0.6115;-0.7913;1.943;5.309;1.394;1.617;mais a direita;0.548;mais a direita;124;124;0.8952;alta;-0.799
+220582;Daniel Barbosa;PP;8.153;Direita;direita;-0.6053;0.1408;1.974;5.332;4.218;-2.821;mais a esquerda;-2.244;mais a esquerda;716;716;0.9204;alta;-0.786
+204534;Tabata Amaral;PSB;3.589;Centro-esquerda;esquerda;-0.6024;-0.7555;1.988;5.343;1.653;1.754;mais a direita;0.335;alinhado;930;930;0.843;media;-0.779
+74158;Mário Heringer;PDT;3.855;Centro-esquerda;esquerda;-0.5939;-0.0645;2.03;5.375;2.054;1.52;mais a direita;-0.024;alinhado;656;656;0.9162;alta;-0.761
+220604;Marcos Tavares;PDT;3.855;Centro-esquerda;esquerda;-0.5924;-0.0939;2.038;5.38;2.054;1.525;mais a direita;-0.016;alinhado;810;810;0.9037;alta;-0.758
+80815;Leo Prates;PDT;3.855;Centro-esquerda;esquerda;-0.5912;0.0676;2.044;5.385;2.054;1.53;mais a direita;-0.01;alinhado;833;833;0.934;alta;-0.755
+178964;Heitor Schuch;PSD;6.937;Centro-direita;direita;-0.5808;-0.2367;2.096;5.424;3.377;-1.513;mais a esquerda;-1.281;mais a esquerda;571;571;0.9002;alta;-0.733
+141458;João Carlos Bacelar;PL;8.796;Extrema direita;direita;-0.5743;0.0489;2.129;5.448;7.079;-3.348;mais a esquerda;-4.95;mais a esquerda;534;534;0.9045;alta;-0.718
+225730;Enfermeira Ana Paula;PODE;7.437;Direita;direita;-0.5684;0.0759;2.158;5.471;3.749;-1.966;mais a esquerda;-1.591;mais a esquerda;285;285;0.9158;alta;-0.705
+220686;Duarte Jr.;AVANTE;6.473;Centro-direita;direita;-0.5616;-0.5721;2.192;5.496;3.124;-0.977;mais a esquerda;-0.932;mais a esquerda;933;933;0.851;alta;-0.691
+220607;Max Lemos;PDT;3.855;Centro-esquerda;esquerda;-0.5601;0.018;2.199;5.502;2.054;1.647;mais a direita;0.145;alinhado;919;919;0.9249;alta;-0.688
+74856;Laura Carneiro;PSD;6.937;Centro-direita;direita;-0.5597;0.0743;2.201;5.503;3.377;-1.434;mais a esquerda;-1.176;mais a esquerda;950;950;0.9168;alta;-0.687
+160598;Flávia Morais;PDT;3.855;Centro-esquerda;esquerda;-0.5596;-0.2386;2.202;5.504;2.054;1.649;mais a direita;0.148;alinhado;729;729;0.8875;alta;-0.686
+220614;Dr. Daniel Soranz;PSD;6.937;Centro-direita;direita;-0.5578;-0.1502;2.211;5.51;3.377;-1.427;mais a esquerda;-1.166;mais a esquerda;184;184;0.8098;media;-0.682
+73806;Roseana Sarney;MDB;6.499;Centro-direita;direita;-0.5542;0.481;2.229;5.524;3.721;-0.975;mais a esquerda;-1.492;mais a esquerda;248;248;0.9637;alta;-0.675
+73808;Sérgio Brito;PSD;6.937;Centro-direita;direita;-0.5478;0.2139;2.261;5.548;3.377;-1.389;mais a esquerda;-1.116;mais a esquerda;132;132;0.9242;alta;-0.661
+204488;Célio Studart;PSD;6.937;Centro-direita;direita;-0.5463;-0.4956;2.269;5.554;3.377;-1.383;mais a esquerda;-1.108;mais a esquerda;632;632;0.8497;media;-0.657
+160635;Ruy Carneiro;PODE;7.437;Direita;direita;-0.5404;-0.1823;2.298;5.576;3.749;-1.861;mais a esquerda;-1.451;mais a esquerda;726;726;0.8815;alta;-0.645
+220664;Guilherme Uchoa;PSD;6.937;Centro-direita;direita;-0.5405;0.0585;2.298;5.575;3.377;-1.362;mais a esquerda;-1.079;mais a esquerda;860;860;0.8884;alta;-0.645
+220591;Meire Serafim;UNIAO;8.485;Direita;direita;-0.5395;0.2257;2.302;5.579;4.15;-2.906;mais a esquerda;-1.848;mais a esquerda;813;813;0.9176;alta;-0.643
+220581;Luciano Amaral;PSD;6.937;Centro-direita;direita;-0.5351;0.2429;2.324;5.595;3.377;-1.342;mais a esquerda;-1.053;mais a esquerda;900;900;0.93;alta;-0.633
+178835;Afonso Motta;PDT;3.855;Centro-esquerda;esquerda;-0.5231;0.0378;2.384;5.641;2.054;1.786;mais a direita;0.33;alinhado;932;932;0.9067;alta;-0.607
+220529;Gilson Daniel;PODE;7.437;Direita;direita;-0.5164;-0.0021;2.418;5.666;3.749;-1.771;mais a esquerda;-1.331;mais a esquerda;1006;1006;0.8996;alta;-0.593
+204566;Marreca Filho;PRD;8.161;Direita;direita;-0.5108;0.1588;2.446;5.687;4.658;-2.474;mais a esquerda;-2.212;mais a esquerda;547;547;0.9013;alta;-0.58
+220708;Gabriel Nunes;PSD;6.937;Centro-direita;direita;-0.5094;0.2299;2.453;5.692;3.377;-1.245;mais a esquerda;-0.924;mais a esquerda;940;940;0.9309;alta;-0.577
+220586;Rafael Brito;MDB;6.499;Centro-direita;direita;-0.5082;0.0195;2.459;5.697;3.721;-0.802;mais a esquerda;-1.262;mais a esquerda;821;821;0.9062;alta;-0.575
+198783;Emanuel Pinheiro Neto;PSD;6.937;Centro-direita;direita;-0.5069;0.1469;2.466;5.701;3.377;-1.236;mais a esquerda;-0.911;mais a esquerda;709;709;0.9224;alta;-0.572
+225386;Renan Ferreirinha;PSD;6.937;Centro-direita;direita;-0.5058;0.1537;2.471;5.706;3.377;-1.231;mais a esquerda;-0.906;mais a esquerda;74;74;0.9595;alta;-0.569
+182146;Wolmer Araújo;SOLIDARIEDADE;6.007;Centro-direita;direita;-0.4979;0.5002;2.51;5.735;3.363;-0.272;alinhado;-0.853;mais a esquerda;57;57;0.9649;alta;-0.552
+212625;Dr. Gonçalo;PODE;7.437;Direita;direita;-0.498;0.3026;2.51;5.735;3.749;-1.702;mais a esquerda;-1.239;mais a esquerda;57;57;0.9298;alta;-0.553
+178858;Mário Negromonte Jr.;PP;8.153;Direita;direita;-0.4924;0.275;2.538;5.756;4.218;-2.397;mais a esquerda;-1.68;mais a esquerda;781;781;0.927;alta;-0.54
+204496;Celso Sabino;PDT;3.855;Centro-esquerda;esquerda;-0.4925;0.0183;2.538;5.756;2.054;1.901;mais a direita;0.483;alinhado;144;144;0.8958;alta;-0.541
+204425;Silvio Costa Filho;REPUBLICANOS;8.333;Direita;direita;-0.4888;0.3443;2.556;5.769;3.731;-2.564;mais a esquerda;-1.175;mais a esquerda;121;121;0.9008;alta;-0.533
+220670;Iza Arruda;MDB;6.499;Centro-direita;direita;-0.4881;0.248;2.56;5.772;3.721;-0.727;mais a esquerda;-1.161;mais a esquerda;761;761;0.9396;alta;-0.531
+91228;Waldemar Oliveira;AVANTE;6.473;Centro-direita;direita;-0.481;0.4203;2.595;5.799;3.124;-0.674;mais a esquerda;-0.529;mais a esquerda;1087;1087;0.9384;alta;-0.515
+204436;Isnaldo Bulhões Jr.;MDB;6.499;Centro-direita;direita;-0.4808;0.4871;2.596;5.8;3.721;-0.699;mais a esquerda;-1.125;mais a esquerda;300;300;0.9467;alta;-0.515
+160666;Félix Mendonça Júnior;PDT;3.855;Centro-esquerda;esquerda;-0.4764;0.0342;2.618;5.816;2.054;1.961;mais a direita;0.564;mais a direita;896;896;0.9174;alta;-0.506
+160553;Antonio Brito;PSD;6.937;Centro-direita;direita;-0.4734;0.3475;2.633;5.827;3.377;-1.11;mais a esquerda;-0.744;mais a esquerda;353;353;0.9603;alta;-0.499
+73486;Pompeo de Mattos;PDT;3.855;Centro-esquerda;esquerda;-0.4729;-0.146;2.635;5.829;2.054;1.974;mais a direita;0.581;mais a direita;837;837;0.8877;alta;-0.498
+143632;Domingos Neto;PSD;6.937;Centro-direita;direita;-0.4723;0.1413;2.638;5.831;3.377;-1.106;mais a esquerda;-0.739;mais a esquerda;533;533;0.94;alta;-0.497
+228272;Délio Pinheiro;PDT;3.855;Centro-esquerda;esquerda;-0.4723;-0.2176;2.638;5.831;2.054;1.976;mais a direita;0.584;mais a direita;50;50;0.9;alta;-0.497
+220687;Márcio Honaiser;PDT;3.855;Centro-esquerda;esquerda;-0.4699;0.1801;2.651;5.84;2.054;1.985;mais a direita;0.596;mais a direita;743;743;0.9354;alta;-0.491
+220699;Castro Neto;PSD;6.937;Centro-direita;direita;-0.4695;0.3752;2.653;5.842;3.377;-1.095;mais a esquerda;-0.724;mais a esquerda;803;803;0.9402;alta;-0.491
+220681;Fábio Macedo;PODE;7.437;Direita;direita;-0.4668;0.2851;2.666;5.852;3.749;-1.585;mais a esquerda;-1.083;mais a esquerda;664;664;0.9232;alta;-0.485
+104552;Socorro Neri;PP;8.153;Direita;direita;-0.465;-0.4315;2.675;5.859;4.218;-2.294;mais a esquerda;-1.543;mais a esquerda;803;803;0.8493;media;-0.481
+74090;Átila Lins;PSD;6.937;Centro-direita;direita;-0.4638;0.0762;2.681;5.863;3.377;-1.074;mais a esquerda;-0.696;mais a esquerda;674;674;0.9214;alta;-0.478
+204550;Júnior Mano;PSB;3.589;Centro-esquerda;esquerda;-0.462;-0.0196;2.69;5.87;1.653;2.281;mais a direita;1.037;mais a direita;391;391;0.8465;media;-0.474
+160161;Marcelo Queiroz;PSDB;6.759;Centro-direita;direita;-0.4584;0.2164;2.708;5.884;3.813;-0.875;mais a esquerda;-1.106;mais a esquerda;723;723;0.9295;alta;-0.466
+220646;Felipe Becari;PODE;7.437;Direita;direita;-0.4555;-0.0908;2.722;5.894;3.749;-1.543;mais a esquerda;-1.026;mais a esquerda;641;641;0.8877;alta;-0.46
+220694;Ricardo Maia;MDB;6.499;Centro-direita;direita;-0.4525;0.5105;2.738;5.906;3.721;-0.593;mais a esquerda;-0.983;mais a esquerda;813;813;0.9397;alta;-0.454
+122158;Pedro Paulo;PSD;6.937;Centro-direita;direita;-0.4522;-0.028;2.739;5.907;3.377;-1.03;mais a esquerda;-0.638;mais a esquerda;523;523;0.8757;alta;-0.453
+74079;José Priante;MDB;6.499;Centro-direita;direita;-0.4518;0.5219;2.741;5.908;3.721;-0.591;mais a esquerda;-0.98;mais a esquerda;499;499;0.9539;alta;-0.452
+178886;Juscelino Filho;PSDB;6.759;Centro-direita;direita;-0.4503;0.3744;2.749;5.914;3.813;-0.845;mais a esquerda;-1.065;mais a esquerda;336;336;0.9524;alta;-0.449
+204567;Raimundo Costa;PODE;7.437;Direita;direita;-0.4502;0.2616;2.749;5.914;3.749;-1.523;mais a esquerda;-1.0;mais a esquerda;690;690;0.9116;alta;-0.449
+205476;Charles Fernandes;PSD;6.937;Centro-direita;direita;-0.4471;0.1199;2.764;5.926;3.377;-1.011;mais a esquerda;-0.613;mais a esquerda;814;814;0.9201;alta;-0.442
+74374;Geraldo Resende;PSDB;6.759;Centro-direita;direita;-0.4425;-0.0322;2.788;5.943;3.813;-0.816;mais a esquerda;-1.026;mais a esquerda;871;871;0.8794;alta;-0.432
+74317;Júlio Cesar;PSD;6.937;Centro-direita;direita;-0.4423;0.3616;2.789;5.944;3.377;-0.993;mais a esquerda;-0.588;mais a esquerda;715;715;0.9427;alta;-0.431
+235088;Ribeiro Neto;SOLIDARIEDADE;6.007;Centro-direita;direita;-0.4404;-0.0968;2.798;5.951;3.363;-0.056;alinhado;-0.565;mais a esquerda;86;86;0.9419;alta;-0.427
+220697;Jadyel Alencar;REPUBLICANOS;8.333;Direita;direita;-0.4387;0.4877;2.806;5.958;3.731;-2.375;mais a esquerda;-0.924;mais a esquerda;695;695;0.9338;alta;-0.424
+220537;Helena Lima;MDB;6.499;Centro-direita;direita;-0.4383;0.1753;2.809;5.959;3.721;-0.54;mais a esquerda;-0.912;mais a esquerda;596;596;0.9228;alta;-0.423
+74574;Paulo Magalhães;PSD;6.937;Centro-direita;direita;-0.4371;0.36;2.814;5.963;3.377;-0.974;mais a esquerda;-0.563;mais a esquerda;918;918;0.951;alta;-0.42
+160629;Romero Rodrigues;PODE;7.437;Direita;direita;-0.4355;0.3407;2.822;5.969;3.749;-1.468;mais a esquerda;-0.927;mais a esquerda;908;908;0.9405;alta;-0.417
+230957;João Cury;MDB;6.499;Centro-direita;direita;-0.4315;0.2455;2.843;5.985;3.721;-0.514;mais a esquerda;-0.878;mais a esquerda;342;342;0.9327;alta;-0.408
+234673;Vanderlan Alves;REPUBLICANOS;8.333;Direita;direita;-0.4293;0.2227;2.853;5.993;3.731;-2.34;mais a esquerda;-0.878;mais a esquerda;123;123;0.8699;alta;-0.403
+178884;Hildo Rocha;MDB;6.499;Centro-direita;direita;-0.4293;0.1603;2.853;5.993;3.721;-0.506;mais a esquerda;-0.867;mais a esquerda;509;509;0.8723;alta;-0.403
+171139;Loreny;SOLIDARIEDADE;6.007;Centro-direita;direita;-0.4265;-0.0443;2.867;6.003;3.363;-0.004;alinhado;-0.496;alinhado;38;38;0.8947;alta;-0.397
+220676;Andreia Siqueira;MDB;6.499;Centro-direita;direita;-0.4212;0.289;2.894;6.023;3.721;-0.476;alinhado;-0.827;mais a esquerda;731;731;0.9343;alta;-0.386
+160510;Luis Tibé;AVANTE;6.473;Centro-direita;direita;-0.4203;0.4403;2.898;6.027;3.124;-0.446;alinhado;-0.226;alinhado;418;418;0.9426;alta;-0.384
+220577;Augusto Puppio;MDB;6.499;Centro-direita;direita;-0.4187;0.6726;2.907;6.033;3.721;-0.466;alinhado;-0.814;mais a esquerda;606;606;0.9488;alta;-0.38
+233218;Nelinho Freitas;MDB;6.499;Centro-direita;direita;-0.4182;0.8152;2.909;6.035;3.721;-0.464;alinhado;-0.812;mais a esquerda;92;92;0.9674;alta;-0.379
+233598;Samuel Santos;PODE;7.437;Direita;direita;-0.4147;0.4506;2.927;6.048;3.749;-1.389;mais a esquerda;-0.822;mais a esquerda;155;155;0.9226;alta;-0.371
+220691;Diego Coronel;REPUBLICANOS;8.333;Direita;direita;-0.4145;0.4659;2.927;6.048;3.731;-2.285;mais a esquerda;-0.803;mais a esquerda;953;953;0.9517;alta;-0.371
+220622;Nely Aquino;PODE;7.437;Direita;direita;-0.4143;0.2813;2.929;6.049;3.749;-1.388;mais a esquerda;-0.82;mais a esquerda;758;758;0.9314;alta;-0.371
+204431;Marcos Aurélio Sampaio;PSD;6.937;Centro-direita;direita;-0.4126;0.3817;2.937;6.056;3.377;-0.881;mais a esquerda;-0.44;alinhado;809;809;0.9604;alta;-0.367
+143942;Caio Vianna;PSD;6.937;Centro-direita;direita;-0.4117;0.1702;2.942;6.059;3.377;-0.878;mais a esquerda;-0.435;alinhado;548;548;0.9361;alta;-0.365
+92699;Fernando Monteiro;PSD;6.937;Centro-direita;direita;-0.4116;0.5589;2.942;6.059;3.377;-0.878;mais a esquerda;-0.435;alinhado;791;791;0.9406;alta;-0.365
+204508;Igor Timo;PSD;6.937;Centro-direita;direita;-0.411;0.3392;2.945;6.062;3.377;-0.875;mais a esquerda;-0.432;alinhado;824;824;0.9466;alta;-0.364
+220707;Amanda Gentil;PP;8.153;Direita;direita;-0.4094;0.5452;2.953;6.068;4.218;-2.085;mais a esquerda;-1.265;mais a esquerda;609;609;0.9458;alta;-0.36
+220584;Murilo Galdino;REPUBLICANOS;8.333;Direita;direita;-0.408;0.7495;2.96;6.073;3.731;-2.26;mais a esquerda;-0.771;mais a esquerda;849;849;0.9611;alta;-0.357
+220677;Keniston Braga;MDB;6.499;Centro-direita;direita;-0.4078;0.5656;2.961;6.074;3.721;-0.425;alinhado;-0.759;mais a esquerda;772;772;0.9339;alta;-0.356
+160632;Zé Silva;SOLIDARIEDADE;6.007;Centro-direita;direita;-0.4062;0.353;2.969;6.08;3.363;0.073;alinhado;-0.394;alinhado;746;746;0.9477;alta;-0.353
+204494;Fred Costa;PRD;8.161;Direita;direita;-0.4061;0.3208;2.97;6.08;4.658;-2.081;mais a esquerda;-1.688;mais a esquerda;378;378;0.963;alta;-0.353
+220528;Dr. Victor Linhalis;PODE;7.437;Direita;direita;-0.4059;0.288;2.971;6.081;3.749;-1.356;mais a esquerda;-0.778;mais a esquerda;823;823;0.9149;alta;-0.352
+235712;Vavá;AVANTE;6.473;Centro-direita;direita;-0.4051;0.2828;2.974;6.084;3.124;-0.389;alinhado;-0.15;alinhado;35;35;0.9714;alta;-0.351
+141487;Luiz Fernando Faria;PSD;6.937;Centro-direita;direita;-0.405;0.419;2.975;6.084;3.377;-0.853;mais a esquerda;-0.402;alinhado;785;785;0.9439;alta;-0.351
+220561;Delegada Katarina;PSD;6.937;Centro-direita;direita;-0.4051;0.1351;2.975;6.084;3.377;-0.853;mais a esquerda;-0.402;alinhado;943;943;0.9279;alta;-0.351
+74044;Wilson Santiago;REPUBLICANOS;8.333;Direita;direita;-0.4042;0.9147;2.979;6.087;3.731;-2.246;mais a esquerda;-0.752;mais a esquerda;677;677;0.9468;alta;-0.349
+160976;Tiririca;PSD;6.937;Centro-direita;direita;-0.4041;0.0204;2.98;6.088;3.377;-0.849;mais a esquerda;-0.397;alinhado;766;766;0.8943;alta;-0.348
+220703;Neto Carletto;AVANTE;6.473;Centro-direita;direita;-0.4025;0.5629;2.988;6.094;3.124;-0.379;alinhado;-0.137;alinhado;864;864;0.9572;alta;-0.345
+220539;Defensor Stélio Dener;UNIAO;8.485;Direita;direita;-0.4023;0.8935;2.988;6.094;4.15;-2.391;mais a esquerda;-1.162;mais a esquerda;995;995;0.9357;alta;-0.345
+153423;Renilce Nicodemos;MDB;6.499;Centro-direita;direita;-0.4012;0.474;2.994;6.099;3.721;-0.4;alinhado;-0.726;mais a esquerda;640;640;0.9391;alta;-0.342
+178832;Leandre;PSD;6.937;Centro-direita;direita;-0.3972;-0.0418;3.014;6.113;3.377;-0.824;mais a esquerda;-0.363;alinhado;37;37;0.973;alta;-0.333
+160665;Augusto Coutinho;REPUBLICANOS;8.333;Direita;direita;-0.3944;0.594;3.028;6.124;3.731;-2.209;mais a esquerda;-0.703;mais a esquerda;879;879;0.9499;alta;-0.327
+220660;Yury do Paredão;MDB;6.499;Centro-direita;direita;-0.3943;0.7131;3.029;6.124;3.721;-0.375;alinhado;-0.692;mais a esquerda;636;636;0.9135;alta;-0.327
+220641;Rodrigo Gambale;PODE;7.437;Direita;direita;-0.3934;0.1876;3.033;6.128;3.749;-1.309;mais a esquerda;-0.716;mais a esquerda;907;907;0.9096;alta;-0.325
+204557;Sidney Leite;PSD;6.937;Centro-direita;direita;-0.3915;-0.2747;3.042;6.135;3.377;-0.802;mais a esquerda;-0.335;alinhado;819;819;0.8034;media;-0.321
+178989;Renata Abreu;PODE;7.437;Direita;direita;-0.3917;0.0877;3.042;6.134;3.749;-1.303;mais a esquerda;-0.707;mais a esquerda;641;641;0.9064;alta;-0.321
+220701;Delegado Matheus Laiola;UNIAO;8.485;Direita;direita;-0.3914;0.0069;3.043;6.135;4.15;-2.35;mais a esquerda;-1.107;mais a esquerda;948;948;0.8987;alta;-0.321
+217480;Jones Moura;PSD;6.937;Centro-direita;direita;-0.3914;0.4856;3.043;6.135;3.377;-0.802;mais a esquerda;-0.334;alinhado;135;135;0.9556;alta;-0.321
+228042;Naumi Amorim;PSD;6.937;Centro-direita;direita;-0.391;0.3095;3.045;6.137;3.377;-0.8;mais a esquerda;-0.332;alinhado;24;24;0.9167;alta;-0.32
+171623;Fabio Reis;PSD;6.937;Centro-direita;direita;-0.3893;0.12;3.053;6.143;3.377;-0.794;mais a esquerda;-0.324;alinhado;380;380;0.9368;alta;-0.316
+123756;Antônia Lúcia;REPUBLICANOS;8.333;Direita;direita;-0.3888;0.9213;3.056;6.145;3.731;-2.188;mais a esquerda;-0.675;mais a esquerda;752;752;0.9548;alta;-0.315
+204573;Otto Alencar Filho;PSD;6.937;Centro-direita;direita;-0.3883;0.1507;3.058;6.147;3.377;-0.79;mais a esquerda;-0.319;alinhado;715;715;0.9315;alta;-0.314
+141408;Cleber Verde;MDB;6.499;Centro-direita;direita;-0.3862;0.6253;3.069;6.155;3.721;-0.344;alinhado;-0.651;mais a esquerda;886;886;0.9492;alta;-0.309
+204549;AJ Albuquerque;PP;8.153;Direita;direita;-0.3832;0.6343;3.084;6.166;4.218;-1.987;mais a esquerda;-1.134;mais a esquerda;701;701;0.9629;alta;-0.303
+204574;Junior Lourenço;PL;8.796;Extrema direita;direita;-0.3824;0.4941;3.088;6.169;7.079;-2.627;mais a esquerda;-3.991;mais a esquerda;531;531;0.9379;alta;-0.301
+220669;Lula da Fonte;PP;8.153;Direita;direita;-0.3788;0.3696;3.106;6.182;4.218;-1.971;mais a esquerda;-1.112;mais a esquerda;773;773;0.9431;alta;-0.294
+68720;Fábio Henrique;UNIAO;8.485;Direita;direita;-0.3782;-0.1486;3.109;6.185;4.15;-2.3;mais a esquerda;-1.041;mais a esquerda;56;56;0.9286;alta;-0.292
+226837;Saulo Pedroso;PSD;6.937;Centro-direita;direita;-0.378;-0.0842;3.11;6.186;3.377;-0.751;mais a esquerda;-0.267;alinhado;626;626;0.8866;alta;-0.292
+220536;Zé Haroldo Cathedral;PSD;6.937;Centro-direita;direita;-0.375;0.0326;3.125;6.197;3.377;-0.74;mais a esquerda;-0.252;alinhado;965;965;0.8943;alta;-0.285
+160527;Aguinaldo Ribeiro;PP;8.153;Direita;direita;-0.3728;0.5577;3.136;6.205;4.218;-1.948;mais a esquerda;-1.082;mais a esquerda;575;575;0.967;alta;-0.28
+74454;Eunício Oliveira;MDB;6.499;Centro-direita;direita;-0.3717;0.1787;3.142;6.209;3.721;-0.29;alinhado;-0.579;mais a esquerda;521;521;0.904;alta;-0.278
+220635;Bruno Ganem;PODE;7.437;Direita;direita;-0.3713;-0.1009;3.143;6.211;3.749;-1.226;mais a esquerda;-0.605;mais a esquerda;919;919;0.8694;alta;-0.277
+220675;Antônio Doido;MDB;6.499;Centro-direita;direita;-0.3712;0.7752;3.144;6.211;3.721;-0.288;alinhado;-0.576;mais a esquerda;843;843;0.9383;alta;-0.277
+220713;Saullo Vianna;MDB;6.499;Centro-direita;direita;-0.371;0.1603;3.145;6.212;3.721;-0.287;alinhado;-0.575;mais a esquerda;475;475;0.9158;alta;-0.276
+121948;Adriano do Baldy;PP;8.153;Direita;direita;-0.37;0.6536;3.15;6.216;4.218;-1.937;mais a esquerda;-1.068;mais a esquerda;886;886;0.9684;alta;-0.274
+74065;Fatima Pelaes;REPUBLICANOS;8.333;Direita;direita;-0.3685;0.9296;3.157;6.221;3.731;-2.112;mais a esquerda;-0.573;mais a esquerda;140;140;0.9571;alta;-0.271
+221339;Dr. Benjamim;UNIAO;8.485;Direita;direita;-0.3672;0.4503;3.164;6.226;4.15;-2.259;mais a esquerda;-0.986;mais a esquerda;404;404;0.9356;alta;-0.268
+160518;Weliton Prado;SOLIDARIEDADE;6.007;Centro-direita;direita;-0.3666;-0.6334;3.167;6.229;3.363;0.222;alinhado;-0.196;alinhado;721;721;0.8211;media;-0.267
+224117;Gabriel Mota;UNIAO;8.485;Direita;direita;-0.3654;0.9309;3.173;6.233;4.15;-2.252;mais a esquerda;-0.977;mais a esquerda;926;926;0.9546;alta;-0.264
+74253;Julio Lopes;PP;8.153;Direita;direita;-0.3654;0.6622;3.173;6.233;4.218;-1.92;mais a esquerda;-1.045;mais a esquerda;686;686;0.9563;alta;-0.264
+204422;Ossesio Silva;REPUBLICANOS;8.333;Direita;direita;-0.3653;0.9309;3.173;6.233;3.731;-2.1;mais a esquerda;-0.557;mais a esquerda;754;754;0.9708;alta;-0.264
+141480;Lázaro Botelho;PP;8.153;Direita;direita;-0.3653;0.6508;3.174;6.233;4.218;-1.92;mais a esquerda;-1.044;mais a esquerda;674;674;0.9659;alta;-0.264
+74467;Damião Feliciano;UNIAO;8.485;Direita;direita;-0.3649;0.2743;3.176;6.235;4.15;-2.25;mais a esquerda;-0.975;mais a esquerda;760;760;0.9276;alta;-0.263
+226553;Eliane Braz;PSD;6.937;Centro-direita;direita;-0.3648;0.4255;3.176;6.235;3.377;-0.702;mais a esquerda;-0.201;alinhado;74;74;0.9595;alta;-0.263
+204391;José Nelto;UNIAO;8.485;Direita;direita;-0.3614;0.0806;3.193;6.248;4.15;-2.237;mais a esquerda;-0.957;mais a esquerda;610;610;0.9164;alta;-0.256
+122974;Pedro Lucas Fernandes;UNIAO;8.485;Direita;direita;-0.3587;0.286;3.206;6.258;4.15;-2.227;mais a esquerda;-0.944;mais a esquerda;693;693;0.9596;alta;-0.25
+204408;Gustinho Ribeiro;REPUBLICANOS;8.333;Direita;direita;-0.3576;0.9333;3.212;6.262;3.731;-2.071;mais a esquerda;-0.519;mais a esquerda;852;852;0.9789;alta;-0.247
+220592;Zezinho Barbary;PP;8.153;Direita;direita;-0.355;0.4141;3.225;6.272;4.218;-1.881;mais a esquerda;-0.993;mais a esquerda;777;777;0.9485;alta;-0.242
+74696;Alberto Mourão;MDB;6.499;Centro-direita;direita;-0.3546;0.1224;3.227;6.273;3.721;-0.226;alinhado;-0.494;alinhado;275;275;0.9018;alta;-0.241
+178934;Toninho Wandscheer;PP;8.153;Direita;direita;-0.3545;0.5215;3.227;6.274;4.218;-1.879;mais a esquerda;-0.991;mais a esquerda;929;929;0.9429;alta;-0.241
+229939;Newton Bonin;UNIAO;8.485;Direita;direita;-0.3539;0.2009;3.231;6.276;4.15;-2.209;mais a esquerda;-0.92;mais a esquerda;113;113;0.9469;alta;-0.239
+218086;Ely Santos;REPUBLICANOS;8.333;Direita;direita;-0.3521;0.936;3.24;6.283;3.731;-2.05;mais a esquerda;-0.491;alinhado;826;826;0.9673;alta;-0.235
+178975;Baleia Rossi;MDB;6.499;Centro-direita;direita;-0.3514;0.3846;3.243;6.285;3.721;-0.214;alinhado;-0.478;alinhado;575;575;0.9478;alta;-0.234
+77003;Sergio Santos Rodrigues;PODE;7.437;Direita;direita;-0.3514;0.4442;3.243;6.286;3.749;-1.151;mais a esquerda;-0.506;mais a esquerda;82;82;0.9634;alta;-0.234
+141431;Fernando Coelho Filho;UNIAO;8.485;Direita;direita;-0.3506;0.4901;3.247;6.288;4.15;-2.197;mais a esquerda;-0.903;mais a esquerda;730;730;0.9603;alta;-0.232
+178882;André Fufuca;PP;8.153;Direita;direita;-0.3501;0.7017;3.249;6.29;4.218;-1.863;mais a esquerda;-0.969;mais a esquerda;85;85;0.9412;alta;-0.231
+227660;Nitinho;PSD;6.937;Centro-direita;direita;-0.3493;0.3691;3.254;6.293;3.377;-0.644;mais a esquerda;-0.123;alinhado;294;294;0.932;alta;-0.229
+141421;Eduardo da Fonte;PP;8.153;Direita;direita;-0.349;0.3741;3.255;6.294;4.218;-1.859;mais a esquerda;-0.963;mais a esquerda;799;799;0.9424;alta;-0.229
+220612;Bebeto;PP;8.153;Direita;direita;-0.3479;0.6973;3.26;6.299;4.218;-1.854;mais a esquerda;-0.958;mais a esquerda;985;985;0.9513;alta;-0.226
+220674;Dra. Alessandra Haber;PODE;7.437;Direita;direita;-0.348;0.1623;3.26;6.298;3.749;-1.139;mais a esquerda;-0.489;alinhado;592;592;0.9358;alta;-0.227
+160512;Aureo Ribeiro;SOLIDARIEDADE;6.007;Centro-direita;direita;-0.3471;0.3193;3.265;6.302;3.363;0.295;alinhado;-0.098;alinhado;747;747;0.9143;alta;-0.225
+220695;Rogéria Santos;REPUBLICANOS;8.333;Direita;direita;-0.3465;0.938;3.267;6.304;3.731;-2.029;mais a esquerda;-0.463;alinhado;812;812;0.968;alta;-0.223
+220714;Adail Filho;MDB;6.499;Centro-direita;direita;-0.3463;0.8694;3.268;6.304;3.721;-0.195;alinhado;-0.452;alinhado;927;927;0.9601;alta;-0.223
+123086;Átila Lira;PP;8.153;Direita;direita;-0.3462;0.5007;3.269;6.305;4.218;-1.848;mais a esquerda;-0.949;mais a esquerda;970;970;0.9557;alta;-0.223
+204456;Gutemberg Reis;MDB;6.499;Centro-direita;direita;-0.3457;0.4297;3.271;6.307;3.721;-0.192;alinhado;-0.449;alinhado;898;898;0.8898;alta;-0.222
+143084;Tiago Dimas;PODE;7.437;Direita;direita;-0.3455;0.4545;3.273;6.308;3.749;-1.129;mais a esquerda;-0.476;alinhado;254;254;0.9409;alta;-0.221
+178997;Moses Rodrigues;UNIAO;8.485;Direita;direita;-0.3451;0.5327;3.275;6.309;4.15;-2.176;mais a esquerda;-0.876;mais a esquerda;777;777;0.9665;alta;-0.22
+230768;Zé Adriano;PP;8.153;Direita;direita;-0.3431;0.5207;3.284;6.316;4.218;-1.837;mais a esquerda;-0.934;mais a esquerda;443;443;0.9391;alta;-0.216
+178831;André Abdon;PP;8.153;Direita;direita;-0.3426;0.6689;3.287;6.319;4.218;-1.834;mais a esquerda;-0.931;mais a esquerda;259;259;0.9691;alta;-0.215
+141531;Rodrigo de Castro;UNIAO;8.485;Direita;direita;-0.342;0.3222;3.29;6.321;4.15;-2.164;mais a esquerda;-0.86;mais a esquerda;816;816;0.9412;alta;-0.214
+220585;Mersinho Lucena;PSD;6.937;Centro-direita;direita;-0.3402;0.6652;3.299;6.328;3.377;-0.609;mais a esquerda;-0.078;alinhado;691;691;0.9653;alta;-0.21
+74537;Claudio Cajado;PP;8.153;Direita;direita;-0.3402;0.5373;3.299;6.328;4.218;-1.825;mais a esquerda;-0.919;mais a esquerda;835;835;0.9485;alta;-0.21
+235800;Jorge Araújo;PP;8.153;Direita;direita;-0.3367;0.1965;3.316;6.34;4.218;-1.813;mais a esquerda;-0.902;mais a esquerda;24;24;1.0;alta;-0.202
+220692;Dal Barreto;UNIAO;8.485;Direita;direita;-0.3358;0.4878;3.321;6.344;4.15;-2.141;mais a esquerda;-0.829;mais a esquerda;752;752;0.9521;alta;-0.2
+220617;Murillo Gouvea;UNIAO;8.485;Direita;direita;-0.3353;0.3813;3.324;6.346;4.15;-2.139;mais a esquerda;-0.827;mais a esquerda;881;881;0.9432;alta;-0.199
+220543;Ricardo Ayres;REPUBLICANOS;8.333;Direita;direita;-0.3353;0.5616;3.324;6.346;3.731;-1.987;mais a esquerda;-0.407;alinhado;1130;1130;0.9478;alta;-0.199
+74095;Pauderney Avelino;UNIAO;8.485;Direita;direita;-0.333;0.1039;3.335;6.354;4.15;-2.131;mais a esquerda;-0.815;mais a esquerda;473;473;0.9133;alta;-0.194
+204457;Juninho do Pneu;UNIAO;8.485;Direita;direita;-0.3331;0.4511;3.335;6.354;4.15;-2.131;mais a esquerda;-0.816;mais a esquerda;872;872;0.953;alta;-0.194
+220658;Luiz Gastão;PSD;6.937;Centro-direita;direita;-0.332;0.2449;3.34;6.358;3.377;-0.579;mais a esquerda;-0.037;alinhado;782;782;0.9284;alta;-0.192
+228797;Júlio Oliveira;PP;8.153;Direita;direita;-0.3315;0.9435;3.342;6.36;4.218;-1.793;mais a esquerda;-0.876;mais a esquerda;71;71;0.9859;alta;-0.191
+220531;Gilvan Maximo;REPUBLICANOS;8.333;Direita;direita;-0.3315;0.9435;3.343;6.36;3.731;-1.973;mais a esquerda;-0.388;alinhado;563;563;0.9609;alta;-0.191
+210989;Bruno Farias;REPUBLICANOS;8.333;Direita;direita;-0.3312;0.375;3.344;6.361;3.731;-1.972;mais a esquerda;-0.387;alinhado;771;771;0.9403;alta;-0.19
+129618;Gorete Pereira;MDB;6.499;Centro-direita;direita;-0.3309;0.7332;3.346;6.363;3.721;-0.136;alinhado;-0.375;alinhado;25;25;0.88;alta;-0.189
+175765;Ribamar Silva;PSD;6.937;Centro-direita;direita;-0.3308;-0.0655;3.346;6.363;3.377;-0.574;mais a esquerda;-0.031;alinhado;386;386;0.8731;alta;-0.189
+220567;Jeferson Rodrigues;REPUBLICANOS;8.333;Direita;direita;-0.3307;0.9437;3.347;6.363;3.731;-1.97;mais a esquerda;-0.384;alinhado;717;717;0.9665;alta;-0.189
+178895;Misael Varella;PSD;6.937;Centro-direita;direita;-0.3305;0.0387;3.348;6.364;3.377;-0.573;mais a esquerda;-0.029;alinhado;749;749;0.8959;alta;-0.188
+160674;Hugo Motta;REPUBLICANOS;8.333;Direita;direita;-0.3289;0.9444;3.355;6.37;3.731;-1.963;mais a esquerda;-0.375;alinhado;308;308;0.9805;alta;-0.185
+220538;Albuquerque;REPUBLICANOS;8.333;Direita;direita;-0.329;0.941;3.355;6.37;3.731;-1.963;mais a esquerda;-0.376;alinhado;829;829;0.9686;alta;-0.185
+204353;Aline Gurgel;UNIAO;8.485;Direita;direita;-0.3282;0.8166;3.359;6.373;4.15;-2.112;mais a esquerda;-0.791;mais a esquerda;99;99;0.9899;alta;-0.184
+66828;Fausto Pinato;PP;8.153;Direita;direita;-0.3279;0.3933;3.361;6.374;4.218;-1.779;mais a esquerda;-0.857;mais a esquerda;788;788;0.915;alta;-0.183
+204379;Acácio Favacho;MDB;6.499;Centro-direita;direita;-0.3275;0.4017;3.363;6.375;3.721;-0.124;alinhado;-0.358;alinhado;750;750;0.9173;alta;-0.182
+73788;Ricardo Barros;PP;8.153;Direita;direita;-0.3261;0.6463;3.37;6.381;4.218;-1.772;mais a esquerda;-0.848;mais a esquerda;313;313;0.9681;alta;-0.179
+220712;Fausto Jr.;UNIAO;8.485;Direita;direita;-0.326;0.5249;3.37;6.381;4.15;-2.104;mais a esquerda;-0.78;mais a esquerda;684;684;0.943;alta;-0.179
+74550;João Leão;PP;8.153;Direita;direita;-0.3227;0.4684;3.386;6.393;4.218;-1.76;mais a esquerda;-0.832;mais a esquerda;750;750;0.9413;alta;-0.172
+141459;João Maia;PP;8.153;Direita;direita;-0.3198;0.4432;3.401;6.404;4.218;-1.749;mais a esquerda;-0.817;mais a esquerda;806;806;0.938;alta;-0.165
+204450;Doutor Luizinho;PP;8.153;Direita;direita;-0.3194;0.6021;3.403;6.406;4.218;-1.747;mais a esquerda;-0.815;mais a esquerda;257;257;0.9728;alta;-0.164
+66385;Julio Arcoverde;PP;8.153;Direita;direita;-0.3191;0.665;3.404;6.407;4.218;-1.746;mais a esquerda;-0.814;mais a esquerda;692;692;0.9422;alta;-0.164
+220540;Duda Ramos;MDB;6.499;Centro-direita;direita;-0.3187;0.1917;3.406;6.408;3.721;-0.091;alinhado;-0.314;alinhado;644;644;0.882;alta;-0.163
+74554;José Rocha;UNIAO;8.485;Direita;direita;-0.3184;0.3146;3.408;6.409;4.15;-2.076;mais a esquerda;-0.742;mais a esquerda;761;761;0.9435;alta;-0.162
+204560;Adolfo Viana;PSDB;6.759;Centro-direita;direita;-0.3175;0.3327;3.412;6.413;3.813;-0.346;alinhado;-0.401;alinhado;578;578;0.9343;alta;-0.16
+150418;Márcio Marinho;REPUBLICANOS;8.333;Direita;direita;-0.3175;0.9483;3.413;6.413;3.731;-1.92;mais a esquerda;-0.318;alinhado;812;812;0.9606;alta;-0.16
+74356;Silas Câmara;REPUBLICANOS;8.333;Direita;direita;-0.3153;0.9121;3.423;6.421;3.731;-1.912;mais a esquerda;-0.307;alinhado;574;574;0.9443;alta;-0.156
+228616;Dr. Remy Soares;PP;8.153;Direita;direita;-0.3152;0.745;3.424;6.421;4.218;-1.732;mais a esquerda;-0.794;mais a esquerda;58;58;0.931;alta;-0.155
+204491;Gilberto Abramo;REPUBLICANOS;8.333;Direita;direita;-0.3143;0.9493;3.429;6.425;3.731;-1.908;mais a esquerda;-0.302;alinhado;743;743;0.9583;alta;-0.153
+160588;Diego Andrade;PSD;6.937;Centro-direita;direita;-0.3101;0.3151;3.449;6.44;3.377;-0.497;alinhado;0.072;alinhado;579;579;0.9067;alta;-0.144
+73778;Luiz Carlos Hauly;PODE;7.437;Direita;direita;-0.3101;-0.1015;3.45;6.441;3.749;-0.996;mais a esquerda;-0.299;alinhado;700;700;0.8729;alta;-0.144
+204474;Juarez Costa;REPUBLICANOS;8.333;Direita;direita;-0.3082;0.4013;3.459;6.448;3.731;-1.885;mais a esquerda;-0.272;alinhado;722;722;0.9086;alta;-0.14
+204506;Marcos Pereira;REPUBLICANOS;8.333;Direita;direita;-0.3076;0.9515;3.462;6.45;3.731;-1.883;mais a esquerda;-0.269;alinhado;564;564;0.9468;alta;-0.139
+178854;Elmar Nascimento;UNIAO;8.485;Direita;direita;-0.3067;0.5146;3.466;6.453;4.15;-2.032;mais a esquerda;-0.684;mais a esquerda;296;296;0.9493;alta;-0.137
+178945;Rosangela Gomes;REPUBLICANOS;8.333;Direita;direita;-0.3058;0.9037;3.471;6.457;3.731;-1.876;mais a esquerda;-0.26;alinhado;76;76;0.9605;alta;-0.135
+109429;Benes Leocádio;UNIAO;8.485;Direita;direita;-0.3048;0.2683;3.476;6.46;4.15;-2.025;mais a esquerda;-0.674;mais a esquerda;972;972;0.9486;alta;-0.133
+138286;Luciano Alves;PSD;6.937;Centro-direita;direita;-0.3044;0.0598;3.478;6.462;3.377;-0.475;alinhado;0.101;alinhado;639;639;0.8779;alta;-0.132
+227324;Henrique Júnior;PL;8.796;Extrema direita;direita;-0.303;0.0439;3.485;6.467;7.079;-2.329;mais a esquerda;-3.594;mais a esquerda;80;80;0.95;alta;-0.129
+204356;Amaro Neto;PP;8.153;Direita;direita;-0.3008;0.8421;3.496;6.475;4.218;-1.678;mais a esquerda;-0.722;mais a esquerda;945;945;0.9534;alta;-0.124
+204482;Euclydes Pettersen;REPUBLICANOS;8.333;Direita;direita;-0.3004;0.2995;3.498;6.477;3.731;-1.856;mais a esquerda;-0.233;alinhado;450;450;0.9289;alta;-0.123
+204504;Cezinha de Madureira;PL;8.796;Extrema direita;direita;-0.3002;0.5998;3.499;6.478;7.079;-2.318;mais a esquerda;-3.58;mais a esquerda;867;867;0.9273;alta;-0.123
+208297;Katia Dias;REPUBLICANOS;8.333;Direita;direita;-0.3;0.3381;3.5;6.479;3.731;-1.854;mais a esquerda;-0.231;alinhado;106;106;0.9057;alta;-0.122
+205550;Jorge Braz;REPUBLICANOS;8.333;Direita;direita;-0.2996;0.9541;3.502;6.48;3.731;-1.853;mais a esquerda;-0.229;alinhado;920;920;0.9576;alta;-0.121
+103758;Luciano Azevedo;PSD;6.937;Centro-direita;direita;-0.2986;-0.1247;3.507;6.484;3.377;-0.453;alinhado;0.13;alinhado;335;335;0.8567;alta;-0.119
+204372;Julio Cesar Ribeiro;REPUBLICANOS;8.333;Direita;direita;-0.2978;0.9546;3.511;6.487;3.731;-1.846;mais a esquerda;-0.22;alinhado;682;682;0.9531;alta;-0.117
+220672;Henderson Pinto;MDB;6.499;Centro-direita;direita;-0.2973;0.394;3.514;6.489;3.721;-0.01;alinhado;-0.207;alinhado;789;789;0.9316;alta;-0.116
+220544;Antonio Andrade;REPUBLICANOS;8.333;Direita;direita;-0.2972;0.7609;3.514;6.489;3.731;-1.844;mais a esquerda;-0.217;alinhado;934;934;0.9582;alta;-0.116
+221329;Ricardo Abrão;PSDB;6.759;Centro-direita;direita;-0.2959;0.5681;3.52;6.494;3.813;-0.265;alinhado;-0.293;alinhado;443;443;0.9323;alta;-0.113
+227433;Douglas Viegas;UNIAO;8.485;Direita;direita;-0.2952;-0.3251;3.524;6.497;4.15;-1.988;mais a esquerda;-0.626;mais a esquerda;581;581;0.809;media;-0.112
+220656;Fernanda Pessoa;PSD;6.937;Centro-direita;direita;-0.2937;0.4117;3.532;6.502;3.377;-0.435;alinhado;0.154;alinhado;930;930;0.9312;alta;-0.109
+178962;Carlos Gomes;REPUBLICANOS;8.333;Direita;direita;-0.2928;0.9562;3.536;6.505;3.731;-1.828;mais a esquerda;-0.195;alinhado;231;231;0.9437;alta;-0.107
+220564;Yandra Moura;UNIAO;8.485;Direita;direita;-0.2926;0.2204;3.537;6.506;4.15;-1.979;mais a esquerda;-0.613;mais a esquerda;601;601;0.9334;alta;-0.106
+220566;Lêda Borges;PSDB;6.759;Centro-direita;direita;-0.2926;0.0844;3.537;6.506;3.813;-0.253;alinhado;-0.276;alinhado;691;691;0.8958;alta;-0.106
+74646;Aécio Neves;PSDB;6.759;Centro-direita;direita;-0.2922;-0.0604;3.539;6.508;3.813;-0.251;alinhado;-0.275;alinhado;507;507;0.856;alta;-0.105
+141516;Paulo Abi-Ackel;PSDB;6.759;Centro-direita;direita;-0.292;0.1401;3.54;6.508;3.813;-0.251;alinhado;-0.274;alinhado;708;708;0.8969;alta;-0.105
+204448;Luiz Antônio Corrêa;PP;8.153;Direita;direita;-0.2918;0.7011;3.541;6.509;4.218;-1.644;mais a esquerda;-0.677;mais a esquerda;268;268;0.9366;alta;-0.105
+235869;João Carlos;REPUBLICANOS;8.333;Direita;direita;-0.2913;0.9566;3.543;6.511;3.731;-1.822;mais a esquerda;-0.188;alinhado;31;31;0.9355;alta;-0.103
+73441;Celso Russomanno;REPUBLICANOS;8.333;Direita;direita;-0.2912;0.5733;3.544;6.511;3.731;-1.822;mais a esquerda;-0.187;alinhado;743;743;0.9246;alta;-0.103
+220648;Marangoni;UNIAO;8.485;Direita;direita;-0.2902;0.1938;3.549;6.515;4.15;-1.97;mais a esquerda;-0.601;mais a esquerda;740;740;0.9162;alta;-0.101
+178909;Hélio Leite;UNIAO;8.485;Direita;direita;-0.2896;0.0569;3.552;6.517;4.15;-1.968;mais a esquerda;-0.598;mais a esquerda;243;243;0.9012;alta;-0.1
+100689;Hildo do Candango;REPUBLICANOS;8.333;Direita;direita;-0.2873;0.9578;3.564;6.526;3.731;-1.807;mais a esquerda;-0.167;alinhado;97;97;0.9794;alta;-0.095
+160599;Dimas Fabiano;PP;8.153;Direita;direita;-0.2862;0.4731;3.569;6.53;4.218;-1.623;mais a esquerda;-0.649;mais a esquerda;829;829;0.9276;alta;-0.092
+178992;Vitor Lippi;PSD;6.937;Centro-direita;direita;-0.2856;-0.1487;3.572;6.533;3.377;-0.404;alinhado;0.195;alinhado;793;793;0.855;alta;-0.091
+220599;Marcelo Crivella;REPUBLICANOS;8.333;Direita;direita;-0.285;0.9229;3.575;6.535;3.731;-1.798;mais a esquerda;-0.156;alinhado;921;921;0.9175;alta;-0.09
+222429;Luis Carlos Gomes;REPUBLICANOS;8.333;Direita;direita;-0.2838;0.9589;3.581;6.539;3.731;-1.794;mais a esquerda;-0.15;alinhado;820;820;0.9463;alta;-0.087
+234388;Fabiano Cazeca;PRD;8.161;Direita;direita;-0.2828;-0.2883;3.586;6.543;4.658;-1.618;mais a esquerda;-1.072;mais a esquerda;59;59;0.8305;media;-0.085
+220642;Delegado Bruno Lima;PODE;7.437;Direita;direita;-0.2828;-0.1374;3.586;6.543;3.749;-0.894;mais a esquerda;-0.163;alinhado;566;566;0.8304;media;-0.085
+160541;Arthur Lira;PP;8.153;Direita;direita;-0.2824;0.9057;3.588;6.545;4.218;-1.608;mais a esquerda;-0.63;mais a esquerda;94;94;0.9894;alta;-0.084
+220715;Amom Mandel;CIDADANIA;6.17;Centro-direita;direita;-0.2805;-0.5979;3.597;6.552;4.672;0.382;alinhado;-1.074;mais a esquerda;678;678;0.7743;media;-0.08
+220600;Lebrão;UNIAO;8.485;Direita;direita;-0.2804;0.2495;3.598;6.552;4.15;-1.933;mais a esquerda;-0.552;mais a esquerda;495;495;0.9131;alta;-0.08
+220683;Beto Richa;PSDB;6.759;Centro-direita;direita;-0.2795;0.0259;3.602;6.555;3.813;-0.204;alinhado;-0.211;alinhado;943;943;0.8897;alta;-0.078
+204558;Marcelo Nilo;REPUBLICANOS;8.333;Direita;direita;-0.2784;0.4801;3.608;6.56;3.731;-1.773;mais a esquerda;-0.123;alinhado;31;31;1.0;alta;-0.075
+92102;Leur Lomanto Júnior;UNIAO;8.485;Direita;direita;-0.2782;0.2509;3.609;6.56;4.15;-1.925;mais a esquerda;-0.541;mais a esquerda;713;713;0.9299;alta;-0.075
+220534;Fred Linhares;REPUBLICANOS;8.333;Direita;direita;-0.2769;0.9019;3.615;6.565;3.731;-1.768;mais a esquerda;-0.115;alinhado;869;869;0.9494;alta;-0.072
+204539;Hercílio Coelho Diniz;MDB;6.499;Centro-direita;direita;-0.2718;0.2762;3.641;6.584;3.721;0.085;alinhado;-0.08;alinhado;684;684;0.9211;alta;-0.061
+220631;Samuel Viana;REPUBLICANOS;8.333;Direita;direita;-0.2706;0.682;3.647;6.589;3.731;-1.744;mais a esquerda;-0.084;alinhado;848;848;0.9351;alta;-0.058
+178843;Marx Beltrão;PP;8.153;Direita;direita;-0.2698;0.2725;3.651;6.592;4.218;-1.561;mais a esquerda;-0.567;mais a esquerda;762;762;0.9134;alta;-0.057
+162332;Luiz Nishimori;PSD;6.937;Centro-direita;direita;-0.2696;0.0342;3.652;6.593;3.377;-0.344;alinhado;0.275;alinhado;729;729;0.8985;alta;-0.056
+137070;Vicentinho Júnior;PSDB;6.759;Centro-direita;direita;-0.269;0.3563;3.655;6.595;3.813;-0.164;alinhado;-0.158;alinhado;713;713;0.9187;alta;-0.055
+204571;Alex Santana;REPUBLICANOS;8.333;Direita;direita;-0.2662;0.5016;3.669;6.605;3.731;-1.728;mais a esquerda;-0.062;alinhado;591;591;0.9086;alta;-0.049
+204497;Júnior Ferrari;PSD;6.937;Centro-direita;direita;-0.2657;0.0735;3.672;6.607;3.377;-0.33;alinhado;0.294;alinhado;824;824;0.8847;alta;-0.048
+179001;Márcio Biolchi;MDB;6.499;Centro-direita;direita;-0.2649;0.4674;3.676;6.61;3.721;0.111;alinhado;-0.045;alinhado;712;712;0.8975;alta;-0.046
+178993;Carlos Henrique Gaguim;UNIAO;8.485;Direita;direita;-0.2648;0.2252;3.676;6.61;4.15;-1.875;mais a esquerda;-0.474;alinhado;877;877;0.9076;alta;-0.046
+141485;Luiz Carlos Busato;UNIAO;8.485;Direita;direita;-0.2646;0.2563;3.677;6.612;4.15;-1.873;mais a esquerda;-0.473;alinhado;872;872;0.9117;alta;-0.045
+204522;Marco Bertaiolli;PSD;6.937;Centro-direita;direita;-0.2631;0.596;3.684;6.617;3.377;-0.32;alinhado;0.307;alinhado;103;103;0.8835;alta;-0.042
+219585;Marco Brasil;PP;8.153;Direita;direita;-0.2599;0.4069;3.701;6.629;4.218;-1.524;mais a esquerda;-0.518;mais a esquerda;461;461;0.9111;alta;-0.035
+234406;Elmano Férrer;PP;8.153;Direita;direita;-0.2586;0.8654;3.707;6.634;4.218;-1.519;mais a esquerda;-0.511;mais a esquerda;70;70;0.9714;alta;-0.032
+160600;Arthur Oliveira Maia;UNIAO;8.485;Direita;direita;-0.2577;0.405;3.712;6.637;4.15;-1.848;mais a esquerda;-0.439;alinhado;616;616;0.9286;alta;-0.03
+62881;Danilo Forte;UNIAO;8.485;Direita;direita;-0.254;-0.1045;3.73;6.651;4.15;-1.834;mais a esquerda;-0.42;alinhado;709;709;0.8547;alta;-0.022
+141391;Arnaldo Jardim;CIDADANIA;6.17;Centro-direita;direita;-0.2536;0.2261;3.732;6.653;4.672;0.483;alinhado;-0.94;mais a esquerda;679;679;0.8557;alta;-0.022
+141555;Vinicius Carvalho;REPUBLICANOS;8.333;Direita;direita;-0.2504;0.9681;3.748;6.665;3.731;-1.668;mais a esquerda;0.017;alinhado;644;644;0.9099;alta;-0.015
+235620;Ilacir Bicalho;REPUBLICANOS;8.333;Direita;direita;-0.2487;0.8101;3.756;6.671;3.731;-1.662;mais a esquerda;0.026;alinhado;34;34;0.8824;alta;-0.011
+163321;Ronaldo Nogueira;REPUBLICANOS;8.333;Direita;direita;-0.2469;0.2263;3.765;6.678;3.731;-1.655;mais a esquerda;0.034;alinhado;617;617;0.8703;alta;-0.007
+92776;Stefano Aguiar;PSD;6.937;Centro-direita;direita;-0.2469;0.157;3.765;6.678;3.377;-0.259;alinhado;0.388;alinhado;615;615;0.8764;alta;-0.007
+178896;Newton Cardoso Jr;MDB;6.499;Centro-direita;direita;-0.2455;0.2753;3.773;6.683;3.721;0.184;alinhado;0.052;alinhado;464;464;0.8815;alta;-0.004
+220647;Mauricio Neves;PP;8.153;Direita;direita;-0.2445;0.7217;3.778;6.687;4.218;-1.466;mais a esquerda;-0.44;alinhado;569;569;0.9033;alta;-0.002
+220616;Luciano Vieira;PSDB;6.759;Centro-direita;direita;-0.2409;0.4251;3.795;6.7;3.813;-0.059;alinhado;-0.018;alinhado;753;753;0.8924;alta;0.006
+154178;Milton Vieira;REPUBLICANOS;8.333;Direita;direita;-0.2406;0.9706;3.797;6.702;3.731;-1.631;mais a esquerda;0.066;alinhado;73;73;0.9315;alta;0.007
+220624;Robinson Faria;PP;8.153;Direita;direita;-0.2396;0.3844;3.802;6.705;4.218;-1.448;mais a esquerda;-0.416;alinhado;1013;1013;0.9042;alta;0.009
+220532;Rafael Prudente;MDB;6.499;Centro-direita;direita;-0.2395;0.571;3.803;6.706;3.721;0.207;alinhado;0.082;alinhado;726;726;0.9008;alta;0.009
+178881;Aluisio Mendes;REPUBLICANOS;8.333;Direita;direita;-0.2393;0.7898;3.804;6.706;3.731;-1.627;mais a esquerda;0.073;alinhado;837;837;0.9259;alta;0.01
+220698;Beto Preto;PSD;6.937;Centro-direita;direita;-0.2322;0.0053;3.839;6.733;3.377;-0.204;alinhado;0.462;alinhado;111;111;0.9099;alta;0.025
+213274;Ricardo Silva;PSD;6.937;Centro-direita;direita;-0.2322;0.0381;3.839;6.733;3.377;-0.204;alinhado;0.462;alinhado;267;267;0.9064;alta;0.025
+204540;Maria Rosas;REPUBLICANOS;8.333;Direita;direita;-0.2294;0.7913;3.853;6.744;3.731;-1.589;mais a esquerda;0.122;alinhado;890;890;0.9146;alta;0.031
+74052;Bosco Costa;PL;8.796;Extrema direita;direita;-0.2262;0.171;3.869;6.755;7.079;-2.041;mais a esquerda;-3.21;mais a esquerda;64;64;0.8438;media;0.038
+178860;Paulo Azi;UNIAO;8.485;Direita;direita;-0.2258;0.0742;3.871;6.757;4.15;-1.728;mais a esquerda;-0.279;alinhado;744;744;0.879;alta;0.039
+220702;Geraldo Mendes;UNIAO;8.485;Direita;direita;-0.2248;0.306;3.876;6.761;4.15;-1.724;mais a esquerda;-0.274;alinhado;631;631;0.8875;alta;0.041
+220603;Dani Cunha;PL;8.796;Extrema direita;direita;-0.2234;0.564;3.883;6.766;7.079;-2.03;mais a esquerda;-3.196;mais a esquerda;820;820;0.8878;alta;0.044
+141518;Paulinho da Força;SOLIDARIEDADE;6.007;Centro-direita;direita;-0.2233;-0.0355;3.884;6.767;3.363;0.76;mais a direita;0.521;mais a direita;348;348;0.7816;media;0.045
+230762;Pastor Claudio Mariano;UNIAO;8.485;Direita;direita;-0.2206;0.7481;3.897;6.777;4.15;-1.708;mais a esquerda;-0.253;alinhado;254;254;0.9213;alta;0.05
+220650;Paulo Alexandre Barbosa;PSDB;6.759;Centro-direita;direita;-0.2199;-0.3219;3.901;6.779;3.813;0.02;alinhado;0.087;alinhado;860;860;0.8105;media;0.052
+178876;Célio Silveira;MDB;6.499;Centro-direita;direita;-0.2183;0.137;3.908;6.785;3.721;0.286;alinhado;0.188;alinhado;667;667;0.8861;alta;0.055
+115200;Raniery Paulino;REPUBLICANOS;8.333;Direita;direita;-0.2153;0.9765;3.923;6.796;3.731;-1.537;mais a esquerda;0.193;alinhado;60;60;0.95;alta;0.062
+204419;Glaustin da Fokus;PODE;7.437;Direita;direita;-0.2113;0.0505;3.944;6.812;3.749;-0.625;mais a esquerda;0.195;alinhado;575;575;0.8226;media;0.071
+220630;Pedro Aihara;PP;8.153;Direita;direita;-0.2056;-0.1894;3.972;6.833;4.218;-1.32;mais a esquerda;-0.246;alinhado;857;857;0.8261;media;0.083
+178972;Alex Manente;CIDADANIA;6.17;Centro-direita;direita;-0.2051;0.0884;3.974;6.835;4.672;0.665;mais a direita;-0.697;mais a esquerda;427;427;0.8665;alta;0.084
+204498;Olival Marques;MDB;6.499;Centro-direita;direita;-0.2049;0.6642;3.975;6.835;3.721;0.336;alinhado;0.255;alinhado;845;845;0.8521;alta;0.084
+220685;Paulo Litro;PSD;6.937;Centro-direita;direita;-0.2038;0.1584;3.981;6.84;3.377;-0.097;alinhado;0.604;mais a direita;859;859;0.8766;alta;0.087
+220560;Thiago de Joaldo;PP;8.153;Direita;direita;-0.201;0.1902;3.995;6.85;4.218;-1.303;mais a esquerda;-0.223;alinhado;745;745;0.8658;alta;0.093
+215043;Josivaldo JP;PSD;6.937;Centro-direita;direita;-0.1979;0.1208;4.011;6.862;3.377;-0.075;alinhado;0.634;mais a direita;752;752;0.8843;alta;0.1
+204476;Chiquinho Brazão;UNIAO;8.485;Direita;direita;-0.1932;0.3649;4.034;6.879;4.15;-1.606;mais a esquerda;-0.116;alinhado;168;168;0.8512;alta;0.11
+204355;Da Vitoria;PP;8.153;Direita;direita;-0.1924;0.3973;4.038;6.883;4.218;-1.27;mais a esquerda;-0.18;alinhado;906;906;0.883;alta;0.112
+141450;Hugo Leal;PSD;6.937;Centro-direita;direita;-0.185;0.0819;4.075;6.91;3.377;-0.027;alinhado;0.698;mais a direita;662;662;0.8187;media;0.128
+160545;Alexandre Leite;UNIAO;8.485;Direita;direita;-0.1838;0.2995;4.081;6.915;4.15;-1.57;mais a esquerda;-0.069;alinhado;395;395;0.8506;alta;0.13
+204524;Pinheirinho;PP;8.153;Direita;direita;-0.1807;0.5036;4.097;6.927;4.218;-1.226;mais a esquerda;-0.121;alinhado;375;375;0.9093;alta;0.137
+220570;Dr. Ismael Alexandrino;PSD;6.937;Centro-direita;direita;-0.1795;0.1851;4.103;6.931;3.377;-0.006;alinhado;0.726;mais a direita;724;724;0.837;media;0.14
+204512;Delegado Marcelo Freitas;UNIAO;8.485;Direita;direita;-0.1791;0.3763;4.104;6.932;4.15;-1.553;mais a esquerda;-0.046;alinhado;1075;1075;0.8893;alta;0.14
+178933;Sergio Souza;MDB;6.499;Centro-direita;direita;-0.1791;0.4762;4.105;6.933;3.721;0.434;alinhado;0.384;alinhado;762;762;0.9029;alta;0.141
+116379;Darci de Matos;PSD;6.937;Centro-direita;direita;-0.176;-0.066;4.12;6.944;3.377;0.007;alinhado;0.743;mais a direita;225;225;0.8756;alta;0.147
+98057;Lafayette de Andrada;REPUBLICANOS;8.333;Direita;direita;-0.1734;0.5884;4.133;6.954;3.731;-1.379;mais a esquerda;0.402;alinhado;657;657;0.898;alta;0.153
+220542;Alexandre Guimarães;MDB;6.499;Centro-direita;direita;-0.1717;0.4325;4.141;6.96;3.721;0.461;alinhado;0.421;alinhado;740;740;0.8622;alta;0.156
+204358;Beto Pereira;PSDB;6.759;Centro-direita;direita;-0.1685;-0.0421;4.158;6.972;3.813;0.213;alinhado;0.344;alinhado;725;725;0.8497;media;0.164
+226179;Gisela Simona;UNIAO;8.485;Direita;direita;-0.1674;-0.3601;4.163;6.977;4.15;-1.508;mais a esquerda;0.013;alinhado;1019;1019;0.8469;media;0.166
+160621;Sandro Alex;PSD;6.937;Centro-direita;direita;-0.1638;-0.2475;4.181;6.99;3.377;0.053;alinhado;0.804;mais a direita;50;50;0.82;media;0.174
+227800;Duarte Gonçalves Jr;REPUBLICANOS;8.333;Direita;direita;-0.1613;0.2401;4.194;6.999;3.731;-1.334;mais a esquerda;0.463;alinhado;65;65;0.8615;alta;0.179
+204361;Carlos Chiodini;MDB;6.499;Centro-direita;direita;-0.1601;0.2689;4.199;7.004;3.721;0.505;mais a direita;0.479;alinhado;348;348;0.8736;alta;0.182
+220625;Delegada Ione;AVANTE;6.473;Centro-direita;direita;-0.1555;0.0408;4.222;7.021;3.124;0.548;mais a direita;1.098;mais a direita;772;772;0.829;media;0.192
+220684;Tião Medeiros;PP;8.153;Direita;direita;-0.1516;0.4755;4.242;7.036;4.218;-1.117;mais a esquerda;0.024;alinhado;732;732;0.8716;alta;0.2
+220638;Antonio Carlos Rodrigues;PL;8.796;Extrema direita;direita;-0.1503;-0.333;4.248;7.041;7.079;-1.755;mais a esquerda;-2.83;mais a esquerda;884;884;0.6595;baixa;0.203
+220572;Marussa Boldrin;MDB;6.499;Centro-direita;direita;-0.1491;0.4378;4.255;7.045;3.721;0.546;mais a direita;0.534;mais a direita;563;563;0.8774;alta;0.206
+74270;Gilberto Nascimento;PODE;7.437;Direita;direita;-0.1389;0.106;4.305;7.083;3.749;-0.354;alinhado;0.557;mais a direita;268;268;0.8806;alta;0.228
+220653;Fábio Teruel;MDB;6.499;Centro-direita;direita;-0.1243;-0.3234;4.379;7.138;3.721;0.639;mais a direita;0.658;mais a direita;881;881;0.6913;baixa;0.26
+178943;Marcos Soares;PSDB;6.759;Centro-direita;direita;-0.1167;-0.199;4.417;7.167;3.813;0.408;alinhado;0.603;mais a direita;488;488;0.752;media;0.276
+73768;Dilceu Sperafico;PP;8.153;Direita;direita;-0.1149;0.2675;4.425;7.173;4.218;-0.98;mais a esquerda;0.207;alinhado;942;942;0.8524;alta;0.28
+225727;Flavinha;MDB;6.499;Centro-direita;direita;-0.1041;0.0672;4.48;7.214;3.721;0.715;mais a direita;0.759;mais a direita;103;103;0.7476;media;0.303
+220651;Simone Marquetto;MDB;6.499;Centro-direita;direita;-0.0961;0.1291;4.519;7.244;3.721;0.745;mais a direita;0.799;mais a direita;671;671;0.8241;media;0.321
+223398;Ulisses Guimarães;MDB;6.499;Centro-direita;direita;-0.0895;0.1864;4.553;7.269;3.721;0.77;mais a direita;0.832;mais a direita;70;70;0.8571;alta;0.335
+220649;Delegado da Cunha;UNIAO;8.485;Direita;direita;-0.0868;0.2583;4.566;7.279;4.15;-1.206;mais a esquerda;0.416;alinhado;728;728;0.8118;media;0.341
+233594;Rafael Fera;PODE;7.437;Direita;direita;-0.0828;-0.0914;4.586;7.294;3.749;-0.143;alinhado;0.837;mais a direita;230;230;0.7783;media;0.35
+204441;Otoni de Paula;PSD;6.937;Centro-direita;direita;-0.0794;0.0095;4.603;7.307;3.377;0.37;alinhado;1.226;mais a direita;631;631;0.7686;media;0.357
+220563;Icaro de Valmir;PL;8.796;Extrema direita;direita;-0.0793;0.3983;4.603;7.307;7.079;-1.489;mais a esquerda;-2.475;mais a esquerda;775;775;0.8155;media;0.357
+204410;Luisa Canziani;PSD;6.937;Centro-direita;direita;-0.0752;0.0364;4.624;7.323;3.377;0.386;alinhado;1.247;mais a direita;566;566;0.8604;alta;0.366
+220618;Sargento Portugal;PODE;7.437;Direita;direita;-0.0696;0.042;4.652;7.344;3.749;-0.093;alinhado;0.903;mais a direita;886;886;0.7302;media;0.378
+214694;Jorge Goetten;REPUBLICANOS;8.333;Direita;direita;-0.0675;0.1102;4.662;7.351;3.731;-0.982;mais a esquerda;0.932;mais a direita;823;823;0.7934;media;0.383
+178929;Diego Garcia;UNIAO;8.485;Direita;direita;-0.0545;0.7603;4.727;7.4;4.15;-1.085;mais a esquerda;0.577;mais a direita;896;896;0.8371;media;0.411
+74084;Raimundo Santos;PSD;6.937;Centro-direita;direita;-0.0527;0.1301;4.737;7.407;3.377;0.47;alinhado;1.359;mais a direita;947;947;0.8205;media;0.415
+220626;Rafael Simoes;UNIAO;8.485;Direita;direita;-0.0508;0.0484;4.746;7.414;4.15;-1.071;mais a esquerda;0.596;mais a direita;881;881;0.8138;media;0.419
+229069;Capitão Samuel;PP;8.153;Direita;direita;-0.049;0.1307;4.755;7.421;4.218;-0.732;mais a esquerda;0.537;mais a direita;38;38;0.7895;media;0.423
+74262;Carlos Sampaio;PSD;6.937;Centro-direita;direita;-0.0473;-0.3359;4.763;7.427;3.377;0.49;alinhado;1.386;mais a direita;823;823;0.7412;media;0.427
+220551;Franciane Bayer;REPUBLICANOS;8.333;Direita;direita;-0.0371;0.1588;4.815;7.466;3.731;-0.867;mais a esquerda;1.084;mais a direita;905;905;0.7735;media;0.449
+220627;Paulinho Freire;UNIAO;8.485;Direita;direita;-0.0363;-0.0829;4.819;7.469;4.15;-1.016;mais a esquerda;0.668;mais a direita;391;391;0.8133;media;0.451
+223128;Rodrigo Estacho;PSD;6.937;Centro-direita;direita;-0.0316;-0.0863;4.842;7.486;3.377;0.549;mais a direita;1.465;mais a direita;795;795;0.8013;media;0.461
+220569;Silvye Alves;UNIAO;8.485;Direita;direita;-0.0288;-0.2002;4.856;7.497;4.15;-0.988;mais a esquerda;0.706;mais a direita;757;757;0.7847;media;0.467
+227401;Dr Fabio Rueda;UNIAO;8.485;Direita;direita;-0.0224;0.253;4.888;7.521;4.15;-0.964;mais a esquerda;0.738;mais a direita;74;74;0.8649;alta;0.481
+98615;Ismael;PSD;6.937;Centro-direita;direita;-0.0084;-0.0478;4.958;7.574;3.377;0.637;mais a direita;1.581;mais a direita;811;811;0.7731;media;0.511
+160559;Alceu Moreira;MDB;6.499;Centro-direita;direita;-0.0016;0.2379;4.992;7.599;3.721;1.1;mais a direita;1.271;mais a direita;849;849;0.8151;media;0.526
+98148;Cobalchini;MDB;6.499;Centro-direita;direita;0.0059;0.1895;5.029;7.627;3.721;1.128;mais a direita;1.309;mais a direita;924;924;0.8052;media;0.542
+178954;Lucio Mosquini;MDB;6.499;Centro-direita;direita;0.006;0.1882;5.03;7.628;3.721;1.129;mais a direita;1.31;mais a direita;601;601;0.7937;media;0.543
+160552;Danrlei de Deus Hinterholz;PSD;6.937;Centro-direita;direita;0.0098;-0.3102;5.049;7.642;3.377;0.705;mais a direita;1.672;mais a direita;398;398;0.7538;media;0.551
+220588;Roberto Duarte;REPUBLICANOS;8.333;Direita;direita;0.0141;-0.024;5.071;7.658;3.731;-0.675;mais a esquerda;1.34;mais a direita;1196;1196;0.8169;media;0.56
+230177;Tadeu Oliveira;PL;8.796;Extrema direita;direita;0.019;0.3909;5.095;7.677;7.079;-1.119;mais a esquerda;-1.984;mais a esquerda;77;77;0.8831;alta;0.571
+204511;David Soares;UNIAO;8.485;Direita;direita;0.0226;-0.0985;5.113;7.69;4.15;-0.795;mais a esquerda;0.963;mais a direita;548;548;0.7135;media;0.579
+228837;Juliana Kolankiewicz;MDB;6.499;Centro-direita;direita;0.0356;0.1101;5.178;7.739;3.721;1.24;mais a direita;1.457;mais a direita;75;75;0.8933;alta;0.607
+204351;Dr. Luiz Ovando;PP;8.153;Direita;direita;0.0361;0.0967;5.18;7.741;4.218;-0.412;alinhado;0.962;mais a direita;889;889;0.7773;media;0.608
+220608;Cristiane Lopes;PODE;7.437;Direita;direita;0.0405;-0.2568;5.203;7.757;3.749;0.32;alinhado;1.454;mais a direita;897;897;0.7815;media;0.618
+198197;Greyce Elias;AVANTE;6.473;Centro-direita;direita;0.0409;0.2426;5.204;7.758;3.124;1.285;mais a direita;2.08;mais a direita;653;653;0.7933;media;0.618
+220587;Gerlen Diniz;PP;8.153;Direita;direita;0.0489;-0.2887;5.245;7.789;4.218;-0.364;alinhado;1.027;mais a direita;528;528;0.7405;media;0.636
+204409;Daniel Trzeciak;PSDB;6.759;Centro-direita;direita;0.0541;-0.5827;5.271;7.808;3.813;1.049;mais a direita;1.457;mais a direita;830;830;0.7663;media;0.647
+220575;Sonize Barbosa;PL;8.796;Extrema direita;direita;0.0667;-0.1;5.333;7.855;7.079;-0.941;mais a esquerda;-1.745;mais a esquerda;344;344;0.7355;media;0.675
+204396;Vermelho;PP;8.153;Direita;direita;0.0699;0.0261;5.35;7.868;4.218;-0.285;alinhado;1.132;mais a direita;562;562;0.7794;media;0.682
+107970;Ana Paula Leão;PP;8.153;Direita;direita;0.0706;-0.1156;5.353;7.87;4.218;-0.283;alinhado;1.135;mais a direita;847;847;0.7721;media;0.683
+227275;Mariana Carvalho;REPUBLICANOS;8.333;Direita;direita;0.0794;-0.0325;5.397;7.903;3.731;-0.43;alinhado;1.666;mais a direita;75;75;0.6267;baixa;0.702
+136811;Afonso Hamm;PP;8.153;Direita;direita;0.0818;-0.1176;5.409;7.912;4.218;-0.241;alinhado;1.191;mais a direita;754;754;0.8024;media;0.707
+213762;Carla Dickson;UNIAO;8.485;Direita;direita;0.0859;-0.1414;5.429;7.927;4.15;-0.558;mais a esquerda;1.279;mais a direita;445;445;0.8225;media;0.716
+220589;Eduardo Velloso;SOLIDARIEDADE;6.007;Centro-direita;direita;0.0887;0.0833;5.444;7.938;3.363;1.931;mais a direita;2.081;mais a direita;752;752;0.8245;media;0.722
+226708;Allan Garcês;PP;8.153;Direita;direita;0.0912;0.2568;5.456;7.948;4.218;-0.205;alinhado;1.238;mais a direita;681;681;0.8164;media;0.728
+164360;Carmen Zanotto;CIDADANIA;6.17;Centro-direita;direita;0.0915;0.0278;5.458;7.949;4.672;1.779;mais a direita;0.786;mais a direita;97;97;0.8144;media;0.729
+204563;Josimar Maranhãozinho;PL;8.796;Extrema direita;direita;0.092;0.0651;5.46;7.951;7.079;-0.845;mais a esquerda;-1.619;mais a esquerda;474;474;0.846;media;0.73
+204412;Dr. Zacharias Calil;UNIAO;8.485;Direita;direita;0.0981;-0.0893;5.491;7.974;4.15;-0.511;mais a esquerda;1.34;mais a direita;863;863;0.8192;media;0.743
+220689;Detinha;PL;8.796;Extrema direita;direita;0.0987;0.0708;5.493;7.976;7.079;-0.82;mais a esquerda;-1.585;mais a esquerda;488;488;0.8566;alta;0.744
+220609;Maurício Carvalho;UNIAO;8.485;Direita;direita;0.099;-0.2543;5.495;7.977;4.15;-0.508;mais a esquerda;1.345;mais a direita;827;827;0.821;media;0.745
+220597;Thiago Flores;REPUBLICANOS;8.333;Direita;direita;0.1002;-0.0844;5.501;7.981;3.731;-0.352;alinhado;1.77;mais a direita;829;829;0.7901;media;0.747
+204360;Silvia Cristina;PP;8.153;Direita;direita;0.1039;-0.1971;5.519;7.995;4.218;-0.158;alinhado;1.301;mais a direita;826;826;0.8123;media;0.755
+160591;Vinicius Gurgel;PL;8.796;Extrema direita;direita;0.1078;0.2371;5.539;8.01;7.079;-0.786;mais a esquerda;-1.54;mais a esquerda;677;677;0.8671;alta;0.764
+227370;Felipe Saliba;PRD;8.161;Direita;direita;0.1102;-0.0452;5.551;8.019;4.658;-0.142;alinhado;0.893;mais a direita;85;85;0.7412;media;0.769
+220706;Padovani;UNIAO;8.485;Direita;direita;0.1143;0.2381;5.571;8.034;4.15;-0.451;alinhado;1.421;mais a direita;482;482;0.8174;media;0.778
+204368;Fabio Schiochet;UNIAO;8.485;Direita;direita;0.1153;0.2817;5.577;8.038;4.15;-0.447;alinhado;1.426;mais a direita;891;891;0.7912;media;0.78
+89536;Prof. Paulo Fernando;REPUBLICANOS;8.333;Direita;direita;0.1257;0.1705;5.629;8.077;3.731;-0.256;alinhado;1.898;mais a direita;229;229;0.7031;media;0.803
+220661;Matheus Noronha;PL;8.796;Extrema direita;direita;0.1285;0.1628;5.642;8.088;7.079;-0.708;mais a esquerda;-1.436;mais a esquerda;720;720;0.8778;alta;0.809
+204406;Pedro Westphalen;PP;8.153;Direita;direita;0.1297;-0.0713;5.648;8.092;4.218;-0.061;alinhado;1.43;mais a direita;822;822;0.8114;media;0.811
+220620;Rosângela Reis;PL;8.796;Extrema direita;direita;0.136;0.1545;5.68;8.116;7.079;-0.68;mais a esquerda;-1.399;mais a esquerda;913;913;0.8697;alta;0.825
+220571;Daniel Agrobom;PL;8.796;Extrema direita;direita;0.1443;-0.0661;5.721;8.147;7.079;-0.649;mais a esquerda;-1.357;mais a esquerda;955;955;0.8628;alta;0.843
+74428;Mendonça Filho;UNIAO;8.485;Direita;direita;0.1464;-0.36;5.732;8.155;4.15;-0.33;alinhado;1.582;mais a direita;874;874;0.7872;media;0.848
+204395;Pedro Lupion;REPUBLICANOS;8.333;Direita;direita;0.1519;0.1438;5.759;8.175;3.731;-0.158;alinhado;2.029;mais a direita;643;643;0.8523;alta;0.86
+204398;Felipe Francischini;PODE;7.437;Direita;direita;0.1655;0.3049;5.827;8.226;3.749;0.789;mais a direita;2.079;mais a direita;954;954;0.8428;media;0.889
+204427;Fernando Rodolfo;PRD;8.161;Direita;direita;0.1658;-0.2187;5.829;8.228;4.658;0.067;alinhado;1.171;mais a direita;719;719;0.8707;alta;0.89
+204376;Coronel Armando;PP;8.153;Direita;direita;0.1685;-0.0486;5.843;8.238;4.218;0.085;alinhado;1.625;mais a direita;152;152;0.875;alta;0.896
+204404;Lucas Redecker;PSD;6.937;Centro-direita;direita;0.1704;-0.5273;5.852;8.245;3.377;1.308;mais a direita;2.475;mais a direita;1087;1087;0.8206;media;0.9
+204485;Luiz Carlos Motta;PL;8.796;Extrema direita;direita;0.1793;0.051;5.896;8.278;7.079;-0.518;mais a esquerda;-1.182;mais a esquerda;805;805;0.8609;alta;0.919
+178905;Fabio Garcia;UNIAO;8.485;Direita;direita;0.1814;0.059;5.907;8.286;4.15;-0.199;alinhado;1.757;mais a direita;114;114;0.8333;media;0.924
+205865;Reinhold Stephanes;PSD;6.937;Centro-direita;direita;0.1817;0.3244;5.908;8.287;3.377;1.35;mais a direita;2.531;mais a direita;727;727;0.8102;media;0.924
+204517;Zé Vitor;PL;8.796;Extrema direita;direita;0.1863;-0.1295;5.932;8.305;7.079;-0.491;alinhado;-1.147;mais a esquerda;378;378;0.8836;alta;0.935
+128760;Paulo Marinho Jr;PL;8.796;Extrema direita;direita;0.1995;0.2593;5.998;8.354;7.079;-0.442;alinhado;-1.081;mais a esquerda;132;132;0.7727;media;0.963
+220008;Eliza Virgínia;PP;8.153;Direita;direita;0.226;0.281;6.13;8.454;4.218;0.301;alinhado;1.912;mais a direita;67;67;0.9254;alta;1.021
+229225;Michele Collins;PP;8.153;Direita;direita;0.2308;-0.0511;6.154;8.472;4.218;0.319;alinhado;1.936;mais a direita;58;58;0.8793;alta;1.031
+204525;Rosana Valle;PL;8.796;Extrema direita;direita;0.2318;-0.4703;6.159;8.476;7.079;-0.32;alinhado;-0.92;mais a esquerda;819;819;0.8864;alta;1.033
+204570;Pastor Gil;PL;8.796;Extrema direita;direita;0.232;0.1039;6.16;8.476;7.079;-0.32;alinhado;-0.919;mais a esquerda;633;633;0.9005;alta;1.034
+220583;Delegado Fabio Costa;PP;8.153;Direita;direita;0.2375;-0.0296;6.187;8.497;4.218;0.344;alinhado;1.969;mais a direita;994;994;0.8521;alta;1.046
+204364;Eli Borges;REPUBLICANOS;8.333;Direita;direita;0.2376;-0.3251;6.188;8.497;3.731;0.164;alinhado;2.457;mais a direita;753;753;0.8752;alta;1.046
+74043;Wellington Roberto;PL;8.796;Extrema direita;direita;0.2615;-0.0451;6.307;8.587;7.079;-0.209;alinhado;-0.771;mais a esquerda;543;543;0.895;alta;1.098
+220659;Dayany Bittencourt;UNIAO;8.485;Direita;direita;0.2614;-0.3923;6.307;8.587;4.15;0.102;alinhado;2.157;mais a direita;834;834;0.8441;media;1.098
+178946;Soraya Santos;PL;8.796;Extrema direita;direita;0.2617;-0.1212;6.308;8.588;7.079;-0.208;alinhado;-0.77;mais a esquerda;753;753;0.911;alta;1.098
+220590;Coronel Ulysses;UNIAO;8.485;Direita;direita;0.269;-0.0767;6.345;8.615;4.15;0.13;alinhado;2.195;mais a direita;894;894;0.8557;alta;1.114
+178966;Geovania de Sá;PSDB;6.759;Centro-direita;direita;0.2847;-0.0221;6.424;8.674;3.813;1.915;mais a direita;2.61;mais a direita;702;702;0.8704;alta;1.148
+204423;André Ferreira;PL;8.796;Extrema direita;direita;0.2911;0.0255;6.456;8.698;7.079;-0.098;alinhado;-0.623;mais a esquerda;588;588;0.9116;alta;1.162
+178910;Joaquim Passarinho;PL;8.796;Extrema direita;direita;0.2946;-0.1926;6.473;8.711;7.079;-0.085;alinhado;-0.606;mais a esquerda;876;876;0.9053;alta;1.17
+178963;Covatti Filho;PP;8.153;Direita;direita;0.2951;0.0403;6.476;8.713;4.218;0.56;mais a direita;2.258;mais a direita;771;771;0.882;alta;1.171
+227323;Luciano Galego;PL;8.796;Extrema direita;direita;0.2976;-0.3579;6.488;8.723;7.079;-0.073;alinhado;-0.591;mais a esquerda;56;56;0.8214;media;1.176
+74383;Giacobo;PL;8.796;Extrema direita;direita;0.2985;-0.0589;6.492;8.726;7.079;-0.07;alinhado;-0.586;mais a esquerda;415;415;0.9325;alta;1.178
+178937;Altineu Côrtes;PL;8.796;Extrema direita;direita;0.3078;0.0164;6.539;8.761;7.079;-0.035;alinhado;-0.54;mais a esquerda;318;318;0.9308;alta;1.199
+220549;Any Ortiz;CIDADANIA;6.17;Centro-direita;direita;0.3193;-0.2256;6.597;8.804;4.672;2.634;mais a direita;1.925;mais a direita;864;864;0.8391;media;1.223
+227991;Dr Flávio;PL;8.796;Extrema direita;direita;0.3204;-0.0249;6.602;8.808;7.079;0.012;alinhado;-0.477;alinhado;166;166;0.9639;alta;1.226
+204390;Professor Alcides;PL;8.796;Extrema direita;direita;0.3206;-0.2416;6.603;8.809;7.079;0.013;alinhado;-0.476;alinhado;760;760;0.9026;alta;1.226
+220610;Dr. Fernando Máximo;UNIAO;8.485;Direita;direita;0.325;-0.2216;6.625;8.825;4.15;0.34;alinhado;2.475;mais a direita;793;793;0.8726;alta;1.236
+160758;Domingos Sávio;PL;8.796;Extrema direita;direita;0.3311;-0.0092;6.656;8.849;7.079;0.053;alinhado;-0.423;alinhado;804;804;0.9403;alta;1.249
+161550;Emidinho Madeira;PL;8.796;Extrema direita;direita;0.3432;-0.1653;6.716;8.894;7.079;0.098;alinhado;-0.363;alinhado;626;626;0.9457;alta;1.275
+180214;Pastor Diniz;UNIAO;8.485;Direita;direita;0.3442;-0.057;6.721;8.898;4.15;0.413;alinhado;2.571;mais a direita;827;827;0.8863;alta;1.278
+204572;Capitão Alberto Neto;PL;8.796;Extrema direita;direita;0.3525;-0.198;6.762;8.929;7.079;0.133;alinhado;-0.316;alinhado;873;873;0.9198;alta;1.296
+179000;Marcelo Álvaro Antônio;PL;8.796;Extrema direita;direita;0.3525;-0.1304;6.762;8.929;7.079;0.133;alinhado;-0.316;alinhado;700;700;0.9129;alta;1.296
+220613;Roberto Monteiro Pai;PL;8.796;Extrema direita;direita;0.354;0.069;6.77;8.935;7.079;0.139;alinhado;-0.308;alinhado;818;818;0.9303;alta;1.299
+220576;Alfredo Gaspar;PL;8.796;Extrema direita;direita;0.3636;-0.6031;6.818;8.97;7.079;0.174;alinhado;-0.261;alinhado;1014;1014;0.8669;alta;1.32
+178829;Capitão Augusto;PL;8.796;Extrema direita;direita;0.3649;-0.2132;6.825;8.975;7.079;0.179;alinhado;-0.254;alinhado;850;850;0.9306;alta;1.323
+229432;Luiz Fernando Vampiro;MDB;6.499;Centro-direita;direita;0.37;0.098;6.85;8.994;3.721;2.495;mais a direita;3.129;mais a direita;374;374;0.9171;alta;1.334
+73579;Alberto Fraga;PL;8.796;Extrema direita;direita;0.3715;-0.1055;6.858;9.0;7.079;0.204;alinhado;-0.221;alinhado;906;906;0.915;alta;1.337
+204449;Nelson Barbudo;PL;8.796;Extrema direita;direita;0.3732;-0.1213;6.866;9.007;7.079;0.211;alinhado;-0.213;alinhado;298;298;0.9664;alta;1.341
+74273;Jefferson Campos;PL;8.796;Extrema direita;direita;0.3737;-0.2232;6.869;9.008;7.079;0.212;alinhado;-0.21;alinhado;829;829;0.9288;alta;1.342
+178985;Miguel Lombardi;PL;8.796;Extrema direita;direita;0.381;-0.1745;6.905;9.036;7.079;0.24;alinhado;-0.174;alinhado;822;822;0.9416;alta;1.357
+222565;Soldado Noelio;UNIAO;8.485;Direita;direita;0.3838;-0.6915;6.919;9.046;4.15;0.561;mais a direita;2.769;mais a direita;36;36;0.9444;alta;1.364
+220644;Rosangela Moro;UNIAO;8.485;Direita;direita;0.3845;-0.4715;6.923;9.049;4.15;0.564;mais a direita;2.772;mais a direita;925;925;0.8789;alta;1.365
+220611;General Pazuello;PL;8.796;Extrema direita;direita;0.3851;-0.1276;6.925;9.051;7.079;0.255;alinhado;-0.153;alinhado;869;869;0.9356;alta;1.366
+160558;Paulo Freire Costa;PL;8.796;Extrema direita;direita;0.3854;-0.1581;6.927;9.052;7.079;0.256;alinhado;-0.152;alinhado;812;812;0.9347;alta;1.367
+227310;Silvio Antonio;PL;8.796;Extrema direita;direita;0.3853;-0.1825;6.927;9.052;7.079;0.256;alinhado;-0.152;alinhado;156;156;0.9295;alta;1.367
+220693;Roberta Roma;PL;8.796;Extrema direita;direita;0.3975;-0.2011;6.988;9.098;7.079;0.302;alinhado;-0.091;alinhado;684;684;0.9386;alta;1.393
+204362;Ricardo Guidi;PL;8.796;Extrema direita;direita;0.4039;-0.1398;7.02;9.122;7.079;0.326;alinhado;-0.059;alinhado;585;585;0.9231;alta;1.407
+166402;Magda Mofatto;PL;8.796;Extrema direita;direita;0.4067;-0.2644;7.034;9.132;7.079;0.336;alinhado;-0.045;alinhado;813;813;0.9114;alta;1.413
+220595;Coronel Fernanda;PL;8.796;Extrema direita;direita;0.4077;-0.1218;7.038;9.136;7.079;0.34;alinhado;-0.04;alinhado;938;938;0.9488;alta;1.415
+220705;Deltan Dallagnol;PODE;7.437;Direita;direita;0.4139;-0.4512;7.069;9.159;3.749;1.722;mais a direita;3.321;mais a direita;75;75;0.9067;alta;1.429
+178947;Sóstenes Cavalcante;PL;8.796;Extrema direita;direita;0.4147;0.0383;7.073;9.162;7.079;0.366;alinhado;-0.005;alinhado;434;434;0.9263;alta;1.431
+221328;Adilson Barroso;PL;8.796;Extrema direita;direita;0.4173;-0.0391;7.087;9.172;7.079;0.376;alinhado;0.008;alinhado;776;776;0.9394;alta;1.436
+230767;Rodrigo da Zaeli;PL;8.796;Extrema direita;direita;0.4179;-0.0257;7.09;9.175;7.079;0.379;alinhado;0.011;alinhado;444;444;0.9414;alta;1.438
+160642;Pastor Eurico;PL;8.796;Extrema direita;direita;0.4187;-0.2417;7.093;9.177;7.079;0.381;alinhado;0.015;alinhado;816;816;0.9436;alta;1.439
+220530;Messias Donato;REPUBLICANOS;8.333;Direita;direita;0.4266;-0.2144;7.133;9.207;3.731;0.874;mais a direita;3.402;mais a direita;931;931;0.9108;alta;1.457
+160640;Eros Biondini;PL;8.796;Extrema direita;direita;0.4275;-0.1635;7.138;9.211;7.079;0.415;alinhado;0.059;alinhado;825;825;0.943;alta;1.459
+204473;General Girão;PL;8.796;Extrema direita;direita;0.428;-0.4309;7.14;9.212;7.079;0.416;alinhado;0.061;alinhado;823;823;0.8955;alta;1.46
+74585;Lincoln Portela;PL;8.796;Extrema direita;direita;0.4297;-0.2216;7.149;9.219;7.079;0.423;alinhado;0.07;alinhado;744;744;0.9355;alta;1.463
+73692;Osmar Terra;PL;8.796;Extrema direita;direita;0.4314;-0.2218;7.157;9.225;7.079;0.429;alinhado;0.078;alinhado;767;767;0.9426;alta;1.467
+204388;Bibo Nunes;PL;8.796;Extrema direita;direita;0.4439;-0.0919;7.219;9.272;7.079;0.476;alinhado;0.141;alinhado;883;883;0.9388;alta;1.494
+204472;José Medeiros;PL;8.796;Extrema direita;direita;0.4478;-0.2258;7.239;9.287;7.079;0.491;alinhado;0.16;alinhado;816;816;0.9203;alta;1.503
+220665;Clarissa Tércio;PP;8.153;Direita;direita;0.4567;-0.2394;7.283;9.32;4.218;1.167;mais a direita;3.065;mais a direita;814;814;0.9373;alta;1.522
+229112;Pedro Jr;PL;8.796;Extrema direita;direita;0.4566;0.1317;7.283;9.32;7.079;0.524;mais a direita;0.204;alinhado;52;52;0.9808;alta;1.522
+204444;Helio Lopes;PL;8.796;Extrema direita;direita;0.4628;-0.297;7.314;9.343;7.079;0.547;mais a direita;0.235;alinhado;690;690;0.9493;alta;1.535
+220666;Coronel Meira;PL;8.796;Extrema direita;direita;0.4712;-0.2491;7.356;9.375;7.079;0.579;mais a direita;0.277;alinhado;958;958;0.9426;alta;1.553
+160673;Giovani Cherini;PL;8.796;Extrema direita;direita;0.4711;-0.1262;7.356;9.374;7.079;0.578;mais a direita;0.277;alinhado;824;824;0.9308;alta;1.553
+204481;Dr. Jaziel;PL;8.796;Extrema direita;direita;0.4736;-0.2698;7.368;9.384;7.079;0.588;mais a direita;0.289;alinhado;842;842;0.9276;alta;1.559
+204536;Kim Kataguiri;MISSAO;7.75;Direita;direita;0.4755;-0.8797;7.378;9.391;7.378;1.641;mais a direita;0.0;alinhado;913;913;0.8499;media;1.563
+220594;Coronel Assis;PL;8.796;Extrema direita;direita;0.4755;-0.3017;7.378;9.391;7.079;0.595;mais a direita;0.299;alinhado;967;967;0.9307;alta;1.563
+220628;Mauricio do Vôlei;PL;8.796;Extrema direita;direita;0.4777;-0.1312;7.389;9.399;7.079;0.603;mais a direita;0.31;alinhado;809;809;0.9506;alta;1.568
+165470;Rodrigo Valadares;UNIAO;8.485;Direita;direita;0.479;0.0689;7.395;9.404;4.15;0.919;mais a direita;3.245;mais a direita;858;858;0.9219;alta;1.57
+220593;Abilio Brunini;PL;8.796;Extrema direita;direita;0.4809;-0.4355;7.404;9.411;7.079;0.615;mais a direita;0.326;alinhado;317;317;0.8927;alta;1.575
+160561;Missionário José Olimpio;PL;8.796;Extrema direita;direita;0.4825;0.0754;7.413;9.417;7.079;0.621;mais a direita;0.334;alinhado;271;271;0.952;alta;1.578
+220545;Filipe Martins;PL;8.796;Extrema direita;direita;0.4826;-0.1004;7.413;9.418;7.079;0.622;mais a direita;0.334;alinhado;849;849;0.9458;alta;1.578
+178908;Delegado Éder Mauro;PL;8.796;Extrema direita;direita;0.4879;-0.0891;7.44;9.437;7.079;0.641;mais a direita;0.361;alinhado;741;741;0.9609;alta;1.59
+160601;Pr. Marco Feliciano;PL;8.796;Extrema direita;direita;0.4924;-0.1729;7.462;9.454;7.079;0.658;mais a direita;0.383;alinhado;900;900;0.9533;alta;1.6
+204378;Coronel Chrisóstomo;PL;8.796;Extrema direita;direita;0.4968;-0.265;7.484;9.471;7.079;0.675;mais a direita;0.405;alinhado;816;816;0.9485;alta;1.609
+220690;Capitão Alden;PL;8.796;Extrema direita;direita;0.5055;-0.3983;7.528;9.504;7.079;0.708;mais a direita;0.449;alinhado;917;917;0.9269;alta;1.628
+222142;Coronel Telhada;PP;8.153;Direita;direita;0.5103;-0.2067;7.551;9.521;4.218;1.368;mais a direita;3.333;mais a direita;336;336;0.9018;alta;1.638
+204518;Dr. Frederico;PRD;8.161;Direita;direita;0.5129;-0.1855;7.565;9.531;4.658;1.37;mais a direita;2.907;mais a direita;723;723;0.9474;alta;1.644
+230088;Dra. Mayra Pinheiro;PL;8.796;Extrema direita;direita;0.5198;-0.2993;7.599;9.557;7.079;0.761;mais a direita;0.52;mais a direita;75;75;0.96;alta;1.659
+204531;Guilherme Derrite;PP;8.153;Direita;direita;0.5295;0.0537;7.647;9.593;4.218;1.44;mais a direita;3.429;mais a direita;99;99;0.8788;alta;1.68
+229333;Gláucia Santiago;PL;8.796;Extrema direita;direita;0.5365;-0.1422;7.682;9.62;7.079;0.824;mais a direita;0.604;mais a direita;58;58;0.9483;alta;1.695
+220652;Delegado Palumbo;PODE;7.437;Direita;direita;0.5368;-0.8437;7.684;9.621;3.749;2.184;mais a direita;3.935;mais a direita;1001;1001;0.9211;alta;1.696
+226410;Márcio Correa;MDB;6.499;Centro-direita;direita;0.5473;-0.238;7.737;9.66;3.721;3.161;mais a direita;4.016;mais a direita;94;94;0.8404;media;1.719
+220552;Zucco;PL;8.796;Extrema direita;direita;0.5491;-0.2994;7.746;9.667;7.079;0.871;mais a direita;0.667;mais a direita;1054;1054;0.9478;alta;1.723
+204411;Filipe Barros;PL;8.796;Extrema direita;direita;0.562;-0.1808;7.81;9.716;7.079;0.92;mais a direita;0.731;mais a direita;567;567;0.9383;alta;1.751
+161440;Pezenti;MDB;6.499;Centro-direita;direita;0.5639;-0.1213;7.819;9.723;3.721;3.224;mais a direita;4.099;mais a direita;919;919;0.9314;alta;1.755
+235776;Sérgio Turra;PP;8.153;Direita;direita;0.5683;0.8228;7.842;9.739;4.218;1.586;mais a direita;3.624;mais a direita;42;42;0.7619;media;1.765
+204479;Nicoletti;PL;8.796;Extrema direita;direita;0.5757;-0.1788;7.878;9.767;7.079;0.971;mais a direita;0.8;mais a direita;901;901;0.929;alta;1.781
+220596;Amália Barros;PL;8.796;Extrema direita;direita;0.5829;-0.2543;7.914;9.794;7.079;0.998;mais a direita;0.836;mais a direita;269;269;0.9331;alta;1.796
+220579;Silvia Waiãpi;PL;8.796;Extrema direita;direita;0.5853;-0.22;7.926;9.803;7.079;1.007;mais a direita;0.848;mais a direita;464;464;0.9397;alta;1.801
+133810;Marcelo Moraes;PL;8.796;Extrema direita;direita;0.5855;-0.261;7.928;9.804;7.079;1.008;mais a direita;0.849;mais a direita;739;739;0.9432;alta;1.802
+220657;André Fernandes;PL;8.796;Extrema direita;direita;0.6035;-0.5076;8.018;9.872;7.079;1.076;mais a direita;0.939;mais a direita;715;715;0.9566;alta;1.841
+220557;Daniela Reinehr;PL;8.796;Extrema direita;direita;0.6079;-0.3097;8.039;9.888;7.079;1.092;mais a direita;0.961;mais a direita;795;795;0.9409;alta;1.851
+178983;Marcio Alvino;PL;8.796;Extrema direita;direita;0.6117;-0.1839;8.059;9.902;7.079;1.106;mais a direita;0.98;mais a direita;830;830;0.9313;alta;1.859
+204374;Bia Kicis;PL;8.796;Extrema direita;direita;0.6143;-0.3246;8.071;9.912;7.079;1.116;mais a direita;0.993;mais a direita;942;942;0.9395;alta;1.864
+220574;Cabo Gilberto Silva;PL;8.796;Extrema direita;direita;0.6177;-0.2971;8.089;9.925;7.079;1.129;mais a direita;1.01;mais a direita;953;953;0.9182;alta;1.872
+220619;Delegado Ramagem;PL;8.796;Extrema direita;direita;0.6313;-0.3384;8.157;9.976;7.079;1.18;mais a direita;1.078;mais a direita;892;892;0.9507;alta;1.902
+204455;Luiz Lima;NOVO;8.666;Extrema direita;direita;0.642;-0.3272;8.21;10.0;9.075;1.334;mais a direita;-0.865;mais a esquerda;902;902;0.8947;alta;1.925
+220673;Delegado Caveira;PL;8.796;Extrema direita;direita;0.6422;-0.3627;8.211;10.0;7.079;1.204;mais a direita;1.132;mais a direita;812;812;0.9569;alta;1.925
+220550;Mauricio Marcon;PL;8.796;Extrema direita;direita;0.6469;-0.2922;8.235;10.0;7.079;1.204;mais a direita;1.156;mais a direita;1046;1046;0.9426;alta;1.935
+220526;Gilvan da Federal;PL;8.796;Extrema direita;direita;0.6532;-0.5141;8.266;10.0;7.079;1.204;mais a direita;1.187;mais a direita;721;721;0.957;alta;1.949
+204462;Chris Tonietto;PL;8.796;Extrema direita;direita;0.6558;-0.4502;8.279;10.0;7.079;1.204;mais a direita;1.2;mais a direita;905;905;0.968;alta;1.955
+204416;Sanderson;PL;8.796;Extrema direita;direita;0.6622;-0.4213;8.311;10.0;7.079;1.204;mais a direita;1.232;mais a direita;852;852;0.939;alta;1.968
+220621;Sargento Gonçalves;PL;8.796;Extrema direita;direita;0.6695;-0.4351;8.348;10.0;7.079;1.204;mais a direita;1.269;mais a direita;907;907;0.9614;alta;1.984
+220655;Mario Frias;PL;8.796;Extrema direita;direita;0.6755;-0.3905;8.377;10.0;7.079;1.204;mais a direita;1.299;mais a direita;695;695;0.9496;alta;1.997
+220558;Zé Trovão;PL;8.796;Extrema direita;direita;0.6827;-0.4821;8.414;10.0;7.079;1.204;mais a direita;1.335;mais a direita;851;851;0.9495;alta;2.013
+92346;Eduardo Bolsonaro;PL;8.796;Extrema direita;direita;0.6852;-0.2664;8.426;10.0;7.079;1.204;mais a direita;1.347;mais a direita;349;349;0.9398;alta;2.019
+209787;Nikolas Ferreira;PL;8.796;Extrema direita;direita;0.6931;-0.4416;8.466;10.0;7.079;1.204;mais a direita;1.387;mais a direita;917;917;0.9607;alta;2.036
+220546;Rodolfo Nogueira;PL;8.796;Extrema direita;direita;0.7047;-0.425;8.524;10.0;7.079;1.204;mais a direita;1.445;mais a direita;932;932;0.9657;alta;2.061
+204507;Carla Zambelli;PL;8.796;Extrema direita;direita;0.7074;-0.4508;8.537;10.0;7.079;1.204;mais a direita;1.458;mais a direita;453;453;0.9536;alta;2.067
+204460;Carlos Jordy;PL;8.796;Extrema direita;direita;0.7086;-0.2229;8.543;10.0;7.079;1.204;mais a direita;1.464;mais a direita;900;900;0.9567;alta;2.069
+228941;Daniel José;PODE;7.437;Direita;direita;0.7139;-0.0391;8.57;10.0;3.749;2.563;mais a direita;4.821;mais a direita;57;57;0.8947;alta;2.081
+220547;Marcos Pollon;PL;8.796;Extrema direita;direita;0.7196;-0.4499;8.598;10.0;7.079;1.204;mais a direita;1.52;mais a direita;1031;1031;0.967;alta;2.093
+220654;Delegado Paulo Bilynskyj;PL;8.796;Extrema direita;direita;0.7219;-0.4956;8.61;10.0;7.079;1.204;mais a direita;1.531;mais a direita;1038;1038;0.9538;alta;2.098
+178871;Evair Vieira de Melo;PP;8.153;Direita;direita;0.7248;-0.2919;8.624;10.0;4.218;1.847;mais a direita;4.406;mais a direita;857;857;0.9417;alta;2.105
+204367;Daniel Freitas;PL;8.796;Extrema direita;direita;0.7447;-0.3389;8.723;10.0;7.079;1.204;mais a direita;1.645;mais a direita;815;815;0.9362;alta;2.148
+204369;Caroline de Toni;PL;8.796;Extrema direita;direita;0.7587;-0.4421;8.794;10.0;7.079;1.204;mais a direita;1.715;mais a direita;937;937;0.9424;alta;2.178
+226075;Priscila Costa;PL;8.796;Extrema direita;direita;0.7739;-0.6333;8.87;10.0;7.079;1.204;mais a direita;1.791;mais a direita;108;108;0.9722;alta;2.211
+220568;Gustavo Gayer;PL;8.796;Extrema direita;direita;0.7752;-0.3589;8.876;10.0;7.079;1.204;mais a direita;1.797;mais a direita;836;836;0.9569;alta;2.214
+204528;Adriana Ventura;NOVO;8.666;Extrema direita;direita;0.7869;-0.6171;8.935;10.0;9.075;1.334;mais a direita;-0.14;alinhado;838;838;0.8771;alta;2.24
+204387;Sargento Fahur;PL;8.796;Extrema direita;direita;0.7943;-0.5937;8.972;10.0;7.079;1.204;mais a direita;1.893;mais a direita;1003;1003;0.9641;alta;2.256
+204520;Junio Amaral;PL;8.796;Extrema direita;direita;0.8161;-0.5358;9.08;10.0;7.079;1.204;mais a direita;2.002;mais a direita;741;741;0.946;alta;2.303
+156190;Marcel van Hattem;NOVO;8.666;Extrema direita;direita;0.8436;-0.5369;9.218;10.0;9.075;1.334;mais a direita;0.143;alinhado;921;921;0.8979;alta;2.363
+204365;Gilson Marques;NOVO;8.666;Extrema direita;direita;0.8549;-0.5188;9.275;10.0;9.075;1.334;mais a direita;0.2;alinhado;984;984;0.9004;alta;2.387
+204514;Coronel Tadeu;PL;8.796;Extrema direita;direita;0.8841;-0.3117;9.421;10.0;7.079;1.204;mais a direita;2.342;mais a direita;57;57;0.9825;alta;2.451
+220559;Julia Zanatta;PL;8.796;Extrema direita;direita;0.8859;-0.3619;9.429;10.0;7.079;1.204;mais a direita;2.351;mais a direita;899;899;0.9789;alta;2.455
+204526;Luiz Philippe de Orleans e Bragança;PL;8.796;Extrema direita;direita;0.9237;-0.383;9.619;10.0;7.079;1.204;mais a direita;2.54;mais a direita;834;834;0.9508;alta;2.537
+220633;Ricardo Salles;NOVO;8.666;Extrema direita;direita;0.9472;-0.2776;9.736;10.0;9.075;1.334;mais a direita;0.661;mais a direita;622;622;0.9164;alta;2.588

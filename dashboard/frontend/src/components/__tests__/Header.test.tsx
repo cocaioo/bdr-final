@@ -14,7 +14,7 @@ describe('Header', () => {
     expect(screen.getByRole('link', { name: 'Gastos' })).toHaveAttribute('href', '/grupos/gastos')
     expect(screen.getByRole('link', { name: 'Escolaridade e perfil' })).toHaveAttribute('href', '/grupos/perfil')
     expect(screen.getByRole('link', { name: 'Produção legislativa' })).toHaveAttribute('href', '/grupos/producao-legislativa')
-    expect(screen.getByRole('link', { name: 'Partidos e votações' })).toHaveAttribute('href', '/grupos/partidos-votacoes')
+    expect(screen.getByRole('link', { name: 'Partidos e ideologia' })).toHaveAttribute('href', '/grupos/partidos-votacoes')
     expect(screen.queryByText(/Q1|Q13|quest[aã]o/i)).not.toBeInTheDocument()
   })
 })

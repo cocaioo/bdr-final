@@ -1,0 +1,38 @@
+W-NOMINATE fit summary
+======================
+
+Deputies (rows)   : 634
+Roll calls (cols) : 1325
+Dimensions        : 2
+Bootstrap trials  : 1
+Orientation corr (raw)      : -0.8231
+Dimension 1 flipped         : YES
+Orientation corr (oriented) : 0.8231
+
+
+
+SUMMARY OF W-NOMINATE OBJECT
+----------------------------
+
+Number of Legislators:	  634 (0 legislators deleted)
+Number of Votes:	  1325 (0 votes deleted)
+Number of Dimensions:	  2
+Predicted Yeas:		  215556 of 231628 (93.1%) predictions correct
+Predicted Nays:		  160394 of 178148 (90%) predictions correct
+Correct Classifiction:	  91.17% 91.75%
+APRE:			  0.652 0.675
+GMP:			  0.791 0.812 
+
+
+The first 10 legislator estimates are:
+       coord1D coord2D
+100689   0.287   0.958
+103758   0.299  -0.125
+104552   0.465  -0.431
+107283   0.838   0.024
+107970  -0.071  -0.116
+109429   0.305   0.268
+115200   0.215   0.977
+116379   0.176  -0.066
+121948   0.370   0.654
+122158   0.452  -0.028

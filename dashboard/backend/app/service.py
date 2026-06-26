@@ -66,6 +66,9 @@ class DashboardService:
                 supported_filters=question.supported_filters,
                 group_id=question.group_id,
                 tags=question.tags,
+                block_id=question.block_id,
+                is_block_data_source=question.is_block_data_source,
+                frontend_standalone_page=question.frontend_standalone_page,
             )
             for question in self.registry.questions
         ]

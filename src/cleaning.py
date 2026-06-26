@@ -67,12 +67,23 @@ def clean_party(val):
         return None
     text = re.sub(r"\s+", "", text.upper())
     aliases = {
+        # Grafias alternativas
         "PCDOB.": "PCDOB",
         "REPUBLIC": "REPUBLICANOS",
         "REPUBLICANO": "REPUBLICANOS",
         "SOLIDARI": "SOLIDARIEDADE",
         "MISSAO": "MISSAO",
         "UNIAO": "UNIAO",
+        # Aliases textuais aprovados (v2 metodologia)
+        "PODEMOS": "PODE",
+        "REP": "REPUBLICANOS",
+        "REPUB": "REPUBLICANOS",
+        "REPUBLICA": "REPUBLICANOS",
+        "REPUBLICAN": "REPUBLICANOS",
+        "SOLIDARIED": "SOLIDARIEDADE",
+        # Fusões sem score próprio -> sucessor
+        "DEM": "UNIAO",
+        "PSL": "UNIAO",
     }
     return aliases.get(text, text)
 

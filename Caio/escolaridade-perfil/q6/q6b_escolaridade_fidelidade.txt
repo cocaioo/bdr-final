@@ -6,14 +6,14 @@ Tabela principal - media geral de fidelidade partidaria por escolaridade
  Mestrado Incompleto     |                         20 |                            5 |             5 |            96.67
  Secundário              |                          7 |                            4 |             2 |            95.96
  Doutorado Incompleto    |                         25 |                           13 |             7 |            95.84
+ Nao informado           |                         74 |                           33 |            40 |            94.73
  Ensino Médio Incompleto |                          8 |                            6 |             2 |            94.18
- Nao informado           |                         74 |                           30 |            40 |            94.17
  Doutorado               |                         62 |                           25 |            18 |            92.40
- Superior                |                       1274 |                          624 |           352 |            92.08
- Pós-Graduação           |                        318 |                          157 |            83 |            91.43
- Ensino Médio            |                        104 |                           43 |            28 |            91.35
- Superior Incompleto     |                        163 |                           76 |            44 |            91.27
- Mestrado                |                        164 |                           72 |            45 |            91.00
+ Superior                |                       1274 |                          646 |           352 |            92.35
+ Superior Incompleto     |                        163 |                           83 |            44 |            92.17
+ Pós-Graduação           |                        318 |                          164 |            83 |            91.77
+ Ensino Médio            |                        104 |                           48 |            28 |            91.73
+ Mestrado                |                        164 |                           74 |            45 |            91.25
  Ensino Fundamental      |                         44 |                           18 |            12 |            88.46
 (13 rows)
 
