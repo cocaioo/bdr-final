@@ -1,0 +1,15 @@
+sigla;classe_regra;total_deputados;total_gastos;total_votos;total_orientacoes;total_autores;total_geral;score_proprio_existe;acao_recomendada
+PODEMOS;alias_textual;0;0;0;1;15;16;nao;normalizar_automaticamente
+REP;sigla_truncada;0;0;0;0;1;1;nao;normalizar_automaticamente
+REPUB;sigla_truncada;0;0;0;0;1;1;nao;normalizar_automaticamente
+REPUBLICA;sigla_truncada;0;0;0;0;1;1;nao;normalizar_automaticamente
+REPUBLICAN;sigla_truncada;0;0;0;1;0;1;nao;normalizar_automaticamente
+SOLIDARIED;sigla_truncada;0;0;0;121;0;121;nao;normalizar_automaticamente
+DEM;fusao_partidaria;0;0;0;0;2;2;nao;normalizar_com_rastreio
+PSL;fusao_partidaria;0;0;0;0;11;11;nao;normalizar_com_rastreio
+PATRIOTA;incorporacao_partidaria;0;0;992;15;1415;2422;sim (8.601);manter_sigla_historica_com_score_proprio
+PROS;incorporacao_partidaria;0;0;9;0;231;240;sim (7.445);manter_sigla_historica_com_score_proprio
+PSC;incorporacao_partidaria;0;0;249;0;568;817;sim (8.410);manter_sigla_historica_com_score_proprio
+PTB;incorporacao_partidaria;0;0;0;0;1;1;sim (7.720);manter_sigla_historica_com_score_proprio
+S.PART.;codigo_especial;0;183;77;0;85;345;nao;tratar_como_sem_partido
+ARENA;historico_fora_do_escopo;0;0;0;0;0;0;nao;excluir_do_universo_analitico

@@ -1,0 +1,27 @@
+sigla_partido;nome_partido;status_partido;score_2018;n_respostas_2018;mediana_2018;score_2022;n_respostas_2022;mediana_2022;desvio_padrao_2022;score_usado;ideologia_faixa;campo_ideologico;fonte_ideologia;ano_base;tipo_match;observacao_equivalencia
+AVANTE;Avante;ativo;6.317;451;6.000;6.473;423;7.000;1.964;6.473;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo avante.
+CIDADANIA;Cidadania;ativo;4.926;472;5.000;6.170;412;6.000;1.877;6.170;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;"Cidadania: PPS usado como historico de 2018; cdd usado como equivalencia de 2022."
+MDB;Movimento Democratico Brasileiro;ativo;7.015;453;7.000;6.499;473;6.000;1.486;6.499;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo mdb.
+MISSAO;Missao;ativo;;;;;;;;;;;Bolognesi et al. 2026, expert survey 2018-2022;;sem_classificacao;Sem classificacao: partido posterior a rodada de 2022 e ausente na base.
+NOVO;Novo;ativo;8.133;474;8.000;8.666;494;9.000;1.372;8.666;Extrema direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo novo.
+PCDOB;Partido Comunista do Brasil;ativo;1.920;512;2.000;1.778;508;2.000;1.253;1.778;Esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto com normalizacao grafica de p_cdo_b para PCDOB.
+PDT;Partido Democratico Trabalhista;ativo;3.925;483;4.000;3.855;463;4.000;1.429;3.855;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pdt.
+PL;Partido Liberal;ativo;7.781;488;8.000;8.796;489;9.000;1.264;8.796;Extrema direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;"PL: PR usado apenas como historico de 2018; pl usado em 2022."
+PODE;Podemos;ativo;7.243;469;7.000;7.437;471;7.000;1.492;7.437;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia entre PODE e Podemos.
+PP;Progressistas;ativo;8.198;496;8.000;8.153;498;8.000;1.438;8.153;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia entre PP, Progressistas e sufixo progre.
+PRD;Partido Renovacao Democratica;ativo;7.324;971;7.500;8.161;974;8.500;1.846;8.161;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;proxy_fusao;"Sem coluna propria para PRD; score_2022 e score_usado por media simples de PTB + Patriota; score_2018 mantido como historico pelos mesmos predecessores."
+PSB;Partido Socialista Brasileiro;ativo;4.047;468;4.000;3.589;465;4.000;1.346;3.589;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psb.
+PSD;Partido Social Democratico;ativo;7.092;479;7.000;6.937;443;7.000;1.591;6.937;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psd.
+PSDB;Partido da Social Democracia Brasileira;ativo;7.115;496;7.000;6.759;453;7.000;1.427;6.759;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psdb.
+PSOL;Partido Socialismo e Liberdade;ativo;1.283;513;1.000;1.415;509;1.000;1.143;1.415;Extrema esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psol.
+PT;Partido dos Trabalhadores;ativo;2.974;504;3.000;2.679;501;3.000;1.136;2.679;Esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pt.
+PV;Partido Verde;ativo;5.290;435;5.000;4.123;398;4.000;1.570;4.123;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pv.
+REDE;Rede Sustentabilidade;ativo;4.774;451;4.000;3.692;451;4.000;1.456;3.692;Centro-esquerda;esquerda;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo rede.
+REPUBLICANOS;Republicanos;ativo;7.778;495;8.000;8.333;492;8.000;1.314;8.333;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;"Republicanos: PRB usado como historico de 2018; rep usado como equivalencia de 2022."
+SOLIDARIEDADE;Solidariedade;ativo;6.501;469;7.000;6.007;407;6.000;1.871;6.007;Centro-direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia por sufixo sdd.
+UNIAO;Uniao Brasil;ativo;8.341;1000;8.500;8.485;507;8.000;1.368;8.485;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;"Uniao Brasil: 2022 por coluna propria ideol_22_uniao; 2018 por proxy historico de media simples DEM + PSL."
+ARENA;Alianca Renovadora Nacional;historico;;;;;;;;;;;Bolognesi et al. 2026, expert survey 2018-2022;;sem_classificacao;Sem classificacao: partido historico fora da base utilizada.
+PATRIOTA;Patriota;historico;8.551;490;9.000;8.601;491;9.000;1.346;8.601;Extrema direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;equivalencia;Equivalencia por abreviacao patri.
+PROS;Partido Republicano da Ordem Social;historico;7.475;472;7.000;7.445;440;7.000;1.905;7.445;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo pros.
+PSC;Partido Social Cristao;historico;8.329;505;8.000;8.410;497;8.000;1.305;8.410;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo psc.
+PTB;Partido Trabalhista Brasileiro;historico;6.098;481;6.000;7.720;483;8.000;2.346;7.720;Direita;direita;Bolognesi et al. 2026, expert survey 2018-2022;2022;direto;Match direto por sufixo ptb.
