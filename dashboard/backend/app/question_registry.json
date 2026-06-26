@@ -11,6 +11,16 @@
       "direita": "#E76F51",
       "nao_classificado": "#8D99AE"
     },
+    "ideology_faixa_colors": {
+      "Extrema esquerda": "#1B7F79",
+      "Esquerda": "#2A9D8F",
+      "Centro-esquerda": "#74B49B",
+      "Centro": "#E9C46A",
+      "Centro-direita": "#F4A261",
+      "Direita": "#E76F51",
+      "Extrema direita": "#C0392B",
+      "nao_classificado": "#8D99AE"
+    },
     "vote_colors": {
       "Sim": "#2A9D8F",
       "Nao": "#C0392B",
@@ -182,19 +192,19 @@
     },
     {
       "id": "q9",
-      "title": "Vies ideologico e partidario",
+      "title": "Vies ideologico por score, faixa e campo",
       "group_id": "partidos",
       "tags": ["ideologia", "partidos", "viés"],
-      "description": "Classifica os partidos por ideologia, correlaciona partido x proposta (% de votos Sim por campo ideologico) e exibe o voto individual de cada deputado por proposicao.",
+      "description": "Classifica partidos por score, faixa e campo ideologico, correlaciona votos Sim por faixa/campo e exibe voto individual por proposicao.",
       "response_files": ["JF/partidos-ideologia-votacao/q9/q9_vies_deputado.txt"],
       "sql_file": "JF/partidos-ideologia-votacao/q9/q9.sql",
       "chart_type": "sankey",
       "supported_filters": ["anos", "partidos", "deputados"],
-      "expected_columns": ["sigla_partido", "ideologia"],
+      "expected_columns": ["sigla_partido", "ideologia_score", "ideologia_faixa", "campo_ideologico"],
       "main_table_contains": "Q9.1 - Lista completa",
       "summary_table_contains": "",
-      "explanation": "Q9.1 classifica os partidos por ideologia. Q9.2 calcula o percentual de votos Sim por campo ideologico em cada votacao. Q9.3 mostra o voto individual de cada deputado e se ele seguiu ou contrariou a orientacao de sua bancada.",
-      "chart": { "x_field": "ideologia", "y_fields": ["sigla_partido"] }
+      "explanation": "Q9.1 preserva score, faixa, campo, fonte e tipo de match da classificacao ideologica. Q9.2 calcula o percentual de votos Sim por faixa e campo ideologico em cada votacao. Q9.3 mostra o voto individual de cada deputado e se ele seguiu ou contrariou a orientacao de sua bancada.",
+      "chart": { "x_field": "ideologia_faixa", "y_fields": ["sigla_partido"] }
     },
     {
       "id": "q10",
@@ -206,10 +216,10 @@
       "sql_file": "JF/partidos-ideologia-votacao/q10/q10.sql",
       "chart_type": "bar_vertical",
       "supported_filters": ["partidos"],
-      "expected_columns": ["posicao", "sigla_partido", "ideologia", "qtd_deputados", "total_votos_com_diretriz", "votos_alinhados", "votos_contrarios", "pct_alinhamento"],
+      "expected_columns": ["posicao", "sigla_partido", "ideologia_score", "ideologia_faixa", "campo_ideologico", "qtd_deputados", "total_votos_com_diretriz", "votos_alinhados", "votos_contrarios", "pct_alinhamento"],
       "main_table_contains": "Q10 - Ranking de alinhamento interno - consolidado",
       "summary_table_contains": "",
-      "explanation": "Considera apenas votacoes em que o partido emitiu orientacao explicita (exclui Liberado, Abstencao, Obstrucao). Para cada voto com diretriz, verifica se o deputado votou igual a orientacao do partido. Calcula o percentual de alinhamento por partido e ordena do mais ao menos disciplinado.",
+      "explanation": "Considera apenas votacoes em que o partido emitiu orientacao explicita (exclui Liberado, Abstencao, Obstrucao). Compara somente orientacoes partidarias exatas, sem tratar blocos como partidos, ignora S.PART. e preserva score, faixa e campo ideologico.",
       "chart": { "x_field": "sigla_partido", "y_fields": ["pct_alinhamento"] }
     },
     {
@@ -222,10 +232,10 @@
       "sql_file": "JF/partidos-ideologia-votacao/q11/q11.sql",
       "chart_type": "wordcloud_images",
       "supported_filters": ["anos", "partidos"],
-      "expected_columns": ["posicao", "sigla_partido", "ideologia", "votacoes_participadas", "total_votos_registrados"],
+      "expected_columns": ["posicao", "sigla_partido", "ideologia_score", "ideologia_faixa", "campo_ideologico", "votacoes_participadas", "total_votos_registrados"],
       "main_table_contains": "Q11.a - Ranking de partidos por frequencia nas votacoes (consolidado)",
       "summary_table_contains": "",
-      "explanation": "Q11.a ordena partidos por frequencia nas votacoes. Q11.b ordena por proposicoes de projetos. Q11.c ordena por gastos totais. Q11.d combina as tres dimensoes em um score normalizado para nuvem de palavras.",
+      "explanation": "Q11.a ordena partidos por frequencia nas votacoes. Q11.b ordena por proposicoes de projetos. Q11.c ordena por gastos totais. Q11.d combina as tres dimensoes em um score normalizado para nuvem de palavras, preservando score, faixa e campo ideologico.",
       "chart": { "x_field": "sigla_partido", "y_fields": ["votacoes_participadas"] }
     },
     {

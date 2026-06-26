@@ -962,18 +962,22 @@ class Q9Adapter(QuestionAdapter):
     """Vies ideologico e partidario.
 
     Tabelas produzidas pelo SQL (3 secoes):
-      - Q9.1 Catalogo:        ideologia | partidos | qtd_partidos   (resumo agrupado)
-      - Q9.1 Lista completa:  sigla_partido | ideologia              (tabela principal → sankey)
-      - Q9.2 Correlacao:      ano_dados | id_votacao | titulo | ideologia | pct_sim  (complemento)
+      - Q9.1 Catalogo:        ideologia_faixa | campo_ideologico | partidos | qtd_partidos
+      - Q9.1 Lista completa:  sigla_partido | ideologia_score | ideologia_faixa | campo_ideologico
+      - Q9.2 Correlacao:      ano_dados | id_votacao | titulo | ideologia_faixa | pct_sim
       - Q9.3 Voto individual: ano_dados | id_votacao | titulo | id_deputado | ... | aderiu_orientacao
     """
 
     def build_chart_spec(self, rows: list[dict[str, Any]]) -> ChartSpec:
-        """Sankey ideologia → partido a partir da tabela lista completa (Q9.1)."""
+        """Sankey faixa ideologica -> partido a partir da lista completa (Q9.1)."""
         links: dict[tuple[str, str], int] = {}
         nodes: set[str] = set()
         for row in rows:
-            ideologia = str(row.get("ideologia") or "nao classificado").strip()
+            ideologia = str(
+                row.get("ideologia_faixa")
+                or row.get("ideologia")
+                or "nao classificado"
+            ).strip()
             partido = str(row.get("sigla_partido") or "Sem partido").strip()
             if not ideologia or not partido:
                 continue
@@ -1008,9 +1012,9 @@ class Q9Adapter(QuestionAdapter):
     def _build_complements(self, state: FilterState) -> list[TableSpec]:
         """Expoe Q9.2 (correlacao) e Q9.3 (voto individual) como tabelas complementares."""
         specs: list[TableSpec] = []
-        # Q9.2 — pct de Sim por campo ideologico
+        # Q9.2 - pct de Sim por faixa e campo ideologico
         q92 = _find_table_by_hint(self.complement_tables, "correlacao")
-        # Q9.3 — voto individual
+        # Q9.3 - voto individual
         q93 = _find_table_by_hint(self.complement_tables, "voto individual")
 
         for table in [q92, q93]:
@@ -1052,8 +1056,8 @@ class Q10Adapter(QuestionAdapter):
     """Alinhamento interno de partidos.
 
     Tabelas produzidas pelo SQL (3 secoes):
-      - Ranking consolidado:    posicao | sigla_partido | ideologia | pct_alinhamento  (principal)
-      - Alinhamento por ano:    ano_dados | sigla_partido | ideologia | pct_alinhamento (complemento)
+      - Ranking consolidado:    posicao | sigla_partido | ideologia_score | ideologia_faixa | pct_alinhamento
+      - Alinhamento por ano:    ano_dados | sigla_partido | ideologia_score | ideologia_faixa | pct_alinhamento
       - Disciplina individual:  sigla_partido | id_deputado | nome | pct_disciplina_individual (complemento)
     """
 
@@ -1343,7 +1347,7 @@ class Q11Adapter(QuestionAdapter):
             description=(
                 "Nuvens de palavras dos partidos ponderadas por votacoes, proposicoes e gastos. "
                 "Partidos maiores indicam maior atividade na dimensao. "
-                "Cores: verde = esquerda, amarelo = centro, laranja = direita."
+                "As tabelas associadas preservam score, faixa e campo ideologico; as cores usam fallback por campo macro."
             ),
             series=[],
             options={"images": images},
