@@ -29,6 +29,13 @@ class QuestionDefinition:
     chart: dict[str, Any]
     group_id: str | None = None
     tags: list[str] = field(default_factory=list)
+    # Optional block-data-source metadata (e.g. Q14): a question can be exposed
+    # as a data layer for a consolidated frontend block instead of a standalone
+    # "question page". These default to standalone-page behaviour.
+    block_id: str | None = None
+    is_block_data_source: bool = False
+    frontend_standalone_page: bool = True
+    methodology_file: str | None = None
 
 
 @dataclass(slots=True)
@@ -70,6 +77,10 @@ def load_registry(path: Path) -> QuestionRegistry:
             chart=item.get("chart", {}),
             group_id=item.get("group_id"),
             tags=item.get("tags", []),
+            block_id=item.get("block_id"),
+            is_block_data_source=item.get("is_block_data_source", False),
+            frontend_standalone_page=item.get("frontend_standalone_page", True),
+            methodology_file=item.get("methodology_file"),
         )
         for item in raw["questions"]
     ]

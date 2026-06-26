@@ -269,6 +269,30 @@
       "summary_table_contains": "Resumo executivo",
       "explanation": "Agrupa gastos por categoria de despesa em cada deputado.",
       "chart": { "x_field": "descricao_despesa", "y_fields": ["gasto_total"], "label_field": "nome" }
+    },
+    {
+      "id": "q14",
+      "title": "Posição ideológica revelada por votos",
+      "group_id": "partidos",
+      "block_id": "partidos-ideologia-votacao",
+      "is_block_data_source": true,
+      "frontend_standalone_page": false,
+      "tags": ["ideologia", "votos", "wnominate", "desvio", "bancada"],
+      "description": "Camada de dados do bloco 'Partidos, Ideologia e Votação': posição ideológica comportamental dos deputados estimada por W-NOMINATE, calibrada à escala partidária (Bolognesi), com desvio em relação ao partido e à bancada. Não é uma página de pergunta autônoma no frontend.",
+      "response_files": [
+        "JF/partidos-ideologia-votacao/q14/q14_ideal_points_deputados.csv",
+        "JF/partidos-ideologia-votacao/q14/q14_desvio_partido.csv",
+        "JF/partidos-ideologia-votacao/q14/q14_desvio_bancada.csv"
+      ],
+      "methodology_file": "JF/partidos-ideologia-votacao/q14/q14_metodologia.md",
+      "sql_file": "JF/partidos-ideologia-votacao/q14/q14.sql",
+      "chart_type": "scatter",
+      "supported_filters": ["partidos", "deputados"],
+      "expected_columns": ["deputy_id", "name", "party", "ideologia_score_partido", "score_calibrado_0_10", "desvio_partido", "desvio_bancada", "confianca"],
+      "main_table_contains": "",
+      "summary_table_contains": "",
+      "explanation": "Fonte de dados consolidada do bloco partidos-ideologia-votacao. O score comportamental 0-10 vem da Dimensão 1 do W-NOMINATE (mapa linear fixo (coord+1)*5), calibrado por OLS sobre o score Bolognesi para produzir score_calibrado_0_10. desvio_partido = score_calibrado - ideologia_score_partido (positivo = mais à direita que o partido); desvio_bancada = score_comportamental - média da bancada (coesão interna). A confiança é a proporção de votos corretamente classificados pelo modelo. Os arquivos são artefatos versionados já interpretados; o backend apenas os lê, sem reexecutar W-NOMINATE.",
+      "chart": { "x_field": "ideologia_score_partido", "y_fields": ["score_calibrado_0_10"], "label_field": "name" }
     }
   ]
 }

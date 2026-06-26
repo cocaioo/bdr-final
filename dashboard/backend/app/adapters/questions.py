@@ -1721,6 +1721,509 @@ class Q3NormalizedAdapter(QuestionAdapter):
         }.get(field, field)
 
 
+class Q14Adapter(QuestionAdapter):
+    """Posicao ideologica revelada por votos (W-NOMINATE) — fonte de dados do bloco.
+
+    Camada de dados do bloco 'partidos-ideologia-votacao'. Nao e uma pagina de
+    pergunta autonoma no frontend; expoe artefatos versionados ja interpretados
+    do pipeline W-NOMINATE (o backend apenas le os CSVs, sem reexecutar o modelo).
+
+    Secoes expostas:
+      A. deputies        -> q14_ideal_points_deputados.csv (tabela principal)
+      B. party_deviation -> q14_desvio_partido.csv          (complemento)
+      C. caucus_cohesion -> q14_desvio_bancada.csv          (complemento)
+      D. methodology     -> q14_metodologia.md              (texto, em chart_spec.options)
+
+    As linhas de deputado sao normalizadas com nomes frontend-friendly preservando
+    tambem as colunas tecnicas originais. Aliases de filtro (sigla_partido / nome /
+    id_deputado) sao injetados para reaproveitar o FilterEngine existente.
+    """
+
+    # Colunas-assinatura para identificar cada CSV entre os documentos carregados.
+    _DEPUTIES_SIG = {"deputy_id", "score_calibrado_0_10", "desvio_partido"}
+    _PARTY_DEV_SIG = {"party", "desvio_partido_medio_abs", "ideologia_score_partido"}
+    _CAUCUS_SIG = {"party", "desvio_bancada_medio_abs", "desvio_bancada_std"}
+
+    # -- localizacao das tabelas por assinatura de colunas --------------------
+
+    def _table_with_columns(self, required: set[str]):
+        for doc in self.context.documents:
+            for table in doc.tables:
+                if required.issubset(set(table.columns)):
+                    return table
+        return None
+
+    def _deputies_table(self):
+        return self._table_with_columns(self._DEPUTIES_SIG)
+
+    def _party_dev_table(self):
+        return self._table_with_columns(self._PARTY_DEV_SIG)
+
+    def _caucus_table(self):
+        return self._table_with_columns(self._CAUCUS_SIG)
+
+    # -- normalizacao de campos ----------------------------------------------
+
+    @staticmethod
+    def _normalize_deputy_row(row: dict[str, Any]) -> dict[str, Any]:
+        """Preserva colunas tecnicas e adiciona aliases frontend-friendly + de filtro."""
+        out = dict(row)  # mantem nomes tecnicos originais (transparencia)
+
+        # Aliases que o FilterEngine espera (partidos -> sigla_partido,
+        # deputados -> id_deputado / nome).
+        out.setdefault("id_deputado", row.get("deputy_id"))
+        out.setdefault("nome", row.get("name"))
+        out.setdefault("sigla_partido", row.get("party"))
+
+        # Aliases frontend-friendly (camada semantica estavel para o frontend).
+        out["deputy_id"] = row.get("deputy_id")
+        out["deputy_name"] = row.get("name")
+        out["party"] = row.get("party")
+        out["party_ideology_score"] = row.get("ideologia_score_partido")
+        out["party_ideology_band"] = row.get("ideologia_faixa_partido")
+        out["party_ideology_range"] = row.get("ideologia_faixa_partido")
+        out["party_ideology_field"] = row.get("campo_ideologico_partido")
+        out["behavioral_score"] = row.get("score_comportamental_0_10")
+        out["behavioral_score_calibrated"] = row.get("score_calibrado_0_10")
+        out["caucus_score"] = row.get("score_bancada_0_10")
+        out["party_deviation"] = row.get("desvio_partido")
+        out["party_deviation_direction"] = row.get("direcao_desvio_partido")
+        out["caucus_deviation"] = row.get("desvio_bancada")
+        out["caucus_deviation_direction"] = row.get("direcao_desvio_bancada")
+        out["valid_votes"] = row.get("qtd_votos_validos")
+        out["used_votings"] = row.get("qtd_votacoes_usadas")
+        out["confidence"] = row.get("confianca")
+        out["confidence_band"] = row.get("confianca_faixa")
+        out["confidence_range"] = row.get("confianca_faixa")
+        return out
+
+    def _normalized_deputies(self) -> list[dict[str, Any]]:
+        table = self._deputies_table()
+        if not table:
+            return []
+        return [self._normalize_deputy_row(row) for row in table.rows]
+
+    # -- helpers numericos ----------------------------------------------------
+
+    @staticmethod
+    def _to_float(value: Any) -> float | None:
+        if isinstance(value, (int, float)):
+            return float(value)
+        try:
+            return float(str(value).replace(",", "."))
+        except (TypeError, ValueError):
+            return None
+
+    # -- payload --------------------------------------------------------------
+
+    def build_payload(self, state: FilterState) -> QuestionPayload:
+        deputies = self._normalized_deputies()
+
+        # Tabela principal = deputados (com filtros partidos/deputados aplicados).
+        filtered = FilterEngine.apply_filters(
+            deputies, state, self.context.question.supported_filters
+        )
+        sorted_rows = FilterEngine.apply_sort(
+            filtered, state.sort_by or "desvio_partido", state.sort_dir
+        )
+        paged_rows = FilterEngine.apply_pagination(sorted_rows, state.page, state.page_size)
+
+        deputy_columns = self._deputy_display_columns()
+        table_spec = self._build_table_spec(
+            title="Q14 - Posição ideológica revelada por deputado",
+            columns=deputy_columns,
+            rows=paged_rows,
+            total=len(sorted_rows),
+            state=state,
+        )
+
+        complement_specs = self._build_q14_complements(state)
+        chart_spec = self._build_q14_chart(filtered)
+
+        summary_cards = self._build_q14_summary_cards(deputies)
+
+        has_data = table_spec.total > 0 or any(s.total > 0 for s in complement_specs)
+        empty = EmptyState(
+            is_empty=not has_data,
+            message="Sem dados para os filtros selecionados." if not has_data else "",
+        )
+
+        return QuestionPayload(
+            question_id=self.context.question.id,
+            title=self.context.question.title,
+            description=self.context.question.description,
+            filters_supported=self.context.question.supported_filters,
+            filters_applied={
+                "anos": state.anos,
+                "eixos": state.eixos,
+                "partidos": state.partidos,
+                "ufs": state.ufs,
+                "deputados": state.deputados,
+                "search": state.search,
+                "sort_by": state.sort_by,
+                "sort_dir": state.sort_dir,
+                "page": state.page,
+                "page_size": state.page_size,
+            },
+            summary_cards=summary_cards,
+            chart_spec=chart_spec,
+            table_spec=table_spec,
+            complement_tables=complement_specs,
+            query_panel=QueryPanel(
+                sql_path=self.context.sql_path,
+                sql_text=self.context.sql_text,
+                explanation=self.context.question.explanation,
+            ),
+            warnings=self.warnings,
+            empty_state=empty,
+            dataset_version=self.context.dataset_version,
+            generated_at=datetime.now(timezone.utc).isoformat(),
+        )
+
+    @staticmethod
+    def _deputy_display_columns() -> list[str]:
+        # Ordem amigavel ao frontend; colunas tecnicas continuam nas linhas.
+        return [
+            "deputy_id",
+            "deputy_name",
+            "party",
+            "party_ideology_score",
+            "party_ideology_band",
+            "party_ideology_range",
+            "behavioral_score",
+            "behavioral_score_calibrated",
+            "party_deviation",
+            "party_deviation_direction",
+            "caucus_deviation",
+            "caucus_deviation_direction",
+            "valid_votes",
+            "confidence",
+            "confidence_band",
+            "confidence_range",
+        ]
+
+    @staticmethod
+    def _filter_party_rows(
+        rows: list[dict[str, Any]], partidos: list[str]
+    ) -> list[dict[str, Any]]:
+        """Filtra linhas de partido pela coluna 'party' usando normalize_party."""
+        from ..party_catalog import normalize_party
+
+        normalized = {
+            nv for value in partidos if (nv := normalize_party(value))
+        }
+        import os as _os
+        if _os.environ.get("Q14_DEBUG"):
+            with open("/tmp/q14dbg.txt", "a") as fh:
+                fh.write(f"partidos={partidos} normalized={normalized} "
+                         f"sample_party={rows[0].get('party') if rows else None} "
+                         f"nrows={len(rows)}\n")
+        if not normalized:
+            return list(rows)
+        return [
+            row for row in rows
+            if normalize_party(row.get("party")) in normalized
+        ]
+
+    @staticmethod
+    def _normalize_party_dev_row(row: dict[str, Any]) -> dict[str, Any]:
+        """Preserva colunas tecnicas e adiciona aliases frontend-friendly."""
+        out = dict(row)
+        out["party"] = row.get("party")
+        out["num_deputies"] = row.get("num_deputados")
+        out["party_ideology_score"] = row.get("ideologia_score_partido")
+        out["party_ideology_band"] = row.get("ideologia_faixa_partido")
+        out["party_ideology_range"] = row.get("ideologia_faixa_partido")
+        out["behavioral_score_mean"] = row.get("score_comportamental_medio")
+        out["behavioral_score_calibrated_mean"] = row.get("score_calibrado_medio")
+        out["party_deviation_mean"] = row.get("desvio_partido_medio")
+        out["party_deviation_mean_abs"] = row.get("desvio_partido_medio_abs")
+        out["deviation_direction_mean"] = row.get("direcao_desvio_medio")
+        return out
+
+    @staticmethod
+    def _normalize_caucus_row(row: dict[str, Any]) -> dict[str, Any]:
+        """Preserva colunas tecnicas e adiciona aliases frontend-friendly."""
+        out = dict(row)
+        out["party"] = row.get("party")
+        out["num_deputies"] = row.get("num_deputados")
+        out["caucus_score"] = row.get("score_bancada_0_10")
+        out["caucus_deviation_mean_abs"] = row.get("desvio_bancada_medio_abs")
+        out["caucus_deviation_max_abs"] = row.get("desvio_bancada_max_abs")
+        out["caucus_deviation_std"] = row.get("desvio_bancada_std")
+        return out
+
+    @staticmethod
+    def _party_dev_display_columns() -> list[str]:
+        return [
+            "party",
+            "num_deputies",
+            "party_ideology_score",
+            "party_ideology_band",
+            "party_ideology_range",
+            "behavioral_score_mean",
+            "behavioral_score_calibrated_mean",
+            "party_deviation_mean",
+            "party_deviation_mean_abs",
+            "deviation_direction_mean",
+        ]
+
+    @staticmethod
+    def _caucus_display_columns() -> list[str]:
+        return [
+            "party",
+            "num_deputies",
+            "caucus_score",
+            "caucus_deviation_mean_abs",
+            "caucus_deviation_max_abs",
+            "caucus_deviation_std",
+        ]
+
+    def _build_q14_complements(self, state: FilterState) -> list[TableSpec]:
+        import os as _os
+        if _os.environ.get("Q14_DEBUG"):
+            with open("/tmp/q14dbg.txt", "a") as fh:
+                fh.write(f"ENTER _build_q14_complements partidos={state.partidos}\n")
+        specs: list[TableSpec] = []
+
+        party_dev = self._party_dev_table()
+        caucus = self._caucus_table()
+
+        for table, title, norm_fn, display_cols in (
+            (party_dev, "Q14 - Desvio médio por partido", self._normalize_party_dev_row, self._party_dev_display_columns()),
+            (caucus, "Q14 - Coesão interna da bancada", self._normalize_caucus_row, self._caucus_display_columns()),
+        ):
+            if table is None:
+                continue
+            normalized_rows = [norm_fn(row) for row in table.rows]
+            # Complementos sao tabelas de partido: respeitam apenas o filtro de
+            # partidos. As linhas usam a coluna 'party'; filtramos diretamente por
+            # ela (normalizando) para nao depender do alias sigla_partido.
+            filtered = self._filter_party_rows(normalized_rows, state.partidos)
+            sorted_rows = FilterEngine.apply_sort(filtered, state.sort_by, state.sort_dir)
+            page_size = min(state.page_size, 200)
+            paged = FilterEngine.apply_pagination(sorted_rows, 1, page_size)
+            specs.append(
+                self._build_table_spec(
+                    title=title,
+                    columns=display_cols,
+                    rows=paged,
+                    total=len(sorted_rows),
+                    state=FilterState(
+                        anos=state.anos,
+                        eixos=state.eixos,
+                        partidos=state.partidos,
+                        ufs=state.ufs,
+                        deputados=state.deputados,
+                        escolaridade=state.escolaridade,
+                        search=state.search,
+                        sort_by=state.sort_by,
+                        sort_dir=state.sort_dir,
+                        page=1,
+                        page_size=page_size,
+                    ),
+                )
+            )
+        return specs
+
+    def _build_q14_chart(self, deputies: list[dict[str, Any]]) -> ChartSpec:
+        """Scatter: score ideologico do partido (x) vs score comportamental calibrado (y).
+
+        Empacota tambem em `options` os arrays auxiliares pre-calculados e o texto
+        de metodologia, para que o frontend monte os visuais do bloco sem precisar
+        de novas mudancas no contrato do modelo QuestionPayload.
+        """
+        points: list[dict[str, Any]] = []
+        for row in deputies:
+            x = self._to_float(row.get("party_ideology_score"))
+            y = self._to_float(row.get("behavioral_score_calibrated"))
+            if x is None or y is None:
+                continue
+            points.append(
+                {
+                    "name": str(row.get("deputy_name") or ""),
+                    "deputy_id": row.get("deputy_id"),
+                    "party": row.get("party"),
+                    "confidence_band": row.get("confidence_band"),
+                    "value": [x, y],
+                }
+            )
+
+        helpers = self._build_helper_arrays(deputies)
+
+        if not points:
+            return ChartSpec(
+                type="scatter",
+                title="Sem dados",
+                description="Não há dados suficientes para montar o gráfico.",
+                options={"sections": self._section_descriptors(), **helpers,
+                         "methodology": self._methodology_payload()},
+            )
+
+        return ChartSpec(
+            type="scatter",
+            title="Posição ideológica do partido × comportamento calibrado",
+            description=(
+                "Cada ponto é um deputado: eixo X = score ideológico do partido (Bolognesi), "
+                "eixo Y = score comportamental calibrado (W-NOMINATE). Pontos acima da diagonal "
+                "votam mais à direita do que o partido; abaixo, mais à esquerda."
+            ),
+            x_field="party_ideology_score",
+            y_fields=["behavioral_score_calibrated"],
+            series=[{"name": "Deputados", "data": points}],
+            options={
+                "x_name": "Score ideológico do partido (0–10)",
+                "y_name": "Score comportamental calibrado (0–10)",
+                "sections": self._section_descriptors(),
+                "methodology": self._methodology_payload(),
+                **helpers,
+            },
+        )
+
+    def _build_helper_arrays(self, deputies: list[dict[str, Any]]) -> dict[str, Any]:
+        """Arrays auxiliares pre-computados para os visuais planejados do frontend."""
+
+        def _dep_brief(row: dict[str, Any]) -> dict[str, Any]:
+            return {
+                "deputy_id": row.get("deputy_id"),
+                "deputy_name": row.get("deputy_name"),
+                "party": row.get("party"),
+                "party_ideology_score": row.get("party_ideology_score"),
+                "behavioral_score_calibrated": row.get("behavioral_score_calibrated"),
+                "party_deviation": row.get("party_deviation"),
+                "party_deviation_direction": row.get("party_deviation_direction"),
+                "caucus_deviation": row.get("caucus_deviation"),
+                "confidence": row.get("confidence"),
+                "confidence_band": row.get("confidence_band"),
+                "confidence_range": row.get("confidence_range"),
+            }
+
+        with_dev = [
+            (row, self._to_float(row.get("party_deviation")))
+            for row in deputies
+        ]
+        with_dev = [(row, dev) for row, dev in with_dev if dev is not None]
+
+        top_right = sorted(with_dev, key=lambda item: item[1], reverse=True)[:20]
+        top_left = sorted(with_dev, key=lambda item: item[1])[:20]
+        most_aligned = sorted(with_dev, key=lambda item: abs(item[1]))[:20]
+
+        # Coesao de bancada (a partir do CSV de bancada) ordenada por dispersao.
+        cohesion_ranking: list[dict[str, Any]] = []
+        caucus = self._caucus_table()
+        if caucus is not None:
+            for row in caucus.rows:
+                cohesion_ranking.append(
+                    {
+                        "party": row.get("party"),
+                        "num_deputados": row.get("num_deputados"),
+                        "num_deputies": row.get("num_deputados"),
+                        "caucus_score": row.get("score_bancada_0_10"),
+                        "caucus_deviation_mean_abs": row.get("desvio_bancada_medio_abs"),
+                        "caucus_deviation_max_abs": row.get("desvio_bancada_max_abs"),
+                        "caucus_deviation_std": row.get("desvio_bancada_std"),
+                    }
+                )
+            cohesion_ranking.sort(
+                key=lambda item: self._to_float(item.get("caucus_deviation_std")) or -1.0,
+                reverse=True,
+            )
+
+        return {
+            "topRightDeviation": [_dep_brief(row) for row, _ in top_right],
+            "topLeftDeviation": [_dep_brief(row) for row, _ in top_left],
+            "mostAligned": [_dep_brief(row) for row, _ in most_aligned],
+            "partyCohesionRanking": cohesion_ranking,
+        }
+
+    def _section_descriptors(self) -> dict[str, Any]:
+        """Descreve as secoes que o frontend do bloco consumira a partir deste payload."""
+        return {
+            "deputies": {
+                "source": "q14_ideal_points_deputados.csv",
+                "location": "table_spec",
+            },
+            "party_deviation": {
+                "source": "q14_desvio_partido.csv",
+                "location": "complement_tables[0]",
+            },
+            "caucus_cohesion": {
+                "source": "q14_desvio_bancada.csv",
+                "location": "complement_tables[1]",
+            },
+            "methodology": {
+                "source": "q14_metodologia.md",
+                "location": "chart_spec.options.methodology",
+            },
+        }
+
+    def _methodology_payload(self) -> dict[str, Any]:
+        text = self._read_methodology_text()
+        return {
+            "source": "q14_metodologia.md",
+            "summary": (
+                "Score comportamental 0–10 derivado da Dimensão 1 do W-NOMINATE e "
+                "calibrado por OLS à escala partidária (Bolognesi). desvio_partido = "
+                "score calibrado − score do partido; desvio_bancada mede a coesão interna. "
+                "Artefatos versionados; o backend não reexecuta o modelo."
+            ),
+            "text": text,
+        }
+
+    def _read_methodology_text(self) -> str:
+        meth_ref = getattr(self.context.question, "methodology_file", None)
+        if not meth_ref:
+            return ""
+        path = (self.context.repo_root / meth_ref)
+        try:
+            if path.exists():
+                from ..parser import read_text_with_fallback
+                return read_text_with_fallback(path)
+        except Exception:
+            pass
+        return ""
+
+    def _build_q14_summary_cards(self, deputies: list[dict[str, Any]]) -> list[SummaryCard]:
+        if not deputies:
+            return []
+
+        total = len(deputies)
+        devs = [
+            self._to_float(row.get("party_deviation"))
+            for row in deputies
+        ]
+        devs = [d for d in devs if d is not None]
+        mean_abs_dev = sum(abs(d) for d in devs) / len(devs) if devs else 0.0
+
+        high_conf = sum(
+            1 for row in deputies
+            if str(row.get("confidence_band") or "").strip().lower() == "alta"
+        )
+
+        from .base import _format_value
+
+        return [
+            SummaryCard(
+                id="total_deputados",
+                label="Deputados analisados",
+                value=str(total),
+                unit="deputados",
+            ),
+            SummaryCard(
+                id="desvio_medio_abs",
+                label="Desvio médio absoluto do partido",
+                value=_format_value(round(mean_abs_dev, 2)),
+                unit="pontos",
+            ),
+            SummaryCard(
+                id="confianca_alta",
+                label="Deputados com confiança alta",
+                value=str(high_conf),
+                unit="deputados",
+            ),
+        ]
+
+
 ADAPTERS_BY_ID = {
     "q1": Q1Adapter,
     "q2": Q2Adapter,
@@ -1735,5 +2238,6 @@ ADAPTERS_BY_ID = {
     "q11": Q11Adapter,
     "q12": Q12Adapter,
     "q13": Q13Adapter,
+    "q14": Q14Adapter,
 }
 
