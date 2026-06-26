@@ -7,6 +7,7 @@ import { IdeologyBarChart, type IdeologyBar } from '../components/IdeologyBarCha
 import { IdeologyLegend } from '../components/IdeologyLegend'
 import { IdeologySpectrum } from '../components/IdeologySpectrum'
 import { MethodologyCard } from '../components/MethodologyCard'
+import { MethodologySummary } from '../components/MethodologySummary'
 import { NoDataState } from '../components/NoDataState'
 import { OutlierDeputiesRanking } from '../components/OutlierDeputiesRanking'
 import { PartyAlignmentRanking } from '../components/PartyAlignmentRanking'
@@ -244,7 +245,10 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
           <span aria-hidden="true">03</span>
           <div>
             <h2>Alinhamento partidário</h2>
-            <p>Quanto cada partido consegue que seus deputados sigam a orientação oficial.</p>
+            <p>
+              <strong>Referência:</strong> a orientação oficial do líder. Mede a disciplina de voto —
+              com que frequência os deputados seguem a diretriz da bancada em cada votação.
+            </p>
           </div>
         </div>
         {q10 && q10.table_spec.rows.length ? (
@@ -260,7 +264,7 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
           <span aria-hidden="true">04</span>
           <div>
             <h2>Rankings partidários</h2>
-            <p>Compare os partidos por votações, proposições, gastos e um score composto.</p>
+            <p>Compare os partidos por votações, proposições e gastos.</p>
           </div>
         </div>
         {q11Tables ? (
@@ -277,8 +281,9 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
           <div>
             <h2>Posição ideológica revelada</h2>
             <p>
-              Comparação entre a ideologia atribuída ao partido (Bolognesi) e o comportamento de voto
-              calibrado de cada deputado (W-NOMINATE).
+              <strong>Referência:</strong> a escala ideológica do partido (Bolognesi). Compara o
+              comportamento de voto calibrado de cada deputado (W-NOMINATE) com a posição atribuída ao
+              seu partido — não com a média da bancada nem com a orientação do líder.
             </p>
           </div>
         </div>
@@ -296,7 +301,10 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
             <span aria-hidden="true">06</span>
             <div>
               <h2>Deputados fora da curva do partido</h2>
-              <p>Parlamentares cujo comportamento de voto mais se afasta da posição do próprio partido.</p>
+              <p>
+              <strong>Referência:</strong> a escala ideológica do partido (Bolognesi). Lista os deputados
+              cujo voto mais se afasta da posição atribuída ao próprio partido (o mesmo desvio da seção anterior).
+            </p>
             </div>
           </div>
           <OutlierDeputiesRanking toRight={q14!.outliersRight} toLeft={q14!.outliersLeft} />
@@ -310,7 +318,10 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
             <span aria-hidden="true">07</span>
             <div>
               <h2>Coesão das bancadas</h2>
-              <p>Da bancada mais coesa à menos coesa, segundo a uniformidade do comportamento de voto.</p>
+              <p>
+              <strong>Referência:</strong> a média de voto da própria bancada. Mede a uniformidade interna —
+              quão parecido os deputados de um partido votam entre si (independe da escala Bolognesi).
+            </p>
             </div>
           </div>
           <CaucusCohesionChart cohesion={q14!.cohesion} />
@@ -332,16 +343,17 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
       ) : null}
 
       {/* Secao 10 — Metodologia (sempre por ultimo) */}
-      {q14 && q14.methodology ? (
+      {hasRevealed ? (
         <section className="parties-section stagger-item">
           <div className="parties-section__head">
             <span aria-hidden="true">09</span>
             <div>
               <h2>Metodologia e fontes</h2>
-              <p>Como a posição ideológica revelada é estimada e calibrada.</p>
+              <p>O que cada seção mede, com um exemplo real, e como a posição revelada é estimada.</p>
             </div>
           </div>
-          <MethodologyCard methodology={q14.methodology} />
+          <MethodologySummary deputies={q14!.deputies} cohesion={q14!.cohesion} />
+          {q14!.methodology ? <MethodologyCard methodology={q14!.methodology} /> : null}
         </section>
       ) : null}
     </main>
