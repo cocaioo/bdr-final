@@ -22,10 +22,10 @@ const PANELS = [
     status: 'Em consolidação',
   },
   {
-    title: 'Partidos e votações',
-    description: 'Módulo destinado a alinhamento partidário, orientações, votos e comparações entre bancadas.',
+    title: 'Partidos, ideologia e votação',
+    description: 'Explore a classificação ideológica, o alinhamento partidário e os rankings de atuação.',
     route: '/grupos/partidos-votacoes',
-    status: 'Em consolidação',
+    status: 'Disponível',
   },
 ]
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { fetchMeta } from './api'
 import { GlobalFilters } from './components/GlobalFilters'
@@ -10,8 +10,15 @@ import { QuestionPage } from './pages/QuestionPage'
 import { GastosDashboardPage } from './pages/GastosDashboardPage'
 import { PanelOverviewPage } from './pages/PanelOverviewPage'
 import { PerfilDashboardPage } from './pages/PerfilDashboardPage'
+import { PartiesDashboardPage } from './pages/PartiesDashboardPage'
 import type { FilterState, MetaResponse } from './types'
 import { isQuestionHidden } from './utils/questionAvailability'
+
+// Bloco consolidado de Partidos, Ideologia e Votacao. As perguntas q9/q10/q11
+// deixaram de ter paginas individuais: passaram a ser detalhes de implementacao
+// que alimentam este painel unico.
+const PARTIES_BLOCK_ROUTE = '/grupos/partidos-votacoes'
+const RETIRED_QUESTION_IDS = new Set(['q9', 'q10', 'q11'])
 
 const EMPTY_FILTER_STATE: FilterState = {
   anos: [],
@@ -40,6 +47,7 @@ function App() {
   const location = useLocation()
 
   const activeQuestionId = extractQuestionId(location.pathname)
+  const isRetiredQuestion = Boolean(activeQuestionId && RETIRED_QUESTION_IDS.has(activeQuestionId.toLowerCase()))
   const activeQuestion = meta?.questions.find((question) => question.id === activeQuestionId)
   const hiddenQuestionRoute = Boolean(activeQuestionId && isQuestionHidden(activeQuestionId))
 
@@ -81,7 +89,7 @@ function App() {
   return (
     <div className="app-shell">
       <Header datasetVersion={meta.dataset_version} />
-      {activeQuestionId && !hiddenQuestionRoute ? (
+      {activeQuestionId && !hiddenQuestionRoute && !isRetiredQuestion ? (
         <GlobalFilters
           catalog={activeQuestionCatalog}
           value={filters}
@@ -109,8 +117,22 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/deputados/:id" element={<DeputyProfilePage />} />
-        <Route path="/q/:questionId" element={<QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />} />
-        <Route path="/pergunta/:questionId" element={<QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />} />
+        <Route
+          path="/q/:questionId"
+          element={
+            isRetiredQuestion
+              ? <Navigate to={PARTIES_BLOCK_ROUTE} replace />
+              : <QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />
+          }
+        />
+        <Route
+          path="/pergunta/:questionId"
+          element={
+            isRetiredQuestion
+              ? <Navigate to={PARTIES_BLOCK_ROUTE} replace />
+              : <QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />
+          }
+        />
         <Route path="/grupos/gastos" element={<GastosDashboardPage meta={meta} />} />
         <Route path="/grupos/perfil" element={<PerfilDashboardPage meta={meta} />} />
         <Route
@@ -123,16 +145,7 @@ function App() {
             />
           )}
         />
-        <Route
-          path="/grupos/partidos-votacoes"
-          element={(
-            <PanelOverviewPage
-              title="Partidos e votações"
-              description="Visão integrada sobre bancadas, orientações partidárias, votos e alinhamento interno."
-              topics={['Composição partidária', 'Orientações e votos', 'Alinhamento entre partidos e bancadas']}
-            />
-          )}
-        />
+        <Route path="/grupos/partidos-votacoes" element={<PartiesDashboardPage meta={meta} />} />
       </Routes>
       <footer className="app-footer">
         Fonte: schema grupo4 + fontes analíticas consolidadas | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}

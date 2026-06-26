@@ -79,7 +79,7 @@ describe('App integration', () => {
     expect(screen.getByRole('heading', { name: 'Gastos parlamentares' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Escolaridade e perfil dos deputados' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Produção legislativa' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Partidos e votações' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Partidos, ideologia e votação' })).toBeInTheDocument()
     expect(screen.queryByText(/Q1|Q13|quest[aã]o/i)).not.toBeInTheDocument()
     expect(screen.getByPlaceholderText('Pesquisar deputado...')).toBeInTheDocument()
   })
