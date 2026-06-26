@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -20,11 +20,18 @@ vi.mock('../../components/IdeologyBarChart', () => ({
   ),
 }))
 
+vi.mock('../../components/RevealedPositionScatter', () => ({
+  RevealedPositionScatter: ({ deputies }: { deputies: unknown[] }) => (
+    <div data-testid="revealed-scatter">revelados:{deputies.length}</div>
+  ),
+}))
+
 const meta = {
   questions: [
     { id: 'q9', title: 'Q9', route: '/q/q9', description: '', chart_type: 'sankey', supported_filters: [] },
     { id: 'q10', title: 'Q10', route: '/q/q10', description: '', chart_type: 'bar_vertical', supported_filters: [] },
     { id: 'q11', title: 'Q11', route: '/q/q11', description: '', chart_type: 'wordcloud_images', supported_filters: [] },
+    { id: 'q14', title: 'Q14', route: '/q/q14', description: '', chart_type: 'scatter', supported_filters: [] },
   ],
 } as unknown as MetaResponse
 
@@ -122,13 +129,36 @@ const q11 = payload(
   ],
 )
 
+const q14 = payload(
+  {
+    title: 'Q14 - Posição ideológica revelada por deputado',
+    columns: [],
+    rows: [
+      { deputy_id: 1, deputy_name: 'Ana', party: 'PT', party_ideology_score: 2.6, party_ideology_band: 'Esquerda', behavioral_score_calibrated: 3.0, party_deviation: 0.4, party_deviation_direction: 'alinhado', valid_votes: 700, confidence_band: 'alta' },
+      { deputy_id: 2, deputy_name: 'Bruno', party: 'PL', party_ideology_score: 8.8, party_ideology_band: 'Extrema direita', behavioral_score_calibrated: 6.0, party_deviation: -2.8, party_deviation_direction: 'mais a esquerda', valid_votes: 650, confidence_band: 'média' },
+    ],
+    total: 2,
+    page: 1,
+    page_size: 1000,
+    sort_dir: 'desc',
+  },
+)
+
+q14.chart_spec.options = {
+  topRightDeviation: [{ deputy_name: 'Carla', party: 'PT', party_deviation: 3.5, party_deviation_direction: 'mais a direita', party_ideology_band: 'Esquerda' }],
+  topLeftDeviation: [{ deputy_name: 'Bruno', party: 'PL', party_deviation: -2.8, party_deviation_direction: 'mais a esquerda', party_ideology_band: 'Extrema direita' }],
+  mostAligned: [{ deputy_name: 'Ana', party: 'PT', party_deviation: 0.4 }],
+  partyCohesionRanking: [{ party: 'PT', num_deputados: 12, party_ideology_band: 'Esquerda', caucus_deviation_mean_abs: 0.8 }, { party: 'PL', num_deputados: 8, party_ideology_band: 'Extrema direita', caucus_deviation_mean_abs: 1.6 }],
+  methodology: { source: 'W-NOMINATE + Bolognesi', summary: 'Posição revelada por votos.', text: 'A posição ideológica revelada é estimada a partir do comportamento de voto calibrado contra a escala dos partidos.' },
+}
+
 describe('PartiesDashboardPage', () => {
   beforeEach(() => {
     vi.stubGlobal(
       'fetch',
       vi.fn(async (input: RequestInfo | URL) => {
         const url = String(input)
-        const body = url.includes('/q9') ? q9 : url.includes('/q10') ? q10 : q11
+        const body = url.includes('/q14') ? q14 : url.includes('/q9') ? q9 : url.includes('/q10') ? q10 : q11
         return { ok: true, json: async () => body } as Response
       }),
     )
@@ -136,24 +166,44 @@ describe('PartiesDashboardPage', () => {
 
   afterEach(() => vi.unstubAllGlobals())
 
-  it('renderiza o painel consolidado sem comportamento de voto nem metodologia', async () => {
+  it('renderiza o bloco consolidado com as dez seções na ordem definida', async () => {
     render(<PartiesDashboardPage meta={meta} />)
 
     expect(await screen.findByRole('heading', { name: /Partidos, Ideologia e Votação/i, level: 1 })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /Espectro ideológico/i, level: 2 })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /Distribuição ideológica/i, level: 2 })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /Alinhamento partidário/i, level: 2 })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /Rankings partidários/i, level: 2 })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: /Comportamento de voto/i, level: 2 })).not.toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: /Metodologia e fontes/i })).not.toBeInTheDocument()
+    const headings = screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent ?? '')
+    expect(headings).toEqual([
+      expect.stringMatching(/Espectro ideológico/i),
+      expect.stringMatching(/Distribuição ideológica/i),
+      expect.stringMatching(/Alinhamento partidário/i),
+      expect.stringMatching(/Rankings partidários/i),
+      expect.stringMatching(/Posição ideológica revelada/i),
+      expect.stringMatching(/Deputados fora da curva/i),
+      expect.stringMatching(/Coesão das bancadas/i),
+      expect.stringMatching(/Tabela completa/i),
+      expect.stringMatching(/Metodologia e fontes/i),
+    ])
   })
 
-  it('mostra os cards de resumo com os partidos classificados', async () => {
+  it('integra Q14: scatter de posição revelada, outliers e tabela colapsável fechada', async () => {
     render(<PartiesDashboardPage meta={meta} />)
-    const card = await screen.findByText('Partidos classificados')
+    expect(await screen.findByTestId('revealed-scatter')).toHaveTextContent('revelados:2')
+    expect(screen.getByRole('heading', { name: /Mais à direita que o partido/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /Mais à esquerda que o partido/i })).toBeInTheDocument()
+    // A tabela completa começa recolhida (apenas o botão, sem linhas).
+    const toggle = screen.getByRole('button', { name: /Tabela completa de deputados/i })
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    await userEvent.click(toggle)
+    expect(toggle).toHaveAttribute('aria-expanded', 'true')
+  })
+
+  it('mostra o resumo executivo com os indicadores-chave', async () => {
+    render(<PartiesDashboardPage meta={meta} />)
+    const card = await screen.findByText('Partidos analisados')
     expect(card.parentElement?.querySelector('p')?.textContent).toContain('2')
-    expect(screen.getByText('Maior alinhamento partidário')).toBeInTheDocument()
-    expect(screen.getByText('99.5%')).toBeInTheDocument()
+    expect(screen.getByText('Deputados analisados')).toBeInTheDocument()
+    expect(screen.getByText('Votos analisados')).toBeInTheDocument()
+    expect(screen.getByText('Correlação ideologia × comportamento')).toBeInTheDocument()
+    expect(screen.getByText('Coesão média das bancadas')).toBeInTheDocument()
   })
 
   it('exibe a legenda sempre com as sete faixas, inclusive a vazia (Centro)', async () => {
@@ -163,11 +213,12 @@ describe('PartiesDashboardPage', () => {
     expect(screen.getByText('Extrema esquerda')).toBeInTheDocument()
   })
 
-  it('alterna entre as abas de ranking', async () => {
+  it('alterna entre as abas de ranking e não expõe o Score composto', async () => {
     render(<PartiesDashboardPage meta={meta} />)
     await screen.findByRole('tab', { name: 'Votações' })
-    await userEvent.click(screen.getByRole('tab', { name: 'Score composto' }))
-    expect(screen.getByRole('tab', { name: 'Score composto' })).toHaveAttribute('aria-selected', 'true')
+    expect(screen.queryByRole('tab', { name: 'Score composto' })).not.toBeInTheDocument()
+    await userEvent.click(screen.getByRole('tab', { name: 'Gastos' }))
+    expect(screen.getByRole('tab', { name: 'Gastos' })).toHaveAttribute('aria-selected', 'true')
   })
 
 })

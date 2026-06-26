@@ -18,7 +18,7 @@ import { isQuestionHidden } from './utils/questionAvailability'
 // deixaram de ter paginas individuais: passaram a ser detalhes de implementacao
 // que alimentam este painel unico.
 const PARTIES_BLOCK_ROUTE = '/grupos/partidos-votacoes'
-const RETIRED_QUESTION_IDS = new Set(['q9', 'q10', 'q11'])
+const RETIRED_QUESTION_IDS = new Set(['q9', 'q10', 'q11', 'q14'])
 
 const EMPTY_FILTER_STATE: FilterState = {
   anos: [],

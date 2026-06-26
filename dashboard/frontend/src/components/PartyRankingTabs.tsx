@@ -17,7 +17,7 @@ interface PartyRankingTabsProps {
   tables: Q11Tables
 }
 
-type TabKey = 'voting' | 'bills' | 'spending' | 'composite'
+type TabKey = 'voting' | 'bills' | 'spending'
 
 interface PartyMetric {
   sigla: string
@@ -30,7 +30,6 @@ const TABS: Array<{ key: TabKey; label: string }> = [
   { key: 'voting', label: 'Votações' },
   { key: 'bills', label: 'Proposições' },
   { key: 'spending', label: 'Gastos' },
-  { key: 'composite', label: 'Score composto' },
 ]
 
 function formatInt(value: number): string {
@@ -81,34 +80,7 @@ export function PartyRankingTabs({ tables }: PartyRankingTabsProps) {
     const bills = buildMetric(tables.bills, 'total_proposicoes', formatInt)
     const spending = buildMetric(tables.spending, 'gasto_total', formatBRL)
 
-    // Score composto: media das tres dimensoes normalizadas (min-max -> 0-100).
-    const norm = (items: PartyMetric[]) => {
-      const max = Math.max(1, ...items.map((i) => i.value))
-      return new Map(items.map((i) => [i.sigla, (i.value / max) * 100]))
-    }
-    const nv = norm(voting)
-    const nb = norm(bills)
-    const ns = norm(spending)
-    const faixaBySigla = new Map<string, string>()
-    ;[...voting, ...bills, ...spending].forEach((m) => {
-      if (!faixaBySigla.has(m.sigla)) faixaBySigla.set(m.sigla, m.faixa)
-    })
-    const composite: PartyMetric[] = [...faixaBySigla.keys()]
-      .map((sigla) => {
-        const parts = [nv.get(sigla), nb.get(sigla), ns.get(sigla)].filter(
-          (v): v is number => typeof v === 'number',
-        )
-        const value = parts.length ? parts.reduce((a, b) => a + b, 0) / parts.length : 0
-        return {
-          sigla,
-          faixa: faixaBySigla.get(sigla) ?? '',
-          value: Number(value.toFixed(1)),
-          display: value.toFixed(1),
-        }
-      })
-      .sort((a, b) => b.value - a.value)
-
-    return { voting, bills, spending, composite }
+    return { voting, bills, spending }
   }, [tables])
 
   const current = metrics[active]
@@ -129,9 +101,7 @@ export function PartyRankingTabs({ tables }: PartyRankingTabsProps) {
       ? 'Votações participadas'
       : active === 'bills'
         ? 'Proposições'
-        : active === 'spending'
-          ? 'Gasto total'
-          : 'Score (0-100)'
+        : 'Gasto total'
 
   const topBars = useMemo<IdeologyBar[]>(
     () =>
@@ -167,7 +137,7 @@ export function PartyRankingTabs({ tables }: PartyRankingTabsProps) {
             bars={topBars}
             orientation="horizontal"
             valueSuffix={active === 'spending' ? '' : ''}
-            decimals={active === 'composite' ? 1 : 0}
+            decimals={0}
             height={Math.max(260, topBars.length * 28 + 30)}
           />
           <p className="ranking-tabs__chart-note">Top 10 partidos nesta dimensão.</p>
