@@ -149,6 +149,40 @@ export function fetchQuestion(
   return fetchJson<QuestionPayload>(`${API_BASE}/api/questions/${questionId}?${query}`)
 }
 
+/**
+ * Busca TODAS as linhas de uma pergunta, paginando até o total informado em
+ * table_spec.total. O backend limita page_size (ex.: 200), então uma única
+ * chamada pode truncar o conjunto; aqui agregamos as páginas e devolvemos um
+ * payload com table_spec.rows completo. As demais propriedades (chart_spec,
+ * complement_tables, etc.) vêm da primeira página.
+ */
+export async function fetchAllQuestionRows(
+  questionId: string,
+  filters: FilterState,
+  table: TableState,
+  supportedFilters?: string[],
+  maxPages = 50,
+): Promise<QuestionPayload> {
+  const first = await fetchQuestion(questionId, filters, { ...table, page: 1 }, supportedFilters)
+  const total = first.table_spec.total ?? first.table_spec.rows.length
+  const pageSize = first.table_spec.page_size || first.table_spec.rows.length || 1
+  const rows = [...first.table_spec.rows]
+
+  if (rows.length >= total || pageSize <= 0) {
+    return first
+  }
+
+  const pageCount = Math.min(maxPages, Math.ceil(total / pageSize))
+  const pages = await Promise.all(
+    Array.from({ length: pageCount - 1 }, (_unused, idx) =>
+      fetchQuestion(questionId, filters, { ...table, page: idx + 2, pageSize }, supportedFilters),
+    ),
+  )
+  pages.forEach((payload) => rows.push(...payload.table_spec.rows))
+
+  return { ...first, table_spec: { ...first.table_spec, rows, page: 1, page_size: rows.length } }
+}
+
 export function fetchQuestionForDeputy(
   questionId: string,
   deputyId: string,
