@@ -534,16 +534,6 @@ export function DeputyProfilePage() {
         </div>
       </section>
 
-      <section className="deputy-profile__future-grid" aria-label="Próximas dimensões do perfil">
-        <article className="deputy-profile__placeholder">
-          <span className="deputy-profile__eyebrow">Em preparação</span><h2>Produção legislativa</h2>
-          <p>Esta área receberá proposições, temas e indicadores individuais quando os contratos de dados estiverem prontos.</p>
-        </article>
-        <article className="deputy-profile__placeholder">
-          <span className="deputy-profile__eyebrow">Em preparação</span><h2>Votações</h2>
-          <p>Esta área será enriquecida com histórico e posicionamentos do parlamentar, sem antecipar métricas ainda indisponíveis.</p>
-        </article>
-      </section>
 
       <section className="deputy-profile__section" aria-labelledby="custo-beneficio-heading">
         <SectionHeading

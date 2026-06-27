@@ -7,7 +7,6 @@ interface HeaderProps {
 const PANEL_LINKS = [
   { to: '/grupos/gastos', label: 'Gastos' },
   { to: '/grupos/perfil', label: 'Escolaridade e perfil' },
-  { to: '/grupos/producao-legislativa', label: 'Produção legislativa' },
   { to: '/grupos/partidos-votacoes', label: 'Partidos e ideologia' },
 ]
 
