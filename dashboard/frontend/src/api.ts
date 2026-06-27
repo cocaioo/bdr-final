@@ -3,6 +3,7 @@ import type {
   DeputyGastosCategory,
   DeputyGastosProfile,
   DeputyIdentityEnrichment,
+  DeputyTemaItem,
   FilterState,
   GastoCategoriaItem,
   GastoContextoPayload,
@@ -262,6 +263,12 @@ export function fetchGastosFornecedores(params: {
 
 export function fetchGastosContexto(): Promise<GastoContextoPayload> {
   return fetchJson<GastoContextoPayload>(`${API_BASE}/api/gastos/contexto`)
+}
+
+export function fetchDeputyTemasNuvem(deputyId: string): Promise<DeputyTemaItem[]> {
+  return fetchJson<{ id_deputado: string; temas: DeputyTemaItem[] }>(
+    `${API_BASE}/api/deputados/${deputyId}/temas-nuvem`,
+  ).then((payload) => payload.temas)
 }
 
 

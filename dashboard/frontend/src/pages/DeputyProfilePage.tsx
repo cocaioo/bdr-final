@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchQuestionForDeputy } from '../api'
+import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../api'
 import { DeputyAvatar } from '../components/DeputyAvatar'
 import { DeputySearch } from '../components/DeputySearch'
-import type { DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption } from '../types'
+import { DeputyTemaWordCloud } from '../components/DeputyTemaWordCloud'
+import type { DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption, DeputyTemaItem } from '../types'
 import { formatCurrency } from '../utils/format'
 
 function optionalLabel(value?: string): string {
@@ -400,6 +401,11 @@ export function DeputyProfilePage() {
     data: DeputyCostBenefitProfile | null
     error: string | null
   }>({ data: null, error: null })
+  const [temasState, setTemasState] = useState<{
+    deputyId?: string
+    data: DeputyTemaItem[] | null
+    error: string | null
+  }>({ data: null, error: null })
   const [identityEnrichment, setIdentityEnrichment] = useState<DeputyIdentityEnrichment>({})
 
   useEffect(() => {
@@ -418,12 +424,16 @@ export function DeputyProfilePage() {
     let active = true
     setIdentityEnrichment({})
     setQ7State({ data: null, error: null })
+    setTemasState({ data: null, error: null })
     fetchDeputyIdentityFromGastos(deputy.id)
       .then((enrichment) => { if (active) setIdentityEnrichment(enrichment) })
       .catch(() => { /* silently ignore; fallback to CSV values */ })
     fetchDeputyGastosSummary(deputy.id)
       .then((payload) => { if (active) setGastosState({ deputyId: deputy.id, data: payload, error: null }) })
       .catch((cause: Error) => { if (active) setGastosState({ deputyId: deputy.id, data: null, error: cause.message }) })
+    fetchDeputyTemasNuvem(deputy.id)
+      .then((temas) => { if (active) setTemasState({ deputyId: deputy.id, data: temas, error: null }) })
+      .catch((cause: Error) => { if (active) setTemasState({ deputyId: deputy.id, data: null, error: cause.message }) })
     fetchQuestionForDeputy('q7', deputy.id, 1, 5)
       .then((payload) => {
         if (!active) return
@@ -534,6 +544,30 @@ export function DeputyProfilePage() {
         </div>
       </section>
 
+      <section className="deputy-profile__section" aria-labelledby="temas-heading">
+        <SectionHeading
+          eyebrow="Proposições"
+          title="Temas mais trabalhados"
+          description="Quantidade de proposições de autoria do deputado por tema legislativo. Temas sem proposições não aparecem na nuvem."
+        />
+        <div id="temas-heading">
+          {temasState.deputyId !== deputy.id ? (
+            <div className="deputy-profile__empty" role="status">Carregando temas legislativos…</div>
+          ) : temasState.error ? (
+            <div className="deputy-profile__empty deputy-profile__empty--error" role="alert">
+              <strong>Não foi possível carregar os temas agora.</strong>
+              <span>O restante do perfil permanece disponível.</span>
+            </div>
+          ) : temasState.data && temasState.data.length ? (
+            <DeputyTemaWordCloud temas={temasState.data} />
+          ) : (
+            <div className="deputy-profile__empty" role="status">
+              <strong>Nenhuma proposição com tema identificado para este deputado.</strong>
+              <span>O perfil cadastral e os demais indicadores continuam disponíveis.</span>
+            </div>
+          )}
+        </div>
+      </section>
 
       <section className="deputy-profile__section" aria-labelledby="custo-beneficio-heading">
         <SectionHeading
