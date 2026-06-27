@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, development ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, development ]
 
 jobs:
   python-tests:
@@ -30,8 +30,10 @@ jobs:
           pytest tests
 
       - name: Run backend Python tests
-        run: |
-          cd dashboard/backend && pytest
+        working-directory: dashboard/backend
+        env:
+          PYTHONPATH: .
+        run: pytest
 
   frontend-build:
     runs-on: ubuntu-latest
