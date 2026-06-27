@@ -30,8 +30,10 @@ jobs:
           pytest tests
 
       - name: Run backend Python tests
-        run: |
-          cd dashboard/backend && pytest
+        working-directory: dashboard/backend
+        env:
+          PYTHONPATH: .
+        run: pytest
 
   frontend-build:
     runs-on: ubuntu-latest
