@@ -217,32 +217,34 @@ beforeEach(() => {
   vi.mocked(fetchGastosContexto).mockResolvedValue({ summary: { qtd_partidos: 1, qtd_ufs: 1, valor_total: summary.valor_total }, partidos: [], ufs: [], metadata: {} })
 })
 
-it('remove gastos atipicos and configures financial charts without a clickable legend', async () => {
+it('renders the Q7 ranking cards in the resumo tab without atypical-expense jargon', async () => {
   render(<GastosDashboardPage meta={meta} />)
 
-  const evolution = await screen.findByTestId('chart-Evolucao temporal dos gastos')
-  const category = screen.getByTestId('chart-Distribuicao por categoria')
+  // The resumo tab shows Q7 ranking cards (no chart widget for evolution or category)
+  expect(await screen.findByRole('heading', { name: /Custo-Benefício Parlamentar/i })).toBeInTheDocument()
+  expect(await screen.findByText('Amom Mandel')).toBeInTheDocument()
 
-  expect(evolution).toHaveAttribute('data-options', expect.stringContaining('"show_legend":false'))
-  expect(category).toHaveAttribute('data-options', expect.stringContaining('"currency":true'))
-  expect(screen.getAllByText('Despesa média').length).toBeGreaterThan(0)
+  // Outdated chart test-ids no longer exist in the redesigned resumo tab
+  expect(screen.queryByTestId('chart-Evolucao temporal dos gastos')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('chart-Distribuicao por categoria')).not.toBeInTheDocument()
+
+  // Atypical-expense / anomaly / ticket jargon should never appear
   expect(screen.queryByText(/gastos at[ií]picos/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/anomalia/i)).not.toBeInTheDocument()
   expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
 })
 
-it('renders the Q7 preview in the gastos dashboard and supports the annual partial view', async () => {
+it('renders the Q7 ranking in the gastos dashboard and supports the annual partial view', async () => {
   const user = userEvent.setup()
   render(<GastosDashboardPage meta={meta} />)
 
-  expect(await screen.findByRole('heading', { name: /Custo-beneficio parlamentar/i })).toBeInTheDocument()
-  expect(screen.getByText('Amom Mandel')).toBeInTheDocument()
+  // Q7 section is always visible in the resumo tab — no expand button needed
+  expect(await screen.findByRole('heading', { name: /Custo-Benefício Parlamentar/i })).toBeInTheDocument()
+  expect(await screen.findByText('Amom Mandel')).toBeInTheDocument()
   expect(screen.queryByRole('link', { name: /Abrir pagina completa/i })).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /Ver analise completa/i })).not.toBeInTheDocument()
 
-  // Click the button to expand the analysis inline and show filters
-  const expandBtn = screen.getByRole('button', { name: /Ver analise completa/i })
-  await user.click(expandBtn)
-
+  // Filters are directly available — switch to annual scope and pick 2026
   await user.selectOptions(screen.getByLabelText('Escopo'), 'anual')
   await user.selectOptions(screen.getByLabelText('Ano'), '2026')
 
@@ -346,18 +348,15 @@ it('typing in Q7 search triggers fetchQuestion with the search value', async () 
   const questionMock = vi.mocked(fetchQuestion)
   render(<GastosDashboardPage meta={meta} />)
 
-  // Wait for Q7 section to appear in resumo tab
-  expect(await screen.findByRole('heading', { name: /Custo-beneficio parlamentar/i })).toBeInTheDocument()
+  // Q7 section is always visible in the resumo tab — no expand button needed
+  expect(await screen.findByRole('heading', { name: /Custo-Benefício Parlamentar/i })).toBeInTheDocument()
 
-  // Expand Q7
-  await user.click(screen.getByRole('button', { name: /Ver analise completa/i }))
-
-  // Clear mock call history after expansion
+  // Clear mock call history once initial load is done
   questionMock.mockClear()
   questionMock.mockResolvedValue(q7GlobalPayload)
 
-  // Type in the search input
-  const searchInput = screen.getByPlaceholderText('Digite o nome do deputado...')
+  // Type in the search input (placeholder matches what the component renders)
+  const searchInput = screen.getByPlaceholderText('Nome do deputado...')
   await user.type(searchInput, 'amom')
 
   // Wait for debounced fetch with the search value
