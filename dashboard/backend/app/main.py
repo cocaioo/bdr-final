@@ -172,3 +172,11 @@ def get_gastos_contexto() -> dict:
         return service.gastos.contexto()
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/deputados/{id_deputado}/temas-nuvem")
+def get_deputado_temas_nuvem(id_deputado: str) -> dict:
+    try:
+        return service.tema_nuvem.temas_nuvem(id_deputado=id_deputado)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc

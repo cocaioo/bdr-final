@@ -127,18 +127,7 @@ function barChart(
   }
 }
 
-function lineChart(title: string, description: string, rows: Array<Record<string, unknown>>): ChartSpec {
-  return {
-    type: 'line',
-    title,
-    description,
-    x_field: 'ano',
-    y_fields: ['valor_total'],
-    categories: rows.map((row) => String(row.ano)),
-    series: [{ name: 'Valor total', data: rows.map((row) => toNumber(row.valor_total)) }],
-    options: { currency: true, compact_axis: true, show_legend: false },
-  }
-}
+
 
 /* ==========================================
    Skeleton Loaders Components
@@ -212,67 +201,8 @@ function SelectionSkeleton({
   )
 }
 
-/* ==========================================
-   Standardized KPI Grid Helper
-   ========================================== */
-function KpiGrid({ summary, q7TopRow }: { summary: GastosSummary; q7TopRow?: Record<string, unknown> | null }) {
-  const indice = q7TopRow ? Number(q7TopRow.indice_custo_beneficio || 0) : null
-  const topName = q7TopRow ? String(q7TopRow.nome_parlamentar || '') : null
-  const topPartido = q7TopRow ? String(q7TopRow.sigla_partido || '') : null
 
-  return (
-    <div className="gastos-kpi-grid gastos-kpi-grid--enhanced">
-      {/* 1. Valor Total Gasto — financial baseline */}
-      <article className="gastos-kpi-card gastos-kpi-card--primary">
-        <span>Valor Total Gasto</span>
-        <strong>{formatCurrency(summary.valor_total)}</strong>
-      </article>
 
-      {/* 2. Custo-Benefício — key analytical metric */}
-      <article className="gastos-kpi-card gastos-kpi-card--cb">
-        <span>Custo-Benefício</span>
-        {indice !== null ? (
-          <>
-            <strong title={topName ?? undefined}>
-              {indice.toLocaleString('pt-BR', { minimumFractionDigits: 4, maximumFractionDigits: 4 })}
-            </strong>
-            <small className="gastos-kpi-cb-meta">
-              <span className="gastos-kpi-cb-badge">#1</span>
-              {topName ? `${topName.split(' ').slice(0, 2).join(' ')}` : '—'}
-              {topPartido ? ` · ${topPartido}` : ''}
-            </small>
-          </>
-        ) : (
-          <strong>—</strong>
-        )}
-      </article>
-
-      {/* 3. Despesa Média — avg cost per transaction */}
-      <article className="gastos-kpi-card gastos-kpi-card--avg">
-        <span>Despesa Média</span>
-        <strong>{formatCurrency(summary.ticket_medio)}</strong>
-      </article>
-
-      {/* 4. Quantidade de Despesas — transaction volume */}
-      <article className="gastos-kpi-card gastos-kpi-card--count">
-        <span>Quantidade de Despesas</span>
-        <strong>{formatCellValue(summary.qtd_despesas)}</strong>
-      </article>
-
-      {/* 5. Deputados */}
-      <article className="gastos-kpi-card gastos-kpi-card--deputies">
-        <span>Deputados</span>
-        <strong>{formatCellValue(summary.qtd_deputados)}</strong>
-      </article>
-
-      {/* 6. Fornecedores */}
-      <article className="gastos-kpi-card gastos-kpi-card--suppliers">
-        <span>Fornecedores</span>
-        <strong>{formatCellValue(summary.qtd_fornecedores)}</strong>
-      </article>
-    </div>
-  )
-}
 
 function InsightGrid({ insights }: { insights: Array<{ title: string; body: string }> }) {
   return (
@@ -371,7 +301,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [yearSeries, setYearSeries] = useState<Array<{ ano: string; valor_total: number }>>([])
 
   // Loading states per tab
-  const [loadingResumo, setLoadingResumo] = useState(false)
   const [loadingCategorias, setLoadingCategorias] = useState(false)
   const [loadingDeputados, setLoadingDeputados] = useState(false)
   const [loadingFornecedores, setLoadingFornecedores] = useState(false)
@@ -443,7 +372,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     if (!visitedTabs.resumo) return
     if (summary && categories && yearSeries.length > 0) return
 
-    setLoadingResumo(true)
     const years = availableYears.length ? availableYears : ['2023', '2024', '2025', '2026']
 
     Promise.all([
@@ -458,9 +386,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       })
       .catch((err) => {
         console.error('Error fetching resumo data:', err)
-      })
-      .finally(() => {
-        setLoadingResumo(false)
       })
   }, [visitedTabs.resumo, availableYears, summary, categories, yearSeries])
 
@@ -758,20 +683,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       : null,
   ].filter(Boolean) as Array<{ title: string; body: string }>
 
-  const resumoInsights = [
-    topCategory
-      ? {
-          title: 'Destino predominante',
-          body: `${topCategory.categoria} e a categoria com maior valor, concentrando ${formatPercent(topCategory.pct_total)} do total.`,
-        }
-      : null,
-    yearSeries.length > 1
-      ? {
-          title: 'Ano de maior volume',
-          body: `${sortByNumber(yearSeries, 'valor_total')[0]?.ano} aparece como o ano de maior valor agregado na serie disponivel.`,
-        }
-      : null,
-  ].filter(Boolean) as Array<{ title: string; body: string }>
+
 
   const supplierInsights = [
     topSupplier

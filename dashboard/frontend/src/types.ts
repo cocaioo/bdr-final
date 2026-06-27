@@ -240,3 +240,8 @@ export interface DeputyGastosProfile {
   partialErrors: string[]
 }
 
+export interface DeputyTemaItem {
+  tema: string
+  qtd_proposicoes: number
+}
+
