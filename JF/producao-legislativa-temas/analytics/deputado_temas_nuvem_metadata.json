@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-06-27T14:21:59.231556+00:00",
+  "rows": 15035,
+  "deputados": 626,
+  "temas": 32,
+  "max_qtd_proposicoes": 3643,
+  "fonte": [
+    "proposicoes_autores.csv",
+    "proposicoes_temas.csv"
+  ]
+}

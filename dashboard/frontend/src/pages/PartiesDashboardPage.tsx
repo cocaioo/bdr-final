@@ -2,17 +2,15 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { fetchAllQuestionRows, fetchQuestion } from '../api'
 import { CaucusCohesionChart } from '../components/CaucusCohesionChart'
+import { DeputyIdeologySearch } from '../components/DeputyIdeologySearch'
 import { ExecutiveCards } from '../components/ExecutiveCards'
 import { IdeologyBarChart, type IdeologyBar } from '../components/IdeologyBarChart'
 import { IdeologyLegend } from '../components/IdeologyLegend'
 import { IdeologySpectrum } from '../components/IdeologySpectrum'
-import { MethodologyCard } from '../components/MethodologyCard'
-import { MethodologySummary } from '../components/MethodologySummary'
 import { NoDataState } from '../components/NoDataState'
 import { OutlierDeputiesRanking } from '../components/OutlierDeputiesRanking'
 import { PartyAlignmentRanking } from '../components/PartyAlignmentRanking'
 import { PartyRankingTabs, type Q11Tables } from '../components/PartyRankingTabs'
-import { RevealedDeputiesTable } from '../components/RevealedDeputiesTable'
 import { RevealedPositionScatter } from '../components/RevealedPositionScatter'
 import { IDEOLOGY_RANGES, rangeLabel, toNumber, toSpectrumParties } from '../utils/ideology'
 import { averageCaucusCohesion, behavioralPartyCorrelation, parseQ14, type Q14Data } from '../utils/q14'
@@ -106,14 +104,16 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
   const spectrum = useMemo(() => (q9 ? toSpectrumParties(q9.table_spec.rows) : []), [q9])
   const rangeCounts = useMemo(() => countByRange(spectrum), [spectrum])
 
-  // --- Secao 3: distribuicao ---
+  // --- Secao 3: distribuicao (exclui faixas sem partidos) ---
   const distributionBars = useMemo<IdeologyBar[]>(
     () =>
-      IDEOLOGY_RANGES.map((r) => ({
-        label: r.label,
-        value: rangeCounts[r.label] ?? 0,
-        color: r.color,
-      })),
+      IDEOLOGY_RANGES
+        .map((r) => ({
+          label: r.label,
+          value: rangeCounts[r.label] ?? 0,
+          color: r.color,
+        }))
+        .filter((bar) => bar.value > 0),
     [rangeCounts],
   )
 
@@ -311,6 +311,23 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
         </section>
       ) : null}
 
+      {/* Secao 7b — Busca de deputado por desvio ideologico */}
+      {hasRevealed ? (
+        <section className="parties-section stagger-item" style={{ position: 'relative', zIndex: 10 }}>
+          <div className="parties-section__head">
+            <span aria-hidden="true">07</span>
+            <div>
+              <h2>Buscar deputado</h2>
+              <p>
+                Pesquise um parlamentar e veja sua posição ideológica revelada pelo comportamento de voto,
+                comparada à posição oficial do partido.
+              </p>
+            </div>
+          </div>
+          <DeputyIdeologySearch deputies={q14!.deputies} />
+        </section>
+      ) : null}
+
       {/* Secao 8 — Coesao das bancadas (Q14) */}
       {hasRevealed && q14!.cohesion.length ? (
         <section className="parties-section stagger-item">
@@ -325,35 +342,6 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
             </div>
           </div>
           <CaucusCohesionChart cohesion={q14!.cohesion} />
-        </section>
-      ) : null}
-
-      {/* Secao 9 — Tabela completa (colapsavel) */}
-      {hasRevealed ? (
-        <section className="parties-section stagger-item">
-          <div className="parties-section__head">
-            <span aria-hidden="true">08</span>
-            <div>
-              <h2>Tabela completa</h2>
-              <p>Todos os deputados com posição revelada. Recolhida por padrão para manter a leitura limpa.</p>
-            </div>
-          </div>
-          <RevealedDeputiesTable deputies={q14!.deputies} />
-        </section>
-      ) : null}
-
-      {/* Secao 10 — Metodologia (sempre por ultimo) */}
-      {hasRevealed ? (
-        <section className="parties-section stagger-item">
-          <div className="parties-section__head">
-            <span aria-hidden="true">09</span>
-            <div>
-              <h2>Metodologia e fontes</h2>
-              <p>O que cada seção mede, com um exemplo real, e como a posição revelada é estimada.</p>
-            </div>
-          </div>
-          <MethodologySummary deputies={q14!.deputies} cohesion={q14!.cohesion} />
-          {q14!.methodology ? <MethodologyCard methodology={q14!.methodology} /> : null}
         </section>
       ) : null}
     </main>

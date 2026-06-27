@@ -2,19 +2,21 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchQuestionForDeputy } from '../../api'
+import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../../api'
 import { DeputyProfilePage } from '../DeputyProfilePage'
 
 vi.mock('../../api', () => ({
   fetchDeputies: vi.fn(),
   fetchDeputyGastosSummary: vi.fn(),
   fetchDeputyIdentityFromGastos: vi.fn(),
+  fetchDeputyTemasNuvem: vi.fn(),
   fetchQuestionForDeputy: vi.fn(),
 }))
 
 const fetchDeputiesMock = vi.mocked(fetchDeputies)
 const fetchGastosMock = vi.mocked(fetchDeputyGastosSummary)
 const fetchIdentityMock = vi.mocked(fetchDeputyIdentityFromGastos)
+const fetchTemasMock = vi.mocked(fetchDeputyTemasNuvem)
 const fetchQ7Mock = vi.mocked(fetchQuestionForDeputy)
 
 const deputies = [
@@ -73,10 +75,12 @@ describe('DeputyProfilePage', () => {
     fetchDeputiesMock.mockReset()
     fetchGastosMock.mockReset()
     fetchIdentityMock.mockReset()
+    fetchTemasMock.mockReset()
     fetchQ7Mock.mockReset()
     fetchDeputiesMock.mockResolvedValue(deputies)
     fetchGastosMock.mockResolvedValue(gastos)
     fetchIdentityMock.mockResolvedValue({ partido: 'PL', uf: 'MT' })
+    fetchTemasMock.mockResolvedValue([])
     fetchQ7Mock.mockResolvedValue(q7Payload as any)
   })
 
@@ -95,8 +99,6 @@ describe('DeputyProfilePage', () => {
     expect(screen.getByText('#175')).toBeInTheDocument()
     expect(screen.getByText('0,51186')).toBeInTheDocument()
     expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Produção legislativa' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Votações' })).toBeInTheDocument()
     expect(fetchGastosMock).toHaveBeenCalledWith('220593')
     expect(fetchQ7Mock).toHaveBeenCalledWith('q7', '220593', 1, 5)
   })

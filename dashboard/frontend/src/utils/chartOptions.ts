@@ -202,10 +202,20 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
 
   if (spec.type === 'stacked_bar') {
     const hasPartidoFilter = Boolean(activeFilters?.partidos && activeFilters.partidos.length > 0)
+    const legendBottom = spec.options.legend_bottom === true
+    const barMaxWidth = Number(spec.options.bar_max_width ?? 28)
     return {
       tooltip: { trigger: 'axis', valueFormatter },
-      legend: { show: showLegend },
-      grid: { left: 45, right: 20, top: showLegend ? 60 : 24, bottom: 80, containLabel: true },
+      legend: legendBottom
+        ? { show: showLegend, bottom: 0, left: 'center' }
+        : { show: showLegend },
+      grid: {
+        left: 45,
+        right: 20,
+        top: legendBottom ? 24 : (showLegend ? 60 : 24),
+        bottom: legendBottom ? 140 : 80,
+        containLabel: true,
+      },
       xAxis: { type: 'category', data: spec.categories, axisLabel: { rotate: 25 } },
       yAxis: {
         type: 'value',
@@ -235,6 +245,7 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
           return val
         }),
         label: { show: false },
+        barMaxWidth,
       })),
     } as EChartsOption
   }
@@ -435,7 +446,7 @@ function applyTheme(option: any): EChartsOption {
     option.textStyle = {}
   }
   option.textStyle.color = textInk
-  option.textStyle.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+  option.textStyle.fontFamily = "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif"
 
   if (option.legend) {
     if (!option.legend.textStyle) option.legend.textStyle = {}
