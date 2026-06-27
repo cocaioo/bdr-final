@@ -2076,7 +2076,7 @@ td {
 /* Narrative gastos dashboard */
 .gastos-story-dashboard .gastos-kpi-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 12px;
 }
 
@@ -2170,12 +2170,12 @@ td {
 
 .gastos-chart-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 16px;
 }
 
 .gastos-chart-grid.three {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 .gastos-chart-grid .chart-section {
@@ -2183,7 +2183,7 @@ td {
 }
 
 .gastos-chart-grid .chart-surface {
-  min-height: 340px;
+  min-height: 360px;
 }
 
 .gastos-insight-card,
@@ -2197,7 +2197,7 @@ td {
 
 .gastos-insight-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 12px;
 }
 
@@ -2232,13 +2232,13 @@ td {
 
 .gastos-deputy-card-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 12px;
 }
 
 .gastos-category-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 12px;
 }
 
@@ -2532,8 +2532,64 @@ td {
 
 .gastos-two-columns {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 16px;
+}
+
+/* Card-based breakdown list replacing the old detail tables */
+.gastos-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gastos-breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.gastos-breakdown-item__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gastos-breakdown-item__rank {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+
+.gastos-breakdown-item__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.gastos-breakdown-item__meta strong {
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.gastos-breakdown-item__meta span {
+  color: var(--muted);
+  font-size: 0.76rem;
 }
 
 .gastos-detail-filter {
@@ -2682,27 +2738,18 @@ td {
 }
 
 @media (max-width: 1180px) {
-  .gastos-story-dashboard .gastos-kpi-grid,
-  .gastos-tabs,
-  .gastos-chart-grid.three,
-  .gastos-insight-grid,
-  .gastos-deputy-card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .gastos-tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .gastos-chart-grid,
-  .gastos-two-columns,
   .gastos-explanation-cards {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 680px) {
-  .gastos-story-dashboard .gastos-kpi-grid,
-  .gastos-tabs,
-  .gastos-insight-grid,
-  .gastos-deputy-card-grid {
-    grid-template-columns: 1fr;
+  .gastos-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .gastos-tab-panel {

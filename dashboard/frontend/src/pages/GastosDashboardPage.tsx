@@ -185,20 +185,6 @@ function CardsSkeleton({ count = 4 }: { count?: number }) {
   )
 }
 
-function TableSkeleton() {
-  return (
-    <div className="skeleton skeleton-table" style={{ margin: '16px 0' }}>
-      <div style={{ padding: '16px' }}>
-        <div className="skeleton-text" style={{ width: '30%', height: '14px', marginBottom: '16px' }} />
-        <div className="skeleton-text" style={{ width: '95%', height: '10px', marginBottom: '8px' }} />
-        <div className="skeleton-text" style={{ width: '90%', height: '10px', marginBottom: '8px' }} />
-        <div className="skeleton-text" style={{ width: '85%', height: '10px', marginBottom: '8px' }} />
-        <div className="skeleton-text" style={{ width: '70%', height: '10px', marginBottom: '8px' }} />
-      </div>
-    </div>
-  )
-}
-
 function SelectionSkeleton({
   title,
   subtitle,
@@ -311,56 +297,6 @@ function DeputyRankingCards({
           </div>
         </button>
       ))}
-    </div>
-  )
-}
-
-function CompactTable({
-  columns,
-  rows,
-  onRowClick,
-  selectedKey,
-}: {
-  columns: Array<{ key: string; label: string; format?: (value: unknown, row: Record<string, unknown>) => React.ReactNode }>
-  rows: Array<Record<string, unknown>>
-  onRowClick?: (row: Record<string, unknown>) => void
-  selectedKey?: string
-}) {
-  if (!rows.length) return <NoDataState message="Nenhum registro retornado pela API." />
-
-  return (
-    <div className="gastos-table-wrap">
-      <table className="gastos-compact-table">
-        <thead>
-          <tr>
-            {columns.map((column) => (
-              <th key={column.key}>{column.label}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => {
-            const key = String(row.id_deputado ?? row.fornecedor ?? row.categoria ?? index)
-            return (
-              <tr
-                key={`${key}-${index}`}
-                className={selectedKey && selectedKey === key ? 'selected' : undefined}
-                onClick={() => onRowClick?.(row)}
-              >
-                {columns.map((column) => (
-                  <td key={column.key}>
-                    {column.format
-                      ? column.format(row[column.key], row)
-                      : typeof row[column.key] === 'number'
-                        ? formatCellValue(row[column.key])
-                        : String(row[column.key] ?? '-')}
-                  </td>
-                ))}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
     </div>
   )
 }
@@ -942,7 +878,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 </header>
 
                 {q7Loading && !q7Data ? (
-                  <TableSkeleton />
+                  <CardsSkeleton />
                 ) : q7Error ? (
                   <p style={{ color: 'var(--danger)' }}>{q7Error}</p>
                 ) : q7Data ? (
@@ -1010,87 +946,65 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                       </div>
                     )}
 
-                    <CompactTable
-                      rows={asRecords(q7Data.table_spec.rows)}
-                      columns={[
-                        {
-                          key: 'posicao',
-                          label: 'Posição',
-                          format: (val, row) => {
-                            const hasGeoPartyFilter = !!(q7Uf || q7Partido)
-                            const posFiltro = row.posicao_no_filtro !== undefined && row.posicao_no_filtro !== null ? String(row.posicao_no_filtro) : ''
-                            const posGeral = String(row.posicao_geral ?? val ?? '')
+                    <div className="gastos-deputy-card-grid">
+                      {asRecords(q7Data.table_spec.rows).map((row, index) => {
+                        const hasGeoPartyFilter = !!(q7Uf || q7Partido)
+                        const posFiltro = row.posicao_no_filtro !== undefined && row.posicao_no_filtro !== null ? String(row.posicao_no_filtro) : ''
+                        const posGeral = String(row.posicao_geral ?? row.posicao ?? '')
+                        const nameStr = String(row.nome_parlamentar || '')
+                        const partidoStr = String(row.sigla_partido || '')
+                        const ufStr = String(row.sigla_uf || '')
+                        const isPartial = !!row.ano_parcial
+                        const idDep = Number(row.id_deputado || 0)
+                        const indice = Number(row.indice_custo_beneficio || 0)
+                        const total = Number(row.total_proposicoes || 0)
+                        const substantivas = Number(row.total_proposicoes_substantivas || 0)
+                        const aprovadas = Number(row.total_proposicoes_aprovadas || 0)
+                        return (
+                          <article
+                            key={`${idDep}-${index}`}
+                            className="gastos-deputy-rank-card"
+                            style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px', cursor: 'default' }}
+                          >
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                              {hasGeoPartyFilter && posFiltro ? (
+                                <span className="rank-number" style={{ display: 'flex', flexDirection: 'column', fontWeight: 'bold' }}>
+                                  <span style={{ color: 'var(--primary)' }}>#{posFiltro} no filtro</span>
+                                  <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>#{posGeral} geral</span>
+                                </span>
+                              ) : (
+                                <span className="rank-number" style={{ fontSize: '1rem', fontWeight: 'bold' }}>#{posGeral}</span>
+                              )}
+                              <DeputyAvatar id={idDep} nome={nameStr} size={52} />
+                            </div>
 
-                            if (hasGeoPartyFilter && posFiltro) {
-                              return (
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                                  <span style={{ fontWeight: 'bold', color: 'var(--primary)' }}>#{posFiltro} no filtro</span>
-                                  <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>#{posGeral} geral</span>
-                                </div>
-                              )
-                            }
-                            return <strong style={{ fontSize: '1.1rem' }}>#{posGeral}</strong>
-                          }
-                        },
-                        {
-                          key: 'nome_parlamentar',
-                          label: 'Deputado',
-                          format: (val, row) => {
-                            const nameStr = String(val || '')
-                            const partidoStr = String(row.sigla_partido || '')
-                            const ufStr = String(row.sigla_uf || '')
-                            const isPartial = !!row.ano_parcial
-                            const idDep = String(row.id_deputado || '')
-
-                            return (
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                <DeputyAvatar id={Number(idDep)} nome={nameStr} size={40} />
-                                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                  <span style={{ fontWeight: 'bold' }}>{nameStr}</span>
-                                  <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>
-                                    {partidoStr} - {ufStr}
-                                    {isPartial && (
-                                      <span className="badge-2026-parcial" style={{ marginLeft: '6px', background: 'var(--primary-light, #e0f2fe)', color: 'var(--primary, #0284c7)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>
-                                        2026 parcial
-                                      </span>
-                                    )}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'left', marginTop: '4px' }}>
+                              <span className="rank-name" style={{ fontWeight: 'bold', fontSize: '1rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={nameStr}>
+                                {nameStr}
+                              </span>
+                              <span className="rank-meta" style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+                                {partidoStr} - {ufStr}
+                                {isPartial && (
+                                  <span className="badge-2026-parcial" style={{ marginLeft: '6px', background: 'var(--primary-light, #e0f2fe)', color: 'var(--primary, #0284c7)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>
+                                    2026 parcial
                                   </span>
-                                </div>
+                                )}
+                              </span>
+                            </div>
+
+                            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+                              <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 'bold' }}>Índice custo-benefício</span>
+                              <strong style={{ fontSize: '1.15rem', color: 'var(--primary)' }}>{indice.toLocaleString('pt-BR', { minimumFractionDigits: 5, maximumFractionDigits: 5 })}</strong>
+                              <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>Gasto total {formatCurrency(row.gasto_total)}</span>
+                              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
+                                <span>{total} prop.</span>
+                                <span>{substantivas} subst. · {aprovadas} aprov.</span>
                               </div>
-                            )
-                          }
-                        },
-                        {
-                          key: 'indice_custo_beneficio',
-                          label: 'Índice custo-benefício',
-                          format: (val) => {
-                            const numVal = Number(val || 0)
-                            return <strong style={{ color: 'var(--primary)' }}>{numVal.toLocaleString('pt-BR', { minimumFractionDigits: 5, maximumFractionDigits: 5 })}</strong>
-                          }
-                        },
-                        {
-                          key: 'gasto_total',
-                          label: 'Gasto total',
-                          format: (val) => formatCurrency(val)
-                        },
-                        {
-                          key: 'total_proposicoes',
-                          label: 'Proposições',
-                          format: (val, row) => {
-                            const total = Number(val || 0)
-                            const substantivas = Number(row.total_proposicoes_substantivas || 0)
-                            const aprovadas = Number(row.total_proposicoes_aprovadas || 0)
-                            return (
-                              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '0.85rem' }}>
-                                <span>Total: {total}</span>
-                                <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Substantivas: {substantivas}</span>
-                                <span style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Aprovadas: {aprovadas}</span>
-                              </div>
-                            )
-                          }
-                        }
-                      ]}
-                    />
+                            </div>
+                          </article>
+                        )
+                      })}
+                    </div>
 
                     {q7Expanded && q7Data.table_spec.total > q7PageSize && (
                       <div className="gastos-pagination-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', padding: '12px', background: 'var(--surface)', borderRadius: '8px', border: '1px solid var(--border)' }}>
@@ -1137,7 +1051,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               <KpisSkeleton />
               <InsightsSkeleton />
               <ChartsSkeleton />
-              <TableSkeleton />
             </>
           ) : (
             <>
@@ -1197,17 +1110,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 ))}
               </div>
 
-              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabela Detalhada</h3>
-              <CompactTable
-                rows={asRecords(categories.items)}
-                columns={[
-                  { key: 'categoria', label: 'Categoria' },
-                  { key: 'valor_total', label: 'Valor total', format: formatCurrency },
-                  { key: 'qtd_despesas', label: 'Despesas' },
-                  { key: 'ticket_medio', label: 'Valor médio por despesa', format: formatCurrency },
-                  { key: 'qtd_deputados', label: 'Deputados' },
-                ]}
-              />
             </>
           )}
         </section>
@@ -1257,7 +1159,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             <>
               <KpisSkeleton />
               <CardsSkeleton />
-              <TableSkeleton />
             </>
           ) : (
             <>
@@ -1365,27 +1266,43 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                       <div className="gastos-two-columns" style={{ marginTop: '20px' }}>
                         <div>
                           <h4 style={{ marginBottom: '12px' }}>Top fornecedores do deputado (Q12)</h4>
-                          <CompactTable
-                            rows={asRecords(topSelectedDeputySuppliers)}
-                            columns={[
-                              { key: 'fornecedor', label: 'Fornecedor' },
-                              { key: 'valor_total', label: 'Valor do deputado', format: formatCurrency },
-                              { key: 'pct_total', label: '% do deputado', format: (value) => formatPercent(value) },
-                              { key: 'qtd_despesas', label: 'Despesas' },
-                            ]}
-                          />
+                          <div className="gastos-breakdown-list">
+                            {topSelectedDeputySuppliers.map((item, idx) => (
+                              <div className="gastos-breakdown-item" key={`${item.fornecedor}-${idx}`}>
+                                <div className="gastos-breakdown-item__label" title={item.fornecedor}>
+                                  <span className="gastos-breakdown-item__rank">#{idx + 1}</span>
+                                  {item.fornecedor}
+                                </div>
+                                <div className="gastos-breakdown-item__meta">
+                                  <strong>{formatCurrency(item.valor_total)}</strong>
+                                  <span>
+                                    <span className="gastos-breakdown-item__pct">{formatPercent(item.pct_total)}</span>
+                                    {' · '}{formatCellValue(item.qtd_despesas)} desp.
+                                  </span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                         <div>
                           <h4 style={{ marginBottom: '12px' }}>Top categorias do deputado (Q13)</h4>
-                          <CompactTable
-                            rows={asRecords(topSelectedDeputyCategories)}
-                            columns={[
-                              { key: 'categoria', label: 'Categoria' },
-                              { key: 'valor_total', label: 'Valor do deputado', format: formatCurrency },
-                              { key: 'pct_total', label: '% do deputado', format: (value) => formatPercent(value) },
-                              { key: 'qtd_despesas', label: 'Despesas' },
-                            ]}
-                          />
+                          <div className="gastos-breakdown-list">
+                            {topSelectedDeputyCategories.map((item, idx) => (
+                              <div className="gastos-breakdown-item" key={`${item.categoria}-${idx}`}>
+                                <div className="gastos-breakdown-item__label" title={item.categoria}>
+                                  <span className="gastos-breakdown-item__rank">#{idx + 1}</span>
+                                  {item.categoria}
+                                </div>
+                                <div className="gastos-breakdown-item__meta">
+                                  <strong>{formatCurrency(item.valor_total)}</strong>
+                                  <span>
+                                    <span className="gastos-breakdown-item__pct">{formatPercent(item.pct_total)}</span>
+                                    {' · '}{formatCellValue(item.qtd_despesas)} desp.
+                                  </span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
 
@@ -1399,29 +1316,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 </aside>
               )}
 
-              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabela Detalhada (Secundária)</h3>
-              <CompactTable
-                rows={asRecords(deputies.items)}
-                selectedKey={selectedDeputy ? String(selectedDeputy.id_deputado) : undefined}
-                onRowClick={(row) => {
-                  startTransition(() => {
-                    setSelectedDeputy(row as unknown as GastoDeputadoItem)
-                  })
-                }}
-                columns={[
-                  {
-                    key: 'nome_parlamentar',
-                    label: 'Deputado',
-                    format: (value, row) => (
-                      `${String(value)} (${String(row.sigla_partido)}-${String(row.sigla_uf)})`
-                    ),
-                  },
-                  { key: 'valor_total', label: 'Valor total', format: formatCurrency },
-                  { key: 'qtd_despesas', label: 'Despesas' },
-                  { key: 'ticket_medio', label: 'Valor médio por despesa', format: formatCurrency },
-                  { key: 'categoria_principal', label: 'Categoria principal' },
-                ]}
-              />
             </>
           )}
         </section>
@@ -1447,7 +1341,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               <KpisSkeleton />
               <InsightsSkeleton />
               <CardsSkeleton />
-              <TableSkeleton />
             </>
           ) : (
             <>
@@ -1576,23 +1469,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 </aside>
               )}
 
-              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabela Detalhada (Secundária)</h3>
-              <CompactTable
-                rows={asRecords(suppliers.items)}
-                selectedKey={selectedSupplier?.fornecedor}
-                onRowClick={(row) => {
-                  startTransition(() => {
-                    setSelectedSupplier(row as unknown as GastoFornecedorItem)
-                  })
-                }}
-                columns={[
-                  { key: 'fornecedor', label: 'Fornecedor' },
-                  { key: 'valor_total', label: 'Valor received', format: formatCurrency },
-                  { key: 'qtd_despesas', label: 'Despesas' },
-                  { key: 'qtd_deputados', label: 'Deputados atendidos' },
-                  { key: 'ticket_medio', label: 'Valor médio por despesa', format: formatCurrency },
-                ]}
-              />
             </>
           )}
         </section>
@@ -1610,7 +1486,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               <KpisSkeleton />
               <InsightsSkeleton />
               <ChartsSkeleton count={3} />
-              <TableSkeleton />
             </>
           ) : (
             <>
@@ -1662,27 +1537,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 </div>
               </div>
 
-              <h3 style={{ marginTop: '24px', marginBottom: '12px' }}>Tabelas Detalhadas</h3>
-              <div className="gastos-two-columns">
-                <CompactTable
-                  rows={asRecords(contexto.partidos)}
-                  columns={[
-                    { key: 'sigla_partido', label: 'Partido' },
-                    { key: 'qtd_deputados', label: 'Deputados' },
-                    { key: 'valor_total', label: 'Valor total', format: formatCurrency },
-                    { key: 'valor_medio_por_deputado', label: 'Media/deputado', format: formatCurrency },
-                  ]}
-                />
-                <CompactTable
-                  rows={asRecords(contexto.ufs)}
-                  columns={[
-                    { key: 'sigla_uf', label: 'UF' },
-                    { key: 'qtd_deputados', label: 'Deputados' },
-                    { key: 'valor_total', label: 'Valor total', format: formatCurrency },
-                    { key: 'valor_medio_por_deputado', label: 'Media/deputado', format: formatCurrency },
-                  ]}
-                />
-              </div>
             </>
           )}
         </section>
