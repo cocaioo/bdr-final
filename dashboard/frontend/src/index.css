@@ -5608,3 +5608,275 @@ body.gastos-light-theme .gastos-kpi-cb-badge {
 body.gastos-light-theme .gastos-kpi-card--cb .gastos-kpi-cb-meta {
   color: #5D6B7A;
 }
+
+/* ==========================================
+   Prompt 05 — Ideology Spectrum: taller chart
+   ========================================== */
+.ideology-spectrum__surface {
+  height: 480px !important;
+}
+
+/* ==========================================
+   Prompt 06 — Deputy Ideology Search
+   ========================================== */
+.dep-search {
+  position: relative;
+  max-width: 640px;
+}
+
+.dep-search__input-wrap {
+  position: relative;
+}
+
+.dep-search__input {
+  width: 100%;
+  padding: 10px 40px 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dep-search__input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(91, 132, 162, 0.18);
+}
+
+.dep-search__clear {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.dep-search__clear:hover {
+  color: var(--ink);
+}
+
+/* Dropdown */
+.dep-search__dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 100;
+  list-style: none;
+  padding: 4px 0;
+  margin: 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.dep-search__option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s ease;
+}
+
+.dep-search__option:hover {
+  background: rgba(91, 132, 162, 0.10);
+}
+
+.dep-search__option-name {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.dep-search__option-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+/* Profile card */
+.dep-search__card {
+  margin-top: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dep-search__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.dep-search__card-name {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.dep-search__card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.dep-search__card-close {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.dep-search__card-close:hover {
+  color: var(--ink);
+}
+
+/* Mini spectrum bar */
+.dep-search__spectrum {
+  position: relative;
+  height: 40px;
+  padding-bottom: 18px;
+}
+
+.dep-search__track {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #468bc7 0%, #8ab0c4 30%, #c4a97a 70%, #cf673f 100%);
+  opacity: 0.55;
+}
+
+.dep-search__marker {
+  position: absolute;
+  top: 3px;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.dep-search__marker--party {
+  background: transparent;
+  border: 3px solid;
+  z-index: 1;
+}
+
+.dep-search__marker--deputy {
+  width: 14px;
+  height: 14px;
+  top: 6px;
+  z-index: 2;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+}
+
+.dep-search__deviation-line {
+  position: absolute;
+  top: 12px;
+  height: 2px;
+  border-top: 2px dashed;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.dep-search__track-labels {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+/* Stats grid */
+.dep-search__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.dep-search__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.dep-search__stat span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+
+.dep-search__stat strong {
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+/* Light theme overrides */
+body.gastos-light-theme .dep-search__input {
+  background: #FFFFFF;
+  border-color: #D8E1EA;
+  color: #17202A;
+}
+
+body.gastos-light-theme .dep-search__dropdown {
+  background: #FFFFFF;
+  border-color: #D8E1EA;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+body.gastos-light-theme .dep-search__option:hover {
+  background: #EEF3F8;
+}
+
+body.gastos-light-theme .dep-search__card {
+  background: #FFFFFF;
+  border-color: #D8E1EA;
+}
+
+body.gastos-light-theme .dep-search__stat {
+  background: #EEF3F8;
+  border-color: #D8E1EA;
+}

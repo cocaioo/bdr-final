@@ -178,6 +178,7 @@ describe('PartiesDashboardPage', () => {
       expect.stringMatching(/Rankings partidários/i),
       expect.stringMatching(/Posição ideológica revelada/i),
       expect.stringMatching(/Deputados fora da curva/i),
+      expect.stringMatching(/Buscar deputado/i),
       expect.stringMatching(/Coesão das bancadas/i),
     ])
   })

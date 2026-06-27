@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { fetchAllQuestionRows, fetchQuestion } from '../api'
 import { CaucusCohesionChart } from '../components/CaucusCohesionChart'
+import { DeputyIdeologySearch } from '../components/DeputyIdeologySearch'
 import { ExecutiveCards } from '../components/ExecutiveCards'
 import { IdeologyBarChart, type IdeologyBar } from '../components/IdeologyBarChart'
 import { IdeologyLegend } from '../components/IdeologyLegend'
@@ -103,14 +104,16 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
   const spectrum = useMemo(() => (q9 ? toSpectrumParties(q9.table_spec.rows) : []), [q9])
   const rangeCounts = useMemo(() => countByRange(spectrum), [spectrum])
 
-  // --- Secao 3: distribuicao ---
+  // --- Secao 3: distribuicao (exclui faixas sem partidos) ---
   const distributionBars = useMemo<IdeologyBar[]>(
     () =>
-      IDEOLOGY_RANGES.map((r) => ({
-        label: r.label,
-        value: rangeCounts[r.label] ?? 0,
-        color: r.color,
-      })),
+      IDEOLOGY_RANGES
+        .map((r) => ({
+          label: r.label,
+          value: rangeCounts[r.label] ?? 0,
+          color: r.color,
+        }))
+        .filter((bar) => bar.value > 0),
     [rangeCounts],
   )
 
@@ -305,6 +308,23 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
             </div>
           </div>
           <OutlierDeputiesRanking toRight={q14!.outliersRight} toLeft={q14!.outliersLeft} />
+        </section>
+      ) : null}
+
+      {/* Secao 7b — Busca de deputado por desvio ideologico */}
+      {hasRevealed ? (
+        <section className="parties-section stagger-item" style={{ position: 'relative', zIndex: 10 }}>
+          <div className="parties-section__head">
+            <span aria-hidden="true">07</span>
+            <div>
+              <h2>Buscar deputado</h2>
+              <p>
+                Pesquise um parlamentar e veja sua posição ideológica revelada pelo comportamento de voto,
+                comparada à posição oficial do partido.
+              </p>
+            </div>
+          </div>
+          <DeputyIdeologySearch deputies={q14!.deputies} />
         </section>
       ) : null}
 
