@@ -28,18 +28,20 @@ export function IdeologySpectrum({ parties }: IdeologySpectrumProps) {
   const chartRef = useRef<echarts.ECharts | null>(null)
 
   const option = useMemo<echarts.EChartsOption>(() => {
-    // Agrupa por score arredondado para distribuir o jitter sem colisoes.
+    // Bucket width determina quantos partidos "cabem" na mesma coluna antes de
+    // precisar de jitter. Usamos 0.25 (1/4 de ponto) para maior separacao.
+    const BUCKET = 0.25
     const buckets = new Map<number, number>()
     const points = [...parties]
       .sort((a, b) => a.score - b.score)
       .map((party) => {
-        const bucket = Math.round(party.score * 2) / 2
+        const bucket = Math.round(party.score / BUCKET) * BUCKET
         const seen = buckets.get(bucket) ?? 0
         buckets.set(bucket, seen + 1)
-        // Alterna acima/abaixo da linha central conforme acumula no bucket.
-        const offset = seen === 0 ? 0 : Math.ceil(seen / 2) * (seen % 2 === 1 ? 1 : -1)
+        // Espiral: 0, +1, -1, +2, -2, … em passos de 1.4 para mais espaco.
+        const offset = seen === 0 ? 0 : Math.ceil(seen / 2) * 1.4 * (seen % 2 === 1 ? 1 : -1)
         return {
-          value: [party.score, offset * 0.85],
+          value: [party.score, offset],
           name: party.sigla,
           itemStyle: { color: rangeColor(party.faixa) },
           party,
@@ -47,7 +49,7 @@ export function IdeologySpectrum({ parties }: IdeologySpectrumProps) {
       })
 
     return {
-      grid: { left: 24, right: 24, top: 28, bottom: 56, containLabel: true },
+      grid: { left: 28, right: 28, top: 36, bottom: 60, containLabel: true },
       tooltip: {
         trigger: 'item',
         confine: true,
@@ -63,7 +65,6 @@ export function IdeologySpectrum({ parties }: IdeologySpectrumProps) {
             `Faixa: <strong>${rangeLabel(p.faixa)}</strong>`,
             `Campo macro: <strong>${fieldLabel(p.campo)}</strong>`,
             `Fonte: ${p.fonte || '—'}`,
-            `Tipo de match: ${p.tipoMatch || '—'}`,
             `</div>`,
           ].join('<br/>')
         },
@@ -75,7 +76,7 @@ export function IdeologySpectrum({ parties }: IdeologySpectrumProps) {
         interval: 1,
         name: 'Score ideologico (0 = esquerda · 10 = direita)',
         nameLocation: 'middle',
-        nameGap: 34,
+        nameGap: 38,
         nameTextStyle: { color: '#8a9ba8', fontSize: 12 },
         axisLine: { lineStyle: { color: 'rgba(255,255,255,0.18)' } },
         splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } },
@@ -83,27 +84,34 @@ export function IdeologySpectrum({ parties }: IdeologySpectrumProps) {
       },
       yAxis: {
         type: 'value',
-        min: -4,
-        max: 4,
+        // Mais espaço vertical para acomodar partidos muito próximos.
+        min: -8,
+        max: 8,
         show: false,
       },
       series: [
         {
           type: 'scatter',
-          symbolSize: 16,
+          symbolSize: 14,
           data: points,
           label: {
             show: true,
             formatter: (raw: unknown) => (raw as { name: string }).name,
             position: 'top',
             color: '#f8fafc',
-            textBorderColor: 'rgba(15, 23, 42, 0.9)',
+            textBorderColor: 'rgba(15, 23, 42, 0.95)',
             textBorderWidth: 3,
             fontSize: 10,
             fontWeight: 700,
-            distance: 6,
+            distance: 5,
           },
-          emphasis: { scale: 1.35, focus: 'self' },
+          // ECharts label layout: desloca labels sobrepostos no eixo Y e
+          // garante que fiquem dentro da area do grafico.
+          labelLayout: {
+            moveOverlap: 'shiftY',
+            hideOverlap: false,
+          },
+          emphasis: { scale: 1.4, focus: 'self' },
         },
       ],
     }
@@ -140,6 +148,7 @@ export function IdeologySpectrum({ parties }: IdeologySpectrumProps) {
         className="ideology-spectrum__surface"
         role="img"
         aria-label="Espectro ideologico dos partidos por score"
+        style={{ height: 480 }}
       />
       {extremes ? (
         <p className="ideology-spectrum__hint">

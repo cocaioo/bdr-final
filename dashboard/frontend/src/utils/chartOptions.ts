@@ -435,7 +435,7 @@ function applyTheme(option: any): EChartsOption {
     option.textStyle = {}
   }
   option.textStyle.color = textInk
-  option.textStyle.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+  option.textStyle.fontFamily = "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif"
 
   if (option.legend) {
     if (!option.legend.textStyle) option.legend.textStyle = {}

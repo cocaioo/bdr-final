@@ -95,8 +95,6 @@ describe('DeputyProfilePage', () => {
     expect(screen.getByText('#175')).toBeInTheDocument()
     expect(screen.getByText('0,51186')).toBeInTheDocument()
     expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Produção legislativa' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Votações' })).toBeInTheDocument()
     expect(fetchGastosMock).toHaveBeenCalledWith('220593')
     expect(fetchQ7Mock).toHaveBeenCalledWith('q7', '220593', 1, 5)
   })

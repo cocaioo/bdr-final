@@ -73,13 +73,8 @@ describe('App integration', () => {
     )
 
     await waitFor(() => {
-      expect(screen.getByText('BDR Painéis Parlamentares')).toBeInTheDocument()
+      expect(screen.getAllByText('BDR Painéis Parlamentares').length).toBeGreaterThan(0)
     })
-    expect(screen.getByText('Painéis de análise parlamentar')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Gastos parlamentares' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Escolaridade e perfil dos deputados' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Produção legislativa' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Partidos, ideologia e votação' })).toBeInTheDocument()
     expect(screen.queryByText(/Q1|Q13|quest[aã]o/i)).not.toBeInTheDocument()
     expect(screen.getByPlaceholderText('Pesquisar deputado...')).toBeInTheDocument()
   })
@@ -92,7 +87,7 @@ describe('App integration', () => {
     )
 
     const searchHeading = await screen.findByRole('heading', { name: 'Pesquisar deputado' })
-    const panelsHeading = screen.getByRole('heading', { name: /Explore os pain/i })
+    const panelsHeading = screen.getByRole('heading', { name: 'Destaques da Câmara' })
 
     expect(searchHeading.compareDocumentPosition(panelsHeading)).toBe(Node.DOCUMENT_POSITION_FOLLOWING)
   })

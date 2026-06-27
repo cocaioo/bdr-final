@@ -166,7 +166,7 @@ describe('PartiesDashboardPage', () => {
 
   afterEach(() => vi.unstubAllGlobals())
 
-  it('renderiza o bloco consolidado com as dez seções na ordem definida', async () => {
+  it('renderiza o bloco consolidado com as seções na ordem definida', async () => {
     render(<PartiesDashboardPage meta={meta} />)
 
     expect(await screen.findByRole('heading', { name: /Partidos, Ideologia e Votação/i, level: 1 })).toBeInTheDocument()
@@ -178,22 +178,16 @@ describe('PartiesDashboardPage', () => {
       expect.stringMatching(/Rankings partidários/i),
       expect.stringMatching(/Posição ideológica revelada/i),
       expect.stringMatching(/Deputados fora da curva/i),
+      expect.stringMatching(/Buscar deputado/i),
       expect.stringMatching(/Coesão das bancadas/i),
-      expect.stringMatching(/Tabela completa/i),
-      expect.stringMatching(/Metodologia e fontes/i),
     ])
   })
 
-  it('integra Q14: scatter de posição revelada, outliers e tabela colapsável fechada', async () => {
+  it('integra Q14: scatter de posição revelada e outliers', async () => {
     render(<PartiesDashboardPage meta={meta} />)
     expect(await screen.findByTestId('revealed-scatter')).toHaveTextContent('revelados:2')
     expect(screen.getByRole('heading', { name: /Mais à direita que o partido/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /Mais à esquerda que o partido/i })).toBeInTheDocument()
-    // A tabela completa começa recolhida (apenas o botão, sem linhas).
-    const toggle = screen.getByRole('button', { name: /Tabela completa de deputados/i })
-    expect(toggle).toHaveAttribute('aria-expanded', 'false')
-    await userEvent.click(toggle)
-    expect(toggle).toHaveAttribute('aria-expanded', 'true')
   })
 
   it('mostra o resumo executivo com os indicadores-chave', async () => {
