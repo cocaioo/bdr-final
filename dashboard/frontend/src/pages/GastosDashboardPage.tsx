@@ -33,7 +33,7 @@ interface GastosDashboardPageProps {
 }
 
 const TABS: Array<{ id: GastosTab; label: string; question: string }> = [
-  { id: 'resumo', label: 'Resumo', question: 'Quanto foi gasto?' },
+  { id: 'resumo', label: 'Custo-Benefício', question: 'Quem performa melhor?' },
   { id: 'categorias', label: 'Categorias', question: 'Em que foi gasto?' },
   { id: 'deputados', label: 'Deputados', question: 'Quem gastou?' },
   { id: 'fornecedores', label: 'Fornecedores', question: 'Quem recebeu?' },
@@ -215,23 +215,61 @@ function SelectionSkeleton({
 /* ==========================================
    Standardized KPI Grid Helper
    ========================================== */
-function KpiGrid({ summary }: { summary: GastosSummary }) {
-  const cards = [
-    ['Valor total gasto', formatCurrency(summary.valor_total)],
-    ['Quantidade de despesas', formatCellValue(summary.qtd_despesas)],
-    ['Despesa média', formatCurrency(summary.ticket_medio)],
-    ['Deputados', formatCellValue(summary.qtd_deputados)],
-    ['Fornecedores', formatCellValue(summary.qtd_fornecedores)],
-  ]
+function KpiGrid({ summary, q7TopRow }: { summary: GastosSummary; q7TopRow?: Record<string, unknown> | null }) {
+  const indice = q7TopRow ? Number(q7TopRow.indice_custo_beneficio || 0) : null
+  const topName = q7TopRow ? String(q7TopRow.nome_parlamentar || '') : null
+  const topPartido = q7TopRow ? String(q7TopRow.sigla_partido || '') : null
 
   return (
-    <div className="gastos-kpi-grid">
-      {cards.map(([label, value]) => (
-        <article className="gastos-kpi-card" key={label}>
-          <span>{label}</span>
-          <strong>{value}</strong>
-        </article>
-      ))}
+    <div className="gastos-kpi-grid gastos-kpi-grid--enhanced">
+      {/* 1. Valor Total Gasto — financial baseline */}
+      <article className="gastos-kpi-card gastos-kpi-card--primary">
+        <span>Valor Total Gasto</span>
+        <strong>{formatCurrency(summary.valor_total)}</strong>
+      </article>
+
+      {/* 2. Custo-Benefício — key analytical metric */}
+      <article className="gastos-kpi-card gastos-kpi-card--cb">
+        <span>Custo-Benefício</span>
+        {indice !== null ? (
+          <>
+            <strong title={topName ?? undefined}>
+              {indice.toLocaleString('pt-BR', { minimumFractionDigits: 4, maximumFractionDigits: 4 })}
+            </strong>
+            <small className="gastos-kpi-cb-meta">
+              <span className="gastos-kpi-cb-badge">#1</span>
+              {topName ? `${topName.split(' ').slice(0, 2).join(' ')}` : '—'}
+              {topPartido ? ` · ${topPartido}` : ''}
+            </small>
+          </>
+        ) : (
+          <strong>—</strong>
+        )}
+      </article>
+
+      {/* 3. Despesa Média — avg cost per transaction */}
+      <article className="gastos-kpi-card gastos-kpi-card--avg">
+        <span>Despesa Média</span>
+        <strong>{formatCurrency(summary.ticket_medio)}</strong>
+      </article>
+
+      {/* 4. Quantidade de Despesas — transaction volume */}
+      <article className="gastos-kpi-card gastos-kpi-card--count">
+        <span>Quantidade de Despesas</span>
+        <strong>{formatCellValue(summary.qtd_despesas)}</strong>
+      </article>
+
+      {/* 5. Deputados */}
+      <article className="gastos-kpi-card gastos-kpi-card--deputies">
+        <span>Deputados</span>
+        <strong>{formatCellValue(summary.qtd_deputados)}</strong>
+      </article>
+
+      {/* 6. Fornecedores */}
+      <article className="gastos-kpi-card gastos-kpi-card--suppliers">
+        <span>Fornecedores</span>
+        <strong>{formatCellValue(summary.qtd_fornecedores)}</strong>
+      </article>
     </div>
   )
 }
@@ -358,7 +396,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [loadingSelectedDeputyBreakdown, setLoadingSelectedDeputyBreakdown] = useState(false)
 
   // Q7 - Custo-beneficio states
-  const [q7Expanded, setQ7Expanded] = useState(false)
   const [q7Data, setQ7Data] = useState<QuestionPayload | null>(null)
   const [q7Loading, setQ7Loading] = useState(false)
   const [q7Error, setQ7Error] = useState<string | null>(null)
@@ -565,33 +602,26 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       })
   }, [visitedTabs.contexto, contexto])
 
-  // Q7 - Custo-beneficio Loader
+  // Q7 - Custo-beneficio Loader (sempre ativo na aba Resumo)
   useEffect(() => {
     let active = true
     setQ7Loading(true)
     setQ7Error(null)
 
-    const anos = q7Expanded ? (q7Escopo === 'anual' ? [q7Ano] : []) : []
-    const ufs = q7Expanded && q7Uf ? [q7Uf] : []
-    const partidos = q7Expanded && q7Partido ? [q7Partido] : []
-    const search = q7Expanded ? debouncedQ7Search : ''
-    const page = q7Expanded ? q7Page : 1
-    const pageSize = q7Expanded ? q7PageSize : 5
-
     fetchQuestion(
       'q7',
       {
-        anos,
+        anos: q7Escopo === 'anual' ? [q7Ano] : [],
         eixos: [],
-        partidos,
-        ufs,
+        partidos: q7Partido ? [q7Partido] : [],
+        ufs: q7Uf ? [q7Uf] : [],
         deputados: [],
         escolaridade: [],
-        search,
+        search: debouncedQ7Search,
       },
       {
-        page,
-        pageSize,
+        page: q7Page,
+        pageSize: q7PageSize,
         sortBy: 'indice_custo_beneficio',
         sortDir: 'desc',
       },
@@ -613,7 +643,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     return () => {
       active = false
     }
-  }, [q7Expanded, q7Escopo, q7Ano, q7Uf, q7Partido, debouncedQ7Search, q7Page, q7PageSize])
+  }, [q7Escopo, q7Ano, q7Uf, q7Partido, debouncedQ7Search, q7Page, q7PageSize])
 
   // Reset pagination when filters change
   useEffect(() => {
@@ -784,7 +814,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             e em quais contextos politicos.
           </p>
         </div>
-        {summary ? <KpiGrid summary={summary} /> : <KpisSkeleton />}
       </section>
 
       {/* Tabs Navigation */}
@@ -803,239 +832,169 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       </nav>
 
       {/* Tab Panels */}
-      {/* 1. Resumo Tab */}
+      {/* 1. Resumo — Ranking de Custo-Benefício (Q7) */}
       {activeTab === 'resumo' && (
         <section className="gastos-tab-panel">
           <header className="gastos-tab-heading">
-            <h2>Visão Geral dos Gastos</h2>
-            <p>Quanto foi gasto pelos deputados?</p>
+            <h2>Custo-Benefício Parlamentar</h2>
+            <p>Ranking que pondera produção legislativa e gasto total do deputado</p>
           </header>
-          {loadingResumo || !summary || !categories ? (
-            <>
-              <KpisSkeleton />
-              <InsightsSkeleton />
-              <ChartsSkeleton />
-            </>
-          ) : (
-            <>
-              <KpiGrid summary={summary} />
-              <InsightGrid insights={resumoInsights} />
-              <div className="gastos-chart-grid">
-                {yearSeries.length > 0 && (
-                  <ChartPanel
-                    spec={lineChart(
-                      'Evolucao temporal dos gastos',
-                      'A base atual nao possui mes de emissao; a serie e apresentada por ano.',
-                      yearSeries,
-                    )}
-                  />
-                )}
-                <ChartPanel
-                  spec={barChart(
-                    'Distribuicao por categoria',
-                    'Top 8 categorias com maior valor total gasto. Passe o cursor para ver o nome completo.',
-                    asRecords(topCategoriesByValue),
-                    'categoria',
-                    'valor_total',
-                    'bar_horizontal',
-                    CATEGORY_CHART_OPTIONS,
-                  )}
-                />
-              </div>
 
-              {/* Seção Custo-benefício parlamentar (Q7) */}
-              <section className="gastos-q7-section premium-card" style={{ marginTop: '32px', padding: '24px' }}>
-                <header className="gastos-tab-heading" style={{ marginBottom: '20px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <h3 style={{ margin: 0, fontSize: '1.4rem', color: 'var(--primary)', fontWeight: 'bold' }}>
-                        Custo-beneficio parlamentar (Q7)
-                      </h3>
-                      <p style={{ margin: '4px 0 0 0', color: 'var(--muted)', fontSize: '0.9rem' }}>
-                        Indice comparativo que pondera a producao legislativa e o gasto total do deputado.
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      className="gastos-clear-button"
-                      style={{ padding: '8px 16px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}
-                      onClick={() => {
-                        setQ7Expanded(!q7Expanded)
-                        // Reset Q7 filters when collapsing/expanding
-                        setQ7Escopo('global')
-                        setQ7Ano('2023')
-                        setQ7Uf('')
-                        setQ7Partido('')
-                        setQ7Search('')
-                      }}
+          <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: '1.5', margin: 0 }}>
+            <strong>Metodologia:</strong> Pondera proposições por tipo (PEC = 10, PL = 6), status de tramitação e autoria,
+            aplicando suavização de potência 0.75 nos gastos. Apenas deputados elegíveis aparecem
+            (gasto ≥ R$&nbsp;10.000, score ≥ 5, ≥ 2 proposições, sendo ao menos 1 substantiva).
+          </p>
+
+          <div className="gastos-filter-row">
+            <label>
+              Escopo
+              <select
+                aria-label="Escopo"
+                value={q7Escopo}
+                onChange={(e) => setQ7Escopo(e.target.value as 'global' | 'anual')}
+              >
+                <option value="global">Global</option>
+                <option value="anual">Anual</option>
+              </select>
+            </label>
+
+            {q7Escopo === 'anual' && (
+              <label>
+                Ano
+                <select aria-label="Ano" value={q7Ano} onChange={(e) => setQ7Ano(e.target.value)}>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026">2026</option>
+                </select>
+              </label>
+            )}
+
+            <label>
+              Partido
+              <select value={q7Partido} onChange={(e) => setQ7Partido(e.target.value)}>
+                <option value="">Todos</option>
+                {(meta.available_filters.partidos ?? []).map((choice) => (
+                  <option key={choice.value} value={choice.value}>{choice.label}</option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              UF
+              <select value={q7Uf} onChange={(e) => setQ7Uf(e.target.value)}>
+                <option value="">Todas</option>
+                {(meta.available_filters.ufs ?? []).map((choice) => (
+                  <option key={choice.value} value={choice.value}>{choice.label}</option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              Busca
+              <input
+                type="text"
+                value={q7Search}
+                onChange={(e) => setQ7Search(e.target.value)}
+                placeholder="Nome do deputado..."
+              />
+            </label>
+          </div>
+
+          {q7Loading && !q7Data ? (
+            <CardsSkeleton count={10} />
+          ) : q7Error ? (
+            <p style={{ color: 'var(--danger)' }}>{q7Error}</p>
+          ) : q7Data ? (
+            <>
+              <div className="gastos-deputy-card-grid">
+                {asRecords(q7Data.table_spec.rows).map((row, index) => {
+                  const hasGeoPartyFilter = !!(q7Uf || q7Partido)
+                  const posFiltro = row.posicao_no_filtro !== undefined && row.posicao_no_filtro !== null ? String(row.posicao_no_filtro) : ''
+                  const posGeral = String(row.posicao_geral ?? row.posicao ?? '')
+                  const nameStr = String(row.nome_parlamentar || '')
+                  const partidoStr = String(row.sigla_partido || '')
+                  const ufStr = String(row.sigla_uf || '')
+                  const isPartial = !!row.ano_parcial
+                  const idDep = Number(row.id_deputado || 0)
+                  const indice = Number(row.indice_custo_beneficio || 0)
+                  const total = Number(row.total_proposicoes || 0)
+                  const substantivas = Number(row.total_proposicoes_substantivas || 0)
+                  const aprovadas = Number(row.total_proposicoes_aprovadas || 0)
+                  return (
+                    <article
+                      key={`${idDep}-${index}`}
+                      className="gastos-deputy-rank-card"
+                      style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px', cursor: 'default' }}
                     >
-                      {q7Expanded ? 'Recolher analise' : 'Ver analise completa'}
-                    </button>
-                  </div>
-                  <p style={{ marginTop: '12px', fontSize: '0.85rem', color: 'var(--muted)', lineHeight: '1.4' }}>
-                    <strong>Metodologia curta:</strong> Pondera proposicoes por tipo (ex: PEC tem peso 10, PL tem peso 6), status de tramitacao e autoria (peso maior para autor principal), aplicando suavizacao de potencia 0.75 nos gastos e score para evitar distorcoes de valores extremos. Apenas deputados elegiveis aparecem no ranking principal (gasto &gt;= R$ 10.000, score proposicoes &gt;= 5, total proposicoes &gt;= 2, sendo pelo menos 1 substantiva).
-                  </p>
-                </header>
-
-                {q7Loading && !q7Data ? (
-                  <CardsSkeleton />
-                ) : q7Error ? (
-                  <p style={{ color: 'var(--danger)' }}>{q7Error}</p>
-                ) : q7Data ? (
-                  <>
-                    {q7Expanded && (
-                      <div className="gastos-filter-row" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '20px', background: 'var(--surface)', padding: '16px', borderRadius: '12px', border: '1px solid var(--border)' }}>
-                        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 120px' }}>
-                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Escopo</span>
-                          <select
-                            aria-label="Escopo"
-                            value={q7Escopo}
-                            onChange={(e) => setQ7Escopo(e.target.value as 'global' | 'anual')}
-                            style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}
-                          >
-                            <option value="global">Global</option>
-                            <option value="anual">Anual</option>
-                          </select>
-                        </label>
-
-                        {q7Escopo === 'anual' && (
-                          <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 100px' }}>
-                            <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Ano</span>
-                            <select
-                              aria-label="Ano"
-                              value={q7Ano}
-                              onChange={(e) => setQ7Ano(e.target.value)}
-                              style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}
-                            >
-                              <option value="2023">2023</option>
-                              <option value="2024">2024</option>
-                              <option value="2025">2025</option>
-                              <option value="2026">2026</option>
-                            </select>
-                          </label>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                        {hasGeoPartyFilter && posFiltro ? (
+                          <span className="rank-number" style={{ display: 'flex', flexDirection: 'column', fontWeight: 'bold' }}>
+                            <span style={{ color: 'var(--primary)' }}>#{posFiltro} no filtro</span>
+                            <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>#{posGeral} geral</span>
+                          </span>
+                        ) : (
+                          <span className="rank-number" style={{ fontSize: '1rem', fontWeight: 'bold' }}>#{posGeral}</span>
                         )}
-
-                        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 150px' }}>
-                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Partido</span>
-                          <select value={q7Partido} onChange={(e) => setQ7Partido(e.target.value)} style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}>
-                            <option value="">Todos</option>
-                            {(meta.available_filters.partidos ?? []).map((choice) => (
-                              <option key={choice.value} value={choice.value}>{choice.label}</option>
-                            ))}
-                          </select>
-                        </label>
-                        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 150px' }}>
-                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>UF</span>
-                          <select value={q7Uf} onChange={(e) => setQ7Uf(e.target.value)} style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}>
-                            <option value="">Todas</option>
-                            {(meta.available_filters.ufs ?? []).map((choice) => (
-                              <option key={choice.value} value={choice.value}>{choice.label}</option>
-                            ))}
-                          </select>
-                        </label>
-                        <label style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: '1 1 200px' }}>
-                          <span style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Busca por Nome</span>
-                          <input
-                            type="text"
-                            value={q7Search}
-                            onChange={(e) => setQ7Search(e.target.value)}
-                            placeholder="Digite o nome do deputado..."
-                            style={{ padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}
-                          />
-                        </label>
+                        <DeputyAvatar id={idDep} nome={nameStr} size={52} />
                       </div>
-                    )}
 
-                    <div className="gastos-deputy-card-grid">
-                      {asRecords(q7Data.table_spec.rows).map((row, index) => {
-                        const hasGeoPartyFilter = !!(q7Uf || q7Partido)
-                        const posFiltro = row.posicao_no_filtro !== undefined && row.posicao_no_filtro !== null ? String(row.posicao_no_filtro) : ''
-                        const posGeral = String(row.posicao_geral ?? row.posicao ?? '')
-                        const nameStr = String(row.nome_parlamentar || '')
-                        const partidoStr = String(row.sigla_partido || '')
-                        const ufStr = String(row.sigla_uf || '')
-                        const isPartial = !!row.ano_parcial
-                        const idDep = Number(row.id_deputado || 0)
-                        const indice = Number(row.indice_custo_beneficio || 0)
-                        const total = Number(row.total_proposicoes || 0)
-                        const substantivas = Number(row.total_proposicoes_substantivas || 0)
-                        const aprovadas = Number(row.total_proposicoes_aprovadas || 0)
-                        return (
-                          <article
-                            key={`${idDep}-${index}`}
-                            className="gastos-deputy-rank-card"
-                            style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px', cursor: 'default' }}
-                          >
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                              {hasGeoPartyFilter && posFiltro ? (
-                                <span className="rank-number" style={{ display: 'flex', flexDirection: 'column', fontWeight: 'bold' }}>
-                                  <span style={{ color: 'var(--primary)' }}>#{posFiltro} no filtro</span>
-                                  <span style={{ fontSize: '0.72rem', color: 'var(--muted)' }}>#{posGeral} geral</span>
-                                </span>
-                              ) : (
-                                <span className="rank-number" style={{ fontSize: '1rem', fontWeight: 'bold' }}>#{posGeral}</span>
-                              )}
-                              <DeputyAvatar id={idDep} nome={nameStr} size={52} />
-                            </div>
-
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'left', marginTop: '4px' }}>
-                              <span className="rank-name" style={{ fontWeight: 'bold', fontSize: '1rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={nameStr}>
-                                {nameStr}
-                              </span>
-                              <span className="rank-meta" style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
-                                {partidoStr} - {ufStr}
-                                {isPartial && (
-                                  <span className="badge-2026-parcial" style={{ marginLeft: '6px', background: 'var(--primary-light, #e0f2fe)', color: 'var(--primary, #0284c7)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>
-                                    2026 parcial
-                                  </span>
-                                )}
-                              </span>
-                            </div>
-
-                            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
-                              <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 'bold' }}>Índice custo-benefício</span>
-                              <strong style={{ fontSize: '1.15rem', color: 'var(--primary)' }}>{indice.toLocaleString('pt-BR', { minimumFractionDigits: 5, maximumFractionDigits: 5 })}</strong>
-                              <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>Gasto total {formatCurrency(row.gasto_total)}</span>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
-                                <span>{total} prop.</span>
-                                <span>{substantivas} subst. · {aprovadas} aprov.</span>
-                              </div>
-                            </div>
-                          </article>
-                        )
-                      })}
-                    </div>
-
-                    {q7Expanded && q7Data.table_spec.total > q7PageSize && (
-                      <div className="gastos-pagination-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', padding: '12px', background: 'var(--surface)', borderRadius: '8px', border: '1px solid var(--border)' }}>
-                        <span style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>
-                          Mostrando {((q7Page - 1) * q7PageSize) + 1} - {Math.min(q7Page * q7PageSize, q7Data.table_spec.total)} de {q7Data.table_spec.total} deputados
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', textAlign: 'left', marginTop: '4px' }}>
+                        <span className="rank-name" style={{ fontWeight: 'bold', fontSize: '1rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={nameStr}>
+                          {nameStr}
                         </span>
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                          <button
-                            type="button"
-                            disabled={q7Page <= 1}
-                            onClick={() => setQ7Page(q7Page - 1)}
-                            style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', cursor: q7Page <= 1 ? 'not-allowed' : 'pointer', opacity: q7Page <= 1 ? 0.5 : 1 }}
-                          >
-                            Anterior
-                          </button>
-                          <button
-                            type="button"
-                            disabled={q7Page * q7PageSize >= q7Data.table_spec.total}
-                            onClick={() => setQ7Page(q7Page + 1)}
-                            style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', cursor: q7Page * q7PageSize >= q7Data.table_spec.total ? 'not-allowed' : 'pointer', opacity: q7Page * q7PageSize >= q7Data.table_spec.total ? 0.5 : 1 }}
-                          >
-                            Próxima
-                          </button>
+                        <span className="rank-meta" style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+                          {partidoStr} - {ufStr}
+                          {isPartial && (
+                            <span className="badge-2026-parcial" style={{ marginLeft: '6px', background: 'var(--primary-light, #e0f2fe)', color: 'var(--primary, #0284c7)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>
+                              2026 parcial
+                            </span>
+                          )}
+                        </span>
+                      </div>
+
+                      <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+                        <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 'bold' }}>Índice custo-benefício</span>
+                        <strong style={{ fontSize: '1.15rem', color: 'var(--primary)' }}>{indice.toLocaleString('pt-BR', { minimumFractionDigits: 5, maximumFractionDigits: 5 })}</strong>
+                        <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>Gasto total {formatCurrency(row.gasto_total)}</span>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
+                          <span>{total} prop.</span>
+                          <span>{substantivas} subst. · {aprovadas} aprov.</span>
                         </div>
                       </div>
-                    )}
-                  </>
-                ) : null}
-              </section>
+                    </article>
+                  )
+                })}
+              </div>
+
+              {q7Data.table_spec.total > q7PageSize && (
+                <div className="gastos-pagination-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px', padding: '12px', background: 'var(--surface)', borderRadius: '8px', border: '1px solid var(--border)' }}>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>
+                    Mostrando {((q7Page - 1) * q7PageSize) + 1}–{Math.min(q7Page * q7PageSize, q7Data.table_spec.total)} de {q7Data.table_spec.total} deputados
+                  </span>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <button
+                      type="button"
+                      disabled={q7Page <= 1}
+                      onClick={() => setQ7Page(q7Page - 1)}
+                      style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', cursor: q7Page <= 1 ? 'not-allowed' : 'pointer', opacity: q7Page <= 1 ? 0.5 : 1 }}
+                    >
+                      Anterior
+                    </button>
+                    <button
+                      type="button"
+                      disabled={q7Page * q7PageSize >= q7Data.table_spec.total}
+                      onClick={() => setQ7Page(q7Page + 1)}
+                      style={{ padding: '6px 12px', borderRadius: '6px', border: '1px solid var(--border)', background: 'var(--bg)', cursor: q7Page * q7PageSize >= q7Data.table_spec.total ? 'not-allowed' : 'pointer', opacity: q7Page * q7PageSize >= q7Data.table_spec.total ? 0.5 : 1 }}
+                    >
+                      Próxima
+                    </button>
+                  </div>
+                </div>
+              )}
             </>
-          )}
+          ) : null}
         </section>
       )}
 
