@@ -6,13 +6,10 @@ import { ExecutiveCards } from '../components/ExecutiveCards'
 import { IdeologyBarChart, type IdeologyBar } from '../components/IdeologyBarChart'
 import { IdeologyLegend } from '../components/IdeologyLegend'
 import { IdeologySpectrum } from '../components/IdeologySpectrum'
-import { MethodologyCard } from '../components/MethodologyCard'
-import { MethodologySummary } from '../components/MethodologySummary'
 import { NoDataState } from '../components/NoDataState'
 import { OutlierDeputiesRanking } from '../components/OutlierDeputiesRanking'
 import { PartyAlignmentRanking } from '../components/PartyAlignmentRanking'
 import { PartyRankingTabs, type Q11Tables } from '../components/PartyRankingTabs'
-import { RevealedDeputiesTable } from '../components/RevealedDeputiesTable'
 import { RevealedPositionScatter } from '../components/RevealedPositionScatter'
 import { IDEOLOGY_RANGES, rangeLabel, toNumber, toSpectrumParties } from '../utils/ideology'
 import { averageCaucusCohesion, behavioralPartyCorrelation, parseQ14, type Q14Data } from '../utils/q14'
@@ -325,35 +322,6 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
             </div>
           </div>
           <CaucusCohesionChart cohesion={q14!.cohesion} />
-        </section>
-      ) : null}
-
-      {/* Secao 9 — Tabela completa (colapsavel) */}
-      {hasRevealed ? (
-        <section className="parties-section stagger-item">
-          <div className="parties-section__head">
-            <span aria-hidden="true">08</span>
-            <div>
-              <h2>Tabela completa</h2>
-              <p>Todos os deputados com posição revelada. Recolhida por padrão para manter a leitura limpa.</p>
-            </div>
-          </div>
-          <RevealedDeputiesTable deputies={q14!.deputies} />
-        </section>
-      ) : null}
-
-      {/* Secao 10 — Metodologia (sempre por ultimo) */}
-      {hasRevealed ? (
-        <section className="parties-section stagger-item">
-          <div className="parties-section__head">
-            <span aria-hidden="true">09</span>
-            <div>
-              <h2>Metodologia e fontes</h2>
-              <p>O que cada seção mede, com um exemplo real, e como a posição revelada é estimada.</p>
-            </div>
-          </div>
-          <MethodologySummary deputies={q14!.deputies} cohesion={q14!.cohesion} />
-          {q14!.methodology ? <MethodologyCard methodology={q14!.methodology} /> : null}
         </section>
       ) : null}
     </main>
