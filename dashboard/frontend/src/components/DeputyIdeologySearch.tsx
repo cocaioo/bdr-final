@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 
 import { IdeologyBadge } from './IdeologyBadge'
+import { DeputyAvatar } from './DeputyAvatar'
 import { IDEOLOGY_SCORE_MIN, IDEOLOGY_SCORE_MAX, rangeColor } from '../utils/ideology'
 import type { RevealedDeputy } from '../utils/q14'
 
@@ -102,8 +103,87 @@ export function DeputyIdeologySearch({ deputies }: DeputyIdeologySearchProps) {
   const deviationDir = selected?.partyDeviationDirection ?? 'alinhado'
   const partyColor = selected ? rangeColor(selected.partyBand) : '#8a9ba8'
 
+  const profile = useMemo(() => {
+    if (!selected) return null
+    const name = selected.name
+    const party = selected.party
+    const absPartyDev = Math.abs(selected.partyDeviation)
+    const absCaucusDev = Math.abs(selected.caucusDeviation)
+    const formattedPartyDev = `${selected.partyDeviation > 0 ? '+' : ''}${selected.partyDeviation.toFixed(2)}`
+    const formattedCaucusDev = `${selected.caucusDeviation > 0 ? '+' : ''}${selected.caucusDeviation.toFixed(2)}`
+
+    if (absPartyDev > 1.5 && absCaucusDev < 0.3) {
+      return {
+        id: 'label_divergence',
+        label: 'Divergência de Rótulo',
+        color: '#468bc7',
+        bg: 'rgba(70, 139, 199, 0.1)',
+        description: (
+          <span>
+            <strong>Interpretação:</strong> Embora <strong>{name}</strong> vote de forma diferente do rótulo ideológico oficial do partido (desvio de {formattedPartyDev}), ele(a) vota em forte sintonia com os colegas do <strong>{party}</strong> em plenário (desvio de apenas {formattedCaucusDev}). Isso reflete que a bancada inteira do {party} tem votado deslocada da sua ideologia teórica.
+          </span>
+        )
+      }
+    }
+
+    if (absPartyDev > 1.5 && absCaucusDev >= 0.5) {
+      return {
+        id: 'outlier',
+        label: 'Outlier de Bancada',
+        color: '#cf673f',
+        bg: 'rgba(207, 103, 63, 0.1)',
+        description: (
+          <span>
+            <strong>Interpretação:</strong> <strong>{name}</strong> demonstra atuação independente: afasta-se significativamente tanto do rótulo teórico do partido (desvio de {formattedPartyDev}) quanto do comportamento médio de voto dos colegas do <strong>{party}</strong> (desvio da bancada de {formattedCaucusDev}).
+          </span>
+        )
+      }
+    }
+
+    if (absPartyDev <= 0.5 && absCaucusDev < 0.3) {
+      return {
+        id: 'aligned',
+        label: 'Fiel à Doutrina',
+        color: 'var(--ok, #22c55e)',
+        bg: 'rgba(34, 197, 94, 0.1)',
+        description: (
+          <span>
+            <strong>Interpretação:</strong> <strong>{name}</strong> está altamente alinhado(a): mantém votos muito próximos tanto do rótulo ideológico teórico do partido (desvio de {formattedPartyDev}) quanto da média da bancada do <strong>{party}</strong> (desvio de {formattedCaucusDev}).
+          </span>
+        )
+      }
+    }
+
+    return {
+      id: 'standard',
+      label: 'Alinhamento Padrão',
+      color: 'var(--muted, #8a9ba8)',
+      bg: 'rgba(138, 155, 168, 0.1)',
+      description: (
+        <span>
+          <strong>Interpretação:</strong> O <em>desvio ideológico</em> ({formattedPartyDev}) mede a distância para o rótulo oficial do partido. O <em>desvio da bancada</em> ({formattedCaucusDev}) mede a distância para a média real de voto da bancada do <strong>{party}</strong> em plenário.
+        </span>
+      )
+    }
+  }, [selected])
+
   return (
     <div className="dep-search">
+      {/* Banner de Contexto Analitico */}
+      <div className="dep-search__info-banner">
+        <p>
+          🎯 <strong>Dica de análise:</strong> Esta pesquisa contrasta a ideologia oficial do partido contra o comportamento real de voto do parlamentar. Você encontrará dois tipos marcantes de comportamento nos dados:
+        </p>
+        <ul>
+          <li>
+            <strong>Divergência de Rótulo Partidário:</strong> Deputados (como os do <strong>PSOL</strong>, <strong>PT</strong> ou <strong>UNIÃO</strong>) que votam muito próximos à sua bancada, mas distantes do rótulo teórico do partido. Isso indica que a bancada inteira atua em plenário de forma deslocada de sua classificação acadêmica.
+          </li>
+          <li>
+            <strong>Outliers de Bancada (Desalinhamento Real):</strong> Deputados que de fato votam de forma muito diferente dos seus próprios colegas de partido (ex: <strong>João Carlos Bacelar</strong> no PL, ou <strong>Daniel José</strong> e <strong>Delegado Palumbo</strong> no Podemos).
+          </li>
+        </ul>
+      </div>
+
       {/* Search input */}
       <div className="dep-search__input-wrap">
         <input
@@ -133,43 +213,70 @@ export function DeputyIdeologySearch({ deputies }: DeputyIdeologySearchProps) {
             ×
           </button>
         )}
-      </div>
 
-      {/* Dropdown com posicionamento absoluto em relacao a .dep-search */}
-      {open && suggestions.length > 0 && (
-        <ul
-          className="dep-search__dropdown"
-          role="listbox"
-          style={{ zIndex: 1001 }}
-        >
-          {suggestions.map((d) => (
-            <li key={d.deputyId || d.name} role="option" aria-selected={selected?.deputyId === d.deputyId}>
-              <button
-                type="button"
-                className="dep-search__option"
-                onMouseDown={() => pick(d)}
-              >
-                <span className="dep-search__option-name">{d.name}</span>
-                <span className="dep-search__option-meta">
-                  {d.party}
-                  <IdeologyBadge range={d.partyBand} compact />
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+        {/* Dropdown com posicionamento absoluto em relacao a .dep-search__input-wrap */}
+        {open && suggestions.length > 0 && (
+          <ul
+            className="dep-search__dropdown"
+            role="listbox"
+            style={{ zIndex: 1001 }}
+          >
+            {suggestions.map((d) => (
+              <li key={d.deputyId || d.name} role="option" aria-selected={selected?.deputyId === d.deputyId}>
+                <button
+                  type="button"
+                  className="dep-search__option"
+                  onMouseDown={() => pick(d)}
+                >
+                  <DeputyAvatar id={d.deputyId} nome={d.name} size={32} />
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                    <span className="dep-search__option-name">{d.name}</span>
+                    <span className="dep-search__option-meta">
+                      {d.party}
+                      <IdeologyBadge range={d.partyBand} compact />
+                    </span>
+                  </div>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
 
       {/* Deputy profile card */}
       {selected && (
         <div className="dep-search__card">
           <div className="dep-search__card-header">
-            <div>
-              <h4 className="dep-search__card-name">{selected.name}</h4>
-              <p className="dep-search__card-meta">
-                {selected.party}
-                <IdeologyBadge range={selected.partyBand} />
-              </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <DeputyAvatar id={selected.deputyId} nome={selected.name} size={48} />
+              <div>
+                <h4 className="dep-search__card-name">{selected.name}</h4>
+                <div className="dep-search__card-meta">
+                  <span>{selected.party}</span>
+                  <IdeologyBadge range={selected.partyBand} />
+                  {profile && (
+                    <span
+                      className="dep-search__profile-badge"
+                      style={{
+                        borderColor: profile.color,
+                        color: profile.color,
+                        backgroundColor: profile.bg,
+                        padding: '2px 8px',
+                        borderRadius: '12px',
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        border: '1px solid',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.02em',
+                        display: 'inline-flex',
+                        alignItems: 'center'
+                      }}
+                    >
+                      {profile.label}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
             <button type="button" className="dep-search__card-close" onClick={clear} aria-label="Fechar">×</button>
           </div>
@@ -220,6 +327,14 @@ export function DeputyIdeologySearch({ deputies }: DeputyIdeologySearchProps) {
               <strong>{selected.validVotes.toLocaleString('pt-BR')}</strong>
             </div>
           </div>
+
+          {/* Legenda Inteligente Contextual */}
+          {profile && (
+            <div className="dep-search__explanation">
+              <span className="dep-search__explanation-icon">💡</span>
+              <p>{profile.description}</p>
+            </div>
+          )}
         </div>
       )}
     </div>
