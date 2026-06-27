@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, development ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, development ]
 
 jobs:
   python-tests:
@@ -30,8 +30,10 @@ jobs:
           pytest tests
 
       - name: Run backend Python tests
-        run: |
-          cd dashboard/backend && pytest
+        working-directory: dashboard/backend
+        env:
+          PYTHONPATH: .
+        run: pytest
 
   frontend-build:
     runs-on: ubuntu-latest
@@ -54,9 +56,6 @@ jobs:
         run: |
           cd dashboard/frontend && npm run build
 
-      # Frontend unit tests are currently failing in the codebase due to outdated chart name assertions (e.g. seeking 'Evolucao temporal dos gastos' which was refactored out).
-      # We execute them with continue-on-error: true to report results without failing the CI run.
-      - name: Run frontend unit tests (Pending Fixes)
+      - name: Run frontend unit tests
         run: |
           cd dashboard/frontend && npm run test
-        continue-on-error: true
