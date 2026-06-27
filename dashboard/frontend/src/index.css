@@ -3718,8 +3718,12 @@ body.gastos-light-theme .skeleton-text {
   min-height: 480px;
 }
 
+.perfil-chart-grid-q4 {
+  grid-template-columns: 1fr;
+}
+
 .perfil-chart-grid-q4 .chart-surface {
-  min-height: 420px;
+  min-height: 480px;
 }
 
 .perfil-deputy-list {

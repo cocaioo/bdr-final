@@ -155,7 +155,7 @@ function buildEducationChart(payload: QuestionPayload, selectedEducation: string
     series: [
       { name: 'Deputados', data: rows.map((row) => numberValue(row.qtd_deputados)) },
     ],
-    options: {},
+    options: { chart_height: 480 },
   }
 }
 
@@ -250,6 +250,12 @@ export function PerfilDashboardPage({ meta }: PerfilDashboardPageProps) {
           ...partySource,
           title: 'Escolaridade por partido',
           description: 'Composição dos partidos por nível de escolaridade declarado.',
+          options: {
+            ...partySource.options,
+            legend_bottom: true,
+            bar_max_width: 40,
+            chart_height: 620,
+          },
         }
       : undefined
 

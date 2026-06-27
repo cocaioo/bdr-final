@@ -41,8 +41,17 @@ export function ChartPanel({ spec, yearLabels, activeFilters, onBarClick }: Char
 
     const onResize = () => chart.resize()
     window.addEventListener('resize', onResize)
+
+    // O ECharts so reage a eventos de resize da janela; mudancas de layout
+    // causadas só por CSS (ex.: grid mudando de colunas) nao disparam esse
+    // evento, deixando o canvas com o tamanho antigo. O ResizeObserver cobre
+    // esse caso ao observar o proprio contêiner do gráfico.
+    const resizeObserver = new ResizeObserver(() => chart.resize())
+    resizeObserver.observe(ref.current)
+
     return () => {
       window.removeEventListener('resize', onResize)
+      resizeObserver.disconnect()
       chart.off('click', onClick)
       chart.dispose()
       chartRef.current = null
