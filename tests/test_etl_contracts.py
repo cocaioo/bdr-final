@@ -166,9 +166,7 @@ def test_q9_q10_q11_sqls_use_complete_ideology_columns() -> None:
 def test_q9_q10_q11_artifacts_preserve_complete_ideology_columns() -> None:
     artifacts = [
         Path("JF/partidos-ideologia-votacao/q9/q9_vies_deputado.txt"),
-        # q9_vies_deputado_detalhe.csv is intentionally excluded: it is a large
-        # audit-only artifact generated locally by the export pipeline and is
-        # listed in .gitignore, so it is never present in CI.
+        Path("JF/partidos-ideologia-votacao/q9/q9_vies_deputado_detalhe.csv"),
         Path("JF/partidos-ideologia-votacao/q10/q10_alinhamento_partidos.txt"),
         Path("JF/partidos-ideologia-votacao/q11/q11_ranking_partidos.txt"),
     ]
