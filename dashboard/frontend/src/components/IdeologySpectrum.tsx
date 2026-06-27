@@ -65,7 +65,6 @@ export function IdeologySpectrum({ parties }: IdeologySpectrumProps) {
             `Faixa: <strong>${rangeLabel(p.faixa)}</strong>`,
             `Campo macro: <strong>${fieldLabel(p.campo)}</strong>`,
             `Fonte: ${p.fonte || '—'}`,
-            `Tipo de match: ${p.tipoMatch || '—'}`,
             `</div>`,
           ].join('<br/>')
         },
