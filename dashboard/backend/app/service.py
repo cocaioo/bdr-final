@@ -13,6 +13,7 @@ from .adapters import build_adapter
 from .adapters.base import AdapterContext
 from .cache import MemoryCache
 from .config import REPO_ROOT, REGISTRY_PATH, RESPONSES_DIR, SQL_DIR
+from .deputado_temas_service import DeputadoTemasService
 from .filter_engine import FilterState
 from .gastos_service import GastosAnalyticsService
 from .models import FilterCatalog, FilterChoice, MetaResponse, QuestionGroup, QuestionMeta, QuestionPayload
@@ -44,6 +45,7 @@ class DashboardService:
         self.registry: QuestionRegistry = load_registry(self.registry_path)
         self.cache = MemoryCache(ttl_seconds=300)
         self.gastos = GastosAnalyticsService(repo_root=self.repo_root)
+        self.tema_nuvem = DeputadoTemasService(repo_root=self.repo_root)
         self._version_cache: tuple[float, str] | None = None
         self._version_cache_ttl = 60.0
         self._document_cache: dict[tuple[str, int, int], ParsedDocument] = {}

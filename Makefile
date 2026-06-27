@@ -2,7 +2,7 @@ PYTHON ?= venv/Scripts/python
 COMPOSE ?= docker compose
 BDR_PORT ?= 8001
 
-.PHONY: venv install up down db-reset etl validate export-respostas gastos-analytics gastos-audit-api clean-outputs all dashboard-install dashboard-api dashboard-web dashboard-dev dashboard-test
+.PHONY: venv install up down db-reset etl validate export-respostas gastos-analytics gastos-audit-api temas-nuvem-analytics clean-outputs all dashboard-install dashboard-api dashboard-web dashboard-dev dashboard-test
 
 venv:
 	python -m venv venv
@@ -35,6 +35,9 @@ gastos-analytics:
 
 gastos-audit-api:
 	$(PYTHON) dashboard/scripts/audit_gastos_api.py
+
+temas-nuvem-analytics:
+	$(PYTHON) dashboard/scripts/generate_temas_nuvem_analytics.py
 
 clean-outputs:
 	powershell -NoProfile -Command "Remove-Item -Path dados_padronizados -Recurse -Force -ErrorAction SilentlyContinue; Remove-Item -Path scratch/query-staging -Recurse -Force -ErrorAction SilentlyContinue"
