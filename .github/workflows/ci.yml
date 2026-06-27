@@ -54,9 +54,6 @@ jobs:
         run: |
           cd dashboard/frontend && npm run build
 
-      # Frontend unit tests are currently failing in the codebase due to outdated chart name assertions (e.g. seeking 'Evolucao temporal dos gastos' which was refactored out).
-      # We execute them with continue-on-error: true to report results without failing the CI run.
-      - name: Run frontend unit tests (Pending Fixes)
+      - name: Run frontend unit tests
         run: |
           cd dashboard/frontend && npm run test
-        continue-on-error: true
