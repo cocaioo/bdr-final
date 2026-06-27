@@ -371,11 +371,16 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [yearSeries, setYearSeries] = useState<Array<{ ano: string; valor_total: number }>>([])
 
   // Loading states per tab
-  const [loadingResumo, setLoadingResumo] = useState(false)
   const [loadingCategorias, setLoadingCategorias] = useState(false)
   const [loadingDeputados, setLoadingDeputados] = useState(false)
   const [loadingFornecedores, setLoadingFornecedores] = useState(false)
   const [loadingContexto, setLoadingContexto] = useState(false)
+
+  // Error states per tab
+  const [categoriasError, setCategoriasError] = useState<string | null>(null)
+  const [deputadosError, setDeputadosError] = useState<string | null>(null)
+  const [fornecedoresError, setFornecedoresError] = useState<string | null>(null)
+  const [contextoError, setContextoError] = useState<string | null>(null)
 
   // Filter states
   const [ano, setAno] = useState('')
@@ -443,9 +448,12 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     if (!visitedTabs.resumo) return
     if (summary && categories && yearSeries.length > 0) return
 
-    setLoadingResumo(true)
     const years = availableYears.length ? availableYears : ['2023', '2024', '2025', '2026']
 
+    // Prefetch usado pela aba Categorias (compartilha o estado `categories`/
+    // `yearSeries`); nao tem secao visual propria, por isso erros aqui apenas
+    // sao logados — se a busca falhar, a aba Categorias tenta de novo e exibe
+    // o erro normalmente quando o usuario a visitar.
     Promise.all([
       fetchGastosResumo(),
       fetchGastosCategorias(1, 200),
@@ -456,11 +464,8 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
         setCategories(categoryData)
         setYearSeries(payloads.map((payload, index) => ({ ano: years[index], valor_total: payload.summary.valor_total })))
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error('Error fetching resumo data:', err)
-      })
-      .finally(() => {
-        setLoadingResumo(false)
       })
   }, [visitedTabs.resumo, availableYears, summary, categories, yearSeries])
 
@@ -470,12 +475,14 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     if (categories) return
 
     setLoadingCategorias(true)
+    setCategoriasError(null)
     fetchGastosCategorias(1, 200)
       .then((data) => {
         setCategories(data)
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error('Error fetching categories:', err)
+        setCategoriasError(err.message)
       })
       .finally(() => {
         setLoadingCategorias(false)
@@ -487,6 +494,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     if (!visitedTabs.deputados) return
 
     setLoadingDeputados(true)
+    setDeputadosError(null)
     fetchGastosDeputados({
       ano: ano || undefined,
       partido: partido || undefined,
@@ -502,8 +510,9 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             : current
         ))
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error('Error fetching deputies:', err)
+        setDeputadosError(err.message)
       })
       .finally(() => {
         setLoadingDeputados(false)
@@ -562,6 +571,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     if (!visitedTabs.fornecedores) return
 
     setLoadingFornecedores(true)
+    setFornecedoresError(null)
     fetchGastosFornecedores({
       categoria: categoriaFiltro || undefined,
       partido: partido || undefined,
@@ -576,8 +586,9 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             : current
         ))
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error('Error fetching suppliers:', err)
+        setFornecedoresError(err.message)
       })
       .finally(() => {
         setLoadingFornecedores(false)
@@ -590,12 +601,14 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     if (contexto) return
 
     setLoadingContexto(true)
+    setContextoError(null)
     fetchGastosContexto()
       .then((data) => {
         setContexto(data)
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.error('Error fetching context:', err)
+        setContextoError(err.message)
       })
       .finally(() => {
         setLoadingContexto(false)
@@ -1005,12 +1018,14 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             <h2>Categorias de Despesa</h2>
             <p>Em que categorias os recursos foram concentrados?</p>
           </header>
-          {loadingCategorias || !categories ? (
+          {(loadingCategorias || !categories) && !categoriasError ? (
             <>
               <KpisSkeleton />
               <InsightsSkeleton />
               <ChartsSkeleton />
             </>
+          ) : categoriasError ? (
+            <p style={{ color: 'var(--danger)' }}>{categoriasError}</p>
           ) : (
             <>
               <div className="gastos-kpi-grid">
@@ -1114,11 +1129,13 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             </label>
           </div>
 
-          {loadingDeputados || !deputies ? (
+          {(loadingDeputados || !deputies) && !deputadosError ? (
             <>
               <KpisSkeleton />
               <CardsSkeleton />
             </>
+          ) : deputadosError ? (
+            <p style={{ color: 'var(--danger)' }}>{deputadosError}</p>
           ) : (
             <>
               <div className="gastos-kpi-grid">
@@ -1129,11 +1146,11 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 </article>
                 <article className="gastos-kpi-card">
                   <span>Deputados Analisados</span>
-                  <strong>{formatCellValue(deputies.summary.qtd_deputados)}</strong>
+                  <strong>{formatCellValue(deputies?.summary.qtd_deputados ?? 0)}</strong>
                 </article>
                 <article className="gastos-kpi-card">
                   <span>Média por Deputado</span>
-                  <strong>{formatCurrency(deputies.summary.valor_total / Math.max(1, deputies.summary.qtd_deputados))}</strong>
+                  <strong>{formatCurrency((deputies?.summary.valor_total ?? 0) / Math.max(1, deputies?.summary.qtd_deputados ?? 1))}</strong>
                 </article>
               </div>
 
@@ -1295,12 +1312,14 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             </label>
           </div>
 
-          {loadingFornecedores || !suppliers ? (
+          {(loadingFornecedores || !suppliers) && !fornecedoresError ? (
             <>
               <KpisSkeleton />
               <InsightsSkeleton />
               <CardsSkeleton />
             </>
+          ) : fornecedoresError ? (
+            <p style={{ color: 'var(--danger)' }}>{fornecedoresError}</p>
           ) : (
             <>
               <div className="gastos-kpi-grid">
@@ -1311,7 +1330,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 </article>
                 <article className="gastos-kpi-card">
                   <span>Fornecedores no Recorte</span>
-                  <strong>{formatCellValue(suppliers.summary.qtd_fornecedores)}</strong>
+                  <strong>{formatCellValue(suppliers?.summary.qtd_fornecedores ?? 0)}</strong>
                 </article>
                 <article className="gastos-kpi-card">
                   <span>Maior Alcance</span>
@@ -1440,12 +1459,14 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             <h2>Distribuição Política e Regional</h2>
             <p>Como os gastos variam por partido politico e unidade da federacao?</p>
           </header>
-          {loadingContexto || !contexto ? (
+          {(loadingContexto || !contexto) && !contextoError ? (
             <>
               <KpisSkeleton />
               <InsightsSkeleton />
               <ChartsSkeleton count={3} />
             </>
+          ) : contextoError ? (
+            <p style={{ color: 'var(--danger)' }}>{contextoError}</p>
           ) : (
             <>
               <div className="gastos-kpi-grid">
