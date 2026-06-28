@@ -101,6 +101,25 @@ function splitList(value: unknown): string[] {
     .filter(Boolean)
 }
 
+function normalizeSearch(value: unknown): string {
+  return String(value ?? '')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .toLocaleLowerCase('pt-BR')
+    .trim()
+}
+
+function matchesCategorySearch(category: string, query: string): boolean {
+  const normalizedCategory = normalizeSearch(category)
+  return normalizeSearch(query)
+    .split(/\s+/)
+    .filter(Boolean)
+    .every((term) => (
+      normalizedCategory.includes(term)
+      || (term.length >= 5 && normalizedCategory.includes(term.slice(0, -1)))
+    ))
+}
+
 function barChart(
   title: string,
   description: string,
@@ -508,6 +527,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [uf, setUf] = useState('')
   const [buscaDeputado, setBuscaDeputado] = useState('')
   const [categoriaFiltro, setCategoriaFiltro] = useState('')
+  const [buscaFornecedor, setBuscaFornecedor] = useState('')
   const [selectedDeputy, setSelectedDeputy] = useState<GastoDeputadoItem | null>(null)
   const [sortDir, setSortDir] = useState<'desc' | 'asc'>('desc')
   const [selectedSupplier, setSelectedSupplier] = useState<GastoFornecedorItem | null>(null)
@@ -517,6 +537,8 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     error: string | null
   }>({ data: null, error: null })
   const deferredBuscaDeputado = useDeferredValue(buscaDeputado)
+  const deferredCategoriaFiltro = useDeferredValue(categoriaFiltro)
+  const deferredBuscaFornecedor = useDeferredValue(buscaFornecedor)
   const deferredSelectedDeputy = useDeferredValue(selectedDeputy)
   const deferredSelectedSupplier = useDeferredValue(selectedSupplier)
   const [loadingSelectedDeputyBreakdown, setLoadingSelectedDeputyBreakdown] = useState(false)
@@ -550,8 +572,11 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     if (activeTab === 'deputados') {
       setBuscaDeputado('')
     }
-    if (activeTab === 'fornecedores') {
+    if (activeTab === 'categorias') {
       setCategoriaFiltro('')
+    }
+    if (activeTab === 'fornecedores') {
+      setBuscaFornecedor('')
       setSelectedSupplier(null)
     }
 
@@ -685,7 +710,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
 
     setLoadingFornecedores(true)
     fetchGastosFornecedores({
-      categoria: categoriaFiltro || undefined,
+      fornecedor: deferredBuscaFornecedor || undefined,
       partido: partido || undefined,
       uf: uf || undefined,
       pageSize: 100,
@@ -704,7 +729,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       .finally(() => {
         setLoadingFornecedores(false)
       })
-  }, [visitedTabs.fornecedores, categoriaFiltro, partido, uf])
+  }, [visitedTabs.fornecedores, deferredBuscaFornecedor, partido, uf])
 
   // 5. Contexto Tab Loader
   useEffect(() => {
@@ -774,9 +799,15 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
 
 
   // Memoized lists and fields
+  const filteredCategories = useMemo(() => {
+    if (!deferredCategoriaFiltro.trim()) return categories?.items ?? []
+    return (categories?.items ?? []).filter((item) => (
+      matchesCategorySearch(item.categoria, deferredCategoriaFiltro)
+    ))
+  }, [categories, deferredCategoriaFiltro])
   const sortedCategoriesByValue = useMemo(
-    () => sortByNumber(categories?.items ?? [], 'valor_total'),
-    [categories],
+    () => sortByNumber(filteredCategories, 'valor_total'),
+    [filteredCategories],
   )
   const topCategoriesByValue = useMemo(
     () => topRows(sortedCategoriesByValue, CATEGORY_CHART_LIMIT),
@@ -787,12 +818,12 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
     [sortedCategoriesByValue],
   )
   const topCategoriesByCount = useMemo(
-    () => topRows(sortByNumber(categories?.items ?? [], 'qtd_despesas'), CATEGORY_CHART_LIMIT),
-    [categories],
+    () => topRows(sortByNumber(filteredCategories, 'qtd_despesas'), CATEGORY_CHART_LIMIT),
+    [filteredCategories],
   )
   const topCategoriesByTicket = useMemo(
-    () => topRows(sortByNumber(categories?.items ?? [], 'ticket_medio'), CATEGORY_CHART_LIMIT),
-    [categories],
+    () => topRows(sortByNumber(filteredCategories, 'ticket_medio'), CATEGORY_CHART_LIMIT),
+    [filteredCategories],
   )
   const topDeputies = useMemo(() => topRows(deputies?.items ?? []), [deputies])
   const topSuppliers = useMemo(() => topRows(suppliers?.items ?? [], SUPPLIER_CHART_LIMIT), [suppliers])
@@ -1464,6 +1495,18 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             <h2>Categorias de Despesa</h2>
             <p>Em que categorias os recursos foram concentrados?</p>
           </header>
+
+          <div className="gastos-filter-row" style={{ marginBottom: '16px' }}>
+            <label>
+              Filtrar por categoria
+              <input
+                value={categoriaFiltro}
+                onChange={(event) => setCategoriaFiltro(event.target.value)}
+                placeholder="Ex.: passagem, divulgação, combustível"
+              />
+            </label>
+          </div>
+
           {loadingCategorias || !categories ? (
             <>
               <KpisSkeleton />
@@ -1631,8 +1674,12 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
           
           <div className="gastos-filter-row" style={{ marginBottom: '16px' }}>
             <label>
-              Filtrar por Categoria
-              <input value={categoriaFiltro} onChange={(event) => setCategoriaFiltro(event.target.value)} placeholder="Ex.: passagem" />
+              Filtrar por fornecedor
+              <input
+                value={buscaFornecedor}
+                onChange={(event) => setBuscaFornecedor(event.target.value)}
+                placeholder="Ex.: TAM, GOL, posto, gráfica"
+              />
             </label>
           </div>
 
