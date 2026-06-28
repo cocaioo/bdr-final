@@ -230,6 +230,7 @@ export function fetchGastosDeputados(params: {
   partido?: string
   uf?: string
   busca?: string
+  sortDir?: 'desc' | 'asc'
   page?: number
   pageSize?: number
 } = {}): Promise<GastosCollectionPayload<GastoDeputadoItem>> {
@@ -238,6 +239,7 @@ export function fetchGastosDeputados(params: {
     partido: params.partido,
     uf: params.uf,
     busca: params.busca,
+    sort_dir: params.sortDir,
     page: params.page ?? 1,
     page_size: params.pageSize ?? 100,
   })

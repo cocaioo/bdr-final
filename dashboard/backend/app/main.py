@@ -135,6 +135,7 @@ def get_gastos_deputados(
     partido: str | None = None,
     uf: str | None = None,
     busca: str | None = None,
+    sort_dir: str = "desc",
     page: int = 1,
     page_size: int = 100,
 ) -> dict:
@@ -144,6 +145,7 @@ def get_gastos_deputados(
             partido=partido,
             uf=uf,
             busca=busca,
+            sort_dir=sort_dir,
             page=page,
             page_size=page_size,
         )
