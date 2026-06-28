@@ -291,3 +291,59 @@ def query_q12_sqlite(repo_root: Path, adapter: Any, state: FilterState) -> Quest
         )
     finally:
         conn.close()
+
+def query_q3_votos_sqlite(repo_root: Path, state: FilterState) -> list[dict[str, Any]]:
+    db_path = repo_root / "runtime" / "bdr_runtime.sqlite"
+    conn = sqlite3.connect(str(db_path))
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    
+    where_clauses = []
+    params = []
+    
+    if state.deputados:
+        dep_clauses = []
+        for dep in state.deputados:
+            dep_clauses.append("id_deputado = ? OR nome = ?")
+            try:
+                dep_int = int(dep)
+                params.extend([dep_int, dep])
+            except ValueError:
+                params.extend([dep, dep])
+        where_clauses.append(f"({ ' OR '.join(dep_clauses) })")
+        
+    if state.anos:
+        placeholders = ", ".join("?" for _ in state.anos)
+        where_clauses.append(f"ano_dados IN ({placeholders})")
+        params.extend(state.anos)
+        
+    if state.eixos:
+        placeholders = ", ".join("?" for _ in state.eixos)
+        where_clauses.append(f"eixo_principal IN ({placeholders})")
+        params.extend(state.eixos)
+        
+    where_str = " AND ".join(where_clauses)
+    where_sql = f"WHERE {where_str}" if where_str else ""
+    
+    sql = f"SELECT * FROM q3_votos_min {where_sql}"
+    cursor.execute(sql, params)
+    rows = [dict(r) for r in cursor.fetchall()]
+    
+    conn.close()
+    return rows
+
+def query_q3_classificacoes_sqlite(repo_root: Path, votacao_ids: list[str]) -> list[dict[str, Any]]:
+    if not votacao_ids:
+        return []
+    db_path = repo_root / "runtime" / "bdr_runtime.sqlite"
+    conn = sqlite3.connect(str(db_path))
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    
+    placeholders = ", ".join("?" for _ in votacao_ids)
+    sql = f"SELECT * FROM q3_classificacao_votacoes WHERE id_votacao IN ({placeholders})"
+    cursor.execute(sql, votacao_ids)
+    rows = [dict(r) for r in cursor.fetchall()]
+    
+    conn.close()
+    return rows

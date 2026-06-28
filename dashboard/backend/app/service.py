@@ -164,6 +164,12 @@ class DashboardService:
         from .sqlite_runtime import is_sqlite_available
         if question.id == "q12" and is_sqlite_available(self.repo_root):
             pass
+        elif question.id == "q3" and state is not None and state.deputados and is_sqlite_available(self.repo_root):
+            # Only load the resumos file (small!), bypass votes and classifications CSVs
+            for file_name in self._response_files_for_state(question, state):
+                if Path(file_name).name == "q3_resumos_agregados.csv":
+                    file_path = self._resolve_response_path(file_name)
+                    docs.append(self._parse_document(file_path))
         else:
             for file_name in self._response_files_for_state(question, state):
                 file_path = self._resolve_response_path(file_name)
