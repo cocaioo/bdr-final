@@ -319,7 +319,7 @@ function GastosSection({ data, loading, error }: { data: DeputyGastosProfile | n
     <>
       {data.summary ? (
         <div className="deputy-profile__metrics" aria-label="Resumo de gastos">
-          <ProfileField label="Total gasto" value={formatCurrency(data.summary.valor_total)} />
+          <ProfileField label="Despesas realizadas" value={formatCurrency(data.summary.valor_total)} />
           <ProfileField label="Quantidade de despesas" value={formatNumber(data.summary.qtd_despesas)} />
           <ProfileField label="Despesa média" value={formatCurrency(data.summary.ticket_medio)} />
           <ProfileField label="Fornecedores" value={formatNumber(data.summary.qtd_fornecedores)} />
@@ -614,7 +614,7 @@ export function DeputyProfilePage() {
                       helpText="Relação de custo-benefício. Calculado dividindo o Score Ajustado pelo gasto de mandato ajustado. Valores maiores indicam melhor retorno."
                     />
                     <ProfileField
-                      label="Gasto considerado no índice"
+                      label="Despesa considerada no índice"
                       value={formatCurrency(q7State.data.gastoTotal)}
                       helpText="No ranking global, a Q7 considera apenas anos completos; 2026 parcial aparece nas visões anuais."
                     />

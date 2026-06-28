@@ -452,7 +452,7 @@ function DeputyRankingCards({
           </div>
 
           <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
-            <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 'bold' }}>Valor Total</span>
+            <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 'bold' }}>Despesas realizadas</span>
             <strong style={{ fontSize: '1.15rem' }}>{formatCurrency(row.valor_total)}</strong>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
               <span>{formatCellValue(row.qtd_despesas)} despesas</span>
@@ -990,7 +990,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               label="Índice"
               value={<span style={{ color: rating.color, fontSize: '2.2rem', display: 'inline-block', lineHeight: '1.2' }}>{indice.toLocaleString('pt-BR', { minimumFractionDigits: 5, maximumFractionDigits: 5 })}</span>}
             />
-            <ProfileField label="Gasto total" value={formatCurrency(gastoTotal)} />
+            <ProfileField label="Despesa considerada no índice" value={formatCurrency(gastoTotal)} />
             <ProfileField
               label="Proposições consideradas"
               value={formatCellValue(totalProposicoes)}
@@ -1125,7 +1125,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
         </div>
 
         <div className="gastos-drilldown-grid" style={{ marginTop: '12px' }}>
-          <span>Valor total: <strong>{formatCurrency(deferredSelectedDeputy.valor_total)}</strong></span>
+          <span>Total de despesas: <strong>{formatCurrency(deferredSelectedDeputy.valor_total)}</strong></span>
           <span>Posicao no ranking: <strong>{selectedDeputyRank ? `#${selectedDeputyRank}` : '-'}</strong></span>
           <span>Valor médio por despesa: <strong>{formatCurrency(deferredSelectedDeputy.ticket_medio)}</strong></span>
           <span>% do grupo filtrado: <strong>{formatPercent(selectedDeputyShare)}</strong></span>
@@ -1414,7 +1414,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                       <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left', width: '100%' }}>
                         <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 'bold' }}>Índice custo-benefício</span>
                         <strong style={{ fontSize: '1.15rem', color: 'var(--primary)' }}>{indice.toLocaleString('pt-BR', { minimumFractionDigits: 5, maximumFractionDigits: 5 })}</strong>
-                        <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>Gasto total {formatCurrency(row.gasto_total)}</span>
+                        <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>Despesa considerada no índice: {formatCurrency(row.gasto_total)}</span>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
                           <span>{total} prop.</span>
                           <span>{substantivas} subst. · {aprovadas} aprov.</span>
@@ -1589,7 +1589,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             <>
               <div className="gastos-kpi-grid">
                 <article className="gastos-kpi-card">
-                  <span>Destaque de Gastos</span>
+                  <span>Despesas realizadas</span>
                   <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topDeputies[0]?.nome_parlamentar}>{topDeputies[0]?.nome_parlamentar ?? '-'}</strong>
                   <small>{topDeputies[0] ? `${formatCurrency(topDeputies[0].valor_total)} (${topDeputies[0].sigla_partido})` : ''}</small>
                 </article>
@@ -1791,17 +1791,17 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
             <>
               <div className="gastos-kpi-grid">
                 <article className="gastos-kpi-card">
-                  <span>Partido Volume</span>
+                  <span>Partido (Total de despesas)</span>
                   <strong>{String(topPartyByTotal?.sigla_partido ?? '-')}</strong>
                   <small>{formatCurrency(topPartyByTotal?.valor_total ?? 0)}</small>
                 </article>
                 <article className="gastos-kpi-card">
-                  <span>Estado Volume</span>
+                  <span>Estado (Total de despesas)</span>
                   <strong>{String(topUfs[0]?.sigla_uf ?? '-')}</strong>
                   <small>{formatCurrency(topUfs[0]?.valor_total ?? 0)}</small>
                 </article>
                 <article className="gastos-kpi-card">
-                  <span>Partido Média</span>
+                  <span>Partido (Média por deputado)</span>
                   <strong>{String(topPartyByAverage?.sigla_partido ?? '-')}</strong>
                   <small>{formatCurrency(topPartyByAverage?.valor_medio_por_deputado ?? 0)}/dep</small>
                 </article>

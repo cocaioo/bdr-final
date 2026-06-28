@@ -1891,8 +1891,9 @@ td {
 /* Supplier card grid styles */
 .gastos-dashboard-premium .supplier-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
   gap: 16px;
+  justify-content: start;
 }
 
 .gastos-dashboard-premium .supplier-card {
@@ -2170,8 +2171,9 @@ td {
 
 .gastos-chart-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
   gap: 16px;
+  justify-content: start;
 }
 
 .gastos-chart-grid.three {
@@ -2202,8 +2204,9 @@ td {
 
 .gastos-insight-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
   gap: 12px;
+  justify-content: start;
 }
 
 .gastos-auto-insight {
@@ -2237,8 +2240,9 @@ td {
 
 .gastos-deputy-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
   gap: 12px;
+  justify-content: start;
 }
 
 .gastos-category-card-grid {
@@ -2348,6 +2352,7 @@ td {
   text-align: left;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
 .gastos-category-rank-card strong {
@@ -2755,6 +2760,7 @@ td {
 
   .gastos-filter-row {
     align-items: stretch;
+    flex-direction: column;
   }
 
   .gastos-filter-row label,
@@ -3019,6 +3025,7 @@ body.gastos-light-theme .gastos-chip-categoria {
   text-align: left;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
 .gastos-supplier-profile {
@@ -3971,6 +3978,7 @@ body.gastos-light-theme .skeleton-text {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
 }
 
@@ -6017,7 +6025,7 @@ body.gastos-light-theme .dep-search__info-banner {
   background: #F4F8FB;
   border-color: #BCD0E0;
 }
-                                                                                                 
+
 /* =========================================================================
    Methodology Page
    ========================================================================= */
@@ -6360,5 +6368,30 @@ body.gastos-light-theme .dep-search__info-banner {
   .method-diagram__points > div,
   .method-diagram__points > span {
     font-size: 0.65rem;
+  }
+}
+
+/* Responsive adjustments for pagination, hero section, and narrow tabs */
+@media (max-width: 600px) {
+  .gastos-pagination-row {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+    text-align: center !important;
+  }
+  .gastos-pagination-row div {
+    justify-content: center !important;
+  }
+  .gastos-dashboard-premium .premium-hero {
+    padding: 20px 16px !important;
+  }
+  .gastos-dashboard-premium .premium-hero-content h1 {
+    font-size: 1.6rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .gastos-tabs {
+    grid-template-columns: 1fr !important;
   }
 }
