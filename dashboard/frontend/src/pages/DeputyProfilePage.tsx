@@ -611,7 +611,6 @@ export function DeputyProfilePage() {
                     <ProfileField
                       label="Indice"
                       value={<span style={{ color: rating.color }}>{formatDecimal(q7State.data.indice, 5)}</span>}
-                      helpText="Relação de custo-benefício. Calculado dividindo o Score Ajustado pelo gasto de mandato ajustado. Valores maiores indicam melhor retorno."
                     />
                     <ProfileField
                       label="Despesa considerada no índice"
