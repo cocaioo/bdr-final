@@ -2,13 +2,21 @@
 
 CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA public;
 
--- Q7 v1: indice simples e defensavel de custo-beneficio parlamentar.
--- A metrica evita contar proposicoes de forma bruta: cada autoria recebe
--- pesos por tipo, status e ordem de assinatura, e depois o total e suavizado.
+-- =============================================================================
+-- Q7 - INDICE DE CUSTO-BENEFICIO PARLAMENTAR
+-- Universo: 57a legislatura (2023-2027), Cota Parlamentar (CEAP)
 --
--- Regra metodologica: o ranking global considera apenas anos completos.
--- Como 2026 esta incompleto em 24/06/2026, ele fica fora do global e aparece
--- apenas no ranking anual, marcado com ano_parcial = true.
+-- Regras metodologicas:
+--   - usa apenas gasto efetivo (valor_liquido > 0), alinhado com Q1, Q5,
+--     Q12 e Q13; isso exclui estornos, cancelamentos e ajustes com valor <= 0;
+--   - gasto_total representa o total consumido da cota parlamentar, nao o
+--     saldo liquido apos devolucoes;
+--   - a metrica evita contar proposicoes de forma bruta: cada autoria recebe
+--     pesos por tipo, status e ordem de assinatura, e depois o total e suavizado;
+--   - o ranking global considera apenas anos completos para evitar distorcoes
+--     causadas por periodos parciais; 2026 aparece apenas no ranking anual,
+--     marcado com ano_parcial = true.
+-- =============================================================================
 
 CREATE OR REPLACE TEMP VIEW resposta_gastos_deputado AS
 SELECT
@@ -16,6 +24,7 @@ SELECT
     id_deputado,
     SUM(valor_liquido)::numeric AS gasto_total
 FROM gastos
+WHERE valor_liquido > 0
 GROUP BY ano_dados, id_deputado;
 
 CREATE OR REPLACE TEMP VIEW resposta_perfil_deputado_ano_q7 AS
@@ -28,6 +37,7 @@ WITH base AS (
         sigla_partido,
         COUNT(*) AS ocorrencias
     FROM gastos
+    WHERE valor_liquido > 0
     GROUP BY ano_dados, id_deputado, nome_parlamentar, sigla_uf, sigla_partido
 ),
 ranked AS (
@@ -58,6 +68,7 @@ WITH base AS (
         COUNT(*) AS ocorrencias
     FROM gastos
     WHERE ano_dados < 2026
+      AND valor_liquido > 0
     GROUP BY id_deputado, nome_parlamentar, sigla_uf, sigla_partido
 ),
 ranked AS (

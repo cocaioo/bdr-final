@@ -122,7 +122,41 @@ def _write_gastos_artifacts(root: Path) -> None:
                 "qtd_ufs": 1,
                 "ufs": "SP",
                 "pct_total": 66.67,
-            }
+            },
+            {
+                "fornecedor_normalizado": "TAM",
+                "fornecedor_exemplo": "TAM",
+                "variacoes_nome": "TAM",
+                "valor_total": 80,
+                "qtd_despesas": 1,
+                "ticket_medio": 80,
+                "qtd_deputados": 1,
+                "deputados": "2",
+                "qtd_partidos": 1,
+                "partidos": "PL",
+                "qtd_categorias": 1,
+                "categorias": "PASSAGEM AEREA",
+                "qtd_ufs": 1,
+                "ufs": "RJ",
+                "pct_total": 26.67,
+            },
+            {
+                "fornecedor_normalizado": "VRG LINHAS AEREAS",
+                "fornecedor_exemplo": "GOL LINHAS AEREAS",
+                "variacoes_nome": "VRG LINHAS AEREAS | GOL TRANSPORTES AEREOS | VARIG",
+                "valor_total": 20,
+                "qtd_despesas": 1,
+                "ticket_medio": 20,
+                "qtd_deputados": 1,
+                "deputados": "2",
+                "qtd_partidos": 1,
+                "partidos": "PL",
+                "qtd_categorias": 1,
+                "categorias": "PASSAGEM AEREA",
+                "qtd_ufs": 1,
+                "ufs": "RJ",
+                "pct_total": 6.66,
+            },
         ],
     )
     _write_csv(
@@ -185,7 +219,7 @@ def test_gastos_collection_endpoints_return_json_contracts(tmp_path: Path) -> No
     assert deputados.status_code == 200
     assert deputados.json()["items"][0]["valor_total"] == 150
 
-    fornecedores = client.get("/api/gastos/fornecedores?categoria=passagens&partido=PT&uf=SP&deputado=1")
+    fornecedores = client.get("/api/gastos/fornecedores?fornecedor=cia&partido=PT&uf=SP&deputado=1")
     assert fornecedores.status_code == 200
     assert fornecedores.json()["items"][0]["fornecedor"] == "CIA AEREA"
 
@@ -193,4 +227,21 @@ def test_gastos_collection_endpoints_return_json_contracts(tmp_path: Path) -> No
     assert contexto.status_code == 200
     assert contexto.json()["partidos"][0]["sigla_partido"] == "PT"
     assert contexto.json()["ufs"][0]["sigla_uf"] == "SP"
+
+
+def test_gastos_fornecedores_filters_all_supplier_name_fields(tmp_path: Path) -> None:
+    _write_gastos_artifacts(tmp_path)
+    client = _client(tmp_path)
+
+    normalized = client.get("/api/gastos/fornecedores?fornecedor=tam")
+    assert normalized.status_code == 200
+    assert [item["fornecedor"] for item in normalized.json()["items"]] == ["TAM"]
+
+    example = client.get("/api/gastos/fornecedores?fornecedor=gol")
+    assert example.status_code == 200
+    assert [item["fornecedor"] for item in example.json()["items"]] == ["VRG LINHAS AEREAS"]
+
+    variation = client.get("/api/gastos/fornecedores?fornecedor=varig")
+    assert variation.status_code == 200
+    assert [item["fornecedor"] for item in variation.json()["items"]] == ["VRG LINHAS AEREAS"]
 

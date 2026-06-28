@@ -244,9 +244,9 @@ function LoadingSkeleton() {
         <div className="deputy-profile__loading-identity">
           <div className="skeleton deputy-profile__avatar-skeleton" />
           <div className="deputy-profile__loading-copy">
-            <div className="skeleton skeleton-text" style={{ width: '180px', height: 14 }} />
-            <div className="skeleton skeleton-text" style={{ width: '320px', height: 28 }} />
-            <div className="skeleton skeleton-text" style={{ width: '240px', height: 12 }} />
+            <div className="skeleton skeleton-text" style={{ width: 'min(100%, 180px)', height: 14 }} />
+            <div className="skeleton skeleton-text" style={{ width: 'min(100%, 320px)', height: 28 }} />
+            <div className="skeleton skeleton-text" style={{ width: 'min(100%, 240px)', height: 12 }} />
           </div>
         </div>
       </section>
@@ -319,7 +319,7 @@ function GastosSection({ data, loading, error }: { data: DeputyGastosProfile | n
     <>
       {data.summary ? (
         <div className="deputy-profile__metrics" aria-label="Resumo de gastos">
-          <ProfileField label="Total gasto" value={formatCurrency(data.summary.valor_total)} />
+          <ProfileField label="Despesas realizadas" value={formatCurrency(data.summary.valor_total)} />
           <ProfileField label="Quantidade de despesas" value={formatNumber(data.summary.qtd_despesas)} />
           <ProfileField label="Despesa média" value={formatCurrency(data.summary.ticket_medio)} />
           <ProfileField label="Fornecedores" value={formatNumber(data.summary.qtd_fornecedores)} />
@@ -610,10 +610,12 @@ export function DeputyProfilePage() {
                     />
                     <ProfileField
                       label="Indice"
-                      value={<span style={{ color: rating.color }}>{formatDecimal(q7State.data.indice, 5)}</span>}
-                      helpText="Relação de custo-benefício. Calculado dividindo o Score Ajustado pelo gasto de mandato ajustado. Valores maiores indicam melhor retorno."
+                      value={<span style={{ color: rating.color, fontSize: '2.2rem', display: 'inline-block', lineHeight: '1.2' }}>{formatDecimal(q7State.data.indice, 5)}</span>}
                     />
-                    <ProfileField label="Gasto total" value={formatCurrency(q7State.data.gastoTotal)} />
+                    <ProfileField
+                      label="Despesa considerada no índice"
+                      value={formatCurrency(q7State.data.gastoTotal)}
+                    />
                     <ProfileField
                       label="Proposicoes consideradas"
                       value={formatNumber(q7State.data.totalProposicoes)}

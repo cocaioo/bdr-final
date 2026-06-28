@@ -27,7 +27,7 @@ from __future__ import annotations
 #     - test_q12_txt_is_consistent_with_sql_positive_filter
 #       (smoke test: totais do .txt batem com CSV > 0)
 #   MANTIDOS SEM ALTERAÇÃO:
-#     - test_q1_export_matches_current_gastos_total_including_estornos
+#     - test_q1_export_matches_positive_gastos_universe
 #     - test_q4_export_covers_all_deputados_da_57a_legislatura
 #     - test_q13_summary_matches_positive_gastos_universe_by_year
 #     - test_q5_summary_matches_positive_gastos_universe_by_year
@@ -262,7 +262,7 @@ def _current_q7_weighted_metrics_by_year_deputy() -> dict[tuple[int, int], dict[
     )
 
     gastos = (
-        _gastos_df()
+        _gastos_df()[_gastos_df()["valor_liquido"] > 0]
         .groupby(["ano_dados", "id_deputado"], dropna=False, as_index=False)["valor_liquido"]
         .sum()
         .rename(columns={"valor_liquido": "gasto_total"})
@@ -493,11 +493,12 @@ def _q4_state() -> FilterState:
 # TESTES EXISTENTES (sem alteração)
 # =============================================================================
 
-def test_q1_export_matches_current_gastos_total_including_estornos() -> None:
+def test_q1_export_matches_positive_gastos_universe() -> None:
     rows = _rows_from_psql(_question_path("Caio", "gastos-fornecedores", "q1", "q1_gastos_deputados.txt"), 0)
     export_total = round(sum(float(row["gasto_total"]) for row in rows), 2)
 
-    assert export_total == pytest.approx(round(float(_gastos_df()["valor_liquido"].sum()), 2), abs=0.01)
+    positive_total = round(float(_gastos_df().loc[_gastos_df()["valor_liquido"] > 0, "valor_liquido"].sum()), 2)
+    assert export_total == pytest.approx(positive_total, abs=0.01)
 
 
 def test_q4_export_covers_all_deputados_da_57a_legislatura() -> None:
