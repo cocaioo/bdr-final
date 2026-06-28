@@ -167,7 +167,14 @@ function App() {
           </Suspense>
         </div>
         <footer className="app-footer">
-          Fonte: schema grupo4 + fontes analíticas consolidadas | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}
+          <div className="app-footer__attribution">
+            <span>Todos os direitos reservados</span>
+            <span>Caio Victor Ferreira do Nascimento</span>
+            <span>João Felipe Garcia Morais</span>
+          </div>
+          <p className="app-footer__source">
+            Fonte: schema grupo4 + fontes analíticas consolidadas | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}
+          </p>
         </footer>
       </div>
     </div>
