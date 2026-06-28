@@ -2178,6 +2178,11 @@ td {
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
+.gastos-chart-grid.vertical {
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
 .gastos-chart-grid .chart-section {
   min-width: 0;
 }

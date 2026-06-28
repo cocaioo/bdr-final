@@ -45,15 +45,16 @@ const CATEGORY_CHART_LIMIT = 8
 const SUPPLIER_CHART_LIMIT = 6
 const DEPUTY_BREAKDOWN_LIMIT = 6
 const CATEGORY_CHART_OPTIONS = {
-  bar_category_gap: '34%',
-  bar_max_width: 18,
-  chart_height: 460,
+  bar_category_gap: '30%',
+  bar_max_width: 24,
+  chart_height: 420,
   compact_tooltip: true,
-  grid_bottom: 56,
-  grid_left: 220,
+  grid_bottom: 40,
+  grid_left: 240,
   grid_right: 32,
-  label_max_chars: 30,
-  label_width: 210,
+  label_max_chars: 35,
+  label_width: 230,
+  multi_color: true,
 }
 const SUPPLIER_CHART_OPTIONS = {
   bar_category_gap: '38%',
@@ -943,7 +944,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 </article>
               </div>
               <InsightGrid insights={categoryInsights} />
-              <div className="gastos-chart-grid">
+              <div className="gastos-chart-grid vertical">
                 <ChartPanel
                   spec={barChart(
                     'Top categorias por valor',
