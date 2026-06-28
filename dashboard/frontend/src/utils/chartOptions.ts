@@ -90,6 +90,17 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
     const gridTop = Number(spec.options.grid_top ?? (showLegend ? 60 : 24))
     const barMaxWidth = Number(spec.options.bar_max_width ?? 24)
     const barCategoryGap = String(spec.options.bar_category_gap ?? '42%')
+    const isMultiColor = spec.options.multi_color === true
+    const palette = [
+      readThemeToken('--color-primary', '#38bdf8'),
+      readThemeToken('--color-secondary', '#a78bfa'),
+      readThemeToken('--color-accent', '#34d399'),
+      readThemeToken('--color-warning', '#f59e0b'),
+      readThemeToken('--color-danger', '#fb7185'),
+      readThemeToken('--avatar-gradient-4a', '#60a5fa'),
+      readThemeToken('--avatar-gradient-1a', '#2dd4bf'),
+      readThemeToken('--avatar-gradient-7a', '#c084fc'),
+    ]
 
     return {
       tooltip: {
@@ -123,14 +134,24 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
           formatter: (value: unknown) => truncateLabel(value, labelMaxChars),
         },
       },
-      series: series.map((entry) => ({
-        type: 'bar',
-        name: String(entry.name ?? ''),
-        data: (entry.data as unknown[]) ?? [],
-        label: { show: false },
-        barMaxWidth,
-        barCategoryGap,
-      })),
+      series: series.map((entry) => {
+        const dataArr = (entry.data as unknown[]) ?? []
+        return {
+          type: 'bar',
+          name: String(entry.name ?? ''),
+          data: isMultiColor
+            ? dataArr.map((val, idx) => ({
+                value: val,
+                itemStyle: {
+                  color: palette[(dataArr.length - 1 - idx) % palette.length],
+                },
+              }))
+            : dataArr,
+          label: { show: false },
+          barMaxWidth,
+          barCategoryGap,
+        }
+      }),
     } as EChartsOption
   }
 

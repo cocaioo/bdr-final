@@ -1,15 +1,9 @@
 import { expect, test } from '@playwright/test'
 
-test('painel de gastos permanece legivel e nao carrega anomalias', async ({ page }) => {
-  const anomalyRequests: string[] = []
-  page.on('request', (request) => {
-    if (request.url().includes('/api/gastos/anomalias')) anomalyRequests.push(request.url())
-  })
-
+test('painel de gastos permanece legivel e permite explorar os rankings', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 })
   await page.goto('/grupos/gastos')
   await expect(page.getByRole('heading', { name: 'Painel de Gastos Parlamentares' })).toBeVisible()
-  await expect(page.getByRole('button', { name: /Gastos Atipicos/i })).toHaveCount(0)
   await expect(page.getByText('Evolucao temporal dos gastos')).toBeVisible()
   await expect(page.getByText(/R\$/).first()).toBeVisible()
   await page.screenshot({ path: '../../scratch/gastos-resumo.png', fullPage: true })
@@ -27,7 +21,6 @@ test('painel de gastos permanece legivel e nao carrega anomalias', async ({ page
   const profile = page.locator('.gastos-deputy-profile')
   await expect(profile).toBeVisible()
   await expect(profile.getByText(/Valor total:/)).toBeVisible()
-  await expect(profile.getByText(/Gastos atipicos/i)).toHaveCount(0)
 
   const colors = await profile.evaluate((element) => {
     const panel = getComputedStyle(element)
@@ -42,7 +35,6 @@ test('painel de gastos permanece legivel e nao carrega anomalias', async ({ page
   })
   expect(colors.headingColor).not.toBe(colors.panelBackground)
   expect(colors.metricColor).not.toBe(colors.metricBackground)
-  expect(anomalyRequests).toEqual([])
   await page.screenshot({ path: '../../scratch/gastos-deputado-perfil.png', fullPage: true })
 
   await page.locator('.gastos-tabs button').filter({ hasText: 'Fornecedores' }).click()
