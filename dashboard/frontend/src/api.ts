@@ -247,7 +247,7 @@ export function fetchGastosDeputados(params: {
 }
 
 export function fetchGastosFornecedores(params: {
-  categoria?: string
+  fornecedor?: string
   partido?: string
   uf?: string
   deputado?: string
@@ -255,7 +255,7 @@ export function fetchGastosFornecedores(params: {
   pageSize?: number
 } = {}): Promise<GastosCollectionPayload<GastoFornecedorItem>> {
   const query = buildQuery({
-    categoria: params.categoria,
+    fornecedor: params.fornecedor,
     partido: params.partido,
     uf: params.uf,
     deputado: params.deputado,

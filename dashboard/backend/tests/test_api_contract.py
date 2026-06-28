@@ -113,7 +113,7 @@ def test_q7_nome_filter_preserves_real_position_and_uses_name_only() -> None:
 
     row = payload["table_spec"]["rows"][0]
     assert row["nome_parlamentar"] == "Abilio Brunini"
-    assert row["posicao"] == 171
+    assert row["posicao"] == 167
     assert row["deputado"] == "Abilio Brunini"
     assert row["partido"] == "PL"
     assert row["estado"] == "MT"

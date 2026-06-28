@@ -328,7 +328,7 @@ it('keeps the fornecedores tab global and does not pass deputy to the global end
 
   expect((await screen.findAllByText('Fornecedor Global')).length).toBeGreaterThan(0)
   expect(vi.mocked(fetchGastosFornecedores)).toHaveBeenLastCalledWith({
-    categoria: undefined,
+    fornecedor: undefined,
     partido: undefined,
     uf: undefined,
     pageSize: 100,
@@ -336,6 +336,56 @@ it('keeps the fornecedores tab global and does not pass deputy to the global end
   expect(vi.mocked(fetchGastosFornecedores)).not.toHaveBeenCalledWith(
     expect.objectContaining({ deputado: '123' }),
   )
+})
+
+it('searches the fornecedores tab by supplier name', async () => {
+  const user = userEvent.setup()
+  const supplierFetchMock = vi.mocked(fetchGastosFornecedores)
+  render(<GastosDashboardPage meta={meta} />)
+
+  await user.click(screen.getByRole('button', { name: /FornecedoresQuem recebeu/i }))
+  await screen.findByLabelText('Filtrar por fornecedor')
+  expect(screen.queryByLabelText('Filtrar por categoria')).not.toBeInTheDocument()
+
+  supplierFetchMock.mockClear()
+  await user.type(
+    screen.getByPlaceholderText('Ex.: TAM, GOL, posto, gráfica'),
+    'GOL',
+  )
+
+  await waitFor(() => {
+    expect(supplierFetchMock).toHaveBeenLastCalledWith({
+      fornecedor: 'GOL',
+      partido: undefined,
+      uf: undefined,
+      pageSize: 100,
+    })
+  })
+})
+
+it('filters categories locally in the categorias tab', async () => {
+  const user = userEvent.setup()
+  const categoriesFetchMock = vi.mocked(fetchGastosCategorias)
+  categoriesFetchMock.mockResolvedValue(collection([
+    { categoria: 'Passagens', valor_total: 800_000, qtd_despesas: 12, ticket_medio: 66_666.67, qtd_deputados: 1, pct_total: 64.8 },
+    { categoria: 'Combustíveis', valor_total: 400_000, qtd_despesas: 8, ticket_medio: 50_000, qtd_deputados: 1, pct_total: 32.4 },
+  ]))
+  render(<GastosDashboardPage meta={meta} />)
+
+  await user.click(screen.getByRole('button', { name: /CategoriasEm que foi gasto/i }))
+  expect(await screen.findAllByText('Passagens')).not.toHaveLength(0)
+
+  categoriesFetchMock.mockClear()
+  await user.type(
+    screen.getByPlaceholderText('Ex.: passagem, divulgação, combustível'),
+    'combustivel',
+  )
+
+  await waitFor(() => {
+    expect(screen.getAllByText('Combustíveis').length).toBeGreaterThan(0)
+    expect(screen.queryByText('Passagens')).not.toBeInTheDocument()
+  })
+  expect(categoriesFetchMock).not.toHaveBeenCalled()
 })
 
 it('typing in Q7 search triggers fetchQuestion with the search value', async () => {

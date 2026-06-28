@@ -466,6 +466,7 @@ O `dashboard/backend/app/question_registry.json` é a fonte única de metadados:
 - Cada proposição recebe `peso_tipo * peso_status * peso_autoria`; tipos não mapeados caem no peso baixo `0.3`.
 - O score total de proposições é suavizado por potência `0.75`, reduzindo o domínio de deputados com volume extremo de proposições simples.
 - O gasto é suavizado por `(1 + gasto_total / 1000) ^ 0.75`, evitando distorções por pequenas diferenças de despesa.
+- Considera apenas despesas efetivas (`valor_liquido > 0`), excluindo estornos e cancelamentos, alinhado com Q1, Q5, Q12 e Q13.
 - O ranking global é o padrão da Q7 e recalcula o índice a partir dos totais agregados de anos completos; ele não é média dos rankings anuais.
 - O ranking global considera apenas anos completos para evitar distorções causadas por períodos parciais. Como os dados de 2026 ainda estão incompletos, esse ano fica disponível apenas na análise anual, sinalizado como período parcial.
 - Quando nenhum ano é filtrado, a API retorna `escopo = global`; quando há filtro de ano, retorna `escopo = anual` para o ano selecionado.

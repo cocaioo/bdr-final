@@ -71,7 +71,7 @@ class GastosAnalyticsService:
 
     def fornecedores(
         self,
-        categoria: str | None = None,
+        fornecedor: str | None = None,
         partido: str | None = None,
         uf: str | None = None,
         deputado: str | None = None,
@@ -79,8 +79,14 @@ class GastosAnalyticsService:
         page_size: int = 100,
     ) -> dict[str, Any]:
         rows = self._read_aggregate("fornecedores")
-        if categoria:
-            rows = [row for row in rows if _contains(row.get("categorias"), categoria)]
+        if fornecedor:
+            rows = [
+                row
+                for row in rows
+                if _contains(row.get("fornecedor_normalizado"), fornecedor)
+                or _contains(row.get("fornecedor_exemplo"), fornecedor)
+                or _contains(row.get("variacoes_nome"), fornecedor)
+            ]
         if partido:
             rows = [row for row in rows if _contains_token(row.get("partidos"), partido)]
         if uf:

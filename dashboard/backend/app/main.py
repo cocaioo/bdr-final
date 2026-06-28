@@ -155,7 +155,7 @@ def get_gastos_deputados(
 
 @app.get("/api/gastos/fornecedores")
 def get_gastos_fornecedores(
-    categoria: str | None = None,
+    fornecedor: str | None = None,
     partido: str | None = None,
     uf: str | None = None,
     deputado: str | None = None,
@@ -164,7 +164,7 @@ def get_gastos_fornecedores(
 ) -> dict:
     try:
         return service.gastos.fornecedores(
-            categoria=categoria,
+            fornecedor=fornecedor,
             partido=partido,
             uf=uf,
             deputado=deputado,

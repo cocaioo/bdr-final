@@ -463,7 +463,7 @@ export function GlobalFilters({
         )}
       </div>
       {!hideSearch ? (
-        <div className="filter-search-container">
+        <div className="filter-search">
           <div className="filter-item-header">
             <label htmlFor="filter-search">{searchLabel}</label>
             {searchValue.length > 0 && (
