@@ -610,7 +610,7 @@ export function DeputyProfilePage() {
                     />
                     <ProfileField
                       label="Indice"
-                      value={<span style={{ color: rating.color }}>{formatDecimal(q7State.data.indice, 5)}</span>}
+                      value={<span style={{ color: rating.color, fontSize: '2.2rem', display: 'inline-block', lineHeight: '1.2' }}>{formatDecimal(q7State.data.indice, 5)}</span>}
                     />
                     <ProfileField
                       label="Despesa considerada no índice"
