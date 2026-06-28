@@ -4,7 +4,11 @@
 !.env.example
 # Python environments, caches and reports
 runtime/*.sqlite
+runtime/*.sqlite-wal
+runtime/*.sqlite-shm
 runtime/*.db
+runtime/*.db-wal
+runtime/*.db-shm
 prompts
 venv/
 .venv/
