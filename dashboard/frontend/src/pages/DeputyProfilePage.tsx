@@ -616,7 +616,6 @@ export function DeputyProfilePage() {
                     <ProfileField
                       label="Despesa considerada no índice"
                       value={formatCurrency(q7State.data.gastoTotal)}
-                      helpText="No ranking global, a Q7 considera apenas anos completos; 2026 parcial aparece nas visões anuais."
                     />
                     <ProfileField
                       label="Proposicoes consideradas"
