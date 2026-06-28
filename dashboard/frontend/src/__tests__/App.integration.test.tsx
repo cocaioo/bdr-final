@@ -101,4 +101,16 @@ describe('App integration', () => {
 
     expect(await screen.findByRole('heading', { name: 'Abilio Brunini' })).toBeInTheDocument()
   })
+
+  it('renders the legal attribution in the app footer', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    )
+
+    await screen.findByText('Todos os direitos reservados')
+    expect(screen.getByText('Caio Victor Ferreira do Nascimento')).toBeInTheDocument()
+    expect(screen.getByText('João Felipe Garcia Morais')).toBeInTheDocument()
+  })
 })
