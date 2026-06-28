@@ -244,9 +244,9 @@ function LoadingSkeleton() {
         <div className="deputy-profile__loading-identity">
           <div className="skeleton deputy-profile__avatar-skeleton" />
           <div className="deputy-profile__loading-copy">
-            <div className="skeleton skeleton-text" style={{ width: '180px', height: 14 }} />
-            <div className="skeleton skeleton-text" style={{ width: '320px', height: 28 }} />
-            <div className="skeleton skeleton-text" style={{ width: '240px', height: 12 }} />
+            <div className="skeleton skeleton-text" style={{ width: 'min(100%, 180px)', height: 14 }} />
+            <div className="skeleton skeleton-text" style={{ width: 'min(100%, 320px)', height: 28 }} />
+            <div className="skeleton skeleton-text" style={{ width: 'min(100%, 240px)', height: 12 }} />
           </div>
         </div>
       </section>

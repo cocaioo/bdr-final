@@ -61,11 +61,12 @@ const SUPPLIER_CHART_OPTIONS = {
   bar_max_width: 18,
   chart_height: 420,
   compact_tooltip: true,
-  grid_bottom: 52,
-  grid_left: 196,
+  grid_bottom: 110,
+  grid_left: 60,
   grid_right: 28,
-  label_max_chars: 28,
-  label_width: 186,
+  label_max_chars: 18,
+  label_width: 120,
+  multi_color: true,
 }
 
 function formatPercent(value: unknown, digits = 2): string {
@@ -207,7 +208,7 @@ function SelectionSkeleton({
         <div className="skeleton gastos-selection-skeleton__avatar" />
         <div className="gastos-selection-skeleton__title">
           <span>{subtitle}</span>
-          <div className="skeleton skeleton-text" style={{ width: '18rem', height: '1rem' }} />
+          <div className="skeleton skeleton-text" style={{ width: 'min(100%, 18rem)', height: '1rem' }} />
         </div>
       </div>
       <div className="gastos-selection-skeleton__grid">
@@ -1718,7 +1719,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                     asRecords(topSuppliers),
                     'fornecedor',
                     'valor_total',
-                    'bar_horizontal',
+                    'bar_vertical',
                     SUPPLIER_CHART_OPTIONS,
                   )}
                 />
@@ -1729,7 +1730,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                     asRecords(topSuppliers),
                     'fornecedor',
                     'qtd_deputados',
-                    'bar_horizontal',
+                    'bar_vertical',
                     SUPPLIER_CHART_OPTIONS,
                   )}
                 />
