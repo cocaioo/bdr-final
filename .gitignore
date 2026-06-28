@@ -3,6 +3,8 @@
 .env.*
 !.env.example
 # Python environments, caches and reports
+runtime/*.sqlite
+runtime/*.db
 prompts
 venv/
 .venv/
