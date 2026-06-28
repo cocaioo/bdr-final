@@ -161,9 +161,13 @@ class DashboardService:
             return cached
 
         docs: list[ParsedDocument] = []
-        for file_name in self._response_files_for_state(question, state):
-            file_path = self._resolve_response_path(file_name)
-            docs.append(self._parse_document(file_path))
+        from .sqlite_runtime import is_sqlite_available
+        if question.id == "q12" and is_sqlite_available(self.repo_root):
+            pass
+        else:
+            for file_name in self._response_files_for_state(question, state):
+                file_path = self._resolve_response_path(file_name)
+                docs.append(self._parse_document(file_path))
 
         sql_path = self.sql_dir / question.sql_file
         sql_text = read_text_with_fallback(sql_path) if sql_path.exists() else "-- SQL nao encontrado"
@@ -368,6 +372,11 @@ class DashboardService:
         return names
 
     def _load_filter_documents(self, question: QuestionDefinition) -> list[ParsedDocument]:
+        from .sqlite_runtime import is_sqlite_available
+        if question.id == "q12" and is_sqlite_available(self.repo_root):
+            from .sqlite_runtime import load_q12_filter_data
+            return load_q12_filter_data(self.repo_root)
+
         if question.id != "q3":
             return self._load_question_bundle(question).documents
 

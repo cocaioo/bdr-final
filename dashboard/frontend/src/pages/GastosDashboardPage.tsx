@@ -838,15 +838,16 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const highestTicketCategory = topCategoriesByTicket[0]
   const topSupplier = topSuppliers[0]
   
-  const selectedDeputyRank = useMemo(() => {
+  const selectedDeputyRank = useMemo<number | null>(() => {
     if (!selectedDeputy) return null
     if (activeTab === 'resumo' && q7Data) {
       const idx = q7Data.table_spec.rows.findIndex(
         (row) => Number(row.id_deputado) === selectedDeputy.id_deputado
       )
       if (idx !== -1) {
-        const row = q7Data.table_spec.rows[idx]
-        return row.posicao_geral ?? row.posicao ?? (idx + 1)
+        const row = q7Data.table_spec.rows[idx] as Record<string, any>
+        const val = row.posicao_geral ?? row.posicao ?? (idx + 1)
+        return val !== null && val !== undefined ? Number(val) : null
       }
     }
     if (deputies) {
@@ -937,7 +938,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       const posicao = selectedDeputyRank
       const rating = getDeputyRating(posicao, elegivel)
       
-      const scoreTotal = Number(deferredSelectedDeputy.score_proposicoes_total ?? 0)
+      // scoreTotal is unused
       const scoreAjustado = Number(deferredSelectedDeputy.score_proposicoes_ajustado ?? 0)
       const totalProposicoes = Number(deferredSelectedDeputy.total_proposicoes ?? 0)
       const substantivas = Number(deferredSelectedDeputy.total_proposicoes_substantivas ?? 0)

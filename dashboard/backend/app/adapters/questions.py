@@ -1358,6 +1358,10 @@ class Q12Adapter(QuestionAdapter):
     """Deputado x fornecedor."""
 
     def build_payload(self, state: FilterState) -> QuestionPayload:
+        from ..sqlite_runtime import is_sqlite_available, query_q12_sqlite
+        if is_sqlite_available(self.context.repo_root):
+            return query_q12_sqlite(self.context.repo_root, self, state)
+
         payload = super().build_payload(state)
 
         if not state.deputados or payload.table_spec.total > 0:
