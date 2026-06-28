@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 
 import { fetchQuestion } from '../api'
+import { sortEducationLevels } from '../utils/educationSort'
 import { ChartPanel } from '../components/ChartPanel'
 import { NoDataState } from '../components/NoDataState'
 import type {
@@ -55,11 +56,12 @@ function buildMetricChart(
   seriesName: string,
   currency = false,
 ): ChartSpec | null {
-  const rows = metricRows(payload, metric)
-    .filter((row) => row[metric] !== null && row[metric] !== undefined)
-    .sort((a, b) => numberValue(a[metric]) - numberValue(b[metric]))
+  const filtered = metricRows(payload, metric).filter(
+    (row) => row[metric] !== null && row[metric] !== undefined,
+  )
+  if (!filtered.length) return null
 
-  if (!rows.length) return null
+  const rows = sortEducationLevels(filtered, rowLabel).reverse()
 
   return {
     type: 'bar_horizontal',
@@ -104,9 +106,7 @@ function buildPresenceChart(payload: QuestionPayload): ChartSpec | null {
 
   if (!rows.length) return null
 
-  const sortedRows = [...rows].sort(
-    (a, b) => numberValue(a.media_presenca_eventos) - numberValue(b.media_presenca_eventos),
-  )
+  const sortedRows = sortEducationLevels(rows, rowLabel).reverse()
 
   return {
     type: 'bar_horizontal',
@@ -141,9 +141,10 @@ function buildPresenceChart(payload: QuestionPayload): ChartSpec | null {
 }
 
 function buildEducationChart(payload: QuestionPayload, selectedEducation: string): ChartSpec {
-  const rows = payload.table_spec.rows
-    .filter((row) => !selectedEducation || rowLabel(row) === selectedEducation)
-    .sort((a, b) => numberValue(b.qtd_deputados) - numberValue(a.qtd_deputados))
+  const filtered = payload.table_spec.rows.filter(
+    (row) => !selectedEducation || rowLabel(row) === selectedEducation,
+  )
+  const rows = sortEducationLevels(filtered, rowLabel)
 
   return {
     type: 'bar_vertical',

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import type { FilterCatalog, FilterState } from '../types'
+import { sortEducationLevels } from '../utils/educationSort'
 
 interface GlobalFiltersProps {
   catalog: FilterCatalog
@@ -436,7 +437,7 @@ export function GlobalFilters({
               value={value.escolaridade}
               onChange={(event) => setList('escolaridade', readSelectedValues(event.target))}
             >
-              {safeCatalog.escolaridade.map((choice) => (
+              {sortEducationLevels(safeCatalog.escolaridade, (choice) => choice.label).map((choice) => (
                 <option key={choice.value} value={choice.value}>
                   {choice.label}
                 </option>
