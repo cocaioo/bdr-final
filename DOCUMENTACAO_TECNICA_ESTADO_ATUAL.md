@@ -1079,6 +1079,21 @@ Endereços:
 - metadados: `http://localhost:8001/api/meta`;
 - docs automáticas FastAPI: `http://localhost:8001/docs`.
 
+### 18.6 Deploy no Render
+
+Para fazer o deploy em produção do backend da aplicação no Render (como Web Service autônomo), utilize as seguintes definições:
+
+- **Build Command**:
+  ```bash
+  pip install -r requirements.txt && pip install -r dashboard/backend/requirements.txt && python scripts/build_runtime_sqlite.py
+  ```
+- **Start Command**:
+  ```bash
+  python -m uvicorn app.main:app --app-dir dashboard/backend --host 0.0.0.0 --port $PORT
+  ```
+
+Esta configuração assegura que o arquivo binário do SQLite (`runtime/bdr_runtime.sqlite`) — que é ignorado pelo Git — seja gerado automaticamente a partir dos artefatos de dados durante a etapa de build.
+
 ## 19. Reprodutibilidade e operação recomendada
 
 Uma execução completa e segura deveria seguir esta ordem:
