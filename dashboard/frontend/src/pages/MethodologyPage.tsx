@@ -275,8 +275,8 @@ CREATE TABLE partidos_ideologia (
         />
       </Section>
 
-      {/* 07 — Gastos */}
-      <Section num="07" title="Gastos parlamentares (CEAP)" sub="Como os gastos são agregados, categorizados e ranqueados.">
+      {/* 06 — Gastos */}
+      <Section num="06" title="Gastos parlamentares (CEAP)" sub="Como os gastos são agregados, categorizados e ranqueados.">
         <p>
           A <strong>Cota para o Exercício da Atividade Parlamentar (CEAP)</strong> é um benefício
           mensal pago a cada deputado para custear despesas do mandato. Os dados são públicos e
@@ -337,8 +337,8 @@ ORDER BY gasto_total DESC;`}
         />
       </Section>
 
-      {/* 08 — Escolaridade */}
-      <Section num="08" title="Escolaridade e perfil dos deputados" sub="Como o perfil educacional é extraído e correlacionado com desempenho.">
+      {/* 07 — Escolaridade */}
+      <Section num="07" title="Escolaridade e perfil dos deputados" sub="Como o perfil educacional é extraído e correlacionado com desempenho.">
         <p>
           O campo <code>escolaridade</code> vem do cadastro da Câmara (endpoint de deputados).
           Os valores são normalizados em categorias padronizadas: "Ensino Fundamental", "Ensino
@@ -360,9 +360,9 @@ ORDER BY qtd_deputados DESC;`}
         />
       </Section>
 
-      {/* 09 — Ideologia partidária */}
+      {/* 08 — Ideologia partidária */}
       <Section
-        num="09"
+        num="08"
         title="Classificação ideológica dos partidos"
         sub="A escala Bolognesi et al. e como ela é aplicada no dashboard."
       >
@@ -415,9 +415,9 @@ ORDER BY MIN(ideologia_score) NULLS LAST;`}
         />
       </Section>
 
-      {/* 10 — Votações nominais e alinhamento */}
+      {/* 09 — Votações nominais e alinhamento */}
       <Section
-        num="10"
+        num="09"
         title="Votações nominais e alinhamento partidário"
         sub="O que são roll-call votes, como os votos são representados e como o alinhamento é calculado."
       >
@@ -562,9 +562,9 @@ ORDER BY pct_alinhamento DESC;`}
         />
       </Section>
 
-      {/* 11 — Comportamento ideológico em votações */}
+      {/* 10 — Comportamento ideológico em votações */}
       <Section
-        num="11"
+        num="10"
         title="Comportamento ideológico em votações"
         sub="Como o voto coletivo de cada campo ideológico é mensurado por proposição."
       >
@@ -628,9 +628,9 @@ ORDER BY vc.ano_dados, vc.id_votacao, vc.score_medio NULLS LAST;`}
         />
       </Section>
 
-      {/* 12 — W-NOMINATE */}
+      {/* 11 — W-NOMINATE */}
       <Section
-        num="12"
+        num="11"
         title="W-NOMINATE e posição ideológica revelada"
         sub="Modelos espaciais de votação: intuição, matemática, implementação e limitações."
       >
@@ -884,9 +884,9 @@ ORDER BY vc.ano_dados, vc.id_votacao, vc.score_medio NULLS LAST;`}
         </ul>
       </Section>
 
-      {/* 14 — Transparência das consultas */}
+      {/* 12 — Transparência das consultas */}
       <Section
-        num="14"
+        num="12"
         title="Transparência das consultas"
         sub="Como acessar o SQL que gerou cada indicador exibido no painel."
       >
