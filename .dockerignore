@@ -1,0 +1,60 @@
+# Version control
+.git
+.github
+.gitignore
+
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Node
+dashboard/frontend/node_modules/
+dashboard/frontend/dist/
+dashboard/frontend/test-results/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# Dev / scratch data
+scratch/
+tabelas/
+dados_processados/
+Banco/
+
+# Only the normalized deputy catalog is read by the runtime.
+dados_padronizados/*
+!dados_padronizados/deputados.csv
+
+# Dev artifacts
+artifacts/
+prompts/
+docs/
+scripts/
+src/
+tests/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large CSV data not needed by the API at runtime
+audit_raw_data.csv

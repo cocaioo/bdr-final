@@ -8,6 +8,7 @@ const PANEL_LINKS = [
   { to: '/grupos/gastos', label: 'Gastos' },
   { to: '/grupos/perfil', label: 'Escolaridade e perfil' },
   { to: '/grupos/partidos-votacoes', label: 'Partidos e ideologia' },
+  { to: '/metodologia', label: 'Metodologia' },
 ]
 
 export function Header({ datasetVersion }: HeaderProps) {

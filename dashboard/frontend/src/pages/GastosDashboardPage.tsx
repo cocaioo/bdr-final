@@ -45,15 +45,16 @@ const CATEGORY_CHART_LIMIT = 8
 const SUPPLIER_CHART_LIMIT = 6
 const DEPUTY_BREAKDOWN_LIMIT = 6
 const CATEGORY_CHART_OPTIONS = {
-  bar_category_gap: '34%',
-  bar_max_width: 18,
-  chart_height: 460,
+  bar_category_gap: '30%',
+  bar_max_width: 24,
+  chart_height: 420,
   compact_tooltip: true,
-  grid_bottom: 56,
-  grid_left: 220,
+  grid_bottom: 40,
+  grid_left: 240,
   grid_right: 32,
-  label_max_chars: 30,
-  label_width: 210,
+  label_max_chars: 35,
+  label_width: 230,
+  multi_color: true,
 }
 const SUPPLIER_CHART_OPTIONS = {
   bar_category_gap: '38%',
@@ -201,6 +202,201 @@ function SelectionSkeleton({
   )
 }
 
+interface RatingInfo {
+  label: string
+  color: string
+  bg: string
+  border: string
+  description: string
+}
+
+function getDeputyRating(posicao: number | null, elegivel: boolean): RatingInfo {
+  if (!elegivel || posicao === null) {
+    return {
+      label: 'Não classificado',
+      color: '#94a3b8',
+      bg: 'rgba(148, 163, 184, 0.1)',
+      border: '1px solid #94a3b8',
+      description: 'Este deputado não atende aos requisitos mínimos de atividade parlamentar para integrar o ranking principal da Q7.'
+    }
+  }
+  if (posicao <= 50) {
+    return {
+      label: 'Excelente custo-benefício',
+      color: '#10b981',
+      bg: 'rgba(16, 185, 129, 0.1)',
+      border: '1px solid #10b981',
+      description: 'Entre os 50 deputados mais eficientes (Top 10%). Excelente relação de produção legislativa ponderada por gasto.'
+    }
+  }
+  if (posicao <= 150) {
+    return {
+      label: 'Bom custo-benefício',
+      color: '#3b82f6',
+      bg: 'rgba(59, 130, 246, 0.1)',
+      border: '1px solid #3b82f6',
+      description: 'Desempenho acima da média nacional (Top 30%). Boa eficiência legislativa em relação às despesas do mandato.'
+    }
+  }
+  if (posicao <= 350) {
+    return {
+      label: 'Regular',
+      color: '#f59e0b',
+      bg: 'rgba(245, 158, 11, 0.1)',
+      border: '1px solid #f59e0b',
+      description: 'Atuação e despesas de mandato dentro da média esperada do parlamento brasileiro (Top 70%).'
+    }
+  }
+  return {
+    label: 'Abaixo da média',
+    color: '#ef4444',
+    bg: 'rgba(239, 68, 68, 0.1)',
+    border: '1px solid #ef4444',
+    description: 'Baixa eficiência legislativa ou gasto de mandato elevado em relação ao volume de proposições substantivas (Bottom 30%).'
+  }
+}
+
+interface DeputyGaugeProps {
+  posicao: number | null
+  elegivel: boolean
+}
+
+function DeputyGauge({ posicao, elegivel }: DeputyGaugeProps) {
+  const cx = 100
+  const cy = 90
+  const r = 70
+  const strokeWidth = 14
+
+  const polarToCartesian = (x: number, y: number, radius: number, angleInDegrees: number) => {
+    const angleInRadians = (angleInDegrees * Math.PI) / 180.0
+    return {
+      x: x + radius * Math.cos(angleInRadians),
+      y: y - radius * Math.sin(angleInRadians)
+    }
+  }
+
+  const describeArc = (x: number, y: number, radius: number, startAngle: number, endAngle: number) => {
+    const start = polarToCartesian(x, y, radius, startAngle)
+    const end = polarToCartesian(x, y, radius, endAngle)
+    const largeArcFlag = startAngle - endAngle <= 180 ? '0' : '1'
+    return [
+      'M', start.x, start.y,
+      'A', radius, radius, 0, largeArcFlag, 1, end.x, end.y
+    ].join(' ')
+  }
+
+  let rotation = 0
+  let hasNeedle = false
+
+  if (elegivel && posicao !== null) {
+    hasNeedle = true
+    let angle = 90
+
+    if (posicao <= 50) {
+      const pct = (posicao - 1) / 49
+      angle = 10 + pct * 30
+    } else if (posicao <= 150) {
+      const pct = (posicao - 51) / 99
+      angle = 50 + pct * 35
+    } else if (posicao <= 350) {
+      const pct = (posicao - 151) / 199
+      angle = 95 + pct * 35
+    } else {
+      const maxPos = Math.max(500, posicao)
+      const pct = (posicao - 351) / (maxPos - 351)
+      angle = 140 + pct * 30
+    }
+
+    rotation = 90 - angle
+  }
+
+  const redColor = elegivel ? '#ef4444' : '#cbd5e1'
+  const yellowColor = elegivel ? '#f59e0b' : '#e2e8f0'
+  const blueColor = elegivel ? '#3b82f6' : '#cbd5e1'
+  const greenColor = elegivel ? '#10b981' : '#e2e8f0'
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '200px', flexShrink: 0 }}>
+      <svg width="200" height="110" viewBox="0 0 200 110" style={{ overflow: 'visible' }}>
+        <path
+          d={describeArc(cx, cy, r, 180, 0)}
+          fill="none"
+          stroke="var(--border)"
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+          style={{ opacity: 0.3 }}
+        />
+        <path
+          d={describeArc(cx, cy, r, 177, 137)}
+          fill="none"
+          stroke={redColor}
+          strokeWidth={strokeWidth}
+          strokeLinecap="butt"
+        />
+        <path
+          d={describeArc(cx, cy, r, 133, 93)}
+          fill="none"
+          stroke={yellowColor}
+          strokeWidth={strokeWidth}
+          strokeLinecap="butt"
+        />
+        <path
+          d={describeArc(cx, cy, r, 87, 47)}
+          fill="none"
+          stroke={blueColor}
+          strokeWidth={strokeWidth}
+          strokeLinecap="butt"
+        />
+        <path
+          d={describeArc(cx, cy, r, 43, 3)}
+          fill="none"
+          stroke={greenColor}
+          strokeWidth={strokeWidth}
+          strokeLinecap="butt"
+        />
+
+        <text x="18" y="105" fill="var(--muted)" fontSize="9" textAnchor="middle" fontWeight="600" style={{ opacity: 0.8 }}>Pior</text>
+        <text x="182" y="105" fill="var(--muted)" fontSize="9" textAnchor="middle" fontWeight="600" style={{ opacity: 0.8 }}>Melhor</text>
+
+        {hasNeedle && (
+          <g transform={`translate(${cx}, ${cy}) rotate(${rotation})`}>
+            <path d="M -4.5,0 L 0,-56 L 4.5,0 Z" fill="#334155" />
+            <circle cx="0" cy="0" r="7" fill="#1e293b" stroke="#ffffff" strokeWidth="2" />
+            <circle cx="0" cy="0" r="2.5" fill="#ffffff" />
+          </g>
+        )}
+      </svg>
+      {elegivel && posicao !== null && (
+        <span style={{ fontSize: '0.85rem', fontWeight: 'bold', marginTop: '-4px', color: 'var(--muted)' }}>
+          Posição: #{posicao}
+        </span>
+      )}
+    </div>
+  )
+}
+
+function ProfileField({ label, value, helpText }: { label: string; value: React.ReactNode; helpText?: string }) {
+  return (
+    <div className="deputy-profile__fact">
+      <span>{label}</span>
+      <strong>{value}</strong>
+      {helpText && (
+        <span
+          style={{
+            fontSize: '0.72rem',
+            color: 'var(--muted)',
+            fontWeight: 'normal',
+            marginTop: '4px',
+            lineHeight: '1.3'
+          }}
+        >
+          {helpText}
+        </span>
+      )}
+    </div>
+  )
+}
+
 
 
 
@@ -313,6 +509,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const [buscaDeputado, setBuscaDeputado] = useState('')
   const [categoriaFiltro, setCategoriaFiltro] = useState('')
   const [selectedDeputy, setSelectedDeputy] = useState<GastoDeputadoItem | null>(null)
+  const [sortDir, setSortDir] = useState<'desc' | 'asc'>('desc')
   const [selectedSupplier, setSelectedSupplier] = useState<GastoFornecedorItem | null>(null)
   const [selectedDeputyBreakdown, setSelectedDeputyBreakdown] = useState<{
     deputyId?: number
@@ -407,7 +604,6 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       })
   }, [visitedTabs.categorias, categories])
 
-  // 3. Deputados Tab Loader
   useEffect(() => {
     if (!visitedTabs.deputados) return
 
@@ -417,6 +613,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       partido: partido || undefined,
       uf: uf || undefined,
       busca: deferredBuscaDeputado || undefined,
+      sortDir: sortDir,
       pageSize: 100,
     })
       .then((payload) => {
@@ -433,7 +630,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
       .finally(() => {
         setLoadingDeputados(false)
       })
-  }, [visitedTabs.deputados, ano, deferredBuscaDeputado, partido, uf])
+  }, [visitedTabs.deputados, ano, deferredBuscaDeputado, partido, uf, sortDir])
 
   useEffect(() => {
     if (!selectedDeputy) {
@@ -641,12 +838,30 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
   const highestTicketCategory = topCategoriesByTicket[0]
   const topSupplier = topSuppliers[0]
   
-  const selectedDeputyRank = selectedDeputy && deputies
-    ? rankInRows(deputies.items, (item) => item.id_deputado === selectedDeputy.id_deputado)
-    : null
-  const selectedDeputyShare = deferredSelectedDeputy && deputies?.summary.valor_total
-    ? (deferredSelectedDeputy.valor_total / deputies.summary.valor_total) * 100
-    : 0
+  const selectedDeputyRank = useMemo<number | null>(() => {
+    if (!selectedDeputy) return null
+    if (activeTab === 'resumo' && q7Data) {
+      const idx = q7Data.table_spec.rows.findIndex(
+        (row) => Number(row.id_deputado) === selectedDeputy.id_deputado
+      )
+      if (idx !== -1) {
+        const row = q7Data.table_spec.rows[idx] as Record<string, any>
+        const val = row.posicao_geral ?? row.posicao ?? (idx + 1)
+        return val !== null && val !== undefined ? Number(val) : null
+      }
+    }
+    if (deputies) {
+      return rankInRows(deputies.items, (item) => item.id_deputado === selectedDeputy.id_deputado)
+    }
+    return null
+  }, [selectedDeputy, activeTab, q7Data, deputies])
+
+  const selectedDeputyShare = useMemo(() => {
+    if (!deferredSelectedDeputy) return 0
+    const total = deputies?.summary.valor_total ?? summary?.valor_total
+    if (!total) return 0
+    return (deferredSelectedDeputy.valor_total / total) * 100
+  }, [deferredSelectedDeputy, deputies, summary])
   const isDeputyProfileUpdating =
     selectedDeputy !== deferredSelectedDeputy ||
     (Boolean(deferredSelectedDeputy) && (
@@ -714,6 +929,305 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
         }
       : null,
   ].filter(Boolean) as Array<{ title: string; body: string }>
+
+  const renderDeputyDrilldown = () => {
+    if (!deferredSelectedDeputy) return null
+
+    if (activeTab === 'resumo') {
+      const elegivel = deferredSelectedDeputy.elegivel_ranking !== false
+      const posicao = selectedDeputyRank
+      const rating = getDeputyRating(posicao, elegivel)
+      
+      // scoreTotal is unused
+      const scoreAjustado = Number(deferredSelectedDeputy.score_proposicoes_ajustado ?? 0)
+      const totalProposicoes = Number(deferredSelectedDeputy.total_proposicoes ?? 0)
+      const substantivas = Number(deferredSelectedDeputy.total_proposicoes_substantivas ?? 0)
+      const aprovadas = Number(deferredSelectedDeputy.total_proposicoes_aprovadas ?? 0)
+      const emTramitacao = Number(deferredSelectedDeputy.total_proposicoes_em_tramitacao ?? 0)
+      const baixoImpacto = Number(deferredSelectedDeputy.total_proposicoes_baixo_impacto ?? 0)
+      const gastoTotal = Number(deferredSelectedDeputy.valor_total ?? 0)
+      const indice = Number(deferredSelectedDeputy.indice_custo_beneficio ?? 0)
+      const isPartial = Boolean(deferredSelectedDeputy.ano_dados === '2026')
+
+      return (
+        <aside className="gastos-drilldown gastos-deputy-profile scaffold-card stagger-item" style={{ marginTop: '16px', padding: '24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <DeputyAvatar id={deferredSelectedDeputy.id_deputado} nome={deferredSelectedDeputy.nome_parlamentar} size={64} />
+              <div>
+                <small style={{ color: 'var(--primary)', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '0.75rem' }}>Análise de Custo-Benefício (Q7):</small>
+                <h3 style={{ margin: '2px 0 0 0', fontSize: '1.4rem' }}>{deferredSelectedDeputy.nome_parlamentar}</h3>
+                <p style={{ margin: '2px 0 0 0', color: 'var(--muted)' }}>{deferredSelectedDeputy.sigla_partido} - {deferredSelectedDeputy.sigla_uf}</p>
+              </div>
+            </div>
+            <button type="button" className="gastos-clear-button" onClick={() => setSelectedDeputy(null)}>
+              Fechar Análise
+            </button>
+          </div>
+
+          {!elegivel && (
+            <div style={{
+              padding: '12px 16px',
+              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+              borderLeft: '4px solid #ef4444',
+              borderRadius: '6px',
+              fontSize: '0.9rem',
+              color: '#ef4444',
+              marginBottom: '16px',
+              lineHeight: '1.4'
+            }}>
+              <strong>Inelegível para o Ranking Principal:</strong>
+              <div style={{ marginTop: '4px' }}>{deferredSelectedDeputy.motivo_inelegibilidade || 'Este deputado não atende aos requisitos mínimos.'}</div>
+            </div>
+          )}
+
+          <div className="deputy-profile__metrics" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '20px' }}>
+            <ProfileField
+              label="Posição no ranking global"
+              value={posicao ? `#${posicao}` : 'Não classificado'}
+            />
+            <ProfileField
+              label="Índice"
+              value={<span style={{ color: rating.color, fontSize: '2.2rem', display: 'inline-block', lineHeight: '1.2' }}>{indice.toLocaleString('pt-BR', { minimumFractionDigits: 5, maximumFractionDigits: 5 })}</span>}
+            />
+            <ProfileField label="Gasto total" value={formatCurrency(gastoTotal)} />
+            <ProfileField
+              label="Proposições consideradas"
+              value={formatCellValue(totalProposicoes)}
+            />
+          </div>
+
+          <article className="deputy-profile__data-card" style={{ padding: '20px', border: '1px solid var(--border)', borderRadius: '10px', background: 'var(--surface)' }}>
+            <h3 style={{ margin: '0 0 16px 0', fontSize: '1.1rem' }}>Leitura do indicador</h3>
+            
+            <div style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '24px',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              padding: '12px 0',
+              marginBottom: '20px'
+            }}>
+              <DeputyGauge posicao={posicao ? Number(posicao) : null} elegivel={elegivel} />
+              
+              <div style={{ flex: '1', minWidth: '200px' }}>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '8px' }}>
+                  <span
+                    className="deputy-rating-badge"
+                    style={{
+                      padding: '4px 10px',
+                      borderRadius: '12px',
+                      backgroundColor: rating.bg,
+                      color: rating.color,
+                      border: rating.border,
+                      fontSize: '0.82rem',
+                      fontWeight: 'bold',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}
+                  >
+                    {rating.label}
+                  </span>
+                </div>
+                {rating.description && (
+                  <p style={{ fontSize: '0.88rem', color: 'var(--muted)', margin: 0, lineHeight: '1.4' }}>
+                    {rating.description}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="deputy-profile__details-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px', borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
+              <ProfileField
+                label="Score ajustado"
+                value={scoreAjustado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                helpText="Score total suavizado por potência (0.75) para evitar distorções de alto volume de projetos simples."
+              />
+              <ProfileField
+                label="Período"
+                value={`${isPartial ? '2026 (parcial)' : 'Global'}`}
+              />
+              <ProfileField
+                label="Proposições substantivas"
+                value={formatCellValue(substantivas)}
+                helpText="Proposições com relevância ou impacto legislativo concreto (como PECs, PLs, e PLPs), conforme metodologia."
+              />
+              <ProfileField
+                label="Proposições em tramitação"
+                value={formatCellValue(emTramitacao)}
+                helpText="Proposições de autoria do deputado ativas e em andamento."
+              />
+              <ProfileField
+                label="Proposições de baixo impacto"
+                value={formatCellValue(baixoImpacto)}
+                helpText="Proposições simples, requerimentos, indicações ou projetos arquivados/rejeitados."
+              />
+              <ProfileField
+                label="Proposições aprovadas"
+                value={formatCellValue(aprovadas)}
+                helpText="Proposições de autoria do deputado que foram aprovadas ou transformadas em lei no período."
+              />
+            </div>
+
+            <div style={{
+              marginTop: '20px',
+              padding: '12px 16px',
+              backgroundColor: 'rgba(56, 189, 248, 0.05)',
+              border: '1px solid rgba(56, 189, 248, 0.15)',
+              borderRadius: '8px',
+              fontSize: '0.85rem',
+              color: 'var(--muted)',
+              lineHeight: '1.5'
+            }}>
+              <strong style={{ color: 'var(--primary)', display: 'block', marginBottom: '6px' }}>Entendendo a metodologia do Score e do Índice (Q7):</strong>
+              O <strong>Índice de Custo-Benefício</strong> é uma relação de eficiência calculada dividindo-se o <strong>Score Ajustado</strong> pelo <strong>gasto de mandato ajustado</strong>. Valores maiores indicam melhor retorno.
+              <br /><br />
+              Cada proposição apresentada pelo parlamentar é pontuada de acordo com:
+              <ul style={{ margin: '6px 0', paddingLeft: '20px' }}>
+                <li><strong>Relevância/Tipo:</strong> Propostas de maior relevância constitucional ou legislativa (ex: PECs, PLPs, PLs) recebem pontuações significativamente maiores.</li>
+                <li><strong>Tramitação/Status:</strong> Projetos aprovados ou que avançaram na Câmara pontuam mais do que propostas arquivadas.</li>
+                <li><strong>Protagonismo:</strong> O autor principal recebe 100% da pontuação, enquanto co-autores dividem uma fração ponderada.</li>
+              </ul>
+              O <strong>Score Ajustado</strong> aplica um teto suavizado de potência (0.75) sobre o Score Total. Isso impede que a apresentação em massa de requerimentos simples ou proposições idênticas infle artificialmente a nota de eficiência do deputado, priorizando a qualidade e relevância do trabalho legislativo.
+            </div>
+          </article>
+        </aside>
+      )
+    }
+
+    if (selectedDeputy && isDeputyProfileUpdating) {
+      return (
+        <SelectionSkeleton
+          subtitle="Carregando detalhe"
+          title="Preparando o drilldown do deputado a partir das fontes canônicas Q12 e Q13."
+        />
+      )
+    }
+
+    if (isDeputyProfileUpdating) return null
+
+    return (
+      <aside className="gastos-drilldown gastos-deputy-profile stagger-item" style={{ marginTop: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <DeputyAvatar id={deferredSelectedDeputy.id_deputado} nome={deferredSelectedDeputy.nome_parlamentar} size={64} />
+            <div>
+              <small style={{ color: 'var(--primary)', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '0.75rem' }}>Analisando deputado:</small>
+              <h3 style={{ margin: '2px 0 0 0', fontSize: '1.4rem' }}>{deferredSelectedDeputy.nome_parlamentar}</h3>
+              <p style={{ margin: '2px 0 0 0', color: 'var(--muted)' }}>{deferredSelectedDeputy.sigla_partido} - {deferredSelectedDeputy.sigla_uf}</p>
+            </div>
+          </div>
+          <button type="button" className="gastos-clear-button" onClick={() => setSelectedDeputy(null)}>
+            Fechar Analise
+          </button>
+        </div>
+
+        <div className="gastos-drilldown-grid" style={{ marginTop: '12px' }}>
+          <span>Valor total: <strong>{formatCurrency(deferredSelectedDeputy.valor_total)}</strong></span>
+          <span>Posicao no ranking: <strong>{selectedDeputyRank ? `#${selectedDeputyRank}` : '-'}</strong></span>
+          <span>Valor médio por despesa: <strong>{formatCurrency(deferredSelectedDeputy.ticket_medio)}</strong></span>
+          <span>% do grupo filtrado: <strong>{formatPercent(selectedDeputyShare)}</strong></span>
+          <span>Categoria dominante: <strong>{deferredSelectedDeputy.categoria_principal ?? '-'}</strong></span>
+          <span>Fornecedores unicos: <strong>{formatCellValue(deferredSelectedDeputy.qtd_fornecedores)}</strong></span>
+        </div>
+
+        <div style={{ marginTop: '16px' }}>
+          <small style={{ color: 'var(--muted)' }}>
+            Detalhamento do deputado selecionado. Fonte canônica: Q12 e Q13, com percentuais calculados sobre o total do próprio deputado.
+          </small>
+        </div>
+
+        {selectedDeputyBreakdownError ? (
+          <p style={{ marginTop: '12px' }}>Não foi possível carregar o drilldown do deputado agora.</p>
+        ) : null}
+
+        {selectedDeputyExpenseBreakdown ? (
+          <>
+            <div className="gastos-kpi-grid" style={{ marginTop: '16px' }}>
+              <article className="gastos-kpi-card">
+                <span>Fonte do drilldown</span>
+                <strong>{selectedDeputyExpenseBreakdown.source.toUpperCase()}</strong>
+                <small>{formatCurrency(selectedDeputyExpenseBreakdown.total)} no recorte do deputado</small>
+              </article>
+              <article className="gastos-kpi-card">
+                <span>Top fornecedor do deputado</span>
+                <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSelectedDeputySuppliers[0]?.fornecedor}>
+                  {topSelectedDeputySuppliers[0]?.fornecedor ?? '-'}
+                </strong>
+                <small>
+                  {topSelectedDeputySuppliers[0]
+                    ? `${formatCurrency(topSelectedDeputySuppliers[0].valor_total)} (${formatPercent(topSelectedDeputySuppliers[0].pct_total)})`
+                    : ''}
+                </small>
+              </article>
+              <article className="gastos-kpi-card">
+                <span>Top categoria do deputado</span>
+                <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSelectedDeputyCategories[0]?.categoria}>
+                  {topSelectedDeputyCategories[0]?.categoria ?? '-'}
+                </strong>
+                <small>
+                  {topSelectedDeputyCategories[0]
+                    ? `${formatCurrency(topSelectedDeputyCategories[0].valor_total)} (${formatPercent(topSelectedDeputyCategories[0].pct_total)})`
+                    : ''}
+                </small>
+              </article>
+            </div>
+
+            <div className="gastos-two-columns" style={{ marginTop: '20px' }}>
+              <div>
+                <h4 style={{ marginBottom: '12px' }}>Top fornecedores do deputado (Q12)</h4>
+                <div className="gastos-breakdown-list">
+                  {topSelectedDeputySuppliers.map((item, idx) => (
+                    <div className="gastos-breakdown-item" key={`${item.fornecedor}-${idx}`}>
+                      <div className="gastos-breakdown-item__label" title={item.fornecedor}>
+                        <span className="gastos-breakdown-item__rank">#{idx + 1}</span>
+                        {item.fornecedor}
+                      </div>
+                      <div className="gastos-breakdown-item__meta">
+                        <strong>{formatCurrency(item.valor_total)}</strong>
+                        <span>
+                          <span className="gastos-breakdown-item__pct">{formatPercent(item.pct_total)}</span>
+                          {' · '}{formatCellValue(item.qtd_despesas)} desp.
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h4 style={{ marginBottom: '12px' }}>Top categorias do deputado (Q13)</h4>
+                <div className="gastos-breakdown-list">
+                  {topSelectedDeputyCategories.map((item, idx) => (
+                    <div className="gastos-breakdown-item" key={`${item.categoria}-${idx}`}>
+                      <div className="gastos-breakdown-item__label" title={item.categoria}>
+                        <span className="gastos-breakdown-item__rank">#{idx + 1}</span>
+                        {item.categoria}
+                      </div>
+                      <div className="gastos-breakdown-item__meta">
+                        <strong>{formatCurrency(item.valor_total)}</strong>
+                        <span>
+                          <span className="gastos-breakdown-item__pct">{formatPercent(item.pct_total)}</span>
+                          {' · '}{formatCellValue(item.qtd_despesas)} desp.
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {selectedDeputyExpenseBreakdown.partialErrors.length ? (
+              <p style={{ marginTop: '12px' }}>
+                Alguns recortes do drilldown não puderam ser carregados: {selectedDeputyExpenseBreakdown.partialErrors.join(', ')}.
+              </p>
+            ) : null}
+          </>
+        ) : null}
+      </aside>
+    )
+  }
 
   return (
     <main className="gastos-dashboard-premium gastos-story-dashboard">
@@ -835,10 +1349,41 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   const substantivas = Number(row.total_proposicoes_substantivas || 0)
                   const aprovadas = Number(row.total_proposicoes_aprovadas || 0)
                   return (
-                    <article
+                    <button
+                      type="button"
                       key={`${idDep}-${index}`}
-                      className="gastos-deputy-rank-card"
-                      style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px', cursor: 'default' }}
+                      className={`gastos-deputy-rank-card${selectedDeputy?.id_deputado === idDep ? ' selected' : ''}`}
+                      style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '8px', padding: '16px' }}
+                      onClick={() => {
+                        startTransition(() => {
+                          if (selectedDeputy?.id_deputado === idDep) {
+                            setSelectedDeputy(null)
+                          } else {
+                            setSelectedDeputy({
+                              id_deputado: idDep,
+                              nome_parlamentar: nameStr,
+                              sigla_partido: partidoStr,
+                              sigla_uf: ufStr,
+                              valor_total: Number(row.gasto_total || 0),
+                              qtd_despesas: Number(row.qtd_despesas || 0),
+                              ticket_medio: Number(row.ticket_medio || 0),
+                              qtd_fornecedores: Number(row.qtd_fornecedores || 0),
+                              categoria_principal: String(row.categoria_principal || ''),
+                              ano_dados: String(row.ano_dados || q7Ano || ''),
+                              indice_custo_beneficio: Number(row.indice_custo_beneficio || 0),
+                              score_proposicoes_total: Number(row.score_proposicoes_total ?? row.score_total ?? 0),
+                              score_proposicoes_ajustado: Number(row.score_proposicoes_ajustado ?? row.score_ajustado ?? 0),
+                              total_proposicoes: Number(row.total_proposicoes || 0),
+                              total_proposicoes_substantivas: Number(row.total_proposicoes_substantivas || 0),
+                              total_proposicoes_aprovadas: Number(row.total_proposicoes_aprovadas || 0),
+                              total_proposicoes_em_tramitacao: Number(row.total_proposicoes_em_tramitacao || 0),
+                              total_proposicoes_baixo_impacto: Number(row.total_proposicoes_baixo_impacto || 0),
+                              elegivel_ranking: row.elegivel_ranking !== undefined ? (String(row.elegivel_ranking).toLowerCase() === 'true' || row.elegivel_ranking === true) : true,
+                              motivo_inelegibilidade: row.motivo_inelegibilidade ? String(row.motivo_inelegibilidade) : null,
+                            })
+                          }
+                        })
+                      }}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                         {hasGeoPartyFilter && posFiltro ? (
@@ -866,7 +1411,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                         </span>
                       </div>
 
-                      <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left' }}>
+                      <div style={{ borderTop: '1px solid var(--border)', paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'left', width: '100%' }}>
                         <span className="rank-label" style={{ fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 'bold' }}>Índice custo-benefício</span>
                         <strong style={{ fontSize: '1.15rem', color: 'var(--primary)' }}>{indice.toLocaleString('pt-BR', { minimumFractionDigits: 5, maximumFractionDigits: 5 })}</strong>
                         <span style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>Gasto total {formatCurrency(row.gasto_total)}</span>
@@ -875,7 +1420,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                           <span>{substantivas} subst. · {aprovadas} aprov.</span>
                         </div>
                       </div>
-                    </article>
+                    </button>
                   )
                 })}
               </div>
@@ -905,6 +1450,8 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                   </div>
                 </div>
               )}
+
+              {renderDeputyDrilldown()}
             </>
           ) : null}
         </section>
@@ -943,7 +1490,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 </article>
               </div>
               <InsightGrid insights={categoryInsights} />
-              <div className="gastos-chart-grid">
+              <div className="gastos-chart-grid vertical">
                 <ChartPanel
                   spec={barChart(
                     'Top categorias por valor',
@@ -1024,6 +1571,13 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
               Busca
               <input value={buscaDeputado} onChange={(event) => setBuscaDeputado(event.target.value)} placeholder="Nome ou ID" />
             </label>
+            <label>
+              Ordenação
+              <select value={sortDir} onChange={(event) => setSortDir(event.target.value as 'desc' | 'asc')}>
+                <option value="desc">Mais gastadores (Decrescente)</option>
+                <option value="asc">Menos gastadores (Crescente)</option>
+              </select>
+            </label>
           </div>
 
           {loadingDeputados || !deputies ? (
@@ -1060,132 +1614,7 @@ export function GastosDashboardPage({ meta }: GastosDashboardPageProps) {
                 }}
               />
 
-              {selectedDeputy && isDeputyProfileUpdating ? (
-                <SelectionSkeleton
-                  subtitle="Carregando detalhe"
-                  title="Preparando o drilldown do deputado a partir das fontes canônicas Q12 e Q13."
-                />
-              ) : null}
-
-              {deferredSelectedDeputy && !isDeputyProfileUpdating && (
-                <aside className="gastos-drilldown gastos-deputy-profile stagger-item" style={{ marginTop: '16px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                      <DeputyAvatar id={deferredSelectedDeputy.id_deputado} nome={deferredSelectedDeputy.nome_parlamentar} size={64} />
-                      <div>
-                        <small style={{ color: 'var(--primary)', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '0.75rem' }}>Analisando deputado:</small>
-                        <h3 style={{ margin: '2px 0 0 0', fontSize: '1.4rem' }}>{deferredSelectedDeputy.nome_parlamentar}</h3>
-                        <p style={{ margin: '2px 0 0 0', color: 'var(--muted)' }}>{deferredSelectedDeputy.sigla_partido} - {deferredSelectedDeputy.sigla_uf}</p>
-                      </div>
-                    </div>
-                    <button type="button" className="gastos-clear-button" onClick={() => setSelectedDeputy(null)}>
-                      Fechar Analise
-                    </button>
-                  </div>
-
-                  <div className="gastos-drilldown-grid" style={{ marginTop: '12px' }}>
-                    <span>Valor total: <strong>{formatCurrency(deferredSelectedDeputy.valor_total)}</strong></span>
-                    <span>Posicao no ranking: <strong>{selectedDeputyRank ? `#${selectedDeputyRank}` : '-'}</strong></span>
-                    <span>Valor médio por despesa: <strong>{formatCurrency(deferredSelectedDeputy.ticket_medio)}</strong></span>
-                    <span>% do grupo filtrado: <strong>{formatPercent(selectedDeputyShare)}</strong></span>
-                    <span>Categoria dominante: <strong>{deferredSelectedDeputy.categoria_principal ?? '-'}</strong></span>
-                    <span>Fornecedores unicos: <strong>{formatCellValue(deferredSelectedDeputy.qtd_fornecedores)}</strong></span>
-                  </div>
-
-                  <div style={{ marginTop: '16px' }}>
-                    <small style={{ color: 'var(--muted)' }}>
-                      Detalhamento do deputado selecionado. Fonte canônica: Q12 e Q13, com percentuais calculados sobre o total do próprio deputado.
-                    </small>
-                  </div>
-
-                  {selectedDeputyBreakdownError ? (
-                    <p style={{ marginTop: '12px' }}>Não foi possível carregar o drilldown do deputado agora.</p>
-                  ) : null}
-
-                  {selectedDeputyExpenseBreakdown ? (
-                    <>
-                      <div className="gastos-kpi-grid" style={{ marginTop: '16px' }}>
-                        <article className="gastos-kpi-card">
-                          <span>Fonte do drilldown</span>
-                          <strong>{selectedDeputyExpenseBreakdown.source.toUpperCase()}</strong>
-                          <small>{formatCurrency(selectedDeputyExpenseBreakdown.total)} no recorte do deputado</small>
-                        </article>
-                        <article className="gastos-kpi-card">
-                          <span>Top fornecedor do deputado</span>
-                          <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSelectedDeputySuppliers[0]?.fornecedor}>
-                            {topSelectedDeputySuppliers[0]?.fornecedor ?? '-'}
-                          </strong>
-                          <small>
-                            {topSelectedDeputySuppliers[0]
-                              ? `${formatCurrency(topSelectedDeputySuppliers[0].valor_total)} (${formatPercent(topSelectedDeputySuppliers[0].pct_total)})`
-                              : ''}
-                          </small>
-                        </article>
-                        <article className="gastos-kpi-card">
-                          <span>Top categoria do deputado</span>
-                          <strong style={{ fontSize: '1.05rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={topSelectedDeputyCategories[0]?.categoria}>
-                            {topSelectedDeputyCategories[0]?.categoria ?? '-'}
-                          </strong>
-                          <small>
-                            {topSelectedDeputyCategories[0]
-                              ? `${formatCurrency(topSelectedDeputyCategories[0].valor_total)} (${formatPercent(topSelectedDeputyCategories[0].pct_total)})`
-                              : ''}
-                          </small>
-                        </article>
-                      </div>
-
-                      <div className="gastos-two-columns" style={{ marginTop: '20px' }}>
-                        <div>
-                          <h4 style={{ marginBottom: '12px' }}>Top fornecedores do deputado (Q12)</h4>
-                          <div className="gastos-breakdown-list">
-                            {topSelectedDeputySuppliers.map((item, idx) => (
-                              <div className="gastos-breakdown-item" key={`${item.fornecedor}-${idx}`}>
-                                <div className="gastos-breakdown-item__label" title={item.fornecedor}>
-                                  <span className="gastos-breakdown-item__rank">#{idx + 1}</span>
-                                  {item.fornecedor}
-                                </div>
-                                <div className="gastos-breakdown-item__meta">
-                                  <strong>{formatCurrency(item.valor_total)}</strong>
-                                  <span>
-                                    <span className="gastos-breakdown-item__pct">{formatPercent(item.pct_total)}</span>
-                                    {' · '}{formatCellValue(item.qtd_despesas)} desp.
-                                  </span>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h4 style={{ marginBottom: '12px' }}>Top categorias do deputado (Q13)</h4>
-                          <div className="gastos-breakdown-list">
-                            {topSelectedDeputyCategories.map((item, idx) => (
-                              <div className="gastos-breakdown-item" key={`${item.categoria}-${idx}`}>
-                                <div className="gastos-breakdown-item__label" title={item.categoria}>
-                                  <span className="gastos-breakdown-item__rank">#{idx + 1}</span>
-                                  {item.categoria}
-                                </div>
-                                <div className="gastos-breakdown-item__meta">
-                                  <strong>{formatCurrency(item.valor_total)}</strong>
-                                  <span>
-                                    <span className="gastos-breakdown-item__pct">{formatPercent(item.pct_total)}</span>
-                                    {' · '}{formatCellValue(item.qtd_despesas)} desp.
-                                  </span>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-
-                      {selectedDeputyExpenseBreakdown.partialErrors.length ? (
-                        <p style={{ marginTop: '12px' }}>
-                          Alguns recortes do drilldown não puderam ser carregados: {selectedDeputyExpenseBreakdown.partialErrors.join(', ')}.
-                        </p>
-                      ) : null}
-                    </>
-                  ) : null}
-                </aside>
-              )}
+              {renderDeputyDrilldown()}
 
             </>
           )}

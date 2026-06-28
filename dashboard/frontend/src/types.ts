@@ -192,6 +192,17 @@ export interface GastoDeputadoItem {
   qtd_fornecedores: number
   pct_total?: number
   categoria_principal?: string
+  // Q7 cost-benefit fields
+  indice_custo_beneficio?: number
+  score_proposicoes_total?: number
+  score_proposicoes_ajustado?: number
+  total_proposicoes?: number
+  total_proposicoes_substantivas?: number
+  total_proposicoes_aprovadas?: number
+  total_proposicoes_em_tramitacao?: number
+  total_proposicoes_baixo_impacto?: number
+  elegivel_ranking?: boolean
+  motivo_inelegibilidade?: string | null
 }
 
 export interface GastoFornecedorItem {

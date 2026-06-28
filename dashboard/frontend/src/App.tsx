@@ -10,6 +10,7 @@ import { QuestionPage } from './pages/QuestionPage'
 import { GastosDashboardPage } from './pages/GastosDashboardPage'
 import { PerfilDashboardPage } from './pages/PerfilDashboardPage'
 import { PartiesDashboardPage } from './pages/PartiesDashboardPage'
+import { MethodologyPage } from './pages/MethodologyPage'
 import type { FilterState, MetaResponse } from './types'
 import { isQuestionHidden } from './utils/questionAvailability'
 
@@ -137,6 +138,7 @@ function App() {
             <Route path="/grupos/gastos" element={<GastosDashboardPage meta={meta} />} />
             <Route path="/grupos/perfil" element={<PerfilDashboardPage meta={meta} />} />
             <Route path="/grupos/partidos-votacoes" element={<PartiesDashboardPage meta={meta} />} />
+            <Route path="/metodologia" element={<MethodologyPage />} />
           </Routes>
         </div>
         <footer className="app-footer">
