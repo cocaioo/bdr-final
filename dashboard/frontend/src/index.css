@@ -2272,14 +2272,6 @@ td {
   transform: translateY(-1px);
 }
 
-.gastos-deputy-card-grid.anomaly .gastos-deputy-rank-card {
-  cursor: default;
-}
-
-.gastos-deputy-card-grid.anomaly .gastos-deputy-rank-card:hover {
-  transform: none;
-}
-
 .gastos-deputy-rank-card .rank-number {
   grid-area: rank;
   color: var(--muted);

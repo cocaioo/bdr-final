@@ -16,7 +16,9 @@ import type {
   TableState,
 } from './types'
 
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8001'
+// Same-origin by default for the single-container deployment. Split frontend/
+// backend deployments (including Render) can still provide VITE_API_URL.
+const API_BASE = import.meta.env.VITE_API_URL ?? ''
 
 function buildQuery(params: Record<string, string | number | undefined | string[]>) {
   const query = new URLSearchParams()

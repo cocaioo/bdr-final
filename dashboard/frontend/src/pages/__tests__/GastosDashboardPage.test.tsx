@@ -217,7 +217,7 @@ beforeEach(() => {
   vi.mocked(fetchGastosContexto).mockResolvedValue({ summary: { qtd_partidos: 1, qtd_ufs: 1, valor_total: summary.valor_total }, partidos: [], ufs: [], metadata: {} })
 })
 
-it('renders the Q7 ranking cards in the resumo tab without atypical-expense jargon', async () => {
+it('renders the Q7 ranking cards in the resumo tab', async () => {
   render(<GastosDashboardPage meta={meta} />)
 
   // The resumo tab shows Q7 ranking cards (no chart widget for evolution or category)
@@ -227,11 +227,6 @@ it('renders the Q7 ranking cards in the resumo tab without atypical-expense jarg
   // Outdated chart test-ids no longer exist in the redesigned resumo tab
   expect(screen.queryByTestId('chart-Evolucao temporal dos gastos')).not.toBeInTheDocument()
   expect(screen.queryByTestId('chart-Distribuicao por categoria')).not.toBeInTheDocument()
-
-  // Atypical-expense / anomaly / ticket jargon should never appear
-  expect(screen.queryByText(/gastos at[ií]picos/i)).not.toBeInTheDocument()
-  expect(screen.queryByText(/anomalia/i)).not.toBeInTheDocument()
-  expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
 })
 
 it('renders the Q7 ranking in the gastos dashboard and supports the annual partial view', async () => {

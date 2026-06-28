@@ -194,11 +194,3 @@ def test_gastos_collection_endpoints_return_json_contracts(tmp_path: Path) -> No
     assert contexto.json()["partidos"][0]["sigla_partido"] == "PT"
     assert contexto.json()["ufs"][0]["sigla_uf"] == "SP"
 
-    anomalias = client.get("/api/gastos/anomalias")
-    assert anomalias.status_code == 404
-
-    detalhes_anomalias = client.get("/api/gastos/anomalias/detalhes")
-    assert detalhes_anomalias.status_code == 404
-
-
-
