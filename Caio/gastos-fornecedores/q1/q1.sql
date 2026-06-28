@@ -1,4 +1,15 @@
-﻿\o /query-staging/q1_gastos_deputados.txt
+﻿-- =============================================================================
+-- Q1 - RANKING DE GASTOS POR DEPUTADO
+-- Universo: 57a legislatura (2023-2027), Cota Parlamentar (CEAP)
+--
+-- Regra metodologica:
+--   - usa apenas gasto efetivo (valor_liquido > 0), alinhado com Q5, Q7,
+--     Q12 e Q13; isso exclui estornos, cancelamentos e ajustes com valor <= 0;
+--   - gasto_total representa o total consumido da cota parlamentar, nao o
+--     saldo liquido apos devolucoes.
+-- =============================================================================
+
+\o /query-staging/q1_gastos_deputados.txt
 \qecho Ranking global - todos os anos
 
 WITH gastos_totais AS (
@@ -6,6 +17,7 @@ WITH gastos_totais AS (
         id_deputado,
         SUM(valor_liquido) AS gasto_total
     FROM gastos
+    WHERE valor_liquido > 0
     GROUP BY id_deputado
 ),
 perfil_por_partido AS (
@@ -16,6 +28,7 @@ perfil_por_partido AS (
         COUNT(*) AS ocorrencias,
         SUM(valor_liquido) AS gasto_no_partido
     FROM gastos
+    WHERE valor_liquido > 0
     GROUP BY id_deputado, sigla_uf, sigla_partido
 ),
 perfil_dominante AS (

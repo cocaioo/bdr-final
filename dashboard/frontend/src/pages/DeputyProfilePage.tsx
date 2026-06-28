@@ -613,7 +613,11 @@ export function DeputyProfilePage() {
                       value={<span style={{ color: rating.color }}>{formatDecimal(q7State.data.indice, 5)}</span>}
                       helpText="Relação de custo-benefício. Calculado dividindo o Score Ajustado pelo gasto de mandato ajustado. Valores maiores indicam melhor retorno."
                     />
-                    <ProfileField label="Gasto total" value={formatCurrency(q7State.data.gastoTotal)} />
+                    <ProfileField
+                      label="Gasto considerado no índice"
+                      value={formatCurrency(q7State.data.gastoTotal)}
+                      helpText="No ranking global, a Q7 considera apenas anos completos; 2026 parcial aparece nas visões anuais."
+                    />
                     <ProfileField
                       label="Proposicoes consideradas"
                       value={formatNumber(q7State.data.totalProposicoes)}
