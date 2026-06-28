@@ -332,7 +332,7 @@ export function PartiesDashboardPage({ meta }: PartiesDashboardPageProps) {
       {hasRevealed && q14!.cohesion.length ? (
         <section className="parties-section stagger-item">
           <div className="parties-section__head">
-            <span aria-hidden="true">07</span>
+            <span aria-hidden="true">08</span>
             <div>
               <h2>Coesão das bancadas</h2>
               <p>
