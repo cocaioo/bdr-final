@@ -347,3 +347,26 @@ def query_q3_classificacoes_sqlite(repo_root: Path, votacao_ids: list[str]) -> l
     
     conn.close()
     return rows
+
+def query_deputy_presence(repo_root: Path, id_deputado: int) -> list[dict[str, Any]]:
+    db_path = repo_root / "runtime" / "bdr_runtime.sqlite"
+    if not db_path.exists():
+        return []
+    conn = sqlite3.connect(str(db_path))
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    try:
+        cursor.execute(
+            "SELECT * FROM presenca_deputados WHERE id_deputado = ? ORDER BY ano_dados ASC",
+            (id_deputado,)
+        )
+        rows = [dict(r) for r in cursor.fetchall()]
+        return rows
+    except sqlite3.OperationalError as e:
+        # Table might not exist if build ran without presence CSV
+        import logging
+        logging.getLogger(__name__).warning(f"Table 'presenca_deputados' not found in SQLite: {e}")
+        return []
+    finally:
+        conn.close()
+

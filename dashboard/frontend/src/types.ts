@@ -256,3 +256,17 @@ export interface DeputyTemaItem {
   qtd_proposicoes: number
 }
 
+export interface DeputyPresencaItem {
+  ano_dados: number
+  id_deputado: number
+  plenario_presencas: number
+  plenario_ausencias_justificadas: number
+  plenario_ausencias_nao_justificadas: number
+  comissoes_presencas: number
+  comissoes_ausencias_justificadas: number
+  comissoes_ausencias_nao_justificadas: number
+  source_url: string
+  scraped_at: string
+}
+
+

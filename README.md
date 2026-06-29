@@ -31,7 +31,7 @@ Para deployments separados no Render (como o do backend Python), configure o ser
 
 - **Build Command**:
   ```bash
-  pip install -r requirements.txt && pip install -r dashboard/backend/requirements.txt && python scripts/build_runtime_sqlite.py
+  pip install -r requirements.txt && pip install -r dashboard/backend/requirements.txt && python dashboard/scripts/generate_gastos_analytics.py && python scripts/scrape_presence.py && python scripts/build_runtime_sqlite.py
   ```
 - **Start Command**:
   ```bash

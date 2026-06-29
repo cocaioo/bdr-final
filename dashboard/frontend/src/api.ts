@@ -4,6 +4,7 @@ import type {
   DeputyGastosProfile,
   DeputyIdentityEnrichment,
   DeputyTemaItem,
+  DeputyPresencaItem,
   FilterState,
   GastoCategoriaItem,
   GastoContextoPayload,
@@ -546,4 +547,9 @@ export async function fetchDeputyGastosSummary(deputyId: string): Promise<Deputy
     partialErrors: errors,
   }
 }
+
+export function fetchDeputyPresenca(deputyId: string): Promise<DeputyPresencaItem[]> {
+  return fetchJson<DeputyPresencaItem[]>(`${API_BASE}/api/deputados/${deputyId}/presenca`)
+}
+
 
