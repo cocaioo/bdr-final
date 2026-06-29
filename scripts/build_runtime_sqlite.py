@@ -2,6 +2,7 @@
 import sys
 import os
 import sqlite3
+import csv
 import hashlib
 import time
 from datetime import datetime
@@ -22,6 +23,7 @@ Q12_FILE_1 = REPO_ROOT / "Caio" / "gastos-fornecedores" / "q12" / "q12_deputado_
 Q12_FILE_2 = REPO_ROOT / "Caio" / "gastos-fornecedores" / "q12" / "q12_deputado_fornecedor_complemento.txt"
 Q3_FILE_1 = REPO_ROOT / "JF" / "producao-legislativa-temas" / "q3" / "q3_votos_min.csv"
 Q3_FILE_2 = REPO_ROOT / "JF" / "producao-legislativa-temas" / "q3" / "q3_classificacao_votacoes.csv"
+PRESENCA_FILE = REPO_ROOT / "generated" / "presenca_deputados.csv"
 
 DB_PATH = REPO_ROOT / "runtime" / "bdr_runtime.sqlite"
 
@@ -188,6 +190,24 @@ def build_database(files_info: list[dict]):
                 classificado_em TEXT
             )
         """)
+
+        # Create Presence table if CSV exists
+        if PRESENCA_FILE.exists():
+            print("Creating presenca_deputados table...")
+            cursor.execute("""
+                CREATE TABLE presenca_deputados (
+                    ano_dados INTEGER,
+                    id_deputado INTEGER,
+                    plenario_presencas INTEGER,
+                    plenario_ausencias_justificadas INTEGER,
+                    plenario_ausencias_nao_justificadas INTEGER,
+                    comissoes_presencas INTEGER,
+                    comissoes_ausencias_justificadas INTEGER,
+                    comissoes_ausencias_nao_justificadas INTEGER,
+                    source_url TEXT,
+                    scraped_at TEXT
+                )
+            """)
         
         # Parse Q12 File 1
         print(f"Parsing {Q12_FILE_1.name}...")
@@ -257,6 +277,33 @@ def build_database(files_info: list[dict]):
             "score_por_eixo", "texto_classificacao_hash", "qtd_objetos_associados", "qtd_proposicoes_associadas",
             "materia_resumo", "ementa_resumo", "classificado_em"
         ], q3_class_table.rows)
+
+        # Parse and Insert Presence data if CSV exists
+        if PRESENCA_FILE.exists():
+            print(f"Parsing {PRESENCA_FILE.name}...")
+            presence_rows = []
+            with PRESENCA_FILE.open("r", encoding="utf-8") as f:
+                reader = csv.DictReader(f, delimiter=";")
+                for row in reader:
+                    if row.get("extraction_status") == "success":
+                        presence_rows.append({
+                            "ano_dados": int(row["ano_dados"]),
+                            "id_deputado": int(row["id_deputado"]),
+                            "plenario_presencas": int(row["plenario_presencas"]),
+                            "plenario_ausencias_justificadas": int(row["plenario_ausencias_justificadas"]),
+                            "plenario_ausencias_nao_justificadas": int(row["plenario_ausencias_nao_justificadas"]),
+                            "comissoes_presencas": int(row["comissoes_presencas"]),
+                            "comissoes_ausencias_justificadas": int(row["comissoes_ausencias_justificadas"]),
+                            "comissoes_ausencias_nao_justificadas": int(row["comissoes_ausencias_nao_justificadas"]),
+                            "source_url": row["source_url"],
+                            "scraped_at": row["scraped_at"]
+                        })
+            
+            insert_rows("presenca_deputados", [
+                "ano_dados", "id_deputado", "plenario_presencas", "plenario_ausencias_justificadas",
+                "plenario_ausencias_nao_justificadas", "comissoes_presencas", "comissoes_ausencias_justificadas",
+                "comissoes_ausencias_nao_justificadas", "source_url", "scraped_at"
+            ], presence_rows)
         
         # Create Q12 indexes
         print("Creating Q12 indexes...")
@@ -278,6 +325,13 @@ def build_database(files_info: list[dict]):
         cursor.execute("CREATE INDEX idx_q3_votos_eixo ON q3_votos_min (eixo_principal)")
         cursor.execute("CREATE INDEX idx_q3_votos_votacao ON q3_votos_min (id_votacao)")
         cursor.execute("CREATE INDEX idx_q3_classificacao_key ON q3_classificacao_votacoes (ano_dados, id_votacao)")
+
+        # Create Presence indexes if table exists
+        if PRESENCA_FILE.exists():
+            print("Creating Presence indexes...")
+            cursor.execute("CREATE INDEX idx_presenca_dep ON presenca_deputados (id_deputado)")
+            cursor.execute("CREATE INDEX idx_presenca_ano ON presenca_deputados (ano_dados)")
+            cursor.execute("CREATE INDEX idx_presenca_dep_ano ON presenca_deputados (id_deputado, ano_dados)")
         
         # Write metadata
         now_str = datetime.now().isoformat()
@@ -320,6 +374,14 @@ def main():
         }
         for rf in required_files
     ]
+    if PRESENCA_FILE.exists():
+        files_info.append({
+            "path": PRESENCA_FILE,
+            "rel_path": str(PRESENCA_FILE.relative_to(REPO_ROOT)),
+            "size": PRESENCA_FILE.stat().st_size,
+            "mtime": PRESENCA_FILE.stat().st_mtime,
+            "hash": get_file_hash(PRESENCA_FILE)
+        })
     
     if check_idempotency(files_info):
         print("SQLite database is up-to-date. Skipping build.")

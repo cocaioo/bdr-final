@@ -546,3 +546,11 @@ escolaridade | id_deputado | nome
     assert joao["sigla_uf"] == "AM"
 
 
+def test_deputy_presence_endpoint_returns_empty_when_no_data(tmp_path: Path) -> None:
+    client = _client_for(_build_service(tmp_path))
+    response = client.get("/api/deputados/178929/presenca")
+    assert response.status_code == 200
+    assert response.json() == []
+
+
+

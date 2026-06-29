@@ -46,3 +46,5 @@ JF/producao-legislativa-temas/q3/q3_votos_analitico.csv
 Caio/gastos-fornecedores/analytics/*.csv
 Caio/gastos-fornecedores/analytics/gastos_metadata.json
 Caio/gastos-fornecedores/analytics/auditoria_*.json
+# Offline generated data
+generated/

@@ -191,6 +191,17 @@ def get_deputado_temas_nuvem(id_deputado: str) -> dict:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
 
+@app.get("/api/deputados/{id_deputado}/presenca")
+def get_deputado_presenca(id_deputado: str) -> list:
+    try:
+        return service.get_deputy_presence(id_deputado=id_deputado)
+    except Exception as exc:
+        import logging
+        logging.getLogger(__name__).error(f"Error serving deputy presence: {exc}")
+        return []
+
+
+
 # Keep these routes after every API route: Starlette resolves the first match.
 # In local development Vite runs separately, so no routes are added until a
 # frontend build exists.

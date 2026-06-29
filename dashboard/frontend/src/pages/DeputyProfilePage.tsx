@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../api'
+import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy, fetchDeputyPresenca } from '../api'
 import type { DeputyAlignmentScores } from '../api'
 import { ChartPanel } from '../components/ChartPanel'
 import { DeputyAvatar } from '../components/DeputyAvatar'
 import { DeputySearch } from '../components/DeputySearch'
 import { DeputyTemaWordCloud } from '../components/DeputyTemaWordCloud'
-import type { ChartSpec, DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption, DeputyTemaItem } from '../types'
+import type { ChartSpec, DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption, DeputyTemaItem, DeputyPresencaItem } from '../types'
+import * as echarts from 'echarts'
 import { formatCurrency } from '../utils/format'
 
 function optionalLabel(value?: string): string {
@@ -417,6 +418,231 @@ function GastosSection({ data, loading, error }: { data: DeputyGastosProfile | n
   )
 }
 
+function PresenceChart({ data, type }: { data: DeputyPresencaItem[]; type: 'plenario' | 'comissoes' }) {
+  const chartRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!chartRef.current) return;
+    const chart = echarts.init(chartRef.current);
+
+    const years = ['2023', '2024', '2025', '2026'];
+    
+    const mapByYear = (field: keyof DeputyPresencaItem) => {
+      return years.map(y => {
+        const item = data.find(d => String(d.ano_dados) === y);
+        return item ? Number(item[field]) : 0;
+      });
+    };
+
+    const presencas = mapByYear(type === 'plenario' ? 'plenario_presencas' : 'comissoes_presencas');
+    const justificadas = mapByYear(type === 'plenario' ? 'plenario_ausencias_justificadas' : 'comissoes_ausencias_justificadas');
+    const nao_justificadas = mapByYear(type === 'plenario' ? 'plenario_ausencias_nao_justificadas' : 'comissoes_ausencias_nao_justificadas');
+
+    const unit = type === 'plenario' ? 'dias' : 'reuniões';
+
+    const option = {
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' },
+        backgroundColor: '#1e293b',
+        borderColor: '#334155',
+        borderWidth: 1,
+        formatter: (params: any) => {
+          let res = `<div style="font-weight: bold; margin-bottom: 4px; color: #f1f5f9;">Ano ${params[0].name}</div>`;
+          params.forEach((p: any) => {
+            res += `<div style="display: flex; justify-content: space-between; gap: 12px; font-size: 0.85rem; color: #cbd5e1;">
+              <span>${p.marker} ${p.seriesName}:</span>
+              <span style="font-weight: bold; color: #f1f5f9;">${p.value} ${unit}</span>
+            </div>`;
+          });
+          return res;
+        }
+      },
+      legend: {
+        data: ['Presenças', 'Ausências Justificadas', 'Ausências Não Justificadas'],
+        textStyle: { color: '#334155', fontSize: 11 },
+        top: 0
+      },
+      grid: {
+        top: '40px',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        data: years,
+        axisLine: { lineStyle: { color: '#cbd5e1' } },
+        axisLabel: { color: '#475569' }
+      },
+      yAxis: {
+        type: 'value',
+        axisLine: { show: false },
+        splitLine: { lineStyle: { color: 'rgba(0,0,0,0.08)' } },
+        axisLabel: { color: '#475569' }
+      },
+      series: [
+        {
+          name: 'Presenças',
+          type: 'bar',
+          stack: 'total',
+          data: presencas,
+          itemStyle: { color: '#16a34a' }
+        },
+        {
+          name: 'Ausências Justificadas',
+          type: 'bar',
+          stack: 'total',
+          data: justificadas,
+          itemStyle: { color: '#d97706' }
+        },
+        {
+          name: 'Ausências Não Justificadas',
+          type: 'bar',
+          stack: 'total',
+          data: nao_justificadas,
+          itemStyle: { color: '#dc2626' }
+        }
+      ]
+    };
+
+    chart.setOption(option);
+
+    const resizeObserver = new ResizeObserver(() => chart.resize());
+    resizeObserver.observe(chartRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
+      chart.dispose();
+    };
+  }, [data, type]);
+
+  return <div ref={chartRef} style={{ width: '100%', height: '300px' }} />;
+}
+
+import { useRef } from 'react';
+
+function PresenceDashboard({ data }: { data: DeputyPresencaItem[] }) {
+  const availableYears = useMemo(() => {
+    return Array.from(new Set(data.map(d => d.ano_dados))).sort((a, b) => b - a);
+  }, [data]);
+
+  const [selectedYear, setSelectedYear] = useState<number>(() => {
+    return availableYears.includes(2026) ? 2026 : (availableYears[0] ?? 2026);
+  });
+
+  const yearData = useMemo(() => {
+    return data.find(d => d.ano_dados === selectedYear) || {
+      plenario_presencas: 0,
+      plenario_ausencias_justificadas: 0,
+      plenario_ausencias_nao_justificadas: 0,
+      comissoes_presencas: 0,
+      comissoes_ausencias_justificadas: 0,
+      comissoes_ausencias_nao_justificadas: 0,
+      source_url: '',
+      scraped_at: ''
+    };
+  }, [data, selectedYear]);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+        <div style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>
+          Dados de presença obtidos via scraping do portal da Câmara.
+          {yearData.scraped_at && (
+            <span style={{ display: 'block', fontSize: '0.75rem', marginTop: '2px' }}>
+              Atualizado em: {new Date(yearData.scraped_at).toLocaleDateString('pt-BR')} {yearData.source_url && (
+                <>
+                  (Fonte: <a href={yearData.source_url} target="_blank" rel="noreferrer">Portal Câmara</a>)
+                </>
+              )}
+            </span>
+          )}
+        </div>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          {availableYears.map(year => (
+            <button
+              key={year}
+              onClick={() => setSelectedYear(year)}
+              style={{
+                background: selectedYear === year ? 'var(--primary)' : 'rgba(255,255,255,0.04)',
+                color: selectedYear === year ? '#fff' : 'var(--primary)',
+                border: '1px solid',
+                borderColor: selectedYear === year ? 'var(--primary)' : 'var(--border)',
+                padding: '6px 14px',
+                borderRadius: '8px',
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
+        <article className="deputy-profile__data-card" style={{ padding: '20px' }}>
+          <h3 style={{ margin: '0 0 16px 0', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem' }}>
+            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--primary)' }} />
+            Plenário ({selectedYear})
+          </h3>
+          <div className="deputy-profile__metrics" style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '8px' }}>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Presenças</span>
+              <strong style={{ color: 'var(--ok)', fontSize: '1.3rem' }}>{yearData.plenario_presencas} <span style={{ fontSize: '0.8rem', fontWeight: 'normal', color: 'var(--muted)' }}>dias</span></strong>
+            </div>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Justificadas</span>
+              <strong style={{ color: 'var(--warn)', fontSize: '1.3rem' }}>{yearData.plenario_ausencias_justificadas} <span style={{ fontSize: '0.8rem', fontWeight: 'normal', color: 'var(--muted)' }}>dias</span></strong>
+            </div>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Não Justif.</span>
+              <strong style={{ color: 'var(--danger)', fontSize: '1.3rem' }}>{yearData.plenario_ausencias_nao_justificadas} <span style={{ fontSize: '0.8rem', fontWeight: 'normal', color: 'var(--muted)' }}>dias</span></strong>
+            </div>
+          </div>
+        </article>
+
+        <article className="deputy-profile__data-card" style={{ padding: '20px' }}>
+          <h3 style={{ margin: '0 0 16px 0', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem' }}>
+            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--accent)' }} />
+            Comissões ({selectedYear})
+          </h3>
+          <div className="deputy-profile__metrics" style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '8px' }}>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Presenças</span>
+              <strong style={{ color: 'var(--ok)', fontSize: '1.3rem' }}>{yearData.comissoes_presencas} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--muted)' }}>reuniões</span></strong>
+            </div>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Justificadas</span>
+              <strong style={{ color: 'var(--warn)', fontSize: '1.3rem' }}>{yearData.comissoes_ausencias_justificadas} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--muted)' }}>reuniões</span></strong>
+            </div>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Não Justif.</span>
+              <strong style={{ color: 'var(--danger)', fontSize: '1.3rem' }}>{yearData.comissoes_ausencias_nao_justificadas} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--muted)' }}>reuniões</span></strong>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '20px', marginTop: '12px' }}>
+        <article className="deputy-profile__data-card" style={{ padding: '20px' }}>
+          <h3 style={{ margin: '0 0 16px 0', fontSize: '1rem', color: 'var(--primary)' }}>Evolução Anual (Plenário)</h3>
+          <PresenceChart data={data} type="plenario" />
+        </article>
+        <article className="deputy-profile__data-card" style={{ padding: '20px' }}>
+          <h3 style={{ margin: '0 0 16px 0', fontSize: '1rem', color: 'var(--accent)' }}>Evolução Anual (Comissões)</h3>
+          <PresenceChart data={data} type="comissoes" />
+        </article>
+      </div>
+    </div>
+  );
+}
+
 export function DeputyProfilePage() {
   const { id } = useParams<{ id: string }>()
   const [catalog, setCatalog] = useState<DeputyOption[]>([])
@@ -442,6 +668,11 @@ export function DeputyProfilePage() {
     data: DeputyAlignmentScores | null
     error: string | null
   }>({ data: null, error: null })
+  const [presencaState, setPresencaState] = useState<{
+    deputyId?: string
+    data: DeputyPresencaItem[] | null
+    error: string | null
+  }>({ data: null, error: null })
   const [identityEnrichment, setIdentityEnrichment] = useState<DeputyIdentityEnrichment>({})
 
   useEffect(() => {
@@ -462,6 +693,7 @@ export function DeputyProfilePage() {
     setQ7State({ data: null, error: null })
     setTemasState({ data: null, error: null })
     setAlignmentState({ data: null, error: null })
+    setPresencaState({ data: null, error: null })
     fetchDeputyIdentityFromGastos(deputy.id)
       .then((enrichment) => { if (active) setIdentityEnrichment(enrichment) })
       .catch(() => { /* silently ignore; fallback to CSV values */ })
@@ -474,6 +706,9 @@ export function DeputyProfilePage() {
     fetchDeputyAlignmentScores(deputy.id)
       .then((scores) => { if (active) setAlignmentState({ deputyId: deputy.id, data: scores, error: null }) })
       .catch((cause: Error) => { if (active) setAlignmentState({ deputyId: deputy.id, data: null, error: cause.message }) })
+    fetchDeputyPresenca(deputy.id)
+      .then((presence) => { if (active) setPresencaState({ deputyId: deputy.id, data: presence, error: null }) })
+      .catch((cause: Error) => { if (active) setPresencaState({ deputyId: deputy.id, data: null, error: cause.message }) })
     fetchQuestionForDeputy('q7', deputy.id, 1, 5)
       .then((payload) => {
         if (!active) return
@@ -763,6 +998,26 @@ export function DeputyProfilePage() {
               <strong>Nao ha dados suficientes para calcular o indice deste deputado no periodo selecionado.</strong>
               <span>O card sera preenchido assim que a Q7 retornar esse parlamentar no recorte global.</span>
             </div>
+          )}
+        </div>
+      </section>
+
+      <section className="deputy-profile__section" aria-labelledby="presenca-heading">
+        <SectionHeading
+          eyebrow="Assiduidade"
+          title="Presença e Assiduidade Parlamentar"
+          description="Estatísticas oficiais de presenças marcadas, ausências justificadas e ausências não justificadas."
+        />
+        <div id="presenca-heading">
+          {presencaState.deputyId !== deputy.id ? (
+            <div className="deputy-profile__empty" role="status">Carregando dados de presença…</div>
+          ) : presencaState.error || !presencaState.data || presencaState.data.length === 0 ? (
+            <div className="deputy-profile__empty" role="status">
+              <strong>Dados de presença ainda não disponíveis para este parlamentar.</strong>
+              <span>O perfil cadastral e os demais indicadores continuam disponíveis.</span>
+            </div>
+          ) : (
+            <PresenceDashboard data={presencaState.data} />
           )}
         </div>
       </section>
