@@ -211,6 +211,33 @@ export function fetchQuestionForDeputy(
   )
 }
 
+export interface DeputyAlignmentScores {
+  deputyScore: number | null
+  partyScore: number | null
+  partyFaixa: string | null
+  deviation: number | null
+}
+
+/**
+ * Reaproveita a posicao ideologica revelada (Q14, mesma metodologia da
+ * secao "Posicao ideologica revelada" do painel de Partidos e Ideologia):
+ * score_calibrado_0_10 (deputado) e ideologia_score_partido (partido) ja
+ * vem na mesma escala 0-10, e desvio_partido ja vem pronto, com sinal.
+ */
+export async function fetchDeputyAlignmentScores(deputyId: string): Promise<DeputyAlignmentScores> {
+  const payload = await fetchQuestionForDeputy('q14', deputyId, 1, 5)
+  const row =
+    payload.table_spec.rows.find((item) => String(item.deputy_id ?? item.id_deputado ?? '') === deputyId) ??
+    payload.table_spec.rows[0]
+
+  return {
+    deputyScore: row ? numericValue(row.score_calibrado_0_10) : null,
+    partyScore: row ? numericValue(row.ideologia_score_partido) : null,
+    partyFaixa: row?.ideologia_faixa_partido ? String(row.ideologia_faixa_partido) : null,
+    deviation: row ? numericValue(row.desvio_partido) : null,
+  }
+}
+
 export function fetchGastosResumo(): Promise<GastosSummary> {
   return fetchJson<GastosSummary>(`${API_BASE}/api/gastos/resumo`)
 }

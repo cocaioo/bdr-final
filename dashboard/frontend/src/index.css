@@ -4500,6 +4500,42 @@ body.gastos-light-theme .skeleton-text {
   opacity: 0.82;
 }
 
+.deputy-profile__fact strong .deputy-profile__score-tooltip {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.deputy-profile__score-tooltip {
+  cursor: default;
+  position: relative;
+}
+
+.deputy-profile__score-tooltip::after {
+  background: var(--color-surface-glass, rgba(16, 24, 39, 0.92));
+  border: 1px solid var(--color-border-strong, rgba(148, 163, 184, 0.28));
+  border-radius: 8px;
+  bottom: 100%;
+  color: var(--ink);
+  content: attr(data-tooltip);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 400;
+  left: 0;
+  opacity: 0;
+  padding: 10px 16px;
+  pointer-events: none;
+  position: absolute;
+  transform: translateY(-8px);
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+  z-index: 5;
+}
+
+.deputy-profile__score-tooltip:hover::after {
+  opacity: 1;
+}
+
 .deputy-tema-cloud__tooltip {
   background: var(--color-surface-glass, rgba(16, 24, 39, 0.92));
   border: 1px solid var(--color-border-strong, rgba(148, 163, 184, 0.28));

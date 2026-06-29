@@ -2,11 +2,12 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../../api'
+import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../../api'
 import { DeputyProfilePage } from '../DeputyProfilePage'
 
 vi.mock('../../api', () => ({
   fetchDeputies: vi.fn(),
+  fetchDeputyAlignmentScores: vi.fn(),
   fetchDeputyGastosSummary: vi.fn(),
   fetchDeputyIdentityFromGastos: vi.fn(),
   fetchDeputyTemasNuvem: vi.fn(),
@@ -14,6 +15,7 @@ vi.mock('../../api', () => ({
 }))
 
 const fetchDeputiesMock = vi.mocked(fetchDeputies)
+const fetchAlignmentMock = vi.mocked(fetchDeputyAlignmentScores)
 const fetchGastosMock = vi.mocked(fetchDeputyGastosSummary)
 const fetchIdentityMock = vi.mocked(fetchDeputyIdentityFromGastos)
 const fetchTemasMock = vi.mocked(fetchDeputyTemasNuvem)
@@ -73,11 +75,13 @@ function renderProfile(id = '220593') {
 describe('DeputyProfilePage', () => {
   beforeEach(() => {
     fetchDeputiesMock.mockReset()
+    fetchAlignmentMock.mockReset()
     fetchGastosMock.mockReset()
     fetchIdentityMock.mockReset()
     fetchTemasMock.mockReset()
     fetchQ7Mock.mockReset()
     fetchDeputiesMock.mockResolvedValue(deputies)
+    fetchAlignmentMock.mockResolvedValue({ deputyScore: null, partyScore: null, deviation: null })
     fetchGastosMock.mockResolvedValue(gastos)
     fetchIdentityMock.mockResolvedValue({ partido: 'PL', uf: 'MT' })
     fetchTemasMock.mockResolvedValue([])

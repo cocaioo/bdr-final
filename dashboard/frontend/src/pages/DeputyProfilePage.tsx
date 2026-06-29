@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../api'
+import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../api'
+import type { DeputyAlignmentScores } from '../api'
 import { DeputyAvatar } from '../components/DeputyAvatar'
 import { DeputySearch } from '../components/DeputySearch'
 import { DeputyTemaWordCloud } from '../components/DeputyTemaWordCloud'
@@ -27,6 +28,19 @@ function formatNumber(value: number): string {
 
 function formatDecimal(value: number, digits = 2): string {
   return value.toLocaleString('pt-BR', { maximumFractionDigits: digits })
+}
+
+// Cortes derivados do min/max real de ideologia_score por ideologia_faixa em
+// dados_padronizados/partidos_ideologia.csv (ponto medio entre o max de uma
+// faixa e o min da proxima) — mais fiel aos dados reais do que dividir 0-10
+// em 6 partes iguais.
+function classifyScoreCalibrado(score: number): string {
+  if (score < 1.6) return 'Extrema esquerda'
+  if (score < 3.13) return 'Esquerda'
+  if (score < 5.07) return 'Centro-esquerda'
+  if (score < 7.19) return 'Centro-direita'
+  if (score < 8.54) return 'Direita'
+  return 'Extrema direita'
 }
 
 function numericValue(value: unknown): number {
@@ -406,6 +420,11 @@ export function DeputyProfilePage() {
     data: DeputyTemaItem[] | null
     error: string | null
   }>({ data: null, error: null })
+  const [alignmentState, setAlignmentState] = useState<{
+    deputyId?: string
+    data: DeputyAlignmentScores | null
+    error: string | null
+  }>({ data: null, error: null })
   const [identityEnrichment, setIdentityEnrichment] = useState<DeputyIdentityEnrichment>({})
 
   useEffect(() => {
@@ -425,6 +444,7 @@ export function DeputyProfilePage() {
     setIdentityEnrichment({})
     setQ7State({ data: null, error: null })
     setTemasState({ data: null, error: null })
+    setAlignmentState({ data: null, error: null })
     fetchDeputyIdentityFromGastos(deputy.id)
       .then((enrichment) => { if (active) setIdentityEnrichment(enrichment) })
       .catch(() => { /* silently ignore; fallback to CSV values */ })
@@ -434,6 +454,9 @@ export function DeputyProfilePage() {
     fetchDeputyTemasNuvem(deputy.id)
       .then((temas) => { if (active) setTemasState({ deputyId: deputy.id, data: temas, error: null }) })
       .catch((cause: Error) => { if (active) setTemasState({ deputyId: deputy.id, data: null, error: cause.message }) })
+    fetchDeputyAlignmentScores(deputy.id)
+      .then((scores) => { if (active) setAlignmentState({ deputyId: deputy.id, data: scores, error: null }) })
+      .catch((cause: Error) => { if (active) setAlignmentState({ deputyId: deputy.id, data: null, error: cause.message }) })
     fetchQuestionForDeputy('q7', deputy.id, 1, 5)
       .then((payload) => {
         if (!active) return
@@ -527,6 +550,30 @@ export function DeputyProfilePage() {
           <ProfileField label="Nome civil" value={optionalLabel(deputy.nomeCivil)} />
           <ProfileField label="CPF" value={optionalLabel(deputy.cpf)} />
           <ProfileField label="ID do deputado" value={deputy.id} />
+          <ProfileField
+            label="Score ideológico"
+            value={
+              alignmentState.deputyId === deputy.id && alignmentState.data?.deputyScore !== null && alignmentState.data?.deputyScore !== undefined
+                ? <span className="deputy-profile__score-tooltip" data-tooltip={`Valor do score: ${formatDecimal(alignmentState.data.deputyScore)}`}>{classifyScoreCalibrado(alignmentState.data.deputyScore)}</span>
+                : 'Não disponível'
+            }
+          />
+          <ProfileField
+            label="Score ideológico do partido"
+            value={
+              alignmentState.deputyId === deputy.id && alignmentState.data?.partyScore !== null && alignmentState.data?.partyScore !== undefined && alignmentState.data?.partyFaixa
+                ? <span className="deputy-profile__score-tooltip" data-tooltip={`Valor do score: ${formatDecimal(alignmentState.data.partyScore)}`}>{alignmentState.data.partyFaixa}</span>
+                : 'Não disponível'
+            }
+          />
+          <ProfileField
+            label="Diferença de score ideológico (Deputado x Partido)"
+            value={
+              alignmentState.deputyId === deputy.id && alignmentState.data?.deviation !== null && alignmentState.data?.deviation !== undefined
+                ? formatDecimal(alignmentState.data.deviation)
+                : 'Não disponível'
+            }
+          />
           <ProfileField label="Legislatura inicial" value={optionalLabel(deputy.legislaturaInicial)} />
           <ProfileField label="Legislatura final" value={optionalLabel(deputy.legislaturaFinal)} />
           <ProfileField label="Fonte cadastral" value={deputy.uriDeputado ? <a href={deputy.uriDeputado} target="_blank" rel="noreferrer">Dados Abertos da Câmara</a> : 'Não informada'} />
