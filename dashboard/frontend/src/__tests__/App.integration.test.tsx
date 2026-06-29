@@ -99,7 +99,10 @@ describe('App integration', () => {
       </MemoryRouter>,
     )
 
-    expect(await screen.findByRole('heading', { name: 'Abilio Brunini' })).toBeInTheDocument()
+    // Timeout maior: esta rota carrega DeputyProfilePage -> ChartPanel -> echarts
+    // de verdade (este teste de integracao nao mocka componentes), e o import
+    // a frio da biblioteca pode passar do timeout padrao de 1000ms.
+    expect(await screen.findByRole('heading', { name: 'Abilio Brunini' }, { timeout: 5000 })).toBeInTheDocument()
   })
 
   it('renders the legal attribution in the app footer', async () => {
