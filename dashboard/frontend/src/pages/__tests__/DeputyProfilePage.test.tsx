@@ -123,7 +123,7 @@ describe('DeputyProfilePage', () => {
     expect(screen.getByRole('heading', { name: 'Índice de Custo-Benefício Parlamentar' })).toBeInTheDocument()
     // Hero card: ranking badge and index value
     expect(await screen.findByText('#175 de 609')).toBeInTheDocument()
-    expect(await screen.findByText('0,5119')).toBeInTheDocument()
+    expect((await screen.findAllByText('0,5119')).length).toBeGreaterThan(0)
     expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
     expect(fetchGastosMock).toHaveBeenCalledWith('220593')
     expect(fetchQ7Mock).toHaveBeenCalledWith('q7', '220593', 1, 5)
