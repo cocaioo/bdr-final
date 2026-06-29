@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 # Python environments, caches and reports
+CLAUDE.md
 runtime/
 prompts
 venv/
