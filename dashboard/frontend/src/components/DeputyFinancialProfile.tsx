@@ -102,7 +102,7 @@ export function DeputyFinancialProfile({
           <h3>Resumo Financeiro</h3>
           <div className="profile-stat-box">
             <div className="profile-main-stat">
-              <span className="stat-label">Gasto Total Geral</span>
+              <span className="stat-label">Total de despesas</span>
               <span className="stat-value highlight-currency">
                 {q1Info ? formatCurrency(q1Info.totalSpend) : '---'}
               </span>
@@ -163,7 +163,7 @@ export function DeputyFinancialProfile({
                   <span className="mini-value">{q7Info.proposicoesAprovadas}</span>
                 </div>
                 <div className="profile-mini-stat">
-                  <span className="mini-label">Gasto ajust.</span>
+                  <span className="mini-label">Despesa considerada no índice</span>
                   <span className="mini-value">{q7Info.gastoAjustado.toLocaleString('pt-BR', { maximumFractionDigits: 2 })}</span>
                 </div>
               </div>

@@ -45,19 +45,24 @@ export function DeputyAvatar({ id, nome, size = 40 }: DeputyAvatarProps) {
   const containerStyle: React.CSSProperties = {
     width: `${size}px`,
     height: `${size}px`,
+    minWidth: `${size}px`,
+    minHeight: `${size}px`,
+    maxWidth: `${size}px`,
+    maxHeight: `${size}px`,
     borderRadius: '50%',
     overflow: 'hidden',
     flexShrink: 0,
     flex: '0 0 auto',
     display: 'grid',
     placeItems: 'center',
+    boxSizing: 'border-box',
   }
 
   const showFallback = hasError || !id || String(id).trim() === ''
 
   return (
     <div
-      className={showFallback ? 'deputy-avatar-fallback' : 'deputy-avatar-img'}
+      className={`deputy-avatar ${showFallback ? 'deputy-avatar-fallback' : 'deputy-avatar-img'}`}
       style={{
         ...containerStyle,
         background: showFallback ? bgGradient : 'var(--color-surface-elevated, #1a1a2e)',
@@ -71,15 +76,9 @@ export function DeputyAvatar({ id, nome, size = 40 }: DeputyAvatarProps) {
         <span style={{ lineHeight: 1 }}>{initials}</span>
       ) : (
         <img
+          className="deputy-avatar__image"
           src={`https://www.camara.leg.br/internet/deputado/bandep/${id}.jpg`}
           alt={nome}
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'block',
-            objectFit: 'cover',
-            objectPosition: 'center top',
-          }}
           onError={() => setHasError(true)}
         />
       )}

@@ -1,17 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { fetchMeta } from './api'
 import { GlobalFilters } from './components/GlobalFilters'
 import { Header } from './components/Header'
 import { HomePage } from './pages/HomePage'
-import { DeputyProfilePage } from './pages/DeputyProfilePage'
-import { QuestionPage } from './pages/QuestionPage'
-import { GastosDashboardPage } from './pages/GastosDashboardPage'
-import { PerfilDashboardPage } from './pages/PerfilDashboardPage'
-import { PartiesDashboardPage } from './pages/PartiesDashboardPage'
 import type { FilterState, MetaResponse } from './types'
 import { isQuestionHidden } from './utils/questionAvailability'
+
+
+const DeputyProfilePage = lazy(() => import('./pages/DeputyProfilePage').then(module => ({ default: module.DeputyProfilePage })))
+const QuestionPage = lazy(() => import('./pages/QuestionPage').then(module => ({ default: module.QuestionPage })))
+const GastosDashboardPage = lazy(() => import('./pages/GastosDashboardPage').then(module => ({ default: module.GastosDashboardPage })))
+const PerfilDashboardPage = lazy(() => import('./pages/PerfilDashboardPage').then(module => ({ default: module.PerfilDashboardPage })))
+const PartiesDashboardPage = lazy(() => import('./pages/PartiesDashboardPage').then(module => ({ default: module.PartiesDashboardPage })))
+const MethodologyPage = lazy(() => import('./pages/MethodologyPage').then(module => ({ default: module.MethodologyPage })))
+
+function SplashLoader({ message = 'Processando indicadores parlamentares...', subtitle = 'Carregando dados da 57ª Legislatura...' }: { message?: string, subtitle?: string }) {
+  return (
+    <div className="app-splash-screen" role="alert" aria-live="polite">
+      <div className="app-splash-loader">
+        <div className="app-splash-spinner" />
+        <h2>{message}</h2>
+        <p style={{ opacity: 0.8 }}>{subtitle}</p>
+      </div>
+    </div>
+  )
+}
+
+function InlineLoader() {
+  return (
+    <div className="app-inline-loader" role="status" aria-live="polite">
+      <div className="app-inline-spinner" />
+      <span className="app-inline-text">Carregando painel...</span>
+    </div>
+  )
+}
 
 // Bloco consolidado de Partidos, Ideologia e Votacao. As perguntas q9/q10/q11
 // deixaram de ter paginas individuais: passaram a ser detalhes de implementacao
@@ -66,18 +90,18 @@ function App() {
 
   if (error) {
     return (
-      <div className="app-shell">
-        <p className="loading">Erro ao carregar metadados: {error}</p>
+      <div className="app-splash-screen" role="alert" aria-live="assertive">
+        <div className="app-splash-loader">
+          <div className="app-splash-error-icon" style={{ fontSize: '3rem', marginBottom: '8px' }}>⚠️</div>
+          <h2>Erro ao carregar metadados</h2>
+          <p style={{ color: 'var(--danger)' }}>{error}</p>
+        </div>
       </div>
     )
   }
 
   if (!meta) {
-    return (
-      <div className="app-shell">
-        <p className="loading">Carregando estrutura do painel...</p>
-      </div>
-    )
+    return <SplashLoader />
   }
 
   const activeQuestionCatalog =
@@ -115,32 +139,42 @@ function App() {
           />
         ) : null}
         <div className="app-main-route-wrapper" key={location.pathname}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/deputados/:id" element={<DeputyProfilePage />} />
-            <Route
-              path="/q/:questionId"
-              element={
-                isRetiredQuestion
-                  ? <Navigate to={PARTIES_BLOCK_ROUTE} replace />
-                  : <QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />
-              }
-            />
-            <Route
-              path="/pergunta/:questionId"
-              element={
-                isRetiredQuestion
-                  ? <Navigate to={PARTIES_BLOCK_ROUTE} replace />
-                  : <QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />
-              }
-            />
-            <Route path="/grupos/gastos" element={<GastosDashboardPage meta={meta} />} />
-            <Route path="/grupos/perfil" element={<PerfilDashboardPage meta={meta} />} />
-            <Route path="/grupos/partidos-votacoes" element={<PartiesDashboardPage meta={meta} />} />
-          </Routes>
+          <Suspense fallback={<InlineLoader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/deputados/:id" element={<DeputyProfilePage />} />
+              <Route
+                path="/q/:questionId"
+                element={
+                  isRetiredQuestion
+                    ? <Navigate to={PARTIES_BLOCK_ROUTE} replace />
+                    : <QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />
+                }
+              />
+              <Route
+                path="/pergunta/:questionId"
+                element={
+                  isRetiredQuestion
+                    ? <Navigate to={PARTIES_BLOCK_ROUTE} replace />
+                    : <QuestionPage key={activeQuestionId || undefined} meta={meta} filters={filters} onFiltersChange={setFilters} />
+                }
+              />
+              <Route path="/grupos/gastos" element={<GastosDashboardPage meta={meta} />} />
+              <Route path="/grupos/perfil" element={<PerfilDashboardPage meta={meta} />} />
+              <Route path="/grupos/partidos-votacoes" element={<PartiesDashboardPage meta={meta} />} />
+              <Route path="/metodologia" element={<MethodologyPage />} />
+            </Routes>
+          </Suspense>
         </div>
         <footer className="app-footer">
-          Fonte: schema grupo4 + fontes analíticas consolidadas | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}
+          <div className="app-footer__attribution">
+            <span>Todos os direitos reservados</span>
+            <span>Caio Victor Ferreira do Nascimento</span>
+            <span>João Felipe Garcia Morais</span>
+          </div>
+          <p className="app-footer__source">
+            Fonte: schema grupo4 + fontes analíticas consolidadas | Atualizado em {new Date(meta.last_updated).toLocaleString('pt-BR')}
+          </p>
         </footer>
       </div>
     </div>

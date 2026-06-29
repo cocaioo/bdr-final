@@ -1,0 +1,655 @@
+/*
+ * mobile.css
+ * Mobile-responsive CSS layer for BDR Paineis Parlamentares.
+ * Loaded AFTER visual-refresh.css. All rules are inside media queries
+ * so the desktop experience remains completely unchanged.
+ *
+ * Breakpoints used:
+ *   768px  - tablets / landscape phones
+ *   480px  - small phones
+ *   375px  - very small phones (iPhone SE, etc.)
+ */
+
+/* ==========================================================================
+   1. MOBILE NAVIGATION - hamburger toggle + collapsible nav
+   ========================================================================== */
+
+/* The hamburger button is rendered in Header.tsx but hidden on desktop */
+.mobile-menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Show the hamburger button */
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-soft, var(--surface));
+    color: var(--ink);
+    cursor: pointer;
+    font-size: 1.3rem;
+    line-height: 1;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-menu-toggle:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .mobile-menu-toggle[aria-expanded="true"] {
+    background: var(--primary);
+    color: #FAFBF8;
+    border-color: var(--primary);
+  }
+
+  /* Header-top becomes a row with brand + hamburger */
+  .header-top {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+  }
+
+  /* Hide the nav by default, show when open */
+  .app-nav.question-nav {
+    display: none !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+    margin-top: 10px !important;
+    width: 100% !important;
+  }
+
+  .app-nav.question-nav.mobile-nav-open {
+    display: flex !important;
+  }
+
+  /* Nav links become full-width rows */
+  .app-nav.question-nav .question-link.nav-link {
+    display: flex !important;
+    width: 100% !important;
+    padding: 12px 14px !important;
+    border-radius: 8px !important;
+    justify-content: flex-start !important;
+    min-height: 44px !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+
+/* ==========================================================================
+   2. TABLET / LANDSCAPE PHONE BREAKPOINT (max-width: 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* --- Prevent horizontal overflow --- */
+  html,
+  body {
+    overflow-x: hidden !important;
+  }
+
+  /* --- App shell --- */
+  .app-shell {
+    padding: 8px !important;
+    gap: 12px !important;
+  }
+
+  /* --- App header --- */
+  .app-header {
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+  }
+
+  /* --- Filter panel & grid --- */
+  .filter-panel {
+    padding: 12px !important;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .filter-item select {
+    min-height: 60px !important;
+  }
+
+  /* Form inputs full-width */
+  .filter-panel input,
+  .filter-panel select,
+  .filter-search input,
+  .filter-search-container input,
+  .gastos-filter-row input,
+  .gastos-filter-row select,
+  .autocomplete-filter input {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Active filter banner stacks */
+  .active-filter-banner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .active-filter-banner button {
+    align-self: flex-end;
+  }
+
+  /* --- Navigation wrapping --- */
+  .question-nav,
+  .app-nav {
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* --- Hero sections --- */
+  .gastos-dashboard-premium .premium-hero {
+    padding: 18px 14px !important;
+  }
+
+  .gastos-dashboard-premium .premium-hero-content h1 {
+    font-size: 1.4rem !important;
+  }
+
+  .perfil-hero {
+    padding: 20px 14px !important;
+  }
+
+  .parties-hero {
+    padding: 20px 14px !important;
+  }
+
+  /* --- Dashboard sections / blocks / tab panels --- */
+  .dashboard-section,
+  .dashboard-block,
+  .gastos-tab-panel {
+    padding: 14px !important;
+  }
+
+  /* --- KPI grid --- */
+  .gastos-story-dashboard .gastos-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* --- Chart surfaces --- */
+  .chart-surface {
+    min-height: 280px !important;
+  }
+
+  .gastos-chart-grid .chart-surface {
+    min-height: 280px !important;
+  }
+
+  /* --- Chart grids --- */
+  .gastos-chart-grid,
+  .gastos-chart-grid.three {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Gastos tabs (extend 480px rule to 768px) --- */
+  .gastos-tabs {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Deputy card grids --- */
+  .gastos-deputy-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* --- Category card grid --- */
+  .gastos-category-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Supplier card grid --- */
+  .supplier-card-grid,
+  .gastos-dashboard-premium .supplier-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Ranking tabs --- */
+  .ranking-tabs__controls {
+    width: 100% !important;
+    flex-wrap: wrap !important;
+  }
+
+  .ranking-tabs__panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Cards/panels: reduce border-radius --- */
+  .premium-panel,
+  .dashboard-section,
+  .dashboard-block,
+  .gastos-tab-panel,
+  .filter-panel,
+  .chart-section,
+  .table-section,
+  .question-intro,
+  .hero-card,
+  .deputy-profile__cards,
+  .deputy-profile__section,
+  .deputy-profile__context,
+  .deputy-profile__actions,
+  .deputy-profile__note,
+  .perfil-hero,
+  .perfil-filter-panel,
+  .perfil-methodology,
+  .parties-hero,
+  .app-header {
+    border-radius: 12px !important;
+  }
+
+  /* --- Premium panel / Deputy profile panel --- */
+  .premium-panel,
+  .gastos-dashboard-premium .premium-panel,
+  .deputy-profile-panel {
+    padding: 16px !important;
+  }
+
+  /* --- Profile grid --- */
+  .profile-grid,
+  .gastos-dashboard-premium .profile-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Perfil chart & filter grids --- */
+  .perfil-chart-grid,
+  .perfil-filter-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Home panel grids --- */
+  .home-panel-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .home-panel-card {
+    min-height: auto !important;
+  }
+
+  /* --- Deputy profile hero aside --- */
+  .deputy-profile__hero-aside {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Deputy profile cards --- */
+  .deputy-profile__cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Deputy profile shortcuts --- */
+  .deputy-profile__shortcuts {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Deputy profile analytics/future grids --- */
+  .deputy-profile__analytics-grid,
+  .deputy-profile__future-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Deputy profile details/metrics --- */
+  .deputy-profile__details-grid,
+  .deputy-profile__metrics {
+    grid-template-columns: 1fr !important;
+  }
+
+  .deputy-profile__details-grid .deputy-profile__fact:first-child,
+  .deputy-profile__details-grid .deputy-profile__fact:nth-child(2) {
+    grid-column: auto !important;
+  }
+
+  /* --- Carousel: 1 card visible --- */
+  .carousel-track {
+    --slide-width: 100% !important;
+    gap: 8px !important;
+  }
+
+  /* --- Home questions section --- */
+  .home-questions-toggle {
+    padding: 10px 14px !important;
+  }
+
+  .home-questions-list {
+    padding: 0 14px 12px !important;
+  }
+
+  /* --- Methodology summary grid --- */
+  .methodology-summary__grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Gastos explanation cards --- */
+  .gastos-explanation-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Gastos two columns --- */
+  .gastos-two-columns {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Outliers --- */
+  .outliers {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Method compare --- */
+  .method-compare {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Wordcloud grid --- */
+  .wordcloud-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Deputies card grid --- */
+  .deputies-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Question grid --- */
+  .question-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Cards section --- */
+  .cards-section {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Gastos drilldown grid --- */
+  .gastos-drilldown-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Revealed position cards --- */
+  .revealed-position__cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Touch targets --- */
+  button,
+  a.question-link,
+  a.nav-link,
+  .question-link.nav-link,
+  .gastos-tabs button,
+  .ranking-tabs__tab,
+  .gastos-pagination button,
+  .table-footer button,
+  .filter-panel button {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+
+  /* --- Avatar sizes --- */
+  .deputy-avatar {
+    max-width: 80px !important;
+    max-height: 80px !important;
+  }
+
+  .deputy-profile__avatar-frame {
+    width: 104px !important;
+    height: 104px !important;
+  }
+
+  /* --- Footer --- */
+  .app-footer {
+    font-size: 0.82rem !important;
+  }
+
+  .app-footer__attribution {
+    flex-direction: column !important;
+    gap: 2px !important;
+    align-items: center !important;
+  }
+
+  /* --- Splash loader --- */
+  .app-splash-loader h2 {
+    font-size: 1.2rem !important;
+  }
+
+  /* --- Pagination --- */
+  .gastos-pagination {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  .gastos-pagination-row {
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+    text-align: center !important;
+  }
+
+  /* --- Table footer --- */
+  .table-footer {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+}
+
+
+/* ==========================================================================
+   3. SMALL PHONE BREAKPOINT (max-width: 480px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  /* Even more compact shell */
+  .app-shell {
+    padding: 6px !important;
+    gap: 8px !important;
+  }
+
+  /* Brand smaller */
+  .brand {
+    font-size: 1.1rem !important;
+  }
+
+  /* Deputy card grid 1-col */
+  .gastos-deputy-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* KPI grid 1-col */
+  .gastos-story-dashboard .gastos-kpi-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hero h1 clamp */
+  .gastos-dashboard-premium .premium-hero-content h1 {
+    font-size: 1.2rem !important;
+  }
+
+  .perfil-hero h1 {
+    font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+  }
+
+  .parties-hero h1 {
+    font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+  }
+
+  /* Chart min-height */
+  .chart-surface {
+    min-height: 220px !important;
+  }
+
+  .gastos-chart-grid .chart-surface {
+    min-height: 220px !important;
+  }
+
+  /* Nav links tighter */
+  .app-nav.question-nav .question-link.nav-link {
+    padding: 10px 12px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Dashboard sections tighter */
+  .dashboard-section,
+  .dashboard-block,
+  .gastos-tab-panel {
+    padding: 10px !important;
+  }
+
+  /* Premium panel tighter */
+  .premium-panel,
+  .gastos-dashboard-premium .premium-panel {
+    padding: 12px !important;
+  }
+
+  /* Deputy profile avatar smaller */
+  .deputy-profile__avatar-frame,
+  .deputy-profile__avatar-skeleton {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  /* Inline loader */
+  .app-inline-loader {
+    min-height: 240px !important;
+    padding: 40px 12px !important;
+  }
+
+  /* Splash loader */
+  .app-splash-loader h2 {
+    font-size: 1.05rem !important;
+  }
+
+  .app-splash-loader p {
+    font-size: 0.85rem !important;
+  }
+}
+
+
+/* ==========================================================================
+   4. VERY SMALL PHONE BREAKPOINT (max-width: 375px)
+   ========================================================================== */
+
+@media (max-width: 375px) {
+  /* Tightest spacing */
+  .app-shell {
+    padding: 4px !important;
+    gap: 6px !important;
+  }
+
+  .app-header {
+    padding: 8px 10px !important;
+  }
+
+  /* Font sizes slightly smaller for headings */
+  h1 {
+    font-size: clamp(1.1rem, 5vw, 1.4rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(0.95rem, 4vw, 1.2rem) !important;
+  }
+
+  /* Cards padding tighter */
+  .premium-panel,
+  .gastos-dashboard-premium .premium-panel,
+  .deputy-profile-panel,
+  .dashboard-section,
+  .dashboard-block,
+  .gastos-tab-panel,
+  .filter-panel,
+  .gastos-explanation-card,
+  .gastos-insight-card,
+  .gastos-drilldown,
+  .deputy-profile__cards {
+    padding: 10px !important;
+  }
+
+  /* Brand tighter */
+  .brand {
+    font-size: 1rem !important;
+  }
+
+  /* Hero sections tighter */
+  .gastos-dashboard-premium .premium-hero {
+    padding: 14px 10px !important;
+  }
+
+  .perfil-hero,
+  .parties-hero {
+    padding: 14px 10px !important;
+  }
+
+  /* Deputy avatar smallest */
+  .deputy-profile__avatar-frame,
+  .deputy-profile__avatar-skeleton {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  /* Method compare column padding */
+  .method-compare__col {
+    padding: 10px 12px !important;
+  }
+
+  /* Nav links smallest */
+  .app-nav.question-nav .question-link.nav-link {
+    padding: 9px 10px !important;
+    font-size: 0.88rem !important;
+  }
+}
+
+
+/* ==========================================================================
+   5. ACCESSIBILITY
+   ========================================================================== */
+
+/* Disable page slide-in animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .app-main-route-wrapper {
+    animation: none !important;
+  }
+
+  .carousel-track {
+    transition: none !important;
+  }
+
+  .home-panel-card {
+    transition: none !important;
+  }
+
+  .home-panel-card:hover {
+    transform: none !important;
+  }
+
+  .stagger-item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Ensure focus-visible styles remain visible on mobile */
+@media (max-width: 768px) {
+  *:focus-visible {
+    outline: 2px solid var(--primary) !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Skip link / keyboard-only focus should be visible */
+  a:focus-visible,
+  button:focus-visible,
+  select:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--primary) !important;
+    outline-offset: 2px !important;
+  }
+}

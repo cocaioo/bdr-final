@@ -16,7 +16,9 @@ import type {
   TableState,
 } from './types'
 
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8001'
+// Same-origin by default for the single-container deployment. Split frontend/
+// backend deployments (including Render) can still provide VITE_API_URL.
+const API_BASE = import.meta.env.VITE_API_URL ?? ''
 
 function buildQuery(params: Record<string, string | number | undefined | string[]>) {
   const query = new URLSearchParams()
@@ -255,6 +257,7 @@ export function fetchGastosDeputados(params: {
   partido?: string
   uf?: string
   busca?: string
+  sortDir?: 'desc' | 'asc'
   page?: number
   pageSize?: number
 } = {}): Promise<GastosCollectionPayload<GastoDeputadoItem>> {
@@ -263,6 +266,7 @@ export function fetchGastosDeputados(params: {
     partido: params.partido,
     uf: params.uf,
     busca: params.busca,
+    sort_dir: params.sortDir,
     page: params.page ?? 1,
     page_size: params.pageSize ?? 100,
   })
@@ -270,7 +274,7 @@ export function fetchGastosDeputados(params: {
 }
 
 export function fetchGastosFornecedores(params: {
-  categoria?: string
+  fornecedor?: string
   partido?: string
   uf?: string
   deputado?: string
@@ -278,7 +282,7 @@ export function fetchGastosFornecedores(params: {
   pageSize?: number
 } = {}): Promise<GastosCollectionPayload<GastoFornecedorItem>> {
   const query = buildQuery({
-    categoria: params.categoria,
+    fornecedor: params.fornecedor,
     partido: params.partido,
     uf: params.uf,
     deputado: params.deputado,

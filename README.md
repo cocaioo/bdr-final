@@ -1,3 +1,45 @@
+---
+title: BDR Dashboard
+emoji: 🏛️
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
+## Hugging Face Spaces
+
+O Space usa o SDK Docker e executa frontend React/Vite e backend FastAPI no
+mesmo container, na porta `7860`. O frontend usa a API na mesma origem por
+padrao; deployments separados, como o Render, podem continuar definindo
+`VITE_API_URL`.
+
+Para validar a imagem localmente:
+
+```powershell
+docker build -t bdr-hf .
+docker run --rm -p 7860:7860 bdr-hf
+```
+
+Abra `http://localhost:7860/` e `http://localhost:7860/api/health`. O container
+le os artefatos versionados diretamente e nao precisa de PostgreSQL em runtime.
+
+## Deploy no Render
+
+Para deployments separados no Render (como o do backend Python), configure o serviço com:
+
+- **Build Command**:
+  ```bash
+  pip install -r requirements.txt && pip install -r dashboard/backend/requirements.txt && python scripts/build_runtime_sqlite.py
+  ```
+- **Start Command**:
+  ```bash
+  python -m uvicorn app.main:app --app-dir dashboard/backend --host 0.0.0.0 --port $PORT
+  ```
+
+O banco SQLite de runtime (`runtime/bdr_runtime.sqlite`) será gerado automaticamente durante a fase de build no Render a partir dos artefatos de dados.
+
 ## Primeira vez no projeto
 
 Na raiz do projeto, crie o ambiente Python e instale as dependencias:

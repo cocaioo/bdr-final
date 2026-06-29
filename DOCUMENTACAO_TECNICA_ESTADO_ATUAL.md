@@ -466,6 +466,7 @@ O `dashboard/backend/app/question_registry.json` é a fonte única de metadados:
 - Cada proposição recebe `peso_tipo * peso_status * peso_autoria`; tipos não mapeados caem no peso baixo `0.3`.
 - O score total de proposições é suavizado por potência `0.75`, reduzindo o domínio de deputados com volume extremo de proposições simples.
 - O gasto é suavizado por `(1 + gasto_total / 1000) ^ 0.75`, evitando distorções por pequenas diferenças de despesa.
+- Considera apenas despesas efetivas (`valor_liquido > 0`), excluindo estornos e cancelamentos, alinhado com Q1, Q5, Q12 e Q13.
 - O ranking global é o padrão da Q7 e recalcula o índice a partir dos totais agregados de anos completos; ele não é média dos rankings anuais.
 - O ranking global considera apenas anos completos para evitar distorções causadas por períodos parciais. Como os dados de 2026 ainda estão incompletos, esse ano fica disponível apenas na análise anual, sinalizado como período parcial.
 - Quando nenhum ano é filtrado, a API retorna `escopo = global`; quando há filtro de ano, retorna `escopo = anual` para o ano selecionado.
@@ -1078,6 +1079,21 @@ Endereços:
 - health: `http://localhost:8001/api/health`;
 - metadados: `http://localhost:8001/api/meta`;
 - docs automáticas FastAPI: `http://localhost:8001/docs`.
+
+### 18.6 Deploy no Render
+
+Para fazer o deploy em produção do backend da aplicação no Render (como Web Service autônomo), utilize as seguintes definições:
+
+- **Build Command**:
+  ```bash
+  pip install -r requirements.txt && pip install -r dashboard/backend/requirements.txt && python scripts/build_runtime_sqlite.py
+  ```
+- **Start Command**:
+  ```bash
+  python -m uvicorn app.main:app --app-dir dashboard/backend --host 0.0.0.0 --port $PORT
+  ```
+
+Esta configuração assegura que o arquivo binário do SQLite (`runtime/bdr_runtime.sqlite`) — que é ignorado pelo Git — seja gerado automaticamente a partir dos artefatos de dados durante a etapa de build.
 
 ## 19. Reprodutibilidade e operação recomendada
 

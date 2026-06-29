@@ -3,9 +3,12 @@ from __future__ import annotations
 import asyncio
 import logging
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from .filter_engine import FilterState
 from .models import MetaResponse, QuestionPayload
@@ -45,6 +48,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+_DASHBOARD_DIR = Path(__file__).resolve().parents[2]
+_STATIC_DIR = _DASHBOARD_DIR / "frontend" / "dist"
+_STATIC_INDEX = _STATIC_DIR / "index.html"
 
 
 @app.get("/api/health")
@@ -128,6 +135,7 @@ def get_gastos_deputados(
     partido: str | None = None,
     uf: str | None = None,
     busca: str | None = None,
+    sort_dir: str = "desc",
     page: int = 1,
     page_size: int = 100,
 ) -> dict:
@@ -137,6 +145,7 @@ def get_gastos_deputados(
             partido=partido,
             uf=uf,
             busca=busca,
+            sort_dir=sort_dir,
             page=page,
             page_size=page_size,
         )
@@ -146,7 +155,7 @@ def get_gastos_deputados(
 
 @app.get("/api/gastos/fornecedores")
 def get_gastos_fornecedores(
-    categoria: str | None = None,
+    fornecedor: str | None = None,
     partido: str | None = None,
     uf: str | None = None,
     deputado: str | None = None,
@@ -155,7 +164,7 @@ def get_gastos_fornecedores(
 ) -> dict:
     try:
         return service.gastos.fornecedores(
-            categoria=categoria,
+            fornecedor=fornecedor,
             partido=partido,
             uf=uf,
             deputado=deputado,
@@ -180,3 +189,38 @@ def get_deputado_temas_nuvem(id_deputado: str) -> dict:
         return service.tema_nuvem.temas_nuvem(id_deputado=id_deputado)
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+# Keep these routes after every API route: Starlette resolves the first match.
+# In local development Vite runs separately, so no routes are added until a
+# frontend build exists.
+if _STATIC_INDEX.is_file():
+    _assets_dir = _STATIC_DIR / "assets"
+    if _assets_dir.exists():
+        app.mount(
+            "/assets",
+            StaticFiles(directory=str(_assets_dir)),
+            name="assets",
+        )
+
+    @app.get("/", include_in_schema=False)
+    def serve_spa_root() -> FileResponse:
+        return FileResponse(_STATIC_INDEX)
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    def serve_spa(full_path: str) -> FileResponse:
+        # Unknown API paths must remain API 404s instead of returning HTML.
+        if full_path == "api" or full_path.startswith("api/"):
+            raise HTTPException(status_code=404, detail="Not Found")
+
+        requested_file = (_STATIC_DIR / full_path).resolve()
+        try:
+            requested_file.relative_to(_STATIC_DIR.resolve())
+        except ValueError as exc:
+            raise HTTPException(status_code=404, detail="Not Found") from exc
+
+        # Vite copies public/ files to the dist root. Serve those files as-is;
+        # all remaining paths fall back to React Router's entry point.
+        if requested_file.is_file():
+            return FileResponse(requested_file)
+        return FileResponse(_STATIC_INDEX)

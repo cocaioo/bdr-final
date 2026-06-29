@@ -217,32 +217,29 @@ beforeEach(() => {
   vi.mocked(fetchGastosContexto).mockResolvedValue({ summary: { qtd_partidos: 1, qtd_ufs: 1, valor_total: summary.valor_total }, partidos: [], ufs: [], metadata: {} })
 })
 
-it('remove gastos atipicos and configures financial charts without a clickable legend', async () => {
+it('renders the Q7 ranking cards in the resumo tab', async () => {
   render(<GastosDashboardPage meta={meta} />)
 
-  const evolution = await screen.findByTestId('chart-Evolucao temporal dos gastos')
-  const category = screen.getByTestId('chart-Distribuicao por categoria')
+  // The resumo tab shows Q7 ranking cards (no chart widget for evolution or category)
+  expect(await screen.findByRole('heading', { name: /Custo-Benefício Parlamentar/i })).toBeInTheDocument()
+  expect(await screen.findByText('Amom Mandel')).toBeInTheDocument()
 
-  expect(evolution).toHaveAttribute('data-options', expect.stringContaining('"show_legend":false'))
-  expect(category).toHaveAttribute('data-options', expect.stringContaining('"currency":true'))
-  expect(screen.getAllByText('Despesa média').length).toBeGreaterThan(0)
-  expect(screen.queryByText(/gastos at[ií]picos/i)).not.toBeInTheDocument()
-  expect(screen.queryByText(/anomalia/i)).not.toBeInTheDocument()
-  expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
+  // Outdated chart test-ids no longer exist in the redesigned resumo tab
+  expect(screen.queryByTestId('chart-Evolucao temporal dos gastos')).not.toBeInTheDocument()
+  expect(screen.queryByTestId('chart-Distribuicao por categoria')).not.toBeInTheDocument()
 })
 
-it('renders the Q7 preview in the gastos dashboard and supports the annual partial view', async () => {
+it('renders the Q7 ranking in the gastos dashboard and supports the annual partial view', async () => {
   const user = userEvent.setup()
   render(<GastosDashboardPage meta={meta} />)
 
-  expect(await screen.findByRole('heading', { name: /Custo-beneficio parlamentar/i })).toBeInTheDocument()
-  expect(screen.getByText('Amom Mandel')).toBeInTheDocument()
+  // Q7 section is always visible in the resumo tab — no expand button needed
+  expect(await screen.findByRole('heading', { name: /Custo-Benefício Parlamentar/i })).toBeInTheDocument()
+  expect(await screen.findByText('Amom Mandel')).toBeInTheDocument()
   expect(screen.queryByRole('link', { name: /Abrir pagina completa/i })).not.toBeInTheDocument()
+  expect(screen.queryByRole('button', { name: /Ver analise completa/i })).not.toBeInTheDocument()
 
-  // Click the button to expand the analysis inline and show filters
-  const expandBtn = screen.getByRole('button', { name: /Ver analise completa/i })
-  await user.click(expandBtn)
-
+  // Filters are directly available — switch to annual scope and pick 2026
   await user.selectOptions(screen.getByLabelText('Escopo'), 'anual')
   await user.selectOptions(screen.getByLabelText('Ano'), '2026')
 
@@ -331,7 +328,7 @@ it('keeps the fornecedores tab global and does not pass deputy to the global end
 
   expect((await screen.findAllByText('Fornecedor Global')).length).toBeGreaterThan(0)
   expect(vi.mocked(fetchGastosFornecedores)).toHaveBeenLastCalledWith({
-    categoria: undefined,
+    fornecedor: undefined,
     partido: undefined,
     uf: undefined,
     pageSize: 100,
@@ -341,23 +338,70 @@ it('keeps the fornecedores tab global and does not pass deputy to the global end
   )
 })
 
+it('searches the fornecedores tab by supplier name', async () => {
+  const user = userEvent.setup()
+  const supplierFetchMock = vi.mocked(fetchGastosFornecedores)
+  render(<GastosDashboardPage meta={meta} />)
+
+  await user.click(screen.getByRole('button', { name: /FornecedoresQuem recebeu/i }))
+  await screen.findByLabelText('Filtrar por fornecedor')
+  expect(screen.queryByLabelText('Filtrar por categoria')).not.toBeInTheDocument()
+
+  supplierFetchMock.mockClear()
+  await user.type(
+    screen.getByPlaceholderText('Ex.: TAM, GOL, posto, gráfica'),
+    'GOL',
+  )
+
+  await waitFor(() => {
+    expect(supplierFetchMock).toHaveBeenLastCalledWith({
+      fornecedor: 'GOL',
+      partido: undefined,
+      uf: undefined,
+      pageSize: 100,
+    })
+  })
+})
+
+it('filters categories locally in the categorias tab', async () => {
+  const user = userEvent.setup()
+  const categoriesFetchMock = vi.mocked(fetchGastosCategorias)
+  categoriesFetchMock.mockResolvedValue(collection([
+    { categoria: 'Passagens', valor_total: 800_000, qtd_despesas: 12, ticket_medio: 66_666.67, qtd_deputados: 1, pct_total: 64.8 },
+    { categoria: 'Combustíveis', valor_total: 400_000, qtd_despesas: 8, ticket_medio: 50_000, qtd_deputados: 1, pct_total: 32.4 },
+  ]))
+  render(<GastosDashboardPage meta={meta} />)
+
+  await user.click(screen.getByRole('button', { name: /CategoriasEm que foi gasto/i }))
+  expect(await screen.findAllByText('Passagens')).not.toHaveLength(0)
+
+  categoriesFetchMock.mockClear()
+  await user.type(
+    screen.getByPlaceholderText('Ex.: passagem, divulgação, combustível'),
+    'combustivel',
+  )
+
+  await waitFor(() => {
+    expect(screen.getAllByText('Combustíveis').length).toBeGreaterThan(0)
+    expect(screen.queryByText('Passagens')).not.toBeInTheDocument()
+  })
+  expect(categoriesFetchMock).not.toHaveBeenCalled()
+})
+
 it('typing in Q7 search triggers fetchQuestion with the search value', async () => {
   const user = userEvent.setup()
   const questionMock = vi.mocked(fetchQuestion)
   render(<GastosDashboardPage meta={meta} />)
 
-  // Wait for Q7 section to appear in resumo tab
-  expect(await screen.findByRole('heading', { name: /Custo-beneficio parlamentar/i })).toBeInTheDocument()
+  // Q7 section is always visible in the resumo tab — no expand button needed
+  expect(await screen.findByRole('heading', { name: /Custo-Benefício Parlamentar/i })).toBeInTheDocument()
 
-  // Expand Q7
-  await user.click(screen.getByRole('button', { name: /Ver analise completa/i }))
-
-  // Clear mock call history after expansion
+  // Clear mock call history once initial load is done
   questionMock.mockClear()
   questionMock.mockResolvedValue(q7GlobalPayload)
 
-  // Type in the search input
-  const searchInput = screen.getByPlaceholderText('Digite o nome do deputado...')
+  // Type in the search input (placeholder matches what the component renders)
+  const searchInput = screen.getByPlaceholderText('Nome do deputado...')
   await user.type(searchInput, 'amom')
 
   // Wait for debounced fetch with the search value

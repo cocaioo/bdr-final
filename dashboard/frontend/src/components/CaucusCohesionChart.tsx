@@ -6,8 +6,6 @@ import type { CaucusCohesion } from '../utils/q14'
 
 interface CaucusCohesionChartProps {
   cohesion: CaucusCohesion[]
-  /** Numero minimo de deputados para a bancada entrar no grafico. */
-  minDeputies?: number
 }
 
 /**
@@ -16,10 +14,9 @@ interface CaucusCohesionChartProps {
  * barra mais longa represente "mais coeso", invertemos a metrica em um indice
  * de coesao = max(0, 10 - desvio_medio_abs). Cor por faixa ideologica.
  */
-export function CaucusCohesionChart({ cohesion, minDeputies = 2 }: CaucusCohesionChartProps) {
+export function CaucusCohesionChart({ cohesion }: CaucusCohesionChartProps) {
   const bars = useMemo<IdeologyBar[]>(() => {
-    const eligible = cohesion.filter((c) => c.numDeputies >= minDeputies)
-    return eligible
+    return cohesion
       .map((c) => {
         const cohesionIndex = Math.max(0, 10 - c.deviationMeanAbs)
         return {
@@ -36,7 +33,7 @@ export function CaucusCohesionChart({ cohesion, minDeputies = 2 }: CaucusCohesio
       })
       // Maior indice (mais coeso) primeiro; IdeologyBarChart inverte p/ topo.
       .sort((a, b) => b.value - a.value)
-  }, [cohesion, minDeputies])
+  }, [cohesion])
 
   const height = Math.max(280, bars.length * 26 + 40)
 
@@ -47,7 +44,8 @@ export function CaucusCohesionChart({ cohesion, minDeputies = 2 }: CaucusCohesio
       <IdeologyBarChart bars={bars} orientation="horizontal" decimals={1} height={height} />
       <p className="caucus-cohesion__hint">
         Índice de coesão (0–10): quanto maior a barra, mais a bancada vota de forma uniforme.
-        Calculado como 10 menos o desvio médio interno absoluto.
+        Calculado como 10 menos o desvio médio interno absoluto. Bancadas com um único deputado
+        são exibidas, mas devem ser interpretadas com cautela.
       </p>
     </div>
   )

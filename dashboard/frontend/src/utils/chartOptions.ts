@@ -90,6 +90,17 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
     const gridTop = Number(spec.options.grid_top ?? (showLegend ? 60 : 24))
     const barMaxWidth = Number(spec.options.bar_max_width ?? 24)
     const barCategoryGap = String(spec.options.bar_category_gap ?? '42%')
+    const isMultiColor = spec.options.multi_color === true
+    const palette = [
+      readThemeToken('--color-primary', '#38bdf8'),
+      readThemeToken('--color-secondary', '#a78bfa'),
+      readThemeToken('--color-accent', '#34d399'),
+      readThemeToken('--color-warning', '#f59e0b'),
+      readThemeToken('--color-danger', '#fb7185'),
+      readThemeToken('--avatar-gradient-4a', '#60a5fa'),
+      readThemeToken('--avatar-gradient-1a', '#2dd4bf'),
+      readThemeToken('--avatar-gradient-7a', '#c084fc'),
+    ]
 
     return {
       tooltip: {
@@ -123,24 +134,64 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
           formatter: (value: unknown) => truncateLabel(value, labelMaxChars),
         },
       },
-      series: series.map((entry) => ({
-        type: 'bar',
-        name: String(entry.name ?? ''),
-        data: (entry.data as unknown[]) ?? [],
-        label: { show: false },
-        barMaxWidth,
-        barCategoryGap,
-      })),
+      series: series.map((entry) => {
+        const dataArr = (entry.data as unknown[]) ?? []
+        return {
+          type: 'bar',
+          name: String(entry.name ?? ''),
+          data: isMultiColor
+            ? dataArr.map((val, idx) => ({
+                value: val,
+                itemStyle: {
+                  color: palette[(dataArr.length - 1 - idx) % palette.length],
+                },
+              }))
+            : dataArr,
+          label: { show: false },
+          barMaxWidth,
+          barCategoryGap,
+        }
+      }),
     } as EChartsOption
   }
 
   if (spec.type === 'bar_vertical' || spec.type === 'composite') {
     const hasEscolaridadeFilter = Boolean(activeFilters?.escolaridade && activeFilters.escolaridade.length > 0)
+    const labelWidth = Number(spec.options.label_width ?? 120)
+    const labelMaxChars = Number(spec.options.label_max_chars ?? 15)
+    const gridLeft = Number(spec.options.grid_left ?? 45)
+    const gridRight = Number(spec.options.grid_right ?? 20)
+    const gridBottom = Number(spec.options.grid_bottom ?? 80)
+    const gridTop = Number(spec.options.grid_top ?? (showLegend ? 60 : 24))
+    const barMaxWidth = Number(spec.options.bar_max_width ?? 28)
+    const barCategoryGap = String(spec.options.bar_category_gap ?? '42%')
+    const isMultiColor = spec.options.multi_color === true
+    const palette = [
+      readThemeToken('--color-primary', '#38bdf8'),
+      readThemeToken('--color-secondary', '#a78bfa'),
+      readThemeToken('--color-accent', '#34d399'),
+      readThemeToken('--color-warning', '#f59e0b'),
+      readThemeToken('--color-danger', '#fb7185'),
+      readThemeToken('--avatar-gradient-4a', '#60a5fa'),
+      readThemeToken('--avatar-gradient-1a', '#2dd4bf'),
+      readThemeToken('--avatar-gradient-7a', '#c084fc'),
+    ]
+
     return {
       tooltip: { trigger: 'axis', valueFormatter },
       legend: { show: showLegend },
-      grid: { left: 45, right: 20, top: showLegend ? 60 : 24, bottom: 80, containLabel: true },
-      xAxis: { type: 'category', data: spec.categories, axisLabel: { rotate: 25 } },
+      grid: { left: gridLeft, right: gridRight, top: gridTop, bottom: gridBottom, containLabel: true },
+      xAxis: {
+        type: 'category',
+        data: spec.categories,
+        axisLabel: {
+          rotate: 25,
+          width: labelWidth,
+          overflow: 'truncate',
+          hideOverlap: true,
+          formatter: (value: unknown) => truncateLabel(value, labelMaxChars),
+        }
+      },
       yAxis: {
         type: 'value',
         splitNumber: 4,
@@ -149,27 +200,32 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
           hideOverlap: true,
         },
       },
-      series: series.map((entry) => ({
-        type: 'bar',
-        name: String(entry.name ?? ''),
-        data: ((entry.data as unknown[]) ?? []).map((val, idx) => {
-          const category = spec.categories[idx]
-          if (hasEscolaridadeFilter) {
-            const isSelected = activeFilters?.escolaridade?.includes(category)
-            return {
-              value: val,
-              itemStyle: {
-                opacity: isSelected ? 1.0 : 0.35,
-                borderWidth: isSelected ? 2 : 0,
-                borderColor: isSelected ? readThemeToken('--color-bg-soft', '#0b1220') : 'transparent',
-              },
+      series: series.map((entry) => {
+        const dataArr = (entry.data as unknown[]) ?? []
+        return {
+          type: 'bar',
+          name: String(entry.name ?? ''),
+          data: dataArr.map((val, idx) => {
+            const category = spec.categories[idx]
+            let itemStyle: Record<string, unknown> = {}
+            if (isMultiColor) {
+              itemStyle.color = palette[idx % palette.length]
             }
-          }
-          return val
-        }),
-        label: { show: false },
-        barMaxWidth: 28,
-      })),
+            if (hasEscolaridadeFilter) {
+              const isSelected = activeFilters?.escolaridade?.includes(category)
+              itemStyle.opacity = isSelected ? 1.0 : 0.35
+              itemStyle.borderWidth = isSelected ? 2 : 0
+              itemStyle.borderColor = isSelected ? readThemeToken('--color-bg-soft', '#0b1220') : 'transparent'
+            }
+            return Object.keys(itemStyle).length > 0
+              ? { value: val, itemStyle }
+              : val
+          }),
+          label: { show: false },
+          barMaxWidth,
+          barCategoryGap,
+        }
+      }),
     } as EChartsOption
   }
 

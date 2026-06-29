@@ -48,6 +48,7 @@ class GastosAnalyticsService:
         partido: str | None = None,
         uf: str | None = None,
         busca: str | None = None,
+        sort_dir: str = "desc",
         page: int = 1,
         page_size: int = 100,
     ) -> dict[str, Any]:
@@ -64,13 +65,13 @@ class GastosAnalyticsService:
                 for row in rows
                 if _contains(row.get("nome_parlamentar"), busca) or _same(row.get("id_deputado"), busca)
             ]
-        rows = self._sort_rows(rows, "valor_total")
+        rows = self._sort_rows(rows, "valor_total", reverse=(sort_dir == "desc"))
         page_state = _page(page, page_size)
         return self._collection_payload(self._summary_from_items(rows), self._paginate(rows, page_state), rows, page_state)
 
     def fornecedores(
         self,
-        categoria: str | None = None,
+        fornecedor: str | None = None,
         partido: str | None = None,
         uf: str | None = None,
         deputado: str | None = None,
@@ -78,8 +79,14 @@ class GastosAnalyticsService:
         page_size: int = 100,
     ) -> dict[str, Any]:
         rows = self._read_aggregate("fornecedores")
-        if categoria:
-            rows = [row for row in rows if _contains(row.get("categorias"), categoria)]
+        if fornecedor:
+            rows = [
+                row
+                for row in rows
+                if _contains(row.get("fornecedor_normalizado"), fornecedor)
+                or _contains(row.get("fornecedor_exemplo"), fornecedor)
+                or _contains(row.get("variacoes_nome"), fornecedor)
+            ]
         if partido:
             rows = [row for row in rows if _contains_token(row.get("partidos"), partido)]
         if uf:
@@ -187,8 +194,8 @@ class GastosAnalyticsService:
             )
         return path
 
-    def _sort_rows(self, rows: list[dict[str, Any]], key: str) -> list[dict[str, Any]]:
-        return sorted(rows, key=lambda row: float(row.get(key) or 0), reverse=True)
+    def _sort_rows(self, rows: list[dict[str, Any]], key: str, reverse: bool = True) -> list[dict[str, Any]]:
+        return sorted(rows, key=lambda row: float(row.get(key) or 0), reverse=reverse)
 
     def _paginate(self, rows: list[dict[str, Any]], page_state: Page) -> list[dict[str, Any]]:
         start = (page_state.number - 1) * page_state.size

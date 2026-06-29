@@ -1358,6 +1358,10 @@ class Q12Adapter(QuestionAdapter):
     """Deputado x fornecedor."""
 
     def build_payload(self, state: FilterState) -> QuestionPayload:
+        from ..sqlite_runtime import is_sqlite_available, query_q12_sqlite
+        if is_sqlite_available(self.context.repo_root):
+            return query_q12_sqlite(self.context.repo_root, self, state)
+
         payload = super().build_payload(state)
 
         if not state.deputados or payload.table_spec.total > 0:
@@ -1445,6 +1449,7 @@ class Q3NormalizedAdapter(QuestionAdapter):
     """Q3 normalizada: agregados para metricas, votos minimos para tabela."""
 
     def build_payload(self, state: FilterState) -> QuestionPayload:
+        self._current_state = state
         resumo_rows = self._resumo_rows()
         if not resumo_rows:
             return super().build_payload(state)
@@ -1589,10 +1594,29 @@ class Q3NormalizedAdapter(QuestionAdapter):
         )
 
     def _votos_rows(self) -> list[dict[str, Any]]:
+        if hasattr(self, "_cached_votos_rows"):
+            return self._cached_votos_rows
+            
+        from ..sqlite_runtime import is_sqlite_available, query_q3_votos_sqlite
+        state = getattr(self, "_current_state", None)
+        if state and state.deputados and is_sqlite_available(self.context.repo_root):
+            rows = query_q3_votos_sqlite(self.context.repo_root, state)
+            self._cached_votos_rows = rows
+            return rows
+
         table = self._find_table_with_columns({"id_votacao", "id_deputado", "voto"})
-        return table.rows if table else []
+        rows = table.rows if table else []
+        self._cached_votos_rows = rows
+        return rows
 
     def _classificacao_rows(self) -> list[dict[str, Any]]:
+        from ..sqlite_runtime import is_sqlite_available, query_q3_classificacoes_sqlite
+        state = getattr(self, "_current_state", None)
+        if state and state.deputados and is_sqlite_available(self.context.repo_root):
+            votos = self._votos_rows()
+            votacao_ids = list({row.get("id_votacao") for row in votos if row.get("id_votacao")})
+            return query_q3_classificacoes_sqlite(self.context.repo_root, votacao_ids)
+
         table = self._find_table_with_columns({"id_votacao", "evidencias_eixo_principal"})
         return table.rows if table else []
 
