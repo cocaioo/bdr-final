@@ -3,10 +3,11 @@ import { Link, useParams } from 'react-router-dom'
 
 import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../api'
 import type { DeputyAlignmentScores } from '../api'
+import { ChartPanel } from '../components/ChartPanel'
 import { DeputyAvatar } from '../components/DeputyAvatar'
 import { DeputySearch } from '../components/DeputySearch'
 import { DeputyTemaWordCloud } from '../components/DeputyTemaWordCloud'
-import type { DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption, DeputyTemaItem } from '../types'
+import type { ChartSpec, DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption, DeputyTemaItem } from '../types'
 import { formatCurrency } from '../utils/format'
 
 function optionalLabel(value?: string): string {
@@ -302,6 +303,28 @@ function SectionHeading({ eyebrow, title, description }: { eyebrow: string; titl
   )
 }
 
+function buildGastosDonutSpec(
+  title: string,
+  description: string,
+  rows: Array<{ name: string; valor_total: number; qtd_despesas: number }>,
+): ChartSpec {
+  return {
+    type: 'donut',
+    title,
+    description,
+    x_field: null,
+    y_fields: ['valor_total'],
+    categories: rows.map((row) => row.name),
+    series: [
+      {
+        name: title,
+        data: rows.map((row) => ({ name: row.name, value: row.valor_total, qtd_despesas: row.qtd_despesas })),
+      },
+    ],
+    options: { chart_height: 340 },
+  }
+}
+
 function EmptyGastos() {
   return (
     <div className="deputy-profile__empty" role="status">
@@ -325,8 +348,6 @@ function GastosSection({ data, loading, error }: { data: DeputyGastosProfile | n
   }
   if (!data?.hasData) return <EmptyGastos />
 
-  const categoryMax = Math.max(...data.categories.map((item) => item.valor_total), 1)
-  const supplierMax = Math.max(...data.suppliers.map((item) => item.valor_total), 1)
   const annualMax = Math.max(...data.evolution.map((item) => item.valor_total), 1)
 
   return (
@@ -341,39 +362,35 @@ function GastosSection({ data, loading, error }: { data: DeputyGastosProfile | n
       ) : null}
 
       <div className="deputy-profile__analytics-grid">
-        <article className="deputy-profile__data-card">
-          <h3>Principais categorias</h3>
-          {data.categories.length ? (
-            <ol className="deputy-profile__bar-list">
-              {data.categories.map((item) => (
-                <li key={item.categoria}>
-                  <div><span>{item.categoria}</span><strong>{formatCurrency(item.valor_total)}</strong></div>
-                  <div className="deputy-profile__bar-track" aria-hidden="true">
-                    <span style={{ width: `${(item.valor_total / categoryMax) * 100}%` }} />
-                  </div>
-                  <small>{formatNumber(item.qtd_despesas)} despesas</small>
-                </li>
-              ))}
-            </ol>
-          ) : <p className="deputy-profile__inline-empty">Categorias não disponíveis.</p>}
-        </article>
+        {data.categories.length ? (
+          <ChartPanel
+            spec={buildGastosDonutSpec(
+              'Principais categorias',
+              'Distribuição dos gastos por categoria de despesa.',
+              data.categories.map((item) => ({ name: item.categoria, valor_total: item.valor_total, qtd_despesas: item.qtd_despesas })),
+            )}
+          />
+        ) : (
+          <article className="deputy-profile__data-card">
+            <h3>Principais categorias</h3>
+            <p className="deputy-profile__inline-empty">Categorias não disponíveis.</p>
+          </article>
+        )}
 
-        <article className="deputy-profile__data-card">
-          <h3>Principais fornecedores</h3>
-          {data.suppliers.length ? (
-            <ol className="deputy-profile__bar-list">
-              {data.suppliers.map((item) => (
-                <li key={item.fornecedor}>
-                  <div><span>{item.fornecedor}</span><strong>{formatCurrency(item.valor_total)}</strong></div>
-                  <div className="deputy-profile__bar-track" aria-hidden="true">
-                    <span style={{ width: `${(item.valor_total / supplierMax) * 100}%` }} />
-                  </div>
-                  <small>{formatNumber(item.qtd_despesas)} despesas</small>
-                </li>
-              ))}
-            </ol>
-          ) : <p className="deputy-profile__inline-empty">Fornecedores não disponíveis.</p>}
-        </article>
+        {data.suppliers.length ? (
+          <ChartPanel
+            spec={buildGastosDonutSpec(
+              'Principais fornecedores',
+              'Distribuição dos gastos por fornecedor.',
+              data.suppliers.map((item) => ({ name: item.fornecedor, valor_total: item.valor_total, qtd_despesas: item.qtd_despesas })),
+            )}
+          />
+        ) : (
+          <article className="deputy-profile__data-card">
+            <h3>Principais fornecedores</h3>
+            <p className="deputy-profile__inline-empty">Fornecedores não disponíveis.</p>
+          </article>
+        )}
       </div>
 
       {data.evolution.length ? (

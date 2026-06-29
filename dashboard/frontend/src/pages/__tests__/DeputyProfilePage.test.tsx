@@ -14,6 +14,10 @@ vi.mock('../../api', () => ({
   fetchQuestionForDeputy: vi.fn(),
 }))
 
+vi.mock('../../components/ChartPanel', () => ({
+  ChartPanel: ({ spec }: { spec: { title: string } }) => <div data-testid="chart-panel">{spec.title}</div>,
+}))
+
 const fetchDeputiesMock = vi.mocked(fetchDeputies)
 const fetchAlignmentMock = vi.mocked(fetchDeputyAlignmentScores)
 const fetchGastosMock = vi.mocked(fetchDeputyGastosSummary)
@@ -97,8 +101,8 @@ describe('DeputyProfilePage', () => {
     expect(screen.getByText('99770962104')).toBeInTheDocument()
     expect((await screen.findAllByText('R$ 871.819,53')).length).toBeGreaterThan(0)
     expect(screen.getByText('Despesa média')).toBeInTheDocument()
-    expect(screen.getByText('LOCAÇÃO DE VEÍCULOS')).toBeInTheDocument()
-    expect(screen.getByText('PANTANAL VEÍCULOS LTDA')).toBeInTheDocument()
+    expect(screen.getByText('Principais categorias')).toBeInTheDocument()
+    expect(screen.getByText('Principais fornecedores')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Indice de custo-beneficio parlamentar' })).toBeInTheDocument()
     expect(screen.getByText('#175')).toBeInTheDocument()
     expect(screen.getByText('0,51186')).toBeInTheDocument()
