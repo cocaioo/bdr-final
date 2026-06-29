@@ -2,18 +2,24 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { fetchDeputies, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../../api'
+import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../../api'
 import { DeputyProfilePage } from '../DeputyProfilePage'
 
 vi.mock('../../api', () => ({
   fetchDeputies: vi.fn(),
+  fetchDeputyAlignmentScores: vi.fn(),
   fetchDeputyGastosSummary: vi.fn(),
   fetchDeputyIdentityFromGastos: vi.fn(),
   fetchDeputyTemasNuvem: vi.fn(),
   fetchQuestionForDeputy: vi.fn(),
 }))
 
+vi.mock('../../components/ChartPanel', () => ({
+  ChartPanel: ({ spec }: { spec: { title: string } }) => <div data-testid="chart-panel">{spec.title}</div>,
+}))
+
 const fetchDeputiesMock = vi.mocked(fetchDeputies)
+const fetchAlignmentMock = vi.mocked(fetchDeputyAlignmentScores)
 const fetchGastosMock = vi.mocked(fetchDeputyGastosSummary)
 const fetchIdentityMock = vi.mocked(fetchDeputyIdentityFromGastos)
 const fetchTemasMock = vi.mocked(fetchDeputyTemasNuvem)
@@ -73,11 +79,13 @@ function renderProfile(id = '220593') {
 describe('DeputyProfilePage', () => {
   beforeEach(() => {
     fetchDeputiesMock.mockReset()
+    fetchAlignmentMock.mockReset()
     fetchGastosMock.mockReset()
     fetchIdentityMock.mockReset()
     fetchTemasMock.mockReset()
     fetchQ7Mock.mockReset()
     fetchDeputiesMock.mockResolvedValue(deputies)
+    fetchAlignmentMock.mockResolvedValue({ deputyScore: null, partyScore: null, deviation: null })
     fetchGastosMock.mockResolvedValue(gastos)
     fetchIdentityMock.mockResolvedValue({ partido: 'PL', uf: 'MT' })
     fetchTemasMock.mockResolvedValue([])
@@ -93,8 +101,8 @@ describe('DeputyProfilePage', () => {
     expect(screen.getByText('99770962104')).toBeInTheDocument()
     expect((await screen.findAllByText('R$ 871.819,53')).length).toBeGreaterThan(0)
     expect(screen.getByText('Despesa média')).toBeInTheDocument()
-    expect(screen.getByText('LOCAÇÃO DE VEÍCULOS')).toBeInTheDocument()
-    expect(screen.getByText('PANTANAL VEÍCULOS LTDA')).toBeInTheDocument()
+    expect(screen.getByText('Principais categorias')).toBeInTheDocument()
+    expect(screen.getByText('Principais fornecedores')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Indice de custo-beneficio parlamentar' })).toBeInTheDocument()
     expect(screen.getByText('#175')).toBeInTheDocument()
     expect(screen.getByText('0,51186')).toBeInTheDocument()

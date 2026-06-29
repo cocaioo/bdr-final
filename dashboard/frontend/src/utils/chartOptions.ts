@@ -386,6 +386,37 @@ function buildChartOptionInternal(spec: ChartSpec, activeFilters?: FilterState):
     } as EChartsOption
   }
 
+  if (spec.type === 'donut') {
+    const first = series[0] ?? {}
+    const data = (first.data as Array<{ name: string; value: number; qtd_despesas?: number }>) ?? []
+    return {
+      tooltip: {
+        trigger: 'item',
+        formatter: (params: any) => {
+          const valueText = formatBRLCurrency(params.value)
+          const qtd = params.data?.qtd_despesas
+          return `${params.marker}<strong>${params.name}</strong><br/>${valueText}${qtd !== undefined ? ` &middot; ${qtd} despesas` : ''}`
+        },
+      },
+      legend: { show: showLegend, type: 'scroll', bottom: 0, textStyle: { fontSize: 11 } },
+      series: [
+        {
+          type: 'pie',
+          radius: ['45%', '70%'],
+          center: ['50%', '45%'],
+          itemStyle: {
+            borderRadius: 4,
+            borderColor: readThemeToken('--color-surface', '#fff'),
+            borderWidth: 2,
+          },
+          label: { show: false },
+          labelLine: { show: false },
+          data,
+        },
+      ],
+    } as EChartsOption
+  }
+
   if (spec.type === 'heatmap_wordcloud') {
     const heatmapSeries = series.find((entry) => entry.name === 'heatmap')
     const wordSeries = series.find((entry) => entry.name === 'wordcloud')
