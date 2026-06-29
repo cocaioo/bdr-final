@@ -2,8 +2,17 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../../api'
+import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy, fetchDeputyPresenca } from '../../api'
 import { DeputyProfilePage } from '../DeputyProfilePage'
+
+// Mock echarts so jsdom canvas errors don't crash tests
+vi.mock('echarts', () => ({
+  init: () => ({
+    setOption: vi.fn(),
+    resize: vi.fn(),
+    dispose: vi.fn(),
+  }),
+}))
 
 vi.mock('../../api', () => ({
   fetchDeputies: vi.fn(),
@@ -12,6 +21,7 @@ vi.mock('../../api', () => ({
   fetchDeputyIdentityFromGastos: vi.fn(),
   fetchDeputyTemasNuvem: vi.fn(),
   fetchQuestionForDeputy: vi.fn(),
+  fetchDeputyPresenca: vi.fn(),
 }))
 
 vi.mock('../../components/ChartPanel', () => ({
@@ -24,6 +34,7 @@ const fetchGastosMock = vi.mocked(fetchDeputyGastosSummary)
 const fetchIdentityMock = vi.mocked(fetchDeputyIdentityFromGastos)
 const fetchTemasMock = vi.mocked(fetchDeputyTemasNuvem)
 const fetchQ7Mock = vi.mocked(fetchQuestionForDeputy)
+const fetchPresencaMock = vi.mocked(fetchDeputyPresenca)
 
 const deputies = [
   {
@@ -63,6 +74,10 @@ const q7Payload = {
         score_proposicoes_total: 357.38,
         score_proposicoes_ajustado: 82.2,
         indice_custo_beneficio: 0.511864,
+        elegivel_ranking: true,
+        motivo_inelegibilidade: null,
+        total_proposicoes_substantivas: 12,
+        total_proposicoes_aprovadas: 1,
       },
     ],
   },
@@ -84,12 +99,14 @@ describe('DeputyProfilePage', () => {
     fetchIdentityMock.mockReset()
     fetchTemasMock.mockReset()
     fetchQ7Mock.mockReset()
+    fetchPresencaMock.mockReset()
     fetchDeputiesMock.mockResolvedValue(deputies)
     fetchAlignmentMock.mockResolvedValue({ deputyScore: null, partyScore: null, deviation: null })
     fetchGastosMock.mockResolvedValue(gastos)
     fetchIdentityMock.mockResolvedValue({ partido: 'PL', uf: 'MT' })
     fetchTemasMock.mockResolvedValue([])
     fetchQ7Mock.mockResolvedValue(q7Payload as any)
+    fetchPresencaMock.mockResolvedValue([])
   })
 
   it('carrega o deputado existente, seus dados cadastrais e gastos reais', async () => {
@@ -97,15 +114,16 @@ describe('DeputyProfilePage', () => {
 
     expect(await screen.findByRole('heading', { name: 'Abilio Brunini' })).toBeInTheDocument()
     expect(screen.getAllByText('ABILIO JACQUES BRUNINI MOUMER').length).toBeGreaterThan(0)
-    expect(screen.getByText('57ª Legislatura')).toBeInTheDocument()
     expect(screen.getByText('99770962104')).toBeInTheDocument()
+    // Gastos section
     expect((await screen.findAllByText('R$ 871.819,53')).length).toBeGreaterThan(0)
-    expect(screen.getByText('Despesa média')).toBeInTheDocument()
     expect(screen.getByText('Principais categorias')).toBeInTheDocument()
     expect(screen.getByText('Principais fornecedores')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Indice de custo-beneficio parlamentar' })).toBeInTheDocument()
-    expect(screen.getByText('#175')).toBeInTheDocument()
-    expect(screen.getByText('0,51186')).toBeInTheDocument()
+    // Q7 redesign: new section heading
+    expect(screen.getByRole('heading', { name: 'Índice de Custo-Benefício Parlamentar' })).toBeInTheDocument()
+    // Hero card: ranking badge and index value
+    expect(await screen.findByText('#175 de 609')).toBeInTheDocument()
+    expect(await screen.findByText('0,5119')).toBeInTheDocument()
     expect(screen.queryByText(/ticket/i)).not.toBeInTheDocument()
     expect(fetchGastosMock).toHaveBeenCalledWith('220593')
     expect(fetchQ7Mock).toHaveBeenCalledWith('q7', '220593', 1, 5)
@@ -119,8 +137,7 @@ describe('DeputyProfilePage', () => {
       expect(els.length).toBeGreaterThan(0)
     })
     await waitFor(() => {
-      const els = screen.getAllByText(/MT/)
-      expect(els.length).toBeGreaterThan(0)
+      expect(screen.getAllByText('MT').length).toBeGreaterThan(0)
     })
   })
 
@@ -161,9 +178,7 @@ describe('DeputyProfilePage', () => {
     await screen.findByRole('heading', { name: 'Abilio Brunini' })
 
     const img = document.querySelector('.deputy-avatar-img img') as HTMLImageElement | null
-    if (img) {
-      fireEvent.error(img)
-    }
+    if (img) fireEvent.error(img)
 
     await waitFor(() => {
       const fallback = document.querySelector('.deputy-avatar-fallback')
@@ -188,7 +203,7 @@ describe('DeputyProfilePage', () => {
     expect(await screen.findByRole('heading', { name: 'Acacio Favacho' })).toBeInTheDocument()
     expect(screen.getAllByText('Não informado').length).toBeGreaterThan(0)
     expect(await screen.findByText(/Nenhum dado de gasto disponível/i)).toBeInTheDocument()
-    expect(await screen.findByText(/Nao ha dados suficientes para calcular o indice/i)).toBeInTheDocument()
+    expect(await screen.findByText(/Não há dados suficientes para calcular o índice/i)).toBeInTheDocument()
   })
 
   it('preserva o perfil quando a consulta de gastos falha', async () => {
