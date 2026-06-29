@@ -445,6 +445,15 @@ class DashboardService:
             usedforsecurity=False,
         ).hexdigest()
 
+    def get_deputy_presence(self, id_deputado: str) -> list[dict[str, Any]]:
+        from .sqlite_runtime import query_deputy_presence
+        try:
+            dep_id = int(id_deputado)
+            return query_deputy_presence(self.repo_root, dep_id)
+        except ValueError:
+            return []
+
+
 
 def _update_hash_with_file(hash_builder: hashlib._Hash, path: Path) -> None:
     hash_builder.update(str(path).encode("utf-8"))

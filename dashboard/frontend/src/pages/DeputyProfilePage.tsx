@@ -1,26 +1,18 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy } from '../api'
+import { fetchDeputies, fetchDeputyAlignmentScores, fetchDeputyGastosSummary, fetchDeputyIdentityFromGastos, fetchDeputyTemasNuvem, fetchQuestionForDeputy, fetchDeputyPresenca } from '../api'
 import type { DeputyAlignmentScores } from '../api'
 import { ChartPanel } from '../components/ChartPanel'
 import { DeputyAvatar } from '../components/DeputyAvatar'
 import { DeputySearch } from '../components/DeputySearch'
 import { DeputyTemaWordCloud } from '../components/DeputyTemaWordCloud'
-import type { ChartSpec, DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption, DeputyTemaItem } from '../types'
+import type { ChartSpec, DeputyGastosProfile, DeputyIdentityEnrichment, DeputyOption, DeputyTemaItem, DeputyPresencaItem } from '../types'
+import * as echarts from 'echarts'
 import { formatCurrency } from '../utils/format'
 
 function optionalLabel(value?: string): string {
   return value && value.trim() ? value : 'Não informado'
-}
-
-function formatLegislatura(deputy: DeputyOption): string {
-  const start = deputy.legislaturaInicial
-  const end = deputy.legislaturaFinal
-  if (!start && !end) return 'Não informada'
-  if (start && end && start === end) return `${start}ª Legislatura`
-  if (start && end) return `${start}ª a ${end}ª Legislaturas`
-  return `${start ?? end}ª Legislatura`
 }
 
 function formatNumber(value: number): string {
@@ -241,6 +233,7 @@ interface DeputyCostBenefitProfile {
   posicao: number | null
   indice: number
   gastoTotal: number
+  gastoAjustado: number
   totalProposicoes: number
   scoreTotal: number
   scoreAjustado: number
@@ -417,6 +410,714 @@ function GastosSection({ data, loading, error }: { data: DeputyGastosProfile | n
   )
 }
 
+function PresenceChart({ data, type }: { data: DeputyPresencaItem[]; type: 'plenario' | 'comissoes' }) {
+  const chartRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!chartRef.current) return;
+    const chart = echarts.init(chartRef.current);
+
+    const years = ['2023', '2024', '2025', '2026'];
+    
+    const mapByYear = (field: keyof DeputyPresencaItem) => {
+      return years.map(y => {
+        const item = data.find(d => String(d.ano_dados) === y);
+        return item ? Number(item[field]) : 0;
+      });
+    };
+
+    const presencas = mapByYear(type === 'plenario' ? 'plenario_presencas' : 'comissoes_presencas');
+    const justificadas = mapByYear(type === 'plenario' ? 'plenario_ausencias_justificadas' : 'comissoes_ausencias_justificadas');
+    const nao_justificadas = mapByYear(type === 'plenario' ? 'plenario_ausencias_nao_justificadas' : 'comissoes_ausencias_nao_justificadas');
+
+    const unit = type === 'plenario' ? 'dias' : 'reuniões';
+
+    const option = {
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow' },
+        backgroundColor: '#1e293b',
+        borderColor: '#334155',
+        borderWidth: 1,
+        formatter: (params: any) => {
+          let res = `<div style="font-weight: bold; margin-bottom: 4px; color: #f1f5f9;">Ano ${params[0].name}</div>`;
+          params.forEach((p: any) => {
+            res += `<div style="display: flex; justify-content: space-between; gap: 12px; font-size: 0.85rem; color: #cbd5e1;">
+              <span>${p.marker} ${p.seriesName}:</span>
+              <span style="font-weight: bold; color: #f1f5f9;">${p.value} ${unit}</span>
+            </div>`;
+          });
+          return res;
+        }
+      },
+      legend: {
+        data: ['Presenças', 'Ausências Justificadas', 'Ausências Não Justificadas'],
+        textStyle: { color: '#334155', fontSize: 11 },
+        top: 0
+      },
+      grid: {
+        top: '40px',
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        data: years,
+        axisLine: { lineStyle: { color: '#cbd5e1' } },
+        axisLabel: { color: '#475569' }
+      },
+      yAxis: {
+        type: 'value',
+        axisLine: { show: false },
+        splitLine: { lineStyle: { color: 'rgba(0,0,0,0.08)' } },
+        axisLabel: { color: '#475569' }
+      },
+      series: [
+        {
+          name: 'Presenças',
+          type: 'bar',
+          stack: 'total',
+          data: presencas,
+          itemStyle: { color: '#16a34a' }
+        },
+        {
+          name: 'Ausências Justificadas',
+          type: 'bar',
+          stack: 'total',
+          data: justificadas,
+          itemStyle: { color: '#d97706' }
+        },
+        {
+          name: 'Ausências Não Justificadas',
+          type: 'bar',
+          stack: 'total',
+          data: nao_justificadas,
+          itemStyle: { color: '#dc2626' }
+        }
+      ]
+    };
+
+    chart.setOption(option);
+
+    const resizeObserver = new ResizeObserver(() => chart.resize());
+    resizeObserver.observe(chartRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
+      chart.dispose();
+    };
+  }, [data, type]);
+
+  return <div ref={chartRef} style={{ width: '100%', height: '300px' }} />;
+}
+
+import { useRef } from 'react';
+
+function PresenceDashboard({ data }: { data: DeputyPresencaItem[] }) {
+  const availableYears = useMemo(() => {
+    return Array.from(new Set(data.map(d => d.ano_dados))).sort((a, b) => b - a);
+  }, [data]);
+
+  const [selectedYear, setSelectedYear] = useState<number>(() => {
+    return availableYears.includes(2026) ? 2026 : (availableYears[0] ?? 2026);
+  });
+
+  const yearData = useMemo(() => {
+    return data.find(d => d.ano_dados === selectedYear) || {
+      plenario_presencas: 0,
+      plenario_ausencias_justificadas: 0,
+      plenario_ausencias_nao_justificadas: 0,
+      comissoes_presencas: 0,
+      comissoes_ausencias_justificadas: 0,
+      comissoes_ausencias_nao_justificadas: 0,
+      source_url: '',
+      scraped_at: ''
+    };
+  }, [data, selectedYear]);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+        <div style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>
+          Dados de presença obtidos via scraping do portal da Câmara.
+          {yearData.scraped_at && (
+            <span style={{ display: 'block', fontSize: '0.75rem', marginTop: '2px' }}>
+              Atualizado em: {new Date(yearData.scraped_at).toLocaleDateString('pt-BR')} {yearData.source_url && (
+                <>
+                  (Fonte: <a href={yearData.source_url} target="_blank" rel="noreferrer">Portal Câmara</a>)
+                </>
+              )}
+            </span>
+          )}
+        </div>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          {availableYears.map(year => (
+            <button
+              key={year}
+              onClick={() => setSelectedYear(year)}
+              style={{
+                background: selectedYear === year ? 'var(--primary)' : 'rgba(255,255,255,0.04)',
+                color: selectedYear === year ? '#fff' : 'var(--primary)',
+                border: '1px solid',
+                borderColor: selectedYear === year ? 'var(--primary)' : 'var(--border)',
+                padding: '6px 14px',
+                borderRadius: '8px',
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
+        <article className="deputy-profile__data-card" style={{ padding: '20px' }}>
+          <h3 style={{ margin: '0 0 16px 0', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem' }}>
+            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--primary)' }} />
+            Plenário ({selectedYear})
+          </h3>
+          <div className="deputy-profile__metrics" style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '8px' }}>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Presenças</span>
+              <strong style={{ color: 'var(--ok)', fontSize: '1.3rem' }}>{yearData.plenario_presencas} <span style={{ fontSize: '0.8rem', fontWeight: 'normal', color: 'var(--muted)' }}>dias</span></strong>
+            </div>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Justificadas</span>
+              <strong style={{ color: 'var(--warn)', fontSize: '1.3rem' }}>{yearData.plenario_ausencias_justificadas} <span style={{ fontSize: '0.8rem', fontWeight: 'normal', color: 'var(--muted)' }}>dias</span></strong>
+            </div>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Não Justif.</span>
+              <strong style={{ color: 'var(--danger)', fontSize: '1.3rem' }}>{yearData.plenario_ausencias_nao_justificadas} <span style={{ fontSize: '0.8rem', fontWeight: 'normal', color: 'var(--muted)' }}>dias</span></strong>
+            </div>
+          </div>
+        </article>
+
+        <article className="deputy-profile__data-card" style={{ padding: '20px' }}>
+          <h3 style={{ margin: '0 0 16px 0', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.1rem' }}>
+            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--accent)' }} />
+            Comissões ({selectedYear})
+          </h3>
+          <div className="deputy-profile__metrics" style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '8px' }}>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Presenças</span>
+              <strong style={{ color: 'var(--ok)', fontSize: '1.3rem' }}>{yearData.comissoes_presencas} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--muted)' }}>reuniões</span></strong>
+            </div>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Justificadas</span>
+              <strong style={{ color: 'var(--warn)', fontSize: '1.3rem' }}>{yearData.comissoes_ausencias_justificadas} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--muted)' }}>reuniões</span></strong>
+            </div>
+            <div className="deputy-profile__fact" style={{ minHeight: '80px', justifyContent: 'center' }}>
+              <span>Não Justif.</span>
+              <strong style={{ color: 'var(--danger)', fontSize: '1.3rem' }}>{yearData.comissoes_ausencias_nao_justificadas} <span style={{ fontSize: '0.75rem', fontWeight: 'normal', color: 'var(--muted)' }}>reuniões</span></strong>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '20px', marginTop: '12px' }}>
+        <article className="deputy-profile__data-card" style={{ padding: '20px' }}>
+          <h3 style={{ margin: '0 0 16px 0', fontSize: '1rem', color: 'var(--primary)' }}>Evolução Anual (Plenário)</h3>
+          <PresenceChart data={data} type="plenario" />
+        </article>
+        <article className="deputy-profile__data-card" style={{ padding: '20px' }}>
+          <h3 style={{ margin: '0 0 16px 0', fontSize: '1rem', color: 'var(--accent)' }}>Evolução Anual (Comissões)</h3>
+          <PresenceChart data={data} type="comissoes" />
+        </article>
+      </div>
+    </div>
+  );
+}
+
+
+// ─── Q7 REDESIGN ─────────────────────────────────────────────────────────────
+// Chamber baseline (global period, from q7 summary data)
+const CHAMBER_AVG_INDICE = 0.48472
+const CHAMBER_AVG_SCORE  = 486.57
+const CHAMBER_AVG_GASTO  = 756916649.41 / 609   // ~1,243,706 per deputy
+const TOTAL_DEPUTIES     = 609
+
+function buildInterpretationSentence(data: DeputyCostBenefitProfile): string {
+  const { posicao, elegivel, scoreTotal, gastoTotal, periodoLabel, anoParcial } = data
+  if (!elegivel) return 'Este deputado não atende aos requisitos mínimos de atividade parlamentar para integrar o ranking Q7.'
+  const scoreRel = scoreTotal / (CHAMBER_AVG_SCORE || 1)
+  const gastoRel = gastoTotal / (CHAMBER_AVG_GASTO  || 1)
+  const scoreHigher = scoreRel > 1.05
+  const scoreLower  = scoreRel < 0.95
+  const gastoLower  = gastoRel < 0.95
+  const gastoHigher = gastoRel > 1.05
+  const periodoStr  = anoParcial ? `${periodoLabel} (parcial)` : periodoLabel
+
+  if (scoreHigher && gastoLower) {
+    const sp = Math.round((scoreRel - 1) * 100)
+    const gp = Math.round((1 - gastoRel) * 100)
+    return `No período ${periodoStr}, produziu ${sp}% mais atividade legislativa que a média da Câmara gastando ${gp}% menos.`
+  }
+  if (scoreHigher && gastoHigher) {
+    const sp = Math.round((scoreRel - 1) * 100)
+    const gp = Math.round((gastoRel - 1) * 100)
+    return `Alta produção legislativa no período ${periodoStr} (${sp}% acima da média), acompanhada de despesas ${gp}% acima da média da Câmara.`
+  }
+  if (scoreHigher && !gastoHigher && !gastoLower) {
+    const sp = Math.round((scoreRel - 1) * 100)
+    return `Alta produção legislativa no período ${periodoStr} (${sp}% acima da média), com despesas dentro da média da Câmara.`
+  }
+  if (scoreLower && gastoLower) {
+    const sp = Math.round((1 - scoreRel) * 100)
+    const gp = Math.round((1 - gastoRel) * 100)
+    return `No período ${periodoStr}, produção legislativa abaixo da média (${sp}% abaixo da média) — mas com despesas também contidas (${gp}% abaixo da média).`
+  }
+  if (scoreLower && gastoHigher) {
+    const sp = Math.round((1 - scoreRel) * 100)
+    const gp = Math.round((gastoRel - 1) * 100)
+    return `Baixa produção legislativa (${sp}% abaixo da média) com despesas ${gp}% acima da média no período ${periodoStr}.`
+  }
+  if (scoreLower && !gastoHigher && !gastoLower) {
+    const sp = Math.round((1 - scoreRel) * 100)
+    return `Produção legislativa abaixo da média no período ${periodoStr} (${sp}% abaixo da média), com despesas dentro da média da Câmara.`
+  }
+  if (!scoreHigher && !scoreLower && gastoLower) {
+    const gp = Math.round((1 - gastoRel) * 100)
+    return `Produção legislativa dentro da média, com despesas contidas (${gp}% abaixo da média) no período ${periodoStr}.`
+  }
+  if (!scoreHigher && !scoreLower && gastoHigher) {
+    const gp = Math.round((gastoRel - 1) * 100)
+    return `Produção legislativa dentro da média, com despesas ${gp}% acima da média no período ${periodoStr}.`
+  }
+  if (posicao !== null && posicao <= 50) {
+    return `Entre os 50 deputados mais eficientes da Câmara no período ${periodoStr}.`
+  }
+  return `Produção legislativa e despesas dentro da faixa esperada para o período ${periodoStr}.`
+}
+
+function buildInterpretationDetail(data: DeputyCostBenefitProfile): string | null {
+  if (!data.elegivel || data.posicao === null) return null
+  const pct = Math.round((1 - data.posicao / TOTAL_DEPUTIES) * 100)
+  if (data.posicao <= 10)  return `Está entre os 10 deputados mais eficientes da legislatura.`
+  if (pct >= 90) return `Top ${100 - pct}% em eficiência — entre os melhores da Câmara.`
+  if (pct >= 70) return `Acima de ${pct}% dos deputados em eficiência legislativa.`
+  if (pct >= 30) return `Dentro da faixa central: eficiência acima de ${pct}% dos parlamentares.`
+  return `Abaixo de ${100 - pct}% dos deputados em eficiência legislativa.`
+}
+
+// Phase 1 — Hero Card
+function Q7HeroCard({ data, rating }: { data: DeputyCostBenefitProfile; rating: RatingInfo }) {
+  const percentile = data.elegivel && data.posicao !== null
+    ? Math.round((1 - data.posicao / TOTAL_DEPUTIES) * 100)
+    : null
+  const sentence = buildInterpretationSentence(data)
+
+  return (
+    <div style={{
+      background: `linear-gradient(135deg, ${rating.bg} 0%, rgba(255,255,255,0.02) 100%)`,
+      border: rating.border,
+      borderRadius: '20px',
+      padding: '28px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '20px',
+    }}>
+      <div style={{ display: 'flex', gap: '28px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <DeputyGauge posicao={data.posicao} elegivel={data.elegivel} />
+        <div style={{ flex: 1, minWidth: '200px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div>
+            <span style={{
+              display: 'block', fontSize: '0.7rem', fontWeight: 700,
+              letterSpacing: '0.14em', textTransform: 'uppercase',
+              color: 'var(--muted)', marginBottom: '4px',
+              fontFamily: "'IBM Plex Mono', monospace",
+            }}>
+              Índice de Custo-Benefício
+            </span>
+            <span style={{
+              display: 'block',
+              fontSize: 'clamp(2.2rem, 5vw, 3.4rem)',
+              fontWeight: 800,
+              letterSpacing: '-0.02em',
+              color: rating.color,
+              lineHeight: 1,
+            }}>
+              {formatDecimal(data.indice, 4)}
+            </span>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
+            <span style={{
+              padding: '5px 13px', borderRadius: '999px',
+              backgroundColor: rating.bg, color: rating.color, border: rating.border,
+              fontSize: '0.76rem', fontWeight: 700,
+              textTransform: 'uppercase', letterSpacing: '0.06em',
+            }}>
+              {rating.label}
+            </span>
+            {data.elegivel && data.posicao !== null && (
+              <span style={{
+                padding: '5px 13px', borderRadius: '999px',
+                border: '1px solid var(--border)', background: 'rgba(255,255,255,0.04)',
+                fontSize: '0.76rem', fontWeight: 600, color: 'var(--muted)',
+              }}>
+                #{data.posicao} de {TOTAL_DEPUTIES}
+              </span>
+            )}
+            {percentile !== null && (
+              <span style={{
+                padding: '5px 13px', borderRadius: '999px',
+                border: '1px solid var(--border)', background: 'rgba(255,255,255,0.04)',
+                fontSize: '0.76rem', fontWeight: 600, color: 'var(--muted)',
+              }}>
+                Top {100 - percentile}%
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+      <div style={{
+        borderTop: '1px solid var(--border)', paddingTop: '14px',
+        fontSize: '0.9rem', color: 'var(--ink)', lineHeight: '1.55',
+        fontStyle: 'italic', opacity: 0.85,
+      }}>
+        {sentence}
+      </div>
+    </div>
+  )
+}
+
+// Phase 2 — Interpretation
+function Q7Interpretation({ data, rating }: { data: DeputyCostBenefitProfile; rating: RatingInfo }) {
+  const detail = buildInterpretationDetail(data)
+  if (!detail) return null
+  return (
+    <div style={{
+      display: 'flex', gap: '12px', alignItems: 'flex-start',
+      padding: '14px 16px',
+      background: 'rgba(255,255,255,0.02)',
+      border: '1px solid var(--border)',
+      borderLeft: `4px solid ${rating.color}`,
+      borderRadius: '12px',
+    }}>
+      <span style={{ fontSize: '1.1rem', lineHeight: 1, paddingTop: '2px', flexShrink: 0 }}>💡</span>
+      <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--ink)', lineHeight: 1.55 }}>{detail}</p>
+    </div>
+  )
+}
+
+// Phase 3 — Efficiency Map
+function EfficiencyMap({ data, deputyName }: { data: DeputyCostBenefitProfile; deputyName: string }) {
+  const chartRef = useRef<HTMLDivElement | null>(null)
+  useEffect(() => {
+    if (!chartRef.current) return
+    const chart = echarts.init(chartRef.current)
+    const isLight = document.body.classList.contains('gastos-light-theme')
+    const chamberScore = CHAMBER_AVG_SCORE
+    const chamberGasto = CHAMBER_AVG_GASTO
+    const depScore = data.scoreTotal
+    const depGasto = data.gastoTotal
+    const maxScore = Math.max(depScore, chamberScore) * 1.4 || 1
+    const maxGasto  = Math.max(depGasto,  chamberGasto)  * 1.4 || 1
+
+    // Mapeamento linear por partes para centralizar a média da Câmara em (50, 50)
+    const cx = 50
+    const cy = 50
+
+    const dx = depGasto < chamberGasto
+      ? (depGasto / chamberGasto) * 50
+      : 50 + ((depGasto - chamberGasto) / (maxGasto - chamberGasto)) * 50
+
+    const dy = depScore < chamberScore
+      ? (depScore / chamberScore) * 50
+      : 50 + ((depScore - chamberScore) / (maxScore - chamberScore)) * 50
+
+    const option: echarts.EChartsOption = {
+      backgroundColor: 'transparent',
+      grid: { top: 20, right: 30, bottom: 50, left: 60 },
+      xAxis: {
+        type: 'value', name: 'Despesas →', nameLocation: 'middle', nameGap: 32,
+        min: 0, max: 100, axisLabel: { show: false },
+        axisLine: { lineStyle: { color: isLight ? 'rgba(55,65,81,0.25)' : 'rgba(148,163,184,0.3)' } }, 
+        splitLine: { show: false },
+        nameTextStyle: { color: isLight ? '#1f2937' : '#94a3b8', fontWeight: 600, fontSize: 11 }
+      },
+      yAxis: {
+        type: 'value', name: 'Produção Legislativa →', nameLocation: 'middle', nameGap: 46,
+        min: 0, max: 100, axisLabel: { show: false },
+        axisLine: { lineStyle: { color: isLight ? 'rgba(55,65,81,0.25)' : 'rgba(148,163,184,0.3)' } }, 
+        splitLine: { show: false },
+        nameTextStyle: { color: isLight ? '#1f2937' : '#94a3b8', fontWeight: 600, fontSize: 11 }
+      },
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(15,20,30,0.92)', borderColor: 'rgba(148,163,184,0.2)',
+        borderWidth: 1, textStyle: { color: '#e2e8f0', fontSize: 12 },
+        formatter: (params: any) => {
+          if (params.seriesIndex === 3)
+            return `<b>Média da Câmara</b><br/>Score total: ${formatDecimal(chamberScore, 1)}<br/>Gasto méd.: ${formatCurrency(chamberGasto)}`
+          return `<b>${deputyName}</b><br/>Score total: ${formatDecimal(depScore, 1)}<br/>Gasto: ${formatCurrency(depGasto)}`
+        },
+      },
+      series: [
+        {
+          type: 'scatter', data: [],
+          markArea: {
+            silent: true,
+            data: [
+              [{ coord: [0,  50], itemStyle: { color: isLight ? 'rgba(16,185,129,0.03)' : 'rgba(16,185,129,0.06)' }  }, { coord: [50,  100] }],
+              [{ coord: [50, 50], itemStyle: { color: isLight ? 'rgba(245,158,11,0.02)' : 'rgba(245,158,11,0.05)' }  }, { coord: [100, 100] }],
+              [{ coord: [0,  0],  itemStyle: { color: isLight ? 'rgba(245,158,11,0.02)' : 'rgba(245,158,11,0.04)' }  }, { coord: [50,  50]  }],
+              [{ coord: [50, 0],  itemStyle: { color: isLight ? 'rgba(239,68,68,0.03)'  : 'rgba(239,68,68,0.06)'  }  }, { coord: [100, 50]  }],
+            ],
+          },
+        },
+        {
+          type: 'scatter', data: [],
+          markLine: {
+            silent: true, symbol: ['none', 'none'],
+            lineStyle: { color: isLight ? 'rgba(55,65,81,0.18)' : 'rgba(148,163,184,0.2)', width: 1, type: 'dashed' as const },
+            data: [[{ coord: [50, 0] }, { coord: [50, 100] }], [{ coord: [0, 50] }, { coord: [100, 50] }]],
+          },
+        },
+        {
+          type: 'scatter',
+          data: [
+            { value: [25, 95] as [number, number], label: { show: true, formatter: 'Alta produção\nBaixo custo',   fontSize: 9, color: isLight ? '#065f46' : 'rgba(16,185,129,0.7)',  fontWeight: 600, align: 'center' as const } },
+            { value: [75, 95] as [number, number], label: { show: true, formatter: 'Alta produção\nAlto custo',    fontSize: 9, color: isLight ? '#b45309' : 'rgba(245,158,11,0.65)', fontWeight: 600, align: 'center' as const } },
+            { value: [25,  5] as [number, number], label: { show: true, formatter: 'Baixa produção\nBaixo custo',  fontSize: 9, color: isLight ? '#4b5563' : 'rgba(148,163,184,0.5)', fontWeight: 600, align: 'center' as const } },
+            { value: [75,  5] as [number, number], label: { show: true, formatter: 'Baixa produção\nAlto custo',   fontSize: 9, color: isLight ? '#b91c1c' : 'rgba(239,68,68,0.65)',  fontWeight: 600, align: 'center' as const } },
+          ],
+          symbolSize: 0,
+        },
+        {
+          name: 'Média da Câmara', type: 'scatter',
+          data: [[cx, cy] as [number, number]],
+          symbolSize: 14,
+          itemStyle: { color: isLight ? '#94a3b8' : 'rgba(148,163,184,0.6)', borderColor: isLight ? '#475569' : '#e2e8f0', borderWidth: 2 },
+          label: { show: true, formatter: 'Média\nCâmara', position: 'top' as const, fontSize: 9, color: isLight ? '#334155' : '#a0aec0', fontWeight: 600, lineHeight: 14 },
+        },
+        {
+          name: deputyName, type: 'scatter',
+          data: [[dx, dy] as [number, number]],
+          symbolSize: 20,
+          itemStyle: { color: '#5b84a2', borderColor: '#b39ddb', borderWidth: 3, shadowColor: 'rgba(91,132,162,0.5)', shadowBlur: 12 },
+          label: { show: true, formatter: 'Este\ndeputado', position: 'right' as const, fontSize: 9, color: isLight ? '#0f172a' : '#f8fafc', fontWeight: 700, lineHeight: 14 },
+        },
+      ],
+    }
+
+    chart.setOption(option)
+    const ro = new ResizeObserver(() => chart.resize())
+    ro.observe(chartRef.current!)
+    return () => { ro.disconnect(); chart.dispose() }
+  }, [data, deputyName])
+
+  return <div ref={chartRef} style={{ width: '100%', height: '260px' }} />
+}
+
+// Phase 4 — Visual Formula
+function Q7VisualFormula({ data }: { data: DeputyCostBenefitProfile }) {
+  const card: React.CSSProperties = {
+    background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border)',
+    borderRadius: '14px', padding: '14px 18px', textAlign: 'center',
+    flex: '1 1 130px', minWidth: '110px',
+  }
+  const lbl: React.CSSProperties = {
+    fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em',
+    textTransform: 'uppercase', color: 'var(--muted)',
+    display: 'block', marginBottom: '6px',
+  }
+  const val: React.CSSProperties = { fontSize: '1.1rem', fontWeight: 700, color: 'var(--ink)', display: 'block' }
+  const sub: React.CSSProperties = { fontSize: '0.68rem', color: 'var(--muted)', marginTop: '3px', display: 'block' }
+  const op: React.CSSProperties  = {
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    color: 'var(--muted)', fontSize: '1.3rem', fontWeight: 300,
+    flexShrink: 0, padding: '0 4px',
+  }
+
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px' }}>
+      <div style={card}>
+        <span style={lbl}>Score Legislativo</span>
+        <span style={val}>{formatDecimal(data.scoreAjustado, 2)}</span>
+        <span style={sub}>ajustado (×0.75)</span>
+      </div>
+      <div style={op}>÷</div>
+      <div style={card}>
+        <span style={lbl}>Gasto Suavizado</span>
+        <span style={val}>{formatDecimal(data.gastoAjustado, 2)}</span>
+        <span style={sub}>real: {formatCurrency(data.gastoTotal)}</span>
+      </div>
+      <div style={op}>=</div>
+      <div style={{
+        ...card,
+        background: 'rgba(91,132,162,0.08)',
+        border: '1px solid rgba(91,132,162,0.3)',
+        flex: '0 1 auto', minWidth: '130px',
+      }}>
+        <span style={{ ...lbl, color: 'var(--primary)' }}>Índice Final</span>
+        <span style={{ ...val, fontSize: '1.4rem', color: 'var(--primary)' }}>{formatDecimal(data.indice, 5)}</span>
+        <span style={sub}>custo-benefício Q7</span>
+      </div>
+    </div>
+  )
+}
+
+// Phase 6 — Benchmark Bars
+function BenchmarkBar({
+  label, deputyValue, chamberValue, format, invert = false,
+}: {
+  label: string; deputyValue: number; chamberValue: number;
+  format: (v: number) => string; invert?: boolean;
+}) {
+  const max = Math.max(deputyValue, chamberValue) * 1.18 || 1
+  const depPct    = Math.min((deputyValue  / max) * 100, 100)
+  const chamberPct = Math.min((chamberValue / max) * 100, 100)
+  const ratio = deputyValue / (chamberValue || 1)
+  const isBetter = invert ? ratio < 0.95 : ratio > 1.05
+  const isWorse  = invert ? ratio > 1.05 : ratio < 0.95
+  const barColor = isBetter ? 'var(--ok)' : isWorse ? 'var(--danger)' : 'var(--primary)'
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+        <span style={{ fontSize: '0.8rem', color: 'var(--muted)', fontWeight: 600 }}>{label}</span>
+        <span style={{ fontSize: '0.82rem', color: barColor, fontWeight: 700 }}>{format(deputyValue)}</span>
+      </div>
+      <div style={{ position: 'relative' }}>
+        <div style={{ background: 'rgba(148,163,184,0.1)', borderRadius: '4px', height: '8px', overflow: 'hidden' }}>
+          <div style={{ width: `${depPct}%`, height: '100%', background: barColor, borderRadius: '4px', transition: 'width 0.5s ease' }} />
+        </div>
+        <div style={{
+          position: 'absolute', top: '-3px', left: `${chamberPct}%`,
+          transform: 'translateX(-50%)', width: '2px', height: '14px',
+          background: 'rgba(148,163,184,0.55)', borderRadius: '1px',
+        }} />
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.7rem', color: 'var(--muted)' }}>
+        <span style={{ display: 'inline-block', width: '14px', height: '2px', background: 'rgba(148,163,184,0.55)', borderRadius: '1px', flexShrink: 0 }} />
+        Média Câmara: {format(chamberValue)}
+      </div>
+    </div>
+  )
+}
+
+// Master Q7 Section — composes all phases
+function Q7Section({ data, deputyName }: { data: DeputyCostBenefitProfile; deputyName: string }) {
+  const [showTechnical, setShowTechnical] = useState(false)
+  const rating = getDeputyRating(data.posicao, data.elegivel)
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      {!data.elegivel && (
+        <div style={{
+          padding: '12px 16px', backgroundColor: 'rgba(239,68,68,0.08)',
+          borderLeft: '4px solid var(--danger)', borderRadius: '8px',
+          fontSize: '0.88rem', lineHeight: '1.5',
+        }}>
+          <strong style={{ color: 'var(--danger)' }}>Inelegível para o Ranking Principal:</strong>
+          <span style={{ display: 'block', marginTop: '3px', color: 'var(--muted)' }}>{data.motivoInelegibilidade}</span>
+        </div>
+      )}
+
+      {/* Phase 1: Hero */}
+      <Q7HeroCard data={data} rating={rating} />
+
+      {/* Phase 2: Interpretation */}
+      <Q7Interpretation data={data} rating={rating} />
+
+      {/* Phase 3: Efficiency Map */}
+      <article className="deputy-profile__data-card">
+        <h3 style={{ margin: '0 0 4px 0', fontSize: '0.92rem', color: 'var(--ink)' }}>Mapa de Eficiência</h3>
+        <p style={{ margin: '0 0 12px 0', fontSize: '0.78rem', color: 'var(--muted)' }}>
+          Posição do deputado em relação à média da Câmara. Eixo horizontal: despesas. Eixo vertical: produção legislativa.
+        </p>
+        <EfficiencyMap data={data} deputyName={deputyName} />
+      </article>
+
+      {/* Phase 4: Visual Formula */}
+      <article className="deputy-profile__data-card">
+        <h3 style={{ margin: '0 0 14px 0', fontSize: '0.92rem', color: 'var(--ink)' }}>Como este índice é formado</h3>
+        <Q7VisualFormula data={data} />
+      </article>
+
+      {/* Phase 6: Benchmark Bars */}
+      <article className="deputy-profile__data-card">
+        <h3 style={{ margin: '0 0 18px 0', fontSize: '0.92rem', color: 'var(--ink)' }}>Comparativo com a Câmara</h3>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <BenchmarkBar
+            label="Produção Legislativa (score total)"
+            deputyValue={data.scoreTotal}
+            chamberValue={CHAMBER_AVG_SCORE}
+            format={(v) => formatDecimal(v, 1)}
+          />
+          <BenchmarkBar
+            label="Despesas da Cota Parlamentar"
+            deputyValue={data.gastoTotal}
+            chamberValue={CHAMBER_AVG_GASTO}
+            format={formatCurrency}
+            invert={true}
+          />
+          <BenchmarkBar
+            label="Índice de Custo-Benefício"
+            deputyValue={data.indice}
+            chamberValue={CHAMBER_AVG_INDICE}
+            format={(v) => formatDecimal(v, 4)}
+          />
+        </div>
+      </article>
+
+      {/* Phase 5: Technical (collapsible) */}
+      <article className="deputy-profile__data-card">
+        <button
+          onClick={() => setShowTechnical(v => !v)}
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            width: '100%', background: 'none', border: 'none', padding: 0,
+            cursor: 'pointer', color: 'var(--ink)', fontSize: '0.92rem',
+            fontWeight: 600, fontFamily: 'inherit',
+          }}
+          aria-expanded={showTechnical}
+        >
+          <span>Como este índice foi calculado</span>
+          <span style={{ fontSize: '0.78rem', color: 'var(--muted)', fontWeight: 400, display: 'flex', alignItems: 'center', gap: '6px' }}>
+            {showTechnical ? 'Recolher' : 'Ver detalhes'}
+            <span style={{ fontSize: '0.95rem', display: 'inline-block', transition: 'transform 0.2s', transform: showTechnical ? 'rotate(180deg)' : 'none' }}>▾</span>
+          </span>
+        </button>
+
+        {showTechnical && (
+          <div style={{ marginTop: '16px', borderTop: '1px solid var(--border)', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'grid', gap: '12px', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))' }}>
+              <ProfileField label="Score total (bruto)"      value={formatDecimal(data.scoreTotal, 2)}        helpText="Soma de pontos das proposições ponderados por tipo, status e autoria." />
+              <ProfileField label="Score ajustado (×0.75)"   value={formatDecimal(data.scoreAjustado, 2)}     helpText="Score suavizado por potência 0.75 para evitar distorções de alto volume." />
+              <ProfileField label="Despesas consideradas"    value={formatCurrency(data.gastoTotal)}          helpText="Gasto efetivo da cota parlamentar (apenas valor_liquido > 0)." />
+              <ProfileField label="Total de proposições"     value={formatNumber(data.totalProposicoes)} />
+              <ProfileField label="Proposições substantivas" value={formatNumber(data.totalProposicoesSubstantivas)} helpText="PECs, PLs, PLPs e similares com impacto legislativo concreto." />
+              <ProfileField label="Proposições aprovadas"    value={formatNumber(data.totalProposicoesAprovadas)}   helpText="Proposições de autoria do deputado aprovadas ou transformadas em lei." />
+              <ProfileField label="Período"                  value={`${data.periodoLabel}${data.anoParcial ? ' (parcial)' : ''}`} />
+              <ProfileField label="Posição no ranking"       value={data.posicao ? `#${data.posicao} de ${TOTAL_DEPUTIES}` : 'Não disponível'} helpText="Ranking global considera apenas anos completos (sem 2026 parcial)." />
+            </div>
+            <div style={{
+              padding: '12px 14px', background: 'rgba(255,255,255,0.02)',
+              border: '1px solid var(--border)', borderRadius: '8px',
+              fontSize: '0.76rem', color: 'var(--muted)', lineHeight: '1.6',
+            }}>
+              <strong style={{ color: 'var(--ink)', display: 'block', marginBottom: '4px' }}>Metodologia</strong>
+              O índice é calculado dividindo o score de proposições ajustado pelo gasto ajustado (normalizado por 1.000 R$).
+              O score considera apenas anos completos no ranking global; 2026 aparece marcado como parcial no ranking anual.
+              Deputados sem atividade mínima não integram o ranking principal.
+            </div>
+          </div>
+        )}
+      </article>
+    </div>
+  )
+}
+// ─── END Q7 REDESIGN ─────────────────────────────────────────────────────────
+
+
 export function DeputyProfilePage() {
   const { id } = useParams<{ id: string }>()
   const [catalog, setCatalog] = useState<DeputyOption[]>([])
@@ -442,6 +1143,11 @@ export function DeputyProfilePage() {
     data: DeputyAlignmentScores | null
     error: string | null
   }>({ data: null, error: null })
+  const [presencaState, setPresencaState] = useState<{
+    deputyId?: string
+    data: DeputyPresencaItem[] | null
+    error: string | null
+  }>({ data: null, error: null })
   const [identityEnrichment, setIdentityEnrichment] = useState<DeputyIdentityEnrichment>({})
 
   useEffect(() => {
@@ -462,6 +1168,7 @@ export function DeputyProfilePage() {
     setQ7State({ data: null, error: null })
     setTemasState({ data: null, error: null })
     setAlignmentState({ data: null, error: null })
+    setPresencaState({ data: null, error: null })
     fetchDeputyIdentityFromGastos(deputy.id)
       .then((enrichment) => { if (active) setIdentityEnrichment(enrichment) })
       .catch(() => { /* silently ignore; fallback to CSV values */ })
@@ -474,6 +1181,9 @@ export function DeputyProfilePage() {
     fetchDeputyAlignmentScores(deputy.id)
       .then((scores) => { if (active) setAlignmentState({ deputyId: deputy.id, data: scores, error: null }) })
       .catch((cause: Error) => { if (active) setAlignmentState({ deputyId: deputy.id, data: null, error: cause.message }) })
+    fetchDeputyPresenca(deputy.id)
+      .then((presence) => { if (active) setPresencaState({ deputyId: deputy.id, data: presence, error: null }) })
+      .catch((cause: Error) => { if (active) setPresencaState({ deputyId: deputy.id, data: null, error: cause.message }) })
     fetchQuestionForDeputy('q7', deputy.id, 1, 5)
       .then((payload) => {
         if (!active) return
@@ -490,6 +1200,7 @@ export function DeputyProfilePage() {
             posicao: row.posicao === undefined || row.posicao === null ? null : numericValue(row.posicao),
             indice: numericValue(row.indice_custo_beneficio),
             gastoTotal: numericValue(row.gasto_total),
+            gastoAjustado: numericValue(row.gasto_ajustado ?? row.gasto_total),
             totalProposicoes: numericValue(row.total_proposicoes),
             scoreTotal: numericValue(row.score_proposicoes_total),
             scoreAjustado: numericValue(row.score_proposicoes_ajustado),
@@ -550,7 +1261,7 @@ export function DeputyProfilePage() {
         </div>
         <div className="deputy-profile__hero-aside">
           <ProfileField label="Escolaridade" value={optionalLabel(deputy.escolaridade)} />
-          <ProfileField label="Legislaturas" value={formatLegislatura(deputy)} />
+
           <ProfileField label="Partido" value={optionalLabel(partido)} />
           <ProfileField label="Unidade federativa" value={optionalLabel(uf)} />
         </div>
@@ -591,8 +1302,7 @@ export function DeputyProfilePage() {
                 : 'Não disponível'
             }
           />
-          <ProfileField label="Legislatura inicial" value={optionalLabel(deputy.legislaturaInicial)} />
-          <ProfileField label="Legislatura final" value={optionalLabel(deputy.legislaturaFinal)} />
+
           <ProfileField label="Fonte cadastral" value={deputy.uriDeputado ? <a href={deputy.uriDeputado} target="_blank" rel="noreferrer">Dados Abertos da Câmara</a> : 'Não informada'} />
         </div>
       </section>
@@ -636,133 +1346,44 @@ export function DeputyProfilePage() {
       <section className="deputy-profile__section" aria-labelledby="custo-beneficio-heading">
         <SectionHeading
           eyebrow="Q7"
-          title="Indice de custo-beneficio parlamentar"
-          description="Producao legislativa ponderada por gasto, calculada segundo a metodologia atual da Q7."
+          title="Índice de Custo-Benefício Parlamentar"
+          description="Produção legislativa ponderada por gasto. Leia a conclusão primeiro; a metodologia está disponível abaixo."
         />
         <div id="custo-beneficio-heading">
           {q7State.deputyId !== deputy.id ? (
-            <div className="deputy-profile__empty" role="status">Carregando indicador de custo-beneficio...</div>
+            <div className="deputy-profile__empty" role="status">Carregando indicador de custo-benefício...</div>
           ) : q7State.error ? (
             <div className="deputy-profile__empty deputy-profile__empty--error" role="alert">
-              <strong>Nao foi possivel carregar o indicador de custo-beneficio agora.</strong>
-              <span>O restante do perfil continua disponivel.</span>
+              <strong>Não foi possível carregar o indicador de custo-benefício agora.</strong>
+              <span>O restante do perfil continua disponível.</span>
             </div>
           ) : q7State.data ? (
-            (() => {
-              const rating = getDeputyRating(q7State.data.posicao, q7State.data.elegivel);
-              return (
-                <>
-                  {!q7State.data.elegivel && (
-                    <div style={{
-                      padding: '12px 16px',
-                      backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                      borderLeft: '4px solid #ef4444',
-                      borderRadius: '6px',
-                      fontSize: '0.9rem',
-                      color: '#ef4444',
-                      marginBottom: '16px',
-                      lineHeight: '1.4'
-                    }}>
-                      <strong>Inelegível para o Ranking Principal:</strong>
-                      <div style={{ marginTop: '4px' }}>{q7State.data.motivoInelegibilidade}</div>
-                    </div>
-                  )}
-                  <div className="deputy-profile__metrics" aria-label="Indice de custo-beneficio">
-                    <ProfileField
-                      label="Posicao no ranking global"
-                      value={q7State.data.posicao ? `#${q7State.data.posicao}` : 'Nao disponivel'}
-                    />
-                    <ProfileField
-                      label="Indice"
-                      value={<span style={{ color: rating.color, fontSize: '2.2rem', display: 'inline-block', lineHeight: '1.2' }}>{formatDecimal(q7State.data.indice, 5)}</span>}
-                    />
-                    <ProfileField
-                      label="Despesa considerada no índice"
-                      value={formatCurrency(q7State.data.gastoTotal)}
-                    />
-                    <ProfileField
-                      label="Proposicoes consideradas"
-                      value={formatNumber(q7State.data.totalProposicoes)}
-                    />
-                  </div>
-
-                  <article className="deputy-profile__data-card">
-                    <h3 style={{ margin: '0 0 16px 0' }}>Leitura do indicador</h3>
-                    
-                    <div style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: '24px',
-                      flexWrap: 'wrap',
-                      justifyContent: 'center',
-                      padding: '12px 0',
-                      marginBottom: '16px'
-                    }}>
-                      <DeputyGauge posicao={q7State.data.posicao} elegivel={q7State.data.elegivel} />
-                      
-                      <div style={{ flex: '1', minWidth: '200px' }}>
-                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '8px' }}>
-                          <span
-                            className="deputy-rating-badge"
-                            style={{
-                              padding: '4px 10px',
-                              borderRadius: '12px',
-                              backgroundColor: rating.bg,
-                              color: rating.color,
-                              border: rating.border,
-                              fontSize: '0.82rem',
-                              fontWeight: 'bold',
-                              textTransform: 'uppercase',
-                              letterSpacing: '0.5px'
-                            }}
-                          >
-                            {rating.label}
-                          </span>
-                        </div>
-                        {rating.description && (
-                          <p style={{ fontSize: '0.88rem', color: 'var(--muted)', margin: 0, lineHeight: '1.4' }}>
-                            {rating.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="deputy-profile__details-grid">
-                      <ProfileField
-                        label="Score total"
-                        value={formatDecimal(q7State.data.scoreTotal, 2)}
-                        helpText="Soma de pontos das proposições de autoria do deputado, ponderados por tipo, status e posição de autoria."
-                      />
-                      <ProfileField
-                        label="Score ajustado"
-                        value={formatDecimal(q7State.data.scoreAjustado, 2)}
-                        helpText="Score total suavizado por potência (0.75) para evitar distorções de alto volume de projetos simples."
-                      />
-                      <ProfileField
-                        label="Periodo"
-                        value={`${q7State.data.periodoLabel}${q7State.data.anoParcial ? ' (parcial)' : ''}`}
-                      />
-                      <ProfileField
-                        label="Proposições substantivas"
-                        value={formatNumber(q7State.data.totalProposicoesSubstantivas)}
-                        helpText="Proposições com relevância ou impacto legislativo concreto (como PECs, PLs, e PLPs), conforme metodologia."
-                      />
-                      <ProfileField
-                        label="Proposições aprovadas"
-                        value={formatNumber(q7State.data.totalProposicoesAprovadas)}
-                        helpText="Proposições de autoria do deputado que foram aprovadas ou transformadas em lei no período."
-                      />
-                    </div>
-                  </article>
-                </>
-              );
-            })()
+            <Q7Section data={q7State.data} deputyName={deputy.nome} />
           ) : (
             <div className="deputy-profile__empty" role="status">
-              <strong>Nao ha dados suficientes para calcular o indice deste deputado no periodo selecionado.</strong>
-              <span>O card sera preenchido assim que a Q7 retornar esse parlamentar no recorte global.</span>
+              <strong>Não há dados suficientes para calcular o índice deste deputado no período selecionado.</strong>
+              <span>O card será preenchido assim que a Q7 retornar esse parlamentar no recorte global.</span>
             </div>
+          )}
+        </div>
+      </section>
+
+      <section className="deputy-profile__section" aria-labelledby="presenca-heading">
+        <SectionHeading
+          eyebrow="Assiduidade"
+          title="Presença e Assiduidade Parlamentar"
+          description="Estatísticas oficiais de presenças marcadas, ausências justificadas e ausências não justificadas."
+        />
+        <div id="presenca-heading">
+          {presencaState.deputyId !== deputy.id ? (
+            <div className="deputy-profile__empty" role="status">Carregando dados de presença…</div>
+          ) : presencaState.error || !presencaState.data || presencaState.data.length === 0 ? (
+            <div className="deputy-profile__empty" role="status">
+              <strong>Dados de presença ainda não disponíveis para este parlamentar.</strong>
+              <span>O perfil cadastral e os demais indicadores continuam disponíveis.</span>
+            </div>
+          ) : (
+            <PresenceDashboard data={presencaState.data} />
           )}
         </div>
       </section>
