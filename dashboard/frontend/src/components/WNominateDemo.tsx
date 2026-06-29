@@ -157,21 +157,21 @@ function getExplanation(cfg: Config, iter: number, done: boolean): string {
   if (iter === 0) {
     if (n === 1) return 'Com apenas 1 deputado, quase tudo é trivial — qualquer posição explica todos os votos.'
     if (v === 1) return `Com ${n} deputados e 1 proposição, há pouca informação para separar ideologias.`
-    return `${n} deputados foram posicionados aleatoriamente. As ${v} proposições ainda não exerceram pressão.`
+    return `${n} deputados foram posicionados com coordenadas aleatórias. Nenhuma restrição ou atualização de coordenada foi computada ainda.`
   }
   if (iter <= 5) {
-    return `Iteração ${iter}: o algoritmo começa a ajustar posições para maximizar a probabilidade dos votos observados.`
+    return `Iteração ${iter}: o algoritmo inicia a atualização das coordenadas dos deputados para encontrar uma configuração que explique os votos observados.`
   }
   if (iter <= 20) {
     if (cfg.dims === 2) return `Iteração ${iter}: em 2D, deputados se movem no plano. A Dimensão 1 (horizontal) tende a capturar a clivagem esquerda–direita.`
-    return `Iteração ${iter}: deputados que votam de forma parecida começam a se aproximar no espectro.`
+    return `Iteração ${iter}: o algoritmo atualiza as posições ideológicas estimadas de deputados com votações similares para que fiquem próximas no espectro.`
   }
   if (iter <= 40) {
-    if (v >= 10) return `Iteração ${iter}: com ${v} proposições, cada deputado encontra uma posição de compromisso entre múltiplas pressões de voto.`
-    return `Iteração ${iter}: o mapa ideológico emerge — grupos com padrões de voto similares ficam próximos.`
+    if (v >= 10) return `Iteração ${iter}: com ${v} proposições, o algoritmo busca o melhor posicionamento de compromisso para acomodar as múltiplas restrições de votação.`
+    return `Iteração ${iter}: o mapa ideológico emerge — grupos com padrões de voto similares ficam próximos no espectro.`
   }
   if (done) {
-    return `Convergência após ${iter} iterações. O mapa final mostra posições que maximizam a probabilidade dos votos observados. Lembre: isso é uma simulação simplificada — o W-NOMINATE real usa máxima verossimilhança com função gaussiana de utilidade.`
+    return `Convergência após ${iter} iterações. O algoritmo obteve uma configuração final estável que maximiza a verossimilhança dos votos observados. Esta é uma simulação pedagógica: o algoritmo real opera com maior complexidade e modelos de utilidade espacial.`
   }
   return `Iteração ${iter}: ajustes finos. Deputados com comportamento volátil podem oscilar entre posições próximas.`
 }

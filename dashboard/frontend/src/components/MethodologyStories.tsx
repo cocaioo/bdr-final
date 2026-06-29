@@ -5,12 +5,13 @@
  * No autoplay — user controls progression.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 // ─── Shared utilities ──────────────────────────────────────────────────────────
 
-function easeInOut(t: number) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t }
-function lerp(a: number, b: number, t: number) { return a + (b - a) * t }
+// Unused helpers commented out to satisfy compiler checks
+// function easeInOut(t: number) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t }
+// function lerp(a: number, b: number, t: number) { return a + (b - a) * t }
 
 // ─── Color palette (same as WNominateStory) ───────────────────────────────────
 // Blue  → inputs / data
@@ -1549,7 +1550,7 @@ export function Q14Story() {
       {
         title: 'Resultado: ranking de coesão no painel',
         text: 'Partidos são ordenados do mais coeso ao mais heterogêneo. Legendas menores e mais ideologicamente definidas tendem a ter coesão mais alta. Partidos de centro frequentemente abrigam perfis mais variados.',
-nt: <Q14S4 />,
+        component: <Q14S4 />,
       },
     ]} />
   )

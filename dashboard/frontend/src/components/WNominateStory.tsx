@@ -3,14 +3,14 @@
  * Projetada como uma aula de 5 minutos, focada em intuição visual.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // ─── Constantes ───────────────────────────────────────────────────────────────
 
 const PARTY_COLORS = ['#5b84a2', '#b39ddb', '#66bb6a', '#ffb74d', '#ef9a9a', '#80deea']
-const PARTY_NAMES  = ['PT', 'PL', 'MDB', 'PP', 'PDT', 'UNIÃO']
-const TOTAL_SLIDES = 11
+// const PARTY_NAMES  = ['PT', 'PL', 'MDB', 'PP', 'PDT', 'UNIÃO']
+const TOTAL_SLIDES = 12
 
 // ─── Helpers Gerais ───────────────────────────────────────────────────────────
 
@@ -25,7 +25,7 @@ function makeRand(seed: number) {
 }
 
 function clamp(v: number, lo = -1, hi = 1) { return Math.max(lo, Math.min(hi, v)) }
-function lerp(a: number, b: number, t: number) { return a + (b - a) * t }
+// function lerp(a: number, b: number, t: number) { return a + (b - a) * t }
 function easeInOut(t: number) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t }
 
 const SVG_STYLE = { width: '100%', maxWidth: 680, display: 'block', margin: '0 auto' } as const
@@ -151,10 +151,10 @@ function SlideForces2() {
 
   if (phase === 1) {
     posA = 220; posB = 280
-    msg = 'Votos Iguais → Força de Atração!'
+    msg = 'Votos Iguais → Posições Aproximadas!'
   } else if (phase === 2) {
     posA = 120; posB = 380
-    msg = 'Votos Diferentes → Força de Repulsão!'
+    msg = 'Votos Diferentes → Posições Afastadas!'
   }
 
   return (
@@ -261,7 +261,59 @@ function SlideScale3() {
   )
 }
 
-// Slide 4: Da Matriz à Geometria
+// Slide 4: O que o Algoritmo Procura
+function SlideWhatAlgorithmSeeks4() {
+  const W = 500, H = 200
+  const cy = H / 2
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} style={SVG_STYLE}>
+      <rect width={W} height={H} fill="transparent" />
+      
+      {/* Box 1: Entrada */}
+      <g transform={`translate(20, ${cy - 40})`}>
+        <rect x={0} y={0} width={130} height={80} rx={8} fill="rgba(91,132,162,0.12)" stroke="#5b84a2" strokeWidth={1.5} />
+        <text x={65} y={30} textAnchor="middle" fontSize={11} fill="#5b84a2" fontWeight="bold">ENTRADA</text>
+        <text x={65} y={50} textAnchor="middle" fontSize={9.5} fill="#c8dce8">Matriz de Votos</text>
+        <text x={65} y={64} textAnchor="middle" fontSize={8} fill="#8a9ba8">(Deputados × Votações)</text>
+      </g>
+
+      {/* Setinha 1 */}
+      <g>
+        <line x1={160} y1={cy} x2={195} y2={cy} stroke="#ffb74d" strokeWidth={2} markerEnd="url(#arrow-right-flow)" />
+      </g>
+
+      {/* Box 2: Algoritmo */}
+      <g transform={`translate(205, ${cy - 50})`}>
+        <rect x={0} y={0} width={110} height={100} rx={55} fill="rgba(255,183,77,0.12)" stroke="#ffb74d" strokeWidth={1.5} />
+        <text x={55} y={42} textAnchor="middle" fontSize={11} fill="#ffb74d" fontWeight="bold">ALGORITMO</text>
+        <text x={55} y={60} textAnchor="middle" fontSize={9.5} fill="#c8dce8">Ajuste &</text>
+        <text x={55} y={74} textAnchor="middle" fontSize={9.5} fill="#c8dce8">Otimização</text>
+      </g>
+
+      {/* Setinha 2 */}
+      <g>
+        <line x1={325} y1={cy} x2={340} y2={cy} stroke="#ffb74d" strokeWidth={2} markerEnd="url(#arrow-right-flow)" />
+      </g>
+
+      {/* Box 3: Saída */}
+      <g transform={`translate(350, ${cy - 40})`}>
+        <rect x={0} y={0} width={130} height={80} rx={8} fill="rgba(102,187,106,0.12)" stroke="#66bb6a" strokeWidth={1.5} />
+        <text x={65} y={30} textAnchor="middle" fontSize={11} fill="#66bb6a" fontWeight="bold">SAÍDA DESEJADA</text>
+        <text x={65} y={50} textAnchor="middle" fontSize={9.5} fill="#c8dce8">Posições Ideológicas</text>
+        <text x={65} y={64} textAnchor="middle" fontSize={9.5} fill="#c8dce8">Estimadas (1D / 2D)</text>
+      </g>
+
+      <defs>
+        <marker id="arrow-right-flow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffb74d" />
+        </marker>
+      </defs>
+    </svg>
+  )
+}
+
+// Slide 5: Da Matriz à Geometria
 function SlideTransform4() {
   const [step, setStep] = useState(0) // 0: Matriz, 1: Dissolve/Pontos soltos, 2: Reta (1D)
   useEffect(() => {
@@ -760,31 +812,41 @@ function buildSlides(navigate: any): SlideData[] {
       )
     },
     {
-      title: '2. As Forças da Afinidade',
-      text: 'Quando dois deputados votam igual no mesmo projeto (ambos SIM ou ambos NÃO), surge uma força que os aproxima. Se votam de maneira oposta em outro projeto, surge uma força que os afasta. O acúmulo dessas votações funciona como ímãs, determinando a distância natural entre eles.',
+      title: '2. Padrões de Votação',
+      text: 'Quando dois deputados votam de forma parecida em muitas votações, o algoritmo tende a estimar posições próximas para eles. Se votam de forma oposta frequentemente, suas posições devem ser estimadas como distantes. O algoritmo busca acomodar esses padrões de votos para encontrar a distância ideal entre eles.',
       component: <SlideForces2 />,
       technicalDetails: (
         <>
           <p><strong>Afiliação Bipartite:</strong> A matriz de votação representa uma rede de afiliação de dois tipos de nós (Deputados e Projetos). A distância ideológica entre deputados é uma propriedade emergente da similaridade de suas escolhas.</p>
-          <p>Matematicamente, se dois parlamentares votam de forma idêntica em todas as proposições, a distância latente entre eles tende a zero sob a métrica de distância Euclidiana no espaço de utilidade:</p>
+          <p>Matematicamente, se dois parlamentares votam de forma idêntica em todas as proposições, a distância estimada entre eles tende a zero sob a métrica de distância Euclidiana no espaço de utilidade:</p>
           <p style={{ fontFamily: 'monospace', textAlign: 'center', margin: '8px 0' }}>d_i,k = ||x_i - x_k||</p>
         </>
       )
     },
     {
       title: '3. O Problema Impossível',
-      text: 'Com apenas dois deputados, é fácil ajustar o mapa à mão. Mas a Câmara real possui 513 deputados e mais de 2.000 votações. São mais de 1 milhão de votos: um quebra-cabeça de forças gigante que nenhum humano consegue resolver manualmente.',
+      text: 'Com apenas dois deputados, é fácil ajustar o mapa manualmente. Mas a Câmara real possui 513 deputados e mais de 2.000 votações. São mais de 1 milhão de votos: um problema grande demais para ser resolvido manualmente.',
       component: <SlideScale3 />,
       technicalDetails: (
         <>
-          <p><strong>Alta Dimensionalidade e Esparsidade:</strong> Organizar $N$ deputados no espaço bidimensional de forma a minimizar os erros de previsão para $M$ votações é um problema clássico de otimização combinatória.</p>
+          <p><strong>Esparsidade e Escala:</strong> Organizar $N$ deputados no espaço bidimensional de forma a minimizar os erros de previsão para $M$ votações é um problema clássico de otimização combinatória.</p>
           <p>Com dados do mundo real, a matriz contém um alto grau de ruído (parlamentares que negociam emendas ou mudam de opinião) e dados ausentes, tornando inviável qualquer heurística ou posicionamento ad-hoc sem modelagem estatística robusta.</p>
         </>
       )
     },
     {
-      title: '4. Da Matriz à Geometria',
-      text: 'Para resolver o quebra-cabeça, o algoritmo transforma a tabela em coordenadas físicas. As linhas e colunas da matriz dissolvem-se, restando apenas os deputados como pontos soltos. Puxados pelas forças de atração e repulsão, esses pontos se alinham de forma organizada.',
+      title: '4. O que o Algoritmo Procura?',
+      text: 'O objetivo do algoritmo é encontrar uma configuração de posições que explique, da melhor forma possível, os votos observados. Ele toma como entrada a matriz de votos históricos e produz como saída desejada uma posição ideológica estimada para cada deputado.',
+      component: <SlideWhatAlgorithmSeeks4 />,
+      technicalDetails: (
+        <>
+          <p><strong>Relação de Entrada e Saída:</strong> O modelo mapeia decisões binárias observadas (a matriz de votos) em coordenadas contínuas no espaço euclidiano (o output). O objetivo é encontrar coordenadas e parâmetros que maximizem a verossimilhança global das observações.</p>
+        </>
+      )
+    },
+    {
+      title: '5. Da Matriz à Geometria',
+      text: 'Para resolver esse problema, o algoritmo transforma a tabela em coordenadas geométricas. As linhas e colunas da matriz dissolvem-se, restando apenas os deputados como pontos soltos. O algoritmo estima e ajusta as posições desses pontos no espectro de forma organizada.',
       component: <SlideTransform4 />,
       technicalDetails: (
         <>
@@ -794,19 +856,19 @@ function buildSlides(navigate: any): SlideData[] {
       )
     },
     {
-      title: '5. Pontos de Corte',
-      text: 'Cada votação atua como uma barreira divisória no mapa, chamada de Ponto de Corte. Esse ponto corta a reta ideológica em duas metades: a zona do SIM e a zona do NÃO. Um mapa ideológico correto é aquele onde os pontos de corte das votações conseguem separar os deputados com precisão.',
+      title: '6. Fronteiras de Decisão',
+      text: 'Cada votação define uma fronteira de decisão no espaço ideológico. Essa fronteira divide o eixo em duas regiões: a zona onde se prevê o voto SIM e a zona para o voto NÃO. Uma configuração de alta qualidade posiciona deputados e fronteiras de decisão de modo que os votos previstos coincidam com os reais.',
       component: <SlideCutPoints5 />,
       technicalDetails: (
         <>
-          <p><strong>Geometria do Voto:</strong> Para cada votação $j$, o algoritmo estima um ponto de corte $z_j$. Em um espaço 1D, o ponto de corte vira um valor único no espectro. Em espaços multidimensionais (ex: 2D), o ponto de corte vira uma reta ou hiperplano divisório perpendicular ao vetor de polarização da votação.</p>
-          <p>Se o ponto ideal do deputado $x_i$ está de um lado do corte, a alternativa de utilidade estimada prediz que ele deve votar SIM; se está do outro, prediz NÃO.</p>
+          <p><strong>Geometria do Voto (Pontos de Corte):</strong> Para cada votação $j$, o algoritmo estima uma fronteira de decisão (conhecida na literatura como ponto de corte $z_j$). Em um espaço 1D, o ponto de corte vira um valor único no espectro. Em espaços multidimensionais (ex: 2D), o ponto de corte vira uma reta ou hiperplano divisório perpendicular ao vetor de polarização da votação.</p>
+          <p>Se a posição ideológica estimada do deputado $x_i$ está de um lado do corte, a alternativa de utilidade estimada prediz que ele deve votar SIM; se está do outro, prediz NÃO.</p>
         </>
       )
     },
     {
-      title: '6. A Regra da Probabilidade',
-      text: 'Deputados não são robôs: às vezes, fogem do comportamento esperado e votam contra seus aliados. Para modelar isso, o algoritmo assume que a probabilidade de um deputado votar SIM diminui à medida que ele se afasta do ponto de corte daquela proposição. O algoritmo busca a posição onde a probabilidade estimada é o mais próxima possível das decisões reais.',
+      title: '7. Avaliando a Consistência (Probabilidade)',
+      text: 'Nem todo voto segue perfeitamente o padrão estimado pelo modelo. Por isso, para cada votação, o algoritmo avalia o quão consistente a posição atual de um deputado é com o voto que ele realmente realizou. Quanto melhor uma configuração consegue explicar os votos observados, maior é sua qualidade. Isso é modelado estatisticamente como uma probabilidade.',
       component: <SlideProbability6 />,
       technicalDetails: (
         <>
@@ -816,19 +878,19 @@ function buildSlides(navigate: any): SlideData[] {
       )
     },
     {
-      title: '7. O Ajuste Alternado',
-      text: 'Para resolver o quebra-cabeça de forças, o algoritmo faz ajustes de forma alternada: Passo 1: Congela os pontos de corte e move os deputados para a posição que melhor prevê seus votos. Passo 2: Congela os deputados e move os pontos de corte para melhorar a divisão das votações.',
+      title: '8. Otimização por Ajuste Alternado',
+      text: 'A cada iteração, o algoritmo atualiza as coordenadas dos deputados e os pontos de corte das votações para produzir uma configuração que explique melhor os votos observados. Ele faz isso em dois passos: primeiro atualiza as coordenadas dos deputados (mantendo as fronteiras de corte fixas), depois atualiza as fronteiras de corte (mantendo as coordenadas dos deputados fixas).',
       component: <SlideOptimization7 />,
       technicalDetails: (
         <>
           <p><strong>Estimação de Três Passos (Three-Step Estimation):</strong> O W-NOMINATE utiliza um estimador de máxima verossimilhança (MLE) alternado para resolver o problema de parâmetros incidentais. O problema global consiste em encontrar as coordenadas de todos os deputados $X$ e os parâmetros de votação $Z$ que maximizam a função de Log-Verossimilhança conjunta.</p>
-          <p>Como resolver para $X$ e $Z$ ao mesmo tempo é não-convexo, o algoritmo alterna entre maximizar em relação a $X$ mantendo $Z$ constante, e maximizar em relação a $Z$ mantendo $X$ constante.</p>
+          <p>Como estimar as coordenadas dos deputados e os parâmetros de votação simultaneamente é complexo, o algoritmo resolve o problema de otimização alternando entre maximizar em relação a $X$ mantendo $Z$ constante, e maximizar em relação a $Z$ mantendo $X$ constante.</p>
         </>
       )
     },
     {
-      title: '8. Convergência: O Mapa Congela',
-      text: 'Esse ciclo de ajustes alternados repete-se dezenas de vezes. A cada iteração, os movimentos ficam menores e a taxa de acerto do modelo estabiliza. Quando as coordenadas e pontos de corte param de se mover, atingimos a convergência.',
+      title: '9. Iterações e Convergência',
+      text: 'Esse ciclo de atualizações alternadas repete-se dezenas de vezes. A cada iteração, as alterações ficam menores, até que praticamente deixam de acontecer. Esse momento é chamado de convergência, indicando que a solução estável e final foi estimada.',
       component: <SlideConvergence8 />,
       technicalDetails: (
         <>
@@ -838,8 +900,8 @@ function buildSlides(navigate: any): SlideData[] {
       )
     },
     {
-      title: '9. A Segunda Dimensão',
-      text: 'Um único eixo (Esquerda-Direita) consegue prever cerca de 80% das decisões de voto. Para explicar o restante dos votos (como disputas entre Governo e Oposição, ou alas regionais), o algoritmo abre uma segunda dimensão. A reta se dobra e se desdobra em um plano bidimensional.',
+      title: '10. A Segunda Dimensão',
+      text: 'Em muitos parlamentos, uma única dimensão explica grande parte dos padrões de votação. Para capturar nuances adicionais (como divergências internas dos partidos ou conflitos secundários), o algoritmo adiciona uma segunda dimensão, posicionando os deputados em um plano bidimensional.',
       component: <SlidePlane9 />,
       technicalDetails: (
         <>
@@ -849,8 +911,8 @@ function buildSlides(navigate: any): SlideData[] {
       )
     },
     {
-      title: '10. O Output: Tabela de Coordenadas',
-      text: 'O resultado bruto gerado pelo algoritmo é uma tabela matemática pura de coordenadas. Cada deputado recebe um número exato para a Dimensão 1 e outro para a Dimensão 2. Agora, desenhar o mapa ideológico é simplesmente uma questão de plotar esses números no gráfico.',
+      title: '11. A Configuração de Coordenadas Estimadas',
+      text: 'O resultado final do algoritmo é uma tabela contendo as posições ideológicas estimadas de cada deputado. Cada parlamentar recebe um número para a Dimensão 1 e outro para a Dimensão 2. Agora, basta plotar essas coordenadas no gráfico para ver o mapa final.',
       component: <SlideOutput10 />,
       technicalDetails: (
         <>
@@ -865,8 +927,8 @@ function buildSlides(navigate: any): SlideData[] {
       )
     },
     {
-      title: '11. O Mapa Ideológico Final',
-      text: 'Ao plotar todas as coordenadas estimadas, o mapa ideológico da Câmara dos Deputados surge completo. Esse processo de traduzir votos em posições é a base científica de todos os gráficos e análises do nosso dashboard. Explore os resultados reais coletados do Congresso para ver o W-NOMINATE em ação.',
+      title: '12. O Mapa Ideológico Final',
+      text: 'Ao plotar todas as coordenadas estimadas, o mapa ideológico da Câmara dos Deputados surge completo. Esse processo de traduzir votos em posições é a base científica de todos os gráficos e análises do nosso dashboard. Explore os resultados reais coletados do Congresso para ver o algoritmo em ação.',
       component: <SlideFinal11 navigate={navigate} />,
       technicalDetails: (
         <>
