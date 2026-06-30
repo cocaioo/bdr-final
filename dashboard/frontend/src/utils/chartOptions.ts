@@ -60,7 +60,7 @@ function safeTooltipPosition(
 
 function readThemeToken(name: string, fallback: string): string {
   if (typeof document === 'undefined') return fallback
-  const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  const value = getComputedStyle(document.body).getPropertyValue(name).trim()
   return value || fallback
 }
 
