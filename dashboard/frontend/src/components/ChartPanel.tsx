@@ -3,6 +3,7 @@ import * as echarts from 'echarts'
 
 import type { ChartSpec, FilterState } from '../types'
 import { buildChartOption } from '../utils/chartOptions'
+import { useTheme } from '../hooks/useTheme'
 
 interface ChartPanelProps {
   spec: ChartSpec
@@ -14,7 +15,8 @@ interface ChartPanelProps {
 export function ChartPanel({ spec, yearLabels, activeFilters, onBarClick }: ChartPanelProps) {
   const ref = useRef<HTMLDivElement | null>(null)
   const chartRef = useRef<echarts.ECharts | null>(null)
-  const option = useMemo(() => buildChartOption(spec, activeFilters), [spec, activeFilters])
+  const { theme } = useTheme()
+  const option = useMemo(() => buildChartOption(spec, activeFilters), [spec, activeFilters, theme])
   const surfaceStyle = useMemo(() => {
     const configuredHeight = Number(spec.options.chart_height)
     return Number.isFinite(configuredHeight) && configuredHeight > 0
