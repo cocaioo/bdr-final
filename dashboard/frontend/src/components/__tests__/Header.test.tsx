@@ -3,12 +3,15 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 
 import { Header } from '../Header'
+import { ThemeProvider } from '../../hooks/useTheme'
 
 describe('Header', () => {
   it('lista somente os três painéis da navegação principal', () => {
     render(
       <MemoryRouter>
-        <Header datasetVersion="test-version" />
+        <ThemeProvider>
+          <Header datasetVersion="test-version" />
+        </ThemeProvider>
       </MemoryRouter>,
     )
 
@@ -22,7 +25,9 @@ describe('Header', () => {
     const user = userEvent.setup()
     render(
       <MemoryRouter>
-        <Header />
+        <ThemeProvider>
+          <Header />
+        </ThemeProvider>
       </MemoryRouter>,
     )
 

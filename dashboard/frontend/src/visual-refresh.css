@@ -679,6 +679,59 @@ body.gastos-light-theme {
   color: var(--color-text) !important;
 }
 
+/* ===== Civic Intelligence: Dark Theme Contract ===== */
+body.theme-dark {
+  --color-bg: #12151c;
+  --color-bg-soft: #1a1f29;
+  --color-surface: #181d27;
+  --color-surface-elevated: #1f2530;
+  --color-surface-glass: rgba(24, 29, 39, 0.92);
+  --color-surface-hover: #232a36;
+  --color-surface-active: #2a3240;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+  --color-text: #e2e8f0;
+  --color-text-muted: #aab8c6;
+  --color-text-subtle: #8a9ba8;
+  --color-text-inverse: #12151c;
+  --color-text-disabled: #5b6675;
+  --color-primary: #5b84a2;
+  --color-primary-hover: #6f97b3;
+  --color-primary-strong: #87a9c2;
+  --color-secondary: #b39ddb;
+  --color-secondary-strong: #c4b3e3;
+  --color-accent: #66bb6a;
+  --color-accent-strong: #7fc983;
+  --color-warning: #ffb74d;
+  --color-warning-text: #ffd089;
+  --color-danger: #ef9a9a;
+  --color-danger-text: #f3b4b4;
+  --color-success-text: #7fc983;
+  --color-input-bg: #1f2530;
+  --color-input-border: rgba(255, 255, 255, 0.16);
+  --color-input-focus: #5b84a2;
+  --color-table-bg: #181d27;
+  --color-table-hover: #232a36;
+  --color-chart-grid: rgba(255, 255, 255, 0.1);
+  --color-chart-text: #aab8c6;
+  --color-overlay-subtle: rgba(91, 132, 162, 0.1);
+  --color-primary-soft: rgba(91, 132, 162, 0.18);
+  --color-secondary-soft: rgba(179, 157, 219, 0.18);
+  --color-success-soft: rgba(102, 187, 106, 0.18);
+  --color-warning-soft: rgba(255, 183, 77, 0.16);
+  --color-danger-soft: rgba(239, 154, 154, 0.16);
+  --shadow-soft: 0 18px 38px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+body.theme-dark {
+  background:
+    radial-gradient(circle at top, rgba(91, 132, 162, 0.1), transparent 22%),
+    radial-gradient(circle at right top, rgba(179, 157, 219, 0.08), transparent 24%),
+    linear-gradient(180deg, var(--color-bg-soft), var(--color-bg)) !important;
+  color: var(--color-text) !important;
+}
+
 .app-shell {
   gap: 24px;
   padding: 22px;
@@ -756,7 +809,7 @@ body.gastos-light-theme .premium-hero,
 .perfil-methodology,
 .perfil-source-note,
 .perfil-section-heading {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 255, 0.98)) !important;
+  background: linear-gradient(180deg, var(--color-surface), var(--color-surface-elevated)) !important;
   border: 1px solid var(--color-border) !important;
   box-shadow: var(--shadow-card) !important;
 }
@@ -785,7 +838,7 @@ body.gastos-light-theme .gastos-explanation-card,
 .deputy-profile__data-card,
 .deputy-tema-cloud,
 .deputy-profile__hero-aside .deputy-profile__fact {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 252, 0.96)) !important;
+  background: linear-gradient(180deg, var(--color-surface), var(--color-surface-elevated)) !important;
   border: 1px solid var(--color-border) !important;
   box-shadow: var(--shadow-card) !important;
 }
@@ -866,13 +919,13 @@ body.gastos-light-theme .gastos-filter-row select:focus,
   background:
     radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 28%),
     radial-gradient(circle at 18% 18%, rgba(124, 58, 237, 0.08), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 255, 0.98)) !important;
+    linear-gradient(180deg, var(--color-surface), var(--color-surface-elevated)) !important;
 }
 
 .deputy-search__results,
 .autocomplete-options,
 .questions-menu-list {
-  background: rgba(255, 255, 255, 0.98) !important;
+  background: var(--color-surface) !important;
   border: 1px solid var(--color-border) !important;
   box-shadow: var(--shadow-soft) !important;
   backdrop-filter: blur(18px);
@@ -956,20 +1009,20 @@ body.gastos-light-theme .gastos-filter-row select:focus,
   background:
     radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 30%),
     radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.1), transparent 25%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 249, 255, 0.98)) !important;
+    linear-gradient(180deg, var(--color-surface), var(--color-surface-elevated)) !important;
 }
 
 .deputy-profile__avatar-frame,
 .deputy-profile__avatar,
 .deputy-profile__avatar-skeleton {
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--color-surface-glass);
   border-color: rgba(148, 163, 184, 0.18);
 }
 
 .deputy-profile__context,
 .deputy-profile__actions,
 .deputy-profile__error-panel {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 255, 0.98)) !important;
+  background: linear-gradient(180deg, var(--color-surface), var(--color-surface-elevated)) !important;
 }
 
 .warning-banner {

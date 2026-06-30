@@ -7,6 +7,7 @@ import { Header } from './components/Header'
 import { HomePage } from './pages/HomePage'
 import type { FilterState, MetaResponse } from './types'
 import { isQuestionHidden } from './utils/questionAvailability'
+import { ThemeProvider } from './hooks/useTheme'
 
 
 const DeputyProfilePage = lazy(() => import('./pages/DeputyProfilePage').then(module => ({ default: module.DeputyProfilePage })))
@@ -90,18 +91,24 @@ function App() {
 
   if (error) {
     return (
-      <div className="app-splash-screen" role="alert" aria-live="assertive">
-        <div className="app-splash-loader">
-          <div className="app-splash-error-icon" style={{ fontSize: '3rem', marginBottom: '8px' }}>⚠️</div>
-          <h2>Erro ao carregar metadados</h2>
-          <p style={{ color: 'var(--danger)' }}>{error}</p>
+      <ThemeProvider>
+        <div className="app-splash-screen" role="alert" aria-live="assertive">
+          <div className="app-splash-loader">
+            <div className="app-splash-error-icon" style={{ fontSize: '3rem', marginBottom: '8px' }}>⚠️</div>
+            <h2>Erro ao carregar metadados</h2>
+            <p style={{ color: 'var(--danger)' }}>{error}</p>
+          </div>
         </div>
-      </div>
+      </ThemeProvider>
     )
   }
 
   if (!meta) {
-    return <SplashLoader />
+    return (
+      <ThemeProvider>
+        <SplashLoader />
+      </ThemeProvider>
+    )
   }
 
   const activeQuestionCatalog =
@@ -110,6 +117,7 @@ function App() {
       : meta.available_filters
 
   return (
+    <ThemeProvider>
     <div className="app-shell">
       <Header datasetVersion={meta.dataset_version} />
       <div className="app-main-container">
@@ -178,6 +186,7 @@ function App() {
         </footer>
       </div>
     </div>
+    </ThemeProvider>
   )
 }
 
